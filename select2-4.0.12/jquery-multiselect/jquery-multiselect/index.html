@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Multi-select Tutorial  | YogiHosting Demo</title>
+    <link rel="icon" type="image/png" href="http://www.yogihosting.com/wp-content/themes/yogi-yogihosting/Images/favicon.ico">
+    <meta charset="utf-8" />
+    <!--select2 CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <!--selectize CSS-->
+    <link href="selectize.default.css" rel="stylesheet" />
+    <!--multiselect CSS-->
+    <link rel="stylesheet" type="text/css" href="multi-select.css" />
+    <style>
+        body {
+            background: #111 no-repeat;
+            background-image: -webkit-gradient(radial, 50% 0, 150, 50% 0, 300, from(#444), to(#111));
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #FFF;
+        }
+
+            h2 a {
+                color: #0184e3;
+                text-decoration: none;
+            }
+
+                h2 a:hover {
+                    text-decoration: underline;
+                }
+
+        .container {
+            width: 1000px;
+            margin: auto;
+            color: #FFF;
+            font-size: 25px;
+        }
+
+            .container h3 {
+                font-size: 20px;
+            }
+
+        #content {
+            border: dashed 2px #CCC;
+            padding: 10px;
+        }
+
+            #content > div > p {
+                margin: 10px 0;
+                color: #ffd23f;
+            }
+
+            #content select {
+                width: 100%;
+            }
+
+            #content span {
+                color: #000;
+            }
+
+        #reset {
+            padding: 5px 10px;
+            background: #4CAF50;
+            border: none;
+            color: #FFF;
+            cursor: pointer;
+        }
+
+            #reset:hover {
+                color: #4CAF50;
+                background: #FFF;
+            }
+
+        .ms-container {
+            background: transparent url("switch.png") no-repeat 50% 50%;
+        }
+    </style>
+</head>
+<body>
+    <h1>jQuery Multi-select Tutorial</h1>
+    <h2><a href="http://www.yogihosting.com/jquery-multiselect/">Read the tutorial on YogiHosting » </a><button id="reset">Reset »</button></h2>
+    <div class="container">
+        <div id="content">
+            <div id="div1">
+                <p>1. Creating jQuery Multi-select from 'Select2'</p>
+                <select id="state1" class="js-example-basic-multiple" multiple>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="FL">Florida</option>
+                    <option value="UT">Utah</option>
+                    <option value="WY">Wyoming</option>
+                </select>
+                <button id="fetchValue">Fetch Selected Value</button> <button id="setValue">Set Value</button>
+            </div>
+
+            <div id="div2">
+                <p>2. Creating jQuery Multi-select from 'Selectize JS'</p>
+                <select id="state2" multiple class="demo-default" placeholder="Select a state...">
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="FL">Florida</option>
+                    <option value="UT">Utah</option>
+                    <option value="WY">Wyoming</option>
+                </select>
+                <button id="fetchValue">Fetch Selected Value</button> <button id="setValue">Set Value</button>
+            </div>
+
+            <div id="div3">
+                <p>3. Creating jQuery Multi-select from 'MultiSelect JS'</p>
+                <select id="state3" multiple>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="FL">Florida</option>
+                    <option value="UT">Utah</option>
+                    <option value="WY">Wyoming</option>
+                </select>
+                <button id="fetchValue">Fetch Selected Value</button> <button id="setValue">Set Value</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Reference to jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!--select2 JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <!--selectize JS-->
+    <script src="selectize.js"></script>
+    <!--multiselect JS-->
+    <script src="jquery.multi-select.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#reset").click(function (e) {
+                location.reload();
+            });
+
+            //select2 code
+            $('.js-example-basic-multiple').select2();
+            $("#div1 #fetchValue").click(function (e) {
+                alert($("#state1").val());
+            });
+            $("#div1 #setValue").click(function (e) {
+                $("#state1").val(["FL", "UT"]).trigger("change");
+            });
+
+            //selectize code
+            var state2 = $("#state2").selectize();
+            $("#div2 #fetchValue").click(function (e) {
+                alert($("#state2").val());
+            });
+            $("#div2 #setValue").click(function (e) {
+                var defValue = ["FL", "UT"];
+                var selectize = state2[0].selectize;
+                selectize.setValue(defValue);
+            });
+
+            $("#state3").multiSelect();
+            $("#div3 #fetchValue").click(function (e) {
+                alert($("#state3").val());
+            });
+            $("#div3 #setValue").click(function (e) {
+                $('#state3').multiSelect("deselect_all");
+                $('#state3').multiSelect("select", ["FL","UT"]);
+            });
+        });
+    </script>
+</body>
+</html>
