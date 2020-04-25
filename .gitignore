@@ -14,3 +14,5 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 /public/socket/config.inc.php
+/storage/framework
+/storage/logs
