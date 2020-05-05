@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Content;
-use App\Home;
+//use App\Home;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use PDF;
@@ -53,7 +53,7 @@ class HomeController extends Controller
             'description' => 'required',
         ]);*/
 /*print_r($_POST);die();*/
-        Home::create($request->all());
+        //Home::create($request->all());
 
         return Redirect('Homes')->with('success', 'Greate! Home created successfully.');
 
