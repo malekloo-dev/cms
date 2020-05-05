@@ -13,7 +13,7 @@
 <section id="index-intro">
     
     <div class="flex one two-700 two-900">
-        <div>
+        <div class="align-left">
             <img style="width: 100%" src="{{ asset(@env('TEMPLATE_NAME').'/img/user/banner2.jpg') }}">
         </div>
         <div class="index-h1">
@@ -24,19 +24,21 @@
     </div>
 </section>
 
-<section class="products" id="index-best">
+
+
+
+
+<section class="index-items ">
         <div class="flex one">
             <div>
-                
-                    <h2>پر بازدیدترین مطالب در مورد سوئیچ و ریموت خودرو</h2>
-                    <div class="flex one two-500 four-900 center ">
+                    <div class="flex one three-500   ">
 
                         {{--$data['newPost']--}}
                         @foreach($topViewPost as $content)
                             <div>
                                 <article>
                                     @if (isset($content->images['thumb']))
-                                        <div><img src="{{ $content->images['thumb']}}"></div>
+                                        <div><img  src="{{ $content->images['thumb']}}"></div>
                                     @endif
                                     <footer>
                                         <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
@@ -53,36 +55,41 @@
             </div>
         </div>
     </section>
-    <section class="wide" id="index-comment">
-        <div>جدید ترین مطالب در مورد سوئیچ و ریموت خودرو</div>
+    <section class="wide mt-5" id="index-comment">
+        <div>خدمات طرح و وب</div>
     </section>
-    <section class="products" id="index-best-view">
-        <div class="flex one ">
+
+    <section class=" pb-5"   style="position: relative">
+    <div class="flex one">
             <div>
-                
-                    <h2>جدید ترین مطالب در مورد سوئیچ و ریموت خودرو</h2>
-                    <div class="flex one two-500 four-900 center ">
+    
+  <h2 class="align-center">نظرات شما</h2>
+  <div class="quotes mt-2 flex one  three-700 four-1000 center ">
+    <div class="">
+      <div class="box box1">
+        <p>این دستگاه از تکنولوژی بالایی برخوردار است خصوصا دستگاه های مدل . داخل هد، برق  کیلو ولت، های ولتاژ ساخته و به دو سر لامپ رفته و اشعه ایکس بوجود میآید. به همین دلیل کوچکترین </p>
+        <h2>مهدی مرجانی</h2>
+      </div>
+      <div class="bg"></div>
+    </div>
+    <div class="">
+      <div class="box box2">
+        <p>بهترین نمونه کارها را دارند. بهترین نمونه کارها را دارند.</p>
+        <h2>محمود ملک لو</h2>
+      </div>
+      <div class="bg"></div>
+    </div>
+    <div class="">
+      <div class="box box3">
+        <p>های مدل . داخل هد، برق  کیلو ولت، های ولتاژ ساخته و به دو سر لامپ رفته و اشعه ایکس بوجود میآید.</p>
+        <h2>شیلا خداداد</h2>
+      </div>
+      <div class="bg"></div>
+    </div>
+    </div>
+    </div>
+  </div>
+</section>
 
-                        {{--$data['newPost']--}}
-                        @foreach($newPost as $content)
-                            <div>
-                                <article>
 
-                                    @if (isset($content->images['thumb']))
-                                        <div><img src="{{ $content->images['thumb']}}"></div>
-                                    @endif
-                                    <footer>
-                                        <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
-                                        {!! $content->brief_description !!}
-                                    </footer>
-                                </article>
-                            </div>
-
-                        @endforeach
-
-                    </div>
-                
-            </div>
-        </div>
-    </section>
 @endsection
