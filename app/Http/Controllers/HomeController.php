@@ -21,7 +21,7 @@ class HomeController extends Controller
         //Content::increment('viewCount');
         $data['topViewPost'] = Content::where('type','=','2')->orderBy('viewCount', 'desc')->limit(4)->get();
         $data['newPost'] = Content::where('type','=','2')->orderBy('publish_date', 'desc')->limit(4)->get();
-        return view('cms.Home',$data);
+        return view(@env('TEMPLATE_NAME') . '.Home',$data);
     }
 
     /**

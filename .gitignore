@@ -16,3 +16,6 @@ yarn-error.log
 /public/socket/config.inc.php
 /storage/framework
 /storage/logs
+storage/framework/sessions/*
+storage/logs/*
+
