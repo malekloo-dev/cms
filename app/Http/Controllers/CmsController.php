@@ -95,7 +95,7 @@ class CmsController extends Controller
                 ->inRandomOrder()
                 ->limit(4)->get();
 
-            return view('cms.Detail', compact(['detail', 'breadcrumb', 'relatedPost', 'table_of_content', 'relatedProduct','table_of_images','seo']));
+            return view(@env('TEMPLATE_NAME').'.cms.Detail', compact(['detail', 'breadcrumb', 'relatedPost', 'table_of_content', 'relatedProduct','table_of_images','seo']));
 
         }
 

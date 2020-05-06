@@ -13,10 +13,10 @@ function h_encrypt($string)
 
 function h_decrypt($string)
 {
-    
-    
+
+
     $result = substr(substr($string,7,4),0,-3);
-    
+
     return $result;
 }
 if (!function_exists('tableOfContent')) {

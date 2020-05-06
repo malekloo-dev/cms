@@ -1,4 +1,4 @@
-@extends('cms.App')
+@extends(@env('TEMPLATE_NAME').'.App')
 @section('Content')
     @php
         $tableOfImages=tableOfImages($detail->description);
