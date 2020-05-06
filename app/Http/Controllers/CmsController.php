@@ -76,7 +76,7 @@ class CmsController extends Controller
                 ->where('parent_id', '=', $detail->id)
                 ->get();
 
-            return view('cms.DetailCategory', compact(['detail', 'relatedPost', 'table_of_content', 'subCategory', 'relatedProduct', 'breadcrumb','images','seo']));
+            return view(@env(TEMPLATE_NAME).'.cms.DetailCategory', compact(['detail', 'relatedPost', 'table_of_content', 'subCategory', 'relatedProduct', 'breadcrumb','images','seo']));
 
 
         } else {

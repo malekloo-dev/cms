@@ -8,7 +8,7 @@
     <meta name="description" content="{{$seo['meta_description']  ?? ""}}">
 
     <link rel="stylesheet" href="{{ asset(@env('TEMPLATE_NAME').'/style.css') }}">
-    <link rel="icon" href="{{ asset(@env('TEMPLATE_NAME').'img/logo.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset(@env('TEMPLATE_NAME').'img/logo1.png') }}" type="image/png">
     <link rel="stylesheet" media="bogus">
 
     @yield('assets')
