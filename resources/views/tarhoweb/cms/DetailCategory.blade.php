@@ -116,11 +116,11 @@
     @endif
 
     @if (count($relatedProduct))
-        <section class="products" id="index-best-view">
+        <section class="products mt-5" id="index-best-view">
             <div class="flex one ">
                 <div>
-                    <div class="shadow">
-                        <h2>محصولات زیر مجموعه {{$detail->title}}</h2>
+                    <div class="">
+
                         <div class="flex one two-500 four-900 center ">
 
                             {{--$data['newPost']--}}
