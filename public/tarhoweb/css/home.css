@@ -1,10 +1,10 @@
-#index-intro{margin-top:0;  padding-top: 0; color: #fff; margin-bottom:2em; background: url(../../img/index-banner.jpg) center bottom; background-size: cover; }
-#index-comment{color:#fff;padding:2em;text-align:center;background:#0e0e5b;background:linear-gradient(28deg,rgb(35, 0, 88) 0,rgb(0, 69, 255) 100%);}
+#index-intro{margin-top:0;padding-top:0;color:#fff;margin-bottom:2em;background:url(../img/index-banner.jpg) center bottom;background-size:cover}
+#index-comment{color:#fff;padding:2em;text-align:center;background:#0e0e5b;background:linear-gradient(28deg,#230058 0,#0045ff 100%)}
 #index-category{text-align:center}
 #index-category a{font-size:.8em;color:#000}
 #index-category a:hover{box-shadow:0 2px 5px rgba(0,0,0,.1)}
 #index-category img{width:40%;margin:auto}
-.index-h1{height: 400px; text-align:center;align-items:center;justify-content:center;flex-direction:column;display: flex; direction: rtl;}
+.index-h1{height:400px;text-align:center;align-items:center;justify-content:center;flex-direction:column;display:flex;direction:rtl}
 .index-h1 h1{font-size:3em}
 @media (max-width:390px){
 .index-h1 h1{font-size:2em}

@@ -1,7 +1,7 @@
 
 <nav>
     <a href="/" class="brand">
-        <img class="full" src="{{ asset(@env('TEMPLATE_NAME').'/img/user/logo.png') }}">
+        <img class="full" src="{{ asset(@env('TEMPLATE_NAME').'/img/logo.png') }}">
     </a>
 
     <input id="bmenu" type="checkbox" class="show">
