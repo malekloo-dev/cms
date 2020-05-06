@@ -91,7 +91,7 @@ $append='';
 <section class="" id="">
     <div class="flex one ">
         <div>
-            <div class="shadow ">
+
                 <h1 class="">{{ $detail->title }}</h1>
 
                 <ul>
@@ -103,16 +103,16 @@ $append='';
 
                 </ul>
                 {!! $detail->description !!}
-            </div>
+
         </div>
     </div>
 </section>
 
 @if (count($relatedProduct))
-<section class="products" id="index-best-view">
+<section class="products bg-gray m-0 pt-1 pb-1" id="index-best-view">
     <div class="flex one ">
         <div>
-            <div class="shadow">
+            <div class="shadow ">
                 <h2>محصولات مرتبط {{$detail->title}}</h2>
                 <div class="flex one two-500 four-900 center ">
 
