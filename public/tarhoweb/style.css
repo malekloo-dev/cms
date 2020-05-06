@@ -1022,5 +1022,6 @@ article footer{padding-top:10px}
 .bg-gray{background-color:#f4f4f4}
 .breadcrumb{background: #f5f5f5; }
 .breadcrumb a{color: #333; font-size: .9em;}
+.image-style-align-center{text-align: center;}
 .image-style-align-right{float: right;}
 .image-style-align-left{float: left;}

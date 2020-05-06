@@ -1577,7 +1577,7 @@ table .nice-checkbox {
 }
 
 .panel {
-    overflow: hidden;
+    overflow: scroll;
     border: none !important;
 }
 
