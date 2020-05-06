@@ -43,13 +43,13 @@ label{cursor:pointer}
 [class*=" icon-"]:before,[class^=icon-]:before{margin:0 .6em 0 0}
 i[class*=" icon-"]:before,i[class^=icon-]:before{margin:0}
 .button,.dropimage,.label,[data-tooltip]:after,[type=submit],button{display:inline-block;text-align:center;letter-spacing:inherit;margin:0;padding:.3em .9em;vertical-align:middle;border:0;border-radius:.2em;width:auto;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
-.button.button-blue{background:#0e0e5b;background:linear-gradient(28deg,rgba(14,14,91,1) 0,rgba(0,69,255,1) 100%);color:#fff}
+.button.button-blue{color:#fff;background:#0045ff}
 .success.button,.success.dropimage,.success.label,.success[data-tooltip]:after,.success[type=submit],button.success{background:#2ecc40}
 .warning.button,.warning.dropimage,.warning.label,.warning[data-tooltip]:after,.warning[type=submit],button.warning{background:#ff851b}
 .error.button,.error.dropimage,.error.label,.error[data-tooltip]:after,.error[type=submit],button.error{background:#ff4136}
 .pseudo.button,.pseudo.dropimage,.pseudo.label,.pseudo[data-tooltip]:after,.pseudo[type=submit],button.pseudo{background-color:transparent}
 .label,[data-tooltip]:after{font-size:.6em;padding:.4em .6em;margin-left:1em;line-height:1}
-.button,.dropimage,[type=submit],button{margin:.3em 0;cursor:pointer;transition:all .3s;border-radius:.2em;height:auto;vertical-align:baseline;box-shadow:0 0 rgba(0,0,0,0) inset}
+.button,.dropimage,[type=submit],button{padding:8px 20px;margin:.3em 0;cursor:pointer;transition:all .3s;border-radius:50px;height:auto;vertical-align:baseline;box-shadow:0 0 rgba(0,0,0,0) inset}
 .button:focus,.button:hover,.dropimage:focus,.dropimage:hover,:focus[type=submit],:hover[type=submit],button:focus,button:hover{border:0}
 .pseudo.button{border-top:3px solid transparent}
 nav .button{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}
@@ -816,11 +816,13 @@ tr:nth-child(even){background:rgba(0,0,0,.05)}
 .off-sixth-2000{margin-right:16.66666%}
 }
 nav{width:100%;margin:auto;top:0;left:0;right:0;padding:0 .6em;z-index:10000;transition:all .3s;transform-style:preserve-3d}
-nav .menu{text-align:left;margin:auto;position:relative;top:2em;-webkit-transform:translateY(-50%);transform:translateY(-50%)}
-nav .menu a{color:#333}
+nav .hamburger{display:block}
+nav .hamburger span{background:#333;width:21px;height:3px;display:block;border-radius:4px;margin-bottom:3px}
+nav .menu{text-align:left;margin:auto;position:relative;top:1.5em;-webkit-transform:translateY(-50%);transform:translateY(-50%)}
+nav .menu a{color:#000}
 nav .brand{float:right;position:relative;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}
 nav .burger{float:left;position:relative;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}
-nav .brand{top:2em;font-weight:700;float:right;padding:0 .6em;max-width:12em;white-space:nowrap;color:inherit}
+nav .brand{top:1.6em;font-weight:700;float:right;padding:0 .6em;max-width:12em;white-space:nowrap;color:inherit}
 nav .brand *{vertical-align:middle}
 nav .logo{height:2em;margin-right:.3em}
 nav .select::after{height:calc(100% - 1px);padding:0;line-height:2.4em}
@@ -829,7 +831,7 @@ nav .burger{display:none;position:relative}
 nav .burger:after{position:absolute;background:url(img/icons/th-menu.svg) no-repeat;height:1.2em;width:100px;content:'';top:0;right:0}
 @media all and (max-width:60em){
 nav .burger{display:inline-block;cursor:pointer;bottom:-1000em;margin:0}
-nav .burger~.menu,nav .show:checked~.burger{position:fixed;min-height:100%;top:0;right:0;bottom:-1000em;margin:0;background:#ccc;transition:all .5s ease;transform:none}
+nav .burger~.menu,nav .show:checked~.burger{position:fixed;min-height:100%;top:0;right:0;bottom:-1000em;margin:0;background:#fff;transition:all .5s ease;transform:none}
 nav .burger~.menu{z-index:11}
 nav .show:checked~.burger{color:transparent;width:100%;border-radius:0;background:rgba(0,0,0,.2);transition:all .5s ease}
 nav .show~.menu{width:70%;max-width:300px;transform-origin:center right;transition:all .25s ease;transform:scaleX(0)}
@@ -842,7 +844,7 @@ nav .show:checked~.menu>:nth-child(5){transition:all .5s cubic-bezier(.645,.045,
 nav .show:checked~.menu>:nth-child(6){transition:all .5s cubic-bezier(.645,.045,.355,1) .5s}
 nav .show:checked~.menu{transform:scaleX(1)}
 nav .show:checked~.menu>*{transform:translateX(0);transition:all .5s ease-in-out .6s}
-nav .burger~.menu>*{display:block;margin:.3em;text-align:left;max-width:calc(100% - .6em)}
+nav .burger~.menu>*{display:block;margin:.3em;text-align:right;max-width:calc(100% - .6em)}
 nav .burger~.menu>a{padding:.3em .9em}
 }
 .stack,.stack .toggle{margin-top:0;margin-bottom:0;display:block;width:100%;text-align:left;border-radius:0}
@@ -995,11 +997,11 @@ section>div{max-width:1200px;margin:auto!important}
 section.wide div{max-width:none;margin:auto}
 section.wide{max-width:none}
 article footer{padding-top:10px}
-#footer{background:#040435;color:#fff;padding:2em;margin:0}
+#footer{background:#ececec;color:#475667;padding:2em;margin:0}
 #footer>div{max-width:1200px;margin:auto!important}
 #footer .social-network input::placeholder{color:#6c839f}
-#footer .social-network input{font-size:.8em;background:#475668;border:0;color:#6c839f;height:40px;-webkit-border-radius:0 3px 3px 0;-moz-border-radius:0 3px 3px 0;border-radius:0 3px 3px 0}
-#footer .social-network button{font-size:.9em;background:#5e728a;margin:0;padding:0 0;-webkit-border-radius:3px 0 0 3px;-moz-border-radius:3px 0 0 3px;border-radius:3px 0 0 3px}
+#footer .social-network input{direction: ltr; font-size:.8em; padding-right: 20px; background:#c8e1ff;border:0;color:#6c839f;height:40px;-webkit-border-radius:0 50px503px 0;-moz-border-radius:0 50px 50px 0;border-radius:0 50px 50px 0}
+#footer .social-network button{font-size:.9em;background:#0242f7;color:#fff;margin:0;padding:0 0;-webkit-border-radius:50px 0 0 50px;-moz-border-radius:50px 0 0 50px;border-radius:50px 0 0 50px}
 #footer .social-network>div:first-child{display:flex;align-items:center;margin-bottom:2em}
 #footer .social-network>div:first-child a{height:30px;margin-right:3px}
 #footer .social-network a{display:inline-block}

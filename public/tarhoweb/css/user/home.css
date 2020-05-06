@@ -1,25 +1,21 @@
-#index-intro{margin-top:2em;margin-bottom:2em}
-#index-comment{background:#0e0e5b;background:linear-gradient(28deg,rgba(14,14,91,1) 0,rgba(0,69,255,1) 100%);color:#fff;padding:2em;text-align:center}
+#index-intro{margin-top:0;  padding-top: 0; color: #fff; margin-bottom:2em; background: url(../../img/index-banner.jpg) center bottom; background-size: cover; }
+#index-comment{color:#fff;padding:2em;text-align:center;background:#0e0e5b;background:linear-gradient(28deg,rgb(35, 0, 88) 0,rgb(0, 69, 255) 100%);}
 #index-category{text-align:center}
 #index-category a{font-size:.8em;color:#000}
 #index-category a:hover{box-shadow:0 2px 5px rgba(0,0,0,.1)}
 #index-category img{width:40%;margin:auto}
-.index-h1{margin-top:9em;text-align:center}
+.index-h1{height: 400px; text-align:center;align-items:center;justify-content:center;flex-direction:column;display: flex; direction: rtl;}
+.index-h1 h1{font-size:3em}
+@media (max-width:390px){
+.index-h1 h1{font-size:2em}
+}
+@media (min-width:700px) and (max-width:800px){
+.index-h1 h1{font-size:2em}
+}
+.index-h1 h3{color:#d8d8d8}
 .index-items{text-align:center}
 .index-items article>div{height:300px}
 .index-items img{width:100%;height:100%;object-fit:contain}
-@media (max-width:999.9px){
-.index-h1{margin-top:3em}
-}
-@media (max-width:899.9px){
-.index-h1{margin-top:2em}
-}
-@media (max-width:799.9px){
-.index-h1{margin-top:3em}
-}
-@media (max-width:699.9px){
-.index-h1{margin-top:1em;text-align:center}
-}
 .quotes{min-height:400px;display:flex;flex-wrap:wrap;justify-content:space-between;z-index:2}
 .quotes .box{position:relative;width:100%;height:50vh;min-height:320px;background:#f2f2f2;overflow:hidden;transition:all .5s ease-in;z-index:2;box-sizing:border-box;padding:30px;box-shadow:-10px 25px 50px rgba(0,0,0,.3)}
 .quotes .box::before{content:'\201C';position:absolute;top:-20px;left:5px;width:100%;height:100%;font-size:120px;opacity:.2;background:0 0;pointer-events:none}
