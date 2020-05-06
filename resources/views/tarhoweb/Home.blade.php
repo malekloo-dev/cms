@@ -1,7 +1,7 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
 @section('assets')
-<link rel="stylesheet" href="{{ asset(@env('TEMPLATE_NAME').'/css/home.css') }}">
+<link rel="stylesheet" href="{{ asset(@env('TEMPLATE_NAME').'/home.css') }}">
 @endsection
 
 @section('Content')
