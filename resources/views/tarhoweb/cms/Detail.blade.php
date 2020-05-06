@@ -75,18 +75,15 @@ $append='';
 </script>
 @endif
 
-<section class="" id="">
-    <div class="flex one ">
-        <div>
-            <div class="shadow ">
-                <a class="button" href="/">iran remote</a>
-                @foreach($breadcrumb as $key=>$item)
+<section class="breadcrumb">
+    <div class="flex one  ">
+        <div class="p-0">
+            <a href="/">خانه </a>
+            @foreach($breadcrumb as $key=>$item)
+            <span>></span>
+            <a href="{{$item['slug']}}">{{$item['title']}}</a>
+            @endforeach
 
-                <a class="button" href="{{$item['slug']}}">{{$item['title']}}</a>
-
-                @endforeach
-
-            </div>
         </div>
     </div>
 </section>

@@ -1,13 +1,12 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 @section('Content')
 
-    @php
-        $tableOfImages=tableOfImages($detail->description);
-        $append='';
-    @endphp
+@php
+$tableOfImages=tableOfImages($detail->description);
+$append='';
+@endphp
 <script type="application/ld+json">
-
-@if (count($relatedProduct))
+    @if (count($relatedProduct))
 [
    @foreach($relatedProduct as $key=>$content)
 
@@ -65,126 +64,121 @@
 @endif
 </script>
 
-    @if (count($breadcrumb))
+@if (count($breadcrumb))
+<section class="breadcrumb">
+    <div class="flex one  ">
+        <div class="p-0">
+            <a href="/">خانه </a>
+            @foreach($breadcrumb as $key=>$item)
+            <span>></span>
+            <a href="{{$item['slug']}}">{{$item['title']}}</a>
+            @endforeach
 
-        <section class="breadcrumb" id="">
-            <div class="flex one  ">
-                <div class="p-0">
-                    <div class=" ">
-                        <a class="button" href="/">خانه</a>
+        </div>
+    </div>
+</section>
+@endif
 
-                        @foreach($breadcrumb as $key=>$item)
+@if (count($subCategory))
+<section class="products" id="index-best-view">
+    <div class="flex one ">
+        <div>
+            <div class="shadow">
+                <h2>زیر دسته های {{$detail->title}}</h2>
+                <div class="flex one two-500 four-900 center ">
 
-                            <a class=" " href="{{$item['slug']}}">{{$item['title']}} > </a>
-                        @endforeach
-
-
+                    {{--$data['newPost']--}}
+                    @foreach($subCategory as $content)
+                    <div>
+                        <article>
+                            @if (isset($content->images['thumb']))
+                            <div><img src="{{ $content->images['thumb']}}"></div>
+                            @endif
+                            <footer>
+                                <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
+                                {!! $content->brief_description !!}
+                            </footer>
+                        </article>
                     </div>
-                </div>
-            </div>
-        </section>
-    @endif
+                    @endforeach
 
-    @if (count($subCategory))
-        <section class="products" id="index-best-view">
-            <div class="flex one ">
-                <div>
-                    <div class="shadow">
-                        <h2>زیر دسته های {{$detail->title}}</h2>
-                        <div class="flex one two-500 four-900 center ">
-
-                            {{--$data['newPost']--}}
-                            @foreach($subCategory as $content)
-                                <div>
-                                    <article>
-                                        @if (isset($content->images['thumb']))
-                                            <div><img src="{{ $content->images['thumb']}}"></div>
-                                        @endif
-                                        <footer>
-                                            <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
-                                            {!! $content->brief_description !!}
-                                        </footer>
-                                    </article>
-                                </div>
-                            @endforeach
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endif
-
-    @if (count($relatedProduct))
-        <section class="products mt-5" id="index-best-view">
-            <div class="flex one ">
-                <div>
-                    <div class="">
-
-                        <div class="flex one two-500 four-900 center ">
-
-                            {{--$data['newPost']--}}
-                            @foreach($relatedProduct as $content)
-                                <div>
-                                    <article>
-                                        @if (isset($content->images['thumb']))
-                                            <div><img src="{{ $content->images['thumb']}}"></div>
-                                        @endif
-                                        <footer>
-                                            <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
-                                            {!! $content->brief_description !!}
-                                        </footer>
-                                    </article>
-                                </div>
-                            @endforeach
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endif
-
-    @if (count($relatedPost))
-        <section class="products" id="index-best-view">
-            <div class="flex one ">
-                <div>
-                    <div class="shadow">
-                        <h2>مقاله های زیر مجموعه {{$detail->title}}</h2>
-                        <div class="flex one two-500 four-900 center ">
-
-                            {{--$data['newPost']--}}
-                            @foreach($relatedPost as $content)
-                                <div>
-                                    <article>
-                                        @if (isset($content->images['thumb']))
-                                            <div><img src="{{ $content->images['thumb']}}"></div>
-                                        @endif
-                                        <footer>
-                                            <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
-                                            {!! $content->brief_description !!}
-                                        </footer>
-                                    </article>
-                                </div>
-                            @endforeach
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endif
-
-
-    <section class="" id="">
-        <div class="flex one ">
-            <div>
-
-                <div class="shadow ">
-                    <h1 class="">{{ $detail->title }}</h1>
-                    {!! $detail->description !!}
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+@endif
+
+@if (count($relatedProduct))
+<section class="products mt-5" id="index-best-view">
+    <div class="flex one ">
+        <div>
+            <div class="">
+
+                <div class="flex one two-500 four-900 center ">
+
+                    {{--$data['newPost']--}}
+                    @foreach($relatedProduct as $content)
+                    <div>
+                        <article>
+                            @if (isset($content->images['thumb']))
+                            <div><img src="{{ $content->images['thumb']}}"></div>
+                            @endif
+                            <footer>
+                                <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
+                                {!! $content->brief_description !!}
+                            </footer>
+                        </article>
+                    </div>
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endif
+
+@if (count($relatedPost))
+<section class="products" id="index-best-view">
+    <div class="flex one ">
+        <div>
+            <div class="shadow">
+                <h2>مقاله های زیر مجموعه {{$detail->title}}</h2>
+                <div class="flex one two-500 four-900 center ">
+
+                    {{--$data['newPost']--}}
+                    @foreach($relatedPost as $content)
+                    <div>
+                        <article>
+                            @if (isset($content->images['thumb']))
+                            <div><img src="{{ $content->images['thumb']}}"></div>
+                            @endif
+                            <footer>
+                                <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
+                                {!! $content->brief_description !!}
+                            </footer>
+                        </article>
+                    </div>
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endif
+
+
+<section class="" id="">
+    <div class="flex one ">
+        <div>
+
+            <div class="shadow ">
+                <h1 class="">{{ $detail->title }}</h1>
+                {!! $detail->description !!}
+            </div>
+        </div>
+    </div>
+</section>
 @endsection
