@@ -822,7 +822,7 @@ nav .menu{text-align:left;margin:auto;position:relative;top:1.5em;-webkit-transf
 nav .menu a{color:#000}
 nav .brand{float:right;position:relative;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}
 nav .burger{float:left;position:relative;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}
-nav .brand{top:1.6em;font-weight:700;float:right;padding:0 .6em;max-width:12em;white-space:nowrap;color:inherit}
+nav .brand{z-index: 1; top:1.6em;font-weight:700;float:right;padding:0 .6em;max-width:12em;white-space:nowrap;color:inherit}
 nav .brand *{vertical-align:middle}
 nav .logo{height:2em;margin-right:.3em}
 nav .select::after{height:calc(100% - 1px);padding:0;line-height:2.4em}
