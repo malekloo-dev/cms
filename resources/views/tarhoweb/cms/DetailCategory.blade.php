@@ -67,15 +67,15 @@
 
     @if (count($breadcrumb))
 
-        <section class="" id="">
-            <div class="flex one ">
-                <div>
-                    <div class="shadow ">
-                        <a class="button" href="/">iran remote</a>
+        <section class="breadcrumb" id="">
+            <div class="flex one  ">
+                <div class="p-0">
+                    <div class=" ">
+                        <a class="button" href="/">خانه</a>
 
                         @foreach($breadcrumb as $key=>$item)
 
-                            <a class="button" href="{{$item['slug']}}">{{$item['title']}}</a>
+                            <a class=" " href="{{$item['slug']}}">{{$item['title']}} > </a>
                         @endforeach
 
 
