@@ -49,7 +49,7 @@ i[class*=" icon-"]:before,i[class^=icon-]:before{margin:0}
 .error.button,.error.dropimage,.error.label,.error[data-tooltip]:after,.error[type=submit],button.error{background:#ff4136}
 .pseudo.button,.pseudo.dropimage,.pseudo.label,.pseudo[data-tooltip]:after,.pseudo[type=submit],button.pseudo{background-color:transparent}
 .label,[data-tooltip]:after{font-size:.6em;padding:.4em .6em;margin-left:1em;line-height:1}
-.button,.dropimage,[type=submit],button{padding:8px 20px;margin:.3em 0;cursor:pointer;transition:all .3s;border-radius:50px;height:auto;vertical-align:baseline;box-shadow:0 0 rgba(0,0,0,0) inset}
+.button,.dropimage,[type=submit],button{padding:8px 1rem;margin:.3em 0;cursor:pointer;transition:all .3s;border-radius:50px;height:auto;vertical-align:baseline;box-shadow:0 0 rgba(0,0,0,0) inset}
 .button:focus,.button:hover,.dropimage:focus,.dropimage:hover,:focus[type=submit],:hover[type=submit],button:focus,button:hover{border:0}
 .pseudo.button{border-top:3px solid transparent}
 nav .button{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}
@@ -818,11 +818,22 @@ tr:nth-child(even){background:rgba(0,0,0,.05)}
 nav{width:100%;margin:auto;top:0;left:0;right:0;padding:0 .6em;z-index:10000;transition:all .3s;transform-style:preserve-3d}
 nav .hamburger{display:block}
 nav .hamburger span{background:#333;width:21px;height:3px;display:block;border-radius:4px;margin-bottom:3px}
+nav ul{list-style:none}
+nav ul li{display:inline-block;position:relative; margin: 0;}
+nav li a{padding: 10px 10px 10px 20px; display: block;}
+nav li li{display:block}
+nav ul>li.parent > a::after{position:absolute;display:inline-block;content:''; background-image: url(img/arrow-down.png); margin-right:.5em;width: 8px; height: 8px;top: 1em; background-size: .5em; background-repeat: no-repeat;}
+nav ul li.parent button{display:none}
+nav li li a{ width: 100%; padding:1em 2em!important;white-space:nowrap;display:block!important;border-bottom:3px solid rgba(0,0,0,0)!important}
+nav li ul{display:none;padding:0;position:absolute;background-color:#fff;border-top:3px solid #ea1c44;border-radius:10px 10px 10px 10px;box-shadow:1px 0 20px rgba(0,0,0,.12)}
+nav li ul ul{left:100%}
+nav ul li:hover ul{display:block}
+nav li li a:hover{color:#ea1c44!important}
 nav .menu{text-align:left;margin:auto;position:relative;top:1.5em;-webkit-transform:translateY(-50%);transform:translateY(-50%)}
 nav .menu a{color:#000}
 nav .brand{float:right;position:relative;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}
 nav .burger{float:left;position:relative;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}
-nav .brand{z-index: 1; top:1.6em;font-weight:700;float:right;padding:0 .6em;max-width:12em;white-space:nowrap;color:inherit}
+nav .brand{z-index:1;top:1.6em;font-weight:700;float:right;padding:0 .6em;max-width:12em;white-space:nowrap;color:inherit}
 nav .brand *{vertical-align:middle}
 nav .logo{height:2em;margin-right:.3em}
 nav .select::after{height:calc(100% - 1px);padding:0;line-height:2.4em}
@@ -830,6 +841,13 @@ nav .menu>*{margin-right:.6em}
 nav .burger{display:none;position:relative}
 nav .burger:after{position:absolute;background:url(img/icons/th-menu.svg) no-repeat;height:1.2em;width:100px;content:'';top:0;right:0}
 @media all and (max-width:60em){
+nav ul{padding:0;margin:0!important;max-width:none!important}
+nav ul li{display:block}
+nav ul li ul{position:relative;border-right:3px solid #ea1c44;border-top:none;box-shadow:none;background-color:rgba(0,0,0,.1);border-radius:0}
+nav ul li ul ul{position:relative;left:0}
+nav li li a{padding:8px .3rem!important}
+nav ul>li.parent a::after{display:none}
+nav ul li.parent button{display:block;background:0 0;position: absolute; left: 10px; top: 0;outline: none; z-index: 999999;}
 nav .burger{display:inline-block;cursor:pointer;bottom:-1000em;margin:0}
 nav .burger~.menu,nav .show:checked~.burger{position:fixed;min-height:100%;top:0;right:0;bottom:-1000em;margin:0;background:#fff;transition:all .5s ease;transform:none}
 nav .burger~.menu{z-index:11}
@@ -853,7 +871,7 @@ nav .burger~.menu>a{padding:.3em .9em}
 input.stack,select.stack,textarea.stack{transition:border-bottom 0 ease 0;border-bottom-width:0}
 input.stack:last-child,select.stack:last-child,textarea.stack:last-child{border-bottom-width:1px}
 input.stack:focus+input,input.stack:focus+select,input.stack:focus+textarea,select.stack:focus+input,select.stack:focus+select,select.stack:focus+textarea,textarea.stack:focus+input,textarea.stack:focus+select,textarea.stack:focus+textarea{border-top-color:#0074d9}
-.shadow{position:relative;box-shadow:0 2px 2px rgba(0,0,0,.1);border-radius:.1em;overflow:hidden;background:#fff;padding:1em;transition:all .3s ease}
+.shadow{box-shadow:0 2px 2px rgba(0,0,0,.1);border-radius:.1em;overflow:hidden;background:#fff;padding:1em;transition:all .3s ease}
 .card,.modal .overlay~*{position:relative;box-shadow:0;overflow:hidden;text-align:left;background:#fff;margin-bottom:.6em;padding:0;transition:all .3s ease}
 .hidden.card,.modal .overlay:checked+*,.modal .overlay~.hidden,.modal .overlay~:checked+*,:checked+.card{font-size:0;padding:0;margin:0;border:0}
 .card>*,.modal .overlay~*>*{max-width:100%;display:block}
@@ -996,6 +1014,7 @@ section{width:100%;display:block;color:#333;margin:10px auto 10px;z-index:5;padd
 section>div{max-width:1200px;margin:auto!important}
 section.wide div{max-width:none;margin:auto}
 section.wide{max-width:none}
+section.breadcrumb{margin-top: 0;}
 article footer{padding-top:10px}
 #footer{background:#ececec;color:#475667;padding:2em;margin:0}
 #footer>div{max-width:1200px;margin:auto!important}
@@ -1020,9 +1039,9 @@ article footer{padding-top:10px}
 .align-center{text-align:center}
 .align-right{text-align:right}
 .bg-gray{background-color:#f4f4f4}
-.breadcrumb{background: #f5f5f5; }
-.breadcrumb a{color: #333; font-size: .7em; }
-.breadcrumb span{color: #888; font-size: .7em; }
-.image-style-align-center{text-align: center;}
-.image-style-align-right{float: right;}
-.image-style-align-left{float: left;}
+.breadcrumb{background:#f5f5f5}
+.breadcrumb a{color:#333;font-size:.7em}
+.breadcrumb span{color:#888;font-size:.7em}
+.image-style-align-center{text-align:center}
+.image-style-align-right{float:right}
+.image-style-align-left{float:left}
