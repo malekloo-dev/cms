@@ -6,7 +6,7 @@ return [
    'middleware' => [],
 
 /* you can set your own table prefix here */
-    'table_prefix' => 'admin_',
+    'table_prefix' => '',
 
 /* you can set your own table names */
     'table_name_menus' => 'menus',
@@ -14,7 +14,7 @@ return [
     'table_name_items' => 'menu_items',
 
 /* you can set your route path*/
-    'route_path' => '/harimayco/',
+    'route_path' => '/menu/',
 
 /* here you can make menu items visible to specific roles */
     'use_roles' => false,
