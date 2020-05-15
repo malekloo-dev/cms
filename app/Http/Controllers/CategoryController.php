@@ -34,7 +34,7 @@ class CategoryController extends Controller
         //dd($contents);
 
         // dd($contents);
-        return view('category.list', compact('contents'));
+        return view('category.List', compact('contents'));
     }
 
     public function index1()
@@ -89,7 +89,7 @@ class CategoryController extends Controller
         $result = $this->tree_set();
 
         $data['category'] = $this->convertTemplateSelect1($result);
-        return view('category.create', $data);
+        return view('category.Create', $data);
     }
 
     public function convertTemplateSelect1($listCat, $_input = array(), $start = '|-', $befor = '', $after = '', $level = 0)
@@ -275,7 +275,7 @@ class CategoryController extends Controller
 
         //print_r($content_info);
         //die();
-        return view('category.edit', compact(['content_info', 'category']));
+        return view('category.Edit', compact(['content_info', 'category']));
     }
 
     /**
