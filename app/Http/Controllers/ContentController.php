@@ -59,7 +59,7 @@ class ContentController extends Controller
         $data['category'] = Content::where('type','=','1')->orderBy('id', 'desc')->get()->keyBy('id');
 
 
-        return view('content.list', $data);
+        return view('content.List', $data);
     }
 
     /**
@@ -73,7 +73,7 @@ class ContentController extends Controller
         $result=app('App\Http\Controllers\CategoryController')->tree_set();
         $data['category']= app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
         $data['attr_type']=$request->type;
-        return view('content.create',$data);
+        return view('content.Create',$data);
     }
 
 
@@ -150,7 +150,7 @@ class ContentController extends Controller
         /*print_r($data);
 
         die();*/
-        return view('content.edit', compact(['content_info','category']));
+        return view('content.Edit', compact(['content_info','category']));
 
     }
 

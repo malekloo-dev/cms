@@ -241,7 +241,7 @@ class CmsController extends Controller
 
         $data['contents'] = Content::orderBy('id', 'desc')->paginate(10);
 
-        return view('content.list', $data);
+        return view('content.List', $data);
     }
 
     /**
@@ -256,7 +256,7 @@ class CmsController extends Controller
 
         $data['category'] = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
 
-        return view('content.create', $data);
+        return view('content.Create', $data);
     }
 
     function get_parent($id)
@@ -346,7 +346,7 @@ class CmsController extends Controller
         /*print_r($data);
 
         die();*/
-        return view('content.edit', compact('content_info'));
+        return view('content.Edit', compact('content_info'));
 
     }
 
