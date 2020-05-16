@@ -1,7 +1,7 @@
-﻿@font-face{font-family:IRANSans;src:url(fonts/IRANSans/eot/IRANSansWeb.eot?34694727);src:url(fonts/IRANSans/eot/IRANSansWeb.eot?34694727#iefix) format("embedded-opentype"),url(fonts/IRANSans/woff/IRANSansWeb.woff?34694727) format("woff"),url(fonts/IRANSans/ttf/IRANSansWeb.ttf?34694727) format("truetype");font-weight:400;font-style:normal}
-[class*=" icon-"]:before,[class^=icon-]:before{font-family:IRANSans;font-style:normal;font-weight:400;display:inline-block;text-decoration:inherit;width:1em;margin-right:.2em;text-align:center;font-variant:normal;text-transform:none;margin-left:.2em}
-html{direction:rtl;font-family:IRANSans,sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
-body{margin:0;padding:0}
+﻿@font-face{font-family:vazir;src:url(fonts/vazir/Vazir-Light.eot);src:url(fonts/vazir/Vazir-Light.eot) format("embedded-opentype"),url(fonts/vazir/Vazir-Light.woff) format("woff"),url(fonts/vazir/Vazir-Light.ttf) format("truetype");font-weight:400;font-style:normal}
+[class*=" icon-"]:before,[class^=icon-]:before{font-family:vazir;font-style:normal;font-weight:400;display:inline-block;text-decoration:inherit;width:1em;margin-right:.2em;text-align:center;font-variant:normal;text-transform:none;margin-left:.2em}
+html{direction:rtl;font-family:vazir,sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{margin:0;padding:0;font-size: 1rem; line-height: 2;color:#111;background:#fff}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
 audio,canvas,progress,video{display:inline-block;vertical-align:baseline}
 audio:not([controls]){display:none;height:0}
@@ -9,6 +9,7 @@ a:active,a:hover{outline:0}
 b,strong{font-weight:700}
 dfn{font-style:italic}
 h1{font-size:2em;margin:.67em 0}
+p{color: #4a4a4a;}
 small{font-size:80%}
 sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
 sup{top:-.5em}
@@ -29,8 +30,7 @@ optgroup{font-weight:700}
 table{border-collapse:collapse;border-spacing:0}
 td,th{padding:0}
 *{box-sizing:inherit}
-body,html{font-family:IRANSans,Arial,Helvetica,sans-serif;box-sizing:border-box;height:100%}
-body{color:#111;font-size:1em;line-height:1.5;background:#fff}
+body,html{font-family:vazir,Arial,Helvetica,sans-serif;box-sizing:border-box;height:100%}
 main{display:block}
 h1,h2,h3,h4,h5,h6{margin:0;padding:.6em 0}
 li{margin:0 0 .3em}
@@ -819,12 +819,12 @@ nav{width:100%;margin:auto;top:0;left:0;right:0;padding:0 .6em;z-index:10000;tra
 nav .hamburger{display:block}
 nav .hamburger span{background:#333;width:21px;height:3px;display:block;border-radius:4px;margin-bottom:3px}
 nav ul{list-style:none}
-nav ul li{display:inline-block;position:relative; margin: 0;}
-nav li a{padding: 10px 10px 10px 20px; display: block;}
+nav ul li{display:inline-block;position:relative;margin:0}
+nav li a{padding:10px 10px 10px 20px;display:block}
 nav li li{display:block}
-nav ul>li.parent > a::after{position:absolute;display:inline-block;content:''; background-image: url(img/arrow-down.png); margin-right:.5em;width: 8px; height: 8px;top: 1em; background-size: .5em; background-repeat: no-repeat;}
-nav ul li.parent > div{display:none}
-nav li li a{ width: 100%; padding:1em 2em!important;white-space:nowrap;display:block!important;border-bottom:3px solid rgba(0,0,0,0)!important}
+nav ul>li.parent>a::after{position:absolute;display:inline-block;content:'';background-image:url(img/arrow-down.png);margin-right:.5em;width:8px;height:8px;top:1.5em;background-size:.5em;background-repeat:no-repeat}
+nav ul li.parent>div{display:none}
+nav li li a{width:100%;padding:1em 2em!important;white-space:nowrap;display:block!important;border-bottom:3px solid rgba(0,0,0,0)!important; text-align: right;}
 nav li ul{display:none;padding:0;position:absolute;background-color:#fff;border-top:3px solid #ea1c44;border-radius:10px 10px 10px 10px;box-shadow:1px 0 20px rgba(0,0,0,.12)}
 nav li ul ul{left:100%}
 nav ul li:hover ul{display:block}
@@ -847,7 +847,7 @@ nav ul li ul{position:relative;border-right:3px solid #ea1c44;border-top:none;bo
 nav ul li ul ul{position:relative;left:0}
 nav li li a{padding:8px .3rem!important}
 nav ul>li.parent a::after{display:none}
-nav ul li.parent > div{display:block;background:0 0;position: absolute; left: 10px; top: 15px;outline: none; z-index: 999999;}
+nav ul li.parent>div{display:block;background:0 0;position:absolute;left:10px;top:15px;outline:0;z-index:999999}
 nav .burger{display:inline-block;cursor:pointer;bottom:-1000em;margin:0}
 nav .burger~.menu,nav .show:checked~.burger{position:fixed;min-height:100%;top:0;right:0;bottom:-1000em;margin:0;background:#fff;transition:all .5s ease;transform:none}
 nav .burger~.menu{z-index:11}
@@ -1014,7 +1014,7 @@ section{width:100%;display:block;color:#333;margin:10px auto 10px;z-index:5;padd
 section>div{max-width:1200px;margin:auto!important}
 section.wide div{max-width:none;margin:auto}
 section.wide{max-width:none}
-section.breadcrumb{margin-top: 0;}
+section.breadcrumb{margin-top:0}
 article footer{padding-top:10px}
 #footer{background:#ececec;color:#475667;padding:2em;margin:0}
 #footer>div{max-width:1200px;margin:auto!important}
