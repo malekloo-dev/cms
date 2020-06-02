@@ -240,7 +240,7 @@ class CmsController extends Controller
     {
 
         $data['contents'] = Content::orderBy('id', 'desc')->paginate(10);
-
+        
         return view('content.List', $data);
     }
 

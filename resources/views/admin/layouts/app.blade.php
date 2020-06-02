@@ -1,7 +1,7 @@
-@include('head')
-@include('nav')
-@include('header')
-@include('sidebar')
+@include('admin.head')
+@include('admin.nav')
+@include('admin.header')
+@include('admin.sidebar')
 
 <div class="content">
     @yield('content')
@@ -33,4 +33,4 @@
         });
     </script>
 
-@include('footer')
+@include('admin.footer')

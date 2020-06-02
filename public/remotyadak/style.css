@@ -817,7 +817,7 @@ tr:nth-child(even){background:rgba(0,0,0,.05)}
 }
 nav{width:100%;margin:auto;top:0;left:0;right:0;padding:1em .6em;z-index:10000;transition:all .3s;transform-style:preserve-3d;background:#fa490e;background:linear-gradient(90deg,rgba(250,73,14,1) 0,rgba(255,136,45,1) 100%)}
 nav .hamburger{display:block}
-nav .hamburger span{background:#333;width:21px;height:3px;display:block;border-radius:4px;margin-bottom:3px}
+nav .hamburger span{background:#fff;width:21px;height:3px;display:block;border-radius:4px;margin-bottom:3px}
 nav ul{list-style:none;margin:0}
 nav ul li{display:inline-block;position:relative;margin:0}
 nav li a{padding:10px 10px 10px 20px;display:block}
@@ -849,8 +849,7 @@ nav li li a{padding:8px .3rem!important}
 nav ul>li.parent a::after{display:none}
 nav ul li.parent>div{display:block;background:0 0;position:absolute;left:10px;top:15px;outline:0;z-index:999999}
 nav .burger{display:inline-block;cursor:pointer;bottom:-1000em;margin:0}
-nav .burger~.menu,nav .show:checked~.burger{position:fixed;min-height:100%;top:0;right:0;bottom:-1000em;margin:0;background:#fff;transition:all .5s ease;transform:none}
-nav .burger~.menu{z-index:11}
+nav .burger~.menu,nav .show:checked~.burger{position:fixed;min-height:100%;top:0;right:0;bottom:-1000em;margin:0;transition:all .5s ease;transform:none;background:linear-gradient(90deg,rgba(250,73,14,1) 0,rgba(255,136,45,1) 100%);z-index: 1;}
 nav .show:checked~.burger{color:transparent;width:100%;border-radius:0;background:rgba(0,0,0,.2);transition:all .5s ease}
 nav .show~.menu{width:70%;max-width:300px;transform-origin:center right;transition:all .25s ease;transform:scaleX(0)}
 nav .show~.menu>*{transform:translateX(100%);transition:all 0s ease .5s}
@@ -1039,7 +1038,7 @@ article footer{padding-top:10px}
 .breadcrumb{background:#f5f5f5}
 .breadcrumb a{color:#333;font-size:.7em}
 .breadcrumb span{color:#888;font-size:.7em}
-figure.image img{max-width: 100%; min-width: 50px; display: block;}
-.image-style-align-center{text-align:center; max-width: 50%; margin: auto;}
+figure.image img{max-width:100%;min-width:50px;display:block}
+.image-style-align-center{text-align:center;max-width:50%;margin:auto}
 .image-style-align-right{float:right}
 .image-style-align-left{float:left}

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 @section('content')
 @section('ckeditor')
 
@@ -177,7 +177,7 @@
 <div class="content-body">
     <div class="panel panel-default mat-elevation-z pos-abs chat-panel bottom-0">
         <div class="panel-body full-height">
-            <form method="post" action="{{ route('category.update', $content_info->id) }}"enctype="multipart/form-data">
+            <form method="post" action="{{ route('contents.update', $content_info->id) }}"enctype="multipart/form-data">
                 @method('PATCH')
                 @csrf
                 <div class="form-group row">
@@ -212,15 +212,13 @@
                     <label for="name" class="col-md-12 col-form-label text-md-left">Category</label>
                     <div class="col-md-12">
                         {{--<select multiple name="parent_id" id="parent_id" class="form-control" >--}}
-                        <select name="parent_id" id="parent_id" {{--class="form-control"--}}>
+                        <select id="parent_id"  class="js-example-basic-multiple" name="parent_id[]" multiple="multiple">
 
-                            <option value="0"{{ $content_info->parent_id == 0 ? 'selected' : '' }}>مادر</option>
+
                             @foreach($category as $Key => $fields)
                                 <option value="{{$fields['id']}}" {{ $content_info->parent_id == $fields['id'] ? 'selected' : '' }} >{!! $fields['symbol'].$fields['title']!!}</option>
                             @endforeach
                         </select>
-
-
                         <div id="parent_id_val" class="parent_id_val"></div>
                     </div>
                 </div>
@@ -251,6 +249,8 @@
 
                 <div class="col-sm-12">
                     <div class="row">
+
+                        <?php  //dd($content_info->images); ?>
 
                         @if(is_array($content_info->images))
 
@@ -288,6 +288,49 @@
                     </div>
 
                 </div>
+
+
+                @if ($content_info->attr_type=='product')
+
+                    <div class="form-group row">
+                        <label for="brand" class="col-md-12 col-form-label text-md-left">Brand:</label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="attr[brand]" value="{{ old('attr[brand]',$content_info->attr['brand'])}}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="price" class="col-md-12 col-form-label text-md-left">Price:</label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="attr[price]" value="{{ old('attr[price]',$content_info->attr['price']) }}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="offer_price" class="col-md-12 col-form-label text-md-left">offer_price:</label>
+
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="attr[offer_price]" value="{{ old('attr[offer_price]',$content_info->attr['offer_price']) }}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="alternate_name" class="col-md-12 col-form-label text-md-left">alternate_name:</label>
+
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="attr[alternate_name]" value="{{ old('attr[alternate_name]',$content_info->attr['alternate_name']) }}"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="rate" class="col-md-12 col-form-label text-md-left">rate:</label>
+
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="attr[rate]" value="{{ old('attr[rate]',$content_info->attr['rate']) }}"/>
+                        </div>
+                    </div>
+                @endif
+
+
                 <div class="form-group row">
                     <label for="name" class="col-md-12 col-form-label text-md-left">Status:</label>
                     <div class="col-md-12">

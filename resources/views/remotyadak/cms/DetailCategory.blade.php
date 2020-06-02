@@ -1,4 +1,8 @@
 @extends(@env('TEMPLATE_NAME').'.App')
+@section('assets')
+<link rel="stylesheet" href="{{ asset(@env('TEMPLATE_NAME').'/detail.category.css') }}">
+@endsection
+
 @section('Content')
 
 @php
@@ -83,27 +87,30 @@ $append='';
 <section class="products" id="index-best-view">
     <div class="flex one ">
         <div>
-            <div class="shadow">
+
                 <h2>زیر دسته های {{$detail->title}}</h2>
-                <div class="flex one two-500 four-900 center ">
+                <div class="flex one two-500  center ">
 
                     {{--$data['newPost']--}}
                     @foreach($subCategory as $content)
                     <div>
-                        <article>
+                        <div class="flex one three-700">
                             @if (isset($content->images['thumb']))
                             <div><img src="{{ $content->images['thumb']}}"></div>
                             @endif
-                            <footer>
+                            <div class="one two-third-700">
                                 <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
                                 {!! $content->brief_description !!}
-                            </footer>
-                        </article>
+                            </div>
+                            <div class="full">
+                                ۳۰۰۰۰ تومان
+                            </div>
+                        </div>
                     </div>
                     @endforeach
 
                 </div>
-            </div>
+
         </div>
     </div>
 </section>

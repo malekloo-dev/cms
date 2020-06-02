@@ -34,7 +34,7 @@ class CategoryController extends Controller
         //dd($contents);
 
         // dd($contents);
-        return view('category.List', compact('contents'));
+        return view('admin.category.List', compact('contents'));
     }
 
     public function index1()
@@ -275,7 +275,7 @@ class CategoryController extends Controller
 
         //print_r($content_info);
         //die();
-        return view('category.Edit', compact(['content_info', 'category']));
+        return view('admin.category.Edit', compact(['content_info', 'category']));
     }
 
     /**
@@ -329,7 +329,9 @@ class CategoryController extends Controller
             $images = $this->uploadImages($request->file('images'));
         } else {
             $images = $crud->images;
-            $images['thumb'] = $request->get('imagesThumb');
+            if($images != ''){
+                $images['thumb'] = $request->get('imagesThumb');
+            }
         }
         $data['images'] = $images;
 

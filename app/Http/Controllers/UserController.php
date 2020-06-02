@@ -41,7 +41,7 @@ class UserController extends Controller
         $users = User::all();
 
 
-        return view('users.index', compact('users'));
+        return view('admin.users.index', compact('users'));
     }
 
     public function index1(Request $request)
@@ -58,7 +58,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        return view('admin.auth.register');
     }
 
     /**
@@ -94,7 +94,7 @@ class UserController extends Controller
 
         $users = User::find($id);
 
-        return view('users.edit', compact('users'));
+        return view('admin.users.edit', compact('users'));
     }
 
     /**
