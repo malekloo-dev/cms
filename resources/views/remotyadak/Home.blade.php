@@ -9,11 +9,35 @@
 
 
 
-<section class="index-items ">
+<section class="index-item-top bg-orange mt-0 mb-0">
+    <div class="text-center"><h1>مرکز ساخت سوئیچ و ریموت</h1></div>
+    <div class="flex one five-500 center  ">
+        {{-- $data['newPost'] --}}
+        @foreach($topViewPost as $content)
+        <a href="{{ $content->slug }}">
+            <div class="shadow ">
+                @if(isset($content->images['thumb']))
+                <img src="{{ $content->images['thumb'] }}">
+                @endif
+                <h2 class="p-0 m-0 text-center"> {{ $content->title }}</h2>
+            </div>
+        </a>
+        @endforeach
+    </div>
+</section>
+
+
+
+<section class="wide  m-0" id="index-comment">
+    <div>خدمات طرح و وب</div>
+</section>
+
+
+
+<section class="index-items">
     <div class="flex one">
         <div>
             <div class="flex one three-500   ">
-
                 {{-- $data['newPost'] --}}
                 @foreach($topViewPost as $content)
                 <div>
@@ -27,28 +51,8 @@
                         </footer>
                     </article>
                 </div>
-
                 @endforeach
-
-
             </div>
-
-        </div>
-    </div>
-</section>
-
-
-
-<section class="wide mt-5 mb-0" id="index-comment">
-    <div>خدمات طرح و وب</div>
-</section>
-
-
-
-<section class=" pb-5 m-0" style="position: relative">
-    <div class="flex one">
-        <div>
-
         </div>
     </div>
 </section>

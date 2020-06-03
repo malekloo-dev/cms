@@ -96,7 +96,7 @@ $append='';
                     <div class="border hover-box p-1 full">
                         <div class="flex one three-700 height-100">
                             @if (isset($content->images['thumb']))
-                            <div class="p-0"><img src="{{ $content->images['thumb']}}"></div>
+                            <div class="p-0"><img src="{{ $content->images['thumb']}}"/></div>
                             @endif
                             <div class="one two-third-700 pr-1" >
                                 <h2 class="p-0"><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
