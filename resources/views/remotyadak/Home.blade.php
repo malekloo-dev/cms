@@ -15,7 +15,7 @@
         {{-- $data['newPost'] --}}
         @foreach($topViewPost as $content)
         <a href="{{ $content->slug }}">
-            <div class="shadow ">
+            <div class="shadow hover">
                 @if(isset($content->images['thumb']))
                 <img src="{{ $content->images['thumb'] }}">
                 @endif
