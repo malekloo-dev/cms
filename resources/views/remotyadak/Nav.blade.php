@@ -16,7 +16,13 @@
         <ul>
             <li><a href="/">خانه</a></li>
             <li><a href="/بلاگ">بلاگ</a></li>
-            <li><a href="/ساخت-سوئیچ">ساخت ریموت و سوئیچ</a></li>
+            <li class="parent"><a href="/ساخت-سوئیچ">ساخت ریموت و سوئیچ</a>
+                <ul>
+                    @foreach(App\Category::where('type', '=', '1')->where('parent_id','<>','0')->get() as $menuItem)
+                    <li><a href="{{ $menuItem['slug'] }}">{{ $menuItem['title'] }}</a></li>
+                    @endforeach
+                </ul>
+            </li>
             <li><a href="/درباره-ما">درباره ما</a></li>
             <li><a href="/تماس-با-ما">تماس با ما</a></li>
         </ul>

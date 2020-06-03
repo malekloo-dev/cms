@@ -13,7 +13,7 @@
     <div class="text-center"><h1>مرکز ساخت سوئیچ و ریموت</h1></div>
     <div class="flex one five-500 center  ">
         {{-- $data['newPost'] --}}
-        @foreach($topViewPost as $content)
+        @foreach($category as $content)
         <a href="{{ $content->slug }}">
             <div class="shadow hover">
                 @if(isset($content->images['thumb']))

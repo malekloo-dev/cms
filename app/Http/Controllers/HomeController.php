@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Content;
+use App\Category;
 //use App\Home;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -18,9 +19,11 @@ class HomeController extends Controller
     public function index()
     {
 
+
         //Content::increment('viewCount');
         $data['topViewPost'] = Content::where('type','=','2')->orderBy('viewCount', 'desc')->limit(4)->get();
         $data['newPost'] = Content::where('type','=','2')->orderBy('publish_date', 'desc')->limit(4)->get();
+        $data['category'] = Category::where('type', '=', '1')->where('parent_id','<>','0')->get();
         return view(@env('TEMPLATE_NAME') . '.Home',$data);
     }
 
@@ -79,11 +82,11 @@ class HomeController extends Controller
     public function edit($id)
     {
         $where = array('id' => $id);
-        $data['Home_info'] = Home::where($where)->first();
+        // $data['Home_info'] = Home::where($where)->first();
         /*print_r($data);
 
         die();*/
-        return view('Home.edit', $data);
+        // return view('Home.edit', $data);
     }
 
     /**
@@ -118,14 +121,14 @@ class HomeController extends Controller
         return Redirect::to('Homes')
             ->with('success','Great! Product updated successfully');*/
 
-        $crud = Home::find($id);
-        $crud->title = $request->get('title');
-        $crud->brief_description = $request->get('brief_description');
-        $crud->description = $request->get('description');
-        $crud->publish_date = $request->get('publish_date');
-        $crud->status = $request->get('status');
-        $crud->save();
-        return redirect('Homes');
+        // $crud = Home::find($id);
+        // $crud->title = $request->get('title');
+        // $crud->brief_description = $request->get('brief_description');
+        // $crud->description = $request->get('description');
+        // $crud->publish_date = $request->get('publish_date');
+        // $crud->status = $request->get('status');
+        // $crud->save();
+        // return redirect('Homes');
     }
 
     /**
@@ -136,10 +139,10 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        $crud = Home::find($id);
-        $crud->delete();
+        // $crud = Home::find($id);
+        // $crud->delete();
 
-        return redirect('Homes');
+        // return redirect('Homes');
     }
 
 

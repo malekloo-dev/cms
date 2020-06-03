@@ -824,11 +824,11 @@ nav li a{padding:10px 10px 10px 20px;display:block}
 nav li li{display:block}
 nav ul>li.parent>a::after{position:absolute;display:inline-block;content:'';background-image:url(img/arrow-down.png);margin-right:.5em;width:8px;height:8px;top:1.5em;background-size:.5em;background-repeat:no-repeat}
 nav ul li.parent>div{display:none}
-nav li li a{width:100%;padding:1em 2em!important;white-space:nowrap;display:block!important;border-bottom:3px solid rgba(0,0,0,0)!important;text-align:right}
+nav li li a{color:#ea1c44 !important;width:100%;padding:1em 2em!important;white-space:nowrap;display:block!important;border-bottom:3px solid rgba(0,0,0,0)!important;text-align:right;transition: all .3s !important; font-size: .9em !important;}
+nav li li a:hover{color:#ea1c44!important; font-weight: bold; transform:scale(1.05)}
 nav li ul{display:none;padding:0;position:absolute;background-color:#fff;border-top:3px solid #ea1c44;border-radius:10px 10px 10px 10px;box-shadow:1px 0 20px rgba(0,0,0,.12)}
 nav li ul ul{left:100%}
 nav ul li:hover ul{display:block}
-nav li li a:hover{color:#ea1c44!important}
 nav .menu{text-align:left;margin:auto;position:relative;top:1.5em;-webkit-transform:translateY(-50%);transform:translateY(-50%);display:block}
 nav .menu a{color:#fff}
 nav .brand{float:right;position:relative;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}

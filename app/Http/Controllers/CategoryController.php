@@ -89,7 +89,7 @@ class CategoryController extends Controller
         $result = $this->tree_set();
 
         $data['category'] = $this->convertTemplateSelect1($result);
-        return view('category.Create', $data);
+        return view('admin.category.Create', $data);
     }
 
     public function convertTemplateSelect1($listCat, $_input = array(), $start = '|-', $befor = '', $after = '', $level = 0)
@@ -172,13 +172,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 
-        /*$this->validate($request, array(
+        $this->validate($request, array(
              'title' => 'required|max:250',
-             'description' => 'required',
-             'body' => 'required',
-             'images' => 'required|mimes:jpeg,png,bmp',
+             //'description' => 'required',
+             //'body' => 'required',
+             //'images' => 'required|mimes:jpeg,png,bmp',
 
-         ));*/
+         ));
 
         $imagesUrl = '';
         if ($request->file('images')) {

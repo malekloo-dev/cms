@@ -88,7 +88,7 @@ $append='';
     <div class="flex one ">
         <div>
             <h2>دسته بندی: {{$detail->title}}</h2>
-            <div class="flex one two-800  center ">
+            <div class="flex one two-800   ">
 
                 {{--$data['newPost']--}}
                 @foreach($subCategory as $content)
@@ -96,9 +96,9 @@ $append='';
                     <div class="border hover-box p-1 full">
                         <div class="flex one three-700 height-100">
                             @if (isset($content->images['thumb']))
-                            <div class="p-0"><img src="{{ $content->images['thumb']}}"/></div>
+                            <div class="p-0"><img src="{{ $content->images['thumb']}}" /></div>
                             @endif
-                            <div class="one two-third-700 pr-1" >
+                            <div class="one two-third-700 pr-1">
                                 <h2 class="p-0"><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
                                 {!! $content->brief_description !!}
                                 <div class="full text-left">
@@ -183,11 +183,8 @@ $append='';
 <section class="" id="">
     <div class="flex one ">
         <div>
-
-            <div class="shadow ">
-                <h1 class="">{{ $detail->title }}</h1>
-                {!! $detail->description !!}
-            </div>
+            <h1 class="">{{ $detail->title }}</h1>
+            {!! $detail->description !!}
         </div>
     </div>
 </section>

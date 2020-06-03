@@ -2,8 +2,8 @@
 @section('content')
 @section('ckeditor')
 
-    <script>
-        /*$(document).ready(function() { $("#parent_id").select2(); });
+<script>
+    /*$(document).ready(function() { $("#parent_id").select2(); });
 
          $("#parent_id").on("change", function() { $("#parent_id_val").html($("#parent_id").val());});
 
@@ -39,12 +39,12 @@
 
 
 
-    </script>
+</script>
 
 
-    <script src="/ckeditor5/ckeditor.js" > </script>
-    <script>
-        ClassicEditor
+<script src="/ckeditor5/ckeditor.js"> </script>
+<script>
+    ClassicEditor
             .create( document.querySelector('#brief_description'),{
                 ckfinder: {
                     uploadUrl: "{{route('contents.upload', ['_token' => csrf_token() ])}}",
@@ -155,7 +155,7 @@
         .catch( err => {
             console.error( err.stack );
         } );
-    </script>
+</script>
 
 
 @endsection
@@ -163,7 +163,7 @@
 
 <div class="content-control">
     <ul class="breadcrumb">
-        <li><a  class="text-18">Add</a></li>
+        <li><a class="text-18">Add</a></li>
     </ul>
 </div>
 
@@ -172,96 +172,89 @@
         <div class="panel-body full-height">
             <form action="{{ route('category.store') }}" method="POST" name="add_content" enctype="multipart/form-data">
                 @csrf
+
                 <div class="form-group row">
-                    <label for="name" class="col-md-12 col-form-label text-md-left">Enter Title:</label>
-                    <div class="col-md-12">
-                        <input type="text" class="form-control" name="title"
-                               value="{{ old('title') }}" />
+                    <div class="col-md-6">
+                        <label for="name" class="col-form-label text-md-left">Enter Title:</label>
+                        <input type="text" class="form-control" name="title" value="{{ old('title') }}" />
                         <span class="text-danger">{{ $errors->first('title') }}</span>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="name" class="col-md-12 col-form-label text-md-left">Brief Description:</label>
-                    <div class="col-md-12">
-
-                            <textarea class="form-control" id="brief_description" name="brief_description">{{ old('brief_description') }}</textarea>
-
-                        {{--<div id="brief_description">
-                            {{ old('brief_description') }}
-                        </div>--}}
-                    </div>
-
-                </div>
-                <div class="form-group row">
-                    <label for="name" class="col-md-12 col-form-label text-md-left">Description:</label>
-                    <div class="col-md-12">
-                        <textarea class="form-control" id="description" name="description">{{ old('description') }}</textarea>
-
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="form-group row">
-                    <label for="name" class="col-md-12 col-form-label text-md-left">Category</label>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label for="name" class="col-form-label text-md-left">Category</label>
                         <select name="parent_id" id="parent_id" {{--class="form-control"--}}>
                             <option value="0">مادر</option>
 
                             @foreach($category as $Key => $fields)
-                                <option value="{{$fields['id']}}">{!! $fields['symbol'].$fields['title']!!}</option>
+                            <option value="{{$fields['id']}}">{!! $fields['symbol'].$fields['title']!!}</option>
                             @endforeach
 
                         </select>
                     </div>
+
                 </div>
 
                 <div class="form-group row">
-                    <label for="name" class="col-md-12 col-form-label text-md-left">meta keywords</label>
                     <div class="col-md-12">
-                        <input id="meta_keywords" type="text"  name="meta_keywords"
-                               value="{{ old('meta_keywords') }}" />
+                        <label for="name" class="col-form-label text-md-left">Brief Description:</label>
+                        <textarea class="form-control" id="brief_description"
+                            name="brief_description">{{ old('brief_description') }}</textarea>
                     </div>
                 </div>
 
 
 
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label for="name" class=" col-form-label text-md-left">Description:</label>
+                        <textarea class="form-control" id="description"
+                            name="description">{{ old('description') }}</textarea>
+                    </div>
+                </div>
+
 
 
                 <div class="form-group row">
-                    <label for="name" class="col-md-12 col-form-label text-md-left">Publish Date:</label>
-                    <div class="col-md-12">
+                    <div class="col-md-3">
+                        <label for="name" class="col-form-label text-md-left">Publish Date:</label>
                         <input type="datetime" class="form-control" name="publish_date"
-                        value = "{{ old('date2',Carbon\Carbon::now()->addDay()->format('Y-m-d')) }}"/>
+                            value="{{ old('date2',Carbon\Carbon::now()->addDay()->format('Y-m-d')) }}" />
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-6">
-                        <label for="images" class="control-label">تصویر مقاله</label>
-                        <input type="file" class="form-control" name="images" id="images" placeholder="تصویر مقاله را وارد کنید" value="{{ old('imageUrl') }}">
-                    </div>
-
-                </div>
-                <div class="form-group row">
-                    <label for="meta_description" class="col-md-12 col-form-label text-md-left">meta
-                        Description:</label>
-                    <div class="col-md-12">
-                        <textarea class="form-control" id="meta_description" name="meta_description">{{ old('meta_description') }}</textarea>
-                    </div>
-
-                </div>
-                <div class="form-group row">
-                    <label for="name" class="col-md-12 col-form-label text-md-left">Status:</label>
-                    <div class="col-md-12">
-                        <select class="form-control" name="status" >
+                    <div class="col-md-3">
+                        <label for="name" class=" col-form-label text-md-left">Status:</label>
+                        <select class="select2" name="status">
                             <option value="1">فعال</option>
                             <option value="0">غیر فعال</option>
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">Add Content</button>
+
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label for="images" class="control-label">تصویر </label>
+                        <input type="file" class="form-control" name="images" id="images"
+                            placeholder="تصویر  را وارد کنید" value="{{ old('imageUrl') }}">
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label for="name" class="col-form-label text-md-left">meta keywords</label>
+                        <input id="meta_keywords" type="text" name="meta_keywords" value="{{ old('meta_keywords') }}" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label for="meta_description" class="col-form-label text-md-left">meta Description:</label>
+                        <textarea class="form-control" id="meta_description"
+                            name="meta_description">{{ old('meta_description') }}</textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">Add
+                    Content</button>
                 <a href="{{ old('publish_date') }}" class="link ">
                     <i class="fa fa-arrow-left"></i> Back to List
                 </a>

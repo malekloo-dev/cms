@@ -179,8 +179,15 @@
         <div class="panel-body full-height">
             <form method="post" action="{{ route('category.update', $content_info->id) }}"
                 enctype="multipart/form-data">
+
+
                 @method('PATCH')
                 @csrf
+
+                <span class="text-danger">{{ $errors->first('brief_description') }}</span>
+                <span class="text-danger">{{ $errors->first('description') }}</span>
+                <span class="text-danger">{{ $errors->first('status') }}</span>
+                <span class="text-danger">{{ $errors->first('publish_date') }}</span>
 
                 <div class="form-group row">
                     <div class="col-md-6">
@@ -189,6 +196,7 @@
                             value="{{ old('title',$content_info->title) }}" />
                         <span class="text-danger">{{ $errors->first('title') }}</span>
                     </div>
+
                     <div class="col-md-6">
                         <label for="name" class=" col-form-label text-md-left">Category</label>
 
@@ -314,7 +322,4 @@
 @endsection
 
 
-<span class="text-danger">{{ $errors->first('brief_description') }}</span>
-<span class="text-danger">{{ $errors->first('description') }}</span>
-<span class="text-danger">{{ $errors->first('status') }}</span>
-<span class="text-danger">{{ $errors->first('publish_date') }}</span>
+
