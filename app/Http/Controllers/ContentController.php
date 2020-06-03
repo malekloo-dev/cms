@@ -242,7 +242,7 @@ class ContentController extends Controller
         //        //return redirect(route('articles.index'));
         //
         //        $crud->save();
-        return redirect('contents?type='.$crud->attr_type);
+        return redirect('admin/contents?type='.$crud->attr_type);
     }
 
     /**

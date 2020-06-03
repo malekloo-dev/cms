@@ -17,21 +17,21 @@
 
         <li class="no-margin">
             <a href="{{ route('contents.show',['type'=>'article']) }}" class="no-margin text-left">
-                <i class="sidebar-icon pull-left fa fa fa-bars"></i>
+                <i class="sidebar-icon pull-left fa fa-folder-o"></i>
                 <span class="sidebar-text text-left">Article List</span>
             </a>
         </li>
 
         <li class="no-margin">
             <a href="{{ route('contents.show',['type'=>'product']) }}" class="no-margin text-left">
-                <i class="sidebar-icon pull-left fa fa fa-bars"></i>
+                <i class="sidebar-icon pull-left fa fa-folder-o"></i>
                 <span class="sidebar-text text-left">Product List</span>
             </a>
         </li>
 
         <li class="no-margin">
             <a href="{{ route('category.index') }}" class="no-margin text-left">
-                <i class="sidebar-icon pull-left fa fa fa-bars"></i>
+                <i class="sidebar-icon pull-left fa fa-bars"></i>
                 <span class="sidebar-text text-left">Category List</span>
 
             </a>
