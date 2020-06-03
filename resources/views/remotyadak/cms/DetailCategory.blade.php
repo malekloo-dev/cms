@@ -89,7 +89,7 @@ $append='';
         <div>
 
                 <h2>زیر دسته های {{$detail->title}}</h2>
-                <div class="flex one two-500  center ">
+                <div class="flex one two-800  center ">
 
                     {{--$data['newPost']--}}
                     @foreach($subCategory as $content)

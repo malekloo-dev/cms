@@ -1,7 +1,7 @@
-@include('head')
+@include('admin.head')
 
-    @include('nav')
-    @include('header')
+    @include('admin.nav')
+    @include('admin.header')
 
 
         <div class="container" style="margin-top: 50px">
@@ -16,4 +16,4 @@
 
 
 
-@include('footer')
+@include('admin.footer')
