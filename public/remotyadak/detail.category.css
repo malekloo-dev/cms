@@ -1,3 +1,12 @@
-.products article{display:inline-block}
-.products article>div{width:300px;height:200px;float:right}
-.products article>div>img{object-fit:contain}
+.category-list article{display:inline-block}
+.category-list article>div{width:300px;height:200px;float:right}
+.category-list article>div>img{object-fit:contain}
+.category-list img{width:100%;height:100%;object-fit:cover}
+.category-list div.border{border:1px solid #f4f4f4}
+.category-list div.hover-box:hover{box-shadow:0 2px 5px rgba(0,0,0,.1)}
+.category-list div.height-full{display:flex}
+.height-100{height:100%}
+.products article{padding:10px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
+.products article a{font-weight:700;font-size:.8em}
+.products article p{font-size:.75em}
+.products article>div{height:150px;overflow:hidden}

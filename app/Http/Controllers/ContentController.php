@@ -256,7 +256,7 @@ class ContentController extends Controller
         $crud = Content::find($id);
         $crud->delete();
 
-        return redirect('contents?type='.$crud->attr_type);
+        return redirect('admin/contents?type='.$crud->attr_type);
 
     }
 

@@ -197,7 +197,7 @@ class CategoryController extends Controller
 
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         Category::create($data);
-        return redirect('category?type=' . $request->attr_type)->with('success', 'Greate! Content created successfully.');
+        return redirect('admin/category?type=' . $request->attr_type)->with('success', 'Greate! Content created successfully.');
 
     }
 
@@ -225,7 +225,7 @@ class CategoryController extends Controller
 
         // Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
 
-        return redirect('category?type=' . $request->attr_type)->with('success', 'Greate! Content created successfully.');
+        return redirect('admin/category?type=' . $request->attr_type)->with('success', 'Greate! Content created successfully.');
     }
 
     /**
@@ -344,7 +344,7 @@ class CategoryController extends Controller
         $crud->update($data);
 
 
-        return redirect('category' . $crud->attr_type);
+        return redirect('admin/category' . $crud->attr_type);
     }
 
     /**

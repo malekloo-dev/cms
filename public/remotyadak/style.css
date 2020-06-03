@@ -849,7 +849,7 @@ nav li li a{padding:8px .3rem!important}
 nav ul>li.parent a::after{display:none}
 nav ul li.parent>div{display:block;background:0 0;position:absolute;left:10px;top:15px;outline:0;z-index:999999}
 nav .burger{display:inline-block;cursor:pointer;bottom:-1000em;margin:0}
-nav .burger~.menu,nav .show:checked~.burger{position:fixed;min-height:100%;top:0;right:0;bottom:-1000em;margin:0;transition:all .5s ease;transform:none;background:linear-gradient(90deg,rgba(250,73,14,1) 0,rgba(255,136,45,1) 100%);z-index: 1;}
+nav .burger~.menu,nav .show:checked~.burger{position:fixed;min-height:100%;top:0;right:0;bottom:-1000em;margin:0;transition:all .5s ease;transform:none;background:linear-gradient(90deg,rgba(250,73,14,1) 0,rgba(255,136,45,1) 100%);z-index:1}
 nav .show:checked~.burger{color:transparent;width:100%;border-radius:0;background:rgba(0,0,0,.2);transition:all .5s ease}
 nav .show~.menu{width:70%;max-width:300px;transform-origin:center right;transition:all .25s ease;transform:scaleX(0)}
 nav .show~.menu>*{transform:translateX(100%);transition:all 0s ease .5s}
@@ -996,6 +996,8 @@ pre{width:100%}
 pre code{background:0 0}
 comment-box.visual{margin-top:60px}
 .p-0{padding:0}
+.p-1{padding:1em}
+.pr-1{padding-right:1em}
 .pb-5{padding-bottom:5em}
 .m-0{margin:0}
 .mt-05{margin-top:.5em}
@@ -1042,3 +1044,5 @@ figure.image img{max-width:100%;min-width:50px;display:block}
 .image-style-align-center{text-align:center;max-width:50%;margin:auto}
 .image-style-align-right{float:right}
 .image-style-align-left{float:left}
+.text-left{text-align:left}
+.text-right{text-align:right}

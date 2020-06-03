@@ -244,7 +244,7 @@
                     </div>
                     <div class="col-md-3">
                         <label for="name" class=" col-form-label text-md-left">Status:</label>
-                        <select class="form-control" name="status">
+                        <select class=" select2" name="status">
                             <option value="1" {{ $content_info->status == '1' ? 'selected' : '' }}>فعال</option>
                             <option value="0" {{ $content_info->status == '0' ? 'selected' : '' }}>غیر فعال</option>
                         </select>
@@ -257,24 +257,27 @@
                         <input type="file" class="form-control" name="images" id="images"
                             placeholder="تصویر  را وارد کنید" value="{{ old('imageUrl') }}">
                     </div>
-                </div>
-
-                <div class="row">
                     <div class="col-md-12">
                         @if(is_array($content_info->images))
-                        @foreach( $content_info->images['images'] as $key => $image)
-                        <div class="col-sm-2">
-                            <label class="control-label">
-                                {{ $key }}
-                                <input type="radio" name="imagesThumb" value="{{ $image }}"
-                                    {{ $content_info->images['thumb'] == $image ? 'checked' : '' }} />
-                                <a href="{{ $image }}" target="_blank"><img src="{{ $image }}" width="100%"></a>
-                            </label>
+                        <div class="row">
+                            @foreach( $content_info->images['images'] as $key => $image)
+                            <div class="col-sm-2">
+                                <label class="control-label" style="display: inline">
+                                    {{ $key }}
+                                    <input type="radio" name="imagesThumb" value="{{ $image }}"
+                                        {{ $content_info->images['thumb'] == $image ? 'checked' : '' }} />
+                                    <a href="{{ $image }}" target="_blank">
+                                        <img src="{{ $image }}" width="100%">
+                                    </a>
+                                </label>
+                            </div>
+                            @endforeach
                         </div>
-                        @endforeach
                         @endif
                     </div>
                 </div>
+
+
 
 
 

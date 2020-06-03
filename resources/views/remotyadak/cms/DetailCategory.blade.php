@@ -84,32 +84,34 @@ $append='';
 @endif
 
 @if (count($subCategory))
-<section class="products" id="index-best-view">
+<section class="category-list" id="index-best-view">
     <div class="flex one ">
         <div>
+            <h2>دسته بندی: {{$detail->title}}</h2>
+            <div class="flex one two-800  center ">
 
-                <h2>زیر دسته های {{$detail->title}}</h2>
-                <div class="flex one two-800  center ">
-
-                    {{--$data['newPost']--}}
-                    @foreach($subCategory as $content)
-                    <div>
-                        <div class="flex one three-700">
+                {{--$data['newPost']--}}
+                @foreach($subCategory as $content)
+                <div class="height-full">
+                    <div class="border hover-box p-1 full">
+                        <div class="flex one three-700 height-100">
                             @if (isset($content->images['thumb']))
-                            <div><img src="{{ $content->images['thumb']}}"></div>
+                            <div class="p-0"><img src="{{ $content->images['thumb']}}"></div>
                             @endif
-                            <div class="one two-third-700">
-                                <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
+                            <div class="one two-third-700 pr-1" >
+                                <h2 class="p-0"><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
                                 {!! $content->brief_description !!}
+                                <div class="full text-left">
+                                    ۳۰۰۰۰ تومان
+                                </div>
                             </div>
-                            <div class="full">
-                                ۳۰۰۰۰ تومان
-                            </div>
+
                         </div>
                     </div>
-                    @endforeach
-
                 </div>
+                @endforeach
+
+            </div>
 
         </div>
     </div>
