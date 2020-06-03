@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    //protected $loginPath = '/admin/login';
+
+
     public function login(LoginRequest $request)
     {
 

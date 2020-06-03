@@ -28,7 +28,7 @@ Route::post('/login', [
 ]);
 
 
-Route::group(['prefix' => 'questions'], function ()
+/* Route::group(['prefix' => 'questions'], function ()
 {
     Route::get('/', [
         'as' => 'users.show.active.questions.bot',
@@ -42,10 +42,10 @@ Route::group(['prefix' => 'questions'], function ()
         'middleware' => 'auth:api'
     ]);
 
-});
+}); */
 
 
-Route::group(['prefix' => 'conversation'], function ()
+/* Route::group(['prefix' => 'conversation'], function ()
 {
 
     Route::post('/getConversationByUniqueId', [
@@ -75,7 +75,7 @@ Route::group(['prefix' => 'conversation'], function ()
     ]);
 
 
-});
+}); */
 
 
 
@@ -98,7 +98,7 @@ Route::group(['prefix' => 'clients'], function ()
 });
 
 
-Route::group(['prefix' => 'bots'], function ()
+/* Route::group(['prefix' => 'bots'], function ()
 {
     Route::get('/update/ajax', [
         'as' => 'bots.update.ajax',
@@ -111,5 +111,5 @@ Route::group(['prefix' => 'bots'], function ()
         'middleware' => 'auth:api'
     ]);
 
-});
+}); */
 

@@ -253,9 +253,9 @@
 
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <label for="images" class="control-label">تصویر مقاله</label>
+                        <label for="images" class="control-label">تصویر </label>
                         <input type="file" class="form-control" name="images" id="images"
-                            placeholder="تصویر مقاله را وارد کنید" value="{{ old('imageUrl') }}">
+                            placeholder="تصویر  را وارد کنید" value="{{ old('imageUrl') }}">
                     </div>
                 </div>
 
