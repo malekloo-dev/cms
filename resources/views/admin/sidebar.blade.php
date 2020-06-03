@@ -1,5 +1,6 @@
 <aside class="side-left full-height pos-abs right-0 left-0 bottom-0 disBlock padding-t-full">
     <ul class="sidebar no-margin no-padding">
+
         <li class="no-margin">
             <a class="no-margin text-left" href="/admin">
                 <i class="sidebar-icon pull-left fa fa-home"></i>

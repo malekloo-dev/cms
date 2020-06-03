@@ -12,7 +12,7 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
     //Auth::routes(['register' => false]);
 
-    Route::get('/', 'IndexController@index');
+    Route::get('/', 'IndexController@index')->name('admin');
 
 
 
