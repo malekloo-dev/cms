@@ -18,6 +18,11 @@ class CmsController extends Controller
 
     public function request($slug)
     {
+        if ($slug == 'ساخت-سوئیچ') {
+            header("Location: https://remotyadak.ir/سوئیچ-و-ریموت-خودرو", TRUE, 301);
+            exit();
+        }
+
         $detail = Content::where('slug', '=', $slug)->first();
         $this->breadcrumb[] = $detail->getAttributes();
         $breadcrumb = $this->get_parent($detail->parent_id);
@@ -240,7 +245,7 @@ class CmsController extends Controller
     {
 
         $data['contents'] = Content::orderBy('id', 'desc')->paginate(10);
-        
+
         return view('content.List', $data);
     }
 

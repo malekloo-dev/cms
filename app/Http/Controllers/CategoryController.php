@@ -359,7 +359,7 @@ class CategoryController extends Controller
         $attr_type = $crud->attr_type;
         $crud->delete();
 
-        return redirect('category?type=' . $attr_type);
+        return redirect('admin/category?type=' . $attr_type);
     }
 
     public function subcategory()

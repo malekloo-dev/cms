@@ -101,10 +101,7 @@ $append='';
                             <div class="one two-third-700 pr-1">
                                 <h2 class="p-0"><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
                                 {!! $content->brief_description !!}
-                                <div class="full text-left">
-                                    <span class="price">۳۰۰۰۰ تومان</span>
 
-                                </div>
                             </div>
 
                         </div>
