@@ -7,11 +7,11 @@
         </ul>
 
 
-        <a href="{{ route('contents.create').'?type=article' }}"
+        <a href="{{ route('contents.create',['type'=>'article'])}}"
            class="top-heading-button btn btn-warning btn-icon mat-elevation-z radius-all mat-button ">
             <i class="fa fa-plus"></i> Create New Article
         </a>
-        <a href="{{ route('contents.create').'?type=product' }}"
+        <a href="{{ route('contents.create',['type'=>'product'])}}"
            class="top-heading-button btn btn-warning btn-icon mat-elevation-z radius-all mat-button ">
             <i class="fa fa-plus"></i> Create New Product
         </a>
