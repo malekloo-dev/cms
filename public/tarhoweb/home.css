@@ -4,8 +4,8 @@
 #index-category a{font-size:.8em;color:#000}
 #index-category a:hover{box-shadow:0 2px 5px rgba(0,0,0,.1)}
 #index-category img{width:40%;margin:auto}
-.index-h1{height:400px;text-align:center;align-items:center;justify-content:center;flex-direction:column;display:flex;direction:rtl}
-.index-h1 h1{font-size:3em}
+.index-h1{height:500px;text-align:center;align-items:center;justify-content:center;flex-direction:column;display:flex;direction:rtl}
+.index-h1 h1{font-size:3em;padding-bottom:0}
 @media (max-width:390px){
 .index-h1 h1{font-size:2em}
 }
