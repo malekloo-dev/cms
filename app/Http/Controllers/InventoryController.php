@@ -160,12 +160,12 @@ class InventoryController extends Controller
 
 
             } else if ($data['status'] == 4) {
-                $sql = "SELECT
-	inventoryid,
-	ExtCaseNo,
-	UnitStatus,
-CASE
-		
+                $sql = "
+                SELECT DISTINCT
+            inventoryid,
+            ExtCaseNo,
+            UnitStatus,
+        CASE
 		WHEN WMS_INVENTORY.Physical = 1 
 		AND Unitstatus = 'FULL' 
 		AND wms_inventory.inboundno = '113' THEN
@@ -235,15 +235,43 @@ CASE
 																		WMS_INVENTORY.Dischargedt ELSE NULL 
 																	END AS 'date',
 																	VesselDesc,
-																	WMS_WO_HR.VoyageID 
+																	VoyageID 
 																FROM
 																	WMS_INVENTORY
-																	JOIN ( SELECT MAX ( inventoryid ) tr FROM wms_inventory GROUP BY extcaseno ) tt ON wms_inventory.InventoryId= tt.tr
-																	INNER JOIN WMS_WO_HR ON WMS_INVENTORY.INBWO= WMS_WO_HR.WONo 
-																	OR WMS_INVENTORY.outcono= WMS_WO_HR.CONo
-																	INNER JOIN MAS_VESSELS ON MAS_VESSELS.VesselCode= WMS_WO_HR.VesselCode 
-																WHERE
-																	WMS_INVENTORY.extcaseno = :extcaseno";
+																	INNER JOIN ( SELECT MAX ( inventoryid ) tr FROM wms_inventory GROUP BY ExtCaseNo ) tt ON wms_inventory.InventoryId= tt.tr
+																	INNER JOIN WMS_WO_HR ON (
+																	CASE
+																			
+																			WHEN WMS_INVENTORY.Physical = 1 
+																			AND Unitstatus = 'FULL' 
+																			AND wms_inventory.inboundno = '113' THEN
+																				WMS_INVENTORY.INBWO 
+																				WHEN WMS_INVENTORY.Physical = 1 
+																				AND Unitstatus = 'FULL' 
+																				AND wms_inventory.inboundno = '459' THEN
+																					WMS_INVENTORY.INBWO 
+																					WHEN WMS_INVENTORY.Physical = 1 
+																					AND Unitstatus = 'Full' 
+																					AND WMS_WO_HR.ordertype = 'IMC' THEN
+																						WMS_INVENTORY.INBWO 
+																						WHEN Physical = 0 
+																						AND Unitstatus = 'FULL' 
+																						AND skudate3 IS NOT NULL THEN
+																							wMS_INVENTORY.INBWO 
+																							WHEN WMS_INVENTORY.Physical = 1 
+																							AND Unitstatus = 'EMPTY' 
+																							AND WMS_INVENTORY.inboundno IN ( '110', '112' ) THEN
+																								WMS_INVENTORY.INBWO 
+																								WHEN Physical = 0 
+																								AND Unitstatus = 'EMPTY' 
+																								AND skudate3 IS NOT NULL THEN
+																									WMS_INVENTORY.INBWO ELSE NULL 
+																								END 
+																								) = WMS_WO_HR.WONo 
+																								OR WMS_INVENTORY.outcono= WMS_WO_HR.CONo
+																								INNER JOIN MAS_VESSELS ON MAS_VESSELS.VesselCode= WMS_WO_HR.VesselCode 
+																							WHERE
+																								WMS_INVENTORY.extcaseno =:extcaseno";
                 $statusList = DB::select($sql, array($data['extcaseno']));
                 //dd($statusList);
 

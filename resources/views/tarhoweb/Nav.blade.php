@@ -14,7 +14,27 @@
     <div class="menu">
 
         <ul>
-            <li><a href="/">خانه</a></li>
+            @foreach(Harimayco\Menu\Models\MenuItems::where('menu', '=', '1')->where('parent','=','0')->get() as $menuItem)
+                <?php
+                $subMenu = Harimayco\Menu\Models\MenuItems::where('menu', '=', '1')->where('parent', '=', $menuItem['id'])->get()
+                ?>
+                @if(count($subMenu))
+                <li class="parent"><a href="{{ $menuItem['link'] }}">{{ $menuItem['label'] }}</a>
+                    <div><img src="{{ asset(@env('TEMPLATE_NAME').'/img/arrow-down.png') }}"></div>
+                    <ul>
+                        @foreach($subMenu as $subMenuItem)
+                            <li><a href="{{ $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+                @else
+                    <li><a href="{{ $menuItem['link'] }}">{{ $menuItem['label'] }}</a></li>
+
+                @endif
+
+            @endforeach
+
+            {{--<li><a href="/">خانه</a></li>
             <li class="parent"><a href="/طراحی-سایت">طراحی سایت</a>
                 <div><img src="{{ asset(@env('TEMPLATE_NAME').'/img/arrow-down.png') }}"></div>
                 <ul>
@@ -39,7 +59,7 @@
             </li>
             <li><a href="/بلاگ">بلاگ</a></li>
             <li><a href="/درباره-ما">درباره ما</a></li>
-            <li><a href="/تماس-با-ما">تماس با ما</a></li>
+            <li><a href="/تماس-با-ما">تماس با ما</a></li>--}}
         </ul>
     </div>
 </nav>
