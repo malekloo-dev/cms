@@ -17,7 +17,14 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
 
     /** for adminContent  */
+    //Route::resource('contents', 'ContentController');
     Route::resource('contents', 'ContentController');
+    Route::get('contents', 'ContentController@index')->name('contents.index');
+    Route::get('contents/{type}', 'ContentController@show')->name('contents.show');
+    Route::post('contents', 'ContentController@store')->name('contents.store');
+    Route::get('contents/create', 'ContentController@create')->name('contents.create');
+    Route::delete('contents/{content}', 'ContentController@destroy')->name('contents.destroy');
+
     Route::resource('category', 'CategoryController');
 
 
@@ -31,6 +38,8 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
 Auth::routes(['register' => false]);
 
 
+//Route::get('/search/', 'inventoryController@index')->name('inventory.show');
+//Route::post('/search/', 'inventoryController@index')->name('inventory.search');
 
 Route::get('/', 'HomeController@index');
 Route::get('/{slug?}/{b?}', 'CmsController@request');
