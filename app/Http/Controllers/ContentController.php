@@ -56,9 +56,9 @@ class ContentController extends Controller
             $type=$request->type;
         }
         $data['contents'] = Content::where('type','=','2')->where('attr_type','=',$type)->orderBy('id', 'desc')->paginate(10);
-        //dd($data);
-        $data['category'] = Content::where('type','=','1')->orderBy('id', 'desc')->get()->keyBy('id');
 
+        $data['category'] = Content::where('type','=','1')->orderBy('id', 'desc')->get()->keyBy('id');
+        //dd($data);
 
         return view('admin.content.List', $data);
     }
@@ -74,18 +74,15 @@ class ContentController extends Controller
         $result=app('App\Http\Controllers\CategoryController')->tree_set();
         $data['category']= app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
         $data['attr_type']=$request->type;
-        if($request->type=='html')
+        /*if($request->type=='html')
         {
             return view('admin.content.CreateHtml',$data);
 
-
         }else
-        {
+        {*/
             return view('admin.content.Create',$data);
 
-
-
-        }
+        //}
     }
 
 
@@ -99,6 +96,8 @@ class ContentController extends Controller
     public function store(Request $request)
     {
 
+
+        //dd($request->all());
        /*$this->validate($request, array(
             'title' => 'required|max:250',
             'description' => 'required',
@@ -126,7 +125,7 @@ class ContentController extends Controller
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         Content::create($data);
 
-        return redirect('contents?type='.$request->attr_type)->with('success', 'Greate! Content created successfully.');
+        return redirect('/admin/contents?type='.$request->attr_type)->with('success', 'Greate! Content created successfully.');
 
     }
 
@@ -155,12 +154,20 @@ class ContentController extends Controller
         $result=app('App\Http\Controllers\CategoryController')->tree_set();
         $category= app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
 
+        $template='admin.content.Edit';
+
+        /*if($content_info->attr_type=='html')
+        {
+            $template='admin.content.EditHtml';
+        }*/
+
+        return view($template, compact(['content_info','category']));
+
 
         //dd($content_info->images);
         /*print_r($data);
 
         die();*/
-        return view('admin.content.Edit', compact(['content_info','category']));
 
     }
 

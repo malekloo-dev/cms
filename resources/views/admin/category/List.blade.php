@@ -10,6 +10,11 @@
            class="top-heading-button btn btn-warning btn-icon mat-elevation-z radius-all mat-button pos-abs">
             <i class="fa fa-plus"></i> Create New Category
         </a>
+        <a href="{{ route('category.create',['type'=>'html'])}}"
+           class="top-heading-button btn btn-warning btn-icon mat-elevation-z radius-all mat-button ">
+            <i class="fa fa-plus"></i> Create New Custom Category
+        </a>
+
     </div>
 
     <div class="content-body">

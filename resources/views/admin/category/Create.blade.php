@@ -179,6 +179,17 @@
                         <input type="text" class="form-control" name="title" value="{{ old('title') }}" />
                         <span class="text-danger">{{ $errors->first('title') }}</span>
                     </div>
+
+                    @if ($attr_type=='html')
+
+                        <div class="form-group row">
+                            <label for="brand" class="col-md-12 col-form-label text-md-left">template name:</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="attr[template_name]" value="{{ old('attr[template_name]') }}"/>
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="col-md-6">
                         <label for="name" class="col-form-label text-md-left">Category</label>
                         <select name="parent_id" id="parent_id" {{--class="form-control"--}}>
@@ -258,6 +269,8 @@
                 <a href="{{ old('publish_date') }}" class="link ">
                     <i class="fa fa-arrow-left"></i> Back to List
                 </a>
+                <input type="hidden" name="attr_type" value="{{ $attr_type }}">
+
             </form>
         </div>
     </div>

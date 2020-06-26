@@ -215,7 +215,15 @@
                     </div>
 
                 </div>
+                @if ($content_info->attr_type=='html')
 
+                    <div class="form-group row">
+                        <label for="brand" class="col-md-12 col-form-label text-md-left">template name:</label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="attr[template_name]" value="{{ old('attr[template_name]',$content_info->attr['template_name']) }}"/>
+                        </div>
+                    </div>
+                @endif
 
                 <div class="form-group row">
                     <div class="col-md-12">
