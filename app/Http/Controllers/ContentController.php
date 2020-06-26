@@ -56,6 +56,7 @@ class ContentController extends Controller
             $type=$request->type;
         }
         $data['contents'] = Content::where('type','=','2')->where('attr_type','=',$type)->orderBy('id', 'desc')->paginate(10);
+        //dd($data);
         $data['category'] = Content::where('type','=','1')->orderBy('id', 'desc')->get()->keyBy('id');
 
 

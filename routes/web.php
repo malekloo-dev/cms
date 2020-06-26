@@ -18,12 +18,14 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
     /** for adminContent  */
     //Route::resource('contents', 'ContentController');
-    Route::resource('contents', 'ContentController');
+    //Route::resource('contents', 'ContentController');
     Route::get('contents', 'ContentController@index')->name('contents.index');
-    Route::get('contents/{type}', 'ContentController@show')->name('contents.show');
+    Route::get('contents/{type}', 'ContentController@index')->name('contents.show');
     Route::post('contents', 'ContentController@store')->name('contents.store');
     Route::get('contents/create', 'ContentController@create')->name('contents.create');
     Route::delete('contents/{content}', 'ContentController@destroy')->name('contents.destroy');
+    Route::put('contents/{content}', 'ContentController@update')->name('contents.update');
+    Route::get('contents/{content}/edit', 'ContentController@edit')->name('contents.edit');
 
     Route::resource('category', 'CategoryController');
 
