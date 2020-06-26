@@ -74,7 +74,18 @@ class ContentController extends Controller
         $result=app('App\Http\Controllers\CategoryController')->tree_set();
         $data['category']= app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
         $data['attr_type']=$request->type;
-        return view('admin.content.Create',$data);
+        if($request->type=='html')
+        {
+            return view('admin.content.CreateHtml',$data);
+
+
+        }else
+        {
+            return view('admin.content.Create',$data);
+
+
+
+        }
     }
 
 
@@ -102,8 +113,6 @@ class ContentController extends Controller
 
             $imagesUrl = $this->uploadImages($request->file('images'));
         }
-
-
 
         $data=$request->all();
         $data['parent_id']= $request->parent_id[0];
