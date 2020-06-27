@@ -46,7 +46,7 @@
             @auth
             <a  class="dropdown-toggle" data-toggle="dropdown">
                 <span class="profile-username disBlock pull-left">
-                    <img class="img-circle mat-elevation-z4" src="{{ asset('img/profile-placeholder.jpg') }}" alt="">
+                    <img class="img-circle mat-elevation-z4" src="{{ url('/adminAssets/img/profile-placeholder.jpg') }}" alt="">
                 </span>
             </a>
             <ul class="dropdown-menu animated fadeInDown pull-right mat-elevation-z4" role="menu">
@@ -68,7 +68,7 @@
 
     <!-- header brand -->
     <div class="header-brand">
-        <a href="{{ url('/') }}"><img src="{{ asset('img/abatalk-logo.svg') }}" class="liveChatLogo pull-left"></a>
+        <a href="{{ url('/') }}"><img src="{{ url('/adminAssets/img/abatalk-logo.svg') }}" class="liveChatLogo pull-left"></a>
     </div>
 
     <a id="toggleSideBar"><i class="fa fa-bars"></i></a>

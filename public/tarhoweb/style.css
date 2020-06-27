@@ -1,7 +1,7 @@
 ﻿@font-face{font-family:vazir;src:url(fonts/vazir/Vazir-Light.eot);src:url(fonts/vazir/Vazir-Light.eot) format("embedded-opentype"),url(fonts/vazir/Vazir-Light.woff) format("woff"),url(fonts/vazir/Vazir-Light.ttf) format("truetype");font-weight:400;font-style:normal}
 [class*=" icon-"]:before,[class^=icon-]:before{font-family:vazir;font-style:normal;font-weight:400;display:inline-block;text-decoration:inherit;width:1em;margin-right:.2em;text-align:center;font-variant:normal;text-transform:none;margin-left:.2em}
 html{direction:rtl;font-family:vazir,sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
-body{margin:0;padding:0;font-size: 1rem; line-height: 2;color:#111;background:#fff}
+body{margin:0;padding:0;font-size:1rem;line-height:2;color:#111;background:#fff}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
 audio,canvas,progress,video{display:inline-block;vertical-align:baseline}
 audio:not([controls]){display:none;height:0}
@@ -9,7 +9,7 @@ a:active,a:hover{outline:0}
 b,strong{font-weight:700}
 dfn{font-style:italic}
 h1{font-size:2em;margin:.67em 0}
-p{color: #4a4a4a;}
+p{color:#4a4a4a}
 small{font-size:80%}
 sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
 sup{top:-.5em}
@@ -824,7 +824,7 @@ nav li a{padding:10px 10px 10px 20px;display:block}
 nav li li{display:block}
 nav ul>li.parent>a::after{position:absolute;display:inline-block;content:'';background-image:url(img/arrow-down.png);margin-right:.5em;width:8px;height:8px;top:1.5em;background-size:.5em;background-repeat:no-repeat}
 nav ul li.parent>div{display:none}
-nav li li a{width:100%;padding:1em 2em!important;white-space:nowrap;display:block!important;border-bottom:3px solid rgba(0,0,0,0)!important; text-align: right;}
+nav li li a{width:100%;padding:1em 2em!important;white-space:nowrap;display:block!important;border-bottom:3px solid rgba(0,0,0,0)!important;text-align:right}
 nav li ul{display:none;padding:0;position:absolute;background-color:#fff;border-top:3px solid #ea1c44;border-radius:10px 10px 10px 10px;box-shadow:1px 0 20px rgba(0,0,0,.12)}
 nav li ul ul{left:100%}
 nav ul li:hover ul{display:block}
@@ -839,7 +839,7 @@ nav .logo{height:2em;margin-right:.3em}
 nav .select::after{height:calc(100% - 1px);padding:0;line-height:2.4em}
 nav .menu>*{margin-right:.6em}
 nav .burger{display:none;position:relative}
-nav .burger:after{position:absolute;background:url(img/icons/th-menu.svg) no-repeat;height:1.2em;width:100px;content:'';top:0;right:0}
+nav .burger:after{position:absolute;background:#fff;height:1.2em;width:100px;content:'';top:0;right:0}
 @media all and (max-width:60em){
 nav ul{padding:0;margin:0!important;max-width:none!important}
 nav ul li{display:block}

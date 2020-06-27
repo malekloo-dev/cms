@@ -10,12 +10,4 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    protected function setupLayout()
-    {
-        if ( ! is_null($this->layout))
-        {
-            $this->layout = View::make($this->layout);
-        }
-    }
 }

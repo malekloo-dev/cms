@@ -5,7 +5,7 @@
         <i class="fa fa-arrow-up"></i>
     </a>
 
-    <p class="text-left no-padding">&copy; 2019 Abatalk.</p>
+    <p class="text-left no-padding">&copy; 2019 cms.</p>
 </footer>--}}
         @yield('ckeditor');
 </body>
