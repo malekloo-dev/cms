@@ -255,7 +255,7 @@
                                     {{--@if (count($vessel))
                                         <td>{{$vessel['0']->VesselDesc}}</td>
                                     @endif--}}
-                                    <td>{{date('d/m/Y h:m', strtotime($fields->DischargeDt))}}</td>
+                                    <td>{{date('d/m/Y', strtotime($fields->DischargeDt))}}</td>
                                     {{--<td>{{$fields->ConsigneeNameDL}}</td>--}}
                                     <td>{{$fields->LocationCode}}</td>
                                     {{--@if (!is_null($statusList['0']->SkuDate1))
@@ -318,7 +318,7 @@
                                     <td>{{$fields->ExtCaseNo}}</td>
                                     <td>{{$fields->UnitStatus}}</td>
                                     <td>{{$fields->description}}</td>
-                                    <td>{{date('d/m/Y h:m', strtotime($fields->date))}}</td>
+                                    <td>{{date('d/m/Y', strtotime($fields->date))}}</td>
                                     <td>{{$fields->VesselDesc}}</td>
                                     <td>{{$fields->VoyageID}}</td>
 

@@ -24,6 +24,8 @@ class Category extends Model
         'images',
         'slug',
         'meta_description',
+        'attr',
+        'attr_type'
 
     ];
 

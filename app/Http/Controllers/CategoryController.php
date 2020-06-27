@@ -84,10 +84,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $result = $this->tree_set();
-
+        $data['attr_type']=$request->type;
         $data['category'] = $this->convertTemplateSelect1($result);
         return view('admin.category.Create', $data);
     }
@@ -251,6 +251,7 @@ class CategoryController extends Controller
         $where = array('id' => $id);
         $content_info = Category::where($where)->first();
 
+
         /*$searchmap = [
             ['parent_id', '<>', $id],
             ['id', '<>', $id]
@@ -344,7 +345,7 @@ class CategoryController extends Controller
         $crud->update($data);
 
 
-        return redirect('admin/category' . $crud->attr_type);
+        return redirect('admin/category');
     }
 
     /**

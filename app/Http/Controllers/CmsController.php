@@ -38,7 +38,8 @@ class CmsController extends Controller
             $breadcrumb = array();
         }
 
-        $table_of_content = array();
+        $table_of_content=array();
+        $table_of_images=array();
         $images = array();
         if (strlen($detail->description)) {
 
@@ -80,8 +81,12 @@ class CmsController extends Controller
             $subCategory = Content::where('type', '=', '1')
                 ->where('parent_id', '=', $detail->id)
                 ->get();
+            $template=@env(TEMPLATE_NAME).'.cms.DetailCategory';
+            if($detail->attr_type=='html'){
+                $template=@env(TEMPLATE_NAME).'.cms.'.$detail->attr['template_name'];
+            }
 
-            return view(@env(TEMPLATE_NAME).'.cms.DetailCategory', compact(['detail', 'relatedPost', 'table_of_content', 'subCategory', 'relatedProduct', 'breadcrumb','images','seo']));
+            return view($template, compact(['detail', 'relatedPost', 'table_of_content', 'subCategory', 'relatedProduct', 'breadcrumb','images','seo']));
 
 
         } else {
@@ -100,7 +105,12 @@ class CmsController extends Controller
                 ->inRandomOrder()
                 ->limit(4)->get();
 
-            return view(@env('TEMPLATE_NAME').'.cms.Detail', compact(['detail', 'breadcrumb', 'relatedPost', 'table_of_content', 'relatedProduct','table_of_images','seo']));
+            $template=@env('TEMPLATE_NAME').'.cms.Detail';
+            if($detail->attr_type=='html'){
+                $template=@env(TEMPLATE_NAME).'.cms.'.$detail->attr['template_name'];
+            }
+
+            return view($template, compact(['detail', 'breadcrumb', 'relatedPost', 'table_of_content', 'relatedProduct','table_of_images','seo']));
 
         }
 
