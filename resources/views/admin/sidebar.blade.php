@@ -36,6 +36,14 @@
 
             </a>
         </li>
+
+        <li class="no-margin">
+            <a href="/admin/menu" class="no-margin text-left">
+                <i class="sidebar-icon pull-left fa fa-bars"></i>
+                <span class="sidebar-text text-left">Menu</span>
+
+            </a>
+        </li>
     </ul>
 
     <p class="copyright-container text-left pos-abs bottom-0 right-0 left-0 padding-full no-margin text-white">&copy; {{date('Y')}} CMS.</p>
