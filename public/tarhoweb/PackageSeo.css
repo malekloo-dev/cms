@@ -1,0 +1,9 @@
+.price-list{border:2px solid #1DC321; margin: 2em; text-align: center; border-radius: 10px; overflow: hidden; position: relative;}
+.price-list-label{width: 100px; position: absolute; padding-bottom: 1px; padding-top: 10px; left: -33px; top: -4px; background-color: #178019; transform: rotate(-45deg) ; color: #1DC321; font-weight: bolder;}
+.price-list .head{background: #1DC321; margin: 0; color: #fff; }
+.price-list .head p:nth-child(2){
+    height: 100px;
+}
+.price-list .featur div{ border-bottom: 2px dashed #eee; padding: 1em; margin: 0 2em;}
+.price-list .price{color: #1DC321;}
+.price-list .price div{font-weight: bolder;}
