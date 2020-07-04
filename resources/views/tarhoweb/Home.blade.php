@@ -93,7 +93,7 @@
 </section>
 
 
-<section class="package">
+<section class="package mb-2">
     <div class="align-center ">
         <h2 class="mb-3">پکیج طراحی سایت و سئو</h2>
     </div>

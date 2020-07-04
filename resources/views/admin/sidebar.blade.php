@@ -38,7 +38,7 @@
         </li>
 
         <li class="no-margin">
-            <a href="/admin/menu" class="no-margin text-left">
+            <a href="/admin/menu?menu=1" class="no-margin text-left">
                 <i class="sidebar-icon pull-left fa fa-bars"></i>
                 <span class="sidebar-text text-left">Menu</span>
 
