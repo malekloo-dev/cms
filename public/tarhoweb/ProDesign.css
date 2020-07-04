@@ -1,0 +1,11 @@
+svg{display:block}
+.pro-design-intro{background: #F7F7F7;}
+.pro-design-intro h3{ width: 70%;}
+.pro-design-intro img{width:100%}
+.web-design-title{display:flex;justify-content:center;flex-direction:column;align-items:flex-start}
+.web-design-title h2{font-size:2em;width:70%}
+.pro-design-website{background:#5E16B0;position:relative;color: #fff;}
+.pro-design-website p{color: #fff; font-size: 2em;}
+.pro-design-feature div > div{margin-bottom: 1.5em;}
+.pro-design-intro h1,.pro-design-feature h2{color: #5E16B0;}
+.svg-purple-bottom{background: #5E16B0;}

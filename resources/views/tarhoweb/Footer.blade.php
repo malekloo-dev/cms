@@ -3,9 +3,8 @@
         <div class="flex grow one two-600 four-900">
             <div class="social-network">
                 <div>شبکه های اجتماعی
-                    <a href=""><img src="{{ asset('img/instagram.png') }}"></a>
-                    <a href=""><img src="{{ asset('img/facebook.png') }}"></a>
-                    <a href=""><img src="{{ asset('img/pintrest.png') }}"></a>
+                    <a href="https://www.instagram.com/tarhoweb/?hl=en"><img width="30" src="{{ asset('img/instagram.svg') }}"></a>
+                    <a href="https://www.linkedin.com/company/tarhoweb"><img width="30" src="{{ asset('img/linkedin.svg') }}"></a>
                 </div>
                 <div>عضویت در خبر نامه
                     <form class="mt-05">

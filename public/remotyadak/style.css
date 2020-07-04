@@ -44,6 +44,7 @@ label{cursor:pointer}
 i[class*=" icon-"]:before,i[class^=icon-]:before{margin:0}
 .button,.dropimage,.label,[data-tooltip]:after,[type=submit],button{display:inline-block;text-align:center;letter-spacing:inherit;margin:0;padding:.3em .9em;vertical-align:middle;border:0;border-radius:.2em;width:auto;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
 .button.button-blue{color:#fff;background:#0045ff}
+.button.button-white{color:#0045ff;background:#fff}
 .success.button,.success.dropimage,.success.label,.success[data-tooltip]:after,.success[type=submit],button.success{background:#2ecc40}
 .warning.button,.warning.dropimage,.warning.label,.warning[data-tooltip]:after,.warning[type=submit],button.warning{background:#ff851b}
 .error.button,.error.dropimage,.error.label,.error[data-tooltip]:after,.error[type=submit],button.error{background:#ff4136}

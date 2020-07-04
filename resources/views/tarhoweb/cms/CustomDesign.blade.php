@@ -47,12 +47,12 @@
     </div>
 
     <svg viewbox="0 0 100 25">
-        <path fill="#fe3761" opacity="0.5" d="M0 30 V15 Q30 3 60 15 V30z" />
-        <path fill="#fe3761" d="M0 30 V12 Q30 17 55 12 T100 11 V30z" />
+        <path fill="#5E16B0" opacity="0.5" d="M0 30 V15 Q30 3 60 15 V30z" />
+        <path fill="#5E16B0" d="M0 30 V12 Q30 17 55 12 T100 11 V30z" />
     </svg>
 </section>
 
-<section class="custom-web-design-menu mt-0 p-0 ">
+<section class="custom-web-design-menu mt-0  mb-0 ">
 
     <div class="flex one align-center ">
         <div class="">
@@ -61,11 +61,11 @@
         </div>
 
     </div>
-    <svg viewbox="0 0 100 15">
-        <path fill="#fff" d="M0 30 V12 Q30 17 55 12 T100 11 V30z" />
-    </svg>
-</section>
 
+</section>
+<svg class="svg-purple-bottom" viewbox="0 0 100 15">
+    <path fill="#fff" d="M0 30 V12 Q30 17 55 12 T100 11 V30z" />
+</svg>
 
 <section class="p-0 mb-0">
     <div class="flex one">

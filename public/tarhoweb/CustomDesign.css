@@ -1,10 +1,8 @@
 svg{display:block}
-.custom-web-design-menu{background:#fe3761;position:relative;color: #fff;}
+.custom-web-design-menu{background:#5E16B0;position:relative;color: #fff;}
 .custom-web-design-menu p{color: #fff;}
 .custom-web-design img{height:200px;width:200px;border-radius:50px;filter: grayscale(100%); transition: .2; z-index: -1; position: relative;}
 .custom-web-design a:hover img{filter: grayscale(0%);}
-.custom-web-design a{display:block; color: #fe3761;}
+.custom-web-design a{display:block; color: #5E16B0;}
 .custom-web-design a:hover{transform:scale(1.1); }
-
-
-
+.svg-purple-bottom{background: #5E16B0;}
