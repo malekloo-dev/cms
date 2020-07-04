@@ -12,4 +12,6 @@
 .resume .gallery:hover .g1{transform: scale(1.05);}
 .resume .gallery:hover .g2{transform: scale(.9) rotate(7deg) translateX(15px) }
 .resume .gallery:hover .g3{transform: scale(.9) rotate(-7deg) translateX(-15px) }
+.resume .gallery .g2:hover{transform: scale(.9) rotate(7deg) translateX(30px) }
+.resume .gallery .g3:hover{transform: scale(.9) rotate(-7deg) translateX(-30px) }
 .resume div div:hover h3{background-color: rgba(0,0,0,0.8);}

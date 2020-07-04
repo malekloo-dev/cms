@@ -23,21 +23,16 @@
         <div>
             <a href="{{url('/طراحی-سایت-حرفه-ای')}}">
                 <img src="{{asset('img/home/design.jpg')}}">
-                <h2>طراحی سایت حرفه ای</h2>
+                <h2>سفارش سایت حرفه ای</h2>
             </a>
         </div>
         <div>
             <a href="{{ url('/طراحی-سایت-وردپرس') }}">
                 <img src="{{asset('img/home/moshavere.jpg')}}">
-                <h2>طراحی سایت وردپرس</h2>
+                <h2>سفارش سایت وردپرس</h2>
             </a>
         </div>
-        <div>
-            <a href="{{ url('/نمونه-طراحی-سایت') }}">
-                <img src="{{asset('img/home/seo.jpg')}}">
-                <h2>نمونه طراحی سایت</h2>
-            </a>
-        </div>
+
     </div>
 
 
