@@ -1,0 +1,13 @@
+.price-list{border:2px solid #5E16B0; margin: 2em; text-align: center; border-radius: 10px; overflow: hidden; position: relative;}
+.price-list-label{width: 100px; position: absolute; padding-bottom: 1px; padding-top: 10px; left: -33px; top: -4px; background-color: #178019; transform: rotate(-45deg) ; color: #1DC321; font-weight: bolder;}
+.price-list .head{background: #5E16B0; margin: 0; color: #fff; }
+.price-list .head h2{color: #F0525F; padding: 0;}
+.price-list .head div{color: #FF9898; }
+.price-list .featur div{ border-bottom: 2px dashed #eee; padding: 1em; margin: 0 2em;}
+.price-list .price{color: #5E16B0;}
+.price-list .price div{font-weight: bolder;}
+.package-info h2{color: #5E16B0;}
+.webdevelopment-custom-package{background: #5E16B0; color: #fff ; padding-top: 8em; padding-bottom: 8em; margin-top: 4em;}
+.webdevelopment-custom-package p{ color: #FF9898 ;}
+.webdevelopment-custom-package .price-list{border-color: #fff; background-color: #fff;}
+.webdevelopment-custom-package .price-list .head h2{color: #fff; padding:1em 0;}

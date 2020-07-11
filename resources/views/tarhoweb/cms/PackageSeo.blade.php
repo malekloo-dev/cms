@@ -59,7 +59,7 @@
                 <div class="featur">
                     <div>پیاده سازی GTM</div>
                     <div>تحقیق و تحلیل کلمات کلیدی</div>
-                    <div>۵ کلمه</div>
+                    <div>۱۵ کلمه</div>
                     <div>بهینه سازی صفحه فرود</div>
                     <div>On Page SEO</div>
                     <div>Off Page SEO</div>
@@ -68,7 +68,7 @@
                 <div class="price">
                     ماهیانه
                     <div class="font-2">
-                        ۷۰۰،۰۰۰ تومان
+                        ۱۲،۰۰۰،۰۰۰ تومان
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                 <div class="featur">
                     <div>پیاده سازی GTM</div>
                     <div>تحقیق و تحلیل کلمات کلیدی</div>
-                    <div>۵ کلمه</div>
+                    <div>۲۵ کلمه</div>
                     <div>بهینه سازی صفحه فرود</div>
                     <div>On Page SEO</div>
                     <div>Off Page SEO</div>
@@ -93,7 +93,7 @@
                 <div class="price">
                     ماهیانه
                     <div class="font-2">
-                        ۷۰۰،۰۰۰ تومان
+                        ۲۵،۰۰۰،۰۰۰ تومان
                     </div>
                 </div>
             </div>

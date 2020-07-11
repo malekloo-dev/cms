@@ -1,0 +1,17 @@
+.custom-web-design img{height:200px;width:200px;border-radius:50px;filter:grayscale(100%);transition:.2;z-index:-1;position:relative}
+.custom-web-design a:hover img{filter:grayscale(0)}
+.custom-web-design a{display:block;color:#00C31F}
+.custom-web-design a:hover{transform:scale(1.1)}
+.resume{background-color:#00C31F;color:#fff}
+.resume img{width: 100%;border-radius: 10px; transition:all .2s ease-in-out;}
+.resume div div h3{transition:all .2s ease-in-out; border-radius: 10px;}
+.resume .gallery div{position: relative;}
+.resume img.g1{position: relative;z-index: 3;}
+.resume img.g2{position: absolute; right: -40px; bottom:0;transform: scale(.8) rotate(7deg); height: 100%; z-index: 2;}
+.resume img.g3{position: absolute; left: -40px;bottom:0;transform: scale(.8) rotate(-7deg);height: 100%;z-index: 2;}
+.resume .gallery:hover .g1{transform: scale(1.05);}
+.resume .gallery:hover .g2{transform: scale(.9) rotate(7deg) translateX(15px) }
+.resume .gallery:hover .g3{transform: scale(.9) rotate(-7deg) translateX(-15px) }
+.resume .gallery .g2:hover{transform: scale(.9) rotate(7deg) translateX(30px) }
+.resume .gallery .g3:hover{transform: scale(.9) rotate(-7deg) translateX(-30px) }
+.resume div div:hover h3{background-color: rgba(0,0,0,0.8);}
