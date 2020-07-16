@@ -31,8 +31,12 @@
 .customer{text-align:center;border-top:1px solid #f4f4f4}
 .customer h2{position:relative;display:inline-block}
 .customer h2::after{width:100%;height:3px;position:absolute;bottom:0;left:0;content:'';background:#0e0e5b;background:linear-gradient(28deg,#210762 0,#0c40f3 100%);border-radius:5px}
-.customer .items{display:flex;flex-direction:row;justify-content:center}
+.customer .items{display:flex;flex-direction:row;justify-content:center;flex-wrap:wrap}
 .customer .items img{height:80px}
 .package h2{position:relative;display:inline-block;}
 .package h2::after{width:100%;height:3px;position:absolute;bottom:0;left:0;content:'';background:#0e0e5b;background:linear-gradient(28deg,#210762 0,#0c40f3 100%);border-radius:5px}
 .package img{height: 150px;}
+@media (max-width:700px){
+    .web-design-title h2{width: 100%;}
+    .web-design-title{ align-items:center}
+}

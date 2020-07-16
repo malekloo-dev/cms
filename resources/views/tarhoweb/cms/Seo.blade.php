@@ -22,7 +22,7 @@
     </div>
 </section>
 
-<section class="custom-web-design mb-0 mt-3 p-0">
+<section class="custom-web-design mb-0 mt-3">
 
 
     <div class="flex one two-700 three-900 center align-center">
@@ -35,11 +35,12 @@
 
     </div>
 
-    <svg viewbox="0 0 100 25">
-        <path fill="#00C31F" opacity="0.5" d="M0 30 V15 Q30 3 60 15 V30z" />
-        <path fill="#00C31F" d="M0 30 V12 Q30 17 55 12 T100 11 V30z" />
-    </svg>
+
 </section>
+<svg viewbox="0 0 100 25">
+    <path fill="#00C31F" opacity="0.5" d="M0 30 V15 Q30 3 60 15 V30z" />
+    <path fill="#00C31F" d="M0 30 V12 Q30 17 55 12 T100 11 V30z" />
+</svg>
 
 <section class="custom-web-design-menu mt-0  mb-0 ">
 
@@ -56,7 +57,7 @@
     <path fill="#fff" d="M0 30 V12 Q30 17 55 12 T100 11 V30z" />
 </svg>
 
-<section class="p-0 mb-0">
+<section class=" mb-0">
     <div class="flex one">
         <div>
             <div class="flex one three-500   ">
@@ -89,12 +90,12 @@
 
         </div>
     </div>
-    <svg viewbox="0 0 100 15">
-        <path fill="#ececec" opacity="0.5" d="M0 30 V1 Q50 10 100 10 V30z" />
-        <path fill="#ececec" d="M0 30 V12 Q30 17 70 12 T100 11 V30z" />
-    </svg>
+
 </section>
 
-
+<svg viewbox="0 0 100 15">
+    <path fill="#ececec" opacity="0.5" d="M0 30 V1 Q50 10 100 10 V30z" />
+    <path fill="#ececec" d="M0 30 V12 Q30 17 70 12 T100 11 V30z" />
+</svg>
 
 @endsection

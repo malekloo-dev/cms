@@ -849,7 +849,7 @@ nav ul li ul{position:relative;border-right:3px solid #ea1c44;border-top:none;bo
 nav ul li ul ul{position:relative;left:0}
 nav li li a{padding:8px .3rem!important}
 nav ul>li.parent a::after{display:none}
-nav ul li.parent>div{display:block;background:0 0;position:absolute;left:10px;top:15px;outline:0;z-index:999999}
+nav ul li.parent>div{display:block;background:#ddd;position:absolute;left:10px;top:15px;outline:0;z-index:999999;display: flex; padding: 6px 9px;align-content: center;}
 nav .burger{display:inline-block;cursor:pointer;bottom:-1000em;margin:0}
 nav .burger~.menu,nav .show:checked~.burger{position:fixed;min-height:100%;top:0;right:0;bottom:-1000em;margin:0;background:#fff;transition:all .5s ease;transform:none}
 nav .burger~.menu{z-index:11}

@@ -45,8 +45,8 @@
 
 
 <section class="resume mt-0 mb-0 pb-5">
-    <h2  class="align-center">نمونه کار</h2>
-    <div class="flex one two-500  four-900 center align-center">
+    <h2 class="align-center">نمونه کار</h2>
+    <div class="flex one two-500  three-900 center align-center">
         <div>
             <div class="gallery">
                 <div class="m-4">
@@ -60,9 +60,29 @@
         <div>
             <div class="gallery">
                 <div class="m-4">
-                    <img class="g1" src="{{asset('img/resume/var1.jpg')}}">
-                    <img class="g2" src="{{asset('img/resume/var2.jpg')}}">
-                    <img class="g3" src="{{asset('img/resume/var3.jpg')}}">
+                    <img class="g1" src="{{asset('img/resume/alzahra1.jpg')}}">
+                    <img class="g2" src="{{asset('img/resume/alzahra2.jpg')}}">
+                    <img class="g3" src="{{asset('img/resume/alzahra3.jpg')}}">
+                </div>
+            </div>
+            <h3>پرتال ارزیابی دانشگاه الزهرا</h3>
+        </div>
+        <div>
+            <div class="gallery">
+                <div class="m-4">
+                    <img class="g1" src="{{asset('img/resume/decor1.jpg')}}">
+                    <img class="g2" src="{{asset('img/resume/decor2.jpg')}}">
+                    <img class="g3" src="{{asset('img/resume/decor3.jpg')}}">
+                </div>
+            </div>
+            <h3>دکورنما</h3>
+        </div>
+        <div>
+            <div class="gallery">
+                <div class="m-4">
+                    <img class="g1" src="{{asset('img/resume/bonz1.jpg')}}">
+                    <img class="g2" src="{{asset('img/resume/bonz2.jpg')}}">
+                    <img class="g3" src="{{asset('img/resume/bonz3.jpg')}}">
                 </div>
             </div>
             <h3>Bonzelfi</h3>
@@ -70,24 +90,43 @@
         <div>
             <div class="gallery">
                 <div class="m-4">
-                    <img class="g1" src="{{asset('img/resume/var1.jpg')}}">
-                    <img class="g2" src="{{asset('img/resume/var2.jpg')}}">
-                    <img class="g3" src="{{asset('img/resume/var3.jpg')}}">
+                    <img class="g1" src="{{asset('img/resume/mvm1.jpg')}}">
+                    <img class="g2" src="{{asset('img/resume/mvm2.jpg')}}">
+                    <img class="g3" src="{{asset('img/resume/mvm3.jpg')}}">
                 </div>
             </div>
-            <h3>Bonzelfi</h3>
+            <h3>MVM نمایندگی ۲۶۴</h3>
         </div>
         <div>
             <div class="gallery">
                 <div class="m-4">
-                    <img class="g1" src="{{asset('img/resume/var1.jpg')}}">
-                    <img class="g2" src="{{asset('img/resume/var2.jpg')}}">
-                    <img class="g3" src="{{asset('img/resume/var3.jpg')}}">
+                    <img class="g1" src="{{asset('img/resume/mohit1.jpg')}}">
+                    <img class="g2" src="{{asset('img/resume/mohit2.jpg')}}">
+                    <img class="g3" src="{{asset('img/resume/mohit3.jpg')}}">
                 </div>
             </div>
-            <h3>Bonzelfi</h3>
+            <h3>mohitsanat</h3>
         </div>
-
+        <div>
+            <div class="gallery">
+                <div class="m-4">
+                    <img class="g1" src="{{asset('img/resume/ele1.jpg')}}">
+                    <img class="g2" src="{{asset('img/resume/ele2.jpg')}}">
+                    <img class="g3" src="{{asset('img/resume/ele3.jpg')}}">
+                </div>
+            </div>
+            <h3>electromah</h3>
+        </div>
+        <div>
+            <div class="gallery">
+                <div class="m-4">
+                    <img class="g1" src="{{asset('img/resume/ms1.jpg')}}">
+                    <img class="g2" src="{{asset('img/resume/ms2.jpg')}}">
+                    <img class="g3" src="{{asset('img/resume/ms3.jpg')}}">
+                </div>
+            </div>
+            <h3>mschef</h3>
+        </div>
 
     </div>
 </section>
