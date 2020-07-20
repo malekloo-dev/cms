@@ -134,7 +134,7 @@
             </div>
             <div class="row">
                 <div style="min-height: 600px;" class="panel-body full-height">
-                    <form action="{{ route('inventory.search') }}" method="POST" name="add_content"
+                    <form action="{{ route('inventory.search') }}/" method="POST" name="add_content"
                           enctype="multipart/form-data">
                         @csrf
 
@@ -176,10 +176,18 @@
                                 <div style="margin-left: 10px;margin-right: 10px;">
                                     <label for="name" class=" col-form-label text-md-left">Status:</label>
                                     <select class="select2 form-control" name="status">
-                                        <option value="4" @isset($data['status']){{ $data['status'] == "4" ? 'selected="selected"' : "" }}@endisset>Last Move</option>
-                                        <option value="1" @isset($data['status']){{ $data['status'] == "1" ? 'selected="selected"' : "" }}@endisset>Import</option>
-                                        <option value="2" @isset($data['status']){{ $data['status'] == "2" ? 'selected="selected"' : "" }}@endisset>Export Empty/Storage</option>
-                                        <option value="3" @isset($data['status']){{ $data['status'] == "3" ? 'selected="selected"' : "" }}@endisset>Export Full/Storage</option>
+                                        <option value="4" @isset($data['status']){{ $data['status'] == "4" ? 'selected="selected"' : "" }}@endisset>
+                                            Last Move
+                                        </option>
+                                        <option value="1" @isset($data['status']){{ $data['status'] == "1" ? 'selected="selected"' : "" }}@endisset>
+                                            Import
+                                        </option>
+                                        <option value="2" @isset($data['status']){{ $data['status'] == "2" ? 'selected="selected"' : "" }}@endisset>
+                                            Export Empty/Storage
+                                        </option>
+                                        <option value="3" @isset($data['status']){{ $data['status'] == "3" ? 'selected="selected"' : "" }}@endisset>
+                                            Export Full/Storage
+                                        </option>
 
                                     </select>
                                 </div>
@@ -214,20 +222,31 @@
 
                 @if (count($statusList) and $data['status']!=4)
                     <div class="sec-title pad wow animated fadeInDown">
-                        <h3> </h3>
+                        <h3></h3>
                         <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th>Container No</th>
                                 <th>Sz/Tp</th>
                                 <th>Unit Status</th>
-                                {{--@if (count($vessel))
+                                @if ($data['status']==1)
                                     <th>Vessel Name</th>
-                                @endif--}}
+                                    <th>Vessel Voyage</th>
+                                @endif
 
-                                <th>Discharge Date</th>
+                                @if ($data['status']==2 or $data['status']==3)
+                                    <th>Received Date</th>
+                                @else
+                                    <th>Discharge Date</th>
+                                @endif
+
+                                @if ($data['status']==1)
+                                    <th>Gate Out Date</th>
+                                    <th>Stripping Date</th>
+                                @endif
+
                                 {{--<th>Consignee Name</th>--}}
-                                <th>Yard Position</th>
+                                {{-- <th>Yard Position</th>--}}
                                 {{--@if (!is_null($statusList['0']->SkuDate1))
                                     <th>Received Date</th>
                                 @endif
@@ -252,12 +271,40 @@
                                     <td>{{$fields->extcaseno}}</td>
                                     <td>{{$fields->sz_tp}}</td>
                                     <td>{{$fields->UnitStatus}}</td>
-                                    {{--@if (count($vessel))
-                                        <td>{{$vessel['0']->VesselDesc}}</td>
-                                    @endif--}}
-                                    <td>{{date('d/m/Y', strtotime($fields->DischargeDt))}}</td>
+                                    @if ($data['status']==1)
+                                        <td>{{$fields->VesselDesc}}</td>
+                                        <td>{{$fields->VoyageID}}</td>
+                                    @endif
+
+
+                                    <td>
+                                        @if (!is_null($fields->DischargeDt))
+                                            {{date('d/m/Y', strtotime($fields->DischargeDt))}}
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
+
+                                    @if ($data['status']==1)
+                                        <td>
+                                            @if (!is_null($fields->gate_out_date))
+                                                {{date('d/m/Y', strtotime($fields->gate_out_date))}}
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if (!is_null($fields->stripping_date))
+                                                {{date('d/m/Y', strtotime($fields->stripping_date))}}
+                                            @else
+                                                -
+                                            @endif
+
+                                        </td>
+                                    @endif
+
                                     {{--<td>{{$fields->ConsigneeNameDL}}</td>--}}
-                                    <td>{{$fields->LocationCode}}</td>
+                                    {{--<td>{{$fields->LocationCode}}</td>--}}
                                     {{--@if (!is_null($statusList['0']->SkuDate1))
                                         <td>{{date('d/m/Y h:m', strtotime($fields->SkuDate1))}}</td>
                                     @endif--}}
@@ -298,14 +345,15 @@
                 @endif
                 @if (count($statusList) and $data['status']==4)
                     <div class="sec-title pad wow animated fadeInDown">
-                        <h3> </h3>
+                        <h3></h3>
                         <table class="table table-striped">
                             <thead>
                             <tr>
                                 {{--<th>Inventory Id</th>--}}
                                 <th>Container No</th>
+                                <th>Sz/Tp</th>
                                 <th>Unit Status</th>
-                                <th>Description </th>
+                                <th>Description</th>
                                 <th>Date</th>
                                 <th>Vessel Description</th>
                                 <th>Voyage Id</th>
@@ -316,10 +364,17 @@
                                 <tr>
                                     {{--<td>{{$fields->inventoryid}}</td>--}}
                                     <td>{{$fields->ExtCaseNo}}</td>
+                                    <td>{{$fields->sz_tp}}</td>
                                     <td>{{$fields->UnitStatus}}</td>
                                     <td>{{$fields->description}}</td>
-                                    <td>{{date('d/m/Y', strtotime($fields->date))}}</td>
-                                    <td>{{$fields->VesselDesc}}</td>
+                                    <td>
+                                        @if (!is_null($fields->date))
+                                            {{date('d/m/Y', strtotime($fields->date))}}
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
+                                    <td>{{$fields->vesseldescription}}</td>
                                     <td>{{$fields->VoyageID}}</td>
 
                                 </tr>

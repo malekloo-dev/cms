@@ -44,7 +44,7 @@ class InventoryController extends Controller
         $shipping_name = '';
         $isSearch = 0;
 
-        if (count($data) > 0) {
+        if (count($data) > 0 and trim($data['extcaseno']) != '') {
 
             $isSearch = 1;
 
@@ -64,7 +64,9 @@ class InventoryController extends Controller
             if ($data['status'] == 1) {
                 $sql = "SELECT
                     InboundNo,
-                      ClientName,
+                    VesselDesc,
+                    VoyageID,
+                    ClientName,
                     WMS_INVENTORY.SKURef1 AS bl_bumber,
                     WMS_INVENTORY.extcaseno,
                 	WMS_INVENTORY.InventoryId,
@@ -84,14 +86,20 @@ class InventoryController extends Controller
                     WMS_INVENTORY.SkuDate1 
               FROM
                  WMS_INVENTORY
-              INNER JOIN WMS_WO_HR ON WMS_INVENTORY.INBWO= WMS_WO_HR.WONo 
-              LEFT JOIN MAS_CLIENT ON MAS_CLIENT.ClientCode=WMS_INVENTORY.ClientCode
+               INNER JOIN WMS_WO_HR ON WMS_INVENTORY.INBWO= WMS_WO_HR.WONo 
+                inner join  MAS_VESSELS on MAS_VESSELS.VesselCode=WMS_WO_HR.VesselCode
+                INNER JOIN MAS_CLIENT ON WMS_INVENTORY.ClientCode=MAS_CLIENT.ClientCode
 
               WHERE ";
                 //die('1');
-                $importSql = " ( WMS_INVENTORY.SKURef1 = '" . $data['extcaseno'] . "'
-                 or WMS_INVENTORY.ExtCaseNo ='" . $data['extcaseno'] . "' ) and uom='CNT' and InboundNo not in (110,112)  AND (
-              WMS_WO_HR.ordertype in ('IMC' ) )";
+                $importSql = " ( WMS_INVENTORY.ExtCaseNo ='" . $data['extcaseno'] . "' 
+                 or WMS_INVENTORY.skuref1='" . $data['extcaseno'] . "' ) 
+                 and uom='CNT' and InboundNo not in (110,112)  
+                 AND ( WMS_WO_HR.ordertype in ('IMC' ) )
+                
+                 ";
+                $orderSql = "ORDER BY
+                                    WMS_INVENTORY.InventoryId DESC ";
                 $sql = $sql . $importSql . $orderSql . $limitSql;
 
                 $statusList = DB::select($sql);
@@ -100,23 +108,25 @@ class InventoryController extends Controller
             } else if ($data['status'] == 2) {
 
                 $sql = "SELECT
-                    InboundNo,
+	                InboundNo
+                    VoyageID,
+                    WMS_INVENTORY.extcaseno,
+	                WMS_INVENTORY.SkuCode AS sz_tp,
+	                WMS_INVENTORY.DischargeDt,
+                    WMS_INVENTORY.SkuDate3 AS gate_out_date,
                     ClientName,
                     WMS_INVENTORY.SKURef1 AS bl_bumber,
-                    WMS_INVENTORY.extcaseno,
                 	WMS_INVENTORY.InventoryId,
-                    WMS_INVENTORY.SkuDate3 AS gate_out_date,
                     WMS_INVENTORY.SkuDate4 AS stripping_date,
                     WMS_INVENTORY.ClientCode AS shipping_line,
-                    WMS_INVENTORY.SkuCode AS sz_tp,
                     WMS_INVENTORY.ConsigneeNameDL,
-                    WMS_INVENTORY.DischargeDt,
                     WMS_INVENTORY.LocationCode,
                     WMS_INVENTORY.UnitStatus,
                     WMS_INVENTORY.CurrentWO ,
                     WMS_INVENTORY.SkuDate2,
                     WMS_INVENTORY.SkuDate6,
                     WMS_INVENTORY.SkuDate1 
+
               FROM
                  WMS_INVENTORY
               LEFT JOIN MAS_CLIENT ON MAS_CLIENT.ClientCode=WMS_INVENTORY.ClientCode
@@ -160,119 +170,98 @@ class InventoryController extends Controller
 
 
             } else if ($data['status'] == 4) {
-                $sql = "
-                SELECT DISTINCT
-            inventoryid,
-            ExtCaseNo,
-            UnitStatus,
-        CASE
-		WHEN WMS_INVENTORY.Physical = 1 
-		AND Unitstatus = 'FULL' 
-		AND wms_inventory.inboundno = '113' THEN
-			'Full in Container Yard' 
-			WHEN WMS_INVENTORY.Physical = 1 
-			AND Unitstatus = 'FULL' 
-			AND wms_inventory.inboundno = '459' THEN
-				'Full in Container Yard' 
-				WHEN Physical = 0 
-				AND Unitstatus IN ( 'Empty', 'FULL' ) 
-				AND skudate5 IS NOT NULL THEN
-					'Loaded on Vessel' 
-					WHEN WMS_INVENTORY.Physical = 1 
-					AND Unitstatus = 'Full' 
-					AND WMS_WO_HR.ordertype = 'IMC' THEN
-						'Discharged from Vessel' 
-						WHEN Physical = 0 
-						AND Unitstatus = 'FULL' 
-						AND skudate3 IS NOT NULL THEN
-							'Gate Out Full' 
-							WHEN WMS_INVENTORY.Physical = 1 
-							AND Unitstatus = 'EMPTY' 
-							AND WMS_INVENTORY.inboundno IN ( '110', '112' ) THEN
-								'Empty in Container Yard' 
-								WHEN Physical = 0 
-								AND Unitstatus = 'EMPTY' 
-								AND skudate3 IS NOT NULL THEN
-									'Gate Out Empty' 
-									WHEN WMS_INVENTORY.Physical = 1 
-									AND Unitstatus = 'EMPTY' 
-									AND WMS_INVENTORY.inboundno = '112' THEN
-										'Empty in Container Yard' ELSE NULL 
-									END AS description,
-								CASE
-										
-										WHEN WMS_INVENTORY.Physical = 1 
-										AND Unitstatus = 'FULL' 
-										AND wms_inventory.inboundno = '113' THEN
-											wms_inventory.Dischargedt 
-											WHEN WMS_INVENTORY.Physical = 1 
-											AND Unitstatus = 'FULL' 
-											AND wms_inventory.inboundno = '459' THEN
-												wms_inventory.Dischargedt 
-												WHEN Physical = 0 
-												AND Unitstatus IN ( 'Empty', 'FULL' ) 
-												AND skudate5 IS NOT NULL THEN
-													SkuDate5 
-													WHEN WMS_INVENTORY.Physical = 1 
-													AND Unitstatus = 'Full' 
-													AND WMS_WO_HR.ordertype = 'IMC' THEN
-														WMS_INVENTORY.Dischargedt 
-														WHEN Physical = 0 
-														AND Unitstatus = 'FULL' 
-														AND skudate3 IS NOT NULL THEN
-															skudate3 
-															WHEN WMS_INVENTORY.Physical = 1 
-															AND Unitstatus = 'EMPTY' 
-															AND WMS_INVENTORY.inboundno = '110' THEN
-																WMS_INVENTORY.Dischargedt 
-																WHEN Physical = 0 
-																AND Unitstatus = 'EMPTY' 
-																AND skudate3 IS NOT NULL THEN
-																	skudate3 
-																	WHEN WMS_INVENTORY.Physical = 1 
-																	AND Unitstatus = 'EMPTY' 
-																	AND WMS_INVENTORY.inboundno = '112' THEN
-																		WMS_INVENTORY.Dischargedt ELSE NULL 
-																	END AS 'date',
-																	VesselDesc,
-																	VoyageID 
-																FROM
-																	WMS_INVENTORY
-																	INNER JOIN ( SELECT MAX ( inventoryid ) tr FROM wms_inventory GROUP BY ExtCaseNo ) tt ON wms_inventory.InventoryId= tt.tr
-																	INNER JOIN WMS_WO_HR ON (
-																	CASE
-																			
-																			WHEN WMS_INVENTORY.Physical = 1 
-																			AND Unitstatus = 'FULL' 
-																			AND wms_inventory.inboundno = '113' THEN
-																				WMS_INVENTORY.INBWO 
-																				WHEN WMS_INVENTORY.Physical = 1 
-																				AND Unitstatus = 'FULL' 
-																				AND wms_inventory.inboundno = '459' THEN
-																					WMS_INVENTORY.INBWO 
-																					WHEN WMS_INVENTORY.Physical = 1 
-																					AND Unitstatus = 'Full' 
-																					AND WMS_WO_HR.ordertype = 'IMC' THEN
-																						WMS_INVENTORY.INBWO 
-																						WHEN Physical = 0 
-																						AND Unitstatus = 'FULL' 
-																						AND skudate3 IS NOT NULL THEN
-																							wMS_INVENTORY.INBWO 
-																							WHEN WMS_INVENTORY.Physical = 1 
-																							AND Unitstatus = 'EMPTY' 
-																							AND WMS_INVENTORY.inboundno IN ( '110', '112' ) THEN
-																								WMS_INVENTORY.INBWO 
-																								WHEN Physical = 0 
-																								AND Unitstatus = 'EMPTY' 
-																								AND skudate3 IS NOT NULL THEN
-																									WMS_INVENTORY.INBWO ELSE NULL 
-																								END 
-																								) = WMS_WO_HR.WONo 
-																								OR WMS_INVENTORY.outcono= WMS_WO_HR.CONo
-																								INNER JOIN MAS_VESSELS ON MAS_VESSELS.VesselCode= WMS_WO_HR.VesselCode 
-																							WHERE
-																								WMS_INVENTORY.extcaseno =:extcaseno";
-                $statusList = DB::select($sql, array($data['extcaseno']));
+                $sql = "SELECT distinct  WMS_INVENTORY.SkuCode AS sz_tp,
+                ExtCaseNo,UnitStatus,skuref1,
+                case 
+                when Physical =1 and ordertype='IMC' and (unitstatus = 'FULL' or UnitStatus='EMPTY') and WMS_INVENTORY.inboundno not in( '110','112') then 'Discharged from Vessel' 
+                when Physical =0 and ordertype='IMC' and unitstatus = 'FULL' and WMS_INVENTORY.inboundno not in( '110','112') and skudate3 is not null then 'Gate Out Full'
+                when Physical =0 and ordertype='IMC' and unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno not in( '110','112')and skudate3 is not null then 'Gate Out Empty'
+                when Physical = 0 and Unitstatus = 'EMPTY'  and WMS_INVENTORY.inboundno  ='110'and skudate3 is not null then 'Gate Out Empty' 
+                when Physical = 0 and Unitstatus = 'EMPTY'  and WMS_INVENTORY.inboundno  ='112'and skudate3 is not null then 'Gate Out Empty' 
+                when Physical = 1 and Unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno = '110'and skudate5 is null then 'Empty in Container Yard'
+                when Physical = 1 and Unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno = '112' and skudate5 is  null then 'Empty in Container Yard'
+                when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '118' then 'Full in Container Yard'
+                when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '459' then 'Full in Container Yard'
+                when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '467' then 'Full Return'
+                when Physical = 0 and Unitstatus in( 'Empty','FULL') and skudate5 is not null and outcono is not null then 'Loaded on Vessel' 
+                when Physical = 1 and Unitstatus in( 'Empty','FULL') and skudate5 is not null and outcono is not null then 'Loaded on Vessel'
+                 else null end as description,
+                case
+                when Physical =1 and ordertype='IMC' and (unitstatus = 'FULL' or UnitStatus='EMPTY') and WMS_INVENTORY.inboundno not in( '110','112') then wms_inventory.DischargeDt--'Discharged from Vessel' 
+                when Physical =0 and ordertype='IMC' and unitstatus = 'FULL' and WMS_INVENTORY.inboundno not in( '110','112') and skudate3 is not null then wms_inventory.skudate3--'Gate Out Full'
+                when Physical =0 and ordertype='IMC' and unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno not in( '110','112')and skudate3 is not null then wms_inventory.skudate3--'Gate Out Empty'
+                when Physical = 0 and Unitstatus = 'EMPTY'  and WMS_INVENTORY.inboundno= '110'and skudate3 is not null then wms_inventory.skudate3--'Gate Out Empty'
+                when Physical = 0 and Unitstatus = 'EMPTY'  and WMS_INVENTORY.inboundno= '112'and skudate3 is not null then wms_inventory.skudate3--'Gate Out Empty'  
+                when Physical = 1 and Unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno = '110'and skudate5 is  null then WMS_INVENTORY.Dischargedt--'Empty in Container Yard'
+                when Physical = 1 and Unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno = '112'and skudate5 is  null then WMS_INVENTORY.Dischargedt--'Empty in Container Yard'
+                when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '118' then wms_inventory.Dischargedt--'Full in Container Yard'
+                when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '459' then wms_inventory.Dischargedt--'Full in Container Yard'
+                when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '467' then wms_inventory.Dischargedt-- 'Full Return'
+                when Physical = 0 and Unitstatus in( 'Empty','FULL') and skudate5 is not null and outcono is not null then wms_inventory.skudate5--'Loaded on Vessel' 
+                when Physical = 1 and Unitstatus in( 'Empty','FULL') and skudate5 is not null and outcono is not null then wms_inventory.skudate5--'Loaded on Vessel'
+                 else null end as date ,
+                 case
+                when Physical =1 and ordertype='IMC' and (unitstatus = 'FULL' or UnitStatus='EMPTY') and WMS_INVENTORY.inboundno not in( '110','112') then VesselDesc--'Discharged from Vessel' 
+                when Physical =0 and ordertype='IMC' and unitstatus = 'FULL' and WMS_INVENTORY.inboundno not in( '110','112') and skudate3 is not null then VesselDesc--'Gate Out Full'
+                when Physical =0 and ordertype='IMC' and unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno not in( '110','112')and skudate3 is not null then VesselDesc--'Gate Out Empty'
+                when Physical = 0 and Unitstatus = 'EMPTY'  and WMS_INVENTORY.inboundno='110'and skudate3 is not null then '-'--'Gate Out Empty'
+                when Physical = 0 and Unitstatus = 'EMPTY'  and WMS_INVENTORY.inboundno='112'and skudate3 is not null then '-'--'Gate Out Empty'  
+                when Physical = 1 and Unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno = '110'and skudate5 is  null then '-'--'Empty in Container Yard'
+                when Physical = 1 and Unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno = '112'and skudate5 is  null then '-'--'Empty in Container Yard'
+                when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '118' then '-'--'Full in Container Yard'
+                when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '459' then '-'--'Full in Container Yard'
+                when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '467' then '-' --'Full Return--
+                when Physical = 0 and Unitstatus in( 'Empty','FULL') and skudate5 is not null and outcono is not null  then VesselDesc--'Loaded on Vessel' 
+                when Physical = 1 and Unitstatus in( 'Empty','FULL') and skudate5 is not null and outcono is not null  then VesselDesc--'Loaded on Vessel'
+                 else null end as vesseldescription,
+                 case
+                when Physical =1 and ordertype='IMC' and (unitstatus = 'FULL' or UnitStatus='EMPTY') and WMS_INVENTORY.inboundno not in( '110','112') then VoyageID--'Discharged from Vessel' 
+                when Physical =0 and ordertype='IMC' and unitstatus = 'FULL' and WMS_INVENTORY.inboundno not in( '110','112') and skudate3 is not null then VoyageID--'Gate Out Full'
+                when Physical =0 and ordertype='IMC' and unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno not in( '110','112')and skudate3 is not null then VoyageID--'Gate Out Empty'
+                when Physical = 0 and Unitstatus = 'EMPTY'  and WMS_INVENTORY.inboundno='110'and skudate3 is not null then '-'--'Gate Out Empty'
+                when Physical = 0 and Unitstatus = 'EMPTY'  and WMS_INVENTORY.inboundno='112'and skudate3 is not null then '-'--'Gate Out Empty' 
+                when Physical = 1 and Unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno = '110'and skudate5 is  null then '-'--'Empty in Container Yard'
+                when Physical = 1 and Unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno = '112'and skudate5 is  null then '-'--'Empty in Container Yard'
+                when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '118' then '-'--'Full in Container Yard'
+                when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '459' then '-'--'Full in Container Yard'
+                when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '467' then '-' --'Full Return--
+                when Physical = 0 and Unitstatus in( 'Empty','FULL') and skudate5 is not null and outcono is not null  then VoyageID--'Loaded on Vessel' 
+                when Physical = 1 and Unitstatus in( 'Empty','FULL') and skudate5 is not null and outcono is not null  then VoyageID--'Loaded on Vessel'
+                 else null end as VoyageID
+                from wms_inventory
+                 inner join
+                 (select max (inventoryid)tr  from wms_inventory group by ExtCaseNo) tt
+                                on wms_inventory.InventoryId=tt.tr
+                 inner join WMS_WO_HR ON ( case
+                when Physical =1 and ordertype='IMC' and (unitstatus = 'FULL' or UnitStatus='EMPTY') and WMS_INVENTORY.inboundno not in( '110','112') then WMS_INVENTORY.INBWO --'Discharged from Vessel' 
+                when Physical =0 and ordertype='IMC' and unitstatus = 'FULL' and WMS_INVENTORY.inboundno not in( '110','112') and skudate3 is not null then WMS_INVENTORY.INBWO --'Gate Out Full'
+                when Physical =0 and ordertype='IMC' and unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno not in( '110','112')and skudate3 is not null then WMS_INVENTORY.INBWO --'Gate Out Empty'
+                when Physical = 0 and Unitstatus = 'EMPTY'  and WMS_INVENTORY.inboundno ='110'and skudate3 is not null then WMS_INVENTORY.INBWO --'Gate Out Empty' 
+                when Physical = 0 and Unitstatus = 'EMPTY'  and WMS_INVENTORY.inboundno ='112'and skudate3 is not null then WMS_INVENTORY.INBWO --'Gate Out Empty' 
+                when Physical = 1 and Unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno = '110' and skudate5 is  null then WMS_INVENTORY.INBWO --'Empty in Container Yard'
+                when Physical = 1 and Unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno = '112'and skudate5 is  null then WMS_INVENTORY.INBWO --'Empty in Container Yard'
+                when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '118' then WMS_INVENTORY.INBWO --'Full in Container Yard'
+                when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '459' then WMS_INVENTORY.INBWO --'Full in Container Yard'
+                when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '467' then WMS_INVENTORY.INBWO --'Full Return--
+                else null end)= WMS_WO_HR.WONo or 
+                        WMS_INVENTORY.outcono= WMS_WO_HR.CONo 
+                         
+                          inner join  MAS_VESSELS on (case 
+                         when WMS_INVENTORY.Physical = 1 and Unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno= '112'and skudate5 is  null then 'EMTR'
+                         when WMS_INVENTORY.Physical = 0 and Unitstatus = 'EMPTY' and WMS_INVENTORY.inboundno= '112'and skudate5 is  null then 'EMTR'
+                         when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '118' then 'EMTR' --'Full in Container Yard'
+                         when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '459' then 'EMTR' --'Full in Container Yard' 
+                when  WMS_INVENTORY.Physical = 1 and Unitstatus = 'FULL' and wms_inventory.inboundno = '467' then 'EMTR' --'Full Return--
+                         else WMS_WO_HR.VesselCode end)=MAS_VESSELS.VesselCode  
+                         
+                  
+                 
+                WHERE
+                
+                ( WMS_INVENTORY.ExtCaseNo ='" . $data['extcaseno'] . "' 
+                or WMS_INVENTORY.skuref1='" . $data['extcaseno'] . "' ) ";
+
+                $statusList = DB::select($sql);
                 //dd($statusList);
 
             } else {
@@ -357,6 +346,7 @@ class InventoryController extends Controller
 
             $sql = "SELECT
                     InboundNo,
+                    VesselDesc,
                     WMS_INVENTORY.SKURef1 AS bl_bumber,
                     WMS_INVENTORY.extcaseno,
                 	WMS_INVENTORY.InventoryId,
