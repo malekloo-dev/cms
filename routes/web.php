@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/contents/upload-image/', 'ContentController@uploadImageSubject')->name('contents.upload');
+
 //Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
 
 
 Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
+    Route::post('contents/upload-image/', 'ContentController@uploadImageSubject')->name('contents.upload');
 
     //Auth::routes(['register' => false]);
 
@@ -25,7 +26,7 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     Route::get('contents/{type}', 'ContentController@index')->name('contents.show');
     Route::post('contents', 'ContentController@store')->name('contents.store');
     Route::delete('contents/{content}', 'ContentController@destroy')->name('contents.destroy');
-    Route::put('contents/{content}', 'ContentController@update')->name('contents.update');
+    Route::PATCH('contents/{content}', 'ContentController@update')->name('contents.update');
     Route::get('contents/{content}/edit', 'ContentController@edit')->name('contents.edit');
 
     Route::resource('category', 'CategoryController');

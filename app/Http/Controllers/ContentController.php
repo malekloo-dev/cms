@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 //use PDF;
 
@@ -286,10 +287,10 @@ class ContentController extends Controller
             $extension = $request->file('upload')->getClientOriginalExtension();
             $fileName = $fileName.'_'.time().'.'.$extension;
 
-            $request->file('upload')->move(public_path('images'), $fileName);
+            $request->file('upload')->move(public_path('/images'), $fileName);
 
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url = asset('images/'.$fileName);
+            $url = url('/images/' . $fileName);
             $msg = 'Image uploaded successfully';
             //$response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
             //return "<script>window.parent.CKEDITOR.tools.callFunction(1,'{$url}','')</script>";
