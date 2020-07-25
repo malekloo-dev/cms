@@ -287,7 +287,7 @@ class ContentController extends Controller
             $extension = $request->file('upload')->getClientOriginalExtension();
             $fileName = $fileName.'_'.time().'.'.$extension;
 
-            $request->file('upload')->move(public_path('/images'), $fileName);
+            $request->file('upload')->move(public_path('images'), $fileName);
 
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
             $url = url('/images/' . $fileName);
