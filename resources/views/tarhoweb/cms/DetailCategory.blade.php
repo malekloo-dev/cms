@@ -1,4 +1,10 @@
 @extends(@env('TEMPLATE_NAME').'.App')
+
+
+@section('assets')
+
+<link rel="stylesheet" type="text/css" href="{{ asset('/DetailCategory.css') }}">
+@endsection
 @section('Content')
 
 @php
@@ -65,7 +71,7 @@ $append='';
 </script>
 
 @if (count($breadcrumb))
-<section class="breadcrumb">
+<section class="breadcrumb mb-0">
     <div class="flex one  ">
         <div class="p-0">
             <a href="/">خانه </a>
@@ -80,10 +86,10 @@ $append='';
 @endif
 
 @if (count($subCategory))
-<section class="products" id="index-best-view">
+<section class="sub-category mt-0" id="index-best-view">
     <div class="flex one ">
         <div>
-            <div class="shadow">
+
                 <h2>زیر دسته های {{$detail->title}}</h2>
                 <div class="flex one two-500 four-900 center ">
 
@@ -94,16 +100,16 @@ $append='';
                             @if (isset($content->images['thumb']))
                             <div><img src="{{ $content->images['thumb']}}"></div>
                             @endif
-                            <footer>
+
                                 <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
                                 {!! $content->brief_description !!}
-                            </footer>
+
                         </article>
                     </div>
                     @endforeach
 
                 </div>
-            </div>
+
         </div>
     </div>
 </section>
@@ -140,19 +146,19 @@ $append='';
 @endif
 
 @if (count($relatedPost))
-<section class="products" id="index-best-view">
+<section class="" id="">
     <div class="flex one ">
         <div>
-            <div class="shadow">
+
                 <h2>مقاله های زیر مجموعه {{$detail->title}}</h2>
-                <div class="flex one two-500 four-900 center ">
+                <div class="flex one two-500 six-900 center ">
 
                     {{--$data['newPost']--}}
                     @foreach($relatedPost as $content)
                     <div>
                         <article>
                             @if (isset($content->images['thumb']))
-                            <div><img src="{{ $content->images['thumb']}}"></div>
+                            <div><img class="full" src="{{ $content->images['thumb']}}"></div>
                             @endif
                             <footer>
                                 <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
@@ -163,7 +169,7 @@ $append='';
                     @endforeach
 
                 </div>
-            </div>
+
         </div>
     </div>
 </section>
@@ -174,10 +180,10 @@ $append='';
     <div class="flex one ">
         <div>
 
-            <div class="shadow ">
+
                 <h1 class="">{{ $detail->title }}</h1>
                 {!! $detail->description !!}
-            </div>
+
         </div>
     </div>
 </section>

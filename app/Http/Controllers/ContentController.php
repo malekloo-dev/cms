@@ -286,11 +286,11 @@ class ContentController extends Controller
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
             $extension = $request->file('upload')->getClientOriginalExtension();
             $fileName = $fileName.'_'.time().'.'.$extension;
-
-            $request->file('upload')->move(public_path('images'), $fileName);
+            $year = Carbon::now()->year;
+            $request->file('upload')->move(public_path('upload/images/'.$year.'/'), $fileName);
 
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url = url('/images/' . $fileName);
+            $url = url('upload/images/' . $year . '/' . $fileName);
             $msg = 'Image uploaded successfully';
             //$response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
             //return "<script>window.parent.CKEDITOR.tools.callFunction(1,'{$url}','')</script>";
