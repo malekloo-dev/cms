@@ -167,7 +167,7 @@
 
 <div class="content-control">
     <ul class="breadcrumb">
-        <li><a class="text-18">Edit</a></li>
+        <li><a class="text-18">ویرایش {{ old('title',$content_info->title) }}</a></li>
     </ul>
 </div>
 
@@ -179,7 +179,7 @@
                 @csrf
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label for="name" class=" col-form-label text-md-left">Enter Title:</label>
+                        <label for="name" class=" col-form-label text-md-left">عنوان:</label>
                         <input type="text" class="form-control" name="title" value="{{ old('title',$content_info->title) }}" />
                         <span class="text-danger">{{ $errors->first('title') }}</span>
                     </div>
@@ -188,7 +188,7 @@
 
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label for="brand" class=" col-form-label text-md-left">template name:</label>
+                        <label for="brand" class=" col-form-label text-md-left">نام قالب استاتیک:</label>
                         <input type="text" class="form-control" name="attr[template_name]" value="{{ old('attr[template_name]',$content_info->attr['template_name']) }}" />
 
                     </div>
@@ -197,7 +197,7 @@
 
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label for="name" class=" col-form-label text-md-left">Brief Description:</label>
+                        <label for="name" class=" col-form-label text-md-left">توضیحات مختصر:</label>
 
                         <textarea class="form-control" id="brief_description" name="brief_description" rows="10" placeholder="Enter your Content">{{ old('brief_description',$content_info->brief_description) }}</textarea>
                     </div>
@@ -205,7 +205,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label for="name" class=" col-form-label text-md-left">Description:</label>
+                        <label for="name" class=" col-form-label text-md-left">توضیحات:</label>
                         <textarea class="form-control" id="description" name="description">{{ old('description',$content_info->description) }}</textarea>
 
                     </div>
@@ -215,7 +215,7 @@
 
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label for="name" class=" col-form-label text-md-left">Category</label>
+                        <label for="name" class=" col-form-label text-md-left">دسته بندی:</label>
                         {{--<select multiple name="parent_id" id="parent_id" class="form-control" >--}}
                         <select id="parent_id" class="js-example-basic-multiple" name="parent_id[]" multiple="multiple">
 
@@ -228,22 +228,17 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <div class="col-md-12">
-                        <label for="name" class=" col-form-label text-md-left">meta keywords</label>
-                        <input id="meta_keywords" type="text" name="meta_keywords" value="{{ old('meta_keywords',$content_info->meta_keywords) }}" />
-                    </div>
-                </div>
+
 
 
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label for="name" class="col-form-label text-md-left">Publish Date:</label>
+                        <label for="name" class="col-form-label text-md-left">تاریخ انتشار:</label>
                         <input type="datetime" class="form-control" name="publish_date" value="{{ old('publish_date',$content_info->publish_date) }}" />
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-4">
                         <label for="images" class="control-label">تصویر مقاله</label>
                         <input type="file" class="form-control" name="images" id="images" placeholder="تصویر مقاله را وارد کنید" value="{{ old('imageUrl') }}">
                     </div>
@@ -272,12 +267,17 @@
                     </div>
                 </div>
 
-
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label for="name" class=" col-form-label text-md-left">meta keywords</label>
+                        <input id="meta_keywords" type="text" name="meta_keywords" value="{{ old('meta_keywords',$content_info->meta_keywords) }}" />
+                    </div>
+                </div>
 
                 <div class="form-group row">
                     <div class="col-md-12">
-                    <label for="meta_description" class=" col-form-label text-md-left">meta
-                        Description:</label>
+                        <label for="meta_description" class=" col-form-label text-md-left">meta
+                            Description:</label>
                         <textarea class="form-control" id="meta_description" name="meta_description">{{ old('meta_description',$content_info->meta_description) }}</textarea>
                     </div>
 
@@ -288,21 +288,21 @@
 
                 <div class="form-group row">
                     <div class="col-md-12">
-                    <label for="brand" class=" col-form-label text-md-left">Brand:</label>
+                        <label for="brand" class=" col-form-label text-md-left">برند:</label>
                         <input type="text" class="form-control" name="attr[brand]" value="{{ old('attr[brand]',$content_info->attr['brand'])}}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-md-12">
-                    <label for="price" class=" col-form-label text-md-left">Price:</label>
+                        <label for="price" class=" col-form-label text-md-left">قیمت:</label>
                         <input type="text" class="form-control" name="attr[price]" value="{{ old('attr[price]',$content_info->attr['price']) }}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-md-12">
-                    <label for="offer_price" class=" col-form-label text-md-left">offer_price:</label>
+                        <label for="offer_price" class=" col-form-label text-md-left">offer_price:</label>
 
                         <input type="text" class="form-control" name="attr[offer_price]" value="{{ old('attr[offer_price]',$content_info->attr['offer_price']) }}" />
                     </div>
@@ -310,14 +310,14 @@
 
                 <div class="form-group row">
                     <div class="col-md-12">
-                    <label for="alternate_name" class=" col-form-label text-md-left">alternate_name:</label>
+                        <label for="alternate_name" class=" col-form-label text-md-left">نام جایگزین:</label>
 
                         <input type="text" class="form-control" name="attr[alternate_name]" value="{{ old('attr[alternate_name]',$content_info->attr['alternate_name']) }}" />
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12">
-                    <label for="rate" class="col-form-label text-md-left">rate:</label>
+                        <label for="rate" class="col-form-label text-md-left">رتبه:</label>
 
                         <input type="text" class="form-control" name="attr[rate]" value="{{ old('attr[rate]',$content_info->attr['rate']) }}" />
                     </div>
@@ -326,8 +326,8 @@
 
 
                 <div class="form-group row">
-                    <div class="col-md-12">
-                    <label for="name" class="col-form-label text-md-left">Status:</label>
+                    <div class="col-md-4">
+                        <label for="name" class="col-form-label text-md-left">وضعیت:</label>
                         <select class="form-control" name="status">
                             <option value="1" {{ $content_info->status == '1' ? 'selected' : '' }}>فعال</option>
                             <option value="0" {{ $content_info->status == '0' ? 'selected' : '' }}>غیر فعال</option>
@@ -340,7 +340,7 @@
                 <button type="submit" class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">Edit
                     Content
                 </button>
-                <a href="{{ route('contents.index')  }}" class="link ">
+                <a href="{{ route('contents.index') .'/'.$content_info->attr_type }}" class="link ">
                     <i class="fa fa-arrow-left"></i> Back to List
                 </a>
             </form>

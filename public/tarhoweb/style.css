@@ -817,7 +817,7 @@ tr:nth-child(even){background:rgba(0,0,0,.05)}
 .off-four-fifth-2000{margin-right:80%}
 .off-sixth-2000{margin-right:16.66666%}
 }
-nav{width:100%;margin:auto;top:0;left:0;right:0;padding:0 .6em;z-index:10000;transition:all .3s;transform-style:preserve-3d; position: relative;}
+nav{width:100%;margin:auto;top:0;left:0;right:0;padding:0 .6em;z-index:10000;transition:all .3s;transform-style:preserve-3d;position:relative}
 nav .hamburger{display:block}
 nav .hamburger span{background:#333;width:21px;height:3px;display:block;border-radius:4px;margin-bottom:3px}
 nav ul{list-style:none}
@@ -849,7 +849,7 @@ nav ul li ul{position:relative;border-right:3px solid #ea1c44;border-top:none;bo
 nav ul li ul ul{position:relative;left:0}
 nav li li a{padding:8px .3rem!important}
 nav ul>li.parent a::after{display:none}
-nav ul li.parent>div{display:block;background:#ddd;position:absolute;left:10px;top:15px;outline:0;z-index:999999;display: flex; padding: 6px 9px;align-content: center;}
+nav ul li.parent>div{display:block;background:#ddd;position:absolute;left:10px;top:15px;outline:0;z-index:999999;display:flex;padding:6px 9px;align-content:center}
 nav .burger{display:inline-block;cursor:pointer;bottom:-1000em;margin:0}
 nav .burger~.menu,nav .show:checked~.burger{position:fixed;min-height:100%;top:0;right:0;bottom:-1000em;margin:0;background:#fff;transition:all .5s ease;transform:none}
 nav .burger~.menu{z-index:11}
@@ -1067,9 +1067,11 @@ article footer{padding-top:10px}
 .breadcrumb{background:#f5f5f5}
 .breadcrumb a{color:#333;font-size:.7em}
 .breadcrumb span{color:#888;font-size:.7em}
-.image-style-align-center{text-align:center}
+figure.image{display:table;clear:both;text-align:center;margin:1em auto}
+.image-style-align-center{text-align:center;max-width:50%;margin-left:auto;margin-right:auto}
 .image-style-align-right{float:right}
 .image-style-align-left{float:left}
+figure.image>img{max-width:100%;min-width:50px;margin:0 auto;display:block}
 .color-blue{color:#0045ff!important}
 .color-white{color:#fff!important}
 .color-purple{color:#5e16b0!important}
@@ -1078,4 +1080,4 @@ article footer{padding-top:10px}
 .font-3{font-size:3em;line-height:2em}
 .font-4{font-size:4em}
 .font-9{font-size:9em}
-svg{display: block;}
+svg{display:block}

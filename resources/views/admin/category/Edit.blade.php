@@ -172,7 +172,7 @@
 
 <div class="content-control">
     <ul class="breadcrumb">
-        <li><a class="text-18">Edit category {{ old('title',$content_info->title) }}</a></li>
+        <li><a class="text-18">ویرایش {{ old('title',$content_info->title) }}</a></li>
     </ul>
 </div>
 

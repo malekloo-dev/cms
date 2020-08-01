@@ -1306,7 +1306,7 @@ footer p {
 table .nice-checkbox {
     padding-top: 2px;
 }
-
+th{text-align: unset;}
 /* NICE CHECKBOX & RADIO BUTTON */
 /* Base for label styling */
 .nice-checkbox {
@@ -1492,6 +1492,7 @@ table .nice-checkbox {
 .input-group.input-group-in > .input-group-btn > .btn, .input-group.input-group-in > .input-group-addon, .input-group.input-group-in > .twitter-typeahead > .form-control, .input-group.input-group-in > .form-control {
     line-height: 20px;
 }
+.form-control{text-align: right;}
 
 .modal-open {
     overflow: hidden;

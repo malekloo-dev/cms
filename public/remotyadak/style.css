@@ -1044,10 +1044,11 @@ article footer{padding-top:10px}
 .breadcrumb{background:#f5f5f5}
 .breadcrumb a{color:#333;font-size:.7em}
 .breadcrumb span{color:#888;font-size:.7em}
-figure.image img{max-width:100%;min-width:50px;display:block}
-.image-style-align-center{text-align:center;max-width:50%;margin:auto}
+figure.image{display:table;clear:both;text-align:center;margin:1em auto}
+.image-style-align-center{text-align:center;max-width:50%;margin-left:auto;margin-right:auto}
 .image-style-align-right{float:right}
 .image-style-align-left{float:left}
+figure.image>img{max-width:100%;min-width:50px;margin:0 auto;display:block}
 .text-left{text-align:left}
 .text-right{text-align:right}
 .text-center{text-align:center}
