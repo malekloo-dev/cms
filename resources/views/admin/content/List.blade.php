@@ -2,19 +2,22 @@
 @section('content')
 <div class="content-control">
     <ul class="breadcrumb">
-        <li><a class="text-18">Article </a></li>
+        <li><a class="text-18">مقالات </a></li>
     </ul>
 
-    <a href="{{ route('contents.create',['type'=>'html'])}}" class="top-heading-button btn btn-warning btn-icon mat-elevation-z radius-all mat-button ">
-        <i class="fa fa-plus"></i> Create New custom page
-    </a>
-    <a href="{{ route('contents.create',['type'=>'article'])}}" class="top-heading-button btn btn-warning btn-icon mat-elevation-z radius-all mat-button ">
-        <i class="fa fa-plus"></i> Create New Article
-    </a>
-    <a href="{{ route('contents.create',['type'=>'product'])}}" class="top-heading-button btn btn-warning btn-icon mat-elevation-z radius-all mat-button ">
-        <i class="fa fa-plus"></i> Create New Product
-    </a>
 
+    @if( $type === 'article')
+    <a href="{{ route('contents.create',['type'=>'article'])}}" class="top-heading-button btn btn-success btn-icon mat-elevation-z radius-all mat-button ">
+        <i class="fa fa-plus"></i>افزودن
+    </a>
+    @elseif( $type === 'product')
+    <a href="{{ route('contents.create',['type'=>'product'])}}" class="top-heading-button btn btn-success btn-icon mat-elevation-z radius-all mat-button ">
+        <i class="fa fa-plus"></i>افزودن
+    </a>
+    @endif
+    <a href="{{ route('contents.create',['type'=>'html'])}}" class="top-heading-button btn btn-warning btn-icon mat-elevation-z radius-all mat-button ">
+        <i class="fa fa-plus"></i> افزودن قالب استاتیک
+    </a>
 </div>
 
 <div class="content-body">
@@ -23,13 +26,14 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Title</th>
-                        <th>Brief Description</th>
-                        <th>category</th>
-                        <th>Status</th>
-                        <th>Publish date at</th>
-                        <td colspan="2">Action</td>
+                        <th></th>
+                        <th>عنوان</th>
+                        <th>مختصر</th>
+                        <th>دسته بندی</th>
+                        <th>وضعیت</th>
+                        <th>تاریخ</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,23 +58,19 @@
                             {{--{{ $content->status ? 'فعال' : 'غیر فعال' }}--}}</td>
 
                         <td>{{ date('Y-m-d', strtotime($content->publish_date)) }}</td>
-                        <td class="width-80">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <form class=" width-30 height-30 line-height-30" action="{{ route('contents.destroy', $content->id)}}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="font-full-plus-half-em text-danger btn-xs pull-left no-border no-bg no-padding" type="submit">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                                <div class="col-xs-6">
-                                    <a href="{{ route('contents.edit',$content->id)}}" class="font-full-plus-half-em text-success btn-xs pull-left no-border no-bg no-margin no-padding width-30 height-30 line-height-30" title="edit">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                </div>
-                            </div>
+                        <td>
+                            <form class=" width-30 height-30 line-height-30" action="{{ route('contents.destroy', $content->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="font-full-plus-half-em text-danger btn-xs pull-left no-border no-bg no-padding" type="submit">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            <a href="{{ route('contents.edit',$content->id)}}" class="font-full-plus-half-em text-success btn-xs pull-left no-border no-bg no-margin no-padding width-30 height-30 line-height-30" title="edit">
+                                <i class="fa fa-edit"></i>
+                            </a>
                         </td>
 
                     </tr>

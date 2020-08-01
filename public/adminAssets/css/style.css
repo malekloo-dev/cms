@@ -1,14 +1,15 @@
+@font-face{font-family:vazir;src:url(fonts/vazir/Vazir-Light.eot);src:url(fonts/vazir/Vazir-Light.eot) format("embedded-opentype"),url(fonts/vazir/Vazir-Light.woff) format("woff"),url(fonts/vazir/Vazir-Light.ttf) format("truetype");font-weight:400;font-style:normal}
 body {
     background: url('../img/wallpapers/11.jpg') no-repeat fixed center center;
     -webkit-background-size: cover !important;
     -moz-background-size: cover !important;
     background-size: cover !important;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: vazir, Arial, sans-serif;
     padding: 0;
     margin: 0;
     width: 100vw;
     height: 100vh;
-
+    direction: rtl;
 }
 
 body:before {
@@ -165,7 +166,7 @@ a:focus {
 
 label {
 
-    
+
 }
 
 .label {
@@ -582,7 +583,7 @@ label {
 .header-brand {
     position: absolute;
     top: 0;
-    left: .5em;
+    right: .5em;
     margin-right: inherit;
     float: none !important;
 }
@@ -812,7 +813,8 @@ label {
 
 .header-profile a {
     padding-left: 5px;
-    display: block;
+    padding-top: 5px;
+    display: inline;
     width: 100%;
     height: 100%;
 }
@@ -848,8 +850,8 @@ label {
 }
 
 .dropdown-menu.pull-right {
-    left: auto;
-    right: 10px;
+    right: auto;
+    left: 10px;
     top: 92%;
 }
 
@@ -863,8 +865,8 @@ label {
 #toggleSideBar {
     font-size: 25px;
     position: absolute;
-    top: 6px;
-    left: 0;
+    top: 11px;
+    right: 0;
     width: 50px;
     height: 35px;
     text-align: center;
@@ -894,7 +896,7 @@ label {
 
 /** SIDEBAR LEFT **/
 .side-left {
-    direction: ltr;
+    direction: rtl;
     width: 270px;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 70;
@@ -906,7 +908,7 @@ label {
 }
 
 .side-left.active {
-    left: 0 !important;
+    right: 0 !important;
 }
 
 .side-left.fixed {
@@ -1002,7 +1004,7 @@ label {
     padding: 0;
     list-style: none;
     top: -2px;
-    left: 100%;
+    right: 100%;
     background-color: #ffffff;
     color: #232332;
     display: none;
@@ -1030,7 +1032,7 @@ label {
     list-style: none;
     font-size: 1.2em;
     text-align: right;
-    height: 30px;
+    height: 48px;
 }
 
 .sidebar-child li.divider {
@@ -1055,6 +1057,7 @@ label {
     -ms-transition: .4s;
     -o-transition: .4s;
     transition: .4s;
+    line-height: 48px;
 }
 
 .sidebar-child li a:hover,
@@ -1071,7 +1074,7 @@ label {
 .content {
     position: relative;
     display: block;
-    margin-left: 270px;
+    margin-right: 270px;
     padding-bottom: 0;
     height: 100%;
     -webkit-transition: all .3s ease;
@@ -1089,6 +1092,7 @@ label {
     position: relative;
     height: 60px;
     padding: 0 15px;
+    text-align: left;
 }
 
 .online-offline-container li,
@@ -1142,7 +1146,7 @@ label {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
-    float: left;
+    float: right;
 }
 
 .content-control > .breadcrumb > li {
@@ -1477,8 +1481,7 @@ table .nice-checkbox {
 }
 
 .liveChatLogo {
-    max-width: 50px;
-    width: 40px;
+    max-width: 150px;
     margin-top: 5px;
 }
 
@@ -1544,8 +1547,8 @@ table .nice-checkbox {
 }
 
 .top-heading-button {
-    top: 20px;
-    right: 15px;
+    top: 10px;
+    left: 15px;
 }
 
 .mat-button i {

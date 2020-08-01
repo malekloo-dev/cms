@@ -7,6 +7,7 @@
 
     <p class="text-left no-padding">&copy; 2019 cms.</p>
 </footer>--}}
-        @yield('ckeditor');
+
+@yield('ckeditor')
 </body>
 </html>

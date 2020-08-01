@@ -37,6 +37,7 @@
                     <div>بهینه سازی صفحه فرود</div>
                     <div>On Page SEO</div>
                     <div>Off Page SEO</div>
+                    <div>قرار دادن محتوا ۴ صفحه ماهیانه</div>
                     <div>گزارش ماهیانه</div>
                 </div>
                 <div class="price">
@@ -63,12 +64,13 @@
                     <div>بهینه سازی صفحه فرود</div>
                     <div>On Page SEO</div>
                     <div>Off Page SEO</div>
+                    <div>قرار دادن محتوا ۸ صفحه ماهیانه</div>
                     <div>گزارش ماهیانه</div>
                 </div>
                 <div class="price">
                     ماهیانه
                     <div class="font-2">
-                        ۱۲،۰۰۰،۰۰۰ تومان
+                        ۱،۲۰۰،۰۰۰ تومان
                     </div>
                 </div>
             </div>
@@ -88,12 +90,13 @@
                     <div>بهینه سازی صفحه فرود</div>
                     <div>On Page SEO</div>
                     <div>Off Page SEO</div>
+                    <div>قرار دادن محتوا ۱۲ صفحه ماهیانه</div>
                     <div>گزارش ماهیانه</div>
                 </div>
                 <div class="price">
                     ماهیانه
                     <div class="font-2">
-                        ۲۵،۰۰۰،۰۰۰ تومان
+                        ۲،۵۰۰،۰۰۰ تومان
                     </div>
                 </div>
             </div>

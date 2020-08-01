@@ -10,7 +10,7 @@ $currentUrl = url()->current();
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link href="{{asset('../../vendor/harimayco-menu/style.css')}}" rel="stylesheet">
 
-<div id="hwpwrap">
+<div id="hwpwrap" style="direction: ltr;">
     <div class="custom-wp-admin wp-admin wp-core-ui js   menu-max-depth-0 nav-menus-php auto-fold admin-bar">
         <div id="wpwrap">
             <div id="wpcontent">

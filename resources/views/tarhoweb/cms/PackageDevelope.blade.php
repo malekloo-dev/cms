@@ -44,7 +44,7 @@
                 <div class="price">
                     ماهیانه
                     <div class="font-2">
-                        ۲۵،۰۰۰،۰۰۰ تومان
+                        ۲،۵۰۰،۰۰۰ تومان
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                 <div class="price">
                     ماهیانه
                     <div class="font-2">
-                        ۴۵،۰۰۰،۰۰۰ تومان
+                        ۴،۵۰۰،۰۰۰ تومان
                     </div>
                 </div>
             </div>
@@ -97,7 +97,7 @@
                         <div class="price">
                             شروع قیمت از
                             <div class="font-2">
-                                ۷۰،۰۰۰،۰۰۰ تومان
+                                ۷،۰۰۰،۰۰۰ تومان
                             </div>
                         </div>
                     </div>

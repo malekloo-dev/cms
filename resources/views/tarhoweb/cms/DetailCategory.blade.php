@@ -89,27 +89,24 @@ $append='';
 <section class="sub-category mt-0" id="index-best-view">
     <div class="flex one ">
         <div>
+            <div class="flex one two-500 four-900 center ">
 
-                <h2>زیر دسته های {{$detail->title}}</h2>
-                <div class="flex one two-500 four-900 center ">
+                {{--$data['newPost']--}}
+                @foreach($subCategory as $content)
+                <div>
+                    <article>
+                        @if (isset($content->images['thumb']))
+                        <div><img src="{{ $content->images['thumb']}}"></div>
+                        @endif
 
-                    {{--$data['newPost']--}}
-                    @foreach($subCategory as $content)
-                    <div>
-                        <article>
-                            @if (isset($content->images['thumb']))
-                            <div><img src="{{ $content->images['thumb']}}"></div>
-                            @endif
+                            <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
+                            {!! $content->brief_description !!}
 
-                                <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
-                                {!! $content->brief_description !!}
-
-                        </article>
-                    </div>
-                    @endforeach
-
+                    </article>
                 </div>
+                @endforeach
 
+            </div>
         </div>
     </div>
 </section>

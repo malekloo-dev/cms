@@ -41,7 +41,7 @@
 <!-- section header -->
 <header class="header bg-white text-black mat-elevation-z3">
     <!-- header-profile -->
-    <div class="header-profile pull-right">
+    <div class="header-profile pull-left">
         <div class="profile-nav">
             @auth
             <a  class="dropdown-toggle" data-toggle="dropdown">
@@ -50,11 +50,11 @@
                 </span>
             </a>
             <ul class="dropdown-menu animated fadeInDown pull-right mat-elevation-z4" role="menu">
-                <li><a class="text-left left">{{ Auth::user()->name }}</a></li>
+                <li><a class="text-right left">{{ Auth::user()->name }}</a></li>
                 <li>
-                    <a class="dropdown-item" href="{{ route('logout') }}"
+                    <a class="dropdown-item text-right" href="{{ route('logout') }}"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        {{ __('خروج') }}
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -68,7 +68,7 @@
 
     <!-- header brand -->
     <div class="header-brand">
-        <a href="{{ url('/') }}"><img src="{{ url('/adminAssets/img/abatalk-logo.svg') }}" class="liveChatLogo pull-left"></a>
+        <a href="{{ url('/') }}"><img src="{{ url('/adminAssets/img/logo.png') }}" class="liveChatLogo pull-left"></a>
     </div>
 
     <a id="toggleSideBar"><i class="fa fa-bars"></i></a>

@@ -10,7 +10,7 @@
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-<div >
+<div>
     <script>
         $('#tag_list').select2({
             placeholder: "Choose tags...",
@@ -18,12 +18,12 @@
             ajax: {
                 url: '/tags/find',
                 dataType: 'json',
-                data: function (params) {
+                data: function(params) {
                     return {
                         q: $.trim(params.term)
                     };
                 },
-                processResults: function (data) {
+                processResults: function(data) {
                     return {
                         results: data
                     };
@@ -33,4 +33,4 @@
         });
     </script>
 
-@include('admin.footer')
+    @include('admin.footer')
