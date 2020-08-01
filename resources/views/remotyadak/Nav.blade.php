@@ -1,6 +1,6 @@
 <nav>
     <a href="/" class="brand">
-        <img class="full" src="{{ asset(@env('TEMPLATE_NAME').'/img/logo.png') }}">
+        <img class="full" src="{{ asset('/img/logo.png') }}">
     </a>
 
     <input id="bmenu" type="checkbox" class="show">
@@ -14,16 +14,25 @@
     <div class="menu">
 
         <ul>
-            <li><a href="/">خانه</a></li>
-            <li class="parent"><a href="/سوئیچ-و-ریموت-خودرو"> سوئیچ و ریموت خودرو</a>
+            @foreach(Harimayco\Menu\Models\MenuItems::where('menu', '=', '1')->where('parent','=','0')->get() as $menuItem)
+            <?php
+            $subMenu = Harimayco\Menu\Models\MenuItems::where('menu', '=', '1')->where('parent', '=', $menuItem['id'])->get()
+            ?>
+            @if(count($subMenu))
+            <li class="parent"><a href="{{ $menuItem['link'] }}">{{ $menuItem['label'] }}</a>
+                <div><img src="{{ asset('/img/arrow-down.png') }}"></div>
                 <ul>
-                    @foreach(App\Category::where('type', '=', '1')->where('parent_id','<>','0')->get() as $menuItem)
-                    <li><a href="{{ $menuItem['slug'] }}">{{ $menuItem['title'] }}</a></li>
+                    @foreach($subMenu as $subMenuItem)
+                    <li><a href="{{ $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a></li>
                     @endforeach
                 </ul>
             </li>
-            <li><a href="/درباره-ما">درباره ما</a></li>
-            <li><a href="/تماس-با-ما">تماس با ما</a></li>
+            @else
+            <li><a href="{{ $menuItem['link'] }}">{{ $menuItem['label'] }}</a></li>
+
+            @endif
+
+            @endforeach
         </ul>
     </div>
 </nav>
