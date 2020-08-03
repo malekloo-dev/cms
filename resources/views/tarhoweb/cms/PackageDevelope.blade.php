@@ -141,6 +141,66 @@
     </div>
 </section>
 
+<section class="pro-design-intro wordpress m-0 pt-0">
+    <h1 class="align-center">پکیج طراحی سایت وردپرس</h1>
+    <div class="flex one two-500 three-900 center">
+        <div>
+            <div class="price-list">
+                <div class="head">
+                    <h2>وردپرس</h2>
+
+                    <div>1-5 Pages</div>
+                </div>
+                <div class="featur">
+                    <div>دامنه و هاست ۱ ساله</div>
+                    <div>واکنشگرا</div>
+                    <div>مدیریت صفحات</div>
+                    <div>فرم تماس با ما</div>
+                    <div>فشرده سازی و بهینه سازی seo</div>
+                    <div>پشتیبانی ماهیانه ۲۰۰ هزار تومان</div>
+                    <div>-</div>
+                    <div>-</div>
+                </div>
+                <div class="price">
+                    ماهیانه
+                    <div class="font-2">
+                        ۱،۵۰۰،۰۰۰ تومان
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="price-list">
+
+                <div class="head">
+                    <h2>وردپرس</h2>
+
+                    <div>3-8 Pages</div>
+                </div>
+
+                <div class="featur">
+                    <div>دامنه و هاست ۱ ساله</div>
+                    <div>واکنشگرا</div>
+                    <div>مدیریت صفحات</div>
+                    <div>فرم تماس با ما</div>
+                    <div>فشرده سازی و بهینه سازی seo</div>
+                    <div>پشتیبانی ماهیانه ۲۰۰ هزار تومان</div>
+                    <div>قرار دادن محتوا</div>
+                    <div>دو زبانه</div>
+
+                </div>
+                <div class="price">
+                    ماهیانه
+                    <div class="font-2">
+                        ۲،۵۰۰،۰۰۰ تومان
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
 
 
 @endsection

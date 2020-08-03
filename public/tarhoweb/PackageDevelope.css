@@ -11,3 +11,7 @@
 .webdevelopment-custom-package p{ color: #FF9898 ;}
 .webdevelopment-custom-package .price-list{border-color: #fff; background-color: #fff;}
 .webdevelopment-custom-package .price-list .head h2{color: #fff; padding:1em 0;}
+.wordpress .price-list{border:2px solid #0d44fb;}
+.wordpress .price-list .head{background: #0d44fb;}
+.wordpress .price-list .head h2{color: #fff;}
+.wordpress .price-list .price{color: #0d44fb;}
