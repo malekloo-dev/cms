@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Content;
+use App\siteMap;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -51,15 +52,14 @@ class ContentController extends Controller
     public function index(Request $request)
     {
 
-        $type='article';
-        if(isset($request->type))
-        {
-            $type=$request->type;
+        $type = 'article';
+        if (isset($request->type)) {
+            $type = $request->type;
         }
         $data['type'] = $type;
-        $data['contents'] = Content::where('type','=','2')->where('attr_type','=',$type)->orderBy('id', 'desc')->paginate(10);
+        $data['contents'] = Content::where('type', '=', '2')->where('attr_type', '=', $type)->orderBy('id', 'desc')->paginate(10);
 
-        $data['category'] = Content::where('type','=','1')->orderBy('id', 'desc')->get()->keyBy('id');
+        $data['category'] = Content::where('type', '=', '1')->orderBy('id', 'desc')->get()->keyBy('id');
         //dd($data);
 
         return view('admin.content.List', $data);
@@ -73,20 +73,19 @@ class ContentController extends Controller
     public function create(Request $request)
     {
 
-        $result=app('App\Http\Controllers\CategoryController')->tree_set();
-        $data['category']= app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
-        $data['attr_type']=$request->type;
+        $result = app('App\Http\Controllers\CategoryController')->tree_set();
+        $data['category'] = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
+        $data['attr_type'] = $request->type;
         /*if($request->type=='html')
         {
             return view('admin.content.CreateHtml',$data);
 
         }else
         {*/
-            return view('admin.content.Create',$data);
+        return view('admin.content.Create', $data);
 
         //}
     }
-
 
 
     /**
@@ -100,34 +99,34 @@ class ContentController extends Controller
 
 
         //dd($request->all());
-       /*$this->validate($request, array(
-            'title' => 'required|max:250',
-            'description' => 'required',
-            'body' => 'required',
-            'images' => 'required|mimes:jpeg,png,bmp',
+        /*$this->validate($request, array(
+             'title' => 'required|max:250',
+             'description' => 'required',
+             'body' => 'required',
+             'images' => 'required|mimes:jpeg,png,bmp',
 
-        ));*/
+         ));*/
 
 
-        $imagesUrl='';
-        if($request->file('images')){
+        $imagesUrl = '';
+        if ($request->file('images')) {
 
             $imagesUrl = $this->uploadImages($request->file('images'));
         }
 
-        $data=$request->all();
-        $data['parent_id']= $request->parent_id[0];
-        $data['type']= '2';
-        $data['images']= $imagesUrl;
-        $data['slug']=preg_replace('/\s+/', '-', $request->title);
-        $data['slug']=str_replace('--','-',$data['slug']);
-        $data['slug']=str_replace('--','-',$data['slug']);
-        $data['slug']=str_replace('--','-',$data['slug']);
+        $data = $request->all();
+        $data['parent_id'] = $request->parent_id[0];
+        $data['type'] = '2';
+        $data['images'] = $imagesUrl;
+        $data['slug'] = preg_replace('/\s+/', '-', $request->title);
+        $data['slug'] = str_replace('--', '-', $data['slug']);
+        $data['slug'] = str_replace('--', '-', $data['slug']);
+        $data['slug'] = str_replace('--', '-', $data['slug']);
 
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         Content::create($data);
 
-        return redirect('/admin/contents?type='.$request->attr_type)->with('success', 'Greate! Content created successfully.');
+        return redirect('/admin/contents?type=' . $request->attr_type)->with('success', 'Greate! Content created successfully.');
 
     }
 
@@ -153,17 +152,17 @@ class ContentController extends Controller
         $where = array('id' => $id);
         $content_info = Content::where($where)->first();
 
-        $result=app('App\Http\Controllers\CategoryController')->tree_set();
-        $category= app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
+        $result = app('App\Http\Controllers\CategoryController')->tree_set();
+        $category = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
 
-        $template='admin.content.Edit';
+        $template = 'admin.content.Edit';
 
         /*if($content_info->attr_type=='html')
         {
             $template='admin.content.EditHtml';
         }*/
 
-        return view($template, compact(['content_info','category']));
+        return view($template, compact(['content_info', 'category']));
 
 
         //dd($content_info->images);
@@ -205,37 +204,33 @@ class ContentController extends Controller
         return Redirect::to('contents')
             ->with('success','Great! Product updated successfully');*/
 
-       // $crud = Content::find($id);
+        // $crud = Content::find($id);
 
         $crud = Content::find($id);
 
-        $data=$request->all();
+        $data = $request->all();
 
-        $data['parent_id']= $request->parent_id[0];
+        $data['parent_id'] = $request->parent_id[0];
         $file = $request->file('images');
         //$inputs = $request->all();
 
-        if($file) {
+        if ($file) {
             $images = $this->uploadImages($request->file('images'));
-        } else if ( $crud->images!='') {
+        } else if ($crud->images != '') {
             $images = $crud->images;
-            $images['thumb'] =  $request->get('imagesThumb');
-        }else
-        {
-            $images='';
+            $images['thumb'] = $request->get('imagesThumb');
+        } else {
+            $images = '';
         }
-        $data['images']=$images;
+        $data['images'] = $images;
 
 
-        $data['slug']=preg_replace('/\s+/', '-', $request->title);
-        $data['slug']=str_replace('--','-',$data['slug']);
-        $data['slug']=str_replace('--','-',$data['slug']);
-        $data['slug']=str_replace('--','-',$data['slug']);
+        $data['slug'] = preg_replace('/\s+/', '-', $request->title);
+        $data['slug'] = str_replace('--', '-', $data['slug']);
+        $data['slug'] = str_replace('--', '-', $data['slug']);
+        $data['slug'] = str_replace('--', '-', $data['slug']);
 
         $crud->update($data);
-
-
-
 
 
         //        $crud->title = $request->get('title');
@@ -261,7 +256,7 @@ class ContentController extends Controller
         //        //return redirect(route('articles.index'));
         //
         //        $crud->save();
-        return redirect('admin/contents?type='.$crud->attr_type);
+        return redirect('admin/contents?type=' . $crud->attr_type);
     }
 
     /**
@@ -275,20 +270,20 @@ class ContentController extends Controller
         $crud = Content::find($id);
         $crud->delete();
 
-        return redirect('admin/contents?type='.$crud->attr_type);
+        return redirect('admin/contents?type=' . $crud->attr_type);
 
     }
 
 
     public function uploadImageSubject(Request $request)
     {
-        if($request->hasFile('upload')) {
+        if ($request->hasFile('upload')) {
             $originName = $request->file('upload')->getClientOriginalName();
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
             $extension = $request->file('upload')->getClientOriginalExtension();
-            $fileName = $fileName.'_'.time().'.'.$extension;
+            $fileName = $fileName . '_' . time() . '.' . $extension;
             $year = Carbon::now()->year;
-            $request->file('upload')->move(public_path('upload/images/'.$year.'/'), $fileName);
+            $request->file('upload')->move(public_path('upload/images/' . $year . '/'), $fileName);
 
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
             $url = url('upload/images/' . $year . '/' . $fileName);
@@ -300,10 +295,11 @@ class ContentController extends Controller
             //echo $response;
             echo '{
         "uploaded": true,
-        "url": "'.$url.'"}';
+        "url": "' . $url . '"}';
 
         }
     }
+
     /*public function uploadImageSubject1(Request $request)
     {
         //print_r($request);
@@ -327,5 +323,73 @@ class ContentController extends Controller
         return "<script>window.parent.CKEDITOR.tools.callFunction(1,'{$url}','')</script>";
     }*/
 
+
+    public function reload()
+    {
+        $this->sitemap();
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function sitemap()
+    {
+        $postList = Content::all();
+
+        $sitemap = siteMap::create()
+             ->add()->setPriority('1')->setLoc('/')->setLastMod('2020')
+            ->setLocFieldName('slug')
+            ->setLasModFieldName('updated_at')
+            ->setDefultPriority('0.9')
+            ->setDefultChangefreq('weekly')
+            ->addByCollection($postList)
+            ->writeToFile('a.xml');
+          /*  ->add(array(
+                'loc'=>'decor/4',
+                'lastmod'=>'11-1-90',
+                'changefreq'=>'weekly',
+                'priority'=>'0.2',))*/
+           // ->add()->setPriority('0.1')->setLoc('decor/1')->setLastMod('11-1-90')
+           // ->add()->setLoc('decor/2')->setLastMod('11-12-99');
+
+       dd($sitemap);
+
+        /*$postList = Content::all();
+        $sitemap=export::CreateSitemap();
+        $sitemap->setBaseUrl='remotyadak.ir/';
+        $sitemap->setFieldLoc='slug';
+        $sitemap->setFieldLastmod='updated_at';
+        $sitemap->setFieldLastmod='updated_at';
+        $sitemap->setDefultPriority='0.9';*/
+
+
+        //$sitemap->add($post);
+       // $sitemap->multyAdd($postList,);
+
+        $content = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
+        $content = $content . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL;
+
+        foreach ($postList as $key => $post) {
+
+            $content = '<url>' . PHP_EOL;
+            $content = $content . '<loc>' . $post->slug . '</loc>' . PHP_EOL;
+            $content = $content . '<lastmod>' . gmdate(DateTime::W3C, strtotime($post->updated_at)) . '</lastmod>' . PHP_EOL;
+            $content = $content . '<changefreq>weekly</changefreq>' . PHP_EOL;
+            $content = $content . '<priority>0.9</priority>' . PHP_EOL;
+            $content = $content . '</url>' . PHP_EOL;
+
+        }
+        $content = $content . ' </urlset>' . PHP_EOL;
+
+
+        if (file_put_contents('sitemap.xml', $content)) {
+            $result['result'] = 1;
+            $svgContent = '';
+            $result['content'] = $svgContent;
+            return $result;
+        }
+
+    }
 
 }

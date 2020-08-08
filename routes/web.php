@@ -46,4 +46,5 @@ Auth::routes(['register' => false]);
 //Route::post('/search/', 'inventoryController@index')->name('inventory.search');
 
 Route::get('/', 'HomeController@index');
+Route::get('/reload', 'ContentController@reload');
 Route::get('/{slug?}/{b?}', 'CmsController@request');
