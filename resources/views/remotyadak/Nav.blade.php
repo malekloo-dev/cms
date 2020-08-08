@@ -14,6 +14,15 @@
     <div class="menu">
 
         <ul>
+            <li>
+                <a class="flexbox">
+                    <div class="search1">
+                        <div>
+                            <input type="text" placeholder="جستجو" required>
+                        </div>
+                    </div>
+                </a>
+            </li>
             @foreach(Harimayco\Menu\Models\MenuItems::where('menu', '=', '1')->where('parent','=','0')->get() as $menuItem)
             <?php
             $subMenu = Harimayco\Menu\Models\MenuItems::where('menu', '=', '1')->where('parent', '=', $menuItem['id'])->get()
@@ -35,4 +44,6 @@
             @endforeach
         </ul>
     </div>
+
+
 </nav>
