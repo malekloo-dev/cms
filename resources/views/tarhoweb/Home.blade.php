@@ -49,7 +49,7 @@
                     <a href="/تماس-با-ما" class="button button-blue">تماس با تیم طرح و وب</a>
                 </div>
                 <div class="index-h1">
-                    <img src="{{ asset('img/home/pc.png') }}">
+                    <img src="{{ asset('img/home/pc.jpg') }}">
                 </div>
             </div>
             <div class="flex one three-700 three-900 center align-center">
@@ -75,7 +75,7 @@
     <div class="flex one two-700 two-900 center">
         <div>
             <h2>خدمات SEO و بهینه سازی سایت حرفه ای و سایت وردپرس</h2>
-            <img src="{{asset('img/home/seo.png')}}">
+            <img src="{{asset('img/home/seo1.jpg')}}">
         </div>
         <div class="align-center">
             <div>
@@ -126,9 +126,9 @@
         </div>
         <div class="four-fifth">
             <div class="items">
-                <img src="{{asset('img/customer/1.png')}}">
-                <img src="{{asset('img/customer/2.png')}}">
-                <img src="{{asset('img/customer/3.png')}}">
+                <img src="{{asset('img/customer/1.jpg')}}">
+                <img src="{{asset('img/customer/2.jpg')}}">
+                <img src="{{asset('img/customer/3.jpg')}}">
                 <img src="{{asset('img/customer/4.png')}}">
                 <img src="{{asset('img/customer/5.png')}}">
             </div>

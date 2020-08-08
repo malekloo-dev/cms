@@ -24,6 +24,10 @@ class CmsController extends Controller
         }
 
         $detail = Content::where('slug', '=', $slug)->first();
+        if($detail === null){
+            return view(@env(TEMPLATE_NAME).'.NotFound');
+        }
+
         $this->breadcrumb[] = $detail->getAttributes();
         $breadcrumb = $this->get_parent($detail->parent_id);
 
