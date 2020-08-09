@@ -49,7 +49,7 @@
                     <a href="/تماس-با-ما" class="button button-blue">تماس با تیم طرح و وب</a>
                 </div>
                 <div class="index-h1">
-                    <img src="{{ asset('img/home/pc.png') }}">
+                    <img src="{{ asset('img/home/pc.jpg') }}">
                 </div>
             </div>
             <div class="flex one three-700 three-900 center align-center">
