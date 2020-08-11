@@ -5,6 +5,17 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 
+class export
+{
+    /**
+     * @return siteMap
+     */
+    public static function create()
+    {
+        return siteMap::create();
+    }
+}
+
 
 /**
  * @method  setLastMod(string $date)
@@ -19,7 +30,7 @@ class siteMap
     protected $collection;
 
     private $locFieldName;
-    private $lasModFieldName;
+    private $lastModFieldName;
     private $priorityFieldName;
     private $changefreqFieldName;
 
@@ -35,6 +46,11 @@ class siteMap
        return new siteMap();
     }
 
+    public static function createIndex()
+    {
+        return new siteMapIndex();
+    }
+
     //todo add anonymouse function for priroty
     //todo set defult path for url
     public function addByCollection($collection)
@@ -48,9 +64,9 @@ class siteMap
                 $property['loc'] = $object->$loc;
             }
 
-            if ($this->lasModFieldName != '') {
+            if ($this->lastModFieldName != '') {
 
-                $lastmod=$this->lasModFieldName;
+                $lastmod=$this->lastModFieldName;
                 $property['lastmod'] = $object->$lastmod;
             }
 
@@ -117,9 +133,9 @@ class siteMap
         return $this;
     }
 
-    public function setLasModFieldName($fieldName)
+    public function setLastModFieldName($fieldName)
     {
-        $this->lasModFieldName=$fieldName;
+        $this->lastModFieldName=$fieldName;
         return $this;
     }
     public function setPriorityFieldName($fieldName)
@@ -175,7 +191,41 @@ class siteMap
 
 
 }
+class siteMapIndex extends siteMap
+{
+    public function writeToFile($path)
+    {
 
+        $content = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
+
+        $content = $content . ' <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL;
+
+        foreach ($this->collection as $key => $obj) {
+
+
+            $content = $content.'<sitemap>' . PHP_EOL;
+            $content = $content . '<loc>' . $obj->getLoc() . '</loc>' . PHP_EOL;
+            if($obj->getChangefreq()!='')
+            {
+                $content = $content . '<changefreq>'.$obj->getChangefreq().'</changefreq>' . PHP_EOL;
+
+            }
+            $content = $content . '</sitemap>' . PHP_EOL;
+
+        }
+
+
+        $content = $content . ' </sitemapindex>' . PHP_EOL;
+
+
+        if (file_put_contents($path, $content)) {
+            $result['result'] = 1;
+            return $result;
+        }
+    }
+
+
+}
 class siteMapEntity
 {
 

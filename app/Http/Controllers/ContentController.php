@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Content;
+use App\export;
 use App\siteMap;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -337,14 +338,21 @@ class ContentController extends Controller
     {
         $postList = Content::all();
 
-        $sitemap = siteMap::create()
+        $sitemap = siteMap::createIndex()
+            ->add()->setLoc('post.xml')
+            ->add()->setLoc('category.xml')
+            ->add()->setLoc('product.xml')
+            ->writeToFile('sitemap.xml');
+
+        $sitemap = export::create()
              ->add()->setPriority('1')->setLoc('/')->setLastMod('2020')
             ->setLocFieldName('slug')
-            ->setLasModFieldName('updated_at')
+            ->setLastModFieldName('updated_at')
             ->setDefultPriority('0.9')
             ->setDefultChangefreq('weekly')
             ->addByCollection($postList)
-            ->writeToFile('a.xml');
+            ->writeToFile('post.xml');
+
           /*  ->add(array(
                 'loc'=>'decor/4',
                 'lastmod'=>'11-1-90',
@@ -353,7 +361,7 @@ class ContentController extends Controller
            // ->add()->setPriority('0.1')->setLoc('decor/1')->setLastMod('11-1-90')
            // ->add()->setLoc('decor/2')->setLastMod('11-12-99');
 
-       dd($sitemap);
+          dd($sitemap);
 
         /*$postList = Content::all();
         $sitemap=export::CreateSitemap();
@@ -367,28 +375,8 @@ class ContentController extends Controller
         //$sitemap->add($post);
        // $sitemap->multyAdd($postList,);
 
-        $content = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
-        $content = $content . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL;
-
-        foreach ($postList as $key => $post) {
-
-            $content = '<url>' . PHP_EOL;
-            $content = $content . '<loc>' . $post->slug . '</loc>' . PHP_EOL;
-            $content = $content . '<lastmod>' . gmdate(DateTime::W3C, strtotime($post->updated_at)) . '</lastmod>' . PHP_EOL;
-            $content = $content . '<changefreq>weekly</changefreq>' . PHP_EOL;
-            $content = $content . '<priority>0.9</priority>' . PHP_EOL;
-            $content = $content . '</url>' . PHP_EOL;
-
-        }
-        $content = $content . ' </urlset>' . PHP_EOL;
 
 
-        if (file_put_contents('sitemap.xml', $content)) {
-            $result['result'] = 1;
-            $svgContent = '';
-            $result['content'] = $svgContent;
-            return $result;
-        }
 
     }
 
