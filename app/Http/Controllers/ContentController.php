@@ -344,7 +344,7 @@ class ContentController extends Controller
             ->add()->setLoc('product.xml')
             ->writeToFile('sitemap.xml');
 
-        $sitemap = export::create()
+        $sitemap = siteMap::create()
              ->add()->setPriority('1')->setLoc('/')->setLastMod('2020')
             ->setLocFieldName('slug')
             ->setLastModFieldName('updated_at')
