@@ -170,8 +170,8 @@ class siteMap
         foreach ($this->collection as $key => $obj) {
 
             $content = $content.'<url>' . PHP_EOL;
-            $content = $content . '<loc>' . $obj->getLoc() . '</loc>' . PHP_EOL;
-            $content = $content . '<lastmod>' . $obj->getLastMod(). '</lastmod>' . PHP_EOL;
+            $content = $content . '<loc>' . url($obj->getLoc()) . '</loc>' . PHP_EOL;
+            $content = $content . '<lastmod>' . date('Y-m-d', strtotime($obj->getLastMod())). '</lastmod>' . PHP_EOL;
             //$content = $content . '<lastmod>' . gmdate(DateTime::W3C, strtotime($obj->getLastMod())) . '</lastmod>' . PHP_EOL;
             $content = $content . '<changefreq>'.$obj->getChangefreq().'</changefreq>' . PHP_EOL;
             $content = $content . '<priority>'.$obj->getPriority().'</priority>' . PHP_EOL;

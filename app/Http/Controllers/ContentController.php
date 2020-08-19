@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Content;
 use App\export;
-use App\siteMap;
+use App\SiteMap;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 //use PDF;
 
@@ -345,7 +346,7 @@ class ContentController extends Controller
             ->writeToFile('sitemap.xml');
 
         $sitemap = siteMap::create()
-             ->add()->setPriority('1')->setLoc('/')->setLastMod('2020')
+             ->add()->setPriority('1')->setLoc(url('/'))->setLastMod('2020')->setChangefreq('weekly')
             ->setLocFieldName('slug')
             ->setLastModFieldName('updated_at')
             ->setDefultPriority('0.9')

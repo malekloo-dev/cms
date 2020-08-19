@@ -45,7 +45,7 @@
 
 
 <section class="resume mt-0 mb-0 pb-5">
-    <h2 class="align-center">نمونه کار</h2>
+    <h1 class="align-center">نمونه سایت های طراحی شده توسط شرکت طرح و وب</h1>
     <div class="flex one two-500  three-900 center align-center">
         <div>
             <div class="gallery">
@@ -95,7 +95,7 @@
                     <img class="g3" src="{{asset('img/resume/mvm3.jpg')}}">
                 </div>
             </div>
-            <h3>MVM نمایندگی ۲۶۴</h3>
+            <h3>نمایندگی ۲۶۴ MVM</h3>
         </div>
         <div>
             <div class="gallery">
@@ -126,6 +126,26 @@
                 </div>
             </div>
             <h3>mschef</h3>
+        </div>
+        <div>
+            <div class="gallery">
+                <div class="m-4">
+                    <img class="g1" src="{{asset('img/resume/bmtiq1.jpg')}}">
+                    <img class="g2" src="{{asset('img/resume/bmtiq2.jpg')}}">
+                    <img class="g3" src="{{asset('img/resume/bmtiq3.jpg')}}">
+                </div>
+            </div>
+            <h3>bmtiq</h3>
+        </div>
+        <div>
+            <div class="gallery">
+                <div class="m-4">
+                    <img class="g1" src="{{asset('img/resume/border1.jpg')}}">
+                    <img class="g2" src="{{asset('img/resume/border2.jpg')}}">
+                    <img class="g3" src="{{asset('img/resume/border3.jpg')}}">
+                </div>
+            </div>
+            <h3>border less artinst</h3>
         </div>
 
     </div>
