@@ -177,7 +177,15 @@
                         <span class="text-danger">{{ $errors->first('title') }}</span>
                     </div>
 
+                    <label for="slug" class="col-form-label text-md-left">آدرس صفحه :</label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="slug" value="{{ old('slug') }}"/>
+                        <span class="text-danger">{{ $errors->first('slug') }}</span>
+                    </div>
 
+                </div>
+
+                    <div class="form-group row">
 
                     <div class="col-md-6">
                         <label for="name" class="col-form-label text-md-left">Category</label>
@@ -242,6 +250,14 @@
                         <input type="file" class="form-control" name="images" id="images" placeholder="تصویر  را وارد کنید" value="{{ old('imageUrl') }}">
                     </div>
 
+                </div>
+
+                <div class="form-group row">
+                    <label for="name" class="col-md-12 col-form-label ">Meta Title</label>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" name="meta_title" value="{{ old('meta_title') }}"/>
+                        <span class="text-danger">{{ $errors->first('meta_title') }}</span>
+                    </div>
                 </div>
 
                 <div class="form-group row">

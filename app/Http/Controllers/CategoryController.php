@@ -190,7 +190,7 @@ class CategoryController extends Controller
         $data['parent_id'] = $request->parent_id;
         $data['type'] = '1';
         $data['images'] = $imagesUrl;
-        $data['slug'] = preg_replace('/\s+/', '-', $request->title);
+        $data['slug'] = preg_replace('/\s+/', '-', $request->slug);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);

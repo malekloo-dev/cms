@@ -171,6 +171,7 @@
     </ul>
 </div>
 
+
 <div class="content-body">
     <div class="panel panel-default mat-elevation-z pos-abs chat-panel bottom-0">
         <div class="panel-body full-height">
@@ -179,9 +180,16 @@
                 @csrf
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label for="name" class=" col-form-label text-md-left">عنوان:</label>
+                        <label for="title" class=" col-form-label text-md-left">عنوان:</label>
                         <input type="text" class="form-control" name="title" value="{{ old('title',$content_info->title) }}" />
                         <span class="text-danger">{{ $errors->first('title') }}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label for="slug" class=" col-form-label text-md-left">آدرس صفحه :</label>
+                        <input type="text" class="form-control" name="slug" value="{{ old('slug',$content_info->slug) }}" />
+                        <span class="text-danger">{{ $errors->first('slug') }}</span>
                     </div>
                 </div>
                 @if ($content_info->attr_type=='html')
@@ -264,6 +272,14 @@
                         @endforeach
                         @endif
 
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="meta_title" class="col-md-12 col-form-label ">Meta Title</label>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" name="meta_title" value="{{ old('meta_keywords',$content_info->meta_title) }}" />
+                        <span class="text-danger">{{ $errors->first('meta_title') }}</span>
                     </div>
                 </div>
 

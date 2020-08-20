@@ -34,7 +34,7 @@ class CmsController extends Controller
         $seo['meta_keywords']=$detail->meta_keywords;
         $seo['meta_description']=$detail->meta_description;
         $seo['meta_description']=$detail->meta_description;
-        $seo['title']=$detail->title;
+        $seo['meta_title']=$detail->meta_title;
 
         if (is_array($breadcrumb)) {
             krsort($breadcrumb);

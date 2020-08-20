@@ -14,6 +14,7 @@ class Category extends Model
     //public $timestamps = false;
     protected $fillable = [
         'title',
+        'slug',
         'brief_description',
         'description',
         'status',
@@ -22,17 +23,19 @@ class Category extends Model
         'meta_keywords',
         'publish_date',
         'images',
-        'slug',
         'meta_description',
         'attr',
-        'attr_type'
+        'attr_type',
+        'meta_title'
+
 
     ];
 
 
-    public function childs() {
+    public function childs()
+    {
 
-        return $this->hasMany('Category','parent_id','id') ;
+        return $this->hasMany('Category', 'parent_id', 'id');
 
     }
 

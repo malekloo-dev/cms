@@ -198,6 +198,16 @@
                     </div>
 
                     <div class="col-md-6">
+                        <label for="slug" class="col-form-label text-md-left">آدرس صفحه :</label>
+                            <input type="text" class="form-control" name="slug" value="{{ old('slug',$content_info->slug) }}" />
+                            <span class="text-danger">{{ $errors->first('slug') }}</span>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+
+                    <div class="col-md-6">
                         <label for="name" class=" col-form-label text-md-left">Category</label>
 
                         {{--<select multiple name="parent_id" id="parent_id" class="form-control" >--}}
@@ -291,14 +301,22 @@
 
 
 
-
+                <div class="form-group row">
+                    <label for="meta_title" class="col-md-12 col-form-label ">Meta Title</label>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" name="meta_title" value="{{ old('meta_keywords',$content_info->meta_title) }}" />
+                        <span class="text-danger">{{ $errors->first('meta_title') }}</span>
+                    </div>
+                </div>
 
                 <div class="form-group row">
                     <div class="col-md-12">
                         <label for="name" class=" col-form-label text-md-left">meta keywords</label>
                         <input id="meta_keywords" type="text" name="meta_keywords" value="{{ old('meta_keywords',$content_info->meta_keywords) }}" />
                     </div>
-                    <div class="col-md-12">
+                </div>
+
+                <div class="col-md-12">
                         <label for="meta_description" class=" col-form-label text-md-left">meta Description:</label>
                         <textarea class="form-control" id="meta_description" name="meta_description">{{ old('meta_description',$content_info->meta_description) }}</textarea>
                     </div>

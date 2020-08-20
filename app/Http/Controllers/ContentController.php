@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Content;
 use App\export;
-use App\SiteMap;
+use App\siteMap;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\URL;
 
 //use PDF;
 
@@ -75,6 +74,7 @@ class ContentController extends Controller
     public function create(Request $request)
     {
 
+
         $result = app('App\Http\Controllers\CategoryController')->tree_set();
         $data['category'] = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
         $data['attr_type'] = $request->type;
@@ -120,7 +120,8 @@ class ContentController extends Controller
         $data['parent_id'] = $request->parent_id[0];
         $data['type'] = '2';
         $data['images'] = $imagesUrl;
-        $data['slug'] = preg_replace('/\s+/', '-', $request->title);
+
+        $data['slug'] = preg_replace('/\s+/', '-', $request->slug);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
@@ -165,12 +166,6 @@ class ContentController extends Controller
         }*/
 
         return view($template, compact(['content_info', 'category']));
-
-
-        //dd($content_info->images);
-        /*print_r($data);
-
-        die();*/
 
     }
 
@@ -346,7 +341,7 @@ class ContentController extends Controller
             ->writeToFile('sitemap.xml');
 
         $sitemap = siteMap::create()
-             ->add()->setPriority('1')->setLoc(url('/'))->setLastMod('2020')->setChangefreq('weekly')
+             ->add()->setPriority('1')->setLoc('/')->setLastMod('2020')
             ->setLocFieldName('slug')
             ->setLastModFieldName('updated_at')
             ->setDefultPriority('0.9')

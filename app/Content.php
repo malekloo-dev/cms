@@ -13,6 +13,7 @@ class Content extends Model
     ];
     protected $fillable = [
         'title',
+        'slug',
         'brief_description',
         'description',
         'status',
@@ -21,10 +22,10 @@ class Content extends Model
         'meta_keywords',
         'publish_date',
         'images',
-        'slug',
         'meta_description',
         'attr',
-        'attr_type'
+        'attr_type',
+        'meta_title',
 
     ];
 
