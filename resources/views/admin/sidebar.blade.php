@@ -60,6 +60,23 @@
         </li>
 
 
+        <li class="no-margin">
+            <a class="no-margin text-right">
+                <i class="sidebar-icon pull-right fa fa-bar-chart"></i>
+                <span class="sidebar-text text-right">سئو</span>
+            </a>
+            <ul class="sidebar-child">
+                <li>
+                    <a href="{{ route('seo.redirectUrl.index') }}" class="no-margin text-right">
+                        <i class="sidebar-icon pull-right fa fa-refresh"></i>
+                        <span class="sidebar-text text-right">Redirect URL</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+
     </ul>
 
     <p class="copyright-container text-right pos-abs bottom-0 right-0 left-0 padding-full no-margin text-white">&copy; {{date('Y')}} CMS.</p>

@@ -29,6 +29,10 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     Route::PATCH('contents/{content}', 'ContentController@update')->name('contents.update');
     Route::get('contents/{content}/edit', 'ContentController@edit')->name('contents.edit');
 
+    Route::prefix('seo')->name('seo.')->group(function () {
+        Route::resource('redirectUrl', 'redirectUrlController');
+    });
+
     Route::resource('category', 'CategoryController');
 
 
