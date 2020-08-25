@@ -34,23 +34,23 @@ class RedirectUrlController extends Controller
     }
 
     /* Display edit form */
-    public function edit(RedirectUrl $RedirectUrl)
+    public function edit(RedirectUrl $redirectUrl)
     {
-        //
+        return view('admin.redirectUrl.edit',compact('redirectUrl'));
     }
 
     /* Update */
-    public function update(RedirectUrlRequest $request, RedirectUrl $RedirectUrl)
+    public function update(RedirectUrlRequest $request, RedirectUrl $redirectUrl)
     {
-        //
+        $redirectUrl->update($request->all());
+
+        return redirect()->route('seo.redirectUrl.index')->with('success',$redirectUrl->url  . ' ویرایش شد.');
     }
 
     /* Delete */
-    public function destroy(RedirectUrl $RedirectUrl)
+    public function destroy(RedirectUrl $redirectUrl)
     {
-        $RedirectUrl->delete();
-
-        dd($RedirectUrl);
+        $redirectUrl->delete();
 
         return redirect()->route('seo.redirectUrl.index')->with('success', ' حذف شد.');
     }
