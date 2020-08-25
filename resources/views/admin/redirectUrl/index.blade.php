@@ -35,8 +35,8 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>عنوان</th>
-                        <th>توضیحات مختصر</th>
+                        <th>Url</th>
+                        <th>Redirect to </th>
                         <th>وضعیت</th>
                     </tr>
                 </thead>
