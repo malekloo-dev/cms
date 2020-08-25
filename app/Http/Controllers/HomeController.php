@@ -18,6 +18,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
 
 
         //Content::increment('viewCount');

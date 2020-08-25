@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
+use App\RedirectUrl;
 
 use PDF;
 
@@ -18,23 +19,24 @@ class CmsController extends Controller
 
     public function request($slug)
     {
-        if ($slug == 'ساخت-سوئیچ') {
-            header("Location: https://remotyadak.ir/سوئیچ-و-ریموت-خودرو", TRUE, 301);
+        $spesifiedUrl = RedirectUrl::where('url', 'like', '/' . $slug);
+        if($spesifiedUrl->exists()){
+            header("Location: ". url($spesifiedUrl->first()->redirect_to), TRUE, 301);
             exit();
         }
 
         $detail = Content::where('slug', '=', $slug)->first();
-        if($detail === null){
-            return view(@env(TEMPLATE_NAME).'.NotFound');
+        if ($detail === null) {
+            return view(@env(TEMPLATE_NAME) . '.NotFound');
         }
 
         $this->breadcrumb[] = $detail->getAttributes();
         $breadcrumb = $this->get_parent($detail->parent_id);
 
-        $seo['meta_keywords']=$detail->meta_keywords;
-        $seo['meta_description']=$detail->meta_description;
-        $seo['meta_description']=$detail->meta_description;
-        $seo['meta_title']=$detail->meta_title;
+        $seo['meta_keywords'] = $detail->meta_keywords;
+        $seo['meta_description'] = $detail->meta_description;
+        $seo['meta_description'] = $detail->meta_description;
+        $seo['meta_title'] = $detail->meta_title;
 
         if (is_array($breadcrumb)) {
             krsort($breadcrumb);
@@ -42,8 +44,8 @@ class CmsController extends Controller
             $breadcrumb = array();
         }
 
-        $table_of_content=array();
-        $table_of_images=array();
+        $table_of_content = array();
+        $table_of_images = array();
         $images = array();
         if (strlen($detail->description)) {
 
@@ -51,7 +53,7 @@ class CmsController extends Controller
             $detail->description = $resultTableContent['content'];
             $table_of_content = $resultTableContent['list'];
 
-            $table_of_images=$this->tableOfImage($detail->description);
+            $table_of_images = $this->tableOfImage($detail->description);
 
 
             //preg_match_all('/<img[^>]+>/i',$detail->description, $result);
@@ -85,14 +87,12 @@ class CmsController extends Controller
             $subCategory = Content::where('type', '=', '1')
                 ->where('parent_id', '=', $detail->id)
                 ->get();
-            $template=@env(TEMPLATE_NAME).'.cms.DetailCategory';
-            if($detail->attr_type=='html'){
-                $template=@env(TEMPLATE_NAME).'.cms.'.$detail->attr['template_name'];
+            $template = @env(TEMPLATE_NAME) . '.cms.DetailCategory';
+            if ($detail->attr_type == 'html') {
+                $template = @env(TEMPLATE_NAME) . '.cms.' . $detail->attr['template_name'];
             }
 
-            return view($template, compact(['detail', 'relatedPost', 'table_of_content', 'subCategory', 'relatedProduct', 'breadcrumb','images','seo']));
-
-
+            return view($template, compact(['detail', 'relatedPost', 'table_of_content', 'subCategory', 'relatedProduct', 'breadcrumb', 'images', 'seo']));
         } else {
 
             $relatedPost = Content::where('type', '=', '2')
@@ -109,16 +109,13 @@ class CmsController extends Controller
                 ->inRandomOrder()
                 ->limit(4)->get();
 
-            $template=@env('TEMPLATE_NAME').'.cms.Detail';
-            if($detail->attr_type=='html'){
-                $template=@env(TEMPLATE_NAME).'.cms.'.$detail->attr['template_name'];
+            $template = @env('TEMPLATE_NAME') . '.cms.Detail';
+            if ($detail->attr_type == 'html') {
+                $template = @env(TEMPLATE_NAME) . '.cms.' . $detail->attr['template_name'];
             }
 
-            return view($template, compact(['detail', 'breadcrumb', 'relatedPost', 'table_of_content', 'relatedProduct','table_of_images','seo']));
-
+            return view($template, compact(['detail', 'breadcrumb', 'relatedPost', 'table_of_content', 'relatedProduct', 'table_of_images', 'seo']));
         }
-
-
     }
 
     public function tableOfImage($content)
@@ -153,12 +150,8 @@ class CmsController extends Controller
                 if ($tag1->tagName == 'figcaption') {
                     $images[$count]['alt'] = $tag1->nodeValue;
                 }
-
-
             }
         }
-
-
     }
 
     public function tableOfContent($content)
@@ -215,8 +208,6 @@ class CmsController extends Controller
 
         //dd($heads);
         return $list;
-
-
     }
 
     protected function uploadImages($file)
@@ -290,7 +281,6 @@ class CmsController extends Controller
             $this->get_parent($tree_rs->parent_id);
         }
         return $this->breadcrumb;
-
     }
 
     /**
@@ -336,8 +326,6 @@ class CmsController extends Controller
         Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
 
         return Redirect('contents')->with('success', 'Greate! Content created successfully.');
-
-
     }
 
     /**
@@ -366,7 +354,6 @@ class CmsController extends Controller
 
         die();*/
         return view('content.Edit', compact('content_info'));
-
     }
 
     /**
@@ -464,7 +451,6 @@ class CmsController extends Controller
             echo '{
         "uploaded": true,
         "url": "' . $url . '"}';
-
         }
     }
     /*public function uploadImageSubject1(Request $request)
@@ -489,6 +475,4 @@ class CmsController extends Controller
 
         return "<script>window.parent.CKEDITOR.tools.callFunction(1,'{$url}','')</script>";
     }*/
-
-
 }

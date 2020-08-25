@@ -44,8 +44,8 @@
                     @foreach($RedirectUrl as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
-                        <td>{!! $item->url !!}</td>
-                        <td>{!! $item->redirect_to !!}</td>
+                        <td class="ltr text-right">{!! $item->url !!}</td>
+                        <td class="ltr text-right">{!! $item->redirect_to !!}</td>
 
 
                         <td>
