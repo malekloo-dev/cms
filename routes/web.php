@@ -30,7 +30,7 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     Route::get('contents/{content}/edit', 'ContentController@edit')->name('contents.edit');
 
     Route::prefix('seo')->name('seo.')->group(function () {
-        Route::resource('redirectUrl', 'redirectUrlController');
+        Route::resource('redirectUrl', 'RedirectUrlController');
     });
 
     Route::resource('category', 'CategoryController');
