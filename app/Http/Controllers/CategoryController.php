@@ -345,7 +345,7 @@ class CategoryController extends Controller
         $crud->update($data);
 
 
-        return redirect('admin/category' . $crud->attr_type);
+        return redirect('admin/category?type=' . $crud->attr_type)->with('success', 'Update! Content created successfully.');
     }
 
     /**
