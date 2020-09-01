@@ -4,17 +4,6 @@
 
 
 <script>
-    /*$(document).ready(function() { $("#parent_id").select2(); });
-
-         $("#parent_id").on("change", function() { $("#parent_id_val").html($("#parent_id").val());});
-
-         $("#parent_id").select2("container").find("ul.select2-choices").sortable({
-         containment: 'parent',
-         start: function() { $("#parent_id").select2("onSortStart"); },
-         update: function() { $("#parent_id").select2("onSortEnd"); }
-         });*/
-
-
     $(document).ready(function() {
 
         var $input = $("#parent_id");
@@ -23,13 +12,6 @@
             containment: 'parent'
         });
 
-
-        /*$("#parent_id").on("change", function() { $("#parent_id_val").html($("#parent_id").val());});
-         $("#parent_id").select2("container").find("ul.select2-choices").sortable({
-         containment: 'parent',
-         start: function() { $("#parent_id").select2("onSortStart"); },
-         update: function() { $("#parent_id").select2("onSortEnd"); }
-         });*/
 
     });
 
@@ -40,7 +22,7 @@
 </script>
 
 
-<script src="/ckeditor5/ckeditor.js"> </script>
+<script src="/ckeditor5/ckeditor5-build-classic/ckeditor.js"> </script>
 
 <script>
     ClassicEditor
@@ -49,28 +31,35 @@
                 uploadUrl: "{{route('contents.upload', ['_token' => csrf_token() ])}}",
             },
             alignment: {
-                options: ['left', 'right']
+                options: ['left', 'center', 'right']
             },
 
             language: {
-                // The UI will be English.
-                ui: 'en',
-
-                // But the content will be edited in Arabic.
+                ui: 'fa',
                 content: 'fa'
             },
 
-            /*toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'imageUpload','numberedList' ,'alignment','undo', 'redo','blockQuote' ],
-             blockToolbar: [
-             'paragraph', 'heading1', 'heading2', 'heading3',
-             '|',
-             'blockQuote', 'imageUpload'
-             ,'alignment','undo', 'redo',
-             '|',
-             'bulletedList', 'numberedList',
-             '|'
+            toolbar: {
+                viewportTopOffset: 80,
+                items: [
+                    'heading', 'alignment', '|',
+                    'bold', 'italic',
+                    'link',
+                    'bulletedList',
+                    'imageUpload',
+                    'numberedList',
+                    'undo', 'redo', 'blockQuote'
+                ]
+            },
+            blockToolbar: [
+                'paragraph', 'heading1', 'heading2', 'heading3',
+                '|',
+                'blockQuote', 'imageUpload', 'alignment', 'undo', 'redo',
+                '|',
+                'bulletedList', 'numberedList',
+                '|'
 
-             ],*/
+            ],
 
 
             image: {
@@ -199,8 +188,8 @@
 
                     <div class="col-md-6">
                         <label for="slug" class="col-form-label text-md-left">آدرس صفحه :</label>
-                            <input type="text" class="form-control" name="slug" value="{{ old('slug',$content_info->slug) }}" />
-                            <span class="text-danger">{{ $errors->first('slug') }}</span>
+                        <input type="text" class="form-control" name="slug" value="{{ old('slug',$content_info->slug) }}" />
+                        <span class="text-danger">{{ $errors->first('slug') }}</span>
                     </div>
                 </div>
 
@@ -227,12 +216,12 @@
                 </div>
                 @if ($content_info->attr_type=='html')
 
-                    <div class="form-group row">
-                        <label for="brand" class="col-md-12 col-form-label text-md-left">template name:</label>
-                        <div class="col-md-12">
-                            <input type="text" class="form-control" name="attr[template_name]" value="{{ old('attr[template_name]',$content_info->attr['template_name']) }}"/>
-                        </div>
+                <div class="form-group row">
+                    <label for="brand" class="col-md-12 col-form-label text-md-left">template name:</label>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" name="attr[template_name]" value="{{ old('attr[template_name]',$content_info->attr['template_name']) }}" />
                     </div>
+                </div>
                 @endif
 
                 <div class="form-group row">
@@ -317,24 +306,24 @@
                 </div>
 
                 <div class="col-md-12">
-                        <label for="meta_description" class=" col-form-label text-md-left">meta Description:</label>
-                        <textarea class="form-control" id="meta_description" name="meta_description">{{ old('meta_description',$content_info->meta_description) }}</textarea>
-                    </div>
-
+                    <label for="meta_description" class=" col-form-label text-md-left">meta Description:</label>
+                    <textarea class="form-control" id="meta_description" name="meta_description">{{ old('meta_description',$content_info->meta_description) }}</textarea>
                 </div>
 
-
-
-
-                <button type="submit" class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">Edit
-                    Content
-                </button>
-                <a href="{{ route('contents.index')  }}" class="link ">
-                    <i class="fa fa-arrow-left"></i> Back to List
-                </a>
-            </form>
         </div>
+
+
+
+
+        <button type="submit" class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">Edit
+            Content
+        </button>
+        <a href="{{ route('contents.index')  }}" class="link ">
+            <i class="fa fa-arrow-left"></i> Back to List
+        </a>
+        </form>
     </div>
+</div>
 </div>
 
 @endsection
