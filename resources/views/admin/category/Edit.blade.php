@@ -30,55 +30,35 @@
             ckfinder: {
                 uploadUrl: "{{route('contents.upload', ['_token' => csrf_token() ])}}",
             },
-            alignment: {
-                options: ['left', 'center', 'right']
-            },
-
-            language: {
-                ui: 'fa',
-                content: 'fa'
-            },
-
+            language: 'fa',
             toolbar: {
-                viewportTopOffset: 80,
-                items: [
-                    'heading', 'alignment', '|',
-                    'bold', 'italic',
-                    'link',
-                    'bulletedList',
-                    'imageUpload',
-                    'numberedList',
-                    'undo', 'redo', 'blockQuote'
-                ]
+                viewportTopOffset: 80
             },
-            blockToolbar: [
-                'paragraph', 'heading1', 'heading2', 'heading3',
-                '|',
-                'blockQuote', 'imageUpload', 'alignment', 'undo', 'redo',
-                '|',
-                'bulletedList', 'numberedList',
-                '|'
-
-            ],
 
 
-            image: {
-                // You need to configure the image toolbar, too, so it uses the new style buttons.
-                toolbar: ['imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight', 'imageStyle:alignCenter'],
 
-                styles: [
-                    // This option is equal to a situation where no style is applied.
-                    'full',
+            // image: {
+            //     // You need to configure the image toolbar, too, so it uses the new style buttons.
+            //     toolbar: [
+            //         'imageTextAlternative', '|',
+            //         'imageStyle:alignLeft',
+            //         'imageStyle:full',
+            //         'imageStyle:alignRight',
+            //         'imageStyle:alignCenter'],
 
-                    // This represents an image aligned to the left.
-                    'alignLeft',
+            //     styles: [
+            //         // This option is equal to a situation where no style is applied.
+            //         'full',
 
-                    // This represents an image aligned to the right.
-                    'alignRight',
-                    'alignCenter'
+            //         // This represents an image aligned to the left.
+            //         'alignLeft',
 
-                ]
-            }
+            //         // This represents an image aligned to the right.
+            //         'alignRight',
+            //         'alignCenter'
+
+            //     ]
+            // }
         })
         .then(editor => {
             window.editor = editor;
@@ -93,59 +73,21 @@
 
     ClassicEditor
         .create(document.querySelector('#description'), {
-
             ckfinder: {
                 uploadUrl: "{{route('contents.upload', ['_token' => csrf_token() ])}}",
             },
-            alignment: {
-                options: ['left', 'right']
-            },
-
-            language: {
-                // The UI will be English.
-                ui: 'en',
-
-                // But the content will be edited in Arabic.
-                content: 'fa'
-            },
             toolbar: {
-                viewportTopOffset: 50
+                viewportTopOffset: 80
             },
-            /*toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'imageUpload','numberedList' ,'alignment','undo', 'redo','blockQuote' ],
-             blockToolbar: [
-             'paragraph', 'heading1', 'heading2', 'heading3',
-             '|',
-             'blockQuote', 'imageUpload'
-             ,'alignment','undo', 'redo',
-             '|',
-             'bulletedList', 'numberedList',
-             '|'
-
-             ],*/
-
-
-            image: {
-                // You need to configure the image toolbar, too, so it uses the new style buttons.
-                toolbar: ['imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight', 'imageStyle:alignCenter'],
-
-                styles: [
-                    // This option is equal to a situation where no style is applied.
-                    'full',
-
-                    // This represents an image aligned to the left.
-                    'alignLeft',
-
-                    // This represents an image aligned to the right.
-                    'alignRight',
-                    'alignCenter'
-
-                ]
-            }
+            language: 'fa'
         })
         .then(editor => {
+            const wordCountPlugin = editor.plugins.get('WordCount');
+            const wordCountWrapper = document.getElementById('word-count');
+            wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+
             window.editor = editor;
         })
-
         .catch(err => {
             console.error(err.stack);
         });
