@@ -30,40 +30,19 @@
             ckfinder: {
                 uploadUrl: "{{route('contents.upload', ['_token' => csrf_token() ])}}",
             },
-            language: 'fa',
             toolbar: {
                 viewportTopOffset: 80
             },
+            language: 'fa'
 
 
-
-            // image: {
-            //     // You need to configure the image toolbar, too, so it uses the new style buttons.
-            //     toolbar: [
-            //         'imageTextAlternative', '|',
-            //         'imageStyle:alignLeft',
-            //         'imageStyle:full',
-            //         'imageStyle:alignRight',
-            //         'imageStyle:alignCenter'],
-
-            //     styles: [
-            //         // This option is equal to a situation where no style is applied.
-            //         'full',
-
-            //         // This represents an image aligned to the left.
-            //         'alignLeft',
-
-            //         // This represents an image aligned to the right.
-            //         'alignRight',
-            //         'alignCenter'
-
-            //     ]
-            // }
         })
         .then(editor => {
-            window.editor = editor;
-            /*document.getElementById('brief_description').innerHTML = editor.getData();*/
+            const wordCountPlugin = editor.plugins.get('WordCount');
+            const wordCountWrapper = document.getElementById('word-count1');
+            wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
 
+            window.editor = editor;
         })
 
         .catch(err => {
@@ -83,7 +62,7 @@
         })
         .then(editor => {
             const wordCountPlugin = editor.plugins.get('WordCount');
-            const wordCountWrapper = document.getElementById('word-count');
+            const wordCountWrapper = document.getElementById('word-count2');
             wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
 
             window.editor = editor;
@@ -170,6 +149,7 @@
                     <div class="col-md-12">
                         <label for="name" class="col-form-label text-md-left">Brief Description:</label>
                         <textarea class="form-control" id="brief_description" name="brief_description" rows="10" placeholder="Enter your Content">{{ old('brief_description',$content_info->brief_description) }}</textarea>
+                        <div id="word-count1"></div>
                     </div>
 
                 </div>
@@ -177,7 +157,7 @@
                     <div class="col-md-12">
                         <label for="name" class=" col-form-label text-md-left">Description:</label>
                         <textarea class="form-control" id="description" name="description">{{ old('description',$content_info->description) }}</textarea>
-
+                        <div id="word-count2"></div>
                     </div>
 
                 </div>
