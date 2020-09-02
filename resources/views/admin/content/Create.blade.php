@@ -3,17 +3,6 @@
 @section('ckeditor')
 
 <script>
-    /*$(document).ready(function() { $("#parent_id").select2(); });
-
-         $("#parent_id").on("change", function() { $("#parent_id_val").html($("#parent_id").val());});
-
-         $("#parent_id").select2("container").find("ul.select2-choices").sortable({
-         containment: 'parent',
-         start: function() { $("#parent_id").select2("onSortStart"); },
-         update: function() { $("#parent_id").select2("onSortEnd"); }
-         });*/
-
-
     $(document).ready(function() {
 
         var $input = $("#parent_id");
@@ -21,14 +10,6 @@
         $("ul.select2-choices").sortable({
             containment: 'parent'
         });
-
-
-        /*$("#parent_id").on("change", function() { $("#parent_id_val").html($("#parent_id").val());});
-         $("#parent_id").select2("container").find("ul.select2-choices").sortable({
-         containment: 'parent',
-         start: function() { $("#parent_id").select2("onSortStart"); },
-         update: function() { $("#parent_id").select2("onSortEnd"); }
-         });*/
 
     });
 
@@ -39,57 +20,23 @@
 </script>
 
 
-<script src="/ckeditor5/ckeditor.js"></script>
+<script src="/ckeditor5/ckeditor5-build-classic/ckeditor.js"> </script>
 <script>
     ClassicEditor
         .create(document.querySelector('#brief_description'), {
             ckfinder: {
                 uploadUrl: "{{route('contents.upload', ['_token' => csrf_token() ])}}",
             },
-            alignment: {
-                options: ['left', 'right']
+            toolbar: {
+                viewportTopOffset: 80
             },
-
-            language: {
-                // The UI will be English.
-                ui: 'en',
-
-                // But the content will be edited in Arabic.
-                content: 'fa'
-            },
-
-            /*toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'imageUpload','numberedList' ,'alignment','undo', 'redo','blockQuote' ],
-             blockToolbar: [
-             'paragraph', 'heading1', 'heading2', 'heading3',
-             '|',
-             'blockQuote', 'imageUpload'
-             ,'alignment','undo', 'redo',
-             '|',
-             'bulletedList', 'numberedList',
-             '|'
-
-             ],*/
-
-
-            image: {
-                // You need to configure the image toolbar, too, so it uses the new style buttons.
-                toolbar: ['imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight', 'imageStyle:alignCenter'],
-
-                styles: [
-                    // This option is equal to a situation where no style is applied.
-                    'full',
-
-                    // This represents an image aligned to the left.
-                    'alignLeft',
-
-                    // This represents an image aligned to the right.
-                    'alignRight',
-                    'alignCenter'
-
-                ]
-            }
+            language: 'fa'
         })
         .then(editor => {
+            const wordCountPlugin = editor.plugins.get('WordCount');
+            const wordCountWrapper = document.getElementById('word-count1');
+            wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+
             window.editor = editor;
         })
 
@@ -97,58 +44,24 @@
             console.error(err.stack);
         });
 
+
     ClassicEditor
         .create(document.querySelector('#description'), {
             ckfinder: {
                 uploadUrl: "{{route('contents.upload', ['_token' => csrf_token() ])}}",
             },
-            alignment: {
-                options: ['left', 'right']
+            toolbar: {
+                viewportTopOffset: 80
             },
-
-            language: {
-                // The UI will be English.
-                ui: 'en',
-
-                // But the content will be edited in Arabic.
-                content: 'fa'
-            },
-
-            /*toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'imageUpload','numberedList' ,'alignment','undo', 'redo','blockQuote' ],
-             blockToolbar: [
-             'paragraph', 'heading1', 'heading2', 'heading3',
-             '|',
-             'blockQuote', 'imageUpload'
-             ,'alignment','undo', 'redo',
-             '|',
-             'bulletedList', 'numberedList',
-             '|'
-
-             ],*/
-
-
-            image: {
-                // You need to configure the image toolbar, too, so it uses the new style buttons.
-                toolbar: ['imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight', 'imageStyle:alignCenter'],
-
-                styles: [
-                    // This option is equal to a situation where no style is applied.
-                    'full',
-
-                    // This represents an image aligned to the left.
-                    'alignLeft',
-
-                    // This represents an image aligned to the right.
-                    'alignRight',
-                    'alignCenter'
-
-                ]
-            }
+            language: 'fa'
         })
         .then(editor => {
+            const wordCountPlugin = editor.plugins.get('WordCount');
+            const wordCountWrapper = document.getElementById('word-count2');
+            wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+
             window.editor = editor;
         })
-
         .catch(err => {
             console.error(err.stack);
         });

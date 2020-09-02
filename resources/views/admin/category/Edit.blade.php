@@ -23,7 +23,6 @@
 
 
 <script src="/ckeditor5/ckeditor5-build-classic/ckeditor.js"> </script>
-
 <script>
     ClassicEditor
         .create(document.querySelector('#brief_description'), {
@@ -34,8 +33,6 @@
                 viewportTopOffset: 80
             },
             language: 'fa'
-
-
         })
         .then(editor => {
             const wordCountPlugin = editor.plugins.get('WordCount');
