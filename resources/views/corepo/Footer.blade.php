@@ -12,6 +12,7 @@
     </div>
 </section>
 
+@yield('js')
 </body>
 
 </html>
