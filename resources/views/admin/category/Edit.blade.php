@@ -4,17 +4,6 @@
 
 
 <script>
-    /*$(document).ready(function() { $("#parent_id").select2(); });
-
-         $("#parent_id").on("change", function() { $("#parent_id_val").html($("#parent_id").val());});
-
-         $("#parent_id").select2("container").find("ul.select2-choices").sortable({
-         containment: 'parent',
-         start: function() { $("#parent_id").select2("onSortStart"); },
-         update: function() { $("#parent_id").select2("onSortEnd"); }
-         });*/
-
-
     $(document).ready(function() {
 
         var $input = $("#parent_id");
@@ -23,13 +12,6 @@
             containment: 'parent'
         });
 
-
-        /*$("#parent_id").on("change", function() { $("#parent_id_val").html($("#parent_id").val());});
-         $("#parent_id").select2("container").find("ul.select2-choices").sortable({
-         containment: 'parent',
-         start: function() { $("#parent_id").select2("onSortStart"); },
-         update: function() { $("#parent_id").select2("onSortEnd"); }
-         });*/
 
     });
 
@@ -40,61 +22,24 @@
 </script>
 
 
-<script src="/ckeditor5/ckeditor.js"> </script>
-
+<script src="/ckeditor5/ckeditor5-build-classic/ckeditor.js"> </script>
 <script>
     ClassicEditor
         .create(document.querySelector('#brief_description'), {
             ckfinder: {
                 uploadUrl: "{{route('contents.upload', ['_token' => csrf_token() ])}}",
             },
-            alignment: {
-                options: ['left', 'right']
+            toolbar: {
+                viewportTopOffset: 80
             },
-
-            language: {
-                // The UI will be English.
-                ui: 'en',
-
-                // But the content will be edited in Arabic.
-                content: 'fa'
-            },
-
-            /*toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'imageUpload','numberedList' ,'alignment','undo', 'redo','blockQuote' ],
-             blockToolbar: [
-             'paragraph', 'heading1', 'heading2', 'heading3',
-             '|',
-             'blockQuote', 'imageUpload'
-             ,'alignment','undo', 'redo',
-             '|',
-             'bulletedList', 'numberedList',
-             '|'
-
-             ],*/
-
-
-            image: {
-                // You need to configure the image toolbar, too, so it uses the new style buttons.
-                toolbar: ['imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight', 'imageStyle:alignCenter'],
-
-                styles: [
-                    // This option is equal to a situation where no style is applied.
-                    'full',
-
-                    // This represents an image aligned to the left.
-                    'alignLeft',
-
-                    // This represents an image aligned to the right.
-                    'alignRight',
-                    'alignCenter'
-
-                ]
-            }
+            language: 'fa'
         })
         .then(editor => {
-            window.editor = editor;
-            /*document.getElementById('brief_description').innerHTML = editor.getData();*/
+            const wordCountPlugin = editor.plugins.get('WordCount');
+            const wordCountWrapper = document.getElementById('word-count1');
+            wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
 
+            window.editor = editor;
         })
 
         .catch(err => {
@@ -104,59 +49,21 @@
 
     ClassicEditor
         .create(document.querySelector('#description'), {
-
             ckfinder: {
                 uploadUrl: "{{route('contents.upload', ['_token' => csrf_token() ])}}",
             },
-            alignment: {
-                options: ['left', 'right']
-            },
-
-            language: {
-                // The UI will be English.
-                ui: 'en',
-
-                // But the content will be edited in Arabic.
-                content: 'fa'
-            },
             toolbar: {
-                viewportTopOffset: 50
+                viewportTopOffset: 80
             },
-            /*toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'imageUpload','numberedList' ,'alignment','undo', 'redo','blockQuote' ],
-             blockToolbar: [
-             'paragraph', 'heading1', 'heading2', 'heading3',
-             '|',
-             'blockQuote', 'imageUpload'
-             ,'alignment','undo', 'redo',
-             '|',
-             'bulletedList', 'numberedList',
-             '|'
-
-             ],*/
-
-
-            image: {
-                // You need to configure the image toolbar, too, so it uses the new style buttons.
-                toolbar: ['imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight', 'imageStyle:alignCenter'],
-
-                styles: [
-                    // This option is equal to a situation where no style is applied.
-                    'full',
-
-                    // This represents an image aligned to the left.
-                    'alignLeft',
-
-                    // This represents an image aligned to the right.
-                    'alignRight',
-                    'alignCenter'
-
-                ]
-            }
+            language: 'fa'
         })
         .then(editor => {
+            const wordCountPlugin = editor.plugins.get('WordCount');
+            const wordCountWrapper = document.getElementById('word-count2');
+            wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+
             window.editor = editor;
         })
-
         .catch(err => {
             console.error(err.stack);
         });
@@ -199,8 +106,8 @@
 
                     <div class="col-md-6">
                         <label for="slug" class="col-form-label text-md-left">آدرس صفحه :</label>
-                            <input type="text" class="form-control" name="slug" value="{{ old('slug',$content_info->slug) }}" />
-                            <span class="text-danger">{{ $errors->first('slug') }}</span>
+                        <input type="text" class="form-control" name="slug" value="{{ old('slug',$content_info->slug) }}" />
+                        <span class="text-danger">{{ $errors->first('slug') }}</span>
                     </div>
                 </div>
 
@@ -227,18 +134,19 @@
                 </div>
                 @if ($content_info->attr_type=='html')
 
-                    <div class="form-group row">
-                        <label for="brand" class="col-md-12 col-form-label text-md-left">template name:</label>
-                        <div class="col-md-12">
-                            <input type="text" class="form-control" name="attr[template_name]" value="{{ old('attr[template_name]',$content_info->attr['template_name']) }}"/>
-                        </div>
+                <div class="form-group row">
+                    <label for="brand" class="col-md-12 col-form-label text-md-left">template name:</label>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" name="attr[template_name]" value="{{ old('attr[template_name]',$content_info->attr['template_name']) }}" />
                     </div>
+                </div>
                 @endif
 
                 <div class="form-group row">
                     <div class="col-md-12">
                         <label for="name" class="col-form-label text-md-left">Brief Description:</label>
                         <textarea class="form-control" id="brief_description" name="brief_description" rows="10" placeholder="Enter your Content">{{ old('brief_description',$content_info->brief_description) }}</textarea>
+                        <div id="word-count1"></div>
                     </div>
 
                 </div>
@@ -246,7 +154,7 @@
                     <div class="col-md-12">
                         <label for="name" class=" col-form-label text-md-left">Description:</label>
                         <textarea class="form-control" id="description" name="description">{{ old('description',$content_info->description) }}</textarea>
-
+                        <div id="word-count2"></div>
                     </div>
 
                 </div>
@@ -317,24 +225,24 @@
                 </div>
 
                 <div class="col-md-12">
-                        <label for="meta_description" class=" col-form-label text-md-left">meta Description:</label>
-                        <textarea class="form-control" id="meta_description" name="meta_description">{{ old('meta_description',$content_info->meta_description) }}</textarea>
-                    </div>
-
+                    <label for="meta_description" class=" col-form-label text-md-left">meta Description:</label>
+                    <textarea class="form-control" id="meta_description" name="meta_description">{{ old('meta_description',$content_info->meta_description) }}</textarea>
                 </div>
 
-
-
-
-                <button type="submit" class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">Edit
-                    Content
-                </button>
-                <a href="{{ route('contents.index')  }}" class="link ">
-                    <i class="fa fa-arrow-left"></i> Back to List
-                </a>
-            </form>
         </div>
+
+
+
+
+        <button type="submit" class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">Edit
+            Content
+        </button>
+        <a href="{{ route('contents.index')  }}" class="link ">
+            <i class="fa fa-arrow-left"></i> Back to List
+        </a>
+        </form>
     </div>
+</div>
 </div>
 
 @endsection

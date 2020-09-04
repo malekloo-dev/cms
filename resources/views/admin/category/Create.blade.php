@@ -39,57 +39,23 @@
 </script>
 
 
-<script src="/ckeditor5/ckeditor.js"> </script>
+<script src="/ckeditor5/ckeditor5-build-classic/ckeditor.js"> </script>
 <script>
     ClassicEditor
         .create(document.querySelector('#brief_description'), {
             ckfinder: {
                 uploadUrl: "{{route('contents.upload', ['_token' => csrf_token() ])}}",
             },
-            alignment: {
-                options: ['left', 'right']
+            toolbar: {
+                viewportTopOffset: 80
             },
-
-            language: {
-                // The UI will be English.
-                ui: 'en',
-
-                // But the content will be edited in Arabic.
-                content: 'fa'
-            },
-
-            /*toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'imageUpload','numberedList' ,'alignment','undo', 'redo','blockQuote' ],
-             blockToolbar: [
-             'paragraph', 'heading1', 'heading2', 'heading3',
-             '|',
-             'blockQuote', 'imageUpload'
-             ,'alignment','undo', 'redo',
-             '|',
-             'bulletedList', 'numberedList',
-             '|'
-
-             ],*/
-
-
-            image: {
-                // You need to configure the image toolbar, too, so it uses the new style buttons.
-                toolbar: ['imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight', 'imageStyle:alignCenter'],
-
-                styles: [
-                    // This option is equal to a situation where no style is applied.
-                    'full',
-
-                    // This represents an image aligned to the left.
-                    'alignLeft',
-
-                    // This represents an image aligned to the right.
-                    'alignRight',
-                    'alignCenter'
-
-                ]
-            }
+            language: 'fa'
         })
         .then(editor => {
+            const wordCountPlugin = editor.plugins.get('WordCount');
+            const wordCountWrapper = document.getElementById('word-count1');
+            wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+
             window.editor = editor;
         })
 
@@ -97,58 +63,24 @@
             console.error(err.stack);
         });
 
+
     ClassicEditor
         .create(document.querySelector('#description'), {
             ckfinder: {
                 uploadUrl: "{{route('contents.upload', ['_token' => csrf_token() ])}}",
             },
-            alignment: {
-                options: ['left', 'right']
+            toolbar: {
+                viewportTopOffset: 80
             },
-
-            language: {
-                // The UI will be English.
-                ui: 'en',
-
-                // But the content will be edited in Arabic.
-                content: 'fa'
-            },
-
-            /*toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'imageUpload','numberedList' ,'alignment','undo', 'redo','blockQuote' ],
-             blockToolbar: [
-             'paragraph', 'heading1', 'heading2', 'heading3',
-             '|',
-             'blockQuote', 'imageUpload'
-             ,'alignment','undo', 'redo',
-             '|',
-             'bulletedList', 'numberedList',
-             '|'
-
-             ],*/
-
-
-            image: {
-                // You need to configure the image toolbar, too, so it uses the new style buttons.
-                toolbar: ['imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight', 'imageStyle:alignCenter'],
-
-                styles: [
-                    // This option is equal to a situation where no style is applied.
-                    'full',
-
-                    // This represents an image aligned to the left.
-                    'alignLeft',
-
-                    // This represents an image aligned to the right.
-                    'alignRight',
-                    'alignCenter'
-
-                ]
-            }
+            language: 'fa'
         })
         .then(editor => {
+            const wordCountPlugin = editor.plugins.get('WordCount');
+            const wordCountWrapper = document.getElementById('word-count2');
+            wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+
             window.editor = editor;
         })
-
         .catch(err => {
             console.error(err.stack);
         });
@@ -179,13 +111,13 @@
 
                     <label for="slug" class="col-form-label text-md-left">آدرس صفحه :</label>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="slug" value="{{ old('slug') }}"/>
+                        <input type="text" class="form-control" name="slug" value="{{ old('slug') }}" />
                         <span class="text-danger">{{ $errors->first('slug') }}</span>
                     </div>
 
                 </div>
 
-                    <div class="form-group row">
+                <div class="form-group row">
 
                     <div class="col-md-6">
                         <label for="name" class="col-form-label text-md-left">Category</label>
@@ -255,7 +187,7 @@
                 <div class="form-group row">
                     <label for="name" class="col-md-12 col-form-label ">Meta Title</label>
                     <div class="col-md-12">
-                        <input type="text" class="form-control" name="meta_title" value="{{ old('meta_title') }}"/>
+                        <input type="text" class="form-control" name="meta_title" value="{{ old('meta_title') }}" />
                         <span class="text-danger">{{ $errors->first('meta_title') }}</span>
                     </div>
                 </div>
