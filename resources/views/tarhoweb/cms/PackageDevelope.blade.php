@@ -42,7 +42,6 @@
 
                 </div>
                 <div class="price">
-                    ماهیانه
                     <div class="font-2">
                         ۲،۵۰۰،۰۰۰ تومان
                     </div>
@@ -69,7 +68,6 @@
                     <div>پشتیبانی ماهیانه ۱۰۰ هزار تومان</div>
                 </div>
                 <div class="price">
-                    ماهیانه
                     <div class="font-2">
                         ۴،۵۰۰،۰۰۰ تومان
                     </div>
@@ -162,7 +160,6 @@
                     <div>-</div>
                 </div>
                 <div class="price">
-                    ماهیانه
                     <div class="font-2">
                         ۱،۵۰۰،۰۰۰ تومان
                     </div>
@@ -190,7 +187,6 @@
 
                 </div>
                 <div class="price">
-                    ماهیانه
                     <div class="font-2">
                         ۲،۵۰۰،۰۰۰ تومان
                     </div>
