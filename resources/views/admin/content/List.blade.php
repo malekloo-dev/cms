@@ -45,7 +45,7 @@
                         <td>{{ $content->title }}</td>
                         <td>{{ $content->brief_description }}</td>
                         <td>
-                            @if (isset($content->parent_id))
+                            @if (isset($content->parent_id) && isset($category[$content->parent_id]))
                             {{ $category[$content->parent_id]->title }}
                             @endif
                         </td>

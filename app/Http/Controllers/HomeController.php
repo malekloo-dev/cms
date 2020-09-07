@@ -18,13 +18,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+
 
 
         //Content::increment('viewCount');
         $data['topViewPost'] = Content::where('type','=','2')->orderBy('viewCount', 'desc')->limit(4)->get();
         $data['newPost'] = Content::where('type','=','2')->orderBy('publish_date', 'desc')->limit(4)->get();
         $data['category'] = Category::where('type', '=', '1')->where('parent_id','<>','0')->get();
+        
         return view(@env('TEMPLATE_NAME') . '.Home',$data);
     }
 
