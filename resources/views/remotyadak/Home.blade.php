@@ -19,9 +19,21 @@
         <a href="{{ $content->slug }}">
             <div class="shadow hover">
                 @if(isset($content->images['thumb']))
-                <img src="{{ $content->images['thumb'] }}">
+                    <figure class="image">
+                        <img src="{{ $content->images['images']['small'] ?? $content->images['thumb']}}"
+                        sizes="(max-width:{{ env('CATEGORY_SMALL') }}px) 100vw {{ env('CATEGORY_SMALL') }}px {{ ENV('CATEGORY_MEDIUM') }}px {{ ENV('CATEGORY_LARGE') }}px"
+                        alt="{{$content->title}}"
+                        width="200" height="200"
+                        srcset="
+                            {{ $content->images['images']['small'] ?? $content->images['thumb']}} {{ env('CATEGORY_SMALL') }}w,
+                            {{ $content->images['images']['medium'] ?? $content->images['thumb']}} {{ env('CATEGORY_MEDIUM') }}w,
+                            {{ $content->images['images']['large'] ?? $content->images['thumb']}} 2x" >
+                        <figcaption>
+                            <h2 class="p-0 m-0 text-center"> {{ $content->title }}</h2>
+                        </figcaption>
+                    </figure>
                 @endif
-                <h2 class="p-0 m-0 text-center"> {{ $content->title }}</h2>
+
             </div>
         </a>
         @endforeach

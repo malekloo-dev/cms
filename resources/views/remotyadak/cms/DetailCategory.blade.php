@@ -188,22 +188,23 @@ $append='';
         <div>
 
             <h1 class="">{{ $detail->title }}</h1>
+            @if(isset($detail->images['images'])):
+                <figure class="image">
+                        <img src="{{ $detail->images['images']['CATEGORY_MEDIUM'] ?? $detail->images['thumb']}}"
+                        sizes="(max-width:{{ env('CATEGORY_MEDIUM') }}px) 100vw  {{ ENV('CATEGORY_MEDIUM') }}px {{ ENV('CATEGORY_LARGE') }}px"
+                        alt="{{$detail->title}}"
+                        width="{{ env('CATEGORY_MEDIUM') }}" height="{{ env('CATEGORY_MEDIUM') }}"
+                        srcset="
+                            {{ $detail->images['images']['small'] ?? $detail->images['thumb']}} {{ env('CATEGORY_SMALL') }}w,
+                            {{ $detail->images['images']['medium'] ?? $detail->images['thumb']}} {{ env('CATEGORY_MEDIUM') }}w,
+                            {{ $detail->images['images']['large'] ?? $detail->images['thumb']}} 2x" >
+                        <figcaption>
+                            {{ $detail->title }}
+                        </figcaption>
+                    </figure>
 
-            <figure class="image">
-                    <img src="{{ $detail->images['images']['600'] }}"
-                    sizes="(max-width:600px) 100vw 300px 600px 900px"
-                    alt="{{$detail->title}}"
-                    width="600" height="600"
-                    srcset="
-                        {{ $detail->images['images']['300'] }} 300w,
-                        {{ $detail->images['images']['600'] }} 800w,
-                        {{ $detail->images['images']['900'] }} 1200w,
-                        {{ $detail->images['images']['1800'] }} 2x"
-                        >
-                <figcaption>
-                    {{ $detail->title }}
-                </figcaption>
-            </figure>
+
+            @endif
 
 
             {!! $detail->description !!}

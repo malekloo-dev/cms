@@ -31,7 +31,7 @@ class HomeController extends Controller
             return strtoupper($name['value']);
         });
 
-
+        
         return view(@env('TEMPLATE_NAME') . '.Home',$data);
     }
 
