@@ -120,8 +120,12 @@ class ContentController extends Controller
         $data['parent_id'] = $request->parent_id[0];
         $data['type'] = '2';
         $data['images'] = $imagesUrl;
-
-        $data['slug'] = preg_replace('/\s+/', '-', $request->slug);
+       if($request->slug==''){
+           $data['slug']=$request->title;
+       }else{
+           $data['slug']=$request->slug;
+       }
+        $data['slug'] = preg_replace('/\s+/', '-',$data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
@@ -221,8 +225,12 @@ class ContentController extends Controller
         }
         $data['images'] = $images;
 
-
-        $data['slug'] = preg_replace('/\s+/', '-', $request->title);
+        if($request->slug==''){
+            $data['slug']=$request->title;
+        }else{
+            $data['slug']=$request->slug;
+        }
+        $data['slug'] = preg_replace('/\s+/', '-',$data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
