@@ -46,7 +46,7 @@ class CategoryController extends Controller
     }
 
 
-    protected function uploadImages($file)
+    protected function uploadImages($file,$type = 'category')
     {
         $year = Carbon::now()->year;
         $imagePath = "/upload/images/{$year}/";
@@ -55,7 +55,6 @@ class CategoryController extends Controller
         $file = $file->move(public_path($imagePath), $filename);
         // $sizes = ["300", "600", "900"];
 
-        $type = 'category';
 
         $url['images'] = $this->resize($file->getRealPath(), $type, $imagePath, $filename);
 

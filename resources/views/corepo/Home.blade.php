@@ -95,12 +95,16 @@
     <div class="flex two">
         <div class="full two-third-500 slideshow-container ltr">
             <div class="mySlides fade ">
-                <picture>
-                    <source media="(min-width: 900px)" srcset="{{ asset('/img/900_main-banner.jpg') }} 1x, {{ asset('/img/1800_main-banner.jpg') }} 2x" type="image/jpeg">
-                    <source media="(min-width: 601px)" srcset="{{ asset('/img/600_main-banner.jpg') }} 1x, {{ asset('/img/1200_main-banner.jpg') }} 2x" type="image/jpeg">
-                    <source media="(max-width: 600px)" srcset="{{ asset('/img/600_main-banner.jpg') }} 1x, {{ asset('/img/600_main-banner.jpg') }} 1x" type="image/jpeg">
-                    <img class="shadow2" src="{{ asset('/img/900_main-banner.jpg') }}" type="image/jpeg" alt="my image description">
-                </picture>
+                <figure class="image">
+                    <img src="{{ asset('/img/main-banner-medium.jpg') }}"
+                    sizes="(max-width:792px) 100vw 396px 792px 1584px"
+                    alt=""
+                    width="792" height="370"
+                    srcset="
+                        {{ asset('/img/main-banner-small.jpg') }} 396w,
+                        {{ asset('/img/main-banner-medium.jpg') }} 792w,
+                        {{ asset('/img/main-banner-large.jpg') }} 2x" >
+                </figure>
                 <div class="text">طراحی سایت و سئو - طرح و وب</div>
             </div>
             <div class="mySlides fade">
@@ -118,10 +122,30 @@
         <div class="full third-500 banner-left flex one">
 
             <div>
-                <img src="{{ asset('/img/bt.jpg') }}" srcset="">
+                <figure class="image">
+                    <img src="{{ asset('/img/bt.jpg') }}"
+                    sizes="(max-width:300px) 100vw 300px 600px "
+                    alt=""
+                    width="383" height="182"
+                    srcset="
+                        {{ asset('/img/bt-small.jpg') }} 383w,
+                        {{ asset('/img/bt.jpg') }} 500w,
+                        {{ asset('/img/bt-large.jpg') }} 2x" >
+
+                </figure>
             </div>
             <div class="pb-0">
-                <img src="{{ asset('/img/bb.jpg') }}" srcset="">
+                <figure class="image">
+                    <img src="{{ asset('/img/bt.jpg') }}"
+                    sizes="(max-width:300px) 100vw 300px 600px "
+                    alt=""
+                    width="383" height="182"
+                    srcset="
+                        {{ asset('/img/bt-small.jpg') }} 383w,
+                        {{ asset('/img/bt.jpg') }} 500w,
+                        {{ asset('/img/bt-large.jpg') }} 2x" >
+
+                </figure>
             </div>
 
 
@@ -139,16 +163,22 @@
             <a href="{{ $content->slug }}">
                 <div class="hover text-center">
                     @if(isset($content->images['thumb']))
-                    <picture>
-                        <source media="(min-width: 900px)" srcset="{{ $content->images['images']['600'] }} 1x, {{ $content->images['images']['900'] }} 2x" type="image/jpeg">
-                        <source media="(min-width: 601px)" srcset="{{ $content->images['images']['300'] }} 1x, {{ $content->images['images']['600'] }} 2x" type="image/jpeg">
-                        <source media="(max-width: 600px)" srcset="{{ $content->images['images']['300'] }} 1x, {{ $content->images['images']['300'] }} 1x" type="image/jpeg">
-                        <img class="" src="{{ $content->images['images']['300'] }}" type="image/jpeg" alt="my image description">
-                    </picture>
-
+                    <figure class="image">
+                        <img src="{{ $content->images['images']['small'] ?? $content->images['thumb']}}"
+                        sizes="(max-width:{{ env('CATEGORY_SMALL') }}px) 100vw {{ env('CATEGORY_SMALL') }}px {{ ENV('CATEGORY_MEDIUM') }}px {{ ENV('CATEGORY_LARGE') }}px"
+                        alt="{{$content->title}}"
+                        width="200" height="200"
+                        srcset="
+                            {{ $content->images['images']['small'] ?? $content->images['thumb']}} {{ env('CATEGORY_SMALL') }}w,
+                            {{ $content->images['images']['medium'] ?? $content->images['thumb']}} {{ env('CATEGORY_MEDIUM') }}w,
+                            {{ $content->images['images']['large'] ?? $content->images['thumb']}} 2x" >
+                        <figcaption>
+                            <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                        </figcaption>
+                    </figure>
 
                     @endif
-                    <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+
                 </div>
             </a>
             @endforeach
@@ -169,16 +199,17 @@
                 <div>
                     <article class="shadow2">
                         @if(isset($content->images['thumb']))
-                        <picture>
-                            <source media="(min-width: 900px)" srcset="{{ $content->images['images']['600'] }} 1x, {{ $content->images['images']['900'] }} 2x" type="image/jpeg">
-                            <source media="(min-width: 601px)" srcset="{{ $content->images['images']['300'] }} 1x, {{ $content->images['images']['600'] }} 2x" type="image/jpeg">
-                            <source media="(max-width: 600px)" srcset="{{ $content->images['images']['300'] }} 1x, {{ $content->images['images']['300'] }} 2x" type="image/jpeg">
-                            <img class="" src="{{ $content->images['images']['300'] }}" type="image/jpeg" alt="my image description">
-                        </picture>
-
-                        @else
-                        <img src="{{ asset('/img/site1.jpg') }}">
+                        <figure class="image">
+                            <img src="{{ $content->images['images']['small'] ?? $content->images['thumb']}}"
+                            sizes="(max-width:{{ env('ARTICLE_SMALL') }}px) 100vw {{ env('ARTICLE_SMALL') }}px {{ ENV('ARTICLE_MEDIUM') }}px"
+                            alt="{{$content->title}}"
+                            width="100" height="100"
+                            srcset="
+                                {{ $content->images['images']['small'] ?? $content->images['thumb']}} {{ env('ARTICLE_SMALL') }}w,
+                                {{ $content->images['images']['medium'] ?? $content->images['thumb']}} 2x" >
+                        </figure>
                         @endif
+
                         <a href="{{ $content->slug }}"> {{ $content->title }}</a>
                         <div class="info">
                             {!! $content->brief_description !!}

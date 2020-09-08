@@ -91,7 +91,15 @@ $append='';
 <section class="" id="">
     <div class="flex one ">
         <div>
-
+                <figure class="image">
+                    <img src="{{ $detail->images['images']['medium'] ?? $detail->images['thumb']}}"
+                    sizes="(max-width:{{ env('ARTICLE_MEDIUM') }}px) 100vw {{ env('ARTICLE_MEDIUM') }}px {{ ENV('ARTICLE_LARGE') }}px"
+                    alt="{{$detail->title}}"
+                    width="{{ env('ARTICLE_MEDIUM') }}" height="100"
+                    srcset="
+                        {{ $detail->images['images']['medium'] ?? $detail->images['thumb']}} {{ env('ARTICLE_MEDIUM') }}w,
+                        {{ $detail->images['images']['large'] ?? $detail->images['thumb']}} 2x" >
+                </figure>
                 <h1 class="">{{ $detail->title }}</h1>
 
                 <ul>

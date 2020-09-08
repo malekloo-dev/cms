@@ -159,8 +159,8 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-4">
-                        <label for="images" class="control-label">تصویر مقاله</label>
+                    <div class="col-sm-6">
+                        <label for="images" class="control-label">تصویر مقاله (سایز مقاله {{ env('ARTICLE_LARGE') }}px) (سایز محصول {{ env('PRODUCT_LARGE') }}px)</label>
                         <input type="file" class="form-control" name="images" id="images" placeholder="تصویر مقاله را وارد کنید" value="{{ old('imageUrl') }}">
                     </div>
 

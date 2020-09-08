@@ -178,7 +178,7 @@
 
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <label for="images" class="control-label">تصویر </label>
+                        <label for="images" class="control-label">تصویر (سایز{{ env('CATEGORY_LARGE') }}px)</label>
                         <input type="file" class="form-control" name="images" id="images" placeholder="تصویر  را وارد کنید" value="{{ old('imageUrl') }}">
                     </div>
 
