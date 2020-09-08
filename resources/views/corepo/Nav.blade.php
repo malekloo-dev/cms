@@ -1,5 +1,7 @@
-<nav>
-    <div class="container ">
+<div class="top-menu">
+    <div class="container">
+<nav >
+
         <a href="/" class="brand">
             <img srcset="{{ asset('/img/logo1x.png') }} 1x, {{ asset('/img/logo2x.png') }} 2x" src="{{ asset('/img/logo1x.png') }}" />
         </a>
@@ -44,6 +46,10 @@
                 @endforeach
             </ul>
         </div>
-    </div>
+
 
 </nav>
+
+    </div>
+
+</div>
