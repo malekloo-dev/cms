@@ -10,62 +10,68 @@ $tableOfImages=tableOfImages($detail->description);
 $append='';
 @endphp
 <script type="application/ld+json">
-    @if (count($relatedProduct))
-[
-   @foreach($relatedProduct as $key=>$content)
+    @if(count($relatedProduct))[
+        @foreach($relatedProduct as $key => $content)
 
         {
             "@context": "https://schema.org/",
             "@type": "Product",
             "name": "{{ $content->title }}",
 
-            @if (isset($content->images['thumb']))
-                "image": [
-                    "{{ $content->images['images']['300'] }}",
-                    "{{ $content->images['images']['600'] }}",
-                    "{{ $content->images['images']['900'] }}"
-                ],
+            @if(isset($content->images['thumb']))
+            "image": [
+                "{{ $content->images['images']['300'] }}",
+                "{{ $content->images['images']['600'] }}",
+                "{{ $content->images['images']['900'] }}"
+            ],
             @endif
 
             "description": "{{$content->brief_description}}",
             "sku": "{{$content->id}}",
             "mpn": "{{$content->id}}",
-            "brand":
-            {
+            "brand": {
                 "@type": "Brand",
                 "name": "{{ $detail->brand }}"
             },
 
-            "aggregateRating":
-            {
+            "aggregateRating": {
                 "@type": "AggregateRating",
-                "ratingValue": {{ $content->attr['rate'] }},
-                "reviewCount": {{ $content->viewCount }},
+                "ratingValue": {
+                    {
+                        $content->attr['rate']
+                    }
+                },
+                "reviewCount": {
+                    {
+                        $content->viewCount
+                    }
+                },
                 "bestRating": 5,
                 "worstRating": 0
             },
-            "offers":
-            {
+            "offers": {
                 "@type": "Offer",
                 "url": "{{ url()->current().$content->slug }}",
                 "priceCurrency": "IRR",
-                "price": "{{ $content->attr['price']??"0"}}",
+                "price": "{{ $content->attr['price']??"
+                0 "}}",
                 "itemCondition": "https://schema.org/UsedCondition",
                 "availability": "https://schema.org/InStock",
-                "seller":
-                {
+                "seller": {
                     "@type": "Organization",
                     "name": "ایران ریموت"
                 }
             }
         }
-        @isset($relatedProduct[$key+1])
-            {{","}}
-        @endisset
-   @endforeach
+        @isset($relatedProduct[$key + 1]) {
+            {
+                ","
+            }
+        }
+        @endisset @endforeach
 
-]
-@endif
+    ]
+    @endif
 </script>
 
 @if (count($breadcrumb))
@@ -180,7 +186,26 @@ $append='';
 <section class="" id="">
     <div class="flex one ">
         <div>
+
             <h1 class="">{{ $detail->title }}</h1>
+
+            <figure class="image">
+                    <img src="{{ $detail->images['images']['600'] }}"
+                    sizes="(max-width:600px) 100vw 300px 600px 900px"
+                    alt="{{$detail->title}}"
+                    width="600" height="600"
+                    srcset="
+                        {{ $detail->images['images']['300'] }} 300w,
+                        {{ $detail->images['images']['600'] }} 800w,
+                        {{ $detail->images['images']['900'] }} 1200w,
+                        {{ $detail->images['images']['1800'] }} 2x"
+                        >
+                <figcaption>
+                    {{ $detail->title }}
+                </figcaption>
+            </figure>
+
+
             {!! $detail->description !!}
         </div>
     </div>

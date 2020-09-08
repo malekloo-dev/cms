@@ -1048,7 +1048,7 @@ figure.image{display:table;clear:both;text-align:center;margin:1em auto}
 .image-style-align-center{text-align:center;max-width:50%;margin-left:auto;margin-right:auto}
 .image-style-align-right{float:right}
 .image-style-align-left{float:left}
-figure.image>img{max-width:100%;min-width:50px;margin:0 auto;display:block}
+figure.image>img{max-width:100%;margin:0 auto;display:block;height: auto;}
 .text-left{text-align:left}
 .text-right{text-align:right}
 .text-center{text-align:center}
@@ -1060,6 +1060,7 @@ figure.image>img{max-width:100%;min-width:50px;margin:0 auto;display:block}
 .search1>div{display:inline-block;position:relative}
 .search1>div:after{content:"";background:#fff;width:2px;height:8px;position:absolute;top:22px;right:1px;transform:rotate(135deg)}
 .search1>div>input{color:#fff;font-size:16px;background:0 0;width:5px;height:5px;padding:10px;border:solid 2px #fff;outline:0;border-radius:35px;transition:width .5s}
-.search1>div>input::placeholder{color:#efefef;opacity:0;transition:opacity 150ms ease-out}
+.search1>div>input::placeholder{color:#efefef;opacity:0;transition:opacity 150ms ease-ou t}
 .search1>div>input:focus::placeholder{opacity:1}
 .search1>div>input:focus,.search1>div>input:not(:placeholder-shown){width:240px}
+

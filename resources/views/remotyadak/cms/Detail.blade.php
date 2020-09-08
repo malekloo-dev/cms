@@ -13,60 +13,66 @@ $append='';
         "@type": "Product",
         "name": "{{ $detail->title }}",
 
-        @if (isset($detail->images['thumb']))
-            "image": [
-                "{{ $detail->images['images']['300'] }}",
-                "{{ $detail->images['images']['600'] }}",
-                "{{ $detail->images['images']['900'] }}"
-            ],
+        @if(isset($detail - > images['thumb']))
+        "image": [
+            "{{ $detail->images['images']['300'] }}",
+            "{{ $detail->images['images']['600'] }}",
+            "{{ $detail->images['images']['900'] }}"
+        ],
         @endif
-        @if (count($tableOfImages))
+        @if(count($tableOfImages))
 
-            "images": [
+        "images": [
 
-                @foreach($tableOfImages as $key=>$item)
-                    {
-                    "type": "gallery",
-                    "url": "{{$item['src']}}",
-                    "alt": "{{$item['alt']}}",
-                    "title":"{{$item['alt']}}"
+            @foreach($tableOfImages as $key => $item) {
+                "type": "gallery",
+                "url": "{{$item['src']}}",
+                "alt": "{{$item['alt']}}",
+                "title": "{{$item['alt']}}"
 
-                    }
-                    @isset($tableOfImages[$key+1])
-                        {{","}}
-                    @endisset
+            }
+            @isset($tableOfImages[$key + 1]) {
+                {
+                    ","
+                }
+            }
+            @endisset
 
-                @endforeach
-            ],
+            @endforeach
+        ],
         @endif
 
         "description": "{{$detail->description}}",
         "sku": "{{$detail->id}}",
         "mpn": "{{$detail->id}}",
-        "brand":
-        {
+        "brand": {
             "@type": "Brand",
             "name": "{{ $detail->brand }}"
         },
 
-        "aggregateRating":
-        {
+        "aggregateRating": {
             "@type": "AggregateRating",
-            "ratingValue": {{ $detail->attr['rate'] }},
-            "reviewCount": {{ $detail->viewCount }},
+            "ratingValue": {
+                {
+                    $detail - > attr['rate']
+                }
+            },
+            "reviewCount": {
+                {
+                    $detail - > viewCount
+                }
+            },
             "bestRating": 5,
             "worstRating": 0
         },
-        "offers":
-        {
+        "offers": {
             "@type": "Offer",
             "url": "{{ url()->current().$detail->slug }}",
             "priceCurrency": "IRR",
             "price": "{{ $detail->attr['price'] }}",
             "itemCondition": "https://schema.org/UsedCondition",
             "availability": "https://schema.org/InStock",
-            "seller":
-            {
+            "seller": {
                 "@type": "Organization",
                 "name": "ایران ریموت"
             }
@@ -92,17 +98,23 @@ $append='';
     <div class="flex one ">
         <div>
 
-                <h1 class="">{{ $detail->title }}</h1>
+            <h1 class="">{{ $detail->title }}</h1>
 
-                <ul>
-                    @foreach($table_of_content as $key=>$item)
-                    <li class="toc1">
-                        <a id="test" href="#{{$item['anchor']}}">{{$item['label']}}</a>
-                    </li>
-                    @endforeach
+            <ul>
+                @foreach($table_of_content as $key=>$item)
+                <li class="toc1">
+                    <a id="test" href="#{{$item['anchor']}}">{{$item['label']}}</a>
+                </li>
+                @endforeach
 
-                </ul>
-                {!! $detail->description !!}
+            </ul>
+
+
+
+
+
+
+            {!! $detail->description !!}
 
         </div>
     </div>

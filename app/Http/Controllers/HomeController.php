@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Content;
 use App\Category;
+use App\WebsiteSetting;
 //use App\Home;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -25,7 +26,12 @@ class HomeController extends Controller
         $data['topViewPost'] = Content::where('type','=','2')->orderBy('viewCount', 'desc')->limit(4)->get();
         $data['newPost'] = Content::where('type','=','2')->orderBy('publish_date', 'desc')->limit(4)->get();
         $data['category'] = Category::where('type', '=', '1')->where('parent_id','<>','0')->get();
-        
+
+        $data['seo'] = WebsiteSetting::all()->keyBy('variable')->map(function ($name) {
+            return strtoupper($name['value']);
+        });
+
+
         return view(@env('TEMPLATE_NAME') . '.Home',$data);
     }
 

@@ -10,7 +10,9 @@
 
 
 <section class="index-item-top bg-orange mt-0 mb-0">
-    <div class="text-center"><h1>مرکز ساخت سوئیچ و ریموت</h1></div>
+    <div class="text-center">
+        <h1>مرکز ساخت سوئیچ و ریموت</h1>
+    </div>
     <div class="flex one five-500 center  ">
         {{-- $data['newPost'] --}}
         @foreach($category as $content)
