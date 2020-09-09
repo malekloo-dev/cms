@@ -10,62 +10,68 @@ $tableOfImages=tableOfImages($detail->description);
 $append='';
 @endphp
 <script type="application/ld+json">
-    @if (count($relatedProduct))
-[
-   @foreach($relatedProduct as $key=>$content)
+    @if(count($relatedProduct))[
+        @foreach($relatedProduct as $key => $content)
 
         {
             "@context": "https://schema.org/",
             "@type": "Product",
             "name": "{{ $content->title }}",
 
-            @if (isset($content->images['thumb']))
-                "image": [
-                    "{{ $content->images['images']['300'] }}",
-                    "{{ $content->images['images']['600'] }}",
-                    "{{ $content->images['images']['900'] }}"
-                ],
+            @if(isset($content->images['thumb']))
+            "image": [
+                "{{ $content->images['images']['300'] }}",
+                "{{ $content->images['images']['600'] }}",
+                "{{ $content->images['images']['900'] }}"
+            ],
             @endif
 
             "description": "{{$content->brief_description}}",
             "sku": "{{$content->id}}",
             "mpn": "{{$content->id}}",
-            "brand":
-            {
+            "brand": {
                 "@type": "Brand",
                 "name": "{{ $detail->brand }}"
             },
 
-            "aggregateRating":
-            {
+            "aggregateRating": {
                 "@type": "AggregateRating",
-                "ratingValue": {{ $content->attr['rate'] }},
-                "reviewCount": {{ $content->viewCount }},
+                "ratingValue": {
+                    {
+                        $content->attr['rate']
+                    }
+                },
+                "reviewCount": {
+                    {
+                        $content->viewCount
+                    }
+                },
                 "bestRating": 5,
                 "worstRating": 0
             },
-            "offers":
-            {
+            "offers": {
                 "@type": "Offer",
                 "url": "{{ url()->current().$content->slug }}",
                 "priceCurrency": "IRR",
-                "price": "{{ $content->attr['price']??"0"}}",
+                "price": "{{ $content->attr['price']??"
+                0 "}}",
                 "itemCondition": "https://schema.org/UsedCondition",
                 "availability": "https://schema.org/InStock",
-                "seller":
-                {
+                "seller": {
                     "@type": "Organization",
                     "name": "ایران ریموت"
                 }
             }
         }
-        @isset($relatedProduct[$key+1])
-            {{","}}
-        @endisset
-   @endforeach
+        @isset($relatedProduct[$key + 1]) {
+            {
+                ","
+            }
+        }
+        @endisset @endforeach
 
-]
-@endif
+    ]
+    @endif
 </script>
 
 @if (count($breadcrumb))
@@ -180,7 +186,27 @@ $append='';
 <section class="" id="">
     <div class="flex one ">
         <div>
+
             <h1 class="">{{ $detail->title }}</h1>
+            @if(isset($detail->images['images'])):
+                <figure class="image">
+                        <img src="{{ $detail->images['images']['CATEGORY_MEDIUM'] ?? $detail->images['thumb']}}"
+                        sizes="(max-width:{{ env('CATEGORY_MEDIUM') }}px) 100vw  {{ ENV('CATEGORY_MEDIUM') }}px {{ ENV('CATEGORY_LARGE') }}px"
+                        alt="{{$detail->title}}"
+                        width="{{ env('CATEGORY_MEDIUM') }}" height="{{ env('CATEGORY_MEDIUM') }}"
+                        srcset="
+                            {{ $detail->images['images']['small'] ?? $detail->images['thumb']}} {{ env('CATEGORY_SMALL') }}w,
+                            {{ $detail->images['images']['medium'] ?? $detail->images['thumb']}} {{ env('CATEGORY_MEDIUM') }}w,
+                            {{ $detail->images['images']['large'] ?? $detail->images['thumb']}} 2x" >
+                        <figcaption>
+                            {{ $detail->title }}
+                        </figcaption>
+                    </figure>
+
+
+            @endif
+
+
             {!! $detail->description !!}
         </div>
     </div>

@@ -1,4 +1,7 @@
 @extends(@env('TEMPLATE_NAME').'.App')
+@section('assets')
+<link rel="stylesheet" href="{{ asset('/detail.css') }}">
+@endsection
 @section('Content')
 @php
 $tableOfImages=tableOfImages($detail->description);
@@ -88,11 +91,41 @@ $append='';
     </div>
 </section>
 
+<section class="intro" id="">
+    <div class="flex one two-500  ">
+        <div class="third-500">
+            <figure class="image">
+                <img src="{{ $detail->images['images']['medium'] ?? $detail->images['thumb']}}"
+                sizes="(max-width:{{ env('ARTICLE_MEDIUM') }}px) 100vw {{ env('ARTICLE_MEDIUM') }}px {{ ENV('ARTICLE_LARGE') }}px"
+                alt="{{$detail->title}}"
+                width="{{ env('ARTICLE_MEDIUM') }}" height="100"
+                srcset="
+                    {{ $detail->images['images']['medium'] ?? $detail->images['thumb']}} {{ env('ARTICLE_MEDIUM') }}w,
+                    {{ $detail->images['images']['large'] ?? $detail->images['thumb']}} 2x" >
+
+            </figure>
+            <div>
+                <h1 class="site-name">{{ $detail->title }}</h1>
+                <div class="website">site</div>
+                <div class="rate">
+                    <img src="{{ asset('/img/star1x.png') }}" srcset="{{ asset('/img/star1x.png') }}, {{ asset('/img/star2x.png') }} 2x">
+                </div>
+            </div>
+        </div>
+        <div class="two-third-500">
+
+            {!! $detail->brief_description !!}
+        </div>
+    </div>
+</section>
+
 <section class="" id="">
     <div class="flex one ">
         <div>
 
-                <h1 class="">{{ $detail->title }}</h1>
+
+
+
 
                 <ul>
                     @foreach($table_of_content as $key=>$item)

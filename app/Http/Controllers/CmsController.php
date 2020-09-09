@@ -13,17 +13,17 @@ use PDF;
 
 class CmsController extends Controller
 {
-
     public $breadcrumb;
 
 
     public function request($slug)
     {
         $spesifiedUrl = RedirectUrl::where('url', 'like', '/' . $slug);
-        if($spesifiedUrl->exists()){
-            header("Location: ". url($spesifiedUrl->first()->redirect_to), TRUE, 301);
+        if ($spesifiedUrl->exists()) {
+            header("Location: ". url($spesifiedUrl->first()->redirect_to), true, 301);
             exit();
         }
+
 
         $detail = Content::where('slug', '=', $slug)->first();
         if ($detail === null) {
@@ -35,8 +35,11 @@ class CmsController extends Controller
 
         $seo['meta_keywords'] = $detail->meta_keywords;
         $seo['meta_description'] = $detail->meta_description;
-        $seo['meta_description'] = $detail->meta_description;
+        $seo['url'] = url('/').'/'.$slug;
         $seo['meta_title'] = $detail->meta_title;
+        $seo['og:title'] = $detail->title;
+        $seo['og:type'] = ($detail->type == 1)?'article':'product';
+
 
         if (is_array($breadcrumb)) {
             krsort($breadcrumb);
@@ -48,7 +51,6 @@ class CmsController extends Controller
         $table_of_images = array();
         $images = array();
         if (strlen($detail->description)) {
-
             $resultTableContent = $this->tableOfContent($detail->description);
             $detail->description = $resultTableContent['content'];
             $table_of_content = $resultTableContent['list'];
@@ -63,9 +65,8 @@ class CmsController extends Controller
 
 
             ///dd($result);
-
-
         }
+    
 
 
         $detail->increment('viewCount');
@@ -74,7 +75,6 @@ class CmsController extends Controller
         $relatedProduct = array();
 
         if ($detail->type == 1) {
-
             $relatedPost = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'article')
                 ->where('parent_id', '=', $detail->id)
@@ -91,10 +91,9 @@ class CmsController extends Controller
             if ($detail->attr_type == 'html') {
                 $template = @env(TEMPLATE_NAME) . '.cms.' . $detail->attr['template_name'];
             }
-
+            //dd($detail);
             return view($template, compact(['detail', 'relatedPost', 'table_of_content', 'subCategory', 'relatedProduct', 'breadcrumb', 'images', 'seo']));
         } else {
-
             $relatedPost = Content::where('type', '=', '2')
                 ->where('parent_id', '=', $detail->parent_id)
                 ->where('id', '<>', $detail->id)
@@ -120,7 +119,6 @@ class CmsController extends Controller
 
     public function tableOfImage($content)
     {
-
         $doc = new \DOMDocument();
         /* use @ or libxml_use_internal_errors
          * libxml_use_internal_errors(true);
@@ -248,7 +246,6 @@ class CmsController extends Controller
 
     public function index()
     {
-
         $data['contents'] = Content::orderBy('id', 'desc')->paginate(10);
 
         return view('content.List', $data);
@@ -261,7 +258,6 @@ class CmsController extends Controller
      */
     public function create()
     {
-
         $result = app('App\Http\Controllers\CategoryController')->tree_set();
 
         $data['category'] = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
@@ -269,7 +265,7 @@ class CmsController extends Controller
         return view('content.Create', $data);
     }
 
-    function get_parent($id)
+    public function get_parent($id)
     {
         global $conn;
         $tree_rs = Content::where('id', '=', $id)->first();

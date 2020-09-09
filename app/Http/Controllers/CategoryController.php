@@ -11,7 +11,7 @@ use PDF;
 use Harimayco\Menu\Models\Menus;
 use Harimayco\Menu\Models\MenuItems;
 use Harimayco\Menu\Facades\Menu;
-
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -43,39 +43,49 @@ class CategoryController extends Controller
         //return view('vendor.wmenu.scripts');
         $menulist = Menus::all();
         return view('vendor.wmenu.menu-html', compact('menulist'));
-
     }
 
 
-    protected function uploadImages($file)
+    protected function uploadImages($file,$type = 'category')
     {
-
         $year = Carbon::now()->year;
         $imagePath = "/upload/images/{$year}/";
         $filename = $file->getClientOriginalName();
 
         $file = $file->move(public_path($imagePath), $filename);
-        $sizes = ["300", "600", "900"];
+        // $sizes = ["300", "600", "900"];
 
-        $url['images'] = $this->resize($file->getRealPath(), $sizes, $imagePath, $filename);
 
-        $url['thumb'] = $url['images'][$sizes[0]];
+        $url['images'] = $this->resize($file->getRealPath(), $type, $imagePath, $filename);
+
+        $url['thumb'] = $url['images']['small'];
 
         return $url;
     }
 
-    private function resize($path, $sizes, $imagePath, $filename)
+    private function resize($path, $type, $imagePath, $filename)
     {
+        $sizes = array(
+                "small"=>@env(Str::upper($type).'_SMALL'),
+                'medium'=>@env(Str::upper($type).'_MEDIUM'),
+                'large'=>@env(Str::upper($type).'_LARGE')
+        );
+
+
         $images['original'] = $imagePath . $filename;
 
-        foreach ($sizes as $size) {
+        foreach ($sizes as $name => $size) {
 
-            $images[$size] = $imagePath . "{$size}_" . $filename;
+            $images[$name] = $imagePath . "{$name}_" . $filename;
 
             Image::make($path)->resize($size, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path($images[$size]));
+            })->save(public_path($images[$name]));
         }
+
+
+
+
 
         return $images;
     }
@@ -96,13 +106,11 @@ class CategoryController extends Controller
 
     public function convertTemplateSelect1($listCat, $_input = array(), $start = '|-', $befor = '', $after = '', $level = 0)
     {
-
         static $mainMenu = array();
         if (!count($_input) and count($listCat)) {
             $_input = $listCat[0];
         }
         foreach ($_input as $key => $val) {
-
             $newStart = str_repeat($befor, $level) . $start;
             $val->level = $level;
             $val->symbol = $newStart;
@@ -119,7 +127,6 @@ class CategoryController extends Controller
 
     public function convertTemplateTable1($listCat, $_input = array(), $start = '|-', $befor = '', $after = '', $level = 0)
     {
-
         static $mainMenu = array();
         //echo $this->level;
         if (!count($_input) and count($listCat)) {
@@ -146,12 +153,11 @@ class CategoryController extends Controller
     }
 
 
-    function tree_set($searchmap = array())
+    public function tree_set($searchmap = array())
     {
-
         $items = Category::where('type', '=', 1);
         foreach ($searchmap as $condition) {
-            $items=$items->where($condition[0],$condition[1],$condition[2]);
+            $items=$items->where($condition[0], $condition[1], $condition[2]);
         }
         $items=$items->orderBy('parent_id', 'desc')->get();
         $list = array();
@@ -173,7 +179,6 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-
         $this->validate($request, array(
              'title' => 'required|max:250',
              //'description' => 'required',
@@ -184,7 +189,6 @@ class CategoryController extends Controller
 
         $imagesUrl = '';
         if ($request->file('images')) {
-
             $imagesUrl = $this->uploadImages($request->file('images'));
         }
 
@@ -205,7 +209,6 @@ class CategoryController extends Controller
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         Category::create($data);
         return redirect('admin/category?type=' . $request->attr_type)->with('success', 'Greate! Content created successfully.');
-
     }
 
     public function store1(Request $request)
@@ -259,7 +262,6 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-
         $where = array('id' => $id);
         $content_info = Category::where($where)->first();
 
@@ -274,11 +276,11 @@ class CategoryController extends Controller
 
         $category = $this->convertTemplateSelect1($result);
         $filter[$id]='';
-        foreach ($category as $id=>$obj){
-            if(isset($filter[$id])){
+        foreach ($category as $id=>$obj) {
+            if (isset($filter[$id])) {
                 unset($category[$id]);
             }
-            if(isset($filter[$obj->parent_id])){
+            if (isset($filter[$obj->parent_id])) {
                 $filter[$id]='';
                 unset($category[$id]);
             }
@@ -340,10 +342,9 @@ class CategoryController extends Controller
 
         if ($file) {
             $images = $this->uploadImages($request->file('images'));
-
         } else {
             $images = $crud->images;
-            if($images != ''){
+            if ($images != '') {
                 $images['thumb'] = $request->get('imagesThumb');
             }
         }
@@ -406,8 +407,6 @@ class CategoryController extends Controller
             echo '{
         "uploaded": true,
         "url": "' . $url . '"}';
-
-
         }
     }
 
@@ -450,12 +449,10 @@ class CategoryController extends Controller
 
     public function categoryList()
     {
-
         $items = category::all();
 
         $tree = [];
         foreach ($items as $item) {
-
             $fields['parent_id'] = $item->parent_id;
             $fields['id'] = $item->id;
             $fields['title'] = $item->title;
@@ -481,12 +478,9 @@ class CategoryController extends Controller
                 // create the current node and give it a name
                 $tree[$id] = array("title" => $title);
             }*/
-
         }
 
         return $tree;
-
-
     }
 
     public function toUL1(array $array)
@@ -501,7 +495,6 @@ class CategoryController extends Controller
                 $html .= '-' . 'no parent';
             } else {
                 $html .= '-' . $value['title'];
-
             }
 
             if (!empty($value['children'])) {
@@ -514,12 +507,10 @@ class CategoryController extends Controller
         return $html;
     }
 
-    function toUL($arr, $pass = 0)
+    public function toUL($arr, $pass = 0)
     {
-
         $html = '<ul>' . PHP_EOL;
         foreach ($arr as $v) {
-
             $html .= '<li>';
             $html .= str_repeat("--", $pass); // use the $pass value to create the --
 
@@ -536,7 +527,6 @@ class CategoryController extends Controller
                 //if (array_key_exists('children', $v)) {
                 $html .= $this->toUL($v['children'], $pass + 1);
             }
-
         }
 
         //$html .= '</ul>' . PHP_EOL;
@@ -544,15 +534,13 @@ class CategoryController extends Controller
         return $html;
     }
 
-    function toUL2(array $array)
+    public function toUL2(array $array)
     {
         $html = '<ul>' . PHP_EOL;
 
         foreach ($array as $value) {
-
             if (!isset($value['title'])) {
                 $html .= '<li>';
-
             } else {
                 $html .= '<li>' . $value['title'];
             }
@@ -568,6 +556,4 @@ class CategoryController extends Controller
 
         return $html;
     }
-
-
 }

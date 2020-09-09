@@ -10,37 +10,45 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 //use PDF;
 
 class ContentController extends Controller
 {
-
-
-    protected function uploadImages($file)
+    protected function uploadImages($file,$type = 'article')
     {
         $year = Carbon::now()->year;
         $imagePath = "/upload/images/{$year}/";
         $filename = $file->getClientOriginalName();
 
         $file = $file->move(public_path($imagePath), $filename);
-        $sizes = ["300", "600", "900"];
-        $url['images'] = $this->resize($file->getRealPath(), $sizes, $imagePath, $filename);
-        $url['thumb'] = $url['images'][$sizes[0]];
+        // $sizes = ["300", "600", "900"];
+
+
+        $url['images'] = $this->resize($file->getRealPath(), $type, $imagePath, $filename);
+        $url['thumb'] = $url['images']['small'];
 
         return $url;
     }
 
-    private function resize($path, $sizes, $imagePath, $filename)
+    private function resize($path, $type, $imagePath, $filename)
     {
+        $sizes = array(
+                "small"=>@env(Str::upper($type).'_SMALL'),
+                'medium'=>@env(Str::upper($type).'_MEDIUM'),
+                'large'=>@env(Str::upper($type).'_LARGE')
+        );
+
         $images['original'] = $imagePath . $filename;
-        foreach ($sizes as $size) {
-            $images[$size] = $imagePath . "{$size}_" . $filename;
+        foreach ($sizes as $name => $size) {
+            $images[$name] = $imagePath . "{$name}_" . $filename;
 
             Image::make($path)->resize($size, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path($images[$size]));
+            })->save(public_path($images[$name]));
         }
+
 
         return $images;
     }
@@ -52,7 +60,6 @@ class ContentController extends Controller
      */
     public function index(Request $request)
     {
-
         $type = 'article';
         if (isset($request->type)) {
             $type = $request->type;
@@ -73,8 +80,6 @@ class ContentController extends Controller
      */
     public function create(Request $request)
     {
-
-
         $result = app('App\Http\Controllers\CategoryController')->tree_set();
         $data['category'] = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
         $data['attr_type'] = $request->type;
@@ -112,7 +117,6 @@ class ContentController extends Controller
 
         $imagesUrl = '';
         if ($request->file('images')) {
-
             $imagesUrl = $this->uploadImages($request->file('images'));
         }
 
@@ -134,7 +138,6 @@ class ContentController extends Controller
         Content::create($data);
 
         return redirect('/admin/contents?type=' . $request->attr_type)->with('success', 'Greate! Content created successfully.');
-
     }
 
     /**
@@ -170,7 +173,6 @@ class ContentController extends Controller
         }*/
 
         return view($template, compact(['content_info', 'category']));
-
     }
 
     /**
@@ -217,7 +219,7 @@ class ContentController extends Controller
 
         if ($file) {
             $images = $this->uploadImages($request->file('images'));
-        } else if ($crud->images != '') {
+        } elseif ($crud->images != '') {
             $images = $crud->images;
             $images['thumb'] = $request->get('imagesThumb');
         } else {
@@ -276,7 +278,6 @@ class ContentController extends Controller
         $crud->delete();
 
         return redirect('admin/contents?type=' . $crud->attr_type);
-
     }
 
 
@@ -301,7 +302,6 @@ class ContentController extends Controller
             echo '{
         "uploaded": true,
         "url": "' . $url . '"}';
-
         }
     }
 
@@ -332,7 +332,6 @@ class ContentController extends Controller
     public function reload()
     {
         $this->sitemap();
-
     }
 
     /**
@@ -357,15 +356,15 @@ class ContentController extends Controller
             ->addByCollection($postList)
             ->writeToFile('post.xml');
 
-          /*  ->add(array(
-                'loc'=>'decor/4',
-                'lastmod'=>'11-1-90',
-                'changefreq'=>'weekly',
-                'priority'=>'0.2',))*/
-           // ->add()->setPriority('0.1')->setLoc('decor/1')->setLastMod('11-1-90')
-           // ->add()->setLoc('decor/2')->setLastMod('11-12-99');
+        /*  ->add(array(
+              'loc'=>'decor/4',
+              'lastmod'=>'11-1-90',
+              'changefreq'=>'weekly',
+              'priority'=>'0.2',))*/
+        // ->add()->setPriority('0.1')->setLoc('decor/1')->setLastMod('11-1-90')
+        // ->add()->setLoc('decor/2')->setLastMod('11-12-99');
 
-          dd($sitemap);
+        dd($sitemap);
 
         /*$postList = Content::all();
         $sitemap=export::CreateSitemap();
@@ -378,10 +377,5 @@ class ContentController extends Controller
 
         //$sitemap->add($post);
        // $sitemap->multyAdd($postList,);
-
-
-
-
     }
-
 }
