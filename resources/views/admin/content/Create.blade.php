@@ -232,7 +232,7 @@
 
         <button type="submit" class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">تایید
         </button>
-        <a href="{{ $attr_type }}" class="link ">
+        <a href="{{ $attr_type }}" class="btn link ">
             <i class="fa fa-arrow-left"></i> Back to List
         </a>
         </form>

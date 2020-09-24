@@ -208,7 +208,7 @@
 
                 <button type="submit" class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">Add
                     Content</button>
-                <a href="{{ old('publish_date') }}" class="link ">
+                <a href="{{ old('publish_date') }}" class="link btn">
                     <i class="fa fa-arrow-left"></i> Back to List
                 </a>
                 <input type="hidden" name="attr_type" value="{{ $attr_type }}">

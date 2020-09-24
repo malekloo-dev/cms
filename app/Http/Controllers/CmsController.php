@@ -66,7 +66,7 @@ class CmsController extends Controller
 
             ///dd($result);
         }
-    
+
 
 
         $detail->increment('viewCount');

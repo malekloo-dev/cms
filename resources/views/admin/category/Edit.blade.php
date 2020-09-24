@@ -224,25 +224,23 @@
                     </div>
                 </div>
 
-                <div class="col-md-12">
-                    <label for="meta_description" class=" col-form-label text-md-left">meta Description:</label>
-                    <textarea class="form-control" id="meta_description" name="meta_description">{{ old('meta_description',$content_info->meta_description) }}</textarea>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label for="meta_description" class=" col-form-label text-md-left">meta Description:</label>
+                        <textarea class="form-control" id="meta_description" name="meta_description">{{ old('meta_description',$content_info->meta_description) }}</textarea>
+                    </div>
                 </div>
+                
 
+                <button type="submit" class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">Edit
+                    Content
+                </button>
+                <a href="{{ route('contents.index')  }}" class="btn link ">
+                    <i class="fa fa-arrow-left"></i> Back to List
+                </a>
+            </form>
         </div>
-
-
-
-
-        <button type="submit" class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">Edit
-            Content
-        </button>
-        <a href="{{ route('contents.index')  }}" class="link ">
-            <i class="fa fa-arrow-left"></i> Back to List
-        </a>
-        </form>
     </div>
-</div>
 </div>
 
 @endsection

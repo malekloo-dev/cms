@@ -1,3 +1,4 @@
 .sub-category{background-color:#fe3761}
 .sub-category>div>div>div>div{background-color:#fff;margin: 1em; padding: .2em;text-align: center;border-radius: 3px;}
+.sub-category img{height: auto;}
 .sub-category h2{font-size: .9em;}
