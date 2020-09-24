@@ -188,23 +188,18 @@ $append='';
         <div>
 
             <h1 class="">{{ $detail->title }}</h1>
-            @if(isset($detail->images['images'])):
-                <figure class="image">
-                        <img src="{{ $detail->images['images']['CATEGORY_MEDIUM'] ?? $detail->images['thumb']}}"
+            @if(isset($detail->images['images']))
+            <picture>
+                <source media="(min-width:{{ env('CATEGORY_LARGE') }}px)" srcset="{{ $detail->images['images']['large'] }} , {{ $detail->images['images']['large'] }} 2x">
+                <source media="(min-width:{{ env('CATEGORY_MEDIUM') }}px)" srcset="{{ $detail->images['images']['medium'] }} , {{ $detail->images['images']['large'] }} 2x">
+                <source media="(min-width:{{ env('CATEGORY_SMALL') }}px)" srcset="{{ $detail->images['images']['small'] }} , {{ $detail->images['images']['medium'] }} 2x">
+                <img src="{{ $detail->images['images']['medium'] }}"
                         sizes="(max-width:{{ env('CATEGORY_MEDIUM') }}px) 100vw  {{ ENV('CATEGORY_MEDIUM') }}px {{ ENV('CATEGORY_LARGE') }}px"
                         alt="{{$detail->title}}"
-                        width="{{ env('CATEGORY_MEDIUM') }}" height="{{ env('CATEGORY_MEDIUM') }}"
-                        srcset="
-                            {{ $detail->images['images']['small'] ?? $detail->images['thumb']}} {{ env('CATEGORY_SMALL') }}w,
-                            {{ $detail->images['images']['medium'] ?? $detail->images['thumb']}} {{ env('CATEGORY_MEDIUM') }}w,
-                            {{ $detail->images['images']['large'] ?? $detail->images['thumb']}} 2x" >
-                        <figcaption>
-                            {{ $detail->title }}
-                        </figcaption>
-                    </figure>
-
-
+                        width="{{ env('CATEGORY_MEDIUM') }}" height="{{ env('CATEGORY_MEDIUM') }}">
+            </picture>
             @endif
+
 
 
             {!! $detail->description !!}
