@@ -9,6 +9,8 @@
 $tableOfImages=tableOfImages($detail->description);
 $append='';
 @endphp
+
+@if (count($relatedProduct))
 <script type="application/ld+json">
     @if (count($relatedProduct))
 [
@@ -67,6 +69,7 @@ $append='';
 ]
 @endif
 </script>
+@endif
 
 @if (count($breadcrumb))
 <section class="breadcrumb">
@@ -138,7 +141,7 @@ $append='';
                                         {{ $content->images['images']['small'] ?? $content->images['thumb']}} {{ env('ARTICLE_SMALL') }}w,
                                         {{ $content->images['images']['medium'] ?? $content->images['thumb']}} 2x" >
                                 </figure>
-                            
+
                             @endif
                             <footer>
                                 <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
