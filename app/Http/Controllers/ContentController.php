@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Content;
 use App\export;
-use App\siteMap;
+use App\Sitemap;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
