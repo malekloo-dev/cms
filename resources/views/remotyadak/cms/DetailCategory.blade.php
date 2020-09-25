@@ -31,47 +31,39 @@ $append='';
             "mpn": "{{$content->id}}",
             "brand": {
                 "@type": "Brand",
-                "name": "{{ $detail->brand }}"
+                "name": "{{ $detail->attr['brand'] }}"
             },
 
-            "aggregateRating": {
+            "aggregateRating":
+            {
                 "@type": "AggregateRating",
-                "ratingValue": {
-                    {
-                        $content->attr['rate']
-                    }
-                },
-                "reviewCount": {
-                    {
-                        $content->viewCount
-                    }
-                },
+                "ratingValue": {{ $content->attr['rate'] }},
+                "reviewCount": {{ $content->viewCount }},
                 "bestRating": 5,
                 "worstRating": 0
             },
-            "offers": {
+            "offers":
+            {
                 "@type": "Offer",
                 "url": "{{ url()->current().$content->slug }}",
                 "priceCurrency": "IRR",
-                "price": "{{ $content->attr['price']??"
-                0 "}}",
+                "price": "{{ $content->attr['price']??"0"}}",
                 "itemCondition": "https://schema.org/UsedCondition",
                 "availability": "https://schema.org/InStock",
-                "seller": {
+                "seller":
+                {
                     "@type": "Organization",
-                    "name": "ایران ریموت"
+                    "name": "ریموت یدک"
                 }
             }
         }
-        @isset($relatedProduct[$key + 1]) {
-            {
-                ","
-            }
-        }
-        @endisset @endforeach
+        @isset($relatedProduct[$key+1])
+            {{","}}
+        @endisset
+   @endforeach
 
-    ]
-    @endif
+]
+@endif
 </script>
 
 @if (count($breadcrumb))
