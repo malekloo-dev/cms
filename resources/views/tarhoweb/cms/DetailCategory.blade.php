@@ -96,8 +96,17 @@ $append='';
                 <div>
                     <article>
                         @if (isset($content->images['thumb']))
-                        <div><img src="{{ $content->images['thumb']}}"></div>
-                        @endif
+                            <figure class="image">
+                                    <img src="{{ $content->images['images']['small'] ?? $content->images['thumb']}}"
+                                    sizes="(max-width:{{ env('CATEGORY_SMALL') }}px) 100vw {{ env('CATEGORY_SMALL') }}px {{ ENV('CATEGORY_MEDIUM') }}px"
+                                    alt="{{$content->title}}"
+                                    width="{{ ENV('CATEGORY_SMALL') }}" height="{{ ENV('CATEGORY_SMALL') }}"
+                                    srcset="
+                                        {{ $content->images['images']['small'] ?? $content->images['thumb']}} {{ env('CATEGORY_SMALL') }}w,
+                                        {{ $content->images['images']['medium'] ?? $content->images['thumb']}} 2x" >
+                                </figure>
+
+                            @endif
 
                             <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
                             {!! $content->brief_description !!}

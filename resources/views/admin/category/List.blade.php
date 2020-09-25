@@ -33,7 +33,7 @@
                     <tr>
                         <td>{{ $content->id }}</td>
                         <td>{!!$content->symbol. $content->title !!}</td>
-                        <td>{!! $content->brief_description !!}</td>
+                        <td>{!! readMore($content->brief_description) !!}</td>
                         <td>
                             @if ($content->status == 1)
                             {{'فعال'}}

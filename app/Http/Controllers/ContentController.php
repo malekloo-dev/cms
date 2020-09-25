@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Content;
 use App\export;
-use App\siteMap;
+use App\Sitemap;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -341,11 +341,11 @@ class ContentController extends Controller
     {
         $postList = Content::all();
 
-        $sitemap = siteMap::createIndex()
-            ->add()->setLoc('post.xml')
-            ->add()->setLoc('category.xml')
-            ->add()->setLoc('product.xml')
-            ->writeToFile('sitemap.xml');
+        // $sitemap = siteMap::createIndex()
+        //     ->add()->setLoc('post.xml')
+        //     ->add()->setLoc('category.xml')
+        //     ->add()->setLoc('product.xml')
+        //     ->writeToFile('sitemap.xml');
 
         $sitemap = siteMap::create()
              ->add()->setPriority('1')->setLoc('/')->setLastMod('2020')

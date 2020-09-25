@@ -269,7 +269,7 @@
                 <button type="submit" class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">Edit
                     Content
                 </button>
-                <a href="{{ route('contents.index') .'/'.$content_info->attr_type }}" class="link ">
+                <a href="{{ route('contents.index') .'/'.$content_info->attr_type }}" class="btn link ">
                     <i class="fa fa-arrow-left"></i> Back to List
                 </a>
             </form>
