@@ -25,8 +25,8 @@ $append='';
                 "{{ $content->images['images']['900'] }}"
             ],
             @endif
+         "description": "{{clearHtml($detail->brief_description)}}",
 
-            "description": "{{$content->brief_description}}",
             "sku": "{{$content->id}}",
             "mpn": "{{$content->id}}",
             "brand": {
@@ -47,7 +47,7 @@ $append='';
                 "@type": "Offer",
                 "url": "{{ url()->current().$content->slug }}",
                 "priceCurrency": "IRR",
-                "price": "{{ $content->attr['price']??"0"}}",
+            "price": "{{ $content->attr['price'] ?? "0"}}",
                 "itemCondition": "https://schema.org/UsedCondition",
                 "availability": "https://schema.org/InStock",
                 "seller":
