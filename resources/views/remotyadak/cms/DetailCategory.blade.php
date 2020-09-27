@@ -66,6 +66,7 @@ $append='';
 @endif
 </script>
 
+
 @if (count($breadcrumb))
 <section class="breadcrumb">
     <div class="flex one  ">
