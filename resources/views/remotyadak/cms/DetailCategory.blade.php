@@ -20,9 +20,9 @@ $append='';
 
             @if(isset($content->images['thumb']))
             "image": [
-                "{{ $content->images['images']['300'] }}",
-                "{{ $content->images['images']['600'] }}",
-                "{{ $content->images['images']['900'] }}"
+                "{{ $content->images['images']['small'] }}",
+                "{{ $content->images['images']['medium'] }}",
+                "{{ $content->images['images']['large'] }}"
             ],
             @endif
          "description": "{{clearHtml($detail->brief_description)}}",
@@ -31,7 +31,7 @@ $append='';
             "mpn": "{{$content->id}}",
             "brand": {
                 "@type": "Brand",
-                "name": "{{ $detail->attr['brand'] }}"
+                "name": "{{ $content->attr['brand'] }}"
             },
 
             "aggregateRating":
@@ -121,18 +121,38 @@ $append='';
         <div>
             <div class="">
 
-                <div class="flex one two-500 four-900 center ">
+                <div class="flex one  two-1100  ">
 
                     {{--$data['newPost']--}}
                     @foreach($relatedProduct as $content)
                     <div>
                         <article>
-                            @if (isset($content->images['thumb']))
-                            <div><img src="{{ $content->images['thumb']}}"></div>
-                            @endif
+                            <div>
+                                @if (isset($content->images['thumb']))
+                                <picture>
+                                    <source media="(min-width:{{ env('CATEGORY_LARGE') }}px)" srcset="{{ $content->images['images']['large'] ?? '' }} , {{ $content->images['images']['large'] ?? '' }} 2x">
+                                    <source media="(min-width:{{ env('CATEGORY_MEDIUM') }}px)" srcset="{{ $content->images['images']['medium'] ?? '' }} , {{ $content->images['images']['large'] ?? '' }} 2x">
+                                    <source media="(min-width:{{ env('CATEGORY_SMALL') }}px)" srcset="{{ $content->images['images']['small'] ?? ''}} , {{ $content->images['images']['medium'] ?? ''}} 2x">
+                                    <img src="{{ $content->images['images']['medium'] ?? ''}}"
+                                            sizes="(max-width:{{ env('CATEGORY_MEDIUM') }}px) 100vw  {{ ENV('CATEGORY_MEDIUM') }}px {{ ENV('CATEGORY_LARGE') }}px"
+                                            alt="{{$content->title}}"
+                                            width="{{ env('CATEGORY_MEDIUM') }}" height="{{ env('CATEGORY_MEDIUM') }}">
+                                </picture>
+                                @endif
+                            </div>
                             <footer>
-                                <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
-                                {!! $content->brief_description !!}
+                                <a href="{{ $content->slug }}"> {{ $content->title }}</a>
+                                <div class="brand">برند: {{ $content->attr['brand'] }}</div>
+                                <div class="price">قیمت: {{ $content->attr['price'] }} تومان </div>
+                                <div class="view-count">{{ $content->viewCount }} بار دیده شده</div>
+                                <div class="rate mt-1">
+                                    @for($i = $content->attr['rate']; $i >= 1; $i--)
+                                        <img srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}">
+                                    @endfor
+                                </div>
+                                <div class="brief">
+                                    {!! $content->brief_description !!}
+                                </div>
                             </footer>
                         </article>
                     </div>

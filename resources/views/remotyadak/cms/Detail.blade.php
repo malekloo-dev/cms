@@ -15,9 +15,9 @@ $append='';
 
         @if (isset($detail->images['thumb']))
             "image": [
-                "{{ $detail->images['images']['300'] }}",
-                "{{ $detail->images['images']['600'] }}",
-                "{{ $detail->images['images']['900'] }}"
+                "{{ $detail->images['images']['small'] }}",
+                "{{ $detail->images['images']['medium'] }}",
+                "{{ $detail->images['images']['large'] }}"
             ],
         @endif
         @if (count($tableOfImages))

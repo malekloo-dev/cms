@@ -5,8 +5,23 @@
 .category-list div.border{border:1px solid #f4f4f4}
 .category-list div.hover-box:hover{box-shadow:0 2px 5px rgba(0,0,0,.1)}
 .category-list div.height-full{display:flex}
-.category-list p{ color: #616161;}
-.category-list .price{font-weight: bold;}
+.category-list p{color:#616161}
+.category-list .price{font-weight:700}
 .height-100{height:100%}
-
-
+.products article{position:relative; background-color: #fafafa;}
+.products article{display:flex;border:1px solid #f4f4f4}
+.products article>div{width:150px}
+.products article>div picture{height: 100%;}
+.products article>div img{object-fit: cover; border-radius: 3px;}
+.brand,.products article>div a{flex:1}
+.products article>footer{flex:1;margin:0 10px 0 0;display:flex;flex-flow:column;padding:0;align-items:flex-start}
+.products .view-count{position:absolute;left:1em;top:1em;border:1px solid #616161;color:#616161;min-width:30px;text-align:center;border-radius:15px;padding:0 10px;font-size:.8em;background-color: #fff;}
+.products .rate{display:flex;position:absolute;left:1em;top:2em}
+.products .rate img{width:20px}
+@media (max-width:600px){
+    .products article{flex-flow: column;}
+.products article>div{width:100%}
+.products .rate,.products .view-count{position:relative;left:auto;top:auto}
+.products .rate{width:100%}
+.mt-1{margin:0}
+}
