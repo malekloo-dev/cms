@@ -13,6 +13,7 @@
 .products article>div{width:150px}
 .products article>div picture{height: 100%;}
 .products article>div img{object-fit: cover; border-radius: 3px;}
+.products article .brief{font-size: .75em;}
 .brand,.products article>div a{flex:1}
 .products article>footer{flex:1;margin:0 10px 0 0;display:flex;flex-flow:column;padding:0;align-items:flex-start}
 .products .view-count{position:absolute;left:1em;top:1em;border:1px solid #616161;color:#616161;min-width:30px;text-align:center;border-radius:15px;padding:0 10px;font-size:.8em;background-color: #fff;}

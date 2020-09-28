@@ -151,7 +151,7 @@ $append='';
                                     @endfor
                                 </div>
                                 <div class="brief">
-                                    {!! $content->brief_description !!}
+                                    {!! readMore($content->brief_description,180) !!}
                                 </div>
                             </footer>
                         </article>
