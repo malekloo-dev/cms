@@ -1,7 +1,5 @@
 # https
-<ifModule mod_headers.c>
-Header always set Content-Security-Policy "upgrade-insecure-requests;"
-</IfModule>
+
 
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
