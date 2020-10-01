@@ -113,7 +113,11 @@ class CmsController extends Controller
                 $template = @env(TEMPLATE_NAME) . '.cms.' . $detail->attr['template_name'];
             }
 
-            return view($template, compact(['detail', 'breadcrumb', 'relatedPost', 'table_of_content', 'relatedProduct', 'table_of_images', 'seo']));
+            //$detail->description=editorModule($detail->description);
+           $editorModule=editorModule($detail->description);
+
+            //dd($editorModule);
+            return view($template, compact(['detail', 'breadcrumb', 'relatedPost', 'table_of_content', 'relatedProduct', 'table_of_images', 'seo','editorModule']));
         }
     }
 

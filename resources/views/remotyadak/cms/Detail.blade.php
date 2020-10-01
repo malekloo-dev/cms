@@ -103,11 +103,8 @@ $append='';
             </ul>
 
 
+            @include(@env('TEMPLATE_NAME').'.DescriptionModule');
 
-
-
-
-            {!! $detail->description !!}
 
         </div>
     </div>
