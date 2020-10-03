@@ -156,7 +156,6 @@ if (!function_exists('editorModule')) {
         $count = 0;
         foreach ($pat_array[0] as $key => $val) {
 
-
             $moduleStart = substr((explode('}', $val)[0]), 1);
 
             //$value=str_replace('&amp;','&',$moduleStart);
@@ -207,7 +206,6 @@ if (!function_exists('editorModule')) {
             $arrayContent[$count]['type'] = $moduleName;
             $arrayContent[$count]['content'] = $moduleContent;
             $arrayContent[$count]['config'] = $moduleAttr;
-
             $content = substr($content, $findPos + strlen($val));
             $count++;
 
@@ -223,12 +221,14 @@ if (!function_exists('editorModule')) {
         }
         $arrayContent[$count]['content'] = $moduleContent;
 
+
         //dd($arrayContent);
         return $arrayContent;
 
     }
 }
-if (!function_exists('faq')) {
+if (!function_exists('faq'))
+{
     /**
      * Get the evaluated view contents for the given view.
      *
@@ -238,7 +238,7 @@ if (!function_exists('faq')) {
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
 
-    function faq1($content)
+    function faq($content)
     {
 
        // $string= "here is a sample: this text, and this will be exploded. this also | this one too :)";
@@ -246,50 +246,29 @@ if (!function_exists('faq')) {
         $delimiters=array("<p>","</p>");
         $ready = trim(str_replace($delimiters, $delimiters[0], $content));
 
+        $arrayList = explode($delimiters[0], $ready);
+        $arrayList=array_filter($arrayList, 'strlen');
+        $result=array();
+        $count=0;
+        $index=0;
+        foreach ($arrayList as $key=>$val)
+        {
+            if(($count % 2 )==0)
+            {
+                $result[$index]['question']=$val;
 
-        $launch = explode($delimiters[0], $ready);
-        $launch=array_filter($launch, 'strlen');
+            }else{
 
-       // dd($launch);
-
-
-        $explodContent=explode('<p>',$content);
-
-        $doc = new \DOMDocument();
-        /* use @ or libxml_use_internal_errors
-         * libxml_use_internal_errors(true);
-        $dom->loadHTML('...');
-        libxml_clear_errors();*/
-        @$doc->loadHTML($content);
-
-        /*echo '<pre/>';
-        print_r($a);
-        die();*/
-        $tags = $doc->getElementsByTagName('figure');
-
-        $count = -1;
-        $images = array();
-        foreach ($tags as $tag) {
-
-
-            foreach ($tag->childNodes as $tag1) {
-                //print_r($tag1);
-                if ($tag1->tagName == 'img') {
-                    $count++;
-                    foreach ($tag1->attributes as $tag3) {
-                        $images[$count]['src'] = $tag3->value;
-                        $images[$count]['alt'] = '';
-                        break;
-                    }
-                }
-                if ($tag1->tagName == 'figcaption') {
-                    $images[$count]['alt'] = $tag1->nodeValue;
-                }
-
+                $result[$index]['answer']=$val;
+                $index++;
 
             }
+            $count++;
+
         }
-        return $images;
+
+
+        return $result;
 
 
     }

@@ -39,7 +39,7 @@ $append='';
             ],
         @endif
 
-        "description": "{{clearHtml($detail->description)}}",
+        "description": "@foreach($editorModule as $key=>$module)@if ($module['type']=='description'){{clearHtml($module['content'])}}@endif @endforeach",
         "sku": "{{$detail->id}}",
         "mpn": "{{$detail->id}}",
         "brand":
@@ -103,7 +103,7 @@ $append='';
             </ul>
 
 
-            @include(@env('TEMPLATE_NAME').'.DescriptionModule');
+            @include(@env('TEMPLATE_NAME').'.DescriptionModule')
 
 
         </div>
