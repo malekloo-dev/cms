@@ -22,6 +22,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <!-- <meta property="og:image:width" content="405">
     <meta property="og:image:height" content="300"> -->
+
     @yield('assets')
 </head>
 

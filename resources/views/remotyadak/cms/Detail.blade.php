@@ -1,4 +1,7 @@
 @extends(@env('TEMPLATE_NAME').'.App')
+@section('assets')
+@endsection
+
 @section('Content')
 @php
 $tableOfImages=tableOfImages($detail->description);

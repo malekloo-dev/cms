@@ -147,12 +147,12 @@ if (!function_exists('editorModule')) {
     function editorModule($content)
     {
 
-        preg_match_all("/({gallery(.*){\/gallery})|({faq}(.*){\/faq})/U", $content, $pat_array);
+        preg_match_all("/({gallery(.*){\/gallery})|({attr}(.*){\/attr})|({faq}(.*){\/faq})/U", $content, $pat_array);
 
         //{gallery&size=10&template=1}
         //parse_str($_SERVER['QUERY_STRING'], $outputArray);
 
-        $module = array('gallery' => 'tableOfImages', 'faq' => 'faq');
+        $module = array('gallery' => 'tableOfImages', 'faq' => 'faq','attr' => 'attribute');
         $count = 0;
         foreach ($pat_array[0] as $key => $val) {
 
@@ -222,8 +222,55 @@ if (!function_exists('editorModule')) {
         $arrayContent[$count]['content'] = $moduleContent;
 
 
-        //dd($arrayContent);
+       // dd($arrayContent);
         return $arrayContent;
+
+    }
+}
+
+if (!function_exists('attribute'))
+{
+    /**
+     * Get the evaluated view contents for the given view.
+     *
+     * @param  string|null $view
+     * @param  \Illuminate\Contracts\Support\Arrayable|array $data
+     * @param  array $mergeData
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
+     */
+
+    function attribute($content)
+    {
+
+        // $string= "here is a sample: this text, and this will be exploded. this also | this one too :)";
+
+        $delimiters=array("<p>","</p>");
+        $ready = trim(str_replace($delimiters, $delimiters[0], $content));
+
+        $arrayList = explode($delimiters[0], $ready);
+        $arrayList=array_filter($arrayList, 'strlen');
+        $result=array();
+        $count=0;
+        $index=0;
+        foreach ($arrayList as $key=>$val)
+        {
+            if(($count % 2 )==0)
+            {
+                $result[$index]['field']=$val;
+
+            }else{
+
+                $result[$index]['value']=$val;
+                $index++;
+
+            }
+            $count++;
+
+        }
+
+
+        return $result;
+
 
     }
 }
