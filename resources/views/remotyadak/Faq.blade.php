@@ -1,5 +1,5 @@
-<div class="flex one two-500 four-900 center ">
-
+<div class="faq">
+<div class="flex one">
     @foreach($module['content'] as $key=>$faq)
         <div>
                 <div>{!!  $faq['question']!!}</div>
@@ -7,4 +7,5 @@
         </div>
     @endforeach
 
+</div>
 </div>
