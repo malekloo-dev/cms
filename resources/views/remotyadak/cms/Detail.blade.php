@@ -1,5 +1,6 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 @section('assets')
+<link rel="stylesheet" href="{{ asset('/detail.css') }}">
 @endsection
 
 @section('Content')
@@ -95,6 +96,15 @@ $append='';
         <div>
 
             <h1 class="">{{ $detail->title }}</h1>
+            <div>
+                <span class="rate mt-1">
+                    @for($i = $detail->attr['rate']; $i >= 1; $i--)
+                        <img srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}">
+                    @endfor
+                </span> | 
+                {{ $detail->viewCount }} بار دیده شده | 
+                تاریخ انتشار: {{ $detail->publish_date }} |  
+            </div>
 
             <ul>
                 @foreach($table_of_content as $key=>$item)

@@ -1,0 +1,7 @@
+.rate{display:flex;margin: auto;}
+.rate img{width:20px}
+@media (max-width:600px){
+    .rate,.view-count{position:relative;left:auto;top:auto}
+.rate{width:100%}
+
+}
