@@ -23,8 +23,8 @@ class HomeController extends Controller
 
 
         //Content::increment('viewCount');
-        $data['topViewPost'] = Content::where('type','=','2')->orderBy('viewCount', 'desc')->limit(4)->get();
-        $data['newPost'] = Content::where('type','=','2')->orderBy('publish_date', 'desc')->limit(4)->get();
+        $data['topViewPost'] = Content::where('type','=','2')->orderBy('viewCount', 'desc')->limit(10)->get();
+        $data['newPost'] = Content::where('type','=','2')->orderBy('publish_date', 'desc')->limit(10)->get();
         $data['category'] = Category::where('type', '=', '1')->where('parent_id','<>','0')->get();
 
         $data['seo'] = WebsiteSetting::all()->keyBy('variable')->map(function ($name) {

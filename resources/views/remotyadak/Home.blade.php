@@ -51,19 +51,26 @@
 <section class="index-items">
     <div class="flex one">
         <div>
-            <div class="flex one three-500   ">
+            <div class="flex one two-500  four-800   ">
                 {{-- $data['newPost'] --}}
                 @foreach($topViewPost as $content)
                 <div>
-                    <article>
+                    <a class="hover" href="{{ $content->slug }}">
+                    
                         @if(isset($content->images['thumb']))
                         <div><img src="{{ $content->images['thumb'] }}"></div>
                         @endif
                         <footer>
-                            <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
-                            {!! $content->brief_description !!}
+                            <h3> {{ $content->title }}</h3>
+                            <div class="rate mt-1">
+                                @for($i = $content->attr['rate']; $i >= 1; $i--)
+                                    <img srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}">
+                                @endfor
+                            </div>
+                            {{ $content->attr['price'] }} تومان
                         </footer>
-                    </article>
+                    
+                    </a>
                 </div>
                 @endforeach
             </div>
