@@ -214,8 +214,9 @@ $append='';
             @endif
 
 
+            @include(@env('TEMPLATE_NAME').'.DescriptionModule')
 
-            {!! $detail->description !!}
+           {{-- {!! $detail->description !!}--}}
         </div>
     </div>
 </section>

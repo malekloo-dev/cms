@@ -73,6 +73,7 @@ class CmsController extends Controller
         $relatedPost = array();
         $subCategory = array();
         $relatedProduct = array();
+        $editorModule=editorModule($detail->description);
 
         if ($detail->type == 1) {
             $relatedPost = Content::where('type', '=', '2')
@@ -92,7 +93,7 @@ class CmsController extends Controller
                 $template = @env(TEMPLATE_NAME) . '.cms.' . $detail->attr['template_name'];
             }
             //dd($detail);
-            return view($template, compact(['detail', 'relatedPost', 'table_of_content', 'subCategory', 'relatedProduct', 'breadcrumb', 'images', 'seo']));
+            return view($template, compact(['detail', 'relatedPost', 'table_of_content', 'subCategory', 'relatedProduct', 'breadcrumb', 'images', 'seo','editorModule']));
         } else {
             $relatedPost = Content::where('type', '=', '2')
                 ->where('parent_id', '=', $detail->parent_id)
@@ -114,7 +115,6 @@ class CmsController extends Controller
             }
 
             //$detail->description=editorModule($detail->description);
-           $editorModule=editorModule($detail->description);
 
             //dd($editorModule);
             return view($template, compact(['detail', 'breadcrumb', 'relatedPost', 'table_of_content', 'relatedProduct', 'table_of_images', 'seo','editorModule']));

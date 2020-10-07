@@ -12,6 +12,8 @@
     </div>
 </section>
 
+<script src="{{ url('/adminAssets/js/script.js') }}"></script>
+
 </body>
 
 </html>
