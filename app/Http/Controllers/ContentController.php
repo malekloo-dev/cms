@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
 
 class ContentController extends Controller
 {
-    protected function uploadImages($file,$type = 'article')
+    protected function uploadImages($file, $type = 'article')
     {
         $year = Carbon::now()->year;
         $imagePath = "/upload/images/{$year}/";
@@ -35,9 +35,9 @@ class ContentController extends Controller
     private function resize($path, $type, $imagePath, $filename)
     {
         $sizes = array(
-                "small"=>@env(Str::upper($type).'_SMALL'),
-                'medium'=>@env(Str::upper($type).'_MEDIUM'),
-                'large'=>@env(Str::upper($type).'_LARGE')
+            "small" => @env(Str::upper($type) . '_SMALL'),
+            'medium' => @env(Str::upper($type) . '_MEDIUM'),
+            'large' => @env(Str::upper($type) . '_LARGE')
         );
 
         $images['original'] = $imagePath . $filename;
@@ -124,12 +124,12 @@ class ContentController extends Controller
         $data['parent_id'] = $request->parent_id[0];
         $data['type'] = '2';
         $data['images'] = $imagesUrl;
-       if($request->slug==''){
-           $data['slug']=$request->title;
-       }else{
-           $data['slug']=$request->slug;
-       }
-        $data['slug'] = preg_replace('/\s+/', '-',$data['slug']);
+        if ($request->slug == '') {
+            $data['slug'] = $request->title;
+        } else {
+            $data['slug'] = $request->slug;
+        }
+        $data['slug'] = preg_replace('/\s+/', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
@@ -227,12 +227,12 @@ class ContentController extends Controller
         }
         $data['images'] = $images;
 
-        if($request->slug==''){
-            $data['slug']=$request->title;
-        }else{
-            $data['slug']=$request->slug;
+        if ($request->slug == '') {
+            $data['slug'] = $request->title;
+        } else {
+            $data['slug'] = $request->slug;
         }
-        $data['slug'] = preg_replace('/\s+/', '-',$data['slug']);
+        $data['slug'] = preg_replace('/\s+/', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
@@ -348,13 +348,13 @@ class ContentController extends Controller
         //     ->writeToFile('sitemap.xml');
 
         $sitemap = siteMap::create()
-             ->add()->setPriority('1')->setLoc('/')->setLastMod('2020')
+            ->add()->setPriority('1')->setLoc('/')->setLastMod('2020')//->setChangefreq('weekly')
             ->setLocFieldName('slug')
             ->setLastModFieldName('updated_at')
             ->setDefultPriority('0.9')
             ->setDefultChangefreq('weekly')
             ->addByCollection($postList)
-            ->writeToFile('post.xml');
+            ->writeToFile('sitemap.xml');
 
         /*  ->add(array(
               'loc'=>'decor/4',
@@ -376,6 +376,23 @@ class ContentController extends Controller
 
 
         //$sitemap->add($post);
-       // $sitemap->multyAdd($postList,);
+        // $sitemap->multyAdd($postList,);
+
+        //            <?xml version="1.0" encoding="UTF-8"
+        //            <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        //                    xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        //                <url>
+        //                    <loc>
+        //                        https://www.digikala.com/product/dkp-3372620/%D8%AA%D8%AA%D9%88-%D9%85%D9%88%D9%82%D8%AA-%D9%85%D8%AF%D9%84-%D8%A8%D8%A8%D8%B1-%DA%A9%D8%AF-k1001
+        //                    </loc>
+        //                    <changefreq>weekly</changefreq>
+        //                    <priority>0.8</priority>
+        //                    <image:image>
+        //                        <image:loc>
+        //                            https://dkstatics-public.digikala.com/digikala-products/86c27c0070faec109c30d4a4fd0db519fc3bd483_1599682136.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60
+        //                        </image:loc>
+        //                        <image:caption>تتو موقت مدل ببر کد k1001</image:caption>
+        //                    </image:image>
+        //                </url>
     }
 }

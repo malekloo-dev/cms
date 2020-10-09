@@ -6,7 +6,10 @@
      }else{
          $size = 4;
      }
- }
+ }else
+   {
+    $size = 4;
+   }
 @endphp
 <div class="gallery">
 <div class="flex one two-500 {{$sizes[$size]}}-900 center ">

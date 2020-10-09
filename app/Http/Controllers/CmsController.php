@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Content;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use App\RedirectUrl;
@@ -25,7 +26,10 @@ class CmsController extends Controller
         }
 
 
-        $detail = Content::where('slug', '=', $slug)->first();
+        $detail = Content::where('slug', '=', $slug)
+            ->where('publish_date','<=', DB::raw('now()'))
+            ->first();
+        //dd($detail);
         if ($detail === null) {
             return view(@env(TEMPLATE_NAME) . '.NotFound');
         }
@@ -79,14 +83,17 @@ class CmsController extends Controller
             $relatedPost = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'article')
                 ->where('parent_id', '=', $detail->id)
+                ->where('publish_date','<=', DB::raw('now()'))
                 ->get();
             $relatedProduct = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'product')
                 ->where('parent_id', '=', $detail->id)
+                ->where('publish_date','<=', DB::raw('now()'))
                 ->get();
 
             $subCategory = Content::where('type', '=', '1')
                 ->where('parent_id', '=', $detail->id)
+                ->where('publish_date','<=', DB::raw('now()'))
                 ->get();
             $template = @env(TEMPLATE_NAME) . '.cms.DetailCategory';
             if ($detail->attr_type == 'html') {
@@ -99,6 +106,7 @@ class CmsController extends Controller
                 ->where('parent_id', '=', $detail->parent_id)
                 ->where('id', '<>', $detail->id)
                 ->where('attr_type', '=', 'article')
+                ->where('publish_date','<=', DB::raw('now()'))
                 ->inRandomOrder()
                 ->limit(4)->get();
 
@@ -106,6 +114,7 @@ class CmsController extends Controller
                 ->where('parent_id', '=', $detail->parent_id)
                 ->where('id', '<>', $detail->id)
                 ->where('attr_type', '=', 'product')
+                ->where('publish_date','<=', DB::raw('now()'))
                 ->inRandomOrder()
                 ->limit(4)->get();
 

@@ -22,7 +22,6 @@ class export
  * @method  setLoc(string $url)
  * @method setPriority(float $priority)
  */
-
 class siteMap
 {
 
@@ -43,7 +42,7 @@ class siteMap
 
     public static function create()
     {
-       return new siteMap();
+        return new siteMap();
     }
 
     public static function createIndex()
@@ -55,34 +54,31 @@ class siteMap
     //todo set defult path for url
     public function addByCollection($collection)
     {
-        foreach ($collection as $key =>$object) {
+        foreach ($collection as $key => $object) {
 
 
             if ($this->locFieldName != '') {
 
-                $loc=$this->locFieldName;
+                $loc = $this->locFieldName;
                 $property['loc'] = $object->$loc;
             }
 
             if ($this->lastModFieldName != '') {
 
-                $lastmod=$this->lastModFieldName;
+                $lastmod = $this->lastModFieldName;
                 $property['lastmod'] = $object->$lastmod;
             }
 
-            if ($this->changefreqFieldName != '')
-            {
-                $changefreq=$this->changefreqFieldName;
+            if ($this->changefreqFieldName != '') {
+                $changefreq = $this->changefreqFieldName;
                 $property['changefreq'] = $object->$changefreq;
 
-            } else if ($this->defultChangefreq != '')
-            {
+            } else if ($this->defultChangefreq != '') {
                 $property['changefreq'] = $this->defultChangefreq;
             }
 
-            if ($this->priorityFieldName != '')
-            {
-                $priority=$this->priorityFieldName;
+            if ($this->priorityFieldName != '') {
+                $priority = $this->priorityFieldName;
                 $property['priority'] = $object->$priority;
 
             } else if ($this->defultPriority != '') {
@@ -96,13 +92,12 @@ class siteMap
         return $this;
     }
 
-    public function add($property=array())
+    public function add($property = array())
     {
-        $tempObj=new siteMapEntity();
+        $tempObj = new siteMapEntity();
 
-        if(count($property))
-        {
-            foreach ($property as $property=>$params) {
+        if (count($property)) {
+            foreach ($property as $property => $params) {
                 $method = 'set' . ucfirst($property);
 
                 if (method_exists($tempObj, $method)) {
@@ -111,9 +106,9 @@ class siteMap
             }
         }
 
-        $this->collection[]= $tempObj;
+        $this->collection[] = $tempObj;
 
-        return  $this;
+        return $this;
     }
 
     function __call($method, $params)
@@ -129,38 +124,41 @@ class siteMap
     public function setLocFieldName($fieldName)
     {
 
-        $this->locFieldName=$fieldName;
+        $this->locFieldName = $fieldName;
         return $this;
     }
 
     public function setLastModFieldName($fieldName)
     {
-        $this->lastModFieldName=$fieldName;
+        $this->lastModFieldName = $fieldName;
         return $this;
     }
+
     public function setPriorityFieldName($fieldName)
     {
-        $this->priorityFieldName=$fieldName;
+        $this->priorityFieldName = $fieldName;
         return $this;
     }
 
     public function setChangefreqFieldName($fieldName)
     {
-        $this->changefreqFieldName=$fieldName;
+        $this->changefreqFieldName = $fieldName;
         return $this;
     }
 
 
     public function setDefultPriority($priority)
     {
-        $this->defultPriority=$priority;
+        $this->defultPriority = $priority;
         return $this;
     }
+
     public function setDefultChangefreq($string)
     {
-        $this->defultChangefreq=$string;
+        $this->defultChangefreq = $string;
         return $this;
     }
+
     public function writeToFile($path)
     {
 
@@ -169,12 +167,22 @@ class siteMap
 
         foreach ($this->collection as $key => $obj) {
 
-            $content = $content.'<url>' . PHP_EOL;
+            $content = $content . '<url>' . PHP_EOL;
             $content = $content . '<loc>' . url($obj->getLoc()) . '</loc>' . PHP_EOL;
-            $content = $content . '<lastmod>' . date('Y-m-d', strtotime($obj->getLastMod())). '</lastmod>' . PHP_EOL;
+            if ($obj->getChangefreq() != '') {
+                $content = $content . '<lastmod>' . date('Y-m-d', strtotime($obj->getLastMod())) . '</lastmod>' . PHP_EOL;
+
+            }
             //$content = $content . '<lastmod>' . gmdate(DateTime::W3C, strtotime($obj->getLastMod())) . '</lastmod>' . PHP_EOL;
-            $content = $content . '<changefreq>'.$obj->getChangefreq().'</changefreq>' . PHP_EOL;
-            $content = $content . '<priority>'.$obj->getPriority().'</priority>' . PHP_EOL;
+            if ($obj->getChangefreq() != '') {
+                $content = $content . '<changefreq>' . $obj->getChangefreq() . '</changefreq>' . PHP_EOL;
+            }
+            if ($obj->getPriority() != '') {
+                $content = $content . '<priority>' . $obj->getPriority() . '</priority>' . PHP_EOL;
+
+
+            }
+
             $content = $content . '</url>' . PHP_EOL;
 
         }
@@ -189,8 +197,8 @@ class siteMap
     }
 
 
-
 }
+
 class siteMapIndex extends siteMap
 {
     public function writeToFile($path)
@@ -203,11 +211,10 @@ class siteMapIndex extends siteMap
         foreach ($this->collection as $key => $obj) {
 
 
-            $content = $content.'<sitemap>' . PHP_EOL;
+            $content = $content . '<sitemap>' . PHP_EOL;
             $content = $content . '<loc>' . $obj->getLoc() . '</loc>' . PHP_EOL;
-            if($obj->getChangefreq()!='')
-            {
-                $content = $content . '<changefreq>'.$obj->getChangefreq().'</changefreq>' . PHP_EOL;
+            if ($obj->getChangefreq() != '') {
+                $content = $content . '<changefreq>' . $obj->getChangefreq() . '</changefreq>' . PHP_EOL;
 
             }
             $content = $content . '</sitemap>' . PHP_EOL;
@@ -226,36 +233,36 @@ class siteMapIndex extends siteMap
 
 
 }
+
 class siteMapEntity
 {
 
     private $lastMod;
-
     private $loc;
-
     private $priority;
     private $changefreq;
 
     public function setLastMod($date)
     {
-        $this->lastMod=$date;
+        $this->lastMod = $date;
         return $this;
     }
 
     public function setLoc($url)
     {
-        $this->loc=$url;
+        $this->loc = $url;
         return $this;
     }
 
     public function setPriority($priority)
     {
-        $this->priority=$priority;
+        $this->priority = $priority;
         return $this;
     }
+
     public function setChangefreq($param)
     {
-        $this->changefreq=$param;
+        $this->changefreq = $param;
         return $this;
     }
 
@@ -274,8 +281,9 @@ class siteMapEntity
 
     public function getPriority()
     {
-        return  $this->priority;
+        return $this->priority;
     }
+
     public function getChangefreq()
     {
         return $this->changefreq;

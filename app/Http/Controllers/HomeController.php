@@ -7,6 +7,7 @@ use App\Category;
 use App\WebsiteSetting;
 //use App\Home;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use PDF;
 
@@ -23,9 +24,21 @@ class HomeController extends Controller
 
 
         //Content::increment('viewCount');
-        $data['topViewPost'] = Content::where('type','=','2')->orderBy('viewCount', 'desc')->limit(10)->get();
-        $data['newPost'] = Content::where('type','=','2')->orderBy('publish_date', 'desc')->limit(10)->get();
-        $data['category'] = Category::where('type', '=', '1')->where('parent_id','<>','0')->get();
+        $data['topViewPost'] = Content::where('type','=','2')
+            ->orderBy('viewCount', 'desc')
+            ->where('publish_date','<=', DB::raw('now()'))
+            ->limit(10)->get();
+
+        $data['newPost'] = Content::where('type','=','2')
+            ->where('publish_date','<=', DB::raw('now()'))
+            ->orderBy('publish_date', 'desc')
+            ->limit(10)
+            ->get();
+
+        $data['category'] = Category::where('type', '=', '1')
+            ->where('parent_id','<>','0')
+            ->where('publish_date','<=', DB::raw('now()'))
+            ->get();
 
         $data['seo'] = WebsiteSetting::all()->keyBy('variable')->map(function ($name) {
             return strtoupper($name['value']);
