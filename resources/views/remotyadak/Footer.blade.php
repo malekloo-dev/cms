@@ -12,7 +12,7 @@
     </div>
 </section>
 
-<script src="{{ url('/adminAssets/js/script.js') }}"></script>
+{{--<script src="{{ url('/adminAssets/js/script.js') }}"></script>--}}
 
 </body>
 

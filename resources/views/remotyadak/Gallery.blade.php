@@ -18,7 +18,7 @@
         <div>
          
 
-             {{--<img src="blank.gif" class="lazy" data-src="{{ $image['src']}}" width="240" height="152">--}}
+             {{--<img src="blank.gif" class="lazy" data-src="{{ $image['src']}}" >--}}
 
              <img src="{{ $image['src']}}" >
 
