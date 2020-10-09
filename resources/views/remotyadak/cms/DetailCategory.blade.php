@@ -1,6 +1,5 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 @section('assets')
-<link rel="stylesheet" href="{{ asset('/detail.category.css') }}">
 @endsection
 
 @section('Content')
