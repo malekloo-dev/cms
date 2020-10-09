@@ -7,6 +7,7 @@ use App\export;
 use App\Sitemap;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -339,7 +340,8 @@ class ContentController extends Controller
      */
     public function sitemap()
     {
-        $postList = Content::all();
+        $postList = Content::where('publish_date','<=', DB::raw('now()'))->get();
+
 
         // $sitemap = siteMap::createIndex()
         //     ->add()->setLoc('post.xml')
