@@ -1,6 +1,6 @@
 <nav>
     <a href="/" class="brand">
-        <img class="full" alt="ریموت یدک لوگو" srcset="{{ asset('/img/logo1x.png') }} 1x, {{ asset('/img/logo2x.png') }} 2x" src="{{ asset('/img/logo1x.png') }}" />
+        <img alt="ریموت یدک لوگو" srcset="{{ asset('/img/logo1x.png') }} 1x, {{ asset('/img/logo2x.png') }} 2x" src="{{ asset('/img/logo1x.png') }}" />
     </a>
 
     <input id="bmenu" type="checkbox" class="show">
@@ -14,7 +14,7 @@
     <div class="menu">
 
         <ul>
-            <li>
+            {{--<li>
                 <a class="flexbox">
                     <div class="search1">
                         <div>
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </a>
-            </li>
+            </li>--}}
             @foreach(Harimayco\Menu\Models\MenuItems::where('menu', '=', '1')->where('parent','=','0')->orderBy('sort')->get() as $menuItem)
             <?php
             $subMenu = Harimayco\Menu\Models\MenuItems::where('menu', '=', '1')->where('parent', '=', $menuItem['id'])->orderBy('sort')->get(); ?>
