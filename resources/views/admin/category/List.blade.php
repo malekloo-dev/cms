@@ -47,7 +47,7 @@
                             <form class=" width-30 height-30 line-height-30" action="{{ route('category.destroy', $content->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button class="font-full-plus-half-em text-danger btn-xs pull-left no-border no-bg no-padding" type="submit">
+                                <button onclick="return confirm('آیا مطمئن هستید؟')" class="font-full-plus-half-em text-danger btn-xs pull-left no-border no-bg no-padding" type="submit">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </form>
