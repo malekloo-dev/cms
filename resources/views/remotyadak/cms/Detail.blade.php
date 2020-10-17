@@ -55,17 +55,17 @@ $append='';
         "aggregateRating":
         {
             "@type": "AggregateRating",
-            "ratingValue": {{ $detail->attr['rate'] }},
-            "reviewCount": {{ $detail->viewCount }},
-            "bestRating": 5,
-            "worstRating": 0
+            "ratingValue": "{{ $detail->attr['rate'] }}",
+            "ratingCount": "{{ $detail->viewCount }}",
+            "bestRating": "5",
+            "worstRating": "0"
         },
         "offers":
         {
             "@type": "Offer",
             "url": "{{ url('/').'/'. $detail->slug }}",
             "priceCurrency": "IRR",
-            "price": "{{ $detail->attr['price'] ?? "0"}}",
+            "price": "{{ $detail->attr['price'] ?? 0}}",
             "priceValidUntil": "2021-08-09",
             "itemCondition": "https://schema.org/UsedCondition",
             "availability": "https://schema.org/InStock",
@@ -109,7 +109,7 @@ $append='';
                     <div>
                         <span class="rate mt-1">
                             @for($i = $detail->attr['rate']; $i >= 1; $i--)
-                                <img srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}">
+                                <img srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}"   alt="{{"star for rating"}}">
                             @endfor
                         </span> | 
                         {{ $detail->viewCount }} بار دیده شده | 
@@ -149,7 +149,7 @@ $append='';
                     <div>
                         <article>
                             @if (isset($content->images['thumb']))
-                            <div><img src="{{ $content->images['thumb']}}"></div>
+                            <div><img src="{{ $content->images['thumb']}}"   alt="{{$content->title}}" ></div>
                             @endif
                             <footer>
                                 <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
@@ -179,7 +179,7 @@ $append='';
                     <div>
                         <article>
                             @if (isset($content->images['thumb']))
-                            <div><img src="{{ $content->images['thumb']}}"></div>
+                            <div><img src="{{ $content->images['thumb']}}  alt="{{$content->title}} "></div>
                             @endif
                             <footer>
                                 <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
