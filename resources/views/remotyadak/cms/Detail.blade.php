@@ -1,6 +1,6 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 @section('assets')
-<link rel="stylesheet" href="{{ asset('/detail.css') }}">
+
 @endsection
 
 @section('Content')
@@ -91,20 +91,32 @@ $append='';
     </div>
 </section>
 
-<section class="" id="">
+<section class="product-detail" id="">
     <div class="flex one ">
         <div>
-
-            <h1 class="">{{ $detail->title }}</h1>
-            <div>
-                <span class="rate mt-1">
-                    @for($i = $detail->attr['rate']; $i >= 1; $i--)
-                        <img srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}">
-                    @endfor
-                </span> | 
-                {{ $detail->viewCount }} بار دیده شده | 
-                تاریخ انتشار: {{ $detail->publish_date }} |  
+            <div class="top-page">
+                <picture>
+                    <source media="(min-width:{{ env('PRODUCT_MEDIUM') }}px)" srcset="{{ $detail->images['images']['medium'] ?? '' }} , {{ $detail->images['images']['large'] ?? '' }} 2x">
+                    <source media="(min-width:{{ env('PRODUCT_SMALL') }}px)" srcset="{{ $detail->images['images']['small'] ?? ''}} , {{ $detail->images['images']['medium'] ?? ''}} 2x">
+                    <img src="{{ $detail->images['images']['medium'] ?? ''}}"
+                            sizes="(max-width:{{ env('PRODUCT_MEDIUM') }}px) 100vw  {{ ENV('PRODUCT_MEDIUM') }}px {{ ENV('PRODUCT_LARGE') }}px"
+                            alt="{{$detail->title}}"
+                            width="{{ env('PRODUCT_MEDIUM') }}" height="{{ env('PRODUCT_MEDIUM') }}">
+                </picture>
+                <div>
+                    <h1 class="">{{ $detail->title }}</h1>
+                    <div>
+                        <span class="rate mt-1">
+                            @for($i = $detail->attr['rate']; $i >= 1; $i--)
+                                <img srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}">
+                            @endfor
+                        </span> | 
+                        {{ $detail->viewCount }} بار دیده شده | 
+                        تاریخ انتشار: {{ $detail->publish_date }} |  
+                    </div>
+                </div>
             </div>
+            
 
             <ul>
                 @foreach($table_of_content as $key=>$item)

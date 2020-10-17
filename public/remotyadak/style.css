@@ -1101,3 +1101,12 @@ div.attr>div>div>:nth-child(even){flex:4; background-color: #f4f4f4;}
 .products .rate{width:100%}
 .mt-1{margin:0}
 }
+/* detail */
+.product-detail .rate{display:flex;margin: auto;}
+.product-detail .rate img{width:20px}
+@media (max-width:600px){
+    .product-detail .rate,.product-detail .view-count{position:relative;left:auto;top:auto}
+    .product-detail .rate{width:100%}
+}
+.product-detail .top-page{display:flex;}
+.product-detail .top-page picture{max-width: 200px;margin: 1em;}
