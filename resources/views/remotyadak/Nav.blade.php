@@ -18,7 +18,7 @@
                 <a class="flexbox">
                     <div class="search1">
                         <div>
-                            <input type="text" placeholder="جستجو" required>
+                            <input alt="جستجو" type="text" placeholder="جستجو" required>
                         </div>
                     </div>
                 </a>
