@@ -46,7 +46,8 @@ $append='';
                 "@type": "Offer",
                 "url": "{{ url()->current().$content->slug }}",
                 "priceCurrency": "IRR",
-            "price": "{{ $content->attr['price'] ?? "0"}}",
+                "price": "{{ $content->attr['price'] ?? "0"}}",
+                "priceValidUntil": "2021-08-09",
                 "itemCondition": "https://schema.org/UsedCondition",
                 "availability": "https://schema.org/InStock",
                 "seller":
