@@ -43,7 +43,7 @@ $append='';
             ],
         @endif
 
-        "description": "@foreach($editorModule as $key=>$module)@if ($module['type']=='description'){{clearHtml($module['content'])}}@endif @endforeach",
+        "description": "@foreach($editorModule as $key=>$module) @if ($module['type']=='description') {{clearHtml($module['content'])}} @endif  @if ($module['type']=='attr'){!!  "مشخصا فنی : "!!} @foreach($module['content'] as $key=>$attr){!!  clearHtml($attr['field'])!!} : {!!  clearHtml($attr['value'])!!} - @endforeach @endif @endforeach",
         "sku": "{{$detail->id}}",
         "mpn": "{{$detail->id}}",
         "brand":

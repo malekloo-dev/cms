@@ -52,7 +52,11 @@ function lazyLoadImage() {
     [].forEach.call(n, function (n) {
         isElementInViewport(n) && (n.setAttribute("src", n.getAttribute("data-lazysrc")), n.removeAttribute("data-lazysrc"), $("#" + n.id).removeClass("maxwh100"))
     });
-    n.length == 0 && (window.removeEventListener("DOMContentLoaded", lazyLoadImage), window.removeEventListener("load", lazyLoadImage), window.removeEventListener("resize", lazyLoadImage), window.removeEventListener("scroll", lazyLoadImage))
+    n.length == 0 &&
+    (window.removeEventListener("DOMContentLoaded", lazyLoadImage),
+        window.removeEventListener("load", lazyLoadImage),
+        window.removeEventListener("resize", lazyLoadImage),
+        window.removeEventListener("scroll", lazyLoadImage))
 }
 function flickitypl() {
     $("#divTopBanner").flickity({cellAlign: "right", prevNextButtons: !1, pageDots: !1, autoPlay: 5e3})
