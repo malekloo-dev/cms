@@ -68,7 +68,7 @@
                                     <img srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}">
                                 @endfor
                             </div>
-                            {{ $content->attr['price'] }} تومان
+                            @convertCurrency($content->attr['price'])  تومان
                             </div>
                         </footer>
                     
