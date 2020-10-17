@@ -1,12 +1,12 @@
 <div class="attr">
     <div class="">
-    @foreach($module['content'] as $key=>$faq)
+    @foreach($module['content'] as $key=>$attr)
         <div class="">
             <div >
-                {!!  $faq['field']!!}
+                {!!  $attr['field']!!}
             </div>
             <div >
-                {!!  $faq['value']!!}
+                {!!  $attr['value']!!}
             </div>
         </div>
         @endforeach
