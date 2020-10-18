@@ -122,7 +122,7 @@ $append='';
             <ul>
                 @foreach($table_of_content as $key=>$item)
                 <li class="toc1">
-                    <a id="test" href="#{{$item['anchor']}}">{{$item['label']}}</a>
+                    <a href="#{{$item['anchor']}}">{{$item['label']}}</a>
                 </li>
                 @endforeach
 
