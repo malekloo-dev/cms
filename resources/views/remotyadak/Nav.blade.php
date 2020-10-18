@@ -3,14 +3,29 @@
         <img alt="ریموت یدک لوگو" srcset="{{ asset('/img/logo1x.png') }} 1x, {{ asset('/img/logo2x.png') }} 2x" src="{{ asset('/img/logo1x.png') }}" />
     </a>
 
-    <input id="bmenu" type="checkbox" class="show">
-    <label for="bmenu" class="burger toggle pseudo button">
+
+    <input id="bmenu"  name="bmenu" type="checkbox" class="show" aria-label="menu">
+
+    <label for="bmenu"  id="bmenu1" class="burger toggle pseudo button">
         <span class="hamburger">
             <span></span>
             <span></span>
             <span></span>
         </span>
+
     </label>
+   {{-- <script>
+            function myFunction() {
+                var element = document.getElementById("bmenu1");
+                element.classList.add("burger");
+                element.classList.add("toggle");
+                element.classList.add("pseudo");
+                element.classList.add("button");
+            }
+
+            myFunction();
+        }
+    </script>--}}
     <div class="menu">
 
         <ul>
