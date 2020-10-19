@@ -60,6 +60,10 @@ class CmsController extends Controller
         if (strlen($detail->description)) {
             $resultTableContent = $this->tableOfContent($detail->description);
             $detail->description = $resultTableContent['content'];
+            //echo '<pre/>';
+            //print_r($resultTableContent);
+            //die();
+            //dd( $detail->description);
             $table_of_content = $resultTableContent['list'];
 
             $table_of_images = $this->tableOfImage($detail->description);
@@ -194,6 +198,9 @@ class CmsController extends Controller
         //$heads = preg_replace('/<\/h[1-'.$depth.']>/','</a></li>',$heads);
 
         //dd($detail->description);
+        function cleareText($val){
+           return  trim( clearHtml(str_replace('&nbsp;',' ',$val)));
+        }
 
         //$table=$winners;
         $table_of_content = '';
@@ -201,10 +208,10 @@ class CmsController extends Controller
         $list['list'] = array();
         foreach ($winners[1] as $key => $val) {
             $item = str_replace(' ', '-', $val);
-            $list['list'][$count]['label'] = $val;
-            $list['list'][$count]['anchor'] = $item;
+            $list['list'][$count]['label'] = cleareText($val);
+            $list['list'][$count]['anchor'] = cleareText($item);
             $table_of_content = '';
-            $anchor = '<a name="' . str_replace(' ', '-', $val) . '"></a>' . $winners[0][$key];
+            $anchor = '<a name="' . str_replace(' ', '-', cleareText($val)) . '"></a>' . $winners[0][$key];
 
             $content = str_replace($winners[0][$key], $anchor, $content);
 

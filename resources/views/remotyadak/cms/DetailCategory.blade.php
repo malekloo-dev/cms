@@ -212,6 +212,14 @@ $append='';
             </picture>
             @endif
 
+            <ul>
+                @foreach($table_of_content as $key=>$item)
+                    <li class="toc1">
+                        <a href="#{{$item['anchor']}}">{{$item['label']}}</a>
+                    </li>
+                @endforeach
+
+            </ul>
 
             @include(@env('TEMPLATE_NAME').'.DescriptionModule')
 
