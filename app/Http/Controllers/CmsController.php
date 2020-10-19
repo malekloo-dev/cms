@@ -208,11 +208,16 @@ class CmsController extends Controller
         $list['list'] = array();
         foreach ($winners[1] as $key => $val) {
             $item = str_replace(' ', '-', $val);
-            $list['list'][$count]['label'] = cleareText($val);
+            $label=cleareText($val);
+            $anchor=cleareText($item);
+            if(strlen($anchor)==0)
+            {
+                continue;
+            }
+            $list['list'][$count]['label'] = $anchor;
             $list['list'][$count]['anchor'] = cleareText($item);
             $table_of_content = '';
             $anchor = '<a name="' . str_replace(' ', '-', cleareText($val)) . '"></a>' . $winners[0][$key];
-
             $content = str_replace($winners[0][$key], $anchor, $content);
 
             $count++;
