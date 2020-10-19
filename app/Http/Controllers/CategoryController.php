@@ -193,6 +193,8 @@ class CategoryController extends Controller
         }
 
         $data = $request->all();
+        $date = $data['publish_date'];
+        $data['publish_date'] = convertJToG($date);
         $data['parent_id'] = $request->parent_id;
         $data['type'] = '1';
         $data['images'] = $imagesUrl;
@@ -226,6 +228,8 @@ class CategoryController extends Controller
         /*print_r($_POST);die();*/
 
         $data = $request->all();
+        $date = $data['publish_date'];
+        $data['publish_date'] = convertJToG($date);
         $data['type'] = 1;
         //$data['images']= $imagesUrl;
         if($request->slug==''){
@@ -337,6 +341,8 @@ class CategoryController extends Controller
         $crud = Category::find($id);
 
         $data = $request->all();
+        $date = $data['publish_date'];
+        $data['publish_date'] = convertJToG($date);
         $file = $request->file('images');
         //$inputs = $request->all();
 

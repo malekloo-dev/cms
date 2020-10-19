@@ -80,6 +80,7 @@
                                 @endforeach
                             </select>
                             <div id="parent_id_val" class="parent_id_val"></div>
+                            <span class="text-danger">{{ $errors->first('parent_id') }}</span>
                         </div>
                     </div>
 

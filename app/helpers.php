@@ -7,6 +7,8 @@
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
 
+use Morilog\Jalali\CalendarUtils;
+
 function h_encrypt($string)
 {
     $result = '89ah45o' . $string . 'py34';
@@ -415,5 +417,16 @@ function convert_entity($matches, $destroy = true)
     if (isset($table[$matches[1]])) return $table[$matches[1]];
     // else
     return $destroy ? '' : $matches[0];
+}
+
+function convertJToG($date)
+{
+    $convertFaToEn = CalendarUtils::convertNumbers($date,true); // 1395-02-19
+    $convertDate = CalendarUtils::createCarbonFromFormat('Y/m/d',$convertFaToEn)->format('Y-m-d'); //2016-05-8
+    return $convertDate;
+}
+function convertGToJ($date){
+    $jalali = CalendarUtils::strftime('Y-m-d', strtotime($date)); // 1395-02-19
+    return CalendarUtils::convertNumbers($jalali); // ۱۳۹۵-۰۲-۱۹
 }
 

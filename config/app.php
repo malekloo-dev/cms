@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Harimayco\Menu\MenuServiceProvider::class
+        
 
     ],
 

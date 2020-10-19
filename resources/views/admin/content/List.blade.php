@@ -57,7 +57,10 @@
                             @endif
                             {{--{{ $content->status ? 'فعال' : 'غیر فعال' }}--}}</td>
 
-                        <td>{{ date('Y-m-d', strtotime($content->publish_date)) }}</td>
+                        <td>
+                            {{ convertGToJ(date('Y-m-d', strtotime($content->publish_date))) }}
+                            
+                        </td>
                         <td>
                             <form class=" width-30 height-30 line-height-30" action="{{ route('contents.destroy', $content->id)}}" method="post">
                                 @csrf

@@ -113,7 +113,7 @@ $append='';
                             @endfor
                         </span> | 
                         {{ $detail->viewCount }} بار دیده شده | 
-                        تاریخ انتشار: {{ $detail->publish_date }} |  
+                        تاریخ انتشار: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span> |  
                     </div>
                 </div>
             </div>

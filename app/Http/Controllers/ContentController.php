@@ -107,13 +107,13 @@ class ContentController extends Controller
 
 
         //dd($request->all());
-        /*$this->validate($request, array(
-             'title' => 'required|max:250',
-             'description' => 'required',
-             'body' => 'required',
-             'images' => 'required|mimes:jpeg,png,bmp',
+        $this->validate($request, array(
+             'parent_id' => 'required',
+             //'description' => 'required',
+             //'body' => 'required',
+             //'images' => 'required|mimes:jpeg,png,bmp',
 
-         ));*/
+         ));
 
 
         $imagesUrl = '';
@@ -122,6 +122,10 @@ class ContentController extends Controller
         }
 
         $data = $request->all();
+        $date = $data['publish_date'];
+        $data['publish_date'] = convertJToG($date);
+        
+        
         $data['parent_id'] = $request->parent_id[0];
         $data['type'] = '2';
         $data['images'] = $imagesUrl;
@@ -185,7 +189,11 @@ class ContentController extends Controller
      */
     public function update(Request $request, $id)
     {
-dd($request->all());
+
+        
+        // dd(convertGToJ($convertDate));
+
+        //$convert = (new Jalalian($date))->toCarbon()->toDateTimeString();
         /* $this->validate($request, [
              'title' => 'required|title',
              'brief_description' => 'required|brief_description',
@@ -199,6 +207,9 @@ dd($request->all());
              'description' => 'required',
          ]);
         */
+        $this->validate($request, array(
+            'parent_id' => 'required',
+        ));
         /*$update = ['title' => $request->title, 'brief_description' => $request->brief_description
             , 'description' => $request->description
             , 'status' => $request->status
@@ -213,7 +224,9 @@ dd($request->all());
         $crud = Content::find($id);
 
         $data = $request->all();
-
+        $date = $data['publish_date'];
+        $data['publish_date'] = convertJToG($date);
+        
         $data['parent_id'] = $request->parent_id[0];
         $file = $request->file('images');
         //$inputs = $request->all();
