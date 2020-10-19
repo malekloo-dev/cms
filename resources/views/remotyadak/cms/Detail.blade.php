@@ -109,7 +109,7 @@ $append='';
                     <div>
                         <span class="rate mt-1">
                             @for($i = $detail->attr['rate']; $i >= 1; $i--)
-                                <img srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}"   alt="{{"star for rating"}}">
+                                <img width="20" height="20" srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}"   alt="{{"star for rating"}}">
                             @endfor
                         </span> | 
                         {{ $detail->viewCount }} بار دیده شده | 
@@ -149,7 +149,7 @@ $append='';
                     <div>
                         <article>
                             @if (isset($content->images['thumb']))
-                            <div><img src="{{ $content->images['thumb']}}"   alt="{{$content->title}}" ></div>
+                            <div><img width="150" height="150px" src="{{ $content->images['images']['small']}}"   alt="{{$content->title}}" ></div>
                             @endif
                             <footer>
                                 <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>

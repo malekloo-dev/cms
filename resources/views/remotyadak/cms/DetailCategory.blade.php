@@ -146,7 +146,7 @@ $append='';
                                 <div class="view-count">{{ $content->viewCount }} بار دیده شده</div>
                                 <div class="rate mt-1">
                                     @for($i = $content->attr['rate']; $i >= 1; $i--)
-                                        <img srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}">
+                                        <img alt="rate-stars" srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}">
                                     @endfor
                                 </div>
                                 <div class="brief">

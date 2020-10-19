@@ -1,6 +1,6 @@
 <nav>
     <a href="/" class="brand">
-        <img alt="ریموت یدک لوگو" srcset="{{ asset('/img/logo1x.png') }} 1x, {{ asset('/img/logo2x.png') }} 2x" src="{{ asset('/img/logo1x.png') }}" />
+        <img height="78" width="172" alt="ریموت یدک لوگو" srcset="{{ asset('/img/logo1x.png') }} 1x, {{ asset('/img/logo2x.png') }} 2x" src="{{ asset('/img/logo1x.png') }}" />
     </a>
 
 
@@ -43,7 +43,7 @@
             $subMenu = Harimayco\Menu\Models\MenuItems::where('menu', '=', '1')->where('parent', '=', $menuItem['id'])->orderBy('sort')->get(); ?>
             @if(count($subMenu))
             <li class="parent"><a href="{{ $menuItem['link'] }}">{{ $menuItem['label'] }}</a>
-                <div><img alt="arrow-down" src="{{ asset('/img/arrow-down.png') }}"></div>
+                <div><img width="16" height="16" alt="arrow-down" src="{{ asset('/img/arrow-down.png') }}"></div>
                 <ul>
                     @foreach($subMenu as $subMenuItem)
                     <li><a href="{{ $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a></li>
