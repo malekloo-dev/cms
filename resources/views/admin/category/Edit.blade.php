@@ -170,7 +170,7 @@
                 <div class="form-group row">
                     <div class="col-md-3">
                         <label for="name" class=" col-form-label text-md-left">Publish Date:</label>
-                        <input type="datetime" class="form-control" name="publish_date" value="{{ old('publish_date',$content_info->publish_date) }}" />
+                        <input type="datetime" class="form-control datepicker" name="publish_date" value="{{ old('publish_date',$content_info->publish_date) }}" />
                     </div>
                     <div class="col-md-3">
                         <label for="name" class=" col-form-label text-md-left">Status:</label>

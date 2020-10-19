@@ -1,4 +1,4 @@
-@font-face{font-family:vazir;src:url(fonts/vazir/Vazir-Light.eot);src:url(fonts/vazir/Vazir-Light.eot) format("embedded-opentype"),url(fonts/vazir/Vazir-Light.woff) format("woff"),url(fonts/vazir/Vazir-Light.ttf) format("truetype");font-weight:400;font-style:normal}
+@font-face{font-family:vazir;src:url(../fonts/vazir/Vazir-Light.eot);src:url(../fonts/vazir/Vazir-Light.eot) format("embedded-opentype"),url(../fonts/vazir/Vazir-Light.woff) format("woff"),url(../fonts/vazir/Vazir-Light.ttf) format("truetype");font-weight:400;font-style:normal}
 body {
     background: url('../img/wallpapers/11.jpg') no-repeat fixed center center;
     -webkit-background-size: cover !important;

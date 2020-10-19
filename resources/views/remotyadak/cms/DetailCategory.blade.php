@@ -81,6 +81,12 @@ $append='';
 </section>
 @endif
 
+<section>
+    <div class="flex one">
+        <h1>{{ $detail->title }}</h1>
+    </div>
+</section>
+
 @if (count($subCategory))
 <section class="category-list" id="index-best-view">
     <div class="flex one ">
@@ -115,7 +121,7 @@ $append='';
 @endif
 
 @if (count($relatedProduct))
-<section class="products mt-5" id="index-best-view">
+<section class="products mt-1" id="index-best-view">
     <div class="flex one ">
         <div>
             <div class="">
@@ -140,7 +146,7 @@ $append='';
                                 @endif
                             </div>
                             <footer>
-                                <a href="{{ $content->slug }}"> {{ $content->title }}</a>
+                                <a href="{{ $content->slug }}"> <h2>{{ $content->title }}</h2></a>
                                 <div class="brand">برند: {{ $content->attr['brand'] }}</div>
                                 <div class="price">قیمت:  @convertCurrency($content->attr['price'])  تومان </div>
                                 <div class="view-count">{{ $content->viewCount }} بار دیده شده</div>
@@ -199,7 +205,7 @@ $append='';
     <div class="flex one ">
         <div>
 
-            <h1 class="">{{ $detail->title }}</h1>
+            
             @if(isset($detail->images['images']))
             <picture>
                 <source media="(min-width:{{ env('CATEGORY_LARGE') }}px)" srcset="{{ $detail->images['images']['large'] ?? '' }} , {{ $detail->images['images']['large'] ?? '' }} 2x">

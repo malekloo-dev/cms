@@ -147,6 +147,7 @@
                     <div class="col-md-12">
                         <label for="name" class="col-form-label text-md-left">Brief Description:</label>
                         <textarea class="form-control" id="brief_description" name="brief_description">{{ old('brief_description') }}</textarea>
+                        <div id="word-count1"></div>
                     </div>
                 </div>
 
@@ -156,6 +157,7 @@
                     <div class="col-md-12">
                         <label for="name" class=" col-form-label text-md-left">Description:</label>
                         <textarea class="form-control" id="description" name="description">{{ old('description') }}</textarea>
+                        <div id="word-count2"></div>
                     </div>
                 </div>
 
@@ -164,7 +166,7 @@
                 <div class="form-group row">
                     <div class="col-md-3">
                         <label for="name" class="col-form-label text-md-left">Publish Date:</label>
-                        <input type="datetime" class="form-control" name="publish_date" value="{{ old('date2',Carbon\Carbon::now()->addDay()->format('Y-m-d')) }}" />
+                        <input type="datetime" class="form-control datepicker" name="publish_date" value="{{ old('date2',Carbon\Carbon::now()->addDay()->format('Y-m-d')) }}" />
                     </div>
                     <div class="col-md-3">
                         <label for="name" class=" col-form-label text-md-left">Status:</label>

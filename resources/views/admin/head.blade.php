@@ -27,6 +27,8 @@
     <link href="{{ url('/adminAssets/css/iziToast.min.css') }}" rel="stylesheet">
     <link href="{{ url('/adminAssets/css/style.css') }}" rel="stylesheet">
     <link href="{{ url('/adminAssets/css/responsive.css') }}" rel="stylesheet">
+    <link href="{{ url('/adminAssets/css/persian-datepicker.min.css') }}" rel="stylesheet">
+    
 
     <!-- Scripts -->
     <script src="{{ url('/adminAssets/js/jquery.min.js') }}"></script>
@@ -45,10 +47,26 @@
     <script src="{{ url('/adminAssets/js/iziToast.min.js') }}"></script>
     <script src="{{ url('/adminAssets/js/iziToast-custom.js') }}"></script>
     <script src="{{ url('/adminAssets/js/scripts.js') }}"></script>
+    <script src="{{ url('/adminAssets/js/persian-date.min.js') }}"></script>
+    <script src="{{ url('/adminAssets/js/persian-datepicker.min.js') }}"></script>
+
 
 
     <script>
         $(function() {
+            $('.datepicker').persianDatepicker({
+                initialValue: true,
+                format: 'YYYY/MM/DD',
+                autoClose: true,
+                responsive: false,
+                "toolbox": {
+                    "enabled": true,
+                    "calendarSwitch": {
+                    "enabled": false,
+                    "format": "MMMM"
+                    }
+                }
+            });
             /* essential functions */
             $.httpRequest = function(url, method, data, isJson) {
                 var option = {

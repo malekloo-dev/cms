@@ -121,6 +121,8 @@
                         <label for="name" class=" col-form-label text-md-left">توضیحات مختصر:</label>
 
                         <textarea class="form-control" id="brief_description" name="brief_description" rows="10" placeholder="Enter your Content">{{ old('brief_description',$content_info->brief_description) }}</textarea>
+                        <div id="word-count1"></div>
+                        <span class="text-danger">{{ $errors->first('brief_description') }}</span>
                     </div>
 
                 </div>
@@ -128,7 +130,8 @@
                     <div class="col-md-12">
                         <label for="name" class=" col-form-label text-md-left">توضیحات:</label>
                         <textarea class="form-control" id="description" name="description">{{ old('description',$content_info->description) }}</textarea>
-
+                        <div id="word-count2"></div>
+                        <span class="text-danger">{{ $errors->first('description') }}</span>
                     </div>
 
                 </div>
@@ -155,7 +158,7 @@
                 <div class="form-group row">
                     <div class="col-md-12">
                         <label for="name" class="col-form-label text-md-left">تاریخ انتشار:</label>
-                        <input type="datetime" class="form-control" name="publish_date" value="{{ old('publish_date',$content_info->publish_date) }}" />
+                        <input type="" class="form-control datepicker" name="publish_date" value="{{ old('publish_date',$content_info->publish_date) }}" />
                     </div>
                 </div>
                 <div class="form-group row">
@@ -278,9 +281,3 @@
 </div>
 
 @endsection
-
-
-<span class="text-danger">{{ $errors->first('brief_description') }}</span>
-<span class="text-danger">{{ $errors->first('description') }}</span>
-<span class="text-danger">{{ $errors->first('status') }}</span>
-<span class="text-danger">{{ $errors->first('publish_date') }}</span>
