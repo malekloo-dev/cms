@@ -31,7 +31,10 @@ class CmsController extends Controller
             ->first();
         //dd($detail);
         if ($detail === null) {
-            return view(@env(TEMPLATE_NAME) . '.NotFound');
+            $data['title'] = '404';
+            $data['name'] = 'Page not found';
+            return  response()
+                ->view(@env(TEMPLATE_NAME) . '.NotFound',$data,404);
         }
 
         $this->breadcrumb[] = $detail->getAttributes();
