@@ -106,7 +106,7 @@ class ContentController extends Controller
     {
 
 
-        //dd($request->all());
+        // dd($request->all());
         $this->validate($request, array(
              'parent_id' => 'required',
              //'description' => 'required',
@@ -138,10 +138,11 @@ class ContentController extends Controller
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
-
+        
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         Content::create($data);
-
+        $this->sitemap();
+        
         return redirect('/admin/contents?type=' . $request->attr_type)->with('success', 'Greate! Content created successfully.');
     }
 
@@ -277,6 +278,9 @@ class ContentController extends Controller
         //        //return redirect(route('articles.index'));
         //
         //        $crud->save();
+
+        $this->sitemap();
+
         return redirect('admin/contents?type=' . $crud->attr_type);
     }
 
@@ -378,7 +382,7 @@ class ContentController extends Controller
               'priority'=>'0.2',))*/
         // ->add()->setPriority('0.1')->setLoc('decor/1')->setLastMod('11-1-90')
         // ->add()->setLoc('decor/2')->setLastMod('11-12-99');
-
+        return true;
         dd($sitemap);
 
         /*$postList = Content::all();
