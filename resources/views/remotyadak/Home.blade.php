@@ -48,7 +48,7 @@
 
 
 
-<section class="index-items">
+<section class="index-items home-top-view">
     <div class="flex one">
         <div>
             <div class="flex one two-500  four-800   ">
