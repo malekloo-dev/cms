@@ -2,7 +2,7 @@
 @section('content')
 <div class="content-control">
     <ul class="breadcrumb">
-        <li><a class="text-18">مقالات </a></li>
+        <li><a class="text-18">@if( $type === 'article')مقالات @elseif( $type === 'product')محصولات @endif</a></li>
     </ul>
 
 
