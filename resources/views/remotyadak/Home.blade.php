@@ -48,10 +48,10 @@
 
 
 
-<section class="index-items">
+<section class="index-items home-top-view">
     <div class="flex one">
         <div>
-            <div class="flex one two-500  four-800   ">
+            <div class="flex one two-500  four-800 center  ">
                 {{-- $data['newPost'] --}}
                 @foreach($topViewPost as $content)
                 <div>
