@@ -212,11 +212,12 @@
 
                         <a href="{{ $content->slug }}"> {{ $content->title }}</a>
                         <div class="info">
-                            {!! $content->brief_description !!}
+                            {!! readMore($content->brief_description,350) !!}
                         </div>
                         <div class="rate mt-1">
-                            <img srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}">
-                            <img srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}">
+                            @for($i = $content->attr['rate']; $i >= 1; $i--)
+                                <img width="20" height="20" srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}"   alt="{{"star for rating"}}">
+                            @endfor
                         </div>
 
                     </article>

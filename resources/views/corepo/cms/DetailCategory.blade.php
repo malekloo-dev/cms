@@ -99,7 +99,17 @@ $append='';
                     <div class="border hover-box p-1 full">
                         <div class="flex one three-700 height-100">
                             @if (isset($content->images['thumb']))
-                            <div class="p-0"><img src="{{ $content->images['thumb']}}" /></div>
+                            <div class="p-0">
+                                <picture>
+                                    <source media="(min-width:{{ env('CATEGORY_LARGE') }}px)" srcset="{{ $content->images['images']['large'] ?? '' }} , {{ $content->images['images']['large'] ?? '' }} 2x">
+                                    <source media="(min-width:{{ env('CATEGORY_MEDIUM') }}px)" srcset="{{ $content->images['images']['medium'] ?? '' }} , {{ $content->images['images']['large'] ?? '' }} 2x">
+                                    <source media="(min-width:{{ env('CATEGORY_SMALL') }}px)" srcset="{{ $content->images['images']['small'] ?? ''}} , {{ $content->images['images']['medium'] ?? ''}} 2x">
+                                    <img src="{{ $content->images['images']['medium'] ?? ''}}"
+                                            sizes="(max-width:{{ env('CATEGORY_MEDIUM') }}px) 100vw  {{ ENV('CATEGORY_MEDIUM') }}px {{ ENV('CATEGORY_LARGE') }}px"
+                                            alt="{{$content->title}}"
+                                            width="{{ env('CATEGORY_MEDIUM') }}" height="{{ env('CATEGORY_MEDIUM') }}">
+                                </picture>
+                            </div>
                             @endif
                             <div class="one two-third-700 pr-1">
                                 <h2 class="p-0"><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>

@@ -106,9 +106,12 @@ $append='';
             </figure>
             <div>
                 <h1 class="site-name">{{ $detail->title }}</h1>
-                <div class="website">site</div>
+                <div class="website"></div>
                 <div class="rate">
-                    <img src="{{ asset('/img/star1x.png') }}" srcset="{{ asset('/img/star1x.png') }}, {{ asset('/img/star2x.png') }} 2x">
+                    @for($i = $detail->attr['rate']; $i >= 1; $i--)
+                        <img width="20" height="20" srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}"   alt="{{"star for rating"}}">
+                    @endfor
+                    
                 </div>
             </div>
         </div>
