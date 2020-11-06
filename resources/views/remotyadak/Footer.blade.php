@@ -11,9 +11,10 @@
         </div>
     </div>
 </section>
-
-{{--<script src="{{ url('/adminAssets/js/script.js') }}"></script>--}}
-
+@yield('js')
+<script>
+    var TEMPLATE_NAME = `{{ env('TEMPLATE_NAME') }}`;
+</script>
+<script src="{{ url('/main.js') }}"></script>
 </body>
-
 </html>

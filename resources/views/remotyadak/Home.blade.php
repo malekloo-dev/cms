@@ -3,6 +3,9 @@
 @section('assets')
 
 @endsection
+@section('js')
+    
+@endsection
 
 @section('Content')
 
