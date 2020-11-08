@@ -94,6 +94,7 @@ $append='';
 <section class="intro" id="">
     <div class="flex one two-500  ">
         <div class="third-500">
+            @if(isset($detail->images['thumb']))
             <figure class="image">
                 <img src="{{ $detail->images['images']['medium'] ?? $detail->images['thumb']}}"
                 sizes="(max-width:{{ env('ARTICLE_MEDIUM') }}px) 100vw {{ env('ARTICLE_MEDIUM') }}px {{ ENV('ARTICLE_LARGE') }}px"
@@ -104,6 +105,7 @@ $append='';
                     {{ $detail->images['images']['large'] ?? $detail->images['thumb']}} 2x" >
 
             </figure>
+            @endif
             <div>
                 <h1 class="site-name">{{ $detail->title }}</h1>
                 <div class="website"></div>
