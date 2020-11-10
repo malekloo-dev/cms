@@ -1,6 +1,6 @@
 <nav>
     <a href="/" class="brand">
-        <img class="full" src="{{ asset('/img/logo.png') }}">
+        <img height="53" width="192" alt="لوگو طرح و وب" srcset="{{ asset('/img/logo1x.png') }} 1x, {{ asset('/img/logo2x.png') }} 2x" src="{{ asset('/img/logo1x.png') }}" />
     </a>
 
     <input id="bmenu" type="checkbox" class="show">

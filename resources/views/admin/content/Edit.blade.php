@@ -254,7 +254,7 @@
                     <div class="col-md-12">
                         <label for="rate" class="col-form-label text-md-left">رتبه:</label>
 
-                        <input type="text" class="form-control" name="attr[rate]" value="{{ old('attr[rate]',$content_info->attr['rate']) }}" />
+                        <input type="text" class="form-control" name="attr[rate]" value="{{ old('attr[rate]',$content_info->attr['rate'] ?? '') }}" />
                     </div>
                 </div>
 

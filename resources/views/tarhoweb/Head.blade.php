@@ -7,11 +7,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="{{$seo['meta_keywords'] ?? "" }}">
     <meta name="description" content="{{$seo['meta_description']  ?? ""}}">
+    
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
+    <meta name="theme-color" content="#fff"/>
+    
+    <link rel="apple-touch-icon" href="{{ asset('/img/logo-96-96.png') }}">
+    <link rel="apple-touch-icon" sizes="96x96" href="{{ asset('/img/logo-152-152.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('/img/logo-152-152.png') }}"> 
+    <link rel="apple-touch-icon" sizes="192x192" href="{{ asset('/img/logo-192-192.png') }}">
+    <link rel="apple-touch-icon" sizes="256x256" href="{{ asset('/img/logo-256-256.png') }}">
+    <link rel="apple-touch-startup-image" href="{{ asset('/img/logo-512-512.png') }}">
+    
+    <meta name="msapplication-TileImage" content="{{ asset('/img/logo-192-192.png') }}">
+    <meta name="msapplication-TileColor" content="#fff">
+    <meta name="msapplication-square100x100logo" content="{{ asset('/img/fav.png') }}">
 
     <link rel="stylesheet" href="{{ asset('style.css') }}">
     <link rel="icon" href="{{ asset('/img/fav.png') }}" type="image/x-icon">
     <link rel="stylesheet" media="bogus">
 
+    <meta property="og:locale" content="fa_IR">
+    <meta property="og:type" content="{{$seo['og:type'] ?? "" }}">
+    <meta property="og:title" content="{{$seo['meta_title'] ?? "" }}">
+    <meta property="og:description" content="{{$seo['meta_description']  ?? ""}}">
+    <meta property="og:url" content="{{ $seo['url'] ?? ""}}">
+    <meta property="og:image" content="{{ asset('/img/logo2x.png') }}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    
+    
     @yield('assets')
 
     <!-- Google Tag Manager -->
