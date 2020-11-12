@@ -30,9 +30,13 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     Route::get('contents/{content}/edit', 'ContentController@edit')->name('contents.edit');
 
     Route::get('comment','CommentController@index')->name('comment.index');
+    Route::delete('comment','CommentController@destroy')->name('comment.destroy');
+    Route::get('comment/{comment}/edit','CommentController@edit')->name('comment.edit');
 
     Route::prefix('seo')->name('seo.')->group(function () {
         Route::resource('redirectUrl', 'RedirectUrlController');
+        Route::get('websiteSetting','WebsiteSettingController@edit')->name('websiteSetting.edit');
+        Route::patch('websiteSetting','WebsiteSettingController@update')->name('websiteSetting.update');
     });
 
     Route::resource('category', 'CategoryController');

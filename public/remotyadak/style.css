@@ -1127,8 +1127,7 @@ div.attr>div>div>:nth-child(even){flex:4; background-color: #f4f4f4;}
 .category-list p{color:#616161}
 .category-list .price{font-weight:700}
 .height-100{height:100%}
-.products article{position:relative; background-color: #fafafa;}
-.products article{display:flex;border:1px solid #f4f4f4}
+.products article{position:relative; background-color: #fafafa;display:flex;border:1px solid #f4f4f4;flex-flow:row wrap;}
 .products article>div{width:150px}
 .products article>div picture{height: 100%;}
 .products article>div img{object-fit: cover; border-radius: 3px;}

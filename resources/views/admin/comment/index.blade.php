@@ -5,10 +5,6 @@
         <li><a class="text-18">کامنت ها</a></li>
     </ul>
 
-    <a href="{{ route('seo.redirectUrl.create') }}" class="top-heading-button btn btn-success btn-icon mat-elevation-z radius-all mat-button ">
-        <i class="fa fa-plus"></i> افزودن
-    </a>
-
 
 </div>
 
@@ -35,22 +31,24 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Url</th>
-                        <th>Redirect to </th>
+                        <th>نام</th>
+                        <th>کامنت</th>
                         <th>وضعیت</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($RedirectUrl as $item)
+                    @foreach($data as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
-                        <td class="ltr text-right">{!! $item->url !!}</td>
-                        <td class="ltr text-right">{!! $item->redirect_to !!}</td>
-
+                        <td class="">{{ $item->name ?? '' }}</td>
+                        <td class="">{!! $item->comment !!}</td>
+                        <td class="">{{ $item->status }}</td>
+                        <td class="">{{ $item->created_at }}</td>
 
                         <td>
 
-                            <form class="pull-right" action="{{ route('seo.redirectUrl.destroy', $item->id)}}" method="post">
+                            <form class="pull-right" action="{{ route('comment.destroy', $item->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button onclick="return confirm('آیا مطمئن هستید؟')" class="font-full-plus-half-em text-danger btn-xs  no-border no-bg no-padding" type="submit">
@@ -58,7 +56,7 @@
                                 </button>
                             </form>
 
-                            <a href="{{ route('seo.redirectUrl.edit',$item->id)}}" class="font-full-plus-half-em text-success btn-xs pull-right" title="edit">
+                            <a href="{{ route('comment.edit',$item->id)}}" class="font-full-plus-half-em text-success btn-xs pull-right" title="edit">
                                 <i class="fa fa-edit"></i>
                             </a>
                         </td>

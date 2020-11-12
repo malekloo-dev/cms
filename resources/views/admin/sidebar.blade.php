@@ -77,6 +77,12 @@
                         <span class="sidebar-text text-right">Redirect URL</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('seo.websiteSetting.edit') }}" class="no-margin text-right">
+                        <i class="sidebar-icon pull-right fa fa-refresh"></i>
+                        <span class="sidebar-text text-right">تنظیمات اصلی سئو</span>
+                    </a>
+                </li>
 
             </ul>
         </li>

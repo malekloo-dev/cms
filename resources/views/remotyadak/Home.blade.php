@@ -66,12 +66,16 @@
                         <footer>
                             <h3> {{ $content->title }}</h3>
                             <div>
-                            <div class="rate mt-1">
-                                @for($i = $content->attr['rate']; $i >= 1; $i--)
-                                    <img srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}">
-                                @endfor
-                            </div>
-                            @convertCurrency($content->attr['price'])  تومان
+                                @if(isset($content->attr['rate']))
+                                    <div class="rate mt-1">
+                                        @for($i = $content->attr['rate']; $i >= 1; $i--)
+                                            <img srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}">
+                                        @endfor
+                                    </div>
+                                @endif
+                                @if(isset($content->attr['price']))
+                                    @convertCurrency($content->attr['price']??0)  تومان
+                                @endif
                             </div>
                         </footer>
                     

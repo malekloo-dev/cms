@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\comment;
 // use Illuminate\Http\Request;
-use App\Http\Requests\RedirectUrlRequest;
+use App\Http\Requests\CommentRequest;
 
 class CommentController extends Controller
 {
@@ -15,9 +15,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $RedirectUrl = comment::all();
+        $data = comment::all();
 
-        return view('admin.comment.index', compact('RedirectUrl'));
+        return view('admin.comment.index', compact('data'));
     }
 
     /**
