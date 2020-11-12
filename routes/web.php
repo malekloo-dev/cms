@@ -29,13 +29,13 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     Route::PATCH('contents/{content}', 'ContentController@update')->name('contents.update');
     Route::get('contents/{content}/edit', 'ContentController@edit')->name('contents.edit');
 
+    Route::get('comment','CommentController@index')->name('comment.index');
+
     Route::prefix('seo')->name('seo.')->group(function () {
         Route::resource('redirectUrl', 'RedirectUrlController');
     });
 
     Route::resource('category', 'CategoryController');
-
-
 
     Route::resources([
         'clients'   => 'ClientsController',

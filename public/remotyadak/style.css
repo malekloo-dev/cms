@@ -1073,6 +1073,7 @@ div.attr>div>div{display: flex;flex-wrap: wrap;}
 div.attr>div>div>div{padding: 1em; margin: .3em;}
 div.attr>div>div>:nth-child(odd){flex:1;font-weight: bold; background-color: #eee;}
 div.attr>div>div>:nth-child(even){flex:4; background-color: #f4f4f4;}
+.comments{background-color:transparent;}
 /* home */
 #index-intro{margin-top:0;padding-top:0;color:#fff;margin-bottom:2em;background:url(img/index-banner.jpg) center bottom;background-size:cover}
 #index-comment{color:#fff;padding:2em;text-align:center;background:#fa490e;background:linear-gradient(90deg,rgba(250,73,14,1) 0,rgba(255,136,45,1) 100%)}

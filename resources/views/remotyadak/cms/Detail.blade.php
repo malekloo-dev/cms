@@ -196,4 +196,16 @@ $append='';
 </section>
 @endif
 
+
+<section class="comments bg-gray mt-0 mb-0">
+    <div class="flex one">
+        <div>
+            {{ $content->comments }}
+            <div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
 @endsection

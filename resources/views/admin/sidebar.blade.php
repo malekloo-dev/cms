@@ -36,7 +36,12 @@
                 </li>
             </ul>
         </li>
-
+        <li class="no-margin">
+            <a href="{{ route('comment.index') }}" class="no-margin text-right">
+                <i class="sidebar-icon pull-right fa fa-envelope"></i>
+                <span class="sidebar-text text-right">کامنت ها</span>
+            </a>
+        </li>
         <li class="no-margin">
             <a class="no-margin text-right">
                 <i class="sidebar-icon pull-right fa fa-bars"></i>
