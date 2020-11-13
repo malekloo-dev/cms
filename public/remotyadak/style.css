@@ -1073,7 +1073,11 @@ div.attr>div>div{display: flex;flex-wrap: wrap;}
 div.attr>div>div>div{padding: 1em; margin: .3em;}
 div.attr>div>div>:nth-child(odd){flex:1;font-weight: bold; background-color: #eee;}
 div.attr>div>div>:nth-child(even){flex:4; background-color: #f4f4f4;}
-.comments{background-color:transparent;}
+.comments{}
+.comment{background-color:#fff;border-radius: 5px; box-shadow: 0 2px 2px rgba(0,0,0,.1);padding: 1em;margin-bottom: 1em;display: flex;}
+.comment .aside{flex:0 0 20%}
+.comment .artical{}
+.comment .name{font-weight: bold;}
 /* home */
 #index-intro{margin-top:0;padding-top:0;color:#fff;margin-bottom:2em;background:url(img/index-banner.jpg) center bottom;background-size:cover}
 #index-comment{color:#fff;padding:2em;text-align:center;background:#fa490e;background:linear-gradient(90deg,rgba(250,73,14,1) 0,rgba(255,136,45,1) 100%)}
@@ -1128,7 +1132,7 @@ div.attr>div>div>:nth-child(even){flex:4; background-color: #f4f4f4;}
 .category-list .price{font-weight:700}
 .height-100{height:100%}
 .products article{position:relative; background-color: #fafafa;display:flex;border:1px solid #f4f4f4;flex-flow:row wrap;}
-.products article>div{width:150px}
+.products article>div{flex:1}
 .products article>div picture{height: 100%;}
 .products article>div img{object-fit: cover; border-radius: 3px;}
 .products article .brief{font-size: .75em;}

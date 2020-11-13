@@ -202,7 +202,17 @@ $append='';
         <div>
             <h4>نظرات شما</h4>
             <div>
-
+                @foreach ($detail->comments as $comment)
+                    <div class="comment">
+                        <div class="aside">
+                            <div class="name">{{ $comment['name'] }}</div>
+                            <div class="date">{{ convertGToJ($comment['created_at']) }}</div>
+                        </div>
+                        <div class="article">
+                            <div class="text">{{ $comment['comment'] }}</div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

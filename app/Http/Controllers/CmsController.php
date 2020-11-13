@@ -29,7 +29,7 @@ class CmsController extends Controller
         $detail = Content::where('slug', '=', $slug)
             ->where('publish_date','<=', DB::raw('now()'))
             ->first();
-        //dd($detail);
+        // dd($detail->comments);
         if ($detail === null) {
             $data['title'] = '404';
             $data['name'] = 'Page not found';
@@ -132,7 +132,6 @@ class CmsController extends Controller
 
             //$detail->description=editorModule($detail->description);
 
-            //dd($editorModule);
             return view($template, compact(['detail', 'breadcrumb', 'relatedPost', 'table_of_content', 'relatedProduct', 'table_of_images', 'seo','editorModule']));
         }
     }
