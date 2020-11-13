@@ -1026,7 +1026,7 @@ article footer{padding-top:10px}
 #footer .social-network>div:first-child a{height:30px;margin-right:3px}
 #footer .social-network a{display:inline-block}
 .products article{padding:10px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
-.products article a{font-weight:700;font-size: .7em;}
+.products article h2{font-weight:700;font-size: .9em;}
 .products article p{font-size:.75em}
 .products article>div{height:150px;overflow:hidden}
 .products img{width:100%;height:100%;object-fit:cover}

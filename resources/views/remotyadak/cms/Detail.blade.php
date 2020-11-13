@@ -1,6 +1,28 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 @section('assets')
-
+{{-- recaptcha --}}
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<script type="text/javascript">
+    function callbackThen(response){
+        // read HTTP status
+        console.log(response.status);
+     
+        // read Promise object
+        response.json().then(function(data){
+            console.log(data);
+        });
+    }
+    function callbackCatch(error){
+        console.error('Error:', error);
+        alert('صفحه را مجدد بارگذاری نمایید.')
+    }
+    </script>
+     
+    {!! htmlScriptTagJsApi([
+        'callback_then' => 'callbackThen',
+        'callback_catch' => 'callbackCatch'
+    ]) !!}
+    
 @endsection
 
 @section('Content')
@@ -158,15 +180,17 @@ $append='';
                     {{--$data['newPost']--}}
                     @foreach($relatedProduct as $content)
                     <div class="">
-                        <article class="shadow">
-                            @if (isset($content->images['thumb']))
-                            <div><img width="150" height="150px" src="{{ $content->images['images']['small']}}"   alt="{{$content->title}}" ></div>
-                            @endif
-                            <footer>
-                                <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
-                                {!! $content->brief_description !!}
-                            </footer>
-                        </article>
+                        <a href="{{ $content->slug }}">
+                            <article class="shadow">
+                                @if (isset($content->images['thumb']))
+                                <div><img width="150" height="150px" src="{{ $content->images['images']['small']}}"   alt="{{$content->title}}" ></div>
+                                @endif
+                                <footer>
+                                    <h2> {{ $content->title }}</h2>
+                                    {!! $content->brief_description !!}
+                                </footer>
+                            </article>
+                        </a>
                     </div>
                     @endforeach
 
@@ -231,6 +255,7 @@ $append='';
                     @endif
                     <form action="{{ route('comment.store') }}#comment" id="comment" method="post">
                         <input type="hidden" name="content_id" value="{{ $detail->id }}">    
+                        
                         @csrf
                         <div>
                             <label>نام:</label>
@@ -240,7 +265,10 @@ $append='';
                             <label>پیام:</label>
                             <textarea name="comment">{{ old('comment') }}</textarea>
                         </div>
-                        <button class="button button-blue">ارسال نظر</button>
+                        <button class="button button-blue g-recaptcha" 
+                        data-sitekey="reCAPTCHA_site_key" 
+                        data-callback='onSubmit' 
+                        data-action='submit'>ارسال نظر</button>
                     </form>
                 </div>
 

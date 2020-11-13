@@ -38,9 +38,10 @@ class CommentController extends Controller
      */
     public function store(CommentRequest $request)
     {
+       
         Comment::create($request->all());
         
-        return redirect()->back()->with('success','پیام ارسال شد.');
+        return redirect()->back()->with('success',__('messages.comment-send-success'));
     }
 
     /**

@@ -102,9 +102,11 @@ class CmsController extends Controller
                 ->where('parent_id', '=', $detail->id)
                 ->where('publish_date','<=', DB::raw('now()'))
                 ->get();
-            $template = @env(TEMPLATE_NAME) . '.cms.DetailCategory';
+                
+            $template = env('TEMPLATE_NAME') . '.cms.DetailCategory';
+            
             if ($detail->attr_type == 'html') {
-                $template = @env(TEMPLATE_NAME) . '.cms.' . $detail->attr['template_name'];
+                $template = env('TEMPLATE_NAME') . '.cms.' . $detail->attr['template_name'];
             }
             //dd($detail);
             return view($template, compact(['detail', 'relatedPost', 'table_of_content', 'subCategory', 'relatedProduct', 'breadcrumb', 'images', 'seo','editorModule']));
@@ -124,10 +126,10 @@ class CmsController extends Controller
                 ->where('publish_date','<=', DB::raw('now()'))
                 ->inRandomOrder()
                 ->limit(4)->get();
-
-            $template = @env('TEMPLATE_NAME') . '.cms.Detail';
+            
+            $template = env('TEMPLATE_NAME') . '.cms.Detail';
             if ($detail->attr_type == 'html') {
-                $template = @env(TEMPLATE_NAME) . '.cms.' . $detail->attr['template_name'];
+                $template = env('TEMPLATE_NAME') . '.cms.' . $detail->attr['template_name'];
             }
 
             //$detail->description=editorModule($detail->description);

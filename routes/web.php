@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-//Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
+App::setLocale('fa');
 
+
+//Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
 
 Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
