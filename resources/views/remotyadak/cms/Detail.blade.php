@@ -75,6 +75,18 @@ $append='';
                 "name": "ریموت یدک"
             }
         }
+        "review":
+        [   
+            @foreach ($detail->comments as $comment)
+            {
+                "@type":"review",
+                "author":"{{ $comment['name'] }}",
+                "datePublished":"{{ $comment['created_at'] }}",
+                "reviewBody":"{{ $comment['comment'] }}"
+            },    
+            @endforeach
+                
+        ]
     }
 </script>
 @endif
