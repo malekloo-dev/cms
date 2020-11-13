@@ -56,3 +56,5 @@ Auth::routes(['register' => false]);
 Route::get('/', 'HomeController@index');
 Route::get('/reload', 'ContentController@reload');
 Route::get('/{slug?}/{b?}', 'CmsController@request');
+
+Route::post('/comment','CommentController@store')->name('comment.store');

@@ -121,7 +121,7 @@ $append='';
 @endif
 
 @if (count($relatedProduct))
-<section class="products mt-1" id="index-best-view">
+<section class="category-products mt-1" id="index-best-view">
     <div class="flex one ">
         <div>
             <div class="">

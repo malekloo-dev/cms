@@ -13,7 +13,7 @@ class CommentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,13 +24,17 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'content_id' => 'required'
+            'content_id' => 'required',
+            'name' => 'required',
+            'comment' => 'required'
         ];
     }
     public function messages()
     {
         return [
-            'content_id.required' => 'محتوای کامنت مشخص نشده است.'
+            'content_id.required' => 'محتوای کامنت مشخص نشده است.',
+            'name.required' => 'لطفا نام خود را وارد نمایید.',
+            'comment.required' => 'لطفا پیام خود را وارد نمایید.'
         ];
     }
 }

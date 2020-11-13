@@ -152,14 +152,13 @@ $append='';
 <section class="products bg-gray m-0 pt-1 pb-1" id="index-best-view">
     <div class="flex one ">
         <div>
-            <div class="shadow ">
                 <h2>محصولات مرتبط {{$detail->title}}</h2>
-                <div class="flex one two-500 four-900 center ">
+                <div class="flex one two-500 four-900  ">
 
                     {{--$data['newPost']--}}
                     @foreach($relatedProduct as $content)
-                    <div>
-                        <article>
+                    <div class="">
+                        <article class="shadow">
                             @if (isset($content->images['thumb']))
                             <div><img width="150" height="150px" src="{{ $content->images['images']['small']}}"   alt="{{$content->title}}" ></div>
                             @endif
@@ -172,7 +171,7 @@ $append='';
                     @endforeach
 
                 </div>
-            </div>
+            
         </div>
     </div>
 </section>
@@ -182,27 +181,26 @@ $append='';
 <section class="products" id="index-best-view">
     <div class="flex one ">
         <div>
-            <div class="shadow">
-                <h2>مقاله های مرتبط {{$detail->title}}</h2>
-                <div class="flex one two-500 four-900 center ">
+            <h2>مقاله های مرتبط {{$detail->title}}</h2>
+            <div class="flex one two-500 four-900 center ">
 
-                    {{--$data['newPost']--}}
-                    @foreach($relatedPost as $content)
-                    <div>
-                        <article>
-                            @if (isset($content->images['thumb']))
-                            <div><img src="{{ $content->images['thumb']}}  alt="{{$content->title}} "></div>
-                            @endif
-                            <footer>
-                                <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
-                                {!! $content->brief_description !!}
-                            </footer>
-                        </article>
-                    </div>
-                    @endforeach
-
+                {{--$data['newPost']--}}
+                @foreach($relatedPost as $content)
+                <div>
+                    <article>
+                        @if (isset($content->images['thumb']))
+                        <div><img src="{{ $content->images['thumb']}}  alt="{{$content->title}} "></div>
+                        @endif
+                        <footer>
+                            <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
+                            {!! $content->brief_description !!}
+                        </footer>
+                    </article>
                 </div>
+                @endforeach
+
             </div>
+            
         </div>
     </div>
 </section>
@@ -214,6 +212,38 @@ $append='';
         <div>
             <h4>نظرات شما</h4>
             <div>
+                <div class="comment-form">
+                    @if (\Session::has('success'))
+                    <div class="alert alert-success">
+                        {!! \Session::get('success') !!}
+                    </div>
+                    @endif
+
+                    @if (\Session::has('error'))
+                    <div class="alert alert-danger">
+                        {!! \Session::get('error') !!}
+                    </div>
+                    @endif
+                    @if($errors->any())
+                    <div class="alert alert-danger">
+                        {!! implode('', $errors->all('<div>:message</div>')) !!}
+                    </div>
+                    @endif
+                    <form action="{{ route('comment.store') }}#comment" id="comment" method="post">
+                        <input type="hidden" name="content_id" value="{{ $detail->id }}">    
+                        @csrf
+                        <div>
+                            <label>نام:</label>
+                            <input type="text" name="name" value="{{ old('name') }}">
+                        </div>
+                        <div>
+                            <label>پیام:</label>
+                            <textarea name="comment">{{ old('comment') }}</textarea>
+                        </div>
+                        <button class="button button-blue">ارسال نظر</button>
+                    </form>
+                </div>
+
                 @foreach ($detail->comments as $comment)
                     <div class="comment">
                         <div class="aside">

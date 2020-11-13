@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\comment;
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
 
 class CommentController extends Controller
@@ -36,9 +36,11 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RedirectUrlRequest $request)
+    public function store(CommentRequest $request)
     {
-        //
+        Comment::create($request->all());
+        
+        return redirect()->back()->with('success','پیام ارسال شد.');
     }
 
     /**
