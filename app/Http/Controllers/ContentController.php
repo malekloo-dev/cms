@@ -47,7 +47,7 @@ class ContentController extends Controller
 
             Image::make($path)->resize($size, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path($images[$name]));
+            })->save(public_path($images[$name]),75);
         }
 
 
@@ -124,8 +124,8 @@ class ContentController extends Controller
         $data = $request->all();
         $date = $data['publish_date'];
         $data['publish_date'] = convertJToG($date);
-        
-        
+
+
         $data['parent_id'] = $request->parent_id[0];
         $data['type'] = '2';
         $data['images'] = $imagesUrl;
@@ -138,11 +138,11 @@ class ContentController extends Controller
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
-        
+
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         Content::create($data);
         $this->sitemap();
-        
+
         return redirect('/admin/contents?type=' . $request->attr_type)->with('success', 'Greate! Content created successfully.');
     }
 
@@ -191,7 +191,7 @@ class ContentController extends Controller
     public function update(Request $request, $id)
     {
 
-        
+
         // dd(convertGToJ($convertDate));
 
         //$convert = (new Jalalian($date))->toCarbon()->toDateTimeString();
@@ -227,7 +227,7 @@ class ContentController extends Controller
         $data = $request->all();
         $date = $data['publish_date'];
         $data['publish_date'] = convertJToG($date);
-        
+
         $data['parent_id'] = $request->parent_id[0];
         $file = $request->file('images');
         //$inputs = $request->all();

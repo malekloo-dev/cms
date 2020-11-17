@@ -26,7 +26,7 @@
     <meta name="msapplication-square96x96logo" content="{{ asset('/img/logo-96-96.png') }}">
     <meta name="msapplication-square152x152logo" content="{{ asset('/img/logo-152-152.png') }}">
 
-    <link rel="stylesheet" href="{{ asset('/style.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/style.css') }}">
     <link rel="icon" href="{{ asset('/img/fav.png') }}" type="image/png">
     <link rel="stylesheet" media="bogus">
 
@@ -41,6 +41,13 @@
     <!-- <meta property="og:image:width" content="405">
     <meta property="og:image:height" content="300"> -->
 
+    <script>
+        // document.addEventListener('DOMContentLoaded', (e) => {
+        //     var element = document.getElementsByTagName("html");
+        //     element.classList.add("loaded");
+
+        // });
+    </script>
     @yield('assets')
 </head>
 

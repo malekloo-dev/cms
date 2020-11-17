@@ -1,7 +1,8 @@
 ﻿@font-face{font-family:vazir; font-display: swap; src:url(fonts/vazir/Vazir-Light.eot);src:url(fonts/vazir/Vazir-Light.eot) format("embedded-opentype"),url(fonts/vazir/Vazir-Light.woff) format("woff"),url(fonts/vazir/Vazir-Light.ttf) format("truetype");font-weight:400;font-style:normal}
-[class*=" icon-"]:before,[class^=icon-]:before{font-family:vazir;font-style:normal;font-weight:400;display:inline-block;text-decoration:inherit;width:1em;margin-right:.2em;text-align:center;font-variant:normal;text-transform:none;margin-left:.2em}
-html{direction:rtl;font-family:vazir,sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
-body{margin:0;padding:0;font-size:1rem;line-height:2;color:#111;background:#fff}
+[class*=" icon-"]:before,[class^=icon-]:before{font-style:normal;font-weight:400;display:inline-block;text-decoration:inherit;width:1em;margin-right:.2em;text-align:center;font-variant:normal;text-transform:none;margin-left:.2em}
+html{direction:rtl;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{font-family:vazir,sans-serif;margin:0;padding:0;font-size:1rem;line-height:2;color:#111;background:#fff}
+html.loaded body{font-family:vazir;}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
 audio,canvas,progress,video{display:inline-block;vertical-align:baseline}
 audio:not([controls]){display:none;height:0}
@@ -30,7 +31,7 @@ optgroup{font-weight:700}
 table{border-collapse:collapse;border-spacing:0}
 td,th{padding:0}
 *{box-sizing:inherit}
-body,html{font-family:vazir,Arial,Helvetica,sans-serif;box-sizing:border-box;height:100%}
+body,html{box-sizing:border-box;height:100%}
 main{display:block}
 h1,h2,h3,h4,h5,h6{margin:0;padding:.6em 0}
 li{margin:0 0 .3em}

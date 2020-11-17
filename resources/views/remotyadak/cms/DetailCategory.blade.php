@@ -97,18 +97,21 @@ $append='';
                 {{--$data['newPost']--}}
                 @foreach($subCategory as $content)
                 <div class="height-full">
+
                     <div class="border hover-box p-1 full">
+                        <a href="{{ $content->slug }}">
                         <div class="flex one three-700 height-100">
                             @if (isset($content->images['thumb']))
                             <div class="p-0"><img src="{{ $content->images['thumb']}}" /></div>
                             @endif
                             <div class="one two-third-700 pr-1">
-                                <h2 class="p-0"><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
+                                <h2 class="p-0"> {{ $content->title }}</h2>
                                 {!! $content->brief_description !!}
 
                             </div>
 
                         </div>
+                    </a>
                     </div>
                 </div>
                 @endforeach
@@ -135,13 +138,10 @@ $append='';
                             <div>
                                 @if (isset($content->images['thumb']))
                                 <picture>
-                                    <source media="(min-width:{{ env('CATEGORY_LARGE') }}px)" srcset="{{ $content->images['images']['large'] ?? '' }} , {{ $content->images['images']['large'] ?? '' }} 2x">
-                                    <source media="(min-width:{{ env('CATEGORY_MEDIUM') }}px)" srcset="{{ $content->images['images']['medium'] ?? '' }} , {{ $content->images['images']['large'] ?? '' }} 2x">
-                                    <source media="(min-width:{{ env('CATEGORY_SMALL') }}px)" srcset="{{ $content->images['images']['small'] ?? ''}} , {{ $content->images['images']['medium'] ?? ''}} 2x">
-                                    <img src="{{ $content->images['images']['medium'] ?? ''}}"
-                                            sizes="(max-width:{{ env('CATEGORY_MEDIUM') }}px) 100vw  {{ ENV('CATEGORY_MEDIUM') }}px {{ ENV('CATEGORY_LARGE') }}px"
+                                    <img src="{{ str_replace(' ','%20',$content->images['images']['small']) ?? ''}}"
+                                        {{-- srcset="{{ str_replace(' ','%20',$content->images['images']['small']) ?? ''}} ,{{ str_replace(' ','%20',$content->images['images']['medium']) ?? ''}} 2x" --}}
                                             alt="{{$content->title}}"
-                                            width="{{ env('CATEGORY_MEDIUM') }}" height="{{ env('CATEGORY_MEDIUM') }}">
+                                            width="{{ env('PRODUCT_SMALL') }}" height="{{ env('PRODUCT_SMALL') }}">
                                 </picture>
                                 @endif
                             </div>
@@ -208,11 +208,16 @@ $append='';
 
             @if(isset($detail->images['images']))
             <picture>
-                <source media="(min-width:{{ env('CATEGORY_LARGE') }}px)" srcset="{{ $detail->images['images']['large'] ?? '' }} , {{ $detail->images['images']['large'] ?? '' }} 2x">
-                <source media="(min-width:{{ env('CATEGORY_MEDIUM') }}px)" srcset="{{ $detail->images['images']['medium'] ?? '' }} , {{ $detail->images['images']['large'] ?? '' }} 2x">
-                <source media="(min-width:{{ env('CATEGORY_SMALL') }}px)" srcset="{{ $detail->images['images']['small'] ?? ''}} , {{ $detail->images['images']['medium'] ?? ''}} 2x">
+                <source media="(min-width:{{ env('CATEGORY_LARGE') }}px)"
+                srcset="{{ $detail->images['images']['large'] ?? '' }}">
+
+                <source media="(min-width:{{ env('CATEGORY_MEDIUM') }}px)"
+                srcset="{{ $detail->images['images']['medium'] ?? '' }}">
+
+                <source media="(min-width:{{ env('CATEGORY_SMALL') }}px)"
+                srcset="{{ $detail->images['images']['small'] ?? ''}}">
+
                 <img src="{{ $detail->images['images']['medium'] ?? ''}}"
-                        sizes="(max-width:{{ env('CATEGORY_MEDIUM') }}px) 100vw  {{ ENV('CATEGORY_MEDIUM') }}px {{ ENV('CATEGORY_LARGE') }}px"
                         alt="{{$detail->title}}"
                         width="{{ env('CATEGORY_MEDIUM') }}" height="{{ env('CATEGORY_MEDIUM') }}">
             </picture>

@@ -1,7 +1,7 @@
 @extends(@env('TEMPLATE_NAME').'.App')
-@section('assets')
+@section('js')
 {{-- recaptcha --}}
-<meta name="csrf-token" content="{{ csrf_token() }}">
+{{-- <meta name="csrf-token" content="{{ csrf_token() }}">
 <script type="text/javascript">
     function callbackThen(response){
         // read HTTP status
@@ -16,13 +16,11 @@
         console.error('Error:', error);
         alert('صفحه را مجدد بارگذاری نمایید.')
     }
-    </script>
-
-    {!! htmlScriptTagJsApi([
-        'callback_then' => 'callbackThen',
-        'callback_catch' => 'callbackCatch'
-    ]) !!}
-
+</script>
+{!! htmlScriptTagJsApi([
+    'callback_then' => 'callbackThen',
+    'callback_catch' => 'callbackCatch'
+]) !!} --}}
 @endsection
 
 @section('Content')
@@ -135,8 +133,8 @@ $append='';
         <div>
             <div class="top-page">
                 <picture>
-                    <source media="(min-width:{{ env('PRODUCT_MEDIUM') }}px)" srcset="{{ $detail->images['images']['medium'] ?? '' }} , {{ $detail->images['images']['large'] ?? '' }} 2x">
-                    <source media="(min-width:{{ env('PRODUCT_SMALL') }}px)" srcset="{{ $detail->images['images']['small'] ?? ''}} , {{ $detail->images['images']['medium'] ?? ''}} 2x">
+                    <source media="(min-width:{{ env('PRODUCT_MEDIUM') }}px)" srcset="{{ str_replace(' ','%20',$detail->images['images']['medium']) ?? '' }} , {{ str_replace(' ','%20',$detail->images['images']['large']) ?? '' }} 2x">
+                    <source media="(min-width:{{ env('PRODUCT_SMALL') }}px)" srcset="{{ str_replace(' ','%20',$detail->images['images']['small']) ?? ''}} , {{ str_replace(' ','%20',$detail->images['images']['medium']) ?? ''}} 2x">
                     <img src="{{ $detail->images['images']['medium'] ?? ''}}"
                             sizes="(max-width:{{ env('PRODUCT_MEDIUM') }}px) 100vw  {{ ENV('PRODUCT_MEDIUM') }}px {{ ENV('PRODUCT_LARGE') }}px"
                             alt="{{$detail->title}}"
@@ -184,7 +182,7 @@ $append='';
                     {{--$data['newPost']--}}
                     @foreach($relatedProduct as $content)
                     <div class="">
-                        <a href="{{ $content->slug }}">
+                        <a href="{{ url($content->slug) }}">
                             <article class="shadow">
                                 @if (isset($content->images['thumb']))
                                 <div><img width="150" height="150px" src="{{ $content->images['images']['small']}}"   alt="{{$content->title}}" ></div>
@@ -238,7 +236,7 @@ $append='';
 <section class="comments bg-gray mt-0 mb-0">
     <div class="flex one">
         <div>
-            <h4>نظرات شما</h4>
+            <div>نظرات شما</div>
             <div>
                 <div class="comment-form">
                     @if (\Session::has('success'))
@@ -262,12 +260,12 @@ $append='';
 
                         @csrf
                         <div>
-                            <label>نام:</label>
-                            <input type="text" name="name" value="{{ old('name') }}">
+                            <label for="comment_name">نام:</label>
+                            <input id="comment_name" type="text" name="name" value="{{ old('name') }}">
                         </div>
                         <div>
-                            <label>پیام:</label>
-                            <textarea name="comment">{{ old('comment') }}</textarea>
+                            <label for="comment-text">پیام:</label>
+                            <textarea id="comment-text" name="comment">{{ old('comment') }}</textarea>
                         </div>
                         <button class="button button-blue g-recaptcha"
                         data-sitekey="reCAPTCHA_site_key"
