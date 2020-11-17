@@ -41,9 +41,9 @@ $append='';
 
         @if (isset($detail->images['thumb']))
             "image": [
-                "{{ $detail->images['images']['small'] }}",
-                "{{ $detail->images['images']['medium'] }}",
-                "{{ $detail->images['images']['large'] }}"
+                "{{ url('/').$detail->images['images']['small'] }}",
+                "{{ url('/').$detail->images['images']['medium'] }}",
+                "{{ url('/').$detail->images['images']['large'] }}"
             ],
         @endif
         @if (count($tableOfImages))
@@ -97,16 +97,19 @@ $append='';
                 "name": "ریموت یدک"
             }
         }
-        @if(count($detail->comment))
+        @if(isset($detail->comments))
         ,"review":
         [
             @foreach ($detail->comments as $comment)
-            {
-                "@type":"review",
-                "author":"{{ $comment['name'] }}",
-                "datePublished":"{{ $comment['created_at'] }}",
-                "reviewBody":"{{ $comment['comment'] }}"
-            },
+                {
+                    "@type":"review",
+                    "author":"{{ $comment['name'] }}",
+                    "datePublished":"{{ $comment['created_at'] }}",
+                    "reviewBody":"{{ $comment['comment'] }}"
+                }
+                @if(!$loop->last)
+                ,
+                @endif
             @endforeach
         ]
         @endif
