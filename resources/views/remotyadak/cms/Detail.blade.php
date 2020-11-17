@@ -6,7 +6,7 @@
     function callbackThen(response){
         // read HTTP status
         console.log(response.status);
-     
+
         // read Promise object
         response.json().then(function(data){
             console.log(data);
@@ -17,12 +17,12 @@
         alert('صفحه را مجدد بارگذاری نمایید.')
     }
     </script>
-     
+
     {!! htmlScriptTagJsApi([
         'callback_then' => 'callbackThen',
         'callback_catch' => 'callbackCatch'
     ]) !!}
-    
+
 @endsection
 
 @section('Content')
@@ -97,18 +97,19 @@ $append='';
                 "name": "ریموت یدک"
             }
         }
-        "review":
-        [   
+        @if(count($detail->comment))
+        ,"review":
+        [
             @foreach ($detail->comments as $comment)
             {
                 "@type":"review",
                 "author":"{{ $comment['name'] }}",
                 "datePublished":"{{ $comment['created_at'] }}",
                 "reviewBody":"{{ $comment['comment'] }}"
-            },    
+            },
             @endforeach
-                
         ]
+        @endif
     }
 </script>
 @endif
@@ -145,13 +146,13 @@ $append='';
                             @for($i = $detail->attr['rate']; $i >= 1; $i--)
                                 <img width="20" height="20" srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}"   alt="{{"star for rating"}}">
                             @endfor
-                        </span> | 
-                        {{ $detail->viewCount }} بار دیده شده | 
-                        تاریخ انتشار: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span> |  
+                        </span> |
+                        {{ $detail->viewCount }} بار دیده شده |
+                        تاریخ انتشار: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span> |
                     </div>
                 </div>
             </div>
-            
+
 
             <ul>
                 @foreach($table_of_content as $key=>$item)
@@ -195,7 +196,7 @@ $append='';
                     @endforeach
 
                 </div>
-            
+
         </div>
     </div>
 </section>
@@ -224,7 +225,7 @@ $append='';
                 @endforeach
 
             </div>
-            
+
         </div>
     </div>
 </section>
@@ -254,8 +255,8 @@ $append='';
                     </div>
                     @endif
                     <form action="{{ route('comment.store') }}#comment" id="comment" method="post">
-                        <input type="hidden" name="content_id" value="{{ $detail->id }}">    
-                        
+                        <input type="hidden" name="content_id" value="{{ $detail->id }}">
+
                         @csrf
                         <div>
                             <label>نام:</label>
@@ -265,9 +266,9 @@ $append='';
                             <label>پیام:</label>
                             <textarea name="comment">{{ old('comment') }}</textarea>
                         </div>
-                        <button class="button button-blue g-recaptcha" 
-                        data-sitekey="reCAPTCHA_site_key" 
-                        data-callback='onSubmit' 
+                        <button class="button button-blue g-recaptcha"
+                        data-sitekey="reCAPTCHA_site_key"
+                        data-callback='onSubmit'
                         data-action='submit'>ارسال نظر</button>
                     </form>
                 </div>
