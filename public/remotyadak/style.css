@@ -964,7 +964,7 @@ to{bottom:20px}
 }
 .transparent~.hero .keepgoing{opacity:1}
 @media all and (max-width:960px){
-nav{height:5em;width:auto}
+nav{height:5em;width:auto;position: relative;}
 nav .brand{top:1.5em}
 .intro{margin:1em auto 1em!important;padding:1em 0 0}
 .hero{background-attachment:scroll}

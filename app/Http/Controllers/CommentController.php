@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\comment;
+use App\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
 
@@ -15,7 +15,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $data = comment::all();
+        $data = Comment::all();
 
         return view('admin.comment.index', compact('data'));
     }
@@ -38,9 +38,9 @@ class CommentController extends Controller
      */
     public function store(CommentRequest $request)
     {
-       
+
         Comment::create($request->all());
-        
+
         return redirect()->back()->with('success',__('messages.comment-send-success'));
     }
 
@@ -73,7 +73,7 @@ class CommentController extends Controller
      * @param  \App\comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(RedirectUrlRequest $request, comment $comment)
+    public function update(CommentRequest $request, comment $comment)
     {
         //
     }
