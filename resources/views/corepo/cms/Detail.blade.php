@@ -18,9 +18,9 @@ $append='';
 
         @if (isset($detail->images['thumb']))
             "image": [
-                "{{ $detail->images['images']['300'] }}",
-                "{{ $detail->images['images']['600'] }}",
-                "{{ $detail->images['images']['900'] }}"
+                "{{ url('/').$detail->images['images']['small'] }}",
+                "{{ url('/').$detail->images['images']['medium'] }}",
+                "{{ url('/').$detail->images['images']['large'] }}"
             ],
         @endif
         @if (count($tableOfImages))
@@ -33,51 +33,66 @@ $append='';
                     "url": "{{$item['src']}}",
                     "alt": "{{$item['alt']}}",
                     "title":"{{$item['alt']}}"
-
                     }
                     @isset($tableOfImages[$key+1])
-                        {{","}}
+                    {{","}}
                     @endisset
 
                 @endforeach
             ],
         @endif
 
-        "description": "{{$detail->description}}",
+        "description": "@foreach($editorModule as $key=>$module) @if ($module['type']=='description') {{clearHtml($module['content'])}} @endif  @if ($module['type']=='attr'){!!  "مشخصا فنی : "!!} @foreach($module['content'] as $key=>$attr){!!  clearHtml($attr['field'])!!} : {!!  clearHtml($attr['value'])!!} - @endforeach @endif @endforeach",
         "sku": "{{$detail->id}}",
         "mpn": "{{$detail->id}}",
         "brand":
         {
             "@type": "Brand",
-            "name": "{{ $detail->brand }}"
+            "name": "{{ $detail->attr['brand'] }}"
         },
 
         "aggregateRating":
         {
             "@type": "AggregateRating",
-            "ratingValue": {{ $detail->attr['rate'] }},
-            "reviewCount": {{ $detail->viewCount }},
-            "bestRating": 5,
-            "worstRating": 0
+            "ratingValue": "{{ $detail->attr['rate'] }}",
+            "ratingCount": "{{ $detail->viewCount }}",
+            "bestRating": "5",
+            "worstRating": "0"
         },
         "offers":
         {
             "@type": "Offer",
-            "url": "{{ url()->current().$detail->slug }}",
+            "url": "{{ url('/').'/'. $detail->slug }}",
             "priceCurrency": "IRR",
-            "price": "{{ $detail->attr['price'] }}",
+            "price": "{{ $detail->attr['price'] ?? 0}}",
+            "priceValidUntil": "2021-08-09",
             "itemCondition": "https://schema.org/UsedCondition",
             "availability": "https://schema.org/InStock",
             "seller":
             {
                 "@type": "Organization",
-                "name": "ایران ریموت"
+                "name": "ریموت یدک"
             }
         }
+        @if(isset($detail->comments))
+        ,"review":
+        [
+            @foreach ($detail->comments as $comment)
+                {
+                    "@type":"review",
+                    "author":"{{ $comment['name'] }}",
+                    "datePublished":"{{ $comment['created_at'] }}",
+                    "reviewBody":"{{ $comment['comment'] }}"
+                }
+                @if(!$loop->last)
+                ,
+                @endif
+            @endforeach
+        ]
+        @endif
     }
 </script>
 @endif
-
 <section class="breadcrumb">
     <div class="flex one  ">
         <div class="p-0">
@@ -113,7 +128,7 @@ $append='';
                     @for($i = $detail->attr['rate']; $i >= 1; $i--)
                         <img width="20" height="20" srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}"   alt="{{"star for rating"}}">
                     @endfor
-                    
+
                 </div>
             </div>
         </div>
@@ -206,4 +221,62 @@ $append='';
 </section>
 @endif
 
+
+
+<section class="comments bg-gray mt-0 mb-0">
+    <div class="flex one">
+        <div>
+            <h4>نظرات شما</h4>
+            <div>
+                <div class="comment-form">
+                    @if (\Session::has('success'))
+                    <div class="alert alert-success">
+                        {!! \Session::get('success') !!}
+                    </div>
+                    @endif
+
+                    @if (\Session::has('error'))
+                    <div class="alert alert-danger">
+                        {!! \Session::get('error') !!}
+                    </div>
+                    @endif
+                    @if($errors->any())
+                    <div class="alert alert-danger">
+                        {!! implode('', $errors->all('<div>:message</div>')) !!}
+                    </div>
+                    @endif
+                    <form action="{{ route('comment.store') }}#comment" id="comment" method="post">
+                        <input type="hidden" name="content_id" value="{{ $detail->id }}">
+
+                        @csrf
+                        <div>
+                            <label>نام:</label>
+                            <input type="text" name="name" value="{{ old('name') }}">
+                        </div>
+                        <div>
+                            <label>پیام:</label>
+                            <textarea name="comment">{{ old('comment') }}</textarea>
+                        </div>
+                        <button class="button button-blue g-recaptcha"
+                        data-sitekey="reCAPTCHA_site_key"
+                        data-callback='onSubmit'
+                        data-action='submit'>ارسال نظر</button>
+                    </form>
+                </div>
+
+                @foreach ($detail->comments as $comment)
+                    <div class="comment">
+                        <div class="aside">
+                            <div class="name">{{ $comment['name'] }}</div>
+                            <div class="date">{{ convertGToJ($comment['created_at']) }}</div>
+                        </div>
+                        <div class="article">
+                            <div class="text">{{ $comment['comment'] }}</div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</section>
 @endsection

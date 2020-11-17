@@ -23,9 +23,9 @@ $append='';
 
             @if (isset($content->images['thumb']))
                 "image": [
-                    "{{ $content->images['images']['300'] }}",
-                    "{{ $content->images['images']['600'] }}",
-                    "{{ $content->images['images']['900'] }}"
+                    "{{ url('/').$content->images['images']['small'] }}",
+                    "{{ url('/').$content->images['images']['medium'] }}",
+                    "{{ url('/').$content->images['images']['large'] }}"
                 ],
             @endif
 

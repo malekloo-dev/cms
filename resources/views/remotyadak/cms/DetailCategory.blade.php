@@ -19,9 +19,9 @@ $append='';
 
             @if(isset($content->images['thumb']))
             "image": [
-                "{{ $content->images['images']['small'] }}",
-                "{{ $content->images['images']['medium'] }}",
-                "{{ $content->images['images']['large'] }}"
+                "{{ url('/').$content->images['images']['small'] }}",
+                "{{ url('/').$content->images['images']['medium'] }}",
+                "{{ url('/').$content->images['images']['large'] }}"
             ],
             @endif
          "description": "{{clearHtml($detail->brief_description)}}",
@@ -205,7 +205,7 @@ $append='';
     <div class="flex one ">
         <div>
 
-            
+
             @if(isset($detail->images['images']))
             <picture>
                 <source media="(min-width:{{ env('CATEGORY_LARGE') }}px)" srcset="{{ $detail->images['images']['large'] ?? '' }} , {{ $detail->images['images']['large'] ?? '' }} 2x">
