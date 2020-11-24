@@ -52,6 +52,7 @@ $append='';
                 "url": "{{ url()->current().$content->slug }}",
                 "priceCurrency": "IRR",
                 "price": "{{ $content->attr['price']??"0"}}",
+                "priceValidUntil": "2021-08-09",
                 "itemCondition": "https://schema.org/UsedCondition",
                 "availability": "https://schema.org/InStock",
                 "seller":
@@ -212,7 +213,9 @@ $append='';
     <div class="flex one ">
         <div>
             <h1 class="">{{ $detail->title }}</h1>
-            {!! $detail->description !!}
+
+
+            @include(@env('TEMPLATE_NAME').'.DescriptionModule')
         </div>
     </div>
 </section>

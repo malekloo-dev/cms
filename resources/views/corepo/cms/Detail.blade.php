@@ -155,8 +155,7 @@ $append='';
                     @endforeach
 
                 </ul>
-                {!! $detail->description !!}
-
+                @include(@env('TEMPLATE_NAME').'.DescriptionModule')
         </div>
     </div>
 </section>
