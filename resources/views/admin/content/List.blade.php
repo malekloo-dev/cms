@@ -7,15 +7,15 @@
 
 
     @if( $type === 'article')
-    <a href="{{ route('contents.create',['type'=>'article'])}}" class="top-heading-button btn btn-success btn-icon mat-elevation-z radius-all mat-button ">
+    <a href="{{ route('contents.create',['type'=>'article'])}}" class="top-heading-button btn btn-success btn-icon  mat-button ">
         <i class="fa fa-plus"></i>افزودن
     </a>
     @elseif( $type === 'product')
-    <a href="{{ route('contents.create',['type'=>'product'])}}" class="top-heading-button btn btn-success btn-icon mat-elevation-z radius-all mat-button ">
+    <a href="{{ route('contents.create',['type'=>'product'])}}" class="top-heading-button btn btn-success btn-icon  mat-button ">
         <i class="fa fa-plus"></i>افزودن
     </a>
     @endif
-    <a href="{{ route('contents.create',['type'=>'html'])}}" class="top-heading-button btn btn-warning btn-icon mat-elevation-z radius-all mat-button ">
+    <a href="{{ route('contents.create',['type'=>'html'])}}" class="top-heading-button btn btn-info btn-icon  mat-button ">
         <i class="fa fa-plus"></i> افزودن قالب استاتیک
     </a>
 </div>
@@ -59,7 +59,7 @@
 
                         <td>
                             {{ convertGToJ(date('Y-m-d', strtotime($content->publish_date))) }}
-                            
+
                         </td>
                         <td>
                             <form class=" width-30 height-30 line-height-30" action="{{ route('contents.destroy', $content->id)}}" method="post">

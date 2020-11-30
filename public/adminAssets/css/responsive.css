@@ -1,6 +1,6 @@
 @media screen and (min-width: 1200px) {
     .content {
-        width: calc(100vw - 270px) !important;
+        width: calc(100vw - 200px) !important;
     }
 
     .panel-body {
@@ -63,8 +63,7 @@
     /** sidebar **/
     .side-left {
         right: -100% !important;
-        width: 90%;
-        max-width: 400px;
+        width: 200px;
     }
 
     .sidebar {

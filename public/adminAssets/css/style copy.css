@@ -15,7 +15,7 @@ body:before {
     height: 100vh;
     position: fixed;
     z-index: 0;
-    /* background-color: rgba(0, 0, 0, .2); */
+    background-color: rgba(0, 0, 0, .2);
 }
 
 body.fixed {
@@ -187,7 +187,7 @@ label {
 
 .ltr {
     direction: ltr;
-    text-align: left !important;
+    text-align: left;
 }
 
 hr {
@@ -885,8 +885,8 @@ label {
 /** SIDEBAR LEFT **/
 .side-left {
     direction: rtl;
-    width: 200px;
-    background-color: rgba(0, 0, 0, 0.6);
+    width: 270px;
+    background-color: rgba(0, 0, 0, 0.8);
     z-index: 70;
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
@@ -1062,7 +1062,7 @@ label {
 .content {
     position: relative;
     display: block;
-    margin-right: 200px;
+    margin-right: 270px;
     padding-bottom: 0;
     height: 100%;
     -webkit-transition: all .3s ease;
@@ -1078,10 +1078,9 @@ label {
 /* CONTENT CONTROL */
 .content-control {
     position: relative;
-    height: 50px;
+    height: 60px;
     padding: 0 15px;
     text-align: left;
-
 }
 
 .online-offline-container li,
@@ -1129,7 +1128,7 @@ label {
 .content-control > .breadcrumb {
     background-color: transparent;
     display: inline-block;
-    font-size: 1em;
+    font-size: 16px;
     margin: 0;
     padding: 0 15px;
     -webkit-border-radius: 0;
@@ -1144,9 +1143,9 @@ label {
 
 .content-control > .breadcrumb a,
 .content-control > .breadcrumb li.active {
-    color: #333;
+    color: #FFF;
     line-height: 60px !important;
-
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
 }
 
 .content-control > .breadcrumb li.active {
@@ -1166,7 +1165,8 @@ label {
     font-size: 12px;
     color: #394264;
     min-height: calc(100vh - 110px);
-    
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .content-body > .page-header:first-child {
@@ -1569,7 +1569,7 @@ th{text-align: unset;}
 }
 
 .panel {
-    /* overflow: scroll; */
+    overflow: scroll;
     border: none !important;
 }
 
@@ -1597,8 +1597,7 @@ th{text-align: unset;}
 
 .btn-warning, .btn-warning:active, .btn-warning:active:focus, .btn-warning.active, .btn-warning:focus, .btn-warning:hover {
     border: none !important;
-    background-color: #ff5252;
-    /* background-image: linear-gradient(-20deg, #ff5252 0%, #ffc107 100%) !important; */
+    background-image: linear-gradient(-20deg, #ff5252 0%, #ffc107 100%) !important;
 }
 
 .btn-light-warning, .btn-light-warning:active, .btn-light-warning:active:focus, .btn-light-warning.active, .btn-light-warning:focus, .btn-light-warning:hover {
@@ -1609,14 +1608,12 @@ th{text-align: unset;}
 
 .btn-info, .btn-info:active, .btn-info:active:focus, .btn-info.active, .btn-info:focus, .btn-info:hover {
     border: none !important;
-    background: #0393e8;
-    /* background-image: linear-gradient(-20deg, #0277bd 0%, #00e5ff 100%) !important; */
+    background-image: linear-gradient(-20deg, #0277bd 0%, #00e5ff 100%) !important;
 }
 
 .btn-success, .btn-success:active, .btn-success:active:focus, .btn-success.active, .btn-success:focus, .btn-success:hover {
     border: none !important;
-    background-color: #04a70f;
-    /* background-image: linear-gradient(-20deg, #1b5e20 0%, #8bc34a 100%) !important; */
+    background-image: linear-gradient(-20deg, #1b5e20 0%, #8bc34a 100%) !important;
 }
 
 .btn-danger, .btn-danger:active, .btn-danger:active:focus, .btn-danger.active, .btn-danger:focus, .btn-danger:hover {
@@ -2149,4 +2146,22 @@ input.switch:empty ~ label:after {
     from { opacity: 1; }
     to { opacity: 0; }
 }
+
+‍‍‍
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

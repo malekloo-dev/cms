@@ -11,7 +11,7 @@
     <title>CMS</title>
 
     <!-- Fonts -->
-    
+
 
     <!-- Styles -->
 
@@ -24,11 +24,10 @@
     <link href="{{ url('/adminAssets/css/helper.css') }}" rel="stylesheet">
     <link href="{{ url('/adminAssets/css/iziToast.min.css') }}" rel="stylesheet">
     <link href="{{ url('/adminAssets/css/fancy.min.css') }}" rel="stylesheet">
-    <link href="{{ url('/adminAssets/css/iziToast.min.css') }}" rel="stylesheet">
     <link href="{{ url('/adminAssets/css/style.css') }}" rel="stylesheet">
     <link href="{{ url('/adminAssets/css/responsive.css') }}" rel="stylesheet">
     <link href="{{ url('/adminAssets/css/persian-datepicker.min.css') }}" rel="stylesheet">
-    
+
 
     <!-- Scripts -->
     <script src="{{ url('/adminAssets/js/jquery.min.js') }}"></script>
@@ -95,4 +94,4 @@
 </head>
 
 <body>
-    <div class="overlay pos-fix right-0 top-0 bottom-0 left-0"></div>
+    <div class="overlay "></div>

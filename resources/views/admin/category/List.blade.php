@@ -5,10 +5,10 @@
         <li><a class="text-18">دسته بندی</a></li>
     </ul>
 
-    <a href="{{ route('category.create') }}" class="top-heading-button btn btn-success btn-icon mat-elevation-z radius-all mat-button ">
+    <a href="{{ route('category.create') }}" class="top-heading-button btn btn-success btn-icon  mat-button ">
         <i class="fa fa-plus"></i> افزودن
     </a>
-    <a href="{{ route('category.create',['type'=>'html'])}}" class="top-heading-button btn btn-warning btn-icon mat-elevation-z radius-all mat-button ">
+    <a href="{{ route('category.create',['type'=>'html'])}}" class="top-heading-button btn btn-info btn-icon  mat-button ">
         <i class="fa fa-plus"></i> افزودن قالب استاتیک
     </a>
 

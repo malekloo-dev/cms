@@ -6,7 +6,7 @@
         <div class="panel-heading text-center text-18">
             <div class="row xxxsmallSpace"></div>
 
-            {{ __('Login') }}
+            @lang('messages.login page')
 
             <div class="row xxxsmallSpace"></div>
         </div>
@@ -17,9 +17,9 @@
 
                 <div class="form-group">
 
-                    <label for="email" class="control-label">{{ __('E-Mail Address') }}</label>
+                    <label for="email" class="control-label">@lang('messages.email')</label>
 
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                    <input id="email" type="email" class="form-control ltr @error('email') is-invalid @enderror"
                            name="email" value="{{ old('email') ? old('email') : 'm@m.m' }}" required autocomplete="email" autofocus>
 
                     @error('email')
@@ -30,9 +30,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password" class="control-label">{{ __('Password') }}</label>
+                    <label for="password" class="control-label">@lang('messages.password')</label>
 
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                    <input id="password" type="password" class="form-control ltr @error('password') is-invalid @enderror"
                            name="password" value="{{'12345678'}}" required autocomplete="current-password">
 
                     @error('password')
@@ -42,24 +42,13 @@
                     @enderror
                 </div>
 
-                <div class="form-group">
-                    <label class="control-label" for="remember">
-                        <input class="" type="checkbox" name="remember"
-                               id="remember" {{ old('remember') ? 'checked' : '' }}>
-                        {{ __('Remember Me') }}
-                    </label>
-                </div>
 
                 <div class="form-group">
                     <button type="submit"
-                            class="btn btn-danger pull-right mat-btn radius-all btn-block mat-elevation-z">
-                        <i class="fa fa-lock"></i> {{ __('Login') }}
+                            class="btn btn-info pull-right mat-btn  btn-block">
+                        <i class="fa fa-lock"></i> @lang('messages.login')
                     </button>
-                    @if (Route::has('password.request'))
-                        <a class="btn btn-link   pull-right" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
-                        </a>
-                    @endif
+
                 </div>
             </form>
         </div>

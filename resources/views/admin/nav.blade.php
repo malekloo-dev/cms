@@ -39,7 +39,7 @@
 </nav>--}}
 
 <!-- section header -->
-<header class="header bg-white text-black mat-elevation-z3">
+<header class="header bg-white text-black ">
     <!-- header-profile -->
     <div class="header-profile pull-left">
         <div class="profile-nav">
