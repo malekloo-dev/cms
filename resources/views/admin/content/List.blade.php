@@ -7,43 +7,50 @@
             </li>
         </ul>
 
-        <div class="margin-r-l">
-            @if ($type === 'article')
-                <a href="{{ route('contents.create', ['type' => 'article']) }}"
-                    class=" btn btn-success btn-icon  mat-button ">
-                    <i class="fa fa-plus"></i>افزودن
-                </a>
-            @elseif( $type === 'product')
-                <a href="{{ route('contents.create', ['type' => 'product']) }}"
-                    class=" btn btn-success btn-icon  mat-button ">
-                    <i class="fa fa-plus"></i>افزودن
-                </a>
-            @endif
-            <a href="{{ route('contents.create', ['type' => 'html']) }}" class=" btn btn-info btn-icon  mat-button ">
-                <i class="fa fa-plus"></i> افزودن قالب استاتیک
+        <div>
+            <a href="{{ route('contents.create', ['type' => $type]) }}" class=" btn btn-success btn-icon  mat-button ">
+                <i class="fa fa-plus"></i>@lang('messages.add')
             </a>
 
+            <a href="{{ route('contents.create', ['type' => 'html']) }}" class=" btn btn-info btn-icon  mat-button ">
+                <i class="fa fa-plus"></i> @lang('messages.add') @lang('messages.static template')
+            </a>
         </div>
     </div>
 
     <div class="content-body">
         <div class="panel panel-default mat-elevation-z pos-abs chat-panel bottom-0">
             <div class="panel-body full-height">
+                @if (\Session::has('success'))
+                    <div class="alert alert-success">
+                        <ul>
+                            <li>{!! \Session::get('success') !!}</li>
+                        </ul>
+                    </div>
+                @endif
+
+                @if (\Session::has('error'))
+                    <div class="alert alert-danger">
+                        <ul>
+                            <li>{!! \Session::get('error') !!}</li>
+                        </ul>
+                    </div>
+                @endif
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>عنوان</th>
-                            <th>مختصر</th>
-                            <th>دسته بندی</th>
-                            <th>وضعیت</th>
-                            <th>تاریخ</th>
-                            <th></th>
+                            <th>@lang('messages.title')</th>
+                            <th>@lang('messages.brief')</th>
+                            <th>@lang('messages.category')</th>
+                            <th  class="text-center">@lang('messages.status')</th>
+                            <th>@lang('messages.publish date')</th>
+                            <th>@lang('messages.rate')</th>
+                            <th>@lang('messages.image')</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-
 
                         @foreach ($contents as $content)
                             <tr>
@@ -55,13 +62,12 @@
                                         {{ $category[$content->parent_id]->title }}
                                     @endif
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     @if ($content->status == 1)
-                                        {{ 'فعال' }}
+                                        <i class="fa fa-check"></i>
                                     @else
-                                        {{ 'غیر فعال' }}
+                                        <i class="fa fa-remove"></i>
                                     @endif
-                                    {{--{{ $content->status ? 'فعال' : 'غیر فعال' }}--}}
                                 </td>
 
                                 <td>
@@ -69,23 +75,39 @@
 
                                 </td>
                                 <td>
-                                    <form class=" width-30 height-30 line-height-30"
-                                        action="{{ route('contents.destroy', $content->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button onclick="return confirm('آیا مطمئن هستید؟')"
-                                            class="font-full-plus-half-em text-danger btn-xs pull-left no-border no-bg no-padding"
-                                            type="submit">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </form>
+                                    @if ($content->attr != null)
+                                        {{ $content->attr['rate'] }}
+                                    @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('contents.edit', $content->id) }}"
-                                        class="font-full-plus-half-em text-success btn-xs pull-left no-border no-bg no-margin no-padding width-30 height-30 line-height-30"
-                                        title="edit">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
+                                    @isset($content->images['images']['small'])
+                                        <img height="30" src="{{ $content->images['images']['small'] }}" />
+                                    @endisset
+                                </td>
+
+                                <td class="width-100">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <a href="{{ route('contents.edit', $content->id) }}"
+                                                class="font-full-plus-half-em pull-left text-success btn-xs  no-border  "
+                                                title="edit">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-6 ">
+                                            <form class=" width-30 height-30 line-height-30"
+                                                action="{{ route('contents.destroy', $content->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button onclick="return confirm('@lang('messages.Are you sure?')')"
+                                                    class="font-full-plus-half-em pull-left text-danger btn-xs  no-border no-bg "
+                                                    type="submit" title="@lang('messages.delete')">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
                                 </td>
 
                             </tr>

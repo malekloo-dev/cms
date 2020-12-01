@@ -35,7 +35,6 @@
     <script src="{{ url('/adminAssets/js/bootstrap.min.js') }}"></script>
     <script src="{{ url('/adminAssets/js/demo-setup.js') }}"></script>
     <script src="{{ url('/adminAssets/js/dependencies-setup.js') }}"></script>
-    <script src="{{ url('/adminAssets/js/iziToast.min.js') }}"></script>
     <script src="{{ url('/adminAssets/js/jquery.bootstrap-growl.min.js') }}"></script>
     <script src="{{ url('/adminAssets/js/jquery.multi-select.js') }}"></script>
     <script src="{{ url('/adminAssets/js/jquery.validate.min.js') }}"></script>
@@ -48,6 +47,7 @@
     <script src="{{ url('/adminAssets/js/scripts.js') }}"></script>
     <script src="{{ url('/adminAssets/js/persian-date.min.js') }}"></script>
     <script src="{{ url('/adminAssets/js/persian-datepicker.min.js') }}"></script>
+    <script src="{{ url('/adminAssets/js/popper.js') }}"></script>
 
 
 

@@ -12,5 +12,8 @@ $(document).ready(function() {
             $toggleSideBar.find('i').removeClass('fa-times').addClass('fa-bars');
         }
     });
+
+    $('[title]').tooltip()
+
 });
 

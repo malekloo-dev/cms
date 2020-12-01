@@ -1143,7 +1143,7 @@ label {
 /* .content-control > .breadcrumb > li {
     float: left;
 } */
-
+.content-control >div { margin: 0 1em;}
 .content-control > .breadcrumb a,
 .content-control > .breadcrumb li.active {
     color: #0393e8;

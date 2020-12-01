@@ -2,7 +2,7 @@
 @section('content')
 <div class="content-control">
     <ul class="breadcrumb">
-        <li><a class="text-18">کامنت ها</a></li>
+        <li class="active">کامنت ها</li>
     </ul>
 
 

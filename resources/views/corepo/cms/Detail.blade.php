@@ -125,9 +125,11 @@ $append='';
                 <h1 class="site-name">{{ $detail->title }}</h1>
                 <div class="website"></div>
                 <div class="rate">
+                    @if($detail->attr)
                     @for($i = $detail->attr['rate']; $i >= 1; $i--)
                         <img width="20" height="20" srcset="{{asset('/img/star2x.png')}} 2x , {{asset('/img/star1x.png')}} 1x" src="{{asset('/img/star1x.png')}}"   alt="{{"star for rating"}}">
                     @endfor
+                    @endif
 
                 </div>
             </div>

@@ -8,6 +8,7 @@ use App\Sitemap;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -143,7 +144,7 @@ class ContentController extends Controller
         Content::create($data);
         $this->sitemap();
 
-        return redirect('/admin/contents?type=' . $request->attr_type)->with('success', 'Greate! Content created successfully.');
+        return redirect('/admin/contents?type=' . $request->attr_type)->with('success', Lang::get('messages.Greate! Content created successfully.'));
     }
 
     /**
