@@ -68,7 +68,7 @@
 
     <!-- header brand -->
     <div class="header-brand">
-        <a href="{{ url('/') }}"><img src="{{ url('/adminAssets/img/logo.png') }}" class="liveChatLogo pull-left"></a>
+        <a href="{{ url('/admin') }}"><img src="{{ url('/adminAssets/img/logo.png') }}" class="liveChatLogo pull-left"></a>
     </div>
 
     <a id="toggleSideBar"><i class="fa fa-bars"></i></a>

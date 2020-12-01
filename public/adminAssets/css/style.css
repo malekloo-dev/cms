@@ -1166,7 +1166,7 @@ label {
     font-size: 12px;
     color: #394264;
     min-height: calc(100vh - 110px);
-    
+
 }
 
 .content-body > .page-header:first-child {
@@ -2150,3 +2150,8 @@ input.switch:empty ~ label:after {
     to { opacity: 0; }
 }
 
+.dashboard{display: flex; flex-flow: row wrap;}
+.dashboard > div{flex: 1 1 auto; margin: 1em; font-size: 1.1em; padding: 1em;  background-color: #fff; border-radius: 5px;}
+.dashboard .title{font-size: 1.1em;}
+.dashboard .info{text-align: center; display: flex; justify-content: space-between; align-items: center;}
+.dashboard .count{font-size: 1.3em; font-weight: bold;}

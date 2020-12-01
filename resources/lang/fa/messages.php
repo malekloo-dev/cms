@@ -5,4 +5,8 @@ return [
     'password'=>'پسورد',
     'login page'=>'لاگین',
     'login'=>'ورود',
+    'Dashboard'=>'داشبورد',
+    'Products'=>'محصولات',
+    'Articles'=>'مقالات',
+    'Comments'=>'کامنت ها',
 ];
