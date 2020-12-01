@@ -14,7 +14,8 @@
 
 <div class="content-control">
     <ul class="breadcrumb">
-        <li><a class="text-18">افزودن </a></li>
+        <li><a href="{{ route('seo.redirectUrl.index') }}">@lang('messages.Redirect Url')</a></li>
+        <li class="active">@lang('messages.add')</li>
     </ul>
 </div>
 
@@ -41,11 +42,7 @@
                     </div>
 
                 </div>
-                <button type="submit" class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">تایید
-                </button>
-                <a href="{{ route('seo.redirectUrl.index') }}" class="link ">
-                    <i class="fa fa-arrow-left"></i> Back to List
-                </a>
+                <button type="submit" class="btn btn-success">@lang('messages.confirm')</button>
             </form>
         </div>
     </div>

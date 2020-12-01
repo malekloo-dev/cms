@@ -4,45 +4,39 @@
         <li class="no-margin">
             <a class="no-margin text-right" href="/admin">
                 <i class="sidebar-icon pull-right fa fa-home"></i>
-                <span class="sidebar-text">خانه</span>
+                <span class="sidebar-text">@lang('messages.home')</span>
             </a>
         </li>
-
+        <li class="divider"></li>
         <li class="no-margin">
-            <a href="{{ route('users.index') }}" class="no-margin text-right">
-                <i class="sidebar-icon pull-right fa fa-users"></i>
-                <span class="sidebar-text text-right">کاربران</span>
-            </a>
-        </li>
-
-        <li class="no-margin">
-            <a class="no-margin text-right">
+            <a href="{{ route('contents.show',['type'=>'article']) }}" class="no-margin text-right">
                 <i class="sidebar-icon pull-right fa fa-folder-o"></i>
-                <span class="sidebar-text text-right">ماژول ها</span>
+                <span class="sidebar-text text-right">@lang('messages.content')</span>
             </a>
-            <ul class="sidebar-child">
-                <li class="no-margin">
-                    <a href="{{ route('contents.show',['type'=>'article']) }}" class="no-margin text-right">
-                        <i class="sidebar-icon pull-right fa fa-folder-o"></i>
-                        <span class="sidebar-text text-right">مقالات</span>
-                    </a>
-                </li>
-
-                <li class="no-margin">
-                    <a href="{{ route('contents.show',['type'=>'product']) }}" class="no-margin text-right">
-                        <i class="sidebar-icon pull-right fa fa-folder-o"></i>
-                        <span class="sidebar-text text-right">محصولات</span>
-                    </a>
-                </li>
-            </ul>
         </li>
+        <li class="no-margin">
+            <a href="{{ route('contents.show',['type'=>'product']) }}" class="no-margin text-right">
+                <i class="sidebar-icon pull-right fa fa-shopping-cart"></i>
+                <span class="sidebar-text text-right">@lang('messages.products')</span>
+            </a>
+        </li>
+        <li class="divider"></li>
         <li class="no-margin">
             <a href="{{ route('comment.index') }}" class="no-margin text-right">
                 <i class="sidebar-icon pull-right fa fa-envelope"></i>
-                <span class="sidebar-text text-right">کامنت ها</span>
+                <span class="sidebar-text text-right">@lang('messages.Comments')</span>
             </a>
         </li>
+        <li class="divider"></li>
+
         <li class="no-margin">
+            <a href="{{ route('category.index') }}" class="no-margin text-right">
+                <i class="sidebar-icon pull-right fa fa-bars"></i>
+                <span class="sidebar-text text-right">@lang('messages.category')</span>
+            </a>
+        </li>
+
+        {{-- <li class="no-margin">
             <a class="no-margin text-right">
                 <i class="sidebar-icon pull-right fa fa-bars"></i>
                 <span class="sidebar-text text-right">دسته بندی</span>
@@ -62,31 +56,35 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
 
         <li class="no-margin">
-            <a class="no-margin text-right">
-                <i class="sidebar-icon pull-right fa fa-bar-chart"></i>
-                <span class="sidebar-text text-right">سئو</span>
+            <a href="/admin/menu?menu=1" class="no-margin text-right">
+                <i class="sidebar-icon pull-right fa fa-envelope"></i>
+                <span class="sidebar-text text-right">@lang('messages.menu')</span>
             </a>
-            <ul class="sidebar-child">
-                <li>
-                    <a href="{{ route('seo.redirectUrl.index') }}" class="no-margin text-right">
-                        <i class="sidebar-icon pull-right fa fa-refresh"></i>
-                        <span class="sidebar-text text-right">Redirect URL</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('seo.websiteSetting.edit') }}" class="no-margin text-right">
-                        <i class="sidebar-icon pull-right fa fa-refresh"></i>
-                        <span class="sidebar-text text-right">تنظیمات اصلی سئو</span>
-                    </a>
-                </li>
-
-            </ul>
         </li>
-
+        <li class="divider"></li>
+        <li class="no-margin">
+            <a href="{{ route('seo.redirectUrl.index') }}" class="no-margin text-right">
+                <i class="sidebar-icon pull-right fa fa-unlink"></i>
+                <span class="sidebar-text text-right">@lang('messages.Redirect Url')</span>
+            </a>
+        </li>
+        <li class="no-margin">
+            <a href="{{ route('seo.websiteSetting.edit') }}" class="no-margin text-right">
+                <i class="sidebar-icon pull-right fa fa-bar-chart"></i>
+                <span class="sidebar-text text-right">@lang('messages.seo setting')</span>
+            </a>
+        </li>
+        <li class="divider"></li>
+        <li class="no-margin">
+            <a href="{{ route('users.index') }}" class="no-margin text-right">
+                <i class="sidebar-icon pull-right fa fa-users"></i>
+                <span class="sidebar-text text-right">@lang('messages.users')</span>
+            </a>
+        </li>
 
     </ul>
 

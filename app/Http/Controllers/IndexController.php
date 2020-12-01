@@ -29,13 +29,12 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $data['articlesCount'] = Content::where('type', '=', '1')
-            ->orderBy('viewCount', 'desc')
-            ->where('publish_date', '<=', DB::raw('now()'))
+        $data['articlesCount'] = Content::where('type', '=', '2')
+            ->where('attr_type', '=', 'article')
             ->count();
 
         $data['productsCount'] = Content::where('type', '=', '2')
-            ->where('publish_date', '<=', DB::raw('now()'))
+            ->where('attr_type', '=', 'product')
             ->count();
 
         $data['commentsCount'] = Comment::count();

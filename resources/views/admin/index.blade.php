@@ -2,7 +2,7 @@
 @section('content')
     <div class="content-control">
         <ul class="breadcrumb">
-            <li><a class="text-18">@lang('messages.Dashboard')</a></li>
+            <li class="active">@lang('messages.Dashboard')</li>
         </ul>
 
     </div>

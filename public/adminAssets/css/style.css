@@ -943,8 +943,8 @@ label {
 
 .sidebar > li > a:hover {
     color: #ffcc12 !important;
-    background-color: transparent;
-    box-shadow: inset 0 0 60px 0 rgba(0, 0, 0, 0.8);
+    background-color: #777;
+    /* box-shadow: inset 0 0 60px 0 rgba(0, 0, 0, 0.8); */
 }
 
 .sidebar > li.active-menu > a {
@@ -1054,6 +1054,7 @@ label {
     background: rgba(0, 0, 0, .04) !important;
     color: #FF5722;
 }
+.sidebar li.divider{background-color: #555; height: 1px; width: 100%;}
 
 /** end sidebar left **/
 
@@ -2152,7 +2153,7 @@ input.switch:empty ~ label:after {
     to { opacity: 0; }
 }
 
-.dashboard{display: flex; flex-flow: row wrap;}
+.dashboard{display: flex; flex-flow: row wrap; margin: 0 -1em;}
 .dashboard > div{flex: 1 1 auto; margin: 1em; font-size: 1.1em; padding: 1em;  background-color: #fff; border-radius: 5px;}
 .dashboard .title{font-size: 1.1em;}
 .dashboard .info{text-align: center; display: flex; justify-content: space-between; align-items: center;}
