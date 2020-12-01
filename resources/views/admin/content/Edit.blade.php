@@ -80,7 +80,8 @@
 
 <div class="content-control">
     <ul class="breadcrumb">
-        <li><a class="text-18">ویرایش {{ old('title',$content_info->title) }}</a></li>
+        <li><a href="{{ route('contents.show', ['type' => $content_info->attr_type]) }}" class=""> @lang('messages.'. $content_info->attr_type .'s' ) </a></li>
+        <li class="active">@lang('messages.edit') {{ old('title',$content_info->title) }}</li>
     </ul>
 </div>
 
@@ -248,7 +249,7 @@
                         <input type="text" class="form-control" name="attr[alternate_name]" value="{{ old('attr[alternate_name]',$content_info->attr['alternate_name']) }}" />
                     </div>
                 </div>
-               
+
                 @endif
                 <div class="form-group row">
                     <div class="col-md-12">

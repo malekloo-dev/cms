@@ -71,10 +71,10 @@
 @endsection
 
 
-<div class="content-control">
+<div class="content-control ">
     <ul class="breadcrumb">
-
-        <li><a class="text-18">افزودن {{ $attr_type }}</a></li>
+        <li><a href="{{ route('contents.show', ['type' => $attr_type]) }}" class=""> @lang('messages.'. $attr_type .'s' ) </a></li>
+        <li class="active">@lang('messages.add') @lang('messages.'. $attr_type  )</li>
     </ul>
 </div>
 

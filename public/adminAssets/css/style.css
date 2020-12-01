@@ -1080,8 +1080,10 @@ label {
     position: relative;
     height: 50px;
     padding: 0 15px;
-    text-align: left;
-
+    /* text-align: left; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .online-offline-container li,
@@ -1116,7 +1118,7 @@ label {
     font-size: 11px;
     padding: 0;
     line-height: 40px;
-    color: #394264;
+    color: #4058af;
 }
 
 .content-control > .control-nav > li > a.active,
@@ -1135,22 +1137,22 @@ label {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
-    float: right;
+    /* float: right; */
 }
 
-.content-control > .breadcrumb > li {
+/* .content-control > .breadcrumb > li {
     float: left;
-}
+} */
 
 .content-control > .breadcrumb a,
 .content-control > .breadcrumb li.active {
-    color: #333;
-    line-height: 60px !important;
+    color: #0393e8;
+    line-height: 50px !important;
 
 }
 
 .content-control > .breadcrumb li.active {
-    color: #cfff0e;
+    color: #333;
 }
 
 .breadcrumb > li + li:after {
@@ -1162,7 +1164,7 @@ label {
 /* CONTENT BODY */
 .content > .content-body {
     position: relative;
-    padding: 15px;
+    padding:  15px ;
     font-size: 12px;
     color: #394264;
     min-height: calc(100vh - 110px);
