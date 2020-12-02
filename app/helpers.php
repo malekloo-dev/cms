@@ -25,9 +25,10 @@ function h_decrypt($string)
     return $result;
 }
 
-function readMore($text, $limit = 70, $noLink = 0)
+function readMore($text, $limit = 100, $noLink = 0)
 {
-    $string = strip_tags($text);
+    //$string = strip_tags($text);
+    $string = $text;
     if (strlen($string) > $limit) {
 
         // truncate string
@@ -430,3 +431,11 @@ function convertGToJ($date){
     return CalendarUtils::convertNumbers($jalali); // ۱۳۹۵-۰۲-۱۹
 }
 
+
+function convertNumToEn($string) {
+    $persinaDigits1= array('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹');
+    $persinaDigits2= array('٩', '٨', '٧', '٦', '٥', '٤', '٣', '٢', '١', '٠');
+    $allPersianDigits=array_merge($persinaDigits1, $persinaDigits2);
+    $replaces = array('0','1','2','3','4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9');
+    return str_replace($allPersianDigits, $replaces , $string);
+}

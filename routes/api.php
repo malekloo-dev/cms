@@ -19,7 +19,9 @@ use Illuminate\Http\Request;
 
 });*/
 
-
+Route::get('spider','SpiderController@spider');
+Route::get('/spider/reload', 'SpiderController@reload');
+Route::post('/spider/addToCms', 'SpiderController@addToCms');
 
 
 Route::post('/login', [
