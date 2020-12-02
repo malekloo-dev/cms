@@ -79,11 +79,9 @@ class CommentController extends Controller
      */
     public function update(CommentRequest $request, comment $comment)
     {
-        // dd($request->all());
         $data = $comment;
         $data->update($request->all());
-        // $data->setAttribute($request);
-        // dd($data);
+
         return redirect()->route('comment.index')->with('success',$data->comment  . ' '. Lang::get('messages.edited'));
     }
 
@@ -95,6 +93,8 @@ class CommentController extends Controller
      */
     public function destroy(comment $comment)
     {
-        //
+        $comment->delete();
+
+        return redirect()->route('comment.index')->with('success', Lang::get('messages.deleted'));
     }
 }
