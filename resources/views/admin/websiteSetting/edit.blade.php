@@ -1,20 +1,21 @@
 @extends('admin.layouts.app')
 @section('content')
 @section('ckeditor')
-<script>
-    /*  $(document).ready(function() {
-        var $input = $("#parent_id");
-        $input.select2();
-        $("ul.select2-choices").sortable({
-            containment: 'parent'
-        });
-    }); */
-</script>
+    <script>
+        /*  $(document).ready(function() {
+            var $input = $("#parent_id");
+            $input.select2();
+            $("ul.select2-choices").sortable({
+                containment: 'parent'
+            });
+        }); */
+
+    </script>
 @endsection
 
 <div class="content-control">
     <ul class="breadcrumb">
-        <li><a class="text-18">تنظیمات کلی سئو </a></li>
+        <li class="active">@lang('messages.website setting')</li>
     </ul>
 </div>
 
@@ -26,29 +27,31 @@
                 @csrf
                 @method('PATCH')
                 <div class="form-group row">
-
                     <div class="col-md-12">
                         <label for="meta_title" class="col-form-label ">Meta title:</label>
                         <input type="text" class="form-control " name="meta_title" value="{{ $data['meta_title'] }}" />
                         <span class="text-danger">{{ $errors->first('meta_title') }}</span>
                     </div>
-
+                </div>
+                <div class="form-group row">
                     <div class="col-md-12">
                         <label for="meta_keywords" class=" col-form-label ">Meta keyword:</label>
-                        <input type="text" class="form-control " name="meta_keywords" value="{{ $data['meta_keywords'] }}" />
+                        <input type="text" class="form-control " name="meta_keywords"
+                            value="{{ $data['meta_keywords'] }}" />
                         <span class="text-danger">{{ $errors->first('meta_keywords') }}</span>
                     </div>
-
+                </div>
+                <div class="form-group row">
                     <div class="col-md-12">
                         <label for="meta_description" class=" col-form-label ">Meta description:</label>
-                        <input type="text" class="form-control " name="meta_description" value="{{ $data['meta_description'] }}" />
+                        <input type="text" class="form-control " name="meta_description"
+                            value="{{ $data['meta_description'] }}" />
                         <span class="text-danger">{{ $errors->first('meta_description') }}</span>
                     </div>
-
                 </div>
-                <button type="submit" class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">تایید
+                <button type="submit" class="btn btn-success pull-right mat-btn ">@lang('messages.confirm')
                 </button>
-                
+
             </form>
         </div>
     </div>

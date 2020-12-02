@@ -8,8 +8,7 @@
             <a href="{{ route('category.create') }}" class=" btn btn-success btn-icon  mat-button ">
                 <i class="fa fa-plus"></i> افزودن
             </a>
-            <a href="{{ route('category.create', ['type' => 'html']) }}"
-                class=" btn btn-info btn-icon  mat-button ">
+            <a href="{{ route('category.create', ['type' => 'html']) }}" class=" btn btn-info btn-icon  mat-button ">
                 <i class="fa fa-plus"></i> افزودن قالب استاتیک
             </a>
         </div>
@@ -25,7 +24,6 @@
                             <th>عنوان</th>
                             <th>توضیحات مختصر</th>
                             <th>وضعیت</th>
-                            <td></td>
                             <td></td>
                         </tr>
                     </thead>
@@ -44,25 +42,29 @@
                                     {{--{{ $content->status ? 'فعال' : 'غیر فعال' }}--}}
                                 </td>
 
-                                <td>
+                                <td class="width-100">
+                                    <div class="col-md-6">
 
-                                    <form class=" width-30 height-30 line-height-30"
-                                        action="{{ route('category.destroy', $content->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button onclick="return confirm('آیا مطمئن هستید؟')"
-                                            class="font-full-plus-half-em text-danger btn-xs pull-left no-border no-bg no-padding"
-                                            type="submit">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <a href="{{ route('category.edit', $content->id) }}"
-                                        class="font-full-plus-half-em text-success btn-xs pull-left no-border no-bg no-margin no-padding width-30 height-30 line-height-30"
-                                        title="edit">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
+                                        <form class=" line-height-30" action="{{ route('category.destroy', $content->id) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button onclick="return confirm('آیا مطمئن هستید؟')"
+                                                class="font-full-plus-half-em text-danger btn-xs pull-left no-border no-bg "
+                                                type="submit"
+                                                title="@lang('messages.delete')">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <a href="{{ route('category.edit', $content->id) }}"
+                                            class="font-full-plus-half-em text-success btn-xs pull-left no-border no-bg no-margin no-padding width-30 height-30 line-height-30"
+                                            title="@lang('messages.edit')">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
