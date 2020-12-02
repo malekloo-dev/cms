@@ -1,6 +1,7 @@
 <?php
 return [
     'comment-send-success'=>'پیام ارسال شد.',
+    'name'=>'نام',
     'email'=>'ایمیل',
     'password'=>'پسورد',
     'login page'=>'لاگین',
@@ -13,6 +14,7 @@ return [
     'articles'=>'محتوا',
     'article'=>'محتوا',
     'Comments'=>'کامنت ها',
+    'comment'=>'کامنت',
     'add'=>'افزودن',
     'edit'=>'ویرایش',
     'delete'=>'حذف',
@@ -38,4 +40,5 @@ return [
     'menu'=>'منو',
     'seo setting'=>'تنظیمات اصلی سئو',
     'users'=>'کابران',
+    'edited'=>'ویرایش شد.',
 ];

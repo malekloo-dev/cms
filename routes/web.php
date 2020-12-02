@@ -34,6 +34,7 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     Route::get('comment','CommentController@index')->name('comment.index');
     Route::delete('comment','CommentController@destroy')->name('comment.destroy');
     Route::get('comment/{comment}/edit','CommentController@edit')->name('comment.edit');
+    Route::patch('comment/{comment}','CommentController@update')->name('comment.update');
 
     Route::prefix('seo')->name('seo.')->group(function () {
         Route::resource('redirectUrl', 'RedirectUrlController');

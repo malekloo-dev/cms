@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
+use Illuminate\Support\Facades\Lang;
 
 class CommentController extends Controller
 {
@@ -41,7 +42,7 @@ class CommentController extends Controller
 
         Comment::create($request->all());
 
-        return redirect()->back()->with('success',__('messages.comment-send-success'));
+        return redirect()->back()->with('success', __('messages.comment-send-success'));
     }
 
     /**
@@ -63,7 +64,10 @@ class CommentController extends Controller
      */
     public function edit(comment $comment)
     {
-        //
+
+        $data = $comment;
+
+        return view('admin.comment.edit', compact('data'));
     }
 
     /**
@@ -75,7 +79,12 @@ class CommentController extends Controller
      */
     public function update(CommentRequest $request, comment $comment)
     {
-        //
+        // dd($request->all());
+        $data = $comment;
+        $data->update($request->all());
+        // $data->setAttribute($request);
+        // dd($data);
+        return redirect()->route('comment.index')->with('success',$data->comment  . ' '. Lang::get('messages.edited'));
     }
 
     /**

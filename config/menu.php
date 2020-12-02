@@ -3,7 +3,7 @@
 return [
 /* you can add your own middleware here */
 
-   'middleware' => [],
+   'middleware' => [''],
 
 /* you can set your own table prefix here */
     'table_prefix' => '',
@@ -20,7 +20,7 @@ return [
     'use_roles' => false,
 
 /* If use_roles = true above then must set the table name, primary key and title field to get roles details */
-    'roles_table' => 'roles',
+    'roles_table' => '',
 
     'roles_pk' => 'id', // primary key of the roles table
 

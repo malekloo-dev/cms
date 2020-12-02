@@ -14,4 +14,9 @@ class Comment extends Model
         'status'
     ];
 
+
+    public function content(){
+        return $this->belongsTo('App\content');
+    }
+
 }
