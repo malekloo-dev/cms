@@ -53,12 +53,17 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
 Auth::routes(['register' => false]);
 
+Route::get('spider','SpiderController@spider');
+Route::get('/spider/reload', 'SpiderController@reload');
+Route::post('/spider/addToCms', 'SpiderController@reloadAdd');
+
 
 //Route::get('/search/', 'inventoryController@index')->name('inventory.show');
 //Route::post('/search/', 'inventoryController@index')->name('inventory.search');
 
 Route::get('/', 'HomeController@index');
 Route::get('/reload', 'ContentController@reload');
+
 Route::get('/{slug?}/{b?}', 'CmsController@request');
 
 Route::post('/comment','CommentController@store')->name('comment.store');

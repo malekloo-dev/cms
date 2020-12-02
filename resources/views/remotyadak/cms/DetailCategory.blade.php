@@ -24,7 +24,7 @@ $append='';
                 "{{ url('/').$content->images['images']['large'] }}"
             ],
             @endif
-         "description": "{{clearHtml($detail->brief_description)}}",
+         "description": "{{clearHtml($content->brief_description)}}",
 
             "sku": "{{$content->id}}",
             "mpn": "{{$content->id}}",
@@ -156,7 +156,7 @@ $append='';
                                     @endfor
                                 </div>
                                 <div class="brief">
-                                    {!! readMore($content->brief_description,180) !!}
+                                    {!! readMore($content->brief_description,250) !!}
                                 </div>
                             </footer>
                         </article>

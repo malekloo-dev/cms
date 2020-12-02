@@ -67,7 +67,7 @@ class ContentController extends Controller
             $type = $request->type;
         }
         $data['type'] = $type;
-        $data['contents'] = Content::where('type', '=', '2')->where('attr_type', '=', $type)->orderBy('id', 'desc')->paginate(10);
+        $data['contents'] = Content::where('type', '=', '2')->where('attr_type', '=', $type)->orderBy('id', 'desc')->paginate(1000);
 
         $data['category'] = Content::where('type', '=', '1')->orderBy('id', 'desc')->get()->keyBy('id');
         //dd($data);
@@ -96,28 +96,19 @@ class ContentController extends Controller
         //}
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function storeService(Request $request)
     {
 
-
-        // dd($request->all());
+        //dd($request->all());
         $this->validate($request, array(
-             'parent_id' => 'required',
-             //'description' => 'required',
-             //'body' => 'required',
-             //'images' => 'required|mimes:jpeg,png,bmp',
-
-         ));
-
+            'parent_id' => 'required',
+            //'description' => 'required',
+            //'body' => 'required',
+            //'images' => 'required|mimes:jpeg,png,bmp',
+        ));
 
         $imagesUrl = '';
+        //dd($request->file('images'));
         if ($request->file('images')) {
             $imagesUrl = $this->uploadImages($request->file('images'));
         }
@@ -139,9 +130,22 @@ class ContentController extends Controller
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
-
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
-        Content::create($data);
+        $result= Content::create($data);
+        return $result;
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->storeService($request);
+
         $this->sitemap();
 
         return redirect('/admin/contents?type=' . $request->attr_type)->with('success', Lang::get('messages.Greate! Content created successfully.'));
@@ -368,7 +372,10 @@ class ContentController extends Controller
         //     ->writeToFile('sitemap.xml');
 
         $sitemap = siteMap::create()
-            ->add()->setPriority('1')->setLoc('/')->setLastMod('2020')->setChangefreq('weekly')
+            ->add()->setPriority('1')
+            ->setLoc('/')
+            ->setLastMod('2020')
+            ->setChangefreq('weekly')
             ->setLocFieldName('slug')
             ->setLastModFieldName('updated_at')
             ->setDefultPriority('0.9')

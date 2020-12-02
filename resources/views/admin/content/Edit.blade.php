@@ -254,7 +254,7 @@
                             <label for="alternate_name" class=" col-form-label text-md-left">نام جایگزین:</label>
 
                             <input type="text" class="form-control" name="attr[alternate_name]"
-                                value="{{ old('attr[alternate_name]', $content_info->attr['alternate_name']) }}" />
+                                value="{{ old('attr[alternate_name]', $content_info->attr['alternate_name'] ?? '') }}" />
                         </div>
                     </div>
 
