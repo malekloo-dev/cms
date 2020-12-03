@@ -2,26 +2,25 @@
 @section('content')
     <div class="content-control">
         <ul class="breadcrumb">
-            <li>@lang('messages.Operators')</li>
+            <li class="active">@lang('messages.Operators')</li>
         </ul>
 
         <div>
-            <a href="{{ route('users.create') }}"
-                class=" btn btn-success btn-icon  mat-button ">
+            <a href="{{ route('users.create') }}" class=" btn btn-success btn-icon  mat-button ">
                 <i class="fa fa-plus"></i> @lang('messages.add') @lang('messages.Operators')
             </a>
         </div>
     </div>
 
     <div class="content-body">
-        <div class="panel panel-default mat-elevation-z pos-abs chat-panel bottom-0">
+        <div class="panel panel-default pos-abs chat-panel bottom-0">
             <div class="panel-body full-height">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <td>ID</td>
-                            <td>Name</td>
-                            <td>Email</td>
+                            <td>@lang('messages.name')</td>
+                            <td>@lang('messages.email')</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,7 +38,8 @@
                                                 @method('DELETE')
                                                 <button
                                                     class="font-full-plus-half-em text-danger btn-xs pull-left no-border no-bg "
-                                                    type="submit">
+                                                    type="submit"
+                                                    title="@lang('messages.delete')">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </form>
@@ -47,7 +47,7 @@
                                         <div class="col-xs-6">
                                             <a href="{{ route('users.edit', $user->id) }}"
                                                 class="font-full-plus-half-em text-success btn-xs pull-left no-border no-bg "
-                                                title="edit">
+                                                title="@lang('messages.edit')">
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                         </div>
