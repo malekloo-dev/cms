@@ -1029,7 +1029,7 @@ article footer{padding-top:10px}
 .products article{padding:10px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
 .products article h2{font-weight:700;font-size: .9em;}
 .products article p{font-size:.75em}
-.products article>div{height:150px;overflow:hidden}
+.products article>div{height:450px;overflow:hidden}
 .products img{width:100%;height:100%;object-fit:cover}
 #toc{border:1px solid #bba;background-color:#f7f8ff;padding:1em;font-size:90%;text-align:center;width:15em}
 #toc-header{display:inline;padding:0;font-size:100%;font-weight:700}
