@@ -11,8 +11,9 @@
 $tableOfImages=tableOfImages($detail->description);
 $append='';
 @endphp
+@if(count($relatedProduct))
 <script type="application/ld+json">
-    @if(count($relatedProduct))[
+    [
         @foreach($relatedProduct as $key => $content)
 
         {
@@ -65,8 +66,8 @@ $append='';
    @endforeach
 
 ]
-@endif
 </script>
+@endif
 
 @if (count($breadcrumb))
 <section class="breadcrumb mb-0">
@@ -189,7 +190,7 @@ $append='';
         <div>
             <h1 class="">{{ $detail->title }}</h1>
             {!! $detail->description !!}
-            
+
         </div>
     </div>
 </section>
