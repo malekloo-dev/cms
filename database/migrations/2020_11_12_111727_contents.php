@@ -14,7 +14,7 @@ class Contents extends Migration
     public function up()
     {
         Schema::create('contents', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('title',191)->nullable();
             $table->tinyInteger('type')->default(0);
             $table->string('slug',191)->nullable();

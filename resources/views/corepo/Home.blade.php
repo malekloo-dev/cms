@@ -176,7 +176,8 @@
                             <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
                         </figcaption>
                     </figure>
-
+                    @else
+                    <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
                     @endif
 
                 </div>

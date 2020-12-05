@@ -1075,6 +1075,7 @@ figure.image>img{max-width:100%;margin:0 auto;display:block;height:auto}
 .color-blue{color:#0045ff!important}
 .color-white{color:#fff!important}
 .color-purple{color:#5e16b0!important}
+.font-07{font-size:.7em}
 .font-1{font-size:1em}
 .font-2{font-size:2em}
 .font-3{font-size:3em;line-height:2em}
@@ -1089,3 +1090,4 @@ div.attr>div>div{display: flex;flex-wrap: wrap;}
 div.attr>div>div>div{padding: 1em; margin: .3em;}
 div.attr>div>div>:nth-child(odd){flex:1;font-weight: bold; background-color: #eee;}
 div.attr>div>div>:nth-child(even){flex:4; background-color: #f4f4f4;}
+.rounded{border-radius: 5px;}

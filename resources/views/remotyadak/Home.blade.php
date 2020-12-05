@@ -4,7 +4,7 @@
 
 @endsection
 @section('js')
-    
+
 @endsection
 
 @section('Content')
@@ -59,7 +59,7 @@
                 @foreach($topViewPost as $content)
                 <div>
                     <a class="hover" href="{{ $content->slug }}">
-                    
+
                         @if(isset($content->images['thumb']))
                         <div><img src="{{ $content->images['thumb'] }}"></div>
                         @endif
@@ -78,7 +78,7 @@
                                 @endif
                             </div>
                         </footer>
-                    
+
                     </a>
                 </div>
                 @endforeach

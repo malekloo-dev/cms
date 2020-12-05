@@ -40,11 +40,12 @@ class HomeController extends Controller
             ->where('publish_date','<=', DB::raw('now()'))
             ->get();
 
+        
         $data['seo'] = WebsiteSetting::all()->keyBy('variable')->map(function ($name) {
             return strtoupper($name['value']);
         });
 
-        
+
         return view(@env('TEMPLATE_NAME') . '.Home',$data);
     }
 

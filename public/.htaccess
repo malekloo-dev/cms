@@ -8,6 +8,12 @@
 
     RewriteEngine On
 
+    #withoout www
+	RewriteBase /
+	RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+	RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

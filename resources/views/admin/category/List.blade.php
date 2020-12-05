@@ -21,9 +21,10 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>عنوان</th>
+                            <th>@lang('messages.title')</th>
                             <th>توضیحات مختصر</th>
-                            <th>وضعیت</th>
+                            <th>@lang('messages.status')</th>
+                            <th>@lang('messages.image')</th>
                             <td></td>
                         </tr>
                     </thead>
@@ -35,13 +36,16 @@
                                 <td>{!! readMore($content->brief_description) !!}</td>
                                 <td>
                                     @if ($content->status == 1)
-                                        {{ 'فعال' }}
+                                        <i class="fa fa-check"></i>
                                     @else
-                                        {{ 'غیر فعال' }}
+                                        <i class="fa fa-remove"></i>
                                     @endif
-                                    {{--{{ $content->status ? 'فعال' : 'غیر فعال' }}--}}
                                 </td>
-
+                                <td>
+                                    @isset($content->images['images']['small'])
+                                        <img height="30" src="{{ $content->images['images']['small'] }}" />
+                                    @endisset
+                                </td>
                                 <td class="width-100">
                                     <div class="col-md-6">
 

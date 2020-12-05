@@ -3,6 +3,89 @@
 <link rel="stylesheet" href="{{ asset('/detail.category.css') }}">
 @endsection
 
+
+@section('js')
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        //dots[slideIndex - 1].className += " active";
+    }
+</script>
+
+<script src="{{asset('/siema.min.js')}}"></script>
+<script>
+    var w;
+    var perPageNumber;
+
+    function perPage() {
+        w = window.innerWidth;
+        if (w <= 500) {
+            perPageNumber = 1;
+        } else if (w <= 768) {
+            perPageNumber = 5;
+        } else if (w <= 1024) {
+            perPageNumber = 5;
+        } else {
+            perPageNumber = 7;
+        }
+    }
+
+
+    document.getElementsByTagName("BODY")[0].onresize = function() {
+        mySiema.destroy();
+        perPage();
+        mySiema.init();
+    };
+
+
+    perPage();
+    var mySiema = new Siema({
+        selector: '.siema',
+        duration: 200,
+        easing: 'ease-out',
+        perPage: perPageNumber,
+        startIndex: 0,
+        draggable: true,
+        multipleDrag: true,
+        threshold: 20,
+        loop: false,
+        rtl: true,
+        onInit: () => {},
+        onChange: () => {
+
+        },
+    });
+    document.querySelector('.prev2').addEventListener('click', () => mySiema.prev());
+    document.querySelector('.next2').addEventListener('click', () => mySiema.next());
+</script>
+@endsection
+
 @section('Content')
 
 @php
@@ -88,44 +171,40 @@ $append='';
 @endif
 
 @if (count($subCategory))
-<section class="category-list" id="index-best-view">
+<section class="category-list category-section" id="index-best-view">
     <div class="flex one ">
-        <div>
-            <h2>دسته بندی: {{$detail->title}}</h2>
-            <div class="flex one two-800   ">
+        <div class="siema p-0">
+            @foreach($subCategory as $content)
+            <a href="{{ $content->slug }}">
+                <div class="hover text-center">
+                    @if(isset($content->images['thumb']))
+                    <figure class="image">
+                        <img src="{{ $content->images['images']['small'] ?? $content->images['thumb']}}"
+                        sizes="(max-width:{{ env('CATEGORY_SMALL') }}px) 100vw {{ env('CATEGORY_SMALL') }}px {{ ENV('CATEGORY_MEDIUM') }}px {{ ENV('CATEGORY_LARGE') }}px"
+                        alt="{{$content->title}}"
+                        width="200" height="200"
+                        srcset="
+                            {{ $content->images['images']['small'] ?? $content->images['thumb']}} {{ env('CATEGORY_SMALL') }}w,
+                            {{ $content->images['images']['medium'] ?? $content->images['thumb']}} {{ env('CATEGORY_MEDIUM') }}w,
+                            {{ $content->images['images']['large'] ?? $content->images['thumb']}} 2x" >
+                        <figcaption>
+                            <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                        </figcaption>
+                    </figure>
+                    @else
+                    <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                    @endif
 
-                {{--$data['newPost']--}}
-                @foreach($subCategory as $content)
-                <div class="height-full">
-                    <div class="border hover-box p-1 full">
-                        <div class="flex one three-700 height-100">
-                            @if (isset($content->images['thumb']))
-                            <div class="p-0">
-                                <picture>
-                                    <source media="(min-width:{{ env('CATEGORY_LARGE') }}px)" srcset="{{ $content->images['images']['large'] ?? '' }} , {{ $content->images['images']['large'] ?? '' }} 2x">
-                                    <source media="(min-width:{{ env('CATEGORY_MEDIUM') }}px)" srcset="{{ $content->images['images']['medium'] ?? '' }} , {{ $content->images['images']['large'] ?? '' }} 2x">
-                                    <source media="(min-width:{{ env('CATEGORY_SMALL') }}px)" srcset="{{ $content->images['images']['small'] ?? ''}} , {{ $content->images['images']['medium'] ?? ''}} 2x">
-                                    <img src="{{ $content->images['images']['medium'] ?? ''}}"
-                                            sizes="(max-width:{{ env('CATEGORY_MEDIUM') }}px) 100vw  {{ ENV('CATEGORY_MEDIUM') }}px {{ ENV('CATEGORY_LARGE') }}px"
-                                            alt="{{$content->title}}"
-                                            width="{{ env('CATEGORY_MEDIUM') }}" height="{{ env('CATEGORY_MEDIUM') }}">
-                                </picture>
-                            </div>
-                            @endif
-                            <div class="one two-third-700 pr-1">
-                                <h2 class="p-0"><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
-                                {!! $content->brief_description !!}
-
-                            </div>
-
-                        </div>
-                    </div>
                 </div>
-                @endforeach
-
-            </div>
+            </a>
+            @endforeach
 
         </div>
+        <a class="prev2">&#10094;</a>
+        <a class="next2">&#10095;</a>
+
+
+
     </div>
 </section>
 @endif
