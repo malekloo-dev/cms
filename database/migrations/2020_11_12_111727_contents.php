@@ -23,7 +23,7 @@ class Contents extends Migration
             $table->integer('parent_id')->default(0);
             $table->string('meta_title')->nullable();
             $table->string('meta_keywords')->default(NULL)->nullable();
-            $table->string('meta_description')->default(NULL)->nullable();
+            $table->text('meta_description')->default(NULL)->nullable();
             $table->text('images')->nullable();
             $table->integer('viewCount')->default('0');
             $table->integer('commentCount')->default('0');
