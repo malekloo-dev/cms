@@ -13,9 +13,9 @@
     </div>
 </section>
 @yield('js')
-<script>
+{{-- <script>
     var TEMPLATE_NAME = `{{ env('TEMPLATE_NAME') }}`;
 </script>
-<script src="{{ url('/main.js') }}"></script>
+<script src="{{ url('/main.js') }}"></script> --}}
 </body>
 </html>
