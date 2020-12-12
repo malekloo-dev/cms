@@ -157,6 +157,10 @@ class MenuController extends Controller
 
         if($data["type" ] =="internal"){
             $data['link'] =Content::find($data["module_id" ])->slug;
+        }else
+        {
+            $data['module']='';
+            $data['module_id']='';
         }
         //dd($data);
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
@@ -234,8 +238,6 @@ class MenuController extends Controller
             }
         }
 
-        //dd($category);
-
         //print_r($content_info);
         //die();
         return view('admin.menu.Edit',$data);
@@ -249,9 +251,25 @@ class MenuController extends Controller
      * @param  \App\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Menu $menu)
+    public function update(Request $request,$id)
     {
-        //
+        $crud = Menu::find($id);
+
+        $data = $request->all();
+
+        if($data["type" ] =="internal"){
+
+            $data['link'] =Content::find($data["module_id" ])->slug;
+        }else
+        {
+            $data['module']=null;
+            $data['module_id']=null;
+        }
+
+        $crud->update($data);
+
+        return redirect('admin/menu')->with('success', 'Update! Menu Update successfully.');
+
     }
 
 
