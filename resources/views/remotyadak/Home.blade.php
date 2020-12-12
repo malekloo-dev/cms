@@ -24,7 +24,7 @@
 
                             @if (isset($content->images['images']))
                                 <picture>
-                                    
+
                                     <source media="(min-width:{{ env('CATEGORY_MEDIUM') }}px)"
                                         srcset="{{ $content->images['images']['medium'] ?? '' }}">
 
@@ -53,6 +53,7 @@
     </section>
 
 
+    {{--#anchor news --}}
 
     <section class="index-items home-top-view">
         <div class="flex one">
@@ -91,5 +92,5 @@
         </div>
     </section>
 
-
+    {{--#anchor down --}}
 @endsection

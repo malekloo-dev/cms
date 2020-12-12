@@ -44,6 +44,7 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     });
 
     Route::resource('category', 'CategoryController');
+    Route::resource('menu', 'MenuController');
 
     Route::resources([
         'clients'   => 'ClientsController',
