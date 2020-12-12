@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-App::setLocale('fa');
+App::setLocale(env('LANG'));
 
 
 //Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
