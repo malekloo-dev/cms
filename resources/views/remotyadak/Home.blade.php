@@ -1,3 +1,10 @@
+{{--category&label=NEWS best&var=cat&count=3&query=last--}}
+{{--post&amp;label=service&count=3&query=topView--}}
+{{--product&amp;label=service&count=3&query=topView--}}
+{{--product&amp;label=service&count=3&query=topView--}}
+
+{{---gallery&label=NEWS&count=3&query=topView--}}
+
 @extends(@env('TEMPLATE_NAME').'.App')
 
 @section('assets')
@@ -10,7 +17,7 @@
 @section('Content')
 
 
-
+    {{--#anchor top --}}
 
     <section class="index-item-top bg-orange mt-0 mb-0">
         <div class="text-center">
@@ -45,8 +52,6 @@
             @endforeach
         </div>
     </section>
-
-
 
     <section class="wide  m-0" id="index-comment">
         <div>خدمات طرح و وب</div>
