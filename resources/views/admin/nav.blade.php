@@ -41,7 +41,7 @@
 </nav>--}}
 
 <!-- section header -->
-<header class="header bg-white text-black ">
+<header class="header bg-gray text-black " >
     <!-- header-profile -->
     <div class="header-profile pull-left">
 
@@ -74,8 +74,8 @@
     </div><!-- header-profile -->
 
     <!-- header brand -->
-    <div class="header-brand">
-        <a href="{{ url('/admin') }}"><img src="{{ url('/adminAssets/img/logo.png') }}"
+    <div class="header-brand" >
+        <a href="{{ url('/admin') }}"><img height="40"  src="/{{ asset('/img/logo1x.png') }}"
                 class="liveChatLogo pull-left"></a>
     </div>
 
