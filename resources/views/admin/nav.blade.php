@@ -44,10 +44,6 @@
 <header class="header bg-gray text-black " >
     <!-- header-profile -->
     <div class="header-profile @if(!$ltr) pull-left @endif">
-
-        <i class="fa fa-clock-o font-full-em-2 text-light-gray" data-toggle="tooltip" data-placement='right'   title="{{ convertGToJ('now') }}"></i>
-
-
         <div class="profile-nav">
             @auth
                 <a class="dropdown-toggle" data-toggle="dropdown">
@@ -71,6 +67,10 @@
                 </ul>
             @endauth
         </div>
+        <i class="fa fa-clock-o font-full-em-2 text-light-gray" data-toggle="tooltip" data-placement='right'   title="{{ convertGToJ('now') }}"></i>
+
+
+
     </div><!-- header-profile -->
 
     <!-- header brand -->

@@ -46,4 +46,9 @@ return [
     'now'=>'Today',
     'website setting'=>'Website setting ',
     'parent'=>'Parent',
+    'description'=>'Description',
+    'brand'=>'Brand',
+    'price'=>'Price',
+    'discount'=>'Discount',
+    'alternative'=>'Alternative',
 ];

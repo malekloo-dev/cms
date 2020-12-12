@@ -93,7 +93,7 @@
                         <span class="text-danger">{{ $errors->first('title') }}</span>
                     </div>
                     <div class="col-md-5">
-                        <label for="slug">آدرس صفحه :</label>
+                        <label for="slug">@lang('messages.url') :</label>
                         <input type="text" class="form-control" name="slug" value="{{ old('slug') }}" />
                         <span class="text-danger">{{ $errors->first('slug') }}</span>
                     </div>
@@ -108,7 +108,7 @@
                 @if (isset($content_info) and $content_info->attr_type == 'html')
 
                     <div class="form-group row">
-                        <label for="brand" class="col-md-12 col-form-label text-md-left">نام فایل استاتیک:</label>
+                        <label for="brand" class="col-md-12 col-form-label text-md-left">@lang('messages.name') @lang('messages.static template'):</label>
                         <div class="col-md-12">
                             <input type="text" class="form-control" name="attr[template_name]"
                                 value="{{ old('attr[template_name]') }}" />
@@ -117,7 +117,7 @@
                 @endif
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label for="name">توضیحات مختصر:</label>
+                        <label for="name">@lang('messages.brief'):</label>
 
                         <textarea class="form-control" id="brief_description"
                             name="brief_description">{{ old('brief_description') }}</textarea>
@@ -130,7 +130,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label for="name">توضیحات:</label>
+                        <label for="name">@lang('messages.description'):</label>
                         <textarea class="form-control" id="description"
                             name="description">{{ old('description') }}</textarea>
                         <div id="word-count2"></div>
@@ -158,8 +158,8 @@
 
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <label for="images" class="control-label">تصویر مقاله (سایز مقاله {{ env('ARTICLE_LARGE') }}px)
-                            (سایز محصول {{ env('PRODUCT_LARGE') }}px)</label>
+                        <label for="images" class="control-label">@lang('messages.content') @lang('messages.image') (@lang('messages.content') {{ env('ARTICLE_LARGE') }}px)
+                            (@lang('messages.product') {{ env('PRODUCT_LARGE') }}px)</label>
                         <input type="file" class="form-control" name="images" id="images"
                             placeholder="تصویر مقاله را وارد کنید" value="{{ old('imageUrl') }}">
                     </div>
@@ -189,7 +189,7 @@
                 @if ($attr_type == 'product')
 
                     <div class="form-group row">
-                        <label for="brand" class="col-md-12 col-form-label text-md-left">برند:</label>
+                        <label for="brand" class="col-md-12 col-form-label text-md-left">@lang('messages.brand'):</label>
                         <div class="col-md-12">
                             <input type="text" class="form-control" name="attr[brand]"
                                 value="{{ old('attr[brand]') }}" />
@@ -197,7 +197,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="price" class="col-md-12 col-form-label text-md-left">قیمت:</label>
+                        <label for="price" class="col-md-12 col-form-label text-md-left">@lang('messages.price'):</label>
                         <div class="col-md-12">
                             <input type="text" class="form-control" name="attr[price]"
                                 value="{{ old('attr[price]') }}" />
@@ -205,7 +205,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="offer_price" class="col-md-12 col-form-label text-md-left">تخفیف:</label>
+                        <label for="offer_price" class="col-md-12 col-form-label text-md-left">@lang('messages.discount'):</label>
 
                         <div class="col-md-12">
                             <input type="text" class="form-control" name="attr[offer_price]"
@@ -214,7 +214,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="alternate_name" class="col-md-12 col-form-label text-md-left">نام جایگزین:</label>
+                        <label for="alternate_name" class="col-md-12 col-form-label text-md-left">@lang('messages.alternative') @lang('messages.name'):</label>
 
                         <div class="col-md-12">
                             <input type="text" class="form-control" name="attr[alternate_name]"
@@ -227,22 +227,22 @@
 
                 <div class="form-group row">
                     <div class="col-md-1">
-                        <label for="rate">رتبه:</label>
+                        <label for="rate">@lang('messages.rate'):</label>
                         <input type="text" class="form-control" name="attr[rate]" value="{{ old('attr[rate]') }}" />
                     </div>
 
                     <div class="col-md-3">
-                        <label for="name">وضعیت:</label>
+                        <label for="name">@lang('messages.status'):</label>
                         <select class="form-control" name="status">
-                            <option value="1">فعال</option>
-                            <option value="0">غیر فعال</option>
+                            <option value="1">@lang('messages.Active')</option>
+                            <option value="0">@lang('messages.Disactive')</option>
                         </select>
                     </div>
 
                 </div>
                 <input type="hidden" name="attr_type" value="{{ $attr_type }}">
-                
-                <button type="submit" class="btn btn-success pull-right mat-btn ">@lang('messages.confirm')
+
+                <button type="submit" class="btn btn-success @if(!$ltr)pull-right @endif mat-btn ">@lang('messages.confirm')
                 </button>
             </form>
         </div>

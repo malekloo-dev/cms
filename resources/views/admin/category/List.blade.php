@@ -2,14 +2,14 @@
 @section('content')
     <div class="content-control">
         <ul class="breadcrumb">
-            <li class="active">دسته بندی</li>
+            <li class="active">@lang('messages.category')</li>
         </ul>
         <div>
             <a href="{{ route('category.create') }}" class=" btn btn-success btn-icon  mat-button ">
-                <i class="fa fa-plus"></i> افزودن
+                <i class="fa fa-plus"></i> @lang('messages.add')
             </a>
             <a href="{{ route('category.create', ['type' => 'html']) }}" class=" btn btn-info btn-icon  mat-button ">
-                <i class="fa fa-plus"></i> افزودن قالب استاتیک
+                <i class="fa fa-plus"></i> @lang('messages.add') @lang('messages.static template')
             </a>
         </div>
     </div>
@@ -22,7 +22,7 @@
                         <tr>
                             <th></th>
                             <th>@lang('messages.title')</th>
-                            <th>توضیحات مختصر</th>
+                            <th>@lang('messages.brief')</th>
                             <th>@lang('messages.status')</th>
                             <th>@lang('messages.image')</th>
                             <td></td>
@@ -53,7 +53,7 @@
                                             method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button onclick="return confirm('آیا مطمئن هستید؟')"
+                                            <button onclick="return confirm('@lang('messages.Are you sure?')')"
                                                 class="font-full-plus-half-em text-danger btn-xs pull-left no-border no-bg "
                                                 type="submit"
                                                 title="@lang('messages.delete')">

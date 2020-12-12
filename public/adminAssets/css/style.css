@@ -794,6 +794,7 @@ label {
     padding: 0;
     display: flex;
     align-items: center;
+    direction: ltr;
 }
 
 .header-profile > .profile-nav {
