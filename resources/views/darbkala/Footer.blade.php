@@ -3,10 +3,11 @@
         <div class="flex grow one ">
 
             <div class="half">
-                <div>ویژن شرکت ریموت یدک</div>
+                <div>ویژن شرکت درب کالا</div>
                 <div>
-                    ایجاد پلتفرم تبلیغاتی و مشاوره در زمینه ساخت سوئیچ و ریموت
+                    ایجاد پلتفرم تبلیغاتی و مشاوره در زمینه درب ضد سرقت
                 </div>
+                <div>ساخته شده توسط <a target="_blanck" href="https://tarhoweb.com">طرح و وب</a></div>
             </div>
         </div>
     </div>

@@ -7,7 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link rel="icon" href="/{{ asset('/img/fav.png') }}" type="image/png">
     <title>CMS</title>
 
     <!-- Fonts -->
