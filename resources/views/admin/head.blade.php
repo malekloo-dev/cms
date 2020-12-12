@@ -25,6 +25,9 @@
     <link href="{{ url('/adminAssets/css/iziToast.min.css') }}" rel="stylesheet">
     <link href="{{ url('/adminAssets/css/fancy.min.css') }}" rel="stylesheet">
     <link href="{{ url('/adminAssets/css/style.css') }}" rel="stylesheet">
+    @if($ltr)
+    <link href="{{ url('/adminAssets/css/style.ltr.css') }}" rel="stylesheet">
+    @endif
     <link href="{{ url('/adminAssets/css/responsive.css') }}" rel="stylesheet">
     <link href="{{ url('/adminAssets/css/persian-datepicker.min.css') }}" rel="stylesheet">
 

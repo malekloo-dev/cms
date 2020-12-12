@@ -16,7 +16,7 @@
                         href="{{ route('contents.show', ['type' => 'product']) }}">{{ $data['productsCount'] }}</a>
                     <a href="{{ route('contents.create', ['type' => 'product']) }}"
                         class=" btn btn-success btn-icon  mat-button ">
-                        <i class="fa fa-plus"></i>افزودن
+                        <i class="fa fa-plus"></i>@lang('messages.add')
                     </a>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                         href="{{ route('contents.show', ['type' => 'article']) }}">{{ $data['articlesCount'] }}</a>
                     <a href="{{ route('contents.create', ['type' => 'article']) }}"
                         class=" btn btn-success btn-icon  mat-button ">
-                        <i class="fa fa-plus"></i>افزودن
+                        <i class="fa fa-plus"></i>@lang('messages.add')
                     </a>
                 </div>
             </div>
