@@ -56,7 +56,7 @@
                             <tr>
                                 <td>{{ $content->id }}</td>
                                 <td>{{ $content->title }}</td>
-                                <td>{{ readMore($content->brief_description) }}</td>
+                                <td>{!! readMore($content->brief_description) !!}</td>
                                 <td>
                                     @if (isset($content->parent_id) && isset($category[$content->parent_id]))
                                         {{ $category[$content->parent_id]->title }}

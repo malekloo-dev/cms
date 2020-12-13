@@ -31,7 +31,9 @@
                 toolbar: {
                     viewportTopOffset: 80
                 },
+                @if(!$ltr)
                 language: 'fa'
+                @endif
             })
             .then(editor => {
                 const wordCountPlugin = editor.plugins.get('WordCount');
@@ -54,7 +56,9 @@
                 toolbar: {
                     viewportTopOffset: 80
                 },
+                @if(!$ltr)
                 language: 'fa'
+                @endif
             })
             .then(editor => {
                 const wordCountPlugin = editor.plugins.get('WordCount');
@@ -99,7 +103,7 @@
                     </div>
                     <div class="col-md-2">
                         <label for="name"> @lang('messages.publish date'):</label>
-                        <input type="" class="form-control datepicker" name="publish_date" value="{{ old(
+                        <input type="{{($ltr)?'date':''}}" class="form-control {{ (!$ltr)? 'datepicker': 'date'}}  " name="publish_date" value="{{ old(
                             'date2',
                             Carbon\Carbon::now()->addDay()->format('Y-m-d'),
                         ) }}" />

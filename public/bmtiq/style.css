@@ -1,0 +1,20 @@
+.breadcrumb{text-align: left;}
+div.gallery > div{align-items: center;}
+div.gallery img{max-width: 100%; border-radius: 5px;}
+div.faq div div :first-child{font-weight: bold;}
+div.attr{margin: 1em 0; font-size: .9em;}
+div.attr>div>div{display: flex;flex-wrap: wrap;}
+div.attr>div>div>div{padding: 1em; margin: .3em;}
+div.attr>div>div>:nth-child(odd){flex:1;font-weight: bold; background-color: #eee;}
+div.attr>div>div>:nth-child(even){flex:4; background-color: #f4f4f4;}
+.comments{}
+.comment{background-color:#fff;border-radius: 5px; box-shadow: 0 2px 2px rgba(0,0,0,.1);padding: 1em;margin-bottom: 1em;display: flex;}
+.comment .aside{flex:0 0 20%}
+.comment .artical{}
+.comment-form{border: 2px dashed #ddd;padding: 1em;border-radius: 10px;margin-bottom: 1em;}
+.comment .name{font-weight: bold;}
+input,textarea{border: 0;border: 1px solid #ccc;}
+input:focus,textarea:focus{border: 1px solid #ccc;}
+.alert{padding: 1em;border:1px solid #ccc;border-radius: 5px;}
+.alert-danger{background-color: #ff4136;color: #fff;border: none;}
+.alert-success{background-color: #50ff36;color: #111;border: none;}

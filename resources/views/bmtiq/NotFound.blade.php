@@ -243,7 +243,7 @@
             </g>
         </g>
     </svg>
-    <p id="errorText">چنین صفحه ای یافت نشد.</p>
+    <p id="errorText">Not found</p>
 
 </main>
 </main>

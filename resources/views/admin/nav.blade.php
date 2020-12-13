@@ -67,7 +67,7 @@
                 </ul>
             @endauth
         </div>
-        <i class="fa fa-clock-o font-full-em-2 text-light-gray" data-toggle="tooltip" data-placement='right'   title="{{ convertGToJ('now') }}"></i>
+        <i class="fa fa-clock-o font-full-em-2 text-light-gray" data-toggle="tooltip" @if(!$ltr) data-placement='right' @else data-placement='left' @endif'   title="{{ convertGToJ('now') }}"></i>
 
 
 

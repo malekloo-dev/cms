@@ -34,7 +34,9 @@
                 toolbar: {
                     viewportTopOffset: 80
                 },
+                @if(!$ltr)
                 language: 'fa'
+                @endif
             })
             .then(editor => {
                 const wordCountPlugin = editor.plugins.get('WordCount');
@@ -57,7 +59,9 @@
                 toolbar: {
                     viewportTopOffset: 80
                 },
+                @if(!$ltr)
                 language: 'fa'
+                @endif
             })
             .then(editor => {
                 const wordCountPlugin = editor.plugins.get('WordCount');
@@ -104,14 +108,14 @@
                         <span class="text-danger">{{ $errors->first('title') }}</span>
                     </div>
                     <div class="col-md-5">
-                        <label for="slug" class=" col-form-label text-md-left">آدرس صفحه :</label>
+                        <label for="slug" class=" col-form-label text-md-left">@lang('messages.url') :</label>
                         <input type="text" class="form-control" name="slug"
                             value="{{ old('slug', $content_info->slug) }}" />
                         <span class="text-danger">{{ $errors->first('slug') }}</span>
                     </div>
                     <div class="col-md-2">
                         <label for="name">@lang('messages.publish date') :</label>
-                        <input type="" class="form-control datepicker" name="publish_date"
+                        <input type="{{ ($ltr)?'date':'' }}" class="form-control @if(!$ltr) datepicker @endif" name="publish_date"
                             value="{{ old('publish_date', $content_info->publish_date) }}" />
                     </div>
                 </div>
@@ -119,7 +123,7 @@
 
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <label for="brand" class=" col-form-label text-md-left">نام قالب استاتیک:</label>
+                            <label for="brand" class=" col-form-label text-md-left">@lang('messages.static template') @lang('messages.name'):</label>
                             <input type="text" class="form-control" name="attr[template_name]"
                                 value="{{ old('attr[template_name]', $content_info->attr['template_name']) }}" />
 
@@ -129,7 +133,7 @@
 
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label for="name" class=" col-form-label text-md-left">توضیحات مختصر:</label>
+                        <label for="name" class=" col-form-label text-md-left">@lang('messages.brief'):</label>
 
                         <textarea class="form-control" id="brief_description" name="brief_description" rows="10"
                             placeholder="Enter your Content">{{ old('brief_description', $content_info->brief_description) }}</textarea>
@@ -140,7 +144,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label for="name" class=" col-form-label text-md-left">توضیحات:</label>
+                        <label for="name" class=" col-form-label text-md-left">@lang('messages.description'):</label>
                         <textarea class="form-control" id="description"
                             name="description">{{ old('description', $content_info->description) }}</textarea>
                         <div id="word-count2"></div>
@@ -171,10 +175,10 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <label for="images" class="control-label">تصویر مقاله (سایز مقاله {{ env('ARTICLE_LARGE') }}px)
-                            (سایز محصول {{ env('PRODUCT_LARGE') }}px)</label>
+                        <label for="images" class="control-label">@lang('messages.image') (@lang('messages.content') {{ env('ARTICLE_LARGE') }}px)
+                            (@lang('messages.product') {{ env('PRODUCT_LARGE') }}px)</label>
                         <input type="file" class="form-control" name="images" id="images"
-                            placeholder="تصویر مقاله را وارد کنید" value="{{ old('imageUrl') }}">
+                            placeholder="@lang('messages.select image')" value="{{ old('imageUrl') }}">
                     </div>
 
                 </div>
@@ -226,7 +230,7 @@
 
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <label for="brand" class=" col-form-label text-md-left">برند:</label>
+                            <label for="brand" class=" col-form-label text-md-left">@lang('messages.brand'):</label>
                             <input type="text" class="form-control" name="attr[brand]"
                                 value="{{ old('attr[brand]', $content_info->attr['brand']) }}" />
                         </div>
@@ -234,7 +238,7 @@
 
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <label for="price" class=" col-form-label text-md-left">قیمت:</label>
+                            <label for="price" class=" col-form-label text-md-left">@lang('messages.price'):</label>
                             <input type="text" class="form-control" name="attr[price]"
                                 value="{{ old('attr[price]', $content_info->attr['price']) }}" />
                         </div>
@@ -242,7 +246,7 @@
 
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <label for="offer_price" class=" col-form-label text-md-left">offer_price:</label>
+                            <label for="offer_price" class=" col-form-label text-md-left">@lang('messages.discount'):</label>
 
                             <input type="text" class="form-control" name="attr[offer_price]"
                                 value="{{ old('attr[offer_price]', $content_info->attr['offer_price']) }}" />
@@ -251,7 +255,7 @@
 
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <label for="alternate_name" class=" col-form-label text-md-left">نام جایگزین:</label>
+                            <label for="alternate_name" class=" col-form-label text-md-left">@lang('messages.alternative') @lang('messages.name'):</label>
 
                             <input type="text" class="form-control" name="attr[alternate_name]"
                                 value="{{ old('attr[alternate_name]', $content_info->attr['alternate_name'] ?? '') }}" />
@@ -261,28 +265,24 @@
                 @endif
                 <div class="form-group row">
                     <div class="col-md-1">
-                        <label for="rate" class="col-form-label text-md-left">رتبه:</label>
+                        <label for="rate" class="col-form-label text-md-left">@lang('messages.rate'):</label>
 
                         <input type="text" class="form-control" name="attr[rate]"
                             value="{{ old('attr[rate]', $content_info->attr['rate'] ?? '') }}" />
                     </div>
                     <div class="col-md-4">
-                        <label for="name" class="col-form-label text-md-left">وضعیت:</label>
+                        <label for="name" class="col-form-label text-md-left">@lang('messages.status'):</label>
                         <select class="form-control" name="status">
-                            <option value="1" {{ $content_info->status == '1' ? 'selected' : '' }}>فعال</option>
-                            <option value="0" {{ $content_info->status == '0' ? 'selected' : '' }}>غیر فعال</option>
+                            <option value="1" {{ $content_info->status == '1' ? 'selected' : '' }}>@lang('messages.Active')</option>
+                            <option value="0" {{ $content_info->status == '0' ? 'selected' : '' }}>@lang('messages.Disactive')</option>
                         </select>
                     </div>
                 </div>
 
 
 
-                <button type="submit" class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">Edit
-                    Content
+                <button type="submit" class="btn btn-success  @if(!$ltr)pull-right @endif mat-btn ">@lang('messages.edit')
                 </button>
-                <a href="{{ route('contents.index') . '/' . $content_info->attr_type }}" class="btn link ">
-                    <i class="fa fa-arrow-left"></i> Back to List
-                </a>
             </form>
         </div>
     </div>

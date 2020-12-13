@@ -51,4 +51,5 @@ return [
     'price'=>'Price',
     'discount'=>'Discount',
     'alternative'=>'Alternative',
+    'select image'=>'Select image',
 ];

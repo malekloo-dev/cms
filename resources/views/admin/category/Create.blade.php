@@ -50,7 +50,9 @@
                 toolbar: {
                     viewportTopOffset: 80
                 },
+                @if(!$ltr)
                 language: 'fa'
+                @endif
             })
             .then(editor => {
                 const wordCountPlugin = editor.plugins.get('WordCount');
@@ -73,7 +75,9 @@
                 toolbar: {
                     viewportTopOffset: 80
                 },
+                @if(!$ltr)
                 language: 'fa'
+                @endif
             })
             .then(editor => {
                 const wordCountPlugin = editor.plugins.get('WordCount');
@@ -124,7 +128,7 @@
                     </div>
                     <div class="col-md-2">
                         <label for="name" class="col-form-label text-md-left">@lang('messages.publish date'):</label>
-                        <input type="datetime" class="form-control datepicker" name="publish_date"
+                        <input type="{{($ltr)?'date':'datetime'}}" class="form-control @if(!$ltr) datepicker @endif" name="publish_date"
                             value="{{ old('publish_date', Carbon\Carbon::now()->format('Y-m-d')) }}" />
                     </div>
                 </div>
@@ -142,7 +146,7 @@
 
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label for="name" class="col-form-label text-md-left">Brief Description:</label>
+                        <label for="name" class="col-form-label text-md-left">@lang('messages.brief'):</label>
                         <textarea class="form-control" id="brief_description"
                             name="brief_description">{{ old('brief_description') }}</textarea>
                         <div id="word-count1"></div>
@@ -153,7 +157,7 @@
 
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label for="name" class=" col-form-label text-md-left">Description:</label>
+                        <label for="name" class=" col-form-label text-md-left">@lang('messages.description'):</label>
                         <textarea class="form-control" id="description"
                             name="description">{{ old('description') }}</textarea>
                         <div id="word-count2"></div>
@@ -184,9 +188,9 @@
 
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <label for="images" class="control-label">تصویر (سایز{{ env('CATEGORY_LARGE') }}px)</label>
+                        <label for="images" class="control-label">@lang('messages.image') (@lang('messages.size'){{ env('CATEGORY_LARGE') }}px)</label>
                         <input type="file" class="form-control" name="images" id="images"
-                            placeholder="تصویر  را وارد کنید" value="{{ old('imageUrl') }}">
+                            placeholder="@lang('messages.select image')" value="{{ old('imageUrl') }}">
                     </div>
 
                 </div>
@@ -217,7 +221,7 @@
                     <div class="col-md-3">
                         <label for="name" class=" col-form-label text-md-left">@lang('messages.status'):</label>
                         <select class="select2" name="status">
-                            <option value="1">@lang('messages.active')</option>
+                            <option value="1">@lang('messages.Active')</option>
                             <option value="0">@lang('messages.Disactive')</option>
                         </select>
                     </div>

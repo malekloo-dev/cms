@@ -11,7 +11,7 @@
             <div class="row xxxsmallSpace"></div>
         </div>
 
-        <div class="panel-body">
+        <div class="panel-body @if($ltr) ltr @endif" >
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 

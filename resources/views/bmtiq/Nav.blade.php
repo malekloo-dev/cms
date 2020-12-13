@@ -39,7 +39,7 @@
                                                     class="nav navbar-nav level0">
                                                     <li itemprop='name' class="current active mega-align-left"
                                                         data-id="101" data-level="1" data-alignsub="left">
-                                                        <a itemprop='url' class="fullwidth" href="index.html"
+                                                        <a itemprop='url' class="fullwidth" href="{{ url('/') }}"
                                                             data-target="#">HOME </a>
 
                                                     </li>
