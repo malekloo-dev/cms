@@ -26,7 +26,7 @@
                         </ul>
                     </div>
                 @endif
-                
+
                 <form method="POST" action="{{ route('users.store') }}" class="center-block form-max-width">
                     @csrf
 
@@ -84,6 +84,7 @@
                         <div class="col-md-12">
                             <input id="password-confirm" type="password" class="form-control"
                                    name="password_confirmation" required autocomplete="new-password">
+                            
                         </div>
                     </div>
 

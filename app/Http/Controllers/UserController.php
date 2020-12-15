@@ -66,6 +66,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required|min:3|confirmed'
+        ]);
+
         $obj = User::where('email', '=', $request->email)->get();
 
         if (count($obj)) return redirect()->back()->with('error', Lang::get('messages.email exist'));
@@ -108,21 +114,23 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required|min:6|confirmed'
+            // 'password' => 'sometimes|required|min:3|confirmed'
         ]);
-        $user = User::find($id);
+        // $user = User::find($id);
 
         $user->name = $request->get('name');
         $user->email = $request->get('email');
-        $user->password = bcrypt($request->get('password'));
+        if(strlen($user->password) > 0){
+            $user->password = bcrypt($request->get('password'));
+        }
 
         $user->save();
-        
+
         return redirect()->back()->with('success', Lang::get('messages.edited'));
     }
 

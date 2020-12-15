@@ -25,8 +25,8 @@
                         </ul>
                     </div>
                 @endif
-                
-                <form method="post" action="{{ route('users.update', $users->id) }}"  class="center-block form-max-width">
+
+                <form method="post" action="{{ route('users.update', $users->id) }}" class="center-block form-max-width">
                     @method('PATCH')
                     @csrf
 
@@ -34,12 +34,22 @@
                         <label for="name" class="col-md-12 col-form-label text-md-left">name:</label>
                         <div class="col-md-12">
                             <input type="text" class="form-control" name="name" value="{{ $users->name }}" />
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="name" class="col-md-12 col-form-label text-md-left">email:</label>
                         <div class="col-md-12">
                             <input type="email" class="form-control" name="email" value="{{ $users->email }}" />
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                     </div>
@@ -48,6 +58,11 @@
                         <label for="name" class="col-md-12 col-form-label text-md-left">Password:</label>
                         <div class="col-md-12">
                             <input type="password" class="form-control" name="password" />
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
@@ -56,8 +71,7 @@
                             <input type="password" class="form-control" name="password_confirmation" />
                         </div>
                     </div>
-                    <button type="submit"
-                        class="btn btn-success  mat-btn ">@lang('messages.edit')</button>
+                    <button type="submit" class="btn btn-success  mat-btn ">@lang('messages.edit')</button>
 
                 </form>
             </div>
