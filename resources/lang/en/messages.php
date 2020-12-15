@@ -52,4 +52,7 @@ return [
     'discount'=>'Discount',
     'alternative'=>'Alternative',
     'select image'=>'Select image',
+    'contact'=>'Contact',
+    'contact us'=>'Contact us',
+    'lastname'=>'last name',
 ];

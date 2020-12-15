@@ -23,8 +23,14 @@
         <li class="divider"></li>
         <li class="no-margin">
             <a href="{{ route('comment.index') }}" class="no-margin @if(!$ltr) text-right @endif">
-                <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-envelope"></i>
+                <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-comments"></i>
                 <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.Comments')</span>
+            </a>
+        </li>
+        <li class="no-margin">
+            <a href="{{ route('contact.index') }}" class="no-margin @if(!$ltr) text-right @endif">
+                <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-envelope"></i>
+                <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.contact')</span>
             </a>
         </li>
         <li class="divider"></li>

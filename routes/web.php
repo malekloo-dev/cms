@@ -37,6 +37,13 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     Route::patch('comment/{comment}','CommentController@update')->name('comment.update');
     Route::delete('comment/{comment}', 'CommentController@destroy')->name('comment.destroy');
 
+    Route::get('contact','ContactController@index')->name('contact.index');
+    Route::delete('contact','ContactController@destroy')->name('contact.destroy');
+    Route::get('contact/{contact}/edit','ContactController@edit')->name('contact.edit');
+    Route::patch('contact/{contact}','ContactController@update')->name('contact.update');
+    Route::delete('contact/{contact}', 'ContactController@destroy')->name('contact.destroy');
+
+
     Route::prefix('seo')->name('seo.')->group(function () {
         Route::resource('redirectUrl', 'RedirectUrlController');
         Route::get('websiteSetting','WebsiteSettingController@edit')->name('websiteSetting.edit');
@@ -71,3 +78,4 @@ Route::get('/reload', 'ContentController@reload');
 Route::get('/{slug?}/{b?}', 'CmsController@request');
 
 Route::post('/comment','CommentController@store')->name('comment.store');
+Route::post('/contact','ContactController@store')->name('contact.store');
