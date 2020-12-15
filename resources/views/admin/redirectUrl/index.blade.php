@@ -5,8 +5,7 @@
             <li class="active">@lang('messages.Redirect Url')</li>
         </ul>
         <div>
-            <a href="{{ route('seo.redirectUrl.create') }}"
-                class="btn btn-success btn-icon mat-button ">
+            <a href="{{ route('seo.redirectUrl.create') }}" class="btn btn-success btn-icon mat-button ">
                 <i class="fa fa-plus"></i> @lang('messages.add')
             </a>
         </div>
@@ -36,7 +35,7 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Url</th>
+                            <th>@lang('messages.url')</th>
                             <th>Redirect to </th>
                             <th></th>
                         </tr>
@@ -50,22 +49,27 @@
 
 
                                 <td class="with-100">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <form class="pull-right"
+                                                action="{{ route('seo.redirectUrl.destroy', $item->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button onclick="return confirm('@lang('messages.Are you sure?')')"
+                                                    class="font-full-plus-half-em text-danger btn-xs  no-border no-bg no-padding"
+                                                    type="submit" title="@lang('messages.delete')">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
 
-                                    <form class="pull-right" action="{{ route('seo.redirectUrl.destroy', $item->id) }}"
-                                        method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button onclick="return confirm('@lang('messages.Are you sure?')')"
-                                            class="font-full-plus-half-em text-danger btn-xs  no-border no-bg no-padding"
-                                            type="submit" title="@lang('messages.delete')">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </form>
-
-                                    <a href="{{ route('seo.redirectUrl.edit', $item->id) }}"
-                                        class="font-full-plus-half-em text-success btn-xs pull-right" title="@lang('messages.edit')">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a href="{{ route('seo.redirectUrl.edit', $item->id) }}"
+                                                class="font-full-plus-half-em text-success btn-xs pull-right"
+                                                title="@lang('messages.edit')">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        </div>
                                 </td>
                             </tr>
                         @endforeach
