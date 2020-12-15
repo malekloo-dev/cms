@@ -131,11 +131,12 @@
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
                                         id="module_288">
                                         <div class="row">
+                                            @foreach (array(1,2,3) as $item)
                                             <article class="col-sm-4 item item_num0 item__module  " id="item_182">
 
                                                 <!-- Intro Image -->
                                                 <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/service-thumb01.jpg') }}" alt="">
+                                                    <img src="{{ asset('images/services/1.png') }}" alt="">
                                                     <figcaption>Container Operations
                                                         <br>
                                                         <br>
@@ -150,43 +151,11 @@
 
                                                 <div class="clearfix"></div>
                                             </article>
-                                            <article class="col-sm-4 item item_num1 item__module  " id="item_183">
 
-                                                <!-- Intro Image -->
-                                                <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/service-thumb02.jpg') }}" alt="">
-                                                    <figcaption>Container Operations
-                                                        <br>
-                                                        <br>
-                                                        ha bdha bjafdhb Container Operations Container
-                                                        Operations
-                                                        Container Operations Container Operations Container
-                                                        Operations
-                                                        Container Operations
-                                                    </figcaption>
-                                                </figure>
-                                                <div class="clearfix"></div>
-                                            </article>
-                                            <article class="col-sm-4 item item_num2 item__module  " id="item_184">
-
-                                                <!-- Intro Image -->
-                                                <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/service-thumb03.jpg') }}" alt="">
-                                                    <figcaption>Container Operations
-                                                        <br>
-                                                        <br>
-                                                        ha bdha bjafdhb Container Operations Container
-                                                        Operations
-                                                        Container Operations Container Operations Container
-                                                        Operations
-                                                        Container Operations
-                                                    </figcaption>
-                                                </figure>
-                                                <div class="clearfix"></div>
-                                            </article>
+                                            @endforeach
 
                                             <a href="{{ url('/news') }}" class="btn btn-primary mod_tm_ajax_contact_form_btn">
-                                                News more ...
+                                                More News ...
                                             </a>
                                         </div>
 
@@ -387,6 +356,7 @@
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
                                         id="module_288">
                                         <div class="row services">
+                                            @foreach (array(1,2,3,4,5,6) as $item)
                                             <article class="col-sm-4 item item_num0 item__module" id="item_182">
                                                 <figure class="item_img img-intro img-intro__none">
                                                     <img src="{{ asset('images/services/1.png') }}" alt="">
@@ -394,42 +364,10 @@
                                                 </figure>
                                                 <div class="clearfix"></div>
                                             </article>
-                                            <article class="col-sm-4 item item_num0 item__module" id="item_182">
-                                                <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/2.png') }}" alt="">
-                                                    <figcaption>Container Operations</figcaption>
-                                                </figure>
-                                                <div class="clearfix"></div>
-                                            </article>
-                                            <article class="col-sm-4 item item_num0 item__module" id="item_182">
-                                                <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/3.png') }}" alt="">
-                                                    <figcaption>Container Operations</figcaption>
-                                                </figure>
-                                                <div class="clearfix"></div>
-                                            </article>
-                                            <article class="col-sm-4 item item_num0 item__module" id="item_182">
-                                                <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/4.png') }}" alt="">
-                                                    <figcaption>Container Operations</figcaption>
-                                                </figure>
-                                                <div class="clearfix"></div>
-                                            </article>
-                                            <article class="col-sm-4 item item_num0 item__module" id="item_182">
-                                                <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/5.png') }}" alt="">
-                                                    <figcaption>Container Operations</figcaption>
-                                                </figure>
-                                                <div class="clearfix"></div>
-                                            </article>
-                                            <article class="col-sm-4 item item_num0 item__module" id="item_182">
-                                                <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/6.png') }}" alt="">
-                                                    <figcaption>Container Operations</figcaption>
-                                                </figure>
-                                                <div class="clearfix"></div>
-                                            </article>
-
+                                            @endforeach
+                                            <a href="{{ url('/news') }}" class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                                More servoces ...
+                                            </a>
                                         </div>
 
                                         <div class="clearfix"></div>
@@ -587,45 +525,57 @@
                                                     </h4>
                                                 </div>
                                                 <div id="contact_293">
-                                                    <form class="mod_tm_ajax_contact_form custom" id="contact-form_293"
+                                                    <form action="{{ route('contact.store') }}" method="post" class="mod_tm_ajax_contact_form custom" id=""
                                                         novalidate="">
-                                                        <input type="hidden" id="module_id" name="module_id" value="293">
+                                                        @csrf
                                                         <div class="mod_tm_ajax_contact_form_message" id="message_293">
-                                                            <span class="s">Thank You! Your message has been
-                                                                sent.</span>
-                                                            <span class="e">Something went wrong, please try
-                                                                again later.</span>
-                                                            <span class="c">Please enter a correct Captcha
-                                                                answer.</span>
+                                                            @if (\Session::has('success'))
+                                                                <div class="alert alert-success">
+                                                                    {!! \Session::get('success') !!}
+                                                                </div>
+                                                            @endif
+                                                            @if (\Session::has('error'))
+                                                                <div class="alert alert-danger">
+                                                                    {!! \Session::get('error') !!}
+                                                                </div>
+                                                            @endif
+                                                            @if ($errors->any())
+                                                                <div class="alert alert-danger">
+                                                                    {!! implode('', $errors->all('<div>:message</div>')) !!}
+                                                                </div>
+                                                            @endif
+
                                                         </div>
                                                         <fieldset>
                                                             <div class="row">
                                                                 <div class="control control-group-input col-sm-12 ">
-                                                                    <div class="control"><input type="text"
-                                                                            placeholder="Name" name="name" id="name_0_293"
+                                                                    <div class="control">
+                                                                        <input type="text" value="{{ old('name') }}"
+                                                                            placeholder="Name" name="name"
                                                                             class="mod_tm_ajax_contact_form_text"
                                                                             required="" title="Name"></div>
                                                                 </div>
                                                                 <div class="control control-group-input col-sm-12 ">
-                                                                    <div class="control"><input type="text"
+                                                                    <div class="control">
+                                                                        <input type="text" value="{{ old('lastname') }}"
                                                                             placeholder="Last Name" name="lastname"
-                                                                            id="lastname_1_293"
                                                                             class="mod_tm_ajax_contact_form_text"
                                                                             required="" title="Last Name">
                                                                     </div>
                                                                 </div>
                                                                 <div
                                                                     class="control control-group-input col-sm-12 pull-right">
-                                                                    <div class="control"><textarea name="experience"
-                                                                            placeholder="Experience" id="experience_5_293"
+                                                                    <div class="control">
+                                                                        <textarea name="comment"
+                                                                            placeholder="Experience"
                                                                             class="mod_tm_ajax_contact_form_textarea"
                                                                             title="" data-autosize-on="true"
-                                                                            style="overflow: hidden; overflow-wrap: break-word; height: 98px;"></textarea>
+                                                                            style="overflow: hidden; overflow-wrap: break-word; height: 98px;">{{ old('comment') }}</textarea>
                                                                     </div>
                                                                 </div> <!-- Submit Button -->
                                                                 <div class="control control-group-button col-sm-6">
                                                                     <div class="control">
-                                                                        <button type="submit"
+                                                                        <button
                                                                             class="btn btn-primary mod_tm_ajax_contact_form_btn">
                                                                             Send request
                                                                         </button>

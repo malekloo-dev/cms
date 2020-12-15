@@ -41,7 +41,9 @@ return [
     'menu'=>'Menu',
     'seo setting'=>'Seo setting',
     'users'=>'Users',
+    'user'=>'User',
     'edited'=>'Edited.',
+    'added'=>'Added.',
     'deleted'=>'Deleted.',
     'now'=>'Today',
     'website setting'=>'Website setting ',
@@ -52,4 +54,8 @@ return [
     'discount'=>'Discount',
     'alternative'=>'Alternative',
     'select image'=>'Select image',
+    'contact'=>'Contact',
+    'contact us'=>'Contact us',
+    'lastname'=>'last name',
+    'email exist'=>'email exit',
 ];

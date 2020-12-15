@@ -2,7 +2,8 @@
 @section('content')
     <div class="content-control">
         <ul class="breadcrumb">
-            <li><a class="text-18">{{ __('Register') }}</a></li>
+            <li><a href="{{ route('users.index')}}">@lang('messages.users')</a></li>
+            <li class="active">{{ __('Register') }}</li>
         </ul>
 
 
@@ -10,7 +11,23 @@
     <div class="content-body">
         <div class="panel panel-default mat-elevation-z pos-abs chat-panel bottom-0">
             <div class="panel-body full-height">
-                <form method="POST" action="{{ route('register') }}" class="center-block form-max-width">
+                @if (\Session::has('success'))
+                    <div class="alert alert-success">
+                        <ul>
+                            <li>{!! \Session::get('success') !!}</li>
+                        </ul>
+                    </div>
+                @endif
+
+                @if (\Session::has('error'))
+                    <div class="alert alert-danger">
+                        <ul>
+                            <li>{!! \Session::get('error') !!}</li>
+                        </ul>
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('users.store') }}" class="center-block form-max-width">
                     @csrf
 
                     <div class="form-group row">
@@ -67,18 +84,17 @@
                         <div class="col-md-12">
                             <input id="password-confirm" type="password" class="form-control"
                                    name="password_confirmation" required autocomplete="new-password">
+                            
                         </div>
                     </div>
 
                     <div class="form-group row mb-0">
                         <div class="col-md-12 pull-right">
                             <button type="submit"
-                                    class="btn btn-success  pull-right mat-btn radius-all  mat-elevation-z">
+                                    class="btn btn-success btn-block pull-right mat-btn ">
                                 {{ __('Register') }}
                             </button>
-                            <a href="{{ route('users.index') }}" class="link ">
-                                <i class="fa fa-arrow-left"></i> Back to List
-                            </a>
+
                         </div>
                     </div>
                 </form>

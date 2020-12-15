@@ -46,4 +46,13 @@ return [
     'now'=>'امروز',
     'website setting'=>'تنظیمات کلی سئو ',
     'parent'=>'مادر ',
+    'description'=>'Description',
+    'brand'=>'برند',
+    'price'=>'قیمت',
+    'discount'=>'تخفیف',
+    'alternative'=>'Alternative',
+    'select image'=>'انتخاب عکس',
+    'contact'=>'تماس با ما',
+    'contact us'=>'تماس با ما',
+    'lastname'=>'نام خانوادگی',
 ];
