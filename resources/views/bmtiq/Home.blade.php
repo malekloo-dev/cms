@@ -131,20 +131,19 @@
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
                                         id="module_288">
                                         <div class="row">
-                                            @foreach (array(1,2,3) as $item)
+                                         {{--post&label=NEWS best&var=news&count=3--}}
+                                         {{--product&label=product best&var=product&count=3--}}
+
+                                        @foreach ($product as $content)
                                             <article class="col-sm-4 item item_num0 item__module  " id="item_182">
 
                                                 <!-- Intro Image -->
                                                 <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/1.png') }}" alt="">
-                                                    <figcaption>Container Operations
+                                                    <img src="{{ $content->images['images']['small'] ?? ''}}" alt="">
+                                                    <figcaption>{{ $content->title }}
                                                         <br>
                                                         <br>
-                                                        ha bdha bjafdhb Container Operations Container
-                                                        Operations
-                                                        Container Operations Container Operations Container
-                                                        Operations
-                                                        Container Operations
+                                                        {!!  $content->brief_description !!}
                                                     </figcaption>
 
                                                 </figure>
@@ -154,7 +153,7 @@
 
                                             @endforeach
 
-                                            <a href="{{ url('/news') }}" class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                            <a href="{{ idToSlug($content->parent_id) }}" class="btn btn-primary mod_tm_ajax_contact_form_btn">
                                                 More News ...
                                             </a>
                                         </div>

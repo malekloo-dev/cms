@@ -6,7 +6,7 @@
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
-
+use App\Content;
 use Morilog\Jalali\CalendarUtils;
 
 function h_encrypt($string)
@@ -443,4 +443,13 @@ function convertNumToEn($string) {
     $allPersianDigits=array_merge($persinaDigits1, $persinaDigits2);
     $replaces = array('0','1','2','3','4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9');
     return str_replace($allPersianDigits, $replaces , $string);
+}
+
+function idToSlug($id) {
+
+    $content = Content::find($id);
+    if(is_object($content)){
+        return $content->slug;
+    }
+    return '';
 }
