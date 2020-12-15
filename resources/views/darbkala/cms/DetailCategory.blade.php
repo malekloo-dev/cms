@@ -148,7 +148,7 @@ $append='';
                             <footer>
                                 <a href="{{ $content->slug }}"> <h2>{{ $content->title }}</h2></a>
                                 <div class="brand">برند: {{ $content->attr['brand'] }}</div>
-                                <div class="price">قیمت:  @convertCurrency($content->attr['price'])  تومان </div>
+                                <div class="price text-green">قیمت:  @convertCurrency($content->attr['price'])  تومان </div>
                                 <div class="view-count">{{ $content->viewCount }} بار دیده شده</div>
                                 <div class="rate mt-1">
                                     @for($i = $content->attr['rate']; $i >= 1; $i--)
