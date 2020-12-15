@@ -2,12 +2,12 @@
 @section('content')
     <div class="content-control">
         <ul class="breadcrumb">
-            <li class="active">@lang('messages.Operators')</li>
+            <li class="active">@lang('messages.users')</li>
         </ul>
 
         <div>
             <a href="{{ route('users.create') }}" class=" btn btn-success btn-icon  mat-button ">
-                <i class="fa fa-plus"></i> @lang('messages.add') @lang('messages.Operators')
+                <i class="fa fa-plus"></i> @lang('messages.add') @lang('messages.user')
             </a>
         </div>
     </div>
@@ -15,6 +15,22 @@
     <div class="content-body">
         <div class="panel panel-default pos-abs chat-panel bottom-0">
             <div class="panel-body full-height">
+                @if (\Session::has('success'))
+                    <div class="alert alert-success">
+                        <ul>
+                            <li>{!! \Session::get('success') !!}</li>
+                        </ul>
+                    </div>
+                @endif
+
+                @if (\Session::has('error'))
+                    <div class="alert alert-danger">
+                        <ul>
+                            <li>{!! \Session::get('error') !!}</li>
+                        </ul>
+                    </div>
+                @endif
+
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -38,6 +54,7 @@
                                                 @method('DELETE')
                                                 <button
                                                     class="font-full-plus-half-em text-danger btn-xs pull-left no-border no-bg "
+                                                    onclick="return confirm('@lang('messages.Are you sure?')')"
                                                     type="submit"
                                                     title="@lang('messages.delete')">
                                                     <i class="fa fa-trash"></i>

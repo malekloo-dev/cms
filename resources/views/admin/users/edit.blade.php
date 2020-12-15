@@ -10,7 +10,23 @@
     <div class="content-body">
         <div class="panel panel-default mat-elevation-z pos-abs chat-panel bottom-0">
             <div class="panel-body full-height">
-                <form method="post" action="{{ route('users.update', $users->id) }}">
+                @if (\Session::has('success'))
+                    <div class="alert alert-success">
+                        <ul>
+                            <li>{!! \Session::get('success') !!}</li>
+                        </ul>
+                    </div>
+                @endif
+
+                @if (\Session::has('error'))
+                    <div class="alert alert-danger">
+                        <ul>
+                            <li>{!! \Session::get('error') !!}</li>
+                        </ul>
+                    </div>
+                @endif
+                
+                <form method="post" action="{{ route('users.update', $users->id) }}"  class="center-block form-max-width">
                     @method('PATCH')
                     @csrf
 
@@ -41,7 +57,7 @@
                         </div>
                     </div>
                     <button type="submit"
-                        class="btn btn-success  mat-btn ">changePassword</button>
+                        class="btn btn-success  mat-btn ">@lang('messages.edit')</button>
 
                 </form>
             </div>

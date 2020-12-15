@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Redirect;
-use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Lang;
 
 class UserController extends Controller
 {
@@ -48,7 +46,6 @@ class UserController extends Controller
     {
 
         return json_encode(User::all());
-
     }
 
     /**
@@ -69,7 +66,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $obj = User::where('email', '=', $request->email)->get();
+
+        if (count($obj)) return redirect()->back()->with('error', Lang::get('messages.email exist'));
+
+        User::create($request->all());
+
+        return redirect()->back()->with('success', Lang::get('messages.added'));
     }
 
     /**
@@ -108,8 +111,8 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required',
-            'email'=>'required',
+            'name' => 'required',
+            'email' => 'required',
             'password' => 'required|min:6|confirmed'
         ]);
         $user = User::find($id);
@@ -119,7 +122,8 @@ class UserController extends Controller
         $user->password = bcrypt($request->get('password'));
 
         $user->save();
-        return redirect('/users')->with('success', 'users updatesaved!');
+        
+        return redirect()->back()->with('success', Lang::get('messages.edited'));
     }
 
     /**
@@ -128,15 +132,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-
-
-        $user = User::find($id);
 
         $user->delete();
 
-        return redirect('/fancygrid')->with('success', 'users deleted!');
+        return redirect()->back()->with('success', 'users deleted!');
     }
     /**
      * Display a listing of the resource.
@@ -147,10 +148,9 @@ class UserController extends Controller
 
     public function filter(Request $request)
     {
-        $properties=array('id','name','email');
-        $data=User::query()->filter($request->all(),$properties);
+        $properties = array('id', 'name', 'email');
+        $data = User::query()->filter($request->all(), $properties);
 
         return response()->json($data);
-
     }
 }

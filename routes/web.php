@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
 
 
 App::setLocale(env('LANG'));
@@ -13,14 +14,10 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
     Route::post('contents/upload-image/', 'ContentController@uploadImageSubject')->name('contents.upload');
 
-    //Auth::routes(['register' => false]);
-
     Route::get('/', 'IndexController@index')->name('admin');
 
 
-
     /** for adminContent  */
-    //Route::resource('contents', 'ContentController');
     //Route::resource('contents', 'ContentController');
     Route::get('contents', 'ContentController@index')->name('contents.index');
     Route::get('contents/create', 'ContentController@create')->name('contents.create');
@@ -30,18 +27,6 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     Route::delete('contents/{content}', 'ContentController@destroy')->name('contents.destroy');
     Route::PATCH('contents/{content}', 'ContentController@update')->name('contents.update');
     Route::get('contents/{content}/edit', 'ContentController@edit')->name('contents.edit');
-
-    Route::get('comment','CommentController@index')->name('comment.index');
-    Route::delete('comment','CommentController@destroy')->name('comment.destroy');
-    Route::get('comment/{comment}/edit','CommentController@edit')->name('comment.edit');
-    Route::patch('comment/{comment}','CommentController@update')->name('comment.update');
-    Route::delete('comment/{comment}', 'CommentController@destroy')->name('comment.destroy');
-
-    Route::get('contact','ContactController@index')->name('contact.index');
-    Route::delete('contact','ContactController@destroy')->name('contact.destroy');
-    Route::get('contact/{contact}/edit','ContactController@edit')->name('contact.edit');
-    Route::patch('contact/{contact}','ContactController@update')->name('contact.update');
-    Route::delete('contact/{contact}', 'ContactController@destroy')->name('contact.destroy');
 
 
     Route::prefix('seo')->name('seo.')->group(function () {
@@ -58,7 +43,9 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
     Route::resources([
         'clients'   => 'ClientsController',
-        'users' => 'UserController'
+        'users' => 'UserController',
+        'contact' => 'ContactController',
+        'comment' => 'CommentController'
     ]);
 });
 
