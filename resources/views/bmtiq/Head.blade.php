@@ -701,10 +701,6 @@
 
     <!-- You can add Google Analytics here or use T3 Injection feature -->
 
-    <link
-        href="http://fonts.googleapis.com/css?family=Parisienne|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-        rel="stylesheet">
-
     @yield('head')
 </head>
 
