@@ -131,11 +131,12 @@
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
                                         id="module_288">
                                         <div class="row">
+                                            @foreach (array(1,2,3) as $item)
                                             <article class="col-sm-4 item item_num0 item__module  " id="item_182">
 
                                                 <!-- Intro Image -->
                                                 <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/service-thumb01.jpg') }}" alt="">
+                                                    <img src="{{ asset('images/services/1.png') }}" alt="">
                                                     <figcaption>Container Operations
                                                         <br>
                                                         <br>
@@ -150,43 +151,11 @@
 
                                                 <div class="clearfix"></div>
                                             </article>
-                                            <article class="col-sm-4 item item_num1 item__module  " id="item_183">
 
-                                                <!-- Intro Image -->
-                                                <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/service-thumb02.jpg') }}" alt="">
-                                                    <figcaption>Container Operations
-                                                        <br>
-                                                        <br>
-                                                        ha bdha bjafdhb Container Operations Container
-                                                        Operations
-                                                        Container Operations Container Operations Container
-                                                        Operations
-                                                        Container Operations
-                                                    </figcaption>
-                                                </figure>
-                                                <div class="clearfix"></div>
-                                            </article>
-                                            <article class="col-sm-4 item item_num2 item__module  " id="item_184">
-
-                                                <!-- Intro Image -->
-                                                <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/service-thumb03.jpg') }}" alt="">
-                                                    <figcaption>Container Operations
-                                                        <br>
-                                                        <br>
-                                                        ha bdha bjafdhb Container Operations Container
-                                                        Operations
-                                                        Container Operations Container Operations Container
-                                                        Operations
-                                                        Container Operations
-                                                    </figcaption>
-                                                </figure>
-                                                <div class="clearfix"></div>
-                                            </article>
+                                            @endforeach
 
                                             <a href="{{ url('/news') }}" class="btn btn-primary mod_tm_ajax_contact_form_btn">
-                                                News more ...
+                                                More News ...
                                             </a>
                                         </div>
 
@@ -387,6 +356,7 @@
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
                                         id="module_288">
                                         <div class="row services">
+                                            @foreach (array(1,2,3,4,5,6) as $item)
                                             <article class="col-sm-4 item item_num0 item__module" id="item_182">
                                                 <figure class="item_img img-intro img-intro__none">
                                                     <img src="{{ asset('images/services/1.png') }}" alt="">
@@ -394,42 +364,10 @@
                                                 </figure>
                                                 <div class="clearfix"></div>
                                             </article>
-                                            <article class="col-sm-4 item item_num0 item__module" id="item_182">
-                                                <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/2.png') }}" alt="">
-                                                    <figcaption>Container Operations</figcaption>
-                                                </figure>
-                                                <div class="clearfix"></div>
-                                            </article>
-                                            <article class="col-sm-4 item item_num0 item__module" id="item_182">
-                                                <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/3.png') }}" alt="">
-                                                    <figcaption>Container Operations</figcaption>
-                                                </figure>
-                                                <div class="clearfix"></div>
-                                            </article>
-                                            <article class="col-sm-4 item item_num0 item__module" id="item_182">
-                                                <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/4.png') }}" alt="">
-                                                    <figcaption>Container Operations</figcaption>
-                                                </figure>
-                                                <div class="clearfix"></div>
-                                            </article>
-                                            <article class="col-sm-4 item item_num0 item__module" id="item_182">
-                                                <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/5.png') }}" alt="">
-                                                    <figcaption>Container Operations</figcaption>
-                                                </figure>
-                                                <div class="clearfix"></div>
-                                            </article>
-                                            <article class="col-sm-4 item item_num0 item__module" id="item_182">
-                                                <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/6.png') }}" alt="">
-                                                    <figcaption>Container Operations</figcaption>
-                                                </figure>
-                                                <div class="clearfix"></div>
-                                            </article>
-
+                                            @endforeach
+                                            <a href="{{ url('/news') }}" class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                                More servoces ...
+                                            </a>
                                         </div>
 
                                         <div class="clearfix"></div>
