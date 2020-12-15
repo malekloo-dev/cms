@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Content;
-use App\Menu;
+use App\Widget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,8 +20,6 @@ class ModuleBuilderController extends Controller
      */
     public function index()
     {
-        dd('a');
-
         $tree = $this->tree_set();
         $menus = $this->convertTemplateTable1($tree);
         return view('admin.moduleBuilder.Edit', compact('menus'));
@@ -51,6 +49,8 @@ class ModuleBuilderController extends Controller
      */
     public function edit()
     {
+
+
         //{{--module=category&label=NEWS&count=3&query=last--}}
         //{{--gallery&label=NEWS&count=3&query=last--}}
         $template = 'O:\xampp\htdocs\cms\resources\views\remotyadak\Home.blade.php';
@@ -91,8 +91,11 @@ class ModuleBuilderController extends Controller
             ->where('publish_date','<=', DB::raw('now()'))
             ->get();
 
+        $data['widgets']= Widget::find(1);
         $data['arrayContent']=$arrayContent;
-                return view('admin.moduleBuilder.Edit',$data);
+        //dd($arrayContent);
+
+        return view('admin.moduleBuilder.Edit',$data);
     }
 
 
@@ -103,24 +106,14 @@ class ModuleBuilderController extends Controller
      * @param  \App\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update($id,Request $request)
     {
-        $crud = Menu::find($id);
-
+        $crud = Widget::find(1);
         $data = $request->all();
-
-        if($data["type" ] =="internal"){
-
-            $data['link'] =Content::find($data["module_id" ])->slug;
-        }else
-        {
-            $data['module']=null;
-            $data['module_id']=null;
-        }
-
         $crud->update($data);
+       // dd($data);
 
-        return redirect('admin/menu')->with('success', 'Update! Menu Update successfully.');
+        return redirect('admin/indexConfig')->with('success', 'Update! Menu Update successfully.');
 
     }
 

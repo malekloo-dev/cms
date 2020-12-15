@@ -9,9 +9,9 @@ class Widget extends Model
     public $timestamps = false;
 
     protected $casts = [
-        'config' => 'array',
+        'attr' => 'array',
     ];
     protected $fillable = [
-        'config'
+        'attr'
     ];
 }

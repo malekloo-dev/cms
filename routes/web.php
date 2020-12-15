@@ -47,7 +47,7 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     Route::resource('menu', 'MenuController');
 
     Route::get('indexConfig','ModuleBuilderController@edit')->name('moduleBuilder.edit');
-    Route::patch('indexConfig','ModuleBuilderController@update')->name('moduleBuilder.update');
+    Route::patch('indexConfig/{id}','ModuleBuilderController@update')->name('moduleBuilder.update');
 
     Route::resources([
         'clients'   => 'ClientsController',

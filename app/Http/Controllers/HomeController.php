@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Content;
 use App\Category;
+use App\Widget;
 use App\WebsiteSetting;
 //use App\Home;
 use Illuminate\Http\Request;
@@ -22,9 +23,8 @@ class HomeController extends Controller
     {
 
 
-
         //Content::increment('viewCount');
-        $data['topViewPost'] = Content::where('type','=','2')
+        /*$data['topViewPost'] = Content::where('type','=','2')
             ->orderBy('viewCount', 'desc')
             ->where('publish_date','<=', DB::raw('now()'))
             ->limit(10)->get();
@@ -38,15 +38,59 @@ class HomeController extends Controller
         $data['category'] = Category::where('type', '=', '1')
             ->where('parent_id','<>','0')
             ->where('publish_date','<=', DB::raw('now()'))
-            ->get();
+            ->get();*/
 
-        
+
         $data['seo'] = WebsiteSetting::all()->keyBy('variable')->map(function ($name) {
             return strtoupper($name['value']);
         });
 
+        $atr = Widget::find(1)->attr;
 
-        return view(@env('TEMPLATE_NAME') . '.Home',$data);
+        DB::connection()->enableQueryLog();
+
+        foreach ($atr as $var => $config) {
+
+            $type = '';
+            //$data[$var] =new Content();
+            $module = new Content();
+
+            if ($config['type'] == 'post') {
+                $module = $module->where('type', '=', '2');
+                $module = $module->where('attr_type', '=', 'article');
+
+            } else if ($config['type'] == 'product') {
+                $module = $module->where('type', '=', '2');
+                $module = $module->where('attr_type', '=', 'product');
+
+            } else if ($config['type'] == 'category') {
+                $module=$module->where('type', '=', '1');
+            }
+            if($config['parent_id']!=0){
+                $module=$module->where('parent_id', '=', $config['parent_id']);
+
+            }
+
+            $sort=explode(' ',$config['sort']);
+            //dd($sort);
+
+            $module=$module->orderby($sort[0]);
+            $module=$module->limit($sort[1]);
+
+            $data[$var] = $module
+                ->where('publish_date', '<=', DB::raw('now()'))
+                ->limit($config['count'])
+                ->get();
+
+        }
+        $queries = DB::getQueryLog();
+
+        //dd($queries);
+
+        //$data['arrayContent']=$arrayContent;
+        //dd($data);
+
+        return view(@env('TEMPLATE_NAME') . '.Home', $data);
     }
 
     /**
@@ -77,7 +121,7 @@ class HomeController extends Controller
             'product_code' => 'required',
             'description' => 'required',
         ]);*/
-/*print_r($_POST);die();*/
+        /*print_r($_POST);die();*/
         //Home::create($request->all());
 
         return Redirect('Homes')->with('success', 'Greate! Home created successfully.');
