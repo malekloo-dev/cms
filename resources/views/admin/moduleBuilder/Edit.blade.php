@@ -51,10 +51,11 @@
                             <?php
                             $widget['parent_id'] = 0;
                             $widget['sort'] = '';
-                            // dd($widgets->attr);
-                            if (isset($widgets->attr[$attr['config']['var']])) {
+
+                            if (is_array($widgets->attr)) {
                                 $widget = $widgets->attr[$attr['config']['var']];
                             }
+
 
                             ?>
 

@@ -1,10 +1,3 @@
-{{--category&label=NEWS best&var=cat&count=3&query=last--}}
-{{--post&amp;label=service&count=3&query=topView--}}
-{{--product&amp;label=service&count=3&query=topView--}}
-{{--product&amp;label=service&count=3&query=topView--}}
-
-{{---gallery&label=NEWS&count=3&query=topView--}}
-
 @extends(@env('TEMPLATE_NAME').'.App')
 
 @section('head')

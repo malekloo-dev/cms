@@ -57,6 +57,7 @@ class ModuleBuilderController extends Controller
         // $template = 'O:\xampp\htdocs\cms\resources\views\remotyadak\Home.blade.php';
         $template = resource_path('views/'. env('TEMPLATE_NAME') .'/Home.blade.php');
 
+
         $content=file_get_contents($template);
         preg_match_all("/({{--category(.*)--}})|({{--product(.*)--}})|({{--post(.*)--}})/U", $content, $pat_array);
         //{gallery&size=10&template=1}
