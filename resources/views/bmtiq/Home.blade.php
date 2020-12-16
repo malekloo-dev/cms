@@ -124,17 +124,16 @@
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
                                         id="module_288">
                                         <div class="row">
-                                        {{--post&label=NEWS best&var=news&count=3--}}
-                                        {{--product&label=product best&var=product&count=3--}}
+                                        {{--post&label=NEWS&var=news&count=3--}}
 
 
-                                        @foreach ($product as $content)
+                                        @foreach ($news as $content)
                                             <article class="col-sm-4 item item_num0 item__module  " id="item_182">
 
                                                 <!-- Intro Image -->
                                                 <figure class="item_img img-intro img-intro__none">
                                                     <img src="{{ $content->images['images']['small'] ?? ''}}" alt="">
-                                                    <figcaption>{{ $content->title }}
+                                                    <figcaption><a href="{{ $content->slug }}">{{ $content->title }}</a>
                                                         <br>
                                                         <br>
                                                         {!!  $content->brief_description !!}
@@ -145,14 +144,14 @@
                                                 <div class="clearfix"></div>
                                             </article>
                                             @endforeach
-                                            @if(isset($content))
-                                                <a href="{{ idToSlug($content->parent_id) }}" class="btn btn-primary mod_tm_ajax_contact_form_btn">
-                                                    More News ...
-                                                </a>
-                                            @endif
+
 
                                         </div>
-
+                                        @if(isset($content))
+                                        <a href="{{ idToSlug($content->parent_id) }}" class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                            More News ...
+                                        </a>
+                                    @endif
                                         <div class="clearfix"></div>
 
                                     </div>

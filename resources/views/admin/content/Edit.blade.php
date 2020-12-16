@@ -115,7 +115,7 @@
                     </div>
                     <div class="col-md-2">
                         <label for="name">@lang('messages.publish date') :</label>
-                        <input type="{{ ($ltr)?'date':'' }}" class="form-control @if(!$ltr) datepicker @endif" name="publish_date"
+                        <input  type="{{ ($ltr)?'date':'' }}" class="form-control @if(!$ltr) datepicker @endif" name="publish_date"
                             value="{{ old('publish_date', $content_info->publish_date) }}" />
                     </div>
                 </div>

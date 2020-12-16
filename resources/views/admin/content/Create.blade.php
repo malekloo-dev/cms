@@ -105,7 +105,7 @@
                         <label for="name"> @lang('messages.publish date'):</label>
                         <input type="{{($ltr)?'date':''}}" class="form-control {{ (!$ltr)? 'datepicker': 'date'}}  " name="publish_date" value="{{ old(
                             'date2',
-                            Carbon\Carbon::now()->addDay()->format('Y-m-d'),
+                            Carbon\Carbon::now()->format('Y-m-d'),
                         ) }}" />
                     </div>
                 </div>
