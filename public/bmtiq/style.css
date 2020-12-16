@@ -480,3 +480,9 @@ input:focus,textarea:focus{border: 1px solid #ccc;}
 .alert{padding: 1em;border:1px solid #ccc;border-radius: 5px;}
 .alert-danger{background-color: #ff4136;color: #fff;border: none;}
 .alert-success{background-color: #50ff36;color: #111;border: none;}
+.image-style-align-center{text-align:center;max-width:50%;margin-left:auto;margin-right:auto}
+.image-style-align-right{float:right}
+.image-style-align-left{float:left}
+figure.image{display:table;clear:both;text-align:center;margin:auto}
+figure.image>img{max-width:100%;margin:0 auto;display:block;height:auto}
+table ,tr,td{border:none !important}

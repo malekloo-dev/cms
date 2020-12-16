@@ -9,7 +9,7 @@
                             <div class="col-sm-4">
                                 <div class="logo">
                                     <div class="logo-text">
-                                        <a href="index.html" title="Translog">
+                                        <a href="{{ url('/') }}" title="Translog">
 
                                             <span>BMT</span>
                                         </a>

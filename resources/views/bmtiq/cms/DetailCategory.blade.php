@@ -83,8 +83,8 @@
                             <div class="flex one ">
                                 <div>
                                     <div class="shadow">
-                                        <h2> {{ $detail->title }} Alternative</h2>
-                                        <div class="flex one two-500 four-900 center ">
+                                        {{-- <h2> {{ $detail->title }} Alternative</h2> --}}
+                                        <div class="flex one two-500 six-900 center ">
 
                                             {{--$data['newPost']--}}
                                             @foreach ($relatedPost as $content)
@@ -94,8 +94,8 @@
                                                             <div><img src="{{ $content->images['thumb'] }}"></div>
                                                         @endif
                                                         <footer>
-                                                            <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a>
-                                                            </h2>
+                                                            <a href="{{ $content->slug }}"> {{ $content->title }}</a>
+
                                                             {!! $content->brief_description !!}
                                                         </footer>
                                                     </article>
