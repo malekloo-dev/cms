@@ -1,6 +1,7 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 @section('asset')
     <style>
+        .related-post {}
     </style>
 @endsection
 @section('js')
@@ -39,15 +40,8 @@
                     <div class="module_container" style="">
                         <div class="top-page">
                             <div>
-                                <h1 class="">{{ $detail->title }}</h1>
+                                <h2 class="moduleTitle"><span>{{ $detail->title }}</span></h2>
                                 <div>
-                                    <span class="rate mt-1">
-                                        @for ($i = $detail->attr['rate']; $i >= 1; $i--)
-                                            <img width="20" height="20"
-                                                srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
-                                                src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
-                                        @endfor
-                                    </span> |
                                     View: {{ $detail->viewCount }} |
                                     Publish date: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span> |
                                 </div>
@@ -69,25 +63,25 @@
 
 
                         @if (count($relatedPost))
-                            <section class="products" id="index-best-view">
+                            <section class="related-post" id="index-best-view">
                                 <div class="flex one ">
                                     <div>
-                                        <h2>Related content with {{ $detail->title }}</h2>
-                                        <div class="flex one two-500 four-900 center ">
+                                        
+                                        <div class="flex one two-500 six-900 center ">
 
                                             {{--$data['newPost']--}}
                                             @foreach ($relatedPost as $content)
                                                 <div>
                                                     <article>
                                                         @if (isset($content->images['thumb']))
-                                                            <div><img src="{{ $content->images['thumb'] }}  alt="
-                                                                    {{ $content->title }} "></div>
-                                                                       @endif
-                                                                <footer>
-                                                                    <h2><a href="{{ $content->slug }}">
-                                                                            {{ $content->title }}</a></h2>
-                                                                    {!! $content->brief_description !!}
-                                                                </footer>
+                                                            <div><img src="{{ $content->images['thumb'] }}"
+                                                                    alt="{{ $content->title }}"></div>
+                                                        @endif
+                                                        <footer>
+                                                            <a href="{{ $content->slug }}">
+                                                                    {{ $content->title }}</a>
+                                                            {!! $content->brief_description !!}
+                                                        </footer>
                                                     </article>
                                                 </div>
                                             @endforeach
