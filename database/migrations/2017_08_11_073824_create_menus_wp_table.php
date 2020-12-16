@@ -15,7 +15,17 @@ class CreateMenusWpTable extends Migration
     {
         Schema::create( config('menu.table_prefix') . config('menu.table_name_menus'), function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('label');
+            $table->string('link');
+            $table->bigInteger('parent')->default(0);
+            $table->integer('sort')->default(0);
+            $table->string('class')->nullable()->default(null);
+            $table->integer('menu')->default(1);
+            $table->integer('depth')->default(0);
+            $table->string('type')->default('internal');
+            $table->string('module')->nullable()->default(null);
+            $table->integer('module_id')->nullable()->default(null);
+            $table->integer('depth_copy')->default(0);
             $table->timestamps();
         });
     }
