@@ -44,9 +44,9 @@
 
                                                                                     <span
                                                                                         style="color: #2a5d65;color: #2a5d65;
-                                                                                        background: -webkit-linear-gradient(90deg, #292929,#2a5d65 50%);
-                                                                                        -webkit-background-clip: text;
-                                                                                        -webkit-text-fill-color: transparent;"
+                                                                                            background: -webkit-linear-gradient(90deg, #292929,#2a5d65 50%);
+                                                                                            -webkit-background-clip: text;
+                                                                                            -webkit-text-fill-color: transparent;"
                                                                                         class="item_title_part_1 item_title_part_even item_title_part_first_half">Largest</span>
                                                                                     <span
                                                                                         class="item_title_part_2 item_title_part_odd item_title_part_first_half">
@@ -124,34 +124,35 @@
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
                                         id="module_288">
                                         <div class="row">
-                                        {{--post&label=NEWS&var=news&count=3--}}
+                                            {{--post&label=NEWS&var=news&count=3--}}
 
 
-                                        @foreach ($news as $content)
-                                            <article class="col-sm-4 item item_num0 item__module  " id="item_182">
+                                            @foreach ($news as $content)
+                                                <article class="col-sm-4 item item_num0 item__module  " id="item_182">
 
-                                                <!-- Intro Image -->
-                                                <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ $content->images['images']['small'] ?? ''}}" alt="">
-                                                    <figcaption><a href="{{ $content->slug }}">{{ $content->title }}</a>
-                                                        <br>
-                                                        <br>
-                                                        {!!  $content->brief_description !!}
-                                                    </figcaption>
+                                                    <!-- Intro Image -->
+                                                    <figure class="item_img img-intro img-intro__none">
+                                                        <img src="{{ $content->images['images']['small'] ?? '' }}" alt="">
+                                                        <figcaption><a href="{{ $content->slug }}">{{ $content->title }}</a>
+                                                            <br>
+                                                            <br>
+                                                            {!! $content->brief_description !!}
+                                                        </figcaption>
 
-                                                </figure>
+                                                    </figure>
 
-                                                <div class="clearfix"></div>
-                                            </article>
+                                                    <div class="clearfix"></div>
+                                                </article>
                                             @endforeach
 
 
                                         </div>
-                                        @if(isset($content))
-                                        <a href="{{ idToSlug($content->parent_id) }}" class="btn btn-primary mod_tm_ajax_contact_form_btn">
-                                            More News ...
-                                        </a>
-                                    @endif
+                                        @if (isset($content))
+                                            <a href="{{ idToSlug($content->parent_id) }}"
+                                                class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                                More News ...
+                                            </a>
+                                        @endif
                                         <div class="clearfix"></div>
 
                                     </div>
@@ -175,6 +176,8 @@
                 <div class="moduletable parallax1 ">
                     <div class="module_container" style="display: flex;">
                         <div class="col-md-5 " style="padding: 2em;">
+                            {{--post&label=About&var=about&count=1--}}
+
 
                             <div class='page_header'>
                                 <h2 class="moduleTitle "><span
@@ -349,16 +352,17 @@
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
                                         id="module_288">
                                         <div class="row services">
-                                            @foreach (array(1,2,3,4,5,6) as $item)
-                                            <article class="col-sm-4 item item_num0 item__module" id="item_182">
-                                                <figure class="item_img img-intro img-intro__none">
-                                                    <img src="{{ asset('images/services/1.png') }}" alt="">
-                                                    <figcaption>Container Operations</figcaption>
-                                                </figure>
-                                                <div class="clearfix"></div>
-                                            </article>
+                                            @foreach ([1, 2, 3, 4, 5, 6] as $item)
+                                                <article class="col-sm-4 item item_num0 item__module" id="item_182">
+                                                    <figure class="item_img img-intro img-intro__none">
+                                                        <img src="{{ asset('images/services/1.png') }}" alt="">
+                                                        <figcaption>Container Operations</figcaption>
+                                                    </figure>
+                                                    <div class="clearfix"></div>
+                                                </article>
                                             @endforeach
-                                            <a href="{{ url('/news') }}" class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                            <a href="{{ url('/news') }}"
+                                                class="btn btn-primary mod_tm_ajax_contact_form_btn">
                                                 More servoces ...
                                             </a>
                                         </div>
@@ -518,10 +522,10 @@
                                                     </h4>
                                                 </div>
                                                 <div id="contact_293">
-                                                    <form action="{{ route('contact.store') }}" method="post" class="mod_tm_ajax_contact_form custom" id=""
-                                                        novalidate="">
+                                                    <form action="{{ route('contact.store') }}#contact" method="post"
+                                                        class="mod_tm_ajax_contact_form custom" id="" novalidate="">
                                                         @csrf
-                                                        <div class="mod_tm_ajax_contact_form_message" id="message_293">
+                                                        <div class="" >
                                                             @if (\Session::has('success'))
                                                                 <div class="alert alert-success">
                                                                     {!! \Session::get('success') !!}
@@ -530,14 +534,13 @@
                                                             @if (\Session::has('error'))
                                                                 <div class="alert alert-danger">
                                                                     {!! \Session::get('error') !!}
-                                                                </div>
+                                                                </div>{{ $errors->first('name') }}
                                                             @endif
                                                             @if ($errors->any())
                                                                 <div class="alert alert-danger">
                                                                     {!! implode('', $errors->all('<div>:message</div>')) !!}
                                                                 </div>
                                                             @endif
-
                                                         </div>
                                                         <fieldset>
                                                             <div class="row">
@@ -546,7 +549,9 @@
                                                                         <input type="text" value="{{ old('name') }}"
                                                                             placeholder="Name" name="name"
                                                                             class="mod_tm_ajax_contact_form_text"
-                                                                            required="" title="Name"></div>
+                                                                            required="" title="Name">
+
+                                                                        </div>
                                                                 </div>
                                                                 <div class="control control-group-input col-sm-12 ">
                                                                     <div class="control">
@@ -559,8 +564,7 @@
                                                                 <div
                                                                     class="control control-group-input col-sm-12 pull-right">
                                                                     <div class="control">
-                                                                        <textarea name="comment"
-                                                                            placeholder="Experience"
+                                                                        <textarea name="comment" placeholder="Experience"
                                                                             class="mod_tm_ajax_contact_form_textarea"
                                                                             title="" data-autosize-on="true"
                                                                             style="overflow: hidden; overflow-wrap: break-word; height: 98px;">{{ old('comment') }}</textarea>

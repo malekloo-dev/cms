@@ -59,4 +59,5 @@ return [
     'lastname'=>'last name',
     'email exist'=>'email exit',
     'config'=>'config',
+    'Contact-send-success'=>'Contact send success',
 ];
