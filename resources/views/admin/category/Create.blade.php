@@ -229,7 +229,7 @@
 
 
                 <button type="submit"
-                    class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">@lang('messages.add')
+                    class="btn btn-success @if(!$ltr) pull-right @endif mat-btn">@lang('messages.add')
                 </button>
 
                 <input type="hidden" name="attr_type" value="{{ $attr_type }}">

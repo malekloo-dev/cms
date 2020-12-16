@@ -58,4 +58,5 @@ return [
     'contact us'=>'Contact us',
     'lastname'=>'last name',
     'email exist'=>'email exit',
+    'config'=>'config',
 ];
