@@ -8,62 +8,9 @@
     $tableOfImages=tableOfImages($detail->description);
     $append='';
     @endphp
-    <script type="application/ld+json">
-        @if(count($relatedProduct))[
-            @foreach($relatedProduct as $key => $content)
-
-            {
-                "@context": "https://schema.org/",
-                "@type": "Product",
-                "name": "{{ $content->title }}",
-
-                @if(isset($content->images['thumb']))
-                "image": [
-                    "{{ url('/').$content->images['images']['small'] }}",
-                    "{{ url('/').$content->images['images']['medium'] }}",
-                    "{{ url('/').$content->images['images']['large'] }}"
-                ],
-                @endif
-             "description": "{{clearHtml($content->brief_description)}}",
-
-                "sku": "{{$content->id}}",
-                "mpn": "{{$content->id}}",
-                "brand": {
-                    "@type": "Brand",
-                    "name": "{{ $content->attr['brand'] }}"
-                },
-                "aggregateRating":
-                {
-                    "@type": "AggregateRating",
-                    "ratingValue": "{{ $content->attr['rate'] }}",
-                    "ratingCount": "{{ $content->viewCount }}",
-                    "bestRating": "5",
-                    "worstRating": "0"
-                },
-                "offers":
-                {
-                    "@type": "Offer",
-                    "url": "{{ url()->current().$content->slug }}",
-                    "priceCurrency": "IRR",
-                    "price": "{{ $content->attr['price'] ?? 0}}",
-                    "priceValidUntil": "2021-08-09",
-                    "itemCondition": "https://schema.org/UsedCondition",
-                    "availability": "https://schema.org/InStock",
-                    "seller":
-                    {
-                        "@type": "Organization",
-                        "name": "ریموت یدک"
-                    }
-                }
-            }
-            @isset($relatedProduct[$key+1])
-                {{","}}
-            @endisset
-       @endforeach
-
-        ]
+    @if (count($relatedProduct))[
+        @include('jsonLdRelatedProduct')
     @endif
-    </script>
 
 
     <div class="position-2 wrap t3-sl t3-sl-2 ">
@@ -130,61 +77,6 @@
                         </section>
                     @endif
 
-                    @if (count($relatedProduct))
-                        <section class="category-products mt-1" id="index-best-view">
-                            <div class="flex one ">
-                                <div>
-                                    <div class="">
-
-                                        <div class="flex one  two-1100  ">
-
-                                            {{--$data['newPost']--}}
-                                            @foreach ($relatedProduct as $content)
-                                                <div>
-                                                    <article>
-                                                        <div>
-                                                            @if (isset($content->images['thumb']))
-                                                                <picture>
-                                                                    <img src="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }}"
-                                                                        {{--
-                                                                        srcset="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }} ,{{ str_replace(' ', '%20', $content->images['images']['medium']) ?? '' }} 2x"
-                                                                        --}}
-                                                                        alt="{{ $content->title }}"
-                                                                        width="{{ env('PRODUCT_SMALL') }}"
-                                                                        height="{{ env('PRODUCT_SMALL') }}">
-                                                                </picture>
-                                                            @endif
-                                                        </div>
-                                                        <footer>
-                                                            <a href="{{ $content->slug }}">
-                                                                <h2>{{ $content->title }}</h2>
-                                                            </a>
-                                                            <div class="brand">Brand: {{ $content->attr['brand'] }}</div>
-                                                            <div class="price">Price:
-                                                                @convertCurrency($content->attr['price']) $ </div>
-                                                            <div class="view-count">View {{ $content->viewCount }}
-                                                            </div>
-                                                            <div class="rate mt-1">
-                                                                @for ($i = $content->attr['rate']; $i >= 1; $i--)
-                                                                    <img alt="rate-stars" width="20" height="20"
-                                                                        srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
-                                                                        src="{{ asset('/img/star1x.png') }}">
-                                                                @endfor
-                                                            </div>
-                                                            <div class="brief">
-                                                                {!! readMore($content->brief_description, 250) !!}
-                                                            </div>
-                                                        </footer>
-                                                    </article>
-                                                </div>
-                                            @endforeach
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    @endif
 
                     @if (count($relatedPost))
                         <section class="products" id="index-best-view">

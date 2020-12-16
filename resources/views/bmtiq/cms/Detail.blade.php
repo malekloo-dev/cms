@@ -1,28 +1,9 @@
 @extends(@env('TEMPLATE_NAME').'.App')
+@section('asset')
+    <style>
+    </style>
+@endsection
 @section('js')
-    {{-- recaptcha --}}
-    {{--
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script type="text/javascript">
-        function callbackThen(response) {
-            // read HTTP status
-            console.log(response.status);
-
-            // read Promise object
-            response.json().then(function(data) {
-                console.log(data);
-            });
-        }
-
-        function callbackCatch(error) {
-            console.error('Error:', error);
-        }
-
-    </script>
-    {!! htmlScriptTagJsApi([
-    'callback_then' => 'callbackThen',
-    'callback_catch' => 'callbackCatch',
-    ]) !!} --}}
 @endsection
 
 @section('Content')
@@ -32,89 +13,7 @@
     @endphp
 
     @if ($detail->attr_type == 'product')
-
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org/",
-                "@type": "Product",
-                "name": "{{ $detail->title }}",
-
-                @if (isset($detail->images['thumb']))
-                    "image": [
-                        "{{ url('/').$detail->images['images']['small'] }}",
-                        "{{ url('/').$detail->images['images']['medium'] }}",
-                        "{{ url('/').$detail->images['images']['large'] }}"
-                    ],
-                @endif
-                @if (count($tableOfImages))
-
-                    "images": [
-
-                        @foreach($tableOfImages as $key=>$item)
-                            {
-                            "type": "gallery",
-                            "url": "{{$item['src']}}",
-                            "alt": "{{$item['alt']}}",
-                            "title":"{{$item['alt']}}"
-                            }
-                            @isset($tableOfImages[$key+1])
-                            {{","}}
-                            @endisset
-
-                        @endforeach
-                    ],
-                @endif
-
-                "description": "@foreach($editorModule as $key=>$module) @if ($module['type']=='description') {{clearHtml($module['content'])}} @endif  @if ($module['type']=='attr'){!!  "مشخصا فنی : "!!} @foreach($module['content'] as $key=>$attr){!!  clearHtml($attr['field'])!!} : {!!  clearHtml($attr['value'])!!} - @endforeach @endif @endforeach",
-                "sku": "{{$detail->id}}",
-                "mpn": "{{$detail->id}}",
-                "brand":
-                {
-                    "@type": "Brand",
-                    "name": "{{ $detail->attr['brand'] }}"
-                },
-
-                "aggregateRating":
-                {
-                    "@type": "AggregateRating",
-                    "ratingValue": "{{ $detail->attr['rate'] }}",
-                    "ratingCount": "{{ $detail->viewCount }}",
-                    "bestRating": "5",
-                    "worstRating": "0"
-                },
-                "offers":
-                {
-                    "@type": "Offer",
-                    "url": "{{ url('/').'/'. $detail->slug }}",
-                    "priceCurrency": "IRR",
-                    "price": "{{ $detail->attr['price'] ?? 0}}",
-                    "priceValidUntil": "2021-08-09",
-                    "itemCondition": "https://schema.org/UsedCondition",
-                    "availability": "https://schema.org/InStock",
-                    "seller":
-                    {
-                        "@type": "Organization",
-                        "name": "ریموت یدک"
-                    }
-                }
-                @if(isset($detail->comments))
-                ,"review":
-                [
-                    @foreach ($detail->comments as $comment)
-                        {
-                            "@type":"review",
-                            "author":"{{ $comment['name'] }}",
-                            "datePublished":"{{ $comment['created_at'] }}",
-                            "reviewBody":"{{ $comment['comment'] }}"
-                        }
-                        @if(!$loop->last)
-                        ,
-                        @endif
-                    @endforeach
-                ]
-                @endif
-            }
-        </script>
+        @include('jsonLdProduct')
     @endif
 
     <div class="position-2 wrap t3-sl t3-sl-2 ">
@@ -139,16 +38,6 @@
 
                     <div class="module_container" style="">
                         <div class="top-page">
-                            <picture>
-                                <source media="(min-width:{{ env('PRODUCT_MEDIUM') }}px)"
-                                    srcset="{{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['large']) ?? '' }} 2x">
-                                <source media="(min-width:{{ env('PRODUCT_SMALL') }}px)"
-                                    srcset="{{ str_replace(' ', '%20', $detail->images['images']['small']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} 2x">
-                                <img src="{{ $detail->images['images']['medium'] ?? '' }}"
-                                    sizes="(max-width:{{ env('PRODUCT_MEDIUM') }}px) 100vw  {{ ENV('PRODUCT_MEDIUM') }}px {{ ENV('PRODUCT_LARGE') }}px"
-                                    alt="{{ $detail->title }}" width="{{ env('PRODUCT_MEDIUM') }}"
-                                    height="{{ env('PRODUCT_MEDIUM') }}">
-                            </picture>
                             <div>
                                 <h1 class="">{{ $detail->title }}</h1>
                                 <div>
@@ -178,38 +67,6 @@
                         @include(@env('TEMPLATE_NAME').'.DescriptionModule')
 
 
-                        @if (count($relatedProduct))
-                            <section class="products bg-gray m-0 pt-1 pb-1" id="index-best-view">
-                                <div class="flex one ">
-                                    <div>
-                                        <h2>Related product with {{ $detail->title }}</h2>
-                                        <div class="flex one two-500 four-900  ">
-
-                                            {{--$data['newPost']--}}
-                                            @foreach ($relatedProduct as $content)
-                                                <div class="">
-                                                    <a href="{{ url($content->slug) }}">
-                                                        <article class="shadow">
-                                                            @if (isset($content->images['thumb']))
-                                                                <div><img width="150" height="150px"
-                                                                        src="{{ $content->images['images']['small'] }}"
-                                                                        alt="{{ $content->title }}"></div>
-                                                            @endif
-                                                            <footer>
-                                                                <h2> {{ $content->title }}</h2>
-                                                                {!! $content->brief_description !!}
-                                                            </footer>
-                                                        </article>
-                                                    </a>
-                                                </div>
-                                            @endforeach
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </section>
-                        @endif
 
                         @if (count($relatedPost))
                             <section class="products" id="index-best-view">
@@ -225,7 +82,7 @@
                                                         @if (isset($content->images['thumb']))
                                                             <div><img src="{{ $content->images['thumb'] }}  alt="
                                                                     {{ $content->title }} "></div>
-                             @endif
+                                                                       @endif
                                                                 <footer>
                                                                     <h2><a href="{{ $content->slug }}">
                                                                             {{ $content->title }}</a></h2>
