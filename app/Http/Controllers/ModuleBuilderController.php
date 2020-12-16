@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Content;
+use App\Menu;
 use App\Widget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -53,7 +54,9 @@ class ModuleBuilderController extends Controller
 
         //{{--module=category&label=NEWS&count=3&query=last--}}
         //{{--gallery&label=NEWS&count=3&query=last--}}
-        $template = 'O:\xampp\htdocs\cms\resources\views\remotyadak\Home.blade.php';
+        // $template = 'O:\xampp\htdocs\cms\resources\views\remotyadak\Home.blade.php';
+        $template = resource_path('views/'. env('TEMPLATE_NAME') .'/Home.blade.php');
+
         $content=file_get_contents($template);
         preg_match_all("/({{--category(.*)--}})|({{--product(.*)--}})|({{--post(.*)--}})/U", $content, $pat_array);
         //{gallery&size=10&template=1}
