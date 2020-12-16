@@ -49,13 +49,14 @@
 
                         @foreach($arrayContent as $Key => $attr)
                             <?php
+                            //dd($widgets);
+
                             $widget['parent_id'] = 0;
                             $widget['sort'] = '';
 
-                            if (is_array($widgets->attr)) {
+                            if (is_array($widgets->attr) and isset($widgets->attr[$attr['config']['var']])) {
                                 $widget = $widgets->attr[$attr['config']['var']];
                             }
-
 
                             ?>
 
