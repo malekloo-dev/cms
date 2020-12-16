@@ -45,11 +45,11 @@ class HomeController extends Controller
             return strtoupper($name['value']);
         });
 
-        $atr = Widget::find(1)->attr;
+        $attr = Widget::find(1)->attr;
 
-        DB::connection()->enableQueryLog();
+        //DB::connection()->enableQueryLog();
 
-        foreach ($atr as $var => $config) {
+        foreach ($attr as $var => $config) {
 
             $type = '';
             //$data[$var] =new Content();
@@ -83,7 +83,7 @@ class HomeController extends Controller
                 ->get();
 
         }
-        $queries = DB::getQueryLog();
+        //$queries = DB::getQueryLog();
 
         //dd($queries);
 
