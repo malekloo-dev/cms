@@ -38,14 +38,14 @@
             @if ($errors->any())
                 {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
             @endif
-            <form method="post" action="{{ route('moduleBuilder.update', 1) }}"
+            <form method="post" action="{{ route('moduleBuilder.update', 1) }}" class="center-block form-max-width"
                   enctype="multipart/form-data">
                 @method('PATCH')
                 @csrf
                 <div class="form-group row">
 
 
-                    <div class="col-md-6">
+                    <div class="col-md-12">
 
                         @foreach($arrayContent as $Key => $attr)
                             <?php
@@ -63,7 +63,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab" id="heading{{$attr['config']['var']}}">
                                         <h4 class="panel-title">
-                                            <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                            <a role="button"  data-toggle="collapse" data-parent="#accordion"
                                                href="#collapse{{$attr['config']['var']}}" aria-expanded="true"
                                                aria-controls="collapse{{$attr['config']['var']}}">
                                                 {{$attr['config']['label']}}
@@ -174,8 +174,8 @@
                         @endforeach
                         <div class="col-md-12">
                             <button type="submit"
-                                    class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">
-                                @lang('messages.add')
+                                    class="btn btn-success btn-block mat-btn ">
+                                @lang('messages.edit')
                             </button>
                         </div>
                     </div>
