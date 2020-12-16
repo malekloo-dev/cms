@@ -44,9 +44,9 @@
 
                                                                                     <span
                                                                                         style="color: #2a5d65;color: #2a5d65;
-                                                                                                    background: -webkit-linear-gradient(90deg, #292929,#2a5d65 50%);
-                                                                                                    -webkit-background-clip: text;
-                                                                                                    -webkit-text-fill-color: transparent;"
+                                                                                                                background: -webkit-linear-gradient(90deg, #292929,#2a5d65 50%);
+                                                                                                                -webkit-background-clip: text;
+                                                                                                                -webkit-text-fill-color: transparent;"
                                                                                         class="item_title_part_1 item_title_part_even item_title_part_first_half">Largest</span>
                                                                                     <span
                                                                                         class="item_title_part_2 item_title_part_odd item_title_part_first_half">
@@ -123,36 +123,36 @@
                                     </div>
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
                                         id="module_288">
-                                        <div class="row">
-                                            {{--post&label=NEWS&var=news&count=3--}}
+                                        {{--post&label=NEWS&var=news&count=3--}}
+                                        @isset($news)
+                                            <div class="row">
+                                                @foreach ($news as $content)
+                                                    <article class="col-sm-4 item item_num0 item__module  " id="item_182">
+
+                                                        <!-- Intro Image -->
+                                                        <figure class="item_img img-intro img-intro__none">
+                                                            <img src="{{ $content->images['images']['small'] ?? '' }}" alt="">
+                                                            <figcaption><a href="{{ $content->slug }}">{{ $content->title }}</a>
+                                                                <br>
+                                                                <br>
+                                                                {!! $content->brief_description !!}
+                                                            </figcaption>
+
+                                                        </figure>
+
+                                                        <div class="clearfix"></div>
+                                                    </article>
+                                                @endforeach
 
 
-                                            @foreach ($news as $content)
-                                                <article class="col-sm-4 item item_num0 item__module  " id="item_182">
-
-                                                    <!-- Intro Image -->
-                                                    <figure class="item_img img-intro img-intro__none">
-                                                        <img src="{{ $content->images['images']['small'] ?? '' }}" alt="">
-                                                        <figcaption><a href="{{ $content->slug }}">{{ $content->title }}</a>
-                                                            <br>
-                                                            <br>
-                                                            {!! $content->brief_description !!}
-                                                        </figcaption>
-
-                                                    </figure>
-
-                                                    <div class="clearfix"></div>
-                                                </article>
-                                            @endforeach
-
-
-                                        </div>
-                                        @if (isset($content))
-                                            <a href="{{ idToSlug($content->parent_id) }}"
-                                                class="btn btn-primary mod_tm_ajax_contact_form_btn">
-                                                More News ...
-                                            </a>
-                                        @endif
+                                            </div>
+                                            @if (isset($content))
+                                                <a href="{{ idToSlug($content->parent_id) }}"
+                                                    class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                                    More News ...
+                                                </a>
+                                            @endif
+                                        @endisset
                                         <div class="clearfix"></div>
 
                                     </div>
@@ -175,51 +175,50 @@
             <div class="row">
                 <div class="moduletable parallax1 ">
                     <div class="module_container" style="display: flex;">
-                        <div class="col-md-5 " style="padding: 2em;">
-                            {{--categoryDetail&label=ABOUT&var=about--}}
-                            <div class='page_header'>
-                                @if (is_object($about))
+                        {{--categoryDetail&label=ABOUT&var=about--}}
+                        @if (is_object($about))
+                            <div class="col-md-5 " style="padding: 2em;">
+                                <div class='page_header'>
 
                                     <h2 class="moduleTitle "><span
                                             class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">
-                                        {{ $about->title }}
+                                            {{ $about->title }}
                                         </span>
                                     </h2>
                                     {!! $about->brief_description !!}
                                     @isset($about->parent_id)
-                                        <a href="{{ $about->slug }}"
-                                            class="btn btn-primary mod_tm_ajax_contact_form_btn">
-                                            More News ...
+                                        <a href="{{ $about->slug }}" class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                            About us
                                         </a>
                                     @endisset
 
-                                @endif
+                                </div>
 
                             </div>
+                            <div id="mod_tm_parallax_304" class="parallax-container mod_tm_parallax__parallax1 col-md-7">
 
-                        </div>
-                        <div id="mod_tm_parallax_304" class="parallax-container mod_tm_parallax__parallax1 col-md-7">
+                                <div class="mod_tm_parallax">
+                                    <img src="{{ $about->images['images']['original'] ?? '' }}" alt="">
+                                </div>
+                                <div class="parallax-content">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="moduletable center  col-sm-6 col-sm-offset-3">
+                                                <div class="module_container">
+                                                    <div class='page_header'>
 
-                            <div class="mod_tm_parallax">
-                                <img src="{{ asset('images/parallax/about.jpg') }}" alt="">
-                            </div>
-                            <div class="parallax-content">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="moduletable center  col-sm-6 col-sm-offset-3">
-                                            <div class="module_container">
-                                                <div class='page_header'>
+                                                    </div>
+                                                    <div class="mod-article-single mod-article-single__center"
+                                                        id="module_305">
 
-                                                </div>
-                                                <div class="mod-article-single mod-article-single__center" id="module_305">
-
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
 
                 </div>
@@ -339,19 +338,23 @@
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
                                         id="module_288">
                                         <div class="row services">
-                                            @foreach ([1, 2, 3, 4, 5, 6] as $item)
+                                            {{--post&label=services&var=services&count=6--}}
+                                            @foreach ($services as $content)
                                                 <article class="col-sm-4 item item_num0 item__module" id="item_182">
                                                     <figure class="item_img img-intro img-intro__none">
-                                                        <img src="{{ asset('images/services/1.png') }}" alt="">
-                                                        <figcaption>Container Operations</figcaption>
+                                                        <img src="{{ $content->images['images']['small'] ?? '' }}" alt="">
+                                                        <figcaption>{{ $content->title }}</figcaption>
                                                     </figure>
                                                     <div class="clearfix"></div>
                                                 </article>
                                             @endforeach
-                                            <a href="{{ url('/news') }}"
-                                                class="btn btn-primary mod_tm_ajax_contact_form_btn">
-                                                More servoces ...
-                                            </a>
+                                            @if (isset($content))
+                                                <a href="{{ idToSlug($content->parent_id) }}"
+                                                    class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                                    More Services ...
+                                                </a>
+                                            @endif
+
                                         </div>
 
                                         <div class="clearfix"></div>
@@ -395,43 +398,22 @@
                                             <div class="module_container">
                                                 <div class="mod-newsflash-adv mod-newsflash-adv__type1 cols-2"
                                                     id="module_298">
-                                                    <article>
-                                                        <div class="item_content">
-                                                            <figure class=" img-intro img-intro__none">
-                                                                <img src="{{ asset('images/ourclients/tag.jpg') }}" alt="">
-                                                                <figcaption>A world Leader In Shipping And
-                                                                    Logistics</figcaption>
-                                                            </figure>
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </article>
-                                                    <article>
-                                                        <div class="item_content">
-                                                            <figure class=" img-intro img-intro__none">
-                                                                <img src="{{ asset('images/ourclients/tag.jpg') }}" alt="">
-                                                                <figcaption>Container Operations</figcaption>
-                                                            </figure>
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </article>
-                                                    <article>
-                                                        <div class="item_content">
-                                                            <figure class=" img-intro img-intro__none">
-                                                                <img src="{{ asset('images/ourclients/tag.jpg') }}" alt="">
-                                                                <figcaption>Container Operations</figcaption>
-                                                            </figure>
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </article>
-                                                    <article>
-                                                        <div class="item_content">
-                                                            <figure class=" img-intro img-intro__none">
-                                                                <img src="{{ asset('images/ourclients/tag.jpg') }}" alt="">
-                                                                <figcaption>Container Operations</figcaption>
-                                                            </figure>
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </article>
+                                                    {{--post&label=OurClients&var=ourClients&count=4--}}
+                                                    @isset($ourClients)
+                                                        @foreach ($ourClients as $content)
+                                                            <article>
+                                                                <div class="item_content">
+                                                                    <figure class=" img-intro img-intro__none">
+                                                                        <img src="{{ $content->images['images']['original'] ?? '' }}"
+                                                                            alt="">
+                                                                        <figcaption>{{ $content->title }}</figcaption>
+                                                                    </figure>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </article>
+                                                        @endforeach
+                                                    @endisset
+
                                                     <div class="clearfix"></div>
 
                                                 </div>
@@ -537,7 +519,8 @@
                                                                         <input type="text" value="{{ old('name') }}"
                                                                             placeholder="Name" name="name"
                                                                             class="mod_tm_ajax_contact_form_text"
-                                                                            required="" title="Name"></div>
+                                                                            required="" title="Name">
+                                                                    </div>
                                                                 </div>
                                                                 <div class="control control-group-input col-sm-12 ">
                                                                     <div class="control">
@@ -550,8 +533,7 @@
                                                                 <div
                                                                     class="control control-group-input col-sm-12 pull-right">
                                                                     <div class="control">
-                                                                        <textarea name="comment"
-                                                                            placeholder="Experience"
+                                                                        <textarea name="comment" placeholder="Experience"
                                                                             class="mod_tm_ajax_contact_form_textarea"
                                                                             title="" data-autosize-on="true"
                                                                             style="overflow: hidden; overflow-wrap: break-word; height: 98px;">{{ old('comment') }}</textarea>

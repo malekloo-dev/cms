@@ -125,7 +125,7 @@
                         <div class="col-md-12">
                             <label for="brand" class=" col-form-label text-md-left">@lang('messages.static template') @lang('messages.name'):</label>
                             <input type="text" class="form-control" name="attr[template_name]"
-                                value="{{ old('attr[template_name]', $content_info->attr['template_name']) }}" />
+                                value="{{ old('attr[template_name]', $content_info->attr['template_name'])  }}" />
 
                         </div>
                     </div>

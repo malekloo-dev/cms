@@ -17,7 +17,7 @@
         @include('jsonLdProduct')
     @endif
 
-    <div class="position-2 wrap t3-sl t3-sl-2 ">
+    <div class="position-2 wrap t3-sl t3-sl-2 t3-mainbody">
         <div class="container ">
             <div class="row">
                 <div class="moduletable parallax1 ">
@@ -66,7 +66,7 @@
                             <section class="related-post" id="index-best-view">
                                 <div class="flex one ">
                                     <div>
-                                        
+
                                         <div class="flex one two-500 six-900 center ">
 
                                             {{--$data['newPost']--}}
