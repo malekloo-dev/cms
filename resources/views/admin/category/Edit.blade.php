@@ -32,7 +32,9 @@
             toolbar: {
                 viewportTopOffset: 80
             },
-            language: 'fa'
+            @if(!$ltr)
+                language: 'fa'
+                @endif
         })
         .then(editor => {
             const wordCountPlugin = editor.plugins.get('WordCount');
@@ -55,7 +57,9 @@
             toolbar: {
                 viewportTopOffset: 80
             },
-            language: 'fa'
+            @if(!$ltr)
+                language: 'fa'
+                @endif
         })
         .then(editor => {
             const wordCountPlugin = editor.plugins.get('WordCount');
@@ -107,7 +111,7 @@
                     </div>
                     <div class="col-md-2">
                         <label for="name" class=" col-form-label text-md-left">@lang('messages.publish date'):</label>
-                        <input type="datetime" class="form-control datepicker" name="publish_date"
+                        <input type="{{($ltr)?'date':'datetime'}}" class="form-control @if(!$ltr) datepicker @endif" name="publish_date"
                         value="{{ old('publish_date',$content_info->publish_date) }}" />
                         <span class="text-danger">{{ $errors->first('publish_date') }}</span>
 

@@ -44,9 +44,9 @@
 
                                                                                     <span
                                                                                         style="color: #2a5d65;color: #2a5d65;
-                                                                                            background: -webkit-linear-gradient(90deg, #292929,#2a5d65 50%);
-                                                                                            -webkit-background-clip: text;
-                                                                                            -webkit-text-fill-color: transparent;"
+                                                                                                    background: -webkit-linear-gradient(90deg, #292929,#2a5d65 50%);
+                                                                                                    -webkit-background-clip: text;
+                                                                                                    -webkit-text-fill-color: transparent;"
                                                                                         class="item_title_part_1 item_title_part_even item_title_part_first_half">Largest</span>
                                                                                     <span
                                                                                         class="item_title_part_2 item_title_part_odd item_title_part_first_half">
@@ -176,38 +176,24 @@
                 <div class="moduletable parallax1 ">
                     <div class="module_container" style="display: flex;">
                         <div class="col-md-5 " style="padding: 2em;">
-                            {{--post&label=About&var=about&count=1--}}
-
+                            {{--post&label=ABOUT&var=about&count=1--}}
 
                             <div class='page_header'>
-                                <h2 class="moduleTitle "><span
-                                        class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">About
-                                    </span>
+                                @isset($about)
+                                    <h2 class="moduleTitle "><span
+                                            class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">
+                                        {{ $about->title }}
+                                        </span>
+                                    </h2>
+                                    {!! $about->brief_description !!}
+                                    @isset($about->parent_id)
+                                        <a href="{{ idToSlug($content->parent_id) }}"
+                                            class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                            More News ...
+                                        </a>
+                                    @endisset
+                                @endisset
 
-                                </h2>
-                                <p>
-                                    ParagraphsLorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-                                    odio. Quisque volutpat mattis eros. Nullam malesuada
-                                    erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere
-                                    a, pede.
-
-                                    Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit
-                                    amet orci. Aenean dignissim pellentesque
-                                    felis.
-
-                                </p>
-                                <p>
-                                    ParagraphsLorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-                                    odio. Quisque volutpat mattis eros. Nullam malesuada
-                                    erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere
-                                    a, pede.
-
-                                    Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit
-                                    amet orci. Aenean dignissim pellentesque
-                                    felis.
-
-
-                                </p>
                             </div>
 
                         </div>
@@ -525,7 +511,7 @@
                                                     <form action="{{ route('contact.store') }}#contact" method="post"
                                                         class="mod_tm_ajax_contact_form custom" id="" novalidate="">
                                                         @csrf
-                                                        <div class="" >
+                                                        <div class="">
                                                             @if (\Session::has('success'))
                                                                 <div class="alert alert-success">
                                                                     {!! \Session::get('success') !!}
@@ -551,7 +537,7 @@
                                                                             class="mod_tm_ajax_contact_form_text"
                                                                             required="" title="Name">
 
-                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="control control-group-input col-sm-12 ">
                                                                     <div class="control">
