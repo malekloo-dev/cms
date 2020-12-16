@@ -124,8 +124,9 @@
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
                                         id="module_288">
                                         <div class="row">
-                                         {{--post&label=NEWS best&var=news&count=3--}}
-                                         {{--product&label=product best&var=product&count=3--}}
+                                        {{--post&label=NEWS best&var=news&count=3--}}
+                                        {{--product&label=product best&var=product&count=3--}}
+
 
                                         @foreach ($product as $content)
                                             <article class="col-sm-4 item item_num0 item__module  " id="item_182">
@@ -143,12 +144,13 @@
 
                                                 <div class="clearfix"></div>
                                             </article>
-
                                             @endforeach
+                                            @if(isset($content))
+                                                <a href="{{ idToSlug($content->parent_id) }}" class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                                    More News ...
+                                                </a>
+                                            @endif
 
-                                            <a href="{{ idToSlug($content->parent_id) }}" class="btn btn-primary mod_tm_ajax_contact_form_btn">
-                                                More News ...
-                                            </a>
                                         </div>
 
                                         <div class="clearfix"></div>

@@ -447,6 +447,10 @@ function convertNumToEn($string) {
 
 function idToSlug($id) {
 
+    if($id==''){
+        return '';
+    }
+
     $content = Content::find($id);
     if(is_object($content)){
         return $content->slug;
