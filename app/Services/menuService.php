@@ -17,7 +17,7 @@ class MenuService
 
     public function store(Request $request)
     {
-
+        $data=$request->all();
         $validator = Validator::make($data, [
             'title' => 'required',
             'description' => 'required'
@@ -29,8 +29,10 @@ class MenuService
         return $result;
 
     }
-
-return $this->postRepository->getAll();
+    public function getAll(Request $request)
+    {
+        return $this->postRepository->getAll();
+    }
 
 
 }

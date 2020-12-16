@@ -176,10 +176,10 @@
                 <div class="moduletable parallax1 ">
                     <div class="module_container" style="display: flex;">
                         <div class="col-md-5 " style="padding: 2em;">
-                            {{--post&label=ABOUT&var=about&count=1--}}
-
+                            {{--categoryDetail&label=ABOUT&var=about--}}
                             <div class='page_header'>
-                                @isset($about)
+                                @if (is_object($about))
+
                                     <h2 class="moduleTitle "><span
                                             class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">
                                         {{ $about->title }}
@@ -187,12 +187,13 @@
                                     </h2>
                                     {!! $about->brief_description !!}
                                     @isset($about->parent_id)
-                                        <a href="{{ idToSlug($content->parent_id) }}"
+                                        <a href="{{ $about->slug }}"
                                             class="btn btn-primary mod_tm_ajax_contact_form_btn">
                                             More News ...
                                         </a>
                                     @endisset
-                                @endisset
+
+                                @endif
 
                             </div>
 
@@ -511,7 +512,7 @@
                                                     <form action="{{ route('contact.store') }}#contact" method="post"
                                                         class="mod_tm_ajax_contact_form custom" id="" novalidate="">
                                                         @csrf
-                                                        <div class="">
+                                                        <div class="mod_tm_ajax_contact_form_message" id="message_293">
                                                             @if (\Session::has('success'))
                                                                 <div class="alert alert-success">
                                                                     {!! \Session::get('success') !!}
@@ -520,13 +521,14 @@
                                                             @if (\Session::has('error'))
                                                                 <div class="alert alert-danger">
                                                                     {!! \Session::get('error') !!}
-                                                                </div>{{ $errors->first('name') }}
+                                                                </div>
                                                             @endif
                                                             @if ($errors->any())
                                                                 <div class="alert alert-danger">
                                                                     {!! implode('', $errors->all('<div>:message</div>')) !!}
                                                                 </div>
                                                             @endif
+
                                                         </div>
                                                         <fieldset>
                                                             <div class="row">
@@ -535,9 +537,7 @@
                                                                         <input type="text" value="{{ old('name') }}"
                                                                             placeholder="Name" name="name"
                                                                             class="mod_tm_ajax_contact_form_text"
-                                                                            required="" title="Name">
-
-                                                                    </div>
+                                                                            required="" title="Name"></div>
                                                                 </div>
                                                                 <div class="control control-group-input col-sm-12 ">
                                                                     <div class="control">
@@ -550,7 +550,8 @@
                                                                 <div
                                                                     class="control control-group-input col-sm-12 pull-right">
                                                                     <div class="control">
-                                                                        <textarea name="comment" placeholder="Experience"
+                                                                        <textarea name="comment"
+                                                                            placeholder="Experience"
                                                                             class="mod_tm_ajax_contact_form_textarea"
                                                                             title="" data-autosize-on="true"
                                                                             style="overflow: hidden; overflow-wrap: break-word; height: 98px;">{{ old('comment') }}</textarea>

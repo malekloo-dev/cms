@@ -171,7 +171,7 @@
                             <input type="hidden" id="type" name="attr[{{$attr['config']['var']}}][type]"
                                    value="{{$attr['type']}}">
                             <input type="hidden" id="count" name="attr[{{$attr['config']['var']}}][count]"
-                                   value="{{$attr['config']['count']}}">
+                                   value="{{$attr['config']['count'] ?? '1' }}">
                         @endforeach
                         <div class="col-md-12">
                             <button type="submit"

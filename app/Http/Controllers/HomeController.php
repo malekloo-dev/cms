@@ -64,23 +64,31 @@ class HomeController extends Controller
                 $module = $module->where('attr_type', '=', 'product');
 
             } else if ($config['type'] == 'category') {
-                $module=$module->where('type', '=', '1');
+                $module = $module->where('type', '=', '1');
+            } else if ($config['type'] == 'categoryDetail') {
+                $module = $module->where('type', '=', '1')->where('id', '=', $config['parent_id']);
             }
-            if($config['parent_id']!=0){
-                $module=$module->where('parent_id', '=', $config['parent_id']);
-
+            if ($config['parent_id'] != 0 and $config['type'] != 'categoryDetail') {
+                $module = $module->where('parent_id', '=', $config['parent_id']);
             }
 
-            $sort=explode(' ',$config['sort']);
+            $sort = explode(' ', $config['sort']);
             //dd($sort);
 
-            $module=$module->orderby($sort[0]);
-            $module=$module->limit($sort[1]);
+            $module = $module->orderby($sort[0]);
+            $module = $module->limit($sort[1]);
 
-            $data[$var] = $module
+
+            $module = $module
                 ->where('publish_date', '<=', DB::raw('now()'))
-                ->limit($config['count'])
-                ->get();
+                ->limit($config['count']);
+
+            if ($config['type'] == 'categoryDetail') {
+                $data[$var] = $module->first();
+
+            } else {
+                $data[$var] = $module->get();
+            }
 
         }
         //$queries = DB::getQueryLog();

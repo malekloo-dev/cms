@@ -59,11 +59,11 @@ class ModuleBuilderController extends Controller
 
 
         $content=file_get_contents($template);
-        preg_match_all("/({{--category(.*)--}})|({{--product(.*)--}})|({{--post(.*)--}})/U", $content, $pat_array);
+        preg_match_all("/({{--category&(.*)--}})|({{--categoryDetail&(.*)--}})|({{--product&(.*)--}})|({{--post(.*)--}})/U", $content, $pat_array);
         //{gallery&size=10&template=1}
         //parse_str($_SERVER['QUERY_STRING'], $outputArray);
 
-
+        //dd($pat_array[0]);
         $module = array('category' => '1', 'product' => '1','post' => '1');
         $count = 0;
         foreach ($pat_array[0] as $key => $val) {
