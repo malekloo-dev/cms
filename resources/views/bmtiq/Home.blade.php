@@ -474,10 +474,10 @@
                                     </div>
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
                                          id="module_288">
-                                        <div class="col-md-7" style="text-align: left;">
+                                        <div class="col-md-4" style="text-align: left;">
 
                                             <div
-                                                    style="font-weight: bold; font-size: 1.1em; text-align: center; margin-bottom: 1em;">
+                                                    style="font-weight: bold; font-size: 1.1em;  margin-bottom: 1em;">
                                                 <div style="font-weight: bold; font-size: 1.3em;">Head Office
                                                 </div>
                                                 <div>Basra Multipurposr Terminal</div>
