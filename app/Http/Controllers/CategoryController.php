@@ -38,8 +38,8 @@ class CategoryController extends Controller
     {
 
         //return view('vendor.wmenu.scripts');
-        $menulist = Menus::all();
-        return view('vendor.wmenu.menu-html', compact('menulist'));
+        // $menulist = Menus::all();
+        // return view('vendor.wmenu.menu-html', compact('menulist'));
     }
 
 
@@ -63,9 +63,9 @@ class CategoryController extends Controller
     private function resize($path, $type, $imagePath, $filename)
     {
         $sizes = array(
-                "small"=>@env(Str::upper($type).'_SMALL'),
-                'medium'=>@env(Str::upper($type).'_MEDIUM'),
-                'large'=>@env(Str::upper($type).'_LARGE')
+                "small"=>env(Str::upper($type).'_SMALL'),
+                'medium'=>env(Str::upper($type).'_MEDIUM'),
+                'large'=>env(Str::upper($type).'_LARGE')
         );
 
 

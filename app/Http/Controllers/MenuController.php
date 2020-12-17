@@ -6,6 +6,7 @@ use App\Content;
 use App\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Lang;
 
 //use App\Services\MenuService;
 
@@ -46,7 +47,7 @@ class MenuController extends Controller
             $items=$tree->where($condition[0], $condition[1], $condition[2]);
         }
 
-        $items=$tree->orderBy('parent', 'desc')->get();
+        $items=$tree->orderBy('parent', 'desc')->orderBy('sort','asc')->get();
         $list = array();
         foreach ($items as $item) {
             $list[$item->parent][] = $item;
@@ -291,6 +292,8 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        //
+        $menu->delete();
+
+        return redirect()->back()->with('success',Lang::get('messages.deleted'));
     }
 }

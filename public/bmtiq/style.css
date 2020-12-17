@@ -487,3 +487,20 @@ figure.image>img{max-width:100%;margin:0 auto;display:block;height:auto}
 table ,tr,td{border:none !important}
 input[type=text]{width: 100%;border: 1px solid #ccc;}
 .alert:before{font-size: 2em; left: 1em;}
+
+
+nav ul{list-style:none;margin:0}
+nav ul li{display:inline-block;position:relative;margin:0;min-height: 60px;}
+nav li a{padding:15px 10px 15px 20px;display:block}
+nav li li{display:block}
+nav ul>li.parent>a::after{position:absolute;display:inline-block;content:'';background-image:url(img/arrow-down.png);margin-right:.5em;width:8px;height:8px;top:2em;background-size:.5em;background-repeat:no-repeat}
+nav ul li.parent>div{display:none}
+nav li li a{color:#33354c!important;width:100%;padding:1em 2em!important;white-space:nowrap;display:block!important;border-bottom:3px solid rgba(0,0,0,0)!important;text-align:right;transition:all .3s!important;font-size:.9em!important}
+nav li li a:hover{color:#1e2135!important;font-weight:700;transform:scale(1.05)}
+nav li ul{display:none;padding:0;position:absolute;background-color:#fff;box-shadow:1px 0 20px rgba(0,0,0,.12)}
+nav li ul ul{left:100%}
+nav ul li:hover ul{display:block}
+@media all and (max-width:60em){
+    ul>li.parent a::after{display:none}
+    ul li.parent>div{display:block;background:0 0;position:absolute;left:10px;top:15px;outline:0;z-index:999999}
+}

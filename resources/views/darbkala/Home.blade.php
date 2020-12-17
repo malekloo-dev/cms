@@ -17,7 +17,7 @@
             <h1>مرجع تخصصی اطلاعات درب </h1>
         </div>
         <div class="flex one five-500 center  ">
-            {{-- $data['newPost'] --}}
+            {{--category&label=category&var=category--}}
             @foreach ($category as $content)
                 <a href="{{ $content->slug }}">
                     <div class="shadow hover">
@@ -50,12 +50,12 @@
     </section>
 
 
-
+    {{--#anchor topViewProduct --}}
     <section class="index-items home-top-view">
         <div class="flex one">
             <div>
                 <div class="flex one two-500  four-800 center  ">
-                    {{-- $data['newPost'] --}}
+                    {{--product&label=topViewPost&var=topViewPost&count=10--}}
                     @foreach ($topViewPost as $content)
                         <div>
                             <a class="hover" href="{{ $content->slug }}">
@@ -87,6 +87,8 @@
             </div>
         </div>
     </section>
+
+    {{--#anchor footer --}}
 
 
 @endsection
