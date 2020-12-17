@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Lang;
 
 class RedirectUrlRequest extends FormRequest
 {
@@ -31,8 +32,8 @@ class RedirectUrlRequest extends FormRequest
     public function messages()
     {
         return [
-            'url.required' => 'آدرس را وارد کنید.',
-            'redirect_to.required' => 'آدرس جدید را وارد کنید.'
+            'url.required' => Lang::get('messages.enter address'),
+            'redirect_to.required' => Lang::get('messages.enter new address')
         ];
     }
 }

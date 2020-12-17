@@ -21,7 +21,7 @@
 </div>
 
 <div class="content-body">
-    <div class="panel panel-default mat-elevation-z pos-abs chat-panel bottom-0">
+    <div class="panel panel-default  pos-abs chat-panel bottom-0">
         <div class="panel-body full-height">
 
             <form action="{{ route('seo.redirectUrl.update', $redirectUrl->id) }}" method="POST">
@@ -46,7 +46,7 @@
 
                 </div>
                 <button type="submit" class="btn btn-success pull-right mat-btn ">@lang('messages.confirm')</button>
-                
+
             </form>
         </div>
     </div>

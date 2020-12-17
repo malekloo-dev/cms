@@ -31,7 +31,7 @@
 </div>
 
 <div class="content-body">
-    <div class="panel panel-default mat-elevation-z pos-abs chat-panel bottom-0">
+    <div class="panel panel-default  pos-abs chat-panel bottom-0">
         <div class="panel-body full-height">
             <form method="post" action="{{ route('contents.update', $content_info->id) }}"enctype="multipart/form-data">
                 @method('PATCH')

@@ -51,14 +51,14 @@
                                                     <ul>
                                                         @foreach ($subMenu as $subMenuItem)
                                                             <li><a
-                                                                    href="{{ $subMenuItem['type'] == 'internal' ? $subMenuItem['link'] : '/#' . $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a>
+                                                                    href="{{ ($subMenuItem['type'] == 'internal'|| $subMenuItem['type'] == 'external') ? $subMenuItem['link'] : '/#' . $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a>
                                                             </li>
                                                         @endforeach
                                                     </ul>
                                                 </li>
                                             @else
                                                 <li class="">
-                                                    <a class="fullwidth" href="{{ $menuItem['type'] == 'internal' ? $menuItem['link'] : '/#' . $menuItem['link'] }}">{{ $menuItem['label'] }}</a>
+                                                    <li><a href="{{ ($menuItem['type'] == 'internal' || $menuItem['type'] == 'external') ? $menuItem['link'] : '/#'.$menuItem['link'] }}">{{ $menuItem['label'] }}</a></li>
                                                 </li>
 
                                             @endif

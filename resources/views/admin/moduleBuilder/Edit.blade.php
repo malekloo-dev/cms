@@ -31,7 +31,7 @@
 </div>
 
 <div class="content-body">
-    <div class="panel panel-default mat-elevation-z pos-abs chat-panel bottom-0">
+    <div class="panel panel-default  pos-abs chat-panel bottom-0">
         <div class="panel-body full-height">
             @if ($errors->any())
                 {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}

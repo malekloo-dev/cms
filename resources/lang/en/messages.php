@@ -69,5 +69,7 @@ return [
     'enter comment'=>'Please enter comment',
     'enter content id'=>'Please enter content id',
     'enter name'=>'Please enter name',
-    'enter email'=>'Please enter email'
+    'enter email'=>'Please enter email',
+    'enter address'=>'Enter address',
+    'enter new address'=>'Enter new address',
 ];

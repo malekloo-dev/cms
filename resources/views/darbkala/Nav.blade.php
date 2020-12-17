@@ -58,12 +58,12 @@
                                         src="{{ asset('/img/arrow-down.png') }}"></div>
                                 <ul>
                                     @foreach ($subMenu as $subMenuItem)
-                                        <li><a href="{{ ($subMenuItem['type'] == 'internal') ? $subMenuItem['link'] : '/#'.$subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a></li>
+                                        <li><a href="{{ ($subMenuItem['type'] == 'internal' || $subMenuItem['type'] == 'external') ? $subMenuItem['link'] : '/#'.$subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a></li>
                                     @endforeach
                                 </ul>
                             </li>
                         @else
-                            <li><a href="{{ $menuItem['link'] }}">{{ $menuItem['label'] }}</a></li>
+                            <li><a href="{{ ($menuItem['type'] == 'internal' || $menuItem['type'] == 'external') ? $menuItem['link'] : '/#'.$menuItem['link'] }}">{{ $menuItem['label'] }}</a></li>
 
                         @endif
 
