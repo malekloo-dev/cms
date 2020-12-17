@@ -425,7 +425,7 @@ h6, .h6 {
 h2.moduleTitle span{
     border-bottom: 5px solid #2a5d65 ;
     background: -webkit-linear-gradient(90deg, #000, #888 90%);
-    background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
