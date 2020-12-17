@@ -16,4 +16,4 @@
     .header-brand{right: 0; left: 50px;}
     .profile-nav > a{padding: 5px 10px !important;}
 }
-
+.dropdown-menu.pull-right{left: auto; right: 10px;}

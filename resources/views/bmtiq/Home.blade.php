@@ -497,7 +497,7 @@
                                             </p>
                                         </div>
                                         <div class="moduletable type1  col-sm-5">
-                                            <div class="module_container" style="background:rgba(0,0,0,0.6) !important">
+                                            <div class="module_container" style="background:#ddd !important">
                                                 <div class="page_header">
                                                     <h4 class="moduleTitle  heading-style-4 visible-first"><span
                                                                 class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">Request</span>

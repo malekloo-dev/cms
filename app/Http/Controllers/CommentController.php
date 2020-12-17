@@ -50,7 +50,7 @@ class CommentController extends Controller
      * @param  \App\comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(comment $comment)
+    public function show(Comment $comment)
     {
         //
     }
@@ -61,7 +61,7 @@ class CommentController extends Controller
      * @param  \App\comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(comment $comment)
+    public function edit(Comment $comment)
     {
 
         $data = $comment;
@@ -76,7 +76,7 @@ class CommentController extends Controller
      * @param  \App\comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(CommentRequest $request, comment $comment)
+    public function update(CommentRequest $request, Comment $comment)
     {
         $data = $comment;
         $data->update($request->all());
@@ -90,7 +90,7 @@ class CommentController extends Controller
      * @param  \App\comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(comment $comment)
+    public function destroy(Comment $comment)
     {
         $comment->delete();
 

@@ -38,24 +38,7 @@
                     </div>
                 </a>
             </li>--}}
-            @foreach(Harimayco\Menu\Models\MenuItems::where('menu', '=', '1')->where('parent','=','0')->orderBy('sort')->get() as $menuItem)
-            <?php
-            $subMenu = Harimayco\Menu\Models\MenuItems::where('menu', '=', '1')->where('parent', '=', $menuItem['id'])->orderBy('sort')->get(); ?>
-            @if(count($subMenu))
-            <li class="parent"><a href="{{ $menuItem['link'] }}">{{ $menuItem['label'] }}</a>
-                <div><img width="16" height="16" alt="arrow-down" src="{{ asset('/img/arrow-down.png') }}"></div>
-                <ul>
-                    @foreach($subMenu as $subMenuItem)
-                    <li><a href="{{ $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a></li>
-                    @endforeach
-                </ul>
-            </li>
-            @else
-            <li><a href="{{ $menuItem['link'] }}">{{ $menuItem['label'] }}</a></li>
-
-            @endif
-
-            @endforeach
+           
         </ul>
     </div>
 

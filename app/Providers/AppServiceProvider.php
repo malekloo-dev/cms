@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -32,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
         else View::share('ltr', false);
 
         //
-        \Blade::directive('convertCurrency', function ($money) {
+        Blade::directive('convertCurrency', function ($money) {
             return "<?php echo number_format($money); ?>";
         });
     }
