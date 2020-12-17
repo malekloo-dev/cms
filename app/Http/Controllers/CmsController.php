@@ -34,7 +34,7 @@ class CmsController extends Controller
             $data['title'] = '404';
             $data['name'] = 'Page not found';
             return  response()
-                ->view(@env(TEMPLATE_NAME) . '.NotFound',$data,404);
+                ->view(env('TEMPLATE_NAME') . '.NotFound',$data,404);
         }
 
         $this->breadcrumb[] = $detail->getAttributes();
@@ -102,9 +102,9 @@ class CmsController extends Controller
                 ->where('parent_id', '=', $detail->id)
                 ->where('publish_date','<=', DB::raw('now()'))
                 ->get();
-                
+
             $template = env('TEMPLATE_NAME') . '.cms.DetailCategory';
-            
+
             if ($detail->attr_type == 'html') {
                 $template = env('TEMPLATE_NAME') . '.cms.' . $detail->attr['template_name'];
             }
@@ -117,7 +117,7 @@ class CmsController extends Controller
                 ->where('attr_type', '=', 'article')
                 ->where('publish_date','<=', DB::raw('now()'))
                 ->inRandomOrder()
-                ->limit(4)->get();
+                ->limit(10)->get();
 
             $relatedProduct = Content::where('type', '=', '2')
                 ->where('parent_id', '=', $detail->parent_id)
@@ -126,7 +126,7 @@ class CmsController extends Controller
                 ->where('publish_date','<=', DB::raw('now()'))
                 ->inRandomOrder()
                 ->limit(4)->get();
-            
+
             $template = env('TEMPLATE_NAME') . '.cms.Detail';
             if ($detail->attr_type == 'html') {
                 $template = env('TEMPLATE_NAME') . '.cms.' . $detail->attr['template_name'];

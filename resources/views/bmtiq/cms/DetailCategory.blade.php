@@ -36,7 +36,7 @@
 
                     <section>
                         <div class="flex one">
-                            <h1>{{ $detail->title }}</h1>
+                            <h2 class="moduleTitle"><span>{{ $detail->title }}</span></h2>
                         </div>
                     </section>
 
