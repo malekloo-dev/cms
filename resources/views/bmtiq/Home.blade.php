@@ -97,7 +97,7 @@
 
     </div>
 
-
+{{--#anchor news --}}
     <div id="news" class="t3-mainbody new">
 
         <div class="container">
@@ -172,7 +172,7 @@
 
     </div>
 
-
+{{--#anchor about --}}
     <div id="about" class="position-2 wrap t3-sl t3-sl-2 ">
         <div class="container ">
             <div class="row">
@@ -324,6 +324,7 @@
         </div>
     </div>
 
+    {{--#anchor services --}}
     <div id="services" class="t3-mainbody">
 
         <div class="container">
@@ -388,7 +389,7 @@
 
     </div>
 
-
+{{--#anchor careers --}}
     <div id="careers" class="footer-1 wrap t3-sl t3-sl-footer-1 " style="padding: 4em 0;background-color: #015c65;">
         <div class="container container-fullwidth">
             <div class="row">
@@ -445,6 +446,7 @@
         </div>
     </div>
 
+    {{--#anchor contact --}}
     <div id="contact" class="t3-mainbody">
         <div id="ship-bg"></div>
         <div class="container">
@@ -600,5 +602,5 @@
     <div id="fixed-sidebar-right">
 
     </div>
-    {{--#anchor down --}}
+
 @endsection
