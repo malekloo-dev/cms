@@ -227,7 +227,8 @@ class MenuController extends Controller
             ->where('publish_date','<=', DB::raw('now()'))
             ->get();
 
-        $template = 'O:\xampp\htdocs\cms\resources\views\remotyadak\Home.blade.php';
+        // $template = 'O:\xampp\htdocs\cms\resources\views\remotyadak\Home.blade.php';
+        $template = resource_path('views/'. env('TEMPLATE_NAME') .'/Home.blade.php');
         $data['single_page']=$this->getSinglePagePoint(file_get_contents($template));
 
 
