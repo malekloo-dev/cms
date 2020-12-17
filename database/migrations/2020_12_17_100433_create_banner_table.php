@@ -21,7 +21,6 @@ class CreateGalleryTable extends Migration
             $table->timestamps();
         });
 
-\
     }
 
     /**
