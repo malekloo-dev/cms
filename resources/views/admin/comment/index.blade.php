@@ -59,23 +59,30 @@
                                 <td class="">{{ $item->created_at }}</td>
 
                                 <td class="width-100">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <form class="pull-right" action="{{ route('comment.destroy', $item->id) }}"
+                                                method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button onclick="return confirm('@lang('messages.Are you sure?')')"
+                                                    class="font-full-plus-half-em text-danger btn-xs  no-border no-bg no-padding"
+                                                    type="submit" title="@lang('messages.delete')">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
 
-                                    <form class="pull-right" action="{{ route('comment.destroy', $item->id) }}"
-                                        method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button onclick="return confirm('@lang('messages.Are you sure?')')"
-                                            class="font-full-plus-half-em text-danger btn-xs  no-border no-bg no-padding"
-                                            type="submit" title="@lang('messages.delete')">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </form>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a href="{{ route('comment.edit', $item->id) }}"
+                                                class="font-full-plus-half-em text-success btn-xs pull-right"
+                                                title="@lang('messages.edit')">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
 
-                                    <a href="{{ route('comment.edit', $item->id) }}"
-                                        class="font-full-plus-half-em text-success btn-xs pull-right"
-                                        title="@lang('messages.edit')">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
+                                        </div>
+                                    </div>
+
                                 </td>
                             </tr>
                         @endforeach

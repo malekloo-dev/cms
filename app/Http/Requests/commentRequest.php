@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Lang;
 
 class CommentRequest extends FormRequest
 {
@@ -32,9 +33,9 @@ class CommentRequest extends FormRequest
     public function messages()
     {
         return [
-            'content_id.required' => 'محتوای کامنت مشخص نشده است.',
-            'name.required' => 'لطفا نام خود را وارد نمایید.',
-            'comment.required' => 'لطفا پیام خود را وارد نمایید.'
+            'content_id.required' => Lang::get('messages.enter content id'),
+            'name.required' => Lang::get('messages.enter name'),
+            'comment.required' => Lang::get('messages.enter comment')
         ];
     }
 }

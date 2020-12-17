@@ -358,7 +358,9 @@
                                                         <figure class="item_img img-intro img-intro__none">
                                                             <img src="{{ $content->images['images']['small'] ?? '' }}"
                                                                  alt="">
-                                                            <figcaption>{{ $content->title }}</figcaption>
+                                                            <figcaption>
+                                                                <a href="{{$content->slug}}">{{ $content->title }}</a>
+                                                            </figcaption>
                                                         </figure>
                                                         <div class="clearfix"></div>
                                                     </article>

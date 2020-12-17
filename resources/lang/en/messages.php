@@ -66,4 +66,8 @@ return [
     'links'=>'Links',
     'sort'=>'Sort',
     'type'=>'Type',
+    'enter comment'=>'Please enter comment',
+    'enter content id'=>'Please enter content id',
+    'enter name'=>'Please enter name',
+    'enter email'=>'Please enter email'
 ];
