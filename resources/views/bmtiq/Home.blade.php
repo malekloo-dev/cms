@@ -19,17 +19,18 @@
                     <div class="row">
                         <div class="moduletable  ">
                             <div class="module_container">
-                                <div id="swiper-slider_208" class="swiper-container slider1 swiper-slider swiper-slider__"
-                                    data-autoplay="false" data-loop="true" data-simulate-touch="false"
-                                    data-slide-effect="slide" style="min-height: 420px;height: 40vw">
+                                <div id="swiper-slider_208"
+                                     class="swiper-container slider1 swiper-slider swiper-slider__"
+                                     data-autoplay="false" data-loop="true" data-simulate-touch="false"
+                                     data-slide-effect="slide" style="min-height: 420px;height: 40vw">
                                     <div class="swiper-wrapper">
 
                                         <div class="swiper-slide "
-                                            data-slide-bg="{{ asset('images/slider/1slide-1.jpg') }}">
+                                             data-slide-bg="{{ asset('images/slider/1slide-1.jpg') }}">
                                             <div class="slide-inner">
                                                 <div class="container">
                                                     <div class="swiper-slide-caption" data-caption-animate="fadeIn"
-                                                        data-caption-delay="200">
+                                                         data-caption-delay="200">
                                                         <div class="camera_caption ">
 
 
@@ -37,29 +38,28 @@
                                                                 <div class="moduletable   col-sm-5 ">
                                                                     <div class="module_container">
                                                                         <div class="mod-article-single mod-article-single__"
-                                                                            id="module_285">
+                                                                             id="module_285">
                                                                             <div class="item__module" id="item_180">
                                                                                 <!-- Item Title -->
                                                                                 <h1 class="item-title">
 
                                                                                     <span
-                                                                                        style="color: #2a5d65;color: #2a5d65;
+                                                                                            style="color: #2a5d65;color: #2a5d65;
                                                                                                                 background: -webkit-linear-gradient(90deg, #292929,#2a5d65 50%);
                                                                                                                 -webkit-background-clip: text;
                                                                                                                 -webkit-text-fill-color: transparent;"
-                                                                                        class="item_title_part_1 item_title_part_even item_title_part_first_half">Largest</span>
+                                                                                            class="item_title_part_1 item_title_part_even item_title_part_first_half">Largest</span>
                                                                                     <span
-                                                                                        class="item_title_part_2 item_title_part_odd item_title_part_first_half">
+                                                                                            class="item_title_part_2 item_title_part_odd item_title_part_first_half">
                                                                                         Multi-Purpose </span>
                                                                                     <span
-                                                                                        class="item_title_part_3 item_title_part_even item_title_part_second_half">
+                                                                                            class="item_title_part_3 item_title_part_even item_title_part_second_half">
                                                                                         Port Facility </span>
                                                                                     <span
-                                                                                        class="item_title_part_4 item_title_part_odd item_title_part_second_half item_title_part_last">In
+                                                                                            class="item_title_part_4 item_title_part_odd item_title_part_second_half item_title_part_last">In
                                                                                         <span
-                                                                                            style="color: #2a5d65;">Iraq</span></span>
+                                                                                                style="color: #2a5d65;">Iraq</span></span>
                                                                                 </h1>
-
 
 
                                                                             </div>
@@ -116,23 +116,26 @@
                                 <div class="module_container">
                                     <div class='page_header'>
                                         <h2 class="moduleTitle "><span
-                                                class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">NEWS
+                                                    class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">NEWS
                                             </span>
 
                                         </h2>
                                     </div>
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
-                                        id="module_288">
+                                         id="module_288">
                                         {{--post&label=NEWS&var=news&count=3--}}
                                         @isset($news)
                                             <div class="row">
                                                 @foreach ($news as $content)
-                                                    <article class="col-sm-4 item item_num0 item__module  " id="item_182">
+                                                    <article class="col-sm-4 item item_num0 item__module  "
+                                                             id="item_182">
 
                                                         <!-- Intro Image -->
                                                         <figure class="item_img img-intro img-intro__none">
-                                                            <img src="{{ $content->images['images']['small'] ?? '' }}" alt="">
-                                                            <figcaption><a href="{{ $content->slug }}">{{ $content->title }}</a>
+                                                            <img src="{{ $content->images['images']['small'] ?? '' }}"
+                                                                 alt="">
+                                                            <figcaption><a
+                                                                        href="{{ $content->slug }}">{{ $content->title }}</a>
                                                                 <br>
                                                                 <br>
                                                                 {!! $content->brief_description !!}
@@ -148,7 +151,7 @@
                                             </div>
                                             @if (isset($content))
                                                 <a href="{{ idToSlug($content->parent_id) }}"
-                                                    class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                                   class="btn btn-primary mod_tm_ajax_contact_form_btn">
                                                     More News ...
                                                 </a>
                                             @endif
@@ -181,13 +184,14 @@
                                 <div class='page_header'>
 
                                     <h2 class="moduleTitle "><span
-                                            class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">
+                                                class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">
                                             {{ $about->title }}
                                         </span>
                                     </h2>
                                     {!! $about->brief_description !!}
                                     @isset($about->parent_id)
-                                        <a href="{{ $about->slug }}" class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                        <a href="{{ $about->slug }}"
+                                           class="btn btn-primary mod_tm_ajax_contact_form_btn">
                                             About us
                                         </a>
                                     @endisset
@@ -195,7 +199,8 @@
                                 </div>
 
                             </div>
-                            <div id="mod_tm_parallax_304" class="parallax-container mod_tm_parallax__parallax1 col-md-7">
+                            <div id="mod_tm_parallax_304"
+                                 class="parallax-container mod_tm_parallax__parallax1 col-md-7">
 
                                 <div class="mod_tm_parallax">
                                     <img src="{{ $about->images['images']['original'] ?? '' }}" alt="">
@@ -209,7 +214,7 @@
 
                                                     </div>
                                                     <div class="mod-article-single mod-article-single__center"
-                                                        id="module_305">
+                                                         id="module_305">
 
                                                     </div>
                                                 </div>
@@ -243,11 +248,13 @@
                                         <div class="counter-wrapper-box">
                                             <div class="counter-wrapper-box_content">
                                                 <div class="counter-value-box">
-                                                    <div class="counter-value" data-from="0" data-to="14" data-speed="6000"
-                                                        data-decimals="0"></div>
+                                                    <div class="counter-value" data-from="0" data-to="14"
+                                                         data-speed="6000"
+                                                         data-decimals="0"></div>
                                                 </div>
                                                 <div class="counter-title">
-                                                    Years of Experience </div>
+                                                    Years of Experience
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -259,11 +266,13 @@
                                         <div class="counter-wrapper-box">
                                             <div class="counter-wrapper-box_content">
                                                 <div class="counter-value-box">
-                                                    <div class="counter-value" data-from="0" data-to="340" data-speed="6000"
-                                                        data-decimals="0"></div>
+                                                    <div class="counter-value" data-from="0" data-to="340"
+                                                         data-speed="6000"
+                                                         data-decimals="0"></div>
                                                 </div>
                                                 <div class="counter-title">
-                                                    Workers In Company </div>
+                                                    Workers In Company
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -275,11 +284,13 @@
                                         <div class="counter-wrapper-box">
                                             <div class="counter-wrapper-box_content">
                                                 <div class="counter-value-box">
-                                                    <div class="counter-value" data-from="0" data-to="45" data-speed="6000"
-                                                        data-decimals="0"></div>
+                                                    <div class="counter-value" data-from="0" data-to="45"
+                                                         data-speed="6000"
+                                                         data-decimals="0"></div>
                                                 </div>
                                                 <div class="counter-title">
-                                                    Skilled Drivers in Our Fleet </div>
+                                                    Skilled Drivers in Our Fleet
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -291,11 +302,13 @@
                                         <div class="counter-wrapper-box">
                                             <div class="counter-wrapper-box_content">
                                                 <div class="counter-value-box">
-                                                    <div class="counter-value" data-from="0" data-to="600" data-speed="6000"
-                                                        data-decimals="0"></div>
+                                                    <div class="counter-value" data-from="0" data-to="600"
+                                                         data-speed="6000"
+                                                         data-decimals="0"></div>
                                                 </div>
                                                 <div class="counter-title">
-                                                    Corporate Clients </div>
+                                                    Corporate Clients
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -303,7 +316,6 @@
 
                             </div>
                         </div>
-
 
 
                     </div>
@@ -330,30 +342,33 @@
                                 <div class="module_container">
                                     <div class='page_header'>
                                         <h2 class="moduleTitle "><span
-                                                class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">Servises
+                                                    class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">Servises
                                             </span>
 
                                         </h2>
                                     </div>
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
-                                        id="module_288">
+                                         id="module_288">
                                         <div class="row services">
                                             {{--post&label=services&var=services&count=6--}}
-                                            @foreach ($services as $content)
-                                                <article class="col-sm-4 item item_num0 item__module" id="item_182">
-                                                    <figure class="item_img img-intro img-intro__none">
-                                                        <img src="{{ $content->images['images']['small'] ?? '' }}" alt="">
-                                                        <figcaption>{{ $content->title }}</figcaption>
-                                                    </figure>
-                                                    <div class="clearfix"></div>
-                                                </article>
-                                            @endforeach
-                                            @if (isset($content))
-                                                <a href="{{ idToSlug($content->parent_id) }}"
-                                                    class="btn btn-primary mod_tm_ajax_contact_form_btn">
-                                                    More Services ...
-                                                </a>
-                                            @endif
+                                            @isset($services)
+                                                @foreach ($services as $content)
+                                                    <article class="col-sm-4 item item_num0 item__module" id="item_182">
+                                                        <figure class="item_img img-intro img-intro__none">
+                                                            <img src="{{ $content->images['images']['small'] ?? '' }}"
+                                                                 alt="">
+                                                            <figcaption>{{ $content->title }}</figcaption>
+                                                        </figure>
+                                                        <div class="clearfix"></div>
+                                                    </article>
+                                                @endforeach
+                                                @if (isset($content))
+                                                    <a href="{{ idToSlug($content->parent_id) }}"
+                                                       class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                                        More Services ...
+                                                    </a>
+                                                @endif
+                                            @endisset
 
                                         </div>
 
@@ -397,7 +412,7 @@
                                             </h2>
                                             <div class="module_container">
                                                 <div class="mod-newsflash-adv mod-newsflash-adv__type1 cols-2"
-                                                    id="module_298">
+                                                     id="module_298">
                                                     {{--post&label=OurClients&var=ourClients&count=4--}}
                                                     @isset($ourClients)
                                                         @foreach ($ourClients as $content)
@@ -405,7 +420,7 @@
                                                                 <div class="item_content">
                                                                     <figure class=" img-intro img-intro__none">
                                                                         <img src="{{ $content->images['images']['original'] ?? '' }}"
-                                                                            alt="">
+                                                                             alt="">
                                                                         <figcaption>{{ $content->title }}</figcaption>
                                                                     </figure>
                                                                 </div>
@@ -448,17 +463,17 @@
                                 <div class="module_container">
                                     <div class='page_header'>
                                         <h2 class="moduleTitle "><span
-                                                class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">Contact
+                                                    class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">Contact
                                             </span>
 
                                         </h2>
                                     </div>
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
-                                        id="module_288">
+                                         id="module_288">
                                         <div class="col-md-7" style="text-align: left;">
 
                                             <div
-                                                style="font-weight: bold; font-size: 1.1em; text-align: center; margin-bottom: 1em;">
+                                                    style="font-weight: bold; font-size: 1.1em; text-align: center; margin-bottom: 1em;">
                                                 <div style="font-weight: bold; font-size: 1.3em;">Head Office
                                                 </div>
                                                 <div>Basra Multipurposr Terminal</div>
@@ -481,18 +496,18 @@
                                             <div class="module_container" style="background:rgba(0,0,0,0.6) !important">
                                                 <div class="page_header">
                                                     <h4 class="moduleTitle  heading-style-4 visible-first"><span
-                                                            class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">Request</span>
+                                                                class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">Request</span>
                                                         <span
-                                                            class="item_title_part_1 item_title_part_even item_title_part_first_half">a</span>
+                                                                class="item_title_part_1 item_title_part_even item_title_part_first_half">a</span>
                                                         <span
-                                                            class="item_title_part_2 item_title_part_odd item_title_part_second_half">Free</span>
+                                                                class="item_title_part_2 item_title_part_odd item_title_part_second_half">Free</span>
                                                         <span
-                                                            class="item_title_part_3 item_title_part_even item_title_part_second_half item_title_part_last">Quote</span>
+                                                                class="item_title_part_3 item_title_part_even item_title_part_second_half item_title_part_last">Quote</span>
                                                     </h4>
                                                 </div>
                                                 <div id="contact_293">
                                                     <form action="{{ route('contact.store') }}#contact" method="post"
-                                                        class="mod_tm_ajax_contact_form custom" id="" novalidate="">
+                                                          class="mod_tm_ajax_contact_form custom" id="" novalidate="">
                                                         @csrf
                                                         <div class="mod_tm_ajax_contact_form_message" id="message_293">
                                                             @if (\Session::has('success'))
@@ -517,32 +532,33 @@
                                                                 <div class="control control-group-input col-sm-12 ">
                                                                     <div class="control">
                                                                         <input type="text" value="{{ old('name') }}"
-                                                                            placeholder="Name" name="name"
-                                                                            class="mod_tm_ajax_contact_form_text"
-                                                                            required="" title="Name">
+                                                                               placeholder="Name" name="name"
+                                                                               class="mod_tm_ajax_contact_form_text"
+                                                                               required="" title="Name">
                                                                     </div>
                                                                 </div>
                                                                 <div class="control control-group-input col-sm-12 ">
                                                                     <div class="control">
                                                                         <input type="text" value="{{ old('lastname') }}"
-                                                                            placeholder="Last Name" name="lastname"
-                                                                            class="mod_tm_ajax_contact_form_text"
-                                                                            required="" title="Last Name">
+                                                                               placeholder="Last Name" name="lastname"
+                                                                               class="mod_tm_ajax_contact_form_text"
+                                                                               required="" title="Last Name">
                                                                     </div>
                                                                 </div>
                                                                 <div
-                                                                    class="control control-group-input col-sm-12 pull-right">
+                                                                        class="control control-group-input col-sm-12 pull-right">
                                                                     <div class="control">
-                                                                        <textarea name="comment" placeholder="Experience"
-                                                                            class="mod_tm_ajax_contact_form_textarea"
-                                                                            title="" data-autosize-on="true"
-                                                                            style="overflow: hidden; overflow-wrap: break-word; height: 98px;">{{ old('comment') }}</textarea>
+                                                                        <textarea name="comment"
+                                                                                  placeholder="Experience"
+                                                                                  class="mod_tm_ajax_contact_form_textarea"
+                                                                                  title="" data-autosize-on="true"
+                                                                                  style="overflow: hidden; overflow-wrap: break-word; height: 98px;">{{ old('comment') }}</textarea>
                                                                     </div>
                                                                 </div> <!-- Submit Button -->
                                                                 <div class="control control-group-button col-sm-6">
                                                                     <div class="control">
                                                                         <button
-                                                                            class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                                                                class="btn btn-primary mod_tm_ajax_contact_form_btn">
                                                                             Send request
                                                                         </button>
                                                                     </div>
