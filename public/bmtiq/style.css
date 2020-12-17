@@ -473,7 +473,7 @@ div.attr>div>div>:nth-child(even){flex:4; background-color: #f4f4f4;}
 .comment{background-color:#fff;border-radius: 5px; box-shadow: 0 2px 2px rgba(0,0,0,.1);padding: 1em;margin-bottom: 1em;display: flex;}
 .comment .aside{flex:0 0 20%}
 .comment .artical{}
-.comment-form{border: 2px dashed #ddd;padding: 1em;border-radius: 10px;margin-bottom: 1em;}
+.comment-form{border: 2px dashed #ddd;padding: 1em;border-radius: 10px;margin-bottom: 1em; background-color: #f4f4f4;}
 .comment .name{font-weight: bold;}
 input,textarea{border: 0;border: 1px solid #ccc;}
 input:focus,textarea:focus{border: 1px solid #ccc;}
@@ -486,3 +486,4 @@ input:focus,textarea:focus{border: 1px solid #ccc;}
 figure.image{display:table;clear:both;text-align:center;margin:auto}
 figure.image>img{max-width:100%;margin:0 auto;display:block;height:auto}
 table ,tr,td{border:none !important}
+input[type=text]{width: 100%;border: 1px solid #ccc;}

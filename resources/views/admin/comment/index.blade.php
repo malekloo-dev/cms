@@ -2,7 +2,7 @@
 @section('content')
     <div class="content-control">
         <ul class="breadcrumb">
-            <li class="active">کامنت ها</li>
+            <li class="active">@lang('messages.Comments')</li>
         </ul>
 
 
