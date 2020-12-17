@@ -10495,6 +10495,7 @@ body.mobile #fancybox-thumbs {
 }
 .t3-mainbody{
     background: url(./../../../images/bg.jpg)  top center;
+    background-size: cover;
     /* background-image: radial-gradient(circle at center left, #FFF, #FFF),
     repeating-radial-gradient(circle at 80% center, #f5f5f5, #fff, 30%, transparent 8rem, transparent 0rem);
     background-blend-mode:multiply; */
