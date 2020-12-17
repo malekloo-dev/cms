@@ -8,7 +8,7 @@
     $tableOfImages=tableOfImages($detail->description);
     $append='';
     @endphp
-    @if (count($relatedProduct))[
+    @if (count($relatedProduct))
         @include('jsonLdRelatedProduct')
     @endif
 
