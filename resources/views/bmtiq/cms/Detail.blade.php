@@ -130,7 +130,7 @@
                                                     <textarea id="comment-text"
                                                         name="comment">{{ old('comment') }}</textarea>
                                                 </div>
-                                                <button class="button button-blue g-recaptcha"
+                                                <button class="button button-blue g-recaptcha btn btn-primary mod_tm_ajax_contact_form_btn"
                                                     data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit'
                                                     data-action='submit'>Send</button>
                                             </form>
