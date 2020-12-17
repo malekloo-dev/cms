@@ -89,16 +89,18 @@
                                             {{--$data['newPost']--}}
                                             @foreach ($relatedPost as $content)
                                                 <div>
+                                                    <a href="{{ $content->slug }}">
                                                     <article>
                                                         @if (isset($content->images['thumb']))
                                                             <div><img src="{{ $content->images['thumb'] }}"></div>
                                                         @endif
                                                         <footer>
-                                                            <a href="{{ $content->slug }}"> {{ $content->title }}</a>
+                                                             {{ $content->title }}
 
                                                             {!! $content->brief_description !!}
                                                         </footer>
                                                     </article>
+                                                </a>
                                                 </div>
                                             @endforeach
 

@@ -2,6 +2,7 @@
 @section('asset')
     <style>
         .related-post {}
+
     </style>
 @endsection
 @section('js')
@@ -72,17 +73,19 @@
                                             {{--$data['newPost']--}}
                                             @foreach ($relatedPost as $content)
                                                 <div>
-                                                    <article>
-                                                        @if (isset($content->images['thumb']))
-                                                            <div><img src="{{ $content->images['thumb'] }}"
-                                                                    alt="{{ $content->title }}"></div>
-                                                        @endif
-                                                        <footer>
-                                                            <a href="{{ $content->slug }}">
-                                                                    {{ $content->title }}</a>
-                                                            {!! $content->brief_description !!}
-                                                        </footer>
-                                                    </article>
+                                                    <a href="{{ $content->slug }}">
+                                                        <article>
+                                                            @if (isset($content->images['thumb']))
+                                                                <div><img src="{{ $content->images['thumb'] }}"
+                                                                        alt="{{ $content->title }}"></div>
+                                                            @endif
+                                                            <footer>
+
+                                                                {{ $content->title }}
+                                                                {!! $content->brief_description !!}
+                                                            </footer>
+                                                        </article>
+                                                    </a>
                                                 </div>
                                             @endforeach
 
@@ -125,7 +128,8 @@
                                                     <textarea id="comment-text"
                                                         name="comment">{{ old('comment') }}</textarea>
                                                 </div>
-                                                <button class="button button-blue g-recaptcha btn btn-primary mod_tm_ajax_contact_form_btn"
+                                                <button
+                                                    class="button button-blue g-recaptcha btn btn-primary mod_tm_ajax_contact_form_btn"
                                                     data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit'
                                                     data-action='submit'>Send</button>
                                             </form>
