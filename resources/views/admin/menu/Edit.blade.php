@@ -109,7 +109,7 @@
 
                                             <br/>
                                                 <button type="submit"
-                                                        class="btn btn-success @if(!$ltr) pull-right @endif mat-btn ">@lang('messages.add')
+                                                        class="btn btn-success @if(!$ltr) pull-right @endif mat-btn ">@lang('messages.edit')
                                                 </button>
 
                                         </div>
@@ -177,7 +177,7 @@
 
                                             <br/>
                                                 <button type="submit"
-                                                        class="btn btn-success @if(!$ltr) pull-right @endif mat-btn ">@lang('messages.add')
+                                                        class="btn btn-success @if(!$ltr) pull-right @endif mat-btn ">@lang('messages.edit')
                                                 </button>
 
                                         </div>
@@ -260,7 +260,7 @@
                                                 <br/>
                                                 <div class="col-md-12">
                                                     <button type="submit"
-                                                            class="btn btn-success @if(!$ltr) pull-right @endif mat-btn">@lang('messages.add')
+                                                            class="btn btn-success @if(!$ltr) pull-right @endif mat-btn">@lang('messages.edit')
                                                     </button>
                                                 </div>
                                             </div>
