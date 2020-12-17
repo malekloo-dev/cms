@@ -47,7 +47,7 @@
                                             @if (count($subMenu))
                                                 <li class="parent"><a
                                                         href="{{ $menuItem['link'] }}">{{ $menuItem['label'] }}</a>
-                                                    
+
                                                     <ul>
                                                         @foreach ($subMenu as $subMenuItem)
                                                             <li><a
@@ -58,7 +58,7 @@
                                                 </li>
                                             @else
                                                 <li class="">
-                                                    <a class="fullwidth" href="{{ $menuItem['link'] }}">{{ $menuItem['label'] }}</a>
+                                                    <a class="fullwidth" href="{{ $menuItem['type'] == 'internal' ? $menuItem['link'] : '/#' . $menuItem['link'] }}">{{ $menuItem['label'] }}</a>
                                                 </li>
 
                                             @endif
@@ -66,33 +66,6 @@
                                         @endforeach
 
 
-
-
-                                        <li itemprop='name' class="current active mega-align-left" data-id="101"
-                                            data-level="1" data-alignsub="left">
-                                            <a itemprop='url' class="fullwidth" href="{{ url('/') }}"
-                                                data-target="#">HOME </a>
-
-                                        </li>
-                                        <li itemprop='name'>
-                                            <a itemprop='url' class="" href="/#news" data-target="#">NEWS </a>
-
-                                        </li>
-                                        <li itemprop='name' data-id="335" data-level="1">
-                                            <a itemprop='url' class="" href="/#services" data-target="#">Services</a>
-                                        </li>
-                                        <li itemprop='name' data-id="203" data-level="1">
-                                            <a itemprop='url' class="" href="/#careers" data-target="#">CAREERS </a>
-
-                                        </li>
-                                        <li itemprop='name' data-id="611" data-level="1">
-                                            <a itemprop='url' class="" href="/#contact" data-target="#">CONTACT </a>
-
-                                        </li>
-                                        <li itemprop='name' data-id="142" data-level="1">
-                                            <a itemprop='url' class="" href="/#about" data-target="#">ABOUT </a>
-
-                                        </li>
                                     </ul>
                                 </div>
 
