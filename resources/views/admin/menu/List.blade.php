@@ -2,11 +2,11 @@
 @section('content')
     <div class="content-control">
         <ul class="breadcrumb">
-            <li class="active">منو</li>
+            <li class="active">@lang('messages.menu')</li>
         </ul>
         <div>
             <a href="{{ route('menu.create') }}" class=" btn btn-success btn-icon  mat-button ">
-                <i class="fa fa-plus"></i> افزودن
+                <i class="fa fa-plus"></i> @lang('messages.add')
             </a>
 
         </div>
@@ -20,9 +20,10 @@
                         <tr>
                             <th></th>
                             <th>@lang('messages.title')</th>
-                            <th>توضیحات مختصر</th>
-                            <th>@lang('messages.status')</th>
-                            <th>@lang('messages.image')</th>
+                            <th>@lang('messages.link')</th>
+                            <th>@lang('messages.module')</th>
+                            <th>@lang('messages.type')</th>
+                            <th>@lang('messages.sort')</th>
                             <td></td>
                         </tr>
                     </thead>
@@ -31,19 +32,11 @@
                             <tr>
                                 <td>{{ $menu->id }}</td>
                                 <td>{!! $menu->symbol . $menu->label !!}</td>
-                                <td>{!! readMore($menu->brief_description) !!}</td>
-                                <td>
-                                    @if ($menu->status == 1)
-                                        <i class="fa fa-check"></i>
-                                    @else
-                                        <i class="fa fa-remove"></i>
-                                    @endif
-                                </td>
-                                <td>
-                                    @isset($menu->images['images']['small'])
-                                        <img height="30" src="{{ $menu->images['images']['small'] }}" />
-                                    @endisset
-                                </td>
+                                <td>{{ url($menu->link) }}</td>
+                                <td>{{ $menu->module }}</td>
+                                <td>{{ $menu->type }}</td>
+                                <td>{{ $menu->sort }}</td>
+
                                 <td class="width-100">
                                     <div class="col-md-6">
 
@@ -51,10 +44,9 @@
                                             method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button onclick="return confirm('آیا مطمئن هستید؟')"
+                                            <button onclick="return confirm('@lang('messages.Are you sure?')')"
                                                 class="font-full-plus-half-em text-danger btn-xs pull-left no-border no-bg "
-                                                type="submit"
-                                                title="@lang('messages.delete')">
+                                                type="submit" title="@lang('messages.delete')">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>

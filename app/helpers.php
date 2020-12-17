@@ -7,6 +7,7 @@
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
 use App\Content;
+use App\Menu;
 use Morilog\Jalali\CalendarUtils;
 
 function h_encrypt($string)
@@ -454,6 +455,20 @@ function idToSlug($id) {
     $content = Content::find($id);
     if(is_object($content)){
         return $content->slug;
+    }
+    return '';
+}
+
+
+function idToMenuLabel($id) {
+
+    if($id==''){
+        return '';
+    }
+
+    $content = Menu::find($id);
+    if(is_object($content)){
+        return $content->label;
     }
     return '';
 }

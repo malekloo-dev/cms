@@ -108,8 +108,9 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
+
 
         $data['post'] = Content::where('type', '=', '2')
             ->where('attr_type', '=', 'article')
@@ -128,7 +129,9 @@ class MenuController extends Controller
        // O:\xampp\htdocs\cms\resources\views\remotyadak
        // $template= asset(env('TEMPLATE_NAME')) ;
        // $template = 'resources'.'/views/'.env('TEMPLATE_NAME') . '/Home.blade.php';
-        $template = 'O:\xampp\htdocs\cms\resources\views\remotyadak\Home.blade.php';
+        // $template = 'O:\xampp\htdocs\cms\resources\views\remotyadak\Home.blade.php';
+        $template = resource_path('views/'. env('TEMPLATE_NAME') .'/Home.blade.php');
+
         $data['single_page']=$this->getSinglePagePoint(file_get_contents($template));
 
         /*$data['type'][0]['lable']='internal';
@@ -146,24 +149,28 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, array(
             'label' => 'required|max:250',
+            'sort' => 'required',
             //'description' => 'required',
             //'body' => 'required',
             //'images' => 'required|mimes:jpeg,png,bmp',
 
         ));
+
         $data = $request->all();
 
         if($data["type" ] =="internal"){
             $data['link'] =Content::find($data["module_id" ])->slug;
         }else
         {
-            $data['module']='';
-            $data['module_id']='';
+            $data['module']=null;
+            $data['module_id']=null;
         }
         //dd($data);
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
+
         Menu::create($data);
         return redirect('admin/menu')->with('success', 'Greate! Menu created successfully.');
     }

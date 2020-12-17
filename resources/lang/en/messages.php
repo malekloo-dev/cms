@@ -62,4 +62,8 @@ return [
     'Contact-send-success'=>'Contact send success',
     'module'=>'Module',
     'modules'=>'Modules',
+    'link'=>'Link',
+    'links'=>'Links',
+    'sort'=>'Sort',
+    'type'=>'Type',
 ];
