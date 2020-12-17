@@ -60,4 +60,6 @@ return [
     'email exist'=>'email exit',
     'config'=>'config',
     'Contact-send-success'=>'Contact send success',
+    'module'=>'Module',
+    'modules'=>'Modules',
 ];

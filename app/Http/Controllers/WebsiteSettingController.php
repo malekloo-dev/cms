@@ -37,6 +37,7 @@ class WebsiteSettingController extends Controller
     public function edit(WebsiteSetting $websiteSetting)
     {
         $websiteSetting = WebsiteSetting::all();
+        $data=array();
         foreach($websiteSetting as $k => $v){
             $data[$v->variable] = $v->value;
         }
@@ -46,7 +47,7 @@ class WebsiteSettingController extends Controller
     /* Update */
     public function update(Request $request)
     {
-        
+
         foreach($request->all() as $variabl => $value){
             if(in_array($variabl,array('_token','_method'))) continue;
             $obj = WebsiteSetting::where('variable','=',$variabl)->get();
