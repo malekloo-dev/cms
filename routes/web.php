@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\App;
 
 App::setLocale(env('LANG'));
 
-
 //Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
 
 Route::prefix('/admin')->middleware(['auth'])->group(function () {

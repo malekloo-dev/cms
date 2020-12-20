@@ -17,8 +17,8 @@ class WebsiteSetting extends Migration
     {
         Schema::create('website_setting', function (Blueprint $table) {
             $table->id();
-            $table->string('variable',100)->nullable();
-            $table->string('value',250)->nullable()->default(null);
+            $table->string('variable',300)->nullable();
+            $table->string('value',300)->nullable()->default(null);
         });
 
         AppWebsiteSetting::insert([

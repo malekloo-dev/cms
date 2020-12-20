@@ -13,7 +13,7 @@ class CreateMenusWpTable extends Migration
      */
     public function up()
     {
-        Schema::create( config('menu.table_prefix') . config('menu.table_name_menus'), function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('label');
             $table->string('link');
@@ -37,6 +37,6 @@ class CreateMenusWpTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( config('menu.table_prefix') . config('menu.table_name_menus'));
+        Schema::dropIfExists( 'menus');
     }
 }

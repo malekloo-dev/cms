@@ -1,5 +1,3 @@
-{{--post&label=NEWS best&var=news&count=3--}}
-{{--category&amp;label=service&count=3&var=bestCategory&query=topView--}}
 
 @extends(@env('TEMPLATE_NAME').'.App')
 
@@ -20,10 +18,10 @@
             <h1>مرکز ساخت سوئیچ و ریموت</h1>
         </div>
         <div class="flex one five-500 center  ">
-        {{--product&label=product best&var=product&count=3--}}
-            @isset($product)
+        {{--category&label=category&var=category&count=5--}}
+            @isset($category)
 
-                @foreach ($product as $content)
+                @foreach ($category as $content)
                     <a href="{{ $content->slug }}">
                         <div class="shadow hover">
 
@@ -57,17 +55,16 @@
     </section>
 
 
-    {{--#anchor news --}}
-
     <section class="index-items home-top-view">
         <div class="flex one">
             <div>
                 <div class="flex one two-500  four-800 center  ">
-                    {{-- $data['newPost'] --}}
-                    @isset($news)
+
+                    {{--product&label=top products&var=products&count=12--}}
+                    @isset($products)
 
 
-                        @foreach ($news as $content)
+                        @foreach ($products as $content)
                             <div>
                                 <a class="hover" href="{{ $content->slug }}">
 

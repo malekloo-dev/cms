@@ -269,6 +269,8 @@ label {
 .bg-inverse {background-color: #666 !important;    color: #ecf0f1 !important;
 }
 
+.bg-gray{background-color: #626262; color: #fff;}
+
 .font-full-em {font-size: 1em !important;}
 
 .font-full-rem {font-size: 1rem !important;}
