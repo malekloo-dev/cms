@@ -17,11 +17,11 @@ class WebsiteSetting extends Migration
     {
         Schema::create('website_setting', function (Blueprint $table) {
             $table->id();
-            $table->string('variable',100);
-            $table->string('value',250);
+            $table->string('variable',100)->nullable();
+            $table->string('value',250)->nullable()->default(null);
         });
 
-        AppWebsiteSetting::createMany([
+        AppWebsiteSetting::create([
             ['variable'=>'meta_title','value'=>''],
             ['variable'=>'meta_description','value'=>''],
             ['variable'=>'meta_keywords','value'=>''],
