@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 
-
 App::setLocale(env('LANG'));
 
 

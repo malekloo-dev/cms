@@ -22,3 +22,4 @@ storage/framework/views/*
 storage/logs/*
 
 public/*.xml
+.DS_Store
