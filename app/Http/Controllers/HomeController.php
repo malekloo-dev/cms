@@ -49,7 +49,7 @@ class HomeController extends Controller
 
         //DB::connection()->enableQueryLog();
 
-        foreach ($attr as $var => $config) {
+        foreach ((array) $attr as $var => $config) {
 
             $type = '';
             //$data[$var] =new Content();

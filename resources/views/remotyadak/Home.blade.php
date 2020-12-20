@@ -20,8 +20,7 @@
             <h1>مرکز ساخت سوئیچ و ریموت</h1>
         </div>
         <div class="flex one five-500 center  ">
-            {{-- $data['newPost'] --}}
-            {{--product&label=product best&var=product&count=3--}}
+        {{--product&label=product best&var=product&count=3--}}
 
         @foreach ($product as $content)
                 <a href="{{ $content->slug }}">

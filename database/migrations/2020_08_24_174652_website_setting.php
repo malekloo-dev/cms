@@ -21,7 +21,7 @@ class WebsiteSetting extends Migration
             $table->string('value',250)->nullable()->default(null);
         });
 
-        AppWebsiteSetting::create([
+        AppWebsiteSetting::insert([
             ['variable'=>'meta_title','value'=>''],
             ['variable'=>'meta_description','value'=>''],
             ['variable'=>'meta_keywords','value'=>''],
