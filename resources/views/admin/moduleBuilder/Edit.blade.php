@@ -51,6 +51,7 @@
 
                             $widget['parent_id'] = 0;
                             $widget['sort'] = '';
+                            if(isset($widgets->attr)):
 
                             if (is_array($widgets->attr) and isset($widgets->attr[$attr['config']['var']])) {
                             $widget = $widgets->attr[$attr['config']['var']];
@@ -62,11 +63,11 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab" id="heading{{ $attr['config']['var'] }}">
 
-                                            <a class="btn-block btn" role="button" data-toggle="collapse" data-parent="#accordion"
-                                                href="#collapse{{ $attr['config']['var'] }}" aria-expanded="true"
-                                                aria-controls="collapse{{ $attr['config']['var'] }}">
-                                                {{ $attr['config']['label'] }}
-                                            </a>
+                                        <a class="btn-block btn" role="button" data-toggle="collapse"
+                                            data-parent="#accordion" href="#collapse{{ $attr['config']['var'] }}"
+                                            aria-expanded="true" aria-controls="collapse{{ $attr['config']['var'] }}">
+                                            {{ $attr['config']['label'] }}
+                                        </a>
 
                                     </div>
 
@@ -185,6 +186,9 @@
                                 value="{{ $attr['type'] }}">
                             <input type="hidden" id="count" name="attr[{{ $attr['config']['var'] }}][count]"
                                 value="{{ $attr['config']['count'] ?? '1' }}">
+                            @php
+                            endif;
+                            @endphp
                         @endforeach
                         <button type="submit" class="btn btn-success btn-block mat-btn ">
                             @lang('messages.edit')

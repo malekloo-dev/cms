@@ -16,6 +16,6 @@ class Contact extends Model
 
 
     public function content(){
-        return $this->belongsTo('App\content');
+        return $this->belongsTo('App\Content');
     }
 }

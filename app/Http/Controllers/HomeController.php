@@ -45,7 +45,12 @@ class HomeController extends Controller
             return strtoupper($name['value']);
         });
 
-        $attr = Widget::find(1)->attr;
+        $attr = Widget::find(1);
+        if(is_object($attr)){
+            $attr = $attr->attr;
+        }else{
+            $attr = array();
+        }
 
         //DB::connection()->enableQueryLog();
 
