@@ -852,7 +852,7 @@ nav ul li ul{position:relative;border-right:3px solid #ea1c44;border-top:none;bo
 nav ul li ul ul{position:relative;left:0}
 nav li li a{padding:8px .3rem!important;color:#fff!important}
 nav ul>li.parent a::after{display:none}
-nav ul li.parent>div{display:block;background:0 0;position:absolute;left:10px;top:15px;outline:0;z-index:999999}
+nav ul li.parent>div{display:flex; justify-content:center;align-items:center;border-radius:5px; background-color: #00000038;width: 40px; height: 50px; position:absolute;left:10px;top:0;outline:0;z-index:999999}
 nav .burger{display:inline-block;cursor:pointer;bottom:-1000em;margin:0}
 nav .burger~.menu,nav .show:checked~.burger{position:fixed;min-height:100%;top:0;right:0;bottom:-1000em;margin:0;transition:all .5s ease;transform:none;background:linear-gradient(90deg,rgba(250,73,14,1) 0,rgba(255,136,45,1) 100%);z-index:1}
 nav .show:checked~.burger{color:transparent;width:100%;border-radius:0;background:rgba(0,0,0,.2);transition:all .5s ease}
