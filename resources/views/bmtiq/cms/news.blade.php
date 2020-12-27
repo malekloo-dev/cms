@@ -42,7 +42,7 @@
 
                     <section>
                         <div class="flex two" style="justify-content: space-around">
-                            <div class="third">
+                            <div class="">
 
                                 @if (isset($detail->images['images']))
                                     <picture>
@@ -71,13 +71,13 @@
                                             <div>
                                                 <div class="shadow">
                                                     <div class="flex one  center ">
-                                                        
+
                                                         @foreach ($relatedPost as $content)
                                                             <div>
                                                                 <article class="flex two">
                                                                     @if (isset($content->images['thumb']))
                                                                         <div class="third" >
-                                                                            <img style="object-fit: cover; height: 100%;"
+                                                                            <img style="object-fit: cover; "
                                                                                 src="{{ $content->images['thumb'] }}">
                                                                         </div>
                                                                     @endif
