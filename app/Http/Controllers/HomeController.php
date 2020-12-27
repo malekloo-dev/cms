@@ -96,7 +96,7 @@ class HomeController extends Controller
         }
         $queries = DB::getQueryLog();
 
-        dd($queries);
+        //dd($queries);
 
         //$data['arrayContent']=$arrayContent;
         //dd($data);
