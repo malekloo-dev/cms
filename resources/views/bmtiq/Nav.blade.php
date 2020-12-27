@@ -57,10 +57,8 @@
                                                     </ul>
                                                 </li>
                                             @else
-                                                <li class="">
-                                                    <li><a href="{{ ($menuItem['type'] == 'internal' || $menuItem['type'] == 'external') ? $menuItem['link'] : '/#'.$menuItem['link'] }}">{{ $menuItem['label'] }}</a></li>
-                                                </li>
-
+                                                <li><a href="{{ ($menuItem['type'] == 'internal' || $menuItem['type'] == 'external') ? $menuItem['link'] : '/#'.$menuItem['link'] }}">{{ $menuItem['label'] }}</a></li>
+                                                
                                             @endif
 
                                         @endforeach

@@ -46,7 +46,10 @@
                     <section>
                         <div class="flex one two-500" style="justify-content: space-around">
                             <div class="">
-
+                                @php
+                                $detail = $relatedPost[0];
+                                unset($relatedPost[0]);
+                                @endphp
                                 @if (isset($detail->images['images']))
                                     <picture>
 
@@ -54,7 +57,10 @@
                                             alt="{{ $detail->title }}">
                                     </picture>
                                 @endif
-                                <h3 class="moduleTitle">{{ $detail->title }}</h3>
+                                <h3 class="moduleTitle">
+                                    <a href="{{ $detail->slug }}">
+                                        {{ $detail->title }}</a>
+                                    </h3>
                                 <div>{{ convertGToJ($detail->publish_date) }}</div>
                                 <ul>
                                     @foreach ($table_of_content as $key => $item)
@@ -111,7 +117,7 @@
                                     <h2>Category: {{ $detail->title }}</h2>
                                     <div class="flex one two-800   ">
 
-                                        {{--$data['newPost']--}}
+
                                         @foreach ($subCategory as $content)
                                             <div class="height-full">
 
