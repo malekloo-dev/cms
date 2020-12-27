@@ -460,7 +460,7 @@
 .sixth-2000{width:16.66666%;display:block}
 }
 
-.breadcrumb{text-align: left;}
+.breadcrumb{text-align: left; padding: 18px 15px 21px;}
 div.gallery > div{align-items: center;}
 div.gallery img{max-width: 100%; border-radius: 5px;}
 div.faq div div :first-child{font-weight: bold;}
@@ -484,9 +484,7 @@ input:focus,textarea:focus{border: 1px solid #ccc;}
 .image-style-align-left{float:left}
 figure.image{display:table;clear:both;text-align:center;margin:auto}
 figure.image>img{max-width:100%;margin:0 auto;display:block;height:auto}
-@media(max-width:500px){
-    figure.image{width: 100%;}
-}
+
 table ,tr,td{border:none !important}
 input[type=text]{width: 100%;border: 1px solid #ccc;}
 .alert:before{font-size: 2em; left: 1em;}

@@ -1,7 +1,13 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
 @section('head')
-
+<style>
+@media(max-width:500px){
+    .module_container{
+        flex-flow: column wrap !important
+    }
+}
+</style>
 @endsection
 @section('footer')
 
@@ -380,10 +386,10 @@
         <div class="container ">
             <div class="row">
                 <div class="moduletable parallax1 ">
-                    <div class="module_container" style="display: flex;">
+                    <div class="module_container" style="display: flex; flex-flow:wrap row">
                         {{--categoryDetail&label=ABOUT&var=about--}}
                         @if (is_object($about))
-                            <div class="col-md-5 " style="padding: 2em;">
+                            <div class="" style="padding: 2em; flex:1 50%">
                                 <div class='page_header'>
 
                                     <h2 class="moduleTitle "><span
@@ -402,8 +408,8 @@
                                 </div>
 
                             </div>
-                            <div id="mod_tm_parallax_304"
-                                 class="parallax-container mod_tm_parallax__parallax1 col-md-7">
+                            <div id="mod_tm_parallax_304" style="flex: 1 50%; "
+                                 class="parallax-container mod_tm_parallax__parallax1">
 
                                 <div class="mod_tm_parallax">
                                     <img src="{{ $about->images['images']['original'] ?? '' }}" alt="">

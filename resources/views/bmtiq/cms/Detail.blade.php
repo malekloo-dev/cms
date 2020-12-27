@@ -1,8 +1,12 @@
 @extends(@env('TEMPLATE_NAME').'.App')
-@section('asset')
+@section('head')
     <style>
-        .related-post {}
-
+        figure.image{margin:1em;}
+        @media (max-width:500px){
+            figure.image{
+                width:auto !important;
+            }
+        }
     </style>
 @endsection
 @section('js')
@@ -49,7 +53,9 @@
                             </div>
                         </div>
 
-                        @isset($table_of_content)
+
+
+                        @if(count($table_of_content)>0)
 
                         <ul>
                             @foreach ($table_of_content as $key => $item)
@@ -59,7 +65,7 @@
                             @endforeach
 
                         </ul>
-                        @endisset
+                        @endif
 
                             @include(@env('TEMPLATE_NAME').'.DescriptionModule')
                             @if (count($relatedPost))
