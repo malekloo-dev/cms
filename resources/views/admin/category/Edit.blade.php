@@ -170,8 +170,8 @@
 
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <label for="images" class="control-label">تصویر   (سایز{{ env('CATEGORY_LARGE') }}px)</label>
-                        <input type="file" class="form-control" name="images" id="images" placeholder="تصویر  را وارد کنید"
+                        <label for="images" class="control-label">@lang('messages.image')   (@lang('messages.size'){{ env('CATEGORY_LARGE') }}px)</label>
+                        <input type="file" class="form-control" name="images" id="images" placeholder="@lang('messages.select image')"
                         value="{{ old('imageUrl') }}">
                     </div>
                 </div>
@@ -220,10 +220,10 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-3">
-                        <label for="name" class=" col-form-label text-md-left">Status:</label>
+                        <label for="name" class=" col-form-label text-md-left">@lang('messages.status'):</label>
                         <select class=" select2" name="status">
-                            <option value="1" {{ $content_info->status == '1' ? 'selected' : '' }}>فعال</option>
-                            <option value="0" {{ $content_info->status == '0' ? 'selected' : '' }}>غیر فعال</option>
+                            <option value="1" {{ $content_info->status == '1' ? 'selected' : '' }}>@lang('messages.Active')</option>
+                            <option value="0" {{ $content_info->status == '0' ? 'selected' : '' }}>@lang('messages.Disactive')</option>
                         </select>
                     </div>
                 </div>

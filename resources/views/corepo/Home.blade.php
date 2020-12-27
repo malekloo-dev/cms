@@ -96,17 +96,21 @@
     <section class="index-item-top banner pb-0">
         <div class="flex two">
             <div class="full two-third-500 slideshow-container ltr">
-                <div class="mySlides fade ">
-                    <figure class="image">
-                        <img src="{{ asset('/img/main-banner-medium.jpg') }}"
-                            sizes="(max-width:792px) 100vw 396px 792px 1584px" alt="" width="792" height="370" srcset="
-                                    {{ asset('/img/main-banner-small.jpg') }} 396w,
-                                    {{ asset('/img/main-banner-medium.jpg') }} 792w,
-                                    {{ asset('/img/main-banner-large.jpg') }} 2x">
-                    </figure>
-                    <div class="text">طراحی سایت و سئو - طرح و وب</div>
-                </div>
-                <div class="mySlides fade">
+                {{--post&label=home banner&var=banners&count=3--}}
+                @isset($banners)
+                    @foreach ($banners as $content)
+                    <div class="mySlides fade ">
+                        <figure class="image">
+                            <img src="{{ $content->images['images']['large']}}"
+                                sizes="(max-width:792px) 100vw 396px 792px 1584px" alt="" width="792" height="370" srcset="
+                                {{ $content->images['images']['large']}} 2x">
+                        </figure>
+                        <div class="text">{{ $content->title }}</div>
+                    </div>
+                    @endforeach
+                @endisset
+
+                {{-- <div class="mySlides fade">
                     <picture>
                         <source media="(min-width: 900px)"
                             srcset="{{ asset('/img/900_main-banner.jpg') }} 1x, {{ asset('/img/1800_main-banner.jpg') }} 2x"
@@ -121,7 +125,7 @@
                             alt="my image description">
                     </picture>
                     <div class="text">طراحی سایت و سئو - طرح و وب</div>
-                </div>
+                </div> --}}
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>

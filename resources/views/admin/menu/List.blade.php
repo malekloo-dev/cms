@@ -48,7 +48,7 @@
                             <tr>
                                 <td>{{ $menu->id }}</td>
                                 <td>{!! $menu->symbol . $menu->label !!}</td>
-                                <td>{{ url($menu->link) }}</td>
+                                <td class="ltr"><a href="{{ url($menu->link) }}" target="blanck">{{ url($menu->link) }}</a></td>
                                 <td>{{ $menu->module }}</td>
                                 <td>{{ $menu->type }}</td>
                                 <td>{{ $menu->sort }}</td>
