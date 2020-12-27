@@ -70,8 +70,8 @@
                                     @endforeach
 
                                 </ul>
-
-                                @include(@env('TEMPLATE_NAME').'.DescriptionModule')
+                                {!! $detail->brief_description !!}
+                                {{-- @include(@env('TEMPLATE_NAME').'.DescriptionModule') --}}
                             </div>
                             <div class="third-500">
                                 @if (count($relatedPost))
