@@ -4,6 +4,9 @@
         p {
             margin: 0 !important;
         }
+        article{
+            border-bottom: 1px dashed #ccc;
+        }
 
     </style>
 @endsection
@@ -41,7 +44,7 @@
                     @endif
 
                     <section>
-                        <div class="flex two" style="justify-content: space-around">
+                        <div class="flex one two-500" style="justify-content: space-around">
                             <div class="">
 
                                 @if (isset($detail->images['images']))
@@ -64,7 +67,7 @@
 
                                 @include(@env('TEMPLATE_NAME').'.DescriptionModule')
                             </div>
-                            <div class="third">
+                            <div class="third-500">
                                 @if (count($relatedPost))
                                     <section class="products" id="index-best-view">
                                         <div class="flex one ">
@@ -74,14 +77,14 @@
 
                                                         @foreach ($relatedPost as $content)
                                                             <div>
-                                                                <article class="flex two">
+                                                                <article class="flex one two-500">
                                                                     @if (isset($content->images['thumb']))
-                                                                        <div class="third" >
+                                                                        <div class="third-500" >
                                                                             <img style="object-fit: cover; "
                                                                                 src="{{ $content->images['thumb'] }}">
                                                                         </div>
                                                                     @endif
-                                                                    <footer class="two-third">
+                                                                    <footer class="two-third-500">
                                                                         <a href="{{ $content->slug }}">
                                                                             {{ $content->title }}</a>
 
