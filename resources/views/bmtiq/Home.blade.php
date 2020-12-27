@@ -722,24 +722,22 @@
                                                     <form action="{{ route('contact.store') }}#contact" method="post"
                                                           class="mod_tm_ajax_contact_form custom" id="" novalidate="">
                                                         @csrf
-                                                        <div class="mod_tm_ajax_contact_form_message" id="message_293">
-                                                            @if (\Session::has('success'))
-                                                                <div class="alert alert-success">
+                                                        @if (\Session::has('success'))
+                                                                <div class="alert alert-success " style="text-align: left">
                                                                     {!! \Session::get('success') !!}
                                                                 </div>
                                                             @endif
                                                             @if (\Session::has('error'))
-                                                                <div class="alert alert-danger">
+                                                                <div class="alert alert-danger " style="text-align: left">
                                                                     {!! \Session::get('error') !!}
                                                                 </div>
                                                             @endif
                                                             @if ($errors->any())
-                                                                <div class="alert alert-danger">
+                                                                <div class="alert alert-danger" style="text-align: left">
                                                                     {!! implode('', $errors->all('<div>:message</div>')) !!}
                                                                 </div>
                                                             @endif
 
-                                                        </div>
                                                         <fieldset>
                                                             <div class="row">
                                                                 <div class="control control-group-input col-sm-12 ">

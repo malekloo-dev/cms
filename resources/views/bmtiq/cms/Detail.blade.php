@@ -1,6 +1,7 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 @section('head')
     <style>
+    .module_container{padding:0 1em;}
         figure.image{margin:1em;}
         @media (max-width:500px){
             figure.image{

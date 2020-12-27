@@ -1,6 +1,22 @@
 @extends(@env('TEMPLATE_NAME').'.App')
-@section('assets')
+
+@section('head')
 @endsection
+
+@section('footer')
+<style>
+    .module_container{padding:0 1em;}
+        figure.image{margin:1em;}
+        @media (max-width:500px){
+            figure.image{
+                width:auto !important;
+                display:contents !important;
+            }
+        }
+    </style>
+
+@endsection
+
 
 @section('Content')
 
@@ -112,12 +128,12 @@
                     @endif
 
 
-                    <section class="" id="">
+                    <section class="module_container" id="">
                         <div class="flex one ">
                             <div>
 
 
-                                @if (isset($detail->images['images']))
+                                {{-- @if (isset($detail->images['images']))
                                     <picture>
                                         <source media="(min-width:{{ env('CATEGORY_LARGE') }}px)"
                                             srcset="{{ $detail->images['images']['large'] ?? '' }}">
@@ -132,8 +148,9 @@
                                             alt="{{ $detail->title }}" width="{{ env('CATEGORY_MEDIUM') }}"
                                             height="{{ env('CATEGORY_MEDIUM') }}">
                                     </picture>
-                                @endif
+                                @endif --}}
 
+                                @if(count($table_of_content)>0)
                                 <ul>
                                     @foreach ($table_of_content as $key => $item)
                                         <li class="toc1">
@@ -142,7 +159,7 @@
                                     @endforeach
 
                                 </ul>
-
+                                @endif
                                 @include(@env('TEMPLATE_NAME').'.DescriptionModule')
 
                                 {{-- {!! $detail->description
