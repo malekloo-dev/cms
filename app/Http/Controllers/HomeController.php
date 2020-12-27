@@ -52,7 +52,7 @@ class HomeController extends Controller
             $attr = array();
         }
 
-        //DB::connection()->enableQueryLog();
+        DB::connection()->enableQueryLog();
 
         foreach ((array) $attr as $var => $config) {
 
@@ -78,10 +78,8 @@ class HomeController extends Controller
             }
 
             $sort = explode(' ', $config['sort']);
-            //dd($sort);
 
-            $module = $module->orderby($sort[0]);
-            $module = $module->limit($sort[1]);
+            $module = $module->orderby($sort[0],$sort[1]);
 
 
             $module = $module
@@ -96,9 +94,9 @@ class HomeController extends Controller
             }
 
         }
-        //$queries = DB::getQueryLog();
+        $queries = DB::getQueryLog();
 
-        //dd($queries);
+        dd($queries);
 
         //$data['arrayContent']=$arrayContent;
         //dd($data);

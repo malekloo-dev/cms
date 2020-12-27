@@ -10,6 +10,7 @@
 @section('Content')
 
     {{--#anchor home --}}
+    <div id="home"></div>
     <div id="header">
 
         <!-- HEADER -->
