@@ -4,6 +4,9 @@
         p {
             margin: 0 !important;
         }
+        article{
+            border-bottom: 1px dashed #ccc;
+        }
 
     </style>
 @endsection
@@ -41,9 +44,12 @@
                     @endif
 
                     <section>
-                        <div class="flex two" style="justify-content: space-around">
-                            <div class="third">
-
+                        <div class="flex one two-500" style="justify-content: space-around">
+                            <div class="">
+                                @php
+                                $detail = $relatedPost[0];
+                                unset($relatedPost[0]);
+                                @endphp
                                 @if (isset($detail->images['images']))
                                     <picture>
 
@@ -51,7 +57,10 @@
                                             alt="{{ $detail->title }}">
                                     </picture>
                                 @endif
-                                <h3 class="moduleTitle">{{ $detail->title }}</h3>
+                                <h3 class="moduleTitle">
+                                    <a href="{{ $detail->slug }}">
+                                        {{ $detail->title }}</a>
+                                    </h3>
                                 <div>{{ convertGToJ($detail->publish_date) }}</div>
                                 <ul>
                                     @foreach ($table_of_content as $key => $item)
@@ -61,27 +70,27 @@
                                     @endforeach
 
                                 </ul>
-
-                                @include(@env('TEMPLATE_NAME').'.DescriptionModule')
+                                {!! $detail->brief_description !!}
+                                {{-- @include(@env('TEMPLATE_NAME').'.DescriptionModule') --}}
                             </div>
-                            <div class="third">
+                            <div class="third-500">
                                 @if (count($relatedPost))
                                     <section class="products" id="index-best-view">
                                         <div class="flex one ">
                                             <div>
                                                 <div class="shadow">
                                                     <div class="flex one  center ">
-                                                        
+
                                                         @foreach ($relatedPost as $content)
                                                             <div>
-                                                                <article class="flex two">
+                                                                <article class="flex one two-500">
                                                                     @if (isset($content->images['thumb']))
-                                                                        <div class="third" >
-                                                                            <img style="object-fit: cover; height: 100%;"
+                                                                        <div class="third-500" >
+                                                                            <img style="object-fit: cover; "
                                                                                 src="{{ $content->images['thumb'] }}">
                                                                         </div>
                                                                     @endif
-                                                                    <footer class="two-third">
+                                                                    <footer class="two-third-500">
                                                                         <a href="{{ $content->slug }}">
                                                                             {{ $content->title }}</a>
 
@@ -108,7 +117,7 @@
                                     <h2>Category: {{ $detail->title }}</h2>
                                     <div class="flex one two-800   ">
 
-                                        {{--$data['newPost']--}}
+
                                         @foreach ($subCategory as $content)
                                             <div class="height-full">
 
