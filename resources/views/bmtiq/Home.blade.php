@@ -9,7 +9,7 @@
 
 @section('Content')
 
-
+    {{--#anchor home --}}
     <div id="header">
 
         <!-- HEADER -->
