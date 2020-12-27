@@ -25,8 +25,17 @@
                                      data-slide-effect="slide" style="min-height: 420px;height: 40vw">
                                     <div class="swiper-wrapper">
 
-                                        <div class="swiper-slide "
-                                             data-slide-bg="{{ asset('images/slider/1slide-1.jpg') }}">
+                                        <div class="swiper-slide " data-slide-bg="{{ asset('images/slider/14.jpg' )}}">
+                                            <!--<style>-->
+                                            <!--    @media(max-width:700px){-->
+                                            <!--        .swiper-container.slider1.swiper-slider.swiper-slider__{-->
+                                            <!--            min-height: 168px !important;height: 20vw !important;-->
+                                            <!--        }-->
+                                            <!--    }-->
+                                            <!--</style>-->
+                                            <!--<video autoplay muted loop style="position:absolute; left:0; right:0; width:100%; top:0">-->
+                                            <!--      <source src="{{ asset('images/movie.mp4')}}" type="video/mp4">-->
+                                            <!--</video>-->
                                             <div class="slide-inner">
                                                 <div class="container">
                                                     <div class="swiper-slide-caption" data-caption-animate="fadeIn"
@@ -80,6 +89,199 @@
                                             </div>
 
                                         </div>
+                                        <div class="swiper-slide " data-slide-bg="{{ asset('images/slider/16.jpg' )}}">
+                                            <!--<style>-->
+                                            <!--    @media(max-width:700px){-->
+                                            <!--        .swiper-container.slider1.swiper-slider.swiper-slider__{-->
+                                            <!--            min-height: 168px !important;height: 20vw !important;-->
+                                            <!--        }-->
+                                            <!--    }-->
+                                            <!--</style>-->
+                                            <!--<video autoplay muted loop style="position:absolute; left:0; right:0; width:100%; top:0">-->
+                                            <!--      <source src="{{ asset('images/movie.mp4')}}" type="video/mp4">-->
+                                            <!--</video>-->
+                                            <div class="slide-inner">
+                                                <div class="container">
+                                                    <div class="swiper-slide-caption" data-caption-animate="fadeIn"
+                                                         data-caption-delay="200">
+                                                        <div class="camera_caption ">
+
+
+                                                            <div class="row">
+                                                                <div class="moduletable   col-sm-5 ">
+                                                                    <div class="module_container">
+                                                                        <div class="mod-article-single mod-article-single__"
+                                                                             id="module_285">
+                                                                            <div class="item__module" id="item_180">
+                                                                                <!-- Item Title -->
+                                                                                <h1 class="item-title">
+
+                                                                                    <span
+                                                                                            style="color: #2a5d65;color: #2a5d65;
+                                                                                                                background: -webkit-linear-gradient(90deg, #292929,#2a5d65 50%);
+                                                                                                                -webkit-background-clip: text;
+                                                                                                                -webkit-text-fill-color: transparent;"
+                                                                                            class="item_title_part_1 item_title_part_even item_title_part_first_half">Largest</span>
+                                                                                    <span
+                                                                                            class="item_title_part_2 item_title_part_odd item_title_part_first_half">
+                                                                                        Multi-Purpose </span>
+                                                                                    <span
+                                                                                            class="item_title_part_3 item_title_part_even item_title_part_second_half">
+                                                                                        Port Facility </span>
+                                                                                    <span
+                                                                                            class="item_title_part_4 item_title_part_odd item_title_part_second_half item_title_part_last">In
+                                                                                        <span
+                                                                                                style="color: #2a5d65;">Iraq</span></span>
+                                                                                </h1>
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <!-- Read More link -->
+                                                            <div class="btn-wrapper">
+
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="swiper-slide " data-slide-bg="{{ asset('images/slider/11.jpg' )}}">
+                                            <!--<style>-->
+                                            <!--    @media(max-width:700px){-->
+                                            <!--        .swiper-container.slider1.swiper-slider.swiper-slider__{-->
+                                            <!--            min-height: 168px !important;height: 20vw !important;-->
+                                            <!--        }-->
+                                            <!--    }-->
+                                            <!--</style>-->
+                                            <!--<video autoplay muted loop style="position:absolute; left:0; right:0; width:100%; top:0">-->
+                                            <!--      <source src="{{ asset('images/movie.mp4')}}" type="video/mp4">-->
+                                            <!--</video>-->
+                                            <div class="slide-inner">
+                                                <div class="container">
+                                                    <div class="swiper-slide-caption" data-caption-animate="fadeIn"
+                                                         data-caption-delay="200">
+                                                        <div class="camera_caption ">
+
+
+                                                            <div class="row">
+                                                                <div class="moduletable   col-sm-5 ">
+                                                                    <div class="module_container">
+                                                                        <div class="mod-article-single mod-article-single__"
+                                                                             id="module_285">
+                                                                            <div class="item__module" id="item_180">
+                                                                                <!-- Item Title -->
+                                                                                <h1 class="item-title">
+
+                                                                                    <span
+                                                                                            style="color: #2a5d65;color: #2a5d65;
+                                                                                                                background: -webkit-linear-gradient(90deg, #292929,#2a5d65 50%);
+                                                                                                                -webkit-background-clip: text;
+                                                                                                                -webkit-text-fill-color: transparent;"
+                                                                                            class="item_title_part_1 item_title_part_even item_title_part_first_half">Largest</span>
+                                                                                    <span
+                                                                                            class="item_title_part_2 item_title_part_odd item_title_part_first_half">
+                                                                                        Multi-Purpose </span>
+                                                                                    <span
+                                                                                            class="item_title_part_3 item_title_part_even item_title_part_second_half">
+                                                                                        Port Facility </span>
+                                                                                    <span
+                                                                                            class="item_title_part_4 item_title_part_odd item_title_part_second_half item_title_part_last">In
+                                                                                        <span
+                                                                                                style="color: #2a5d65;">Iraq</span></span>
+                                                                                </h1>
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <!-- Read More link -->
+                                                            <div class="btn-wrapper">
+
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="swiper-slide " data-slide-bg="{{ asset('images/slider/12.jpg' )}}">
+                                            <!--<style>-->
+                                            <!--    @media(max-width:700px){-->
+                                            <!--        .swiper-container.slider1.swiper-slider.swiper-slider__{-->
+                                            <!--            min-height: 168px !important;height: 20vw !important;-->
+                                            <!--        }-->
+                                            <!--    }-->
+                                            <!--</style>-->
+                                            <!--<video autoplay muted loop style="position:absolute; left:0; right:0; width:100%; top:0">-->
+                                            <!--      <source src="{{ asset('images/movie.mp4')}}" type="video/mp4">-->
+                                            <!--</video>-->
+                                            <div class="slide-inner">
+                                                <div class="container">
+                                                    <div class="swiper-slide-caption" data-caption-animate="fadeIn"
+                                                         data-caption-delay="200">
+                                                        <div class="camera_caption ">
+
+
+                                                            <div class="row">
+                                                                <div class="moduletable   col-sm-5 ">
+                                                                    <div class="module_container">
+                                                                        <div class="mod-article-single mod-article-single__"
+                                                                             id="module_285">
+                                                                            <div class="item__module" id="item_180">
+                                                                                <!-- Item Title -->
+                                                                                <h1 class="item-title">
+
+                                                                                    <span
+                                                                                            style="color: #2a5d65;color: #2a5d65;
+                                                                                                                background: -webkit-linear-gradient(90deg, #292929,#2a5d65 50%);
+                                                                                                                -webkit-background-clip: text;
+                                                                                                                -webkit-text-fill-color: transparent;"
+                                                                                            class="item_title_part_1 item_title_part_even item_title_part_first_half">Largest</span>
+                                                                                    <span
+                                                                                            class="item_title_part_2 item_title_part_odd item_title_part_first_half">
+                                                                                        Multi-Purpose </span>
+                                                                                    <span
+                                                                                            class="item_title_part_3 item_title_part_even item_title_part_second_half">
+                                                                                        Port Facility </span>
+                                                                                    <span
+                                                                                            class="item_title_part_4 item_title_part_odd item_title_part_second_half item_title_part_last">In
+                                                                                        <span
+                                                                                                style="color: #2a5d65;">Iraq</span></span>
+                                                                                </h1>
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <!-- Read More link -->
+                                                            <div class="btn-wrapper">
+
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
 
                                     </div>
                                     <!-- Swiper Pagination -->
