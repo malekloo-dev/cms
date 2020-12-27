@@ -705,7 +705,7 @@
 </head>
 
 <body class="body__home option-com_content view-category task- itemid-101">
-    <div class="page-loader">
+    {{-- <div class="page-loader">
         <div>
             <div class="page-loader-body">
                 <div class="loader"><span class="block-1"></span><span class="block-2"></span><span
@@ -716,7 +716,7 @@
                         class="block-15"></span><span class="block-16"></span></div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div id="color_preloader">
         <div class="loader_wrapper">
             <div class='uil-spin-css'>

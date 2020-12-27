@@ -49,22 +49,21 @@
                             </div>
                         </div>
 
+                        @isset($table_of_content)
 
                         <ul>
                             @foreach ($table_of_content as $key => $item)
-                                <li class="toc1">
-                                    <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
-                                </li>
+                            <li class="toc1">
+                                <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
+                            </li>
                             @endforeach
 
                         </ul>
+                        @endisset
 
-                        @include(@env('TEMPLATE_NAME').'.DescriptionModule')
-
-
-
-                        @if (count($relatedPost))
-                            <section class="related-post" id="index-best-view">
+                            @include(@env('TEMPLATE_NAME').'.DescriptionModule')
+                            @if (count($relatedPost))
+                            <section class="related-post mt-2" id="index-best-view">
                                 <div class="flex one ">
                                     <div>
 

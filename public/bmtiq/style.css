@@ -484,6 +484,9 @@ input:focus,textarea:focus{border: 1px solid #ccc;}
 .image-style-align-left{float:left}
 figure.image{display:table;clear:both;text-align:center;margin:auto}
 figure.image>img{max-width:100%;margin:0 auto;display:block;height:auto}
+@media(max-width:500px){
+    figure.image{width: 100%;}
+}
 table ,tr,td{border:none !important}
 input[type=text]{width: 100%;border: 1px solid #ccc;}
 .alert:before{font-size: 2em; left: 1em;}
@@ -504,3 +507,9 @@ nav ul li:hover ul{display:block}
     ul>li.parent a::after{display:none}
     ul li.parent>div{display:block;background:0 0;position:absolute;left:10px;top:15px;outline:0;z-index:999999}
 }
+.mb-1{margin-bottom: 1em;}
+.mt-1{margin-top: 1em;}
+.mt-2{margin-top: 2em;}
+.pb-1{padding-bottom: 1em;}
+.pt-1{padding-top: 1em;}
+
