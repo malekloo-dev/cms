@@ -29,7 +29,7 @@
                                 <div id="swiper-slider_208"
                                      class="swiper-container slider1 swiper-slider swiper-slider__"
                                      data-autoplay="false" data-loop="true" data-simulate-touch="false"
-                                     data-slide-effect="slide" style="min-height: 420px;height: 40vw">
+                                     data-slide-effect="slide" style="height: 50vw">
                                     <div class="swiper-wrapper">
 
                                         <div class="swiper-slide " data-slide-bg="{{ asset('images/slider/14.jpg' )}}">
