@@ -423,7 +423,7 @@ function convert_entity($matches, $destroy = true)
 
 function convertJToG($date)
 {
-    if(env('LANG') != 'fa') return $date;
+    if(env('SITE_LANG') != 'fa') return $date;
 
     $convertFaToEn = CalendarUtils::convertNumbers($date,true); // 1395-02-19
     $convertDate = CalendarUtils::createCarbonFromFormat('Y/m/d',$convertFaToEn)->format('Y-m-d'); //2016-05-8
@@ -431,7 +431,7 @@ function convertJToG($date)
 }
 function convertGToJ($date){
 
-    if(env('LANG') != 'fa') return date('Y-m-d',strtotime($date));
+    if(env('SITE_LANG') != 'fa') return date('Y-m-d',strtotime($date));
 
     $jalali = CalendarUtils::strftime('Y-m-d', strtotime($date)); // 1395-02-19
     return CalendarUtils::convertNumbers($jalali); // ۱۳۹۵-۰۲-۱۹

@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $lang = app()->setLocale(env('LANG'));
+        $lang = app()->setLocale(env('SITE_LANG'));
         $lang = app()->getLocale();
 
         if($lang == 'en') View::share('ltr', true);
