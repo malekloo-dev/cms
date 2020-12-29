@@ -1,5 +1,14 @@
 @extends(@env('TEMPLATE_NAME').'.App')
+
 @section('head')
+    <meta property="og:image" content="{{ url($detail->images['images']['medium'] ?? '') }}" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width"
+        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
+    <meta property="og:image:height"
+        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
+    <meta property="og:image:alt" content="{{ $detail->title }}" />
+
     <link rel="stylesheet" href="{{ asset('/detail.css') }}">
 @endsection
 @section('Content')
@@ -32,8 +41,8 @@
                         <img src="{{ $detail->images['images']['medium'] ?? $detail->images['thumb'] }}"
                             sizes="(max-width:{{ env('ARTICLE_MEDIUM') }}px) 100vw {{ env('ARTICLE_MEDIUM') }}px {{ ENV('ARTICLE_LARGE') }}px"
                             alt="{{ $detail->title }}" width="{{ env('ARTICLE_MEDIUM') }}" height="100" srcset="
-                        {{ $detail->images['images']['medium'] ?? $detail->images['thumb'] }} {{ env('ARTICLE_MEDIUM') }}w,
-                        {{ $detail->images['images']['large'] ?? $detail->images['thumb'] }} 2x">
+                            {{ $detail->images['images']['medium'] ?? $detail->images['thumb'] }} {{ env('ARTICLE_MEDIUM') }}w,
+                            {{ $detail->images['images']['large'] ?? $detail->images['thumb'] }} 2x">
 
                     </figure>
                 @endif
