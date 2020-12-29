@@ -116,7 +116,7 @@
                                                     alt="{{ $content->title }}"></div>
                                         @endif
                                         <footer>
-                                            <h2> {{ $content->title }}</h2>
+                                            <h3> {{ $content->title }}</h3>
                                             {!! $content->brief_description !!}
                                         </footer>
                                     </article>

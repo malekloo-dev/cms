@@ -6,6 +6,7 @@ return [
     'password'=>'Password',
     'login page'=>'Login Page',
     'login'=>'Login',
+    'logout'=>'Logout',
     'Dashboard'=>'Dashboard',
     'Products'=>'Products',
     'products'=>'Products',

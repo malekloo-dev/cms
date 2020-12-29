@@ -6,6 +6,7 @@ return [
     'password'=>'پسورد',
     'login page'=>'لاگین',
     'login'=>'ورود',
+    'logout'=>'خروج',
     'Dashboard'=>'داشبورد',
     'Products'=>'محصولات',
     'products'=>'محصولات',
