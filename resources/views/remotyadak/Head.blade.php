@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="fa">
+
 <head>
-    <title>{{$seo['meta_title'] ?? "" }}</title>
+    <title>{{ $seo['meta_title'] ?? '' }}</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="{{$seo['meta_keywords'] ?? "" }}">
-    <meta name="description" content="{{$seo['meta_description']  ?? ""}}">
+    <meta name="keywords" content="{{ $seo['meta_keywords'] ?? '' }}">
+    <meta name="description" content="{{ $seo['meta_description'] ?? '' }}">
 
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
-    <meta name="theme-color" content="#fa490e"/>
+    <meta name="theme-color" content="#fa490e" />
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#fa490e">
@@ -31,10 +32,10 @@
     <link rel="stylesheet" media="bogus">
 
     <meta property="og:locale" content="fa_IR">
-    <meta property="og:type" content="{{$seo['og:type'] ?? "" }}">
-    <meta property="og:title" content="{{$seo['meta_title'] ?? "" }}">
-    <meta property="og:description" content="{{$seo['meta_description']  ?? ""}}">
-    <meta property="og:url" content="{{ $seo['url'] ?? ""}}">
+    <meta property="og:type" content="{{ $seo['og:type'] ?? '' }}">
+    <meta property="og:title" content="{{ $seo['meta_title'] ?? '' }}">
+    <meta property="og:description" content="{{ $seo['meta_description'] ?? '' }}">
+    <meta property="og:url" content="{{ Request::url() ?? $seo['url'] }}">
     <meta property="og:image" content="{{ asset('/img/logo2x.png') }}">
 
     <meta name="twitter:card" content="summary_large_image">
@@ -47,6 +48,7 @@
         //     element.classList.add("loaded");
 
         // });
+
     </script>
     @yield('assets')
 </head>
