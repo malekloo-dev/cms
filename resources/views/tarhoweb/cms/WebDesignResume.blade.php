@@ -50,6 +50,17 @@
         <div>
             <div class="gallery">
                 <div class="m-4">
+                    <img class="g1" src="{{asset('img/resume/darb1.jpg')}}">
+                    <img class="g2" src="{{asset('img/resume/darb2.jpg')}}">
+                    <img class="g3" src="{{asset('img/resume/darb3.jpg')}}">
+                </div>
+            </div>
+            <h3>درب کالا</h3>
+        </div>
+
+        <div>
+            <div class="gallery">
+                <div class="m-4">
                     <img class="g1" src="{{asset('img/resume/corepo1.jpg')}}">
                     <img class="g2" src="{{asset('img/resume/corepo2.jpg')}}">
                     <img class="g3" src="{{asset('img/resume/corepo3.jpg')}}">

@@ -70,7 +70,7 @@
                             <div class="panel-heading" role="tab" id="headingOne">
                                     <a class="btn btn-block" role="button" data-toggle="collapse" data-parent="#accordion"
                                        href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        category
+                                        @lang('messages.category')
                                     </a>
 
                             </div>
@@ -108,7 +108,7 @@
                                                 </select>
 
                                                 <label for="sort" class="col-form-label">sort:</label>
-                                                <input type="text" class="form-control" name="sort"
+                                                <input type="number" class="form-control" name="sort"
                                                        value="{{ old('sort') }}"/>
                                                 <span class="text-danger">{{ $errors->first('sort') }}</span>
 
