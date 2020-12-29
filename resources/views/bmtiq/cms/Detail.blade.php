@@ -10,7 +10,7 @@
         }
     </style>
 @endsection
-@section('js')
+@section('footer')
 @endsection
 
 @section('Content')

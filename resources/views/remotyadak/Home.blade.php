@@ -1,10 +1,10 @@
 
 @extends(@env('TEMPLATE_NAME').'.App')
 
-@section('assets')
+@section('head')
 
 @endsection
-@section('js')
+@section('footer')
 
 @endsection
 

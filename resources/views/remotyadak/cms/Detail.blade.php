@@ -1,5 +1,5 @@
 @extends(@env('TEMPLATE_NAME').'.App')
-@section('js')
+@section('footer')
     {{-- recaptcha --}}
     {{--
     <meta name="csrf-token" content="{{ csrf_token() }}">

@@ -48,7 +48,7 @@
 
         // });
     </script>
-    @yield('assets')
+    @yield('head')
 </head>
 
 <body>

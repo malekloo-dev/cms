@@ -1,5 +1,5 @@
 @extends(@env('TEMPLATE_NAME').'.App')
-@section('assets')
+@section('head')
 @endsection
 
 @section('Content')

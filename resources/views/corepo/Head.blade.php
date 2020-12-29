@@ -41,6 +41,6 @@
     <!-- <meta property="og:image:width" content="405">
     <meta property="og:image:height" content="300"> -->
 
-    @yield('assets')
+    @yield('head')
 </head>
 <body>

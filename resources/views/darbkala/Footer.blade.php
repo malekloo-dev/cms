@@ -12,7 +12,7 @@
         </div>
     </div>
 </section>
-@yield('js')
+@yield('footer')
 {{-- <script>
     var TEMPLATE_NAME = `{{ env('TEMPLATE_NAME') }}`;
 </script>

@@ -7,17 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="{{$seo['meta_keywords'] ?? "" }}">
     <meta name="description" content="{{$seo['meta_description']  ?? ""}}">
-    
+
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <meta name="theme-color" content="#fff"/>
-    
+
     <link rel="apple-touch-icon" href="{{ asset('/img/logo-96-96.png') }}">
     <link rel="apple-touch-icon" sizes="96x96" href="{{ asset('/img/logo-152-152.png') }}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('/img/logo-152-152.png') }}"> 
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('/img/logo-152-152.png') }}">
     <link rel="apple-touch-icon" sizes="192x192" href="{{ asset('/img/logo-192-192.png') }}">
     <link rel="apple-touch-icon" sizes="256x256" href="{{ asset('/img/logo-256-256.png') }}">
     <link rel="apple-touch-startup-image" href="{{ asset('/img/logo-512-512.png') }}">
-    
+
     <meta name="msapplication-TileImage" content="{{ asset('/img/logo-192-192.png') }}">
     <meta name="msapplication-TileColor" content="#fff">
     <meta name="msapplication-square100x100logo" content="{{ asset('/img/fav.png') }}">
@@ -34,9 +34,9 @@
     <meta property="og:image" content="{{ asset('/img/logo2x.png') }}">
 
     <meta name="twitter:card" content="summary_large_image">
-    
-    
-    @yield('assets')
+
+
+    @yield('head')
 
     <!-- Google Tag Manager -->
     <script>
