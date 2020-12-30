@@ -12,10 +12,7 @@
 
 @section('footer')
     <script type="text/javascript">
-        // console.log(document.getElementsByName('rating'))
-        // document.getElementsByName('rating').addEventListener('change', function() {
-        //     console.log(1)
-        // });
+
         document.addEventListener('DOMContentLoaded', () => {
 
             const ratings = document.querySelectorAll('[name="rate"]');
@@ -111,11 +108,24 @@
                         <h1 class="">{{ $detail->title }}</h1>
                         <div>
                             <span class="rate mt-1">
-                                @for ($i = $detail->attr['rate']; $i >= 1; $i--)
-                                    <img width="20" height="20"
-                                        srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
-                                        src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
-                                @endfor
+                                @if (count($detail->comments))
+                                    @php
+                                    $rateCount = $rateAvrage = 0;
+                                    @endphp
+                                    @foreach ($detail->comments as $comment)
+                                        @php
+                                        $rateCount++;
+                                        $rateAvrage = $rateAvrage + $comment['rate'] / $rateCount;
+                                        @endphp
+                                    @endforeach
+
+                                    @for ($i = $rateAvrage; $i >= 1; $i--)
+                                        <img width="20" height="20"
+                                            srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
+                                            src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                                    @endfor
+                                    <span class="font-08">({{ $rateCount }} نفر)</span>
+                                @endif
                             </span> |
                             {{ $detail->viewCount }} بار دیده شده |
                             تاریخ انتشار: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span> |
@@ -187,7 +197,7 @@
                                 <article>
                                     @if (isset($content->images['thumb']))
                                         <div><img src="{{ $content->images['thumb'] }}  alt=" {{ $content->title }} "></div>
-                                                                     @endif
+                                                                                    @endif
                                             <footer>
                                                 <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
                                                 {!! $content->brief_description !!}

@@ -11,6 +11,35 @@
 @endsection
 
 @section('footer')
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const ratings = document.querySelectorAll('[name="rate"]');
+            const labels = document.querySelectorAll('.rating > label');
+
+            const change = (e) => {
+                console.log(e.target.value);
+
+            }
+            const mouseenter = (e) => {
+                document.getElementById('rating-hover-label').innerHTML = e.target.title;
+            }
+            const mouseleave = (e) => {
+
+                document.getElementById('rating-hover-label').innerHTML = '';
+            }
+
+            ratings.forEach((el) => {
+                el.addEventListener('change', change);
+            });
+            labels.forEach((el) => {
+                el.addEventListener('mouseenter', mouseenter);
+                el.addEventListener('mouseleave', mouseleave);
+            });
+        });
+
+    </script>
+
     {{-- recaptcha --}}
     {{--
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -79,11 +108,24 @@
                         <div>
                             <span class="price text-green "> @convertCurrency($detail->attr['price']) تومان</span>
                             <span class="rate mt-1">
-                                @for ($i = $detail->attr['rate']; $i >= 1; $i--)
-                                    <img width="20" height="20"
-                                        srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
-                                        src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
-                                @endfor
+                                @if (count($detail->comments))
+                                    @php
+                                    $rateCount = $rateAvrage = 0;
+                                    @endphp
+                                    @foreach ($detail->comments as $comment)
+                                        @php
+                                        $rateCount++;
+                                        $rateAvrage = $rateAvrage + $comment['rate'] / $rateCount;
+                                        @endphp
+                                    @endforeach
+
+                                    @for ($i = $rateAvrage; $i >= 1; $i--)
+                                        <img width="20" height="20"
+                                            srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
+                                            src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                                    @endfor
+                                    <span class="font-08">({{ $rateCount }} نفر)</span>
+                                @endif
                             </span> |
                             {{ $detail->viewCount }} بار دیده شده |
                             تاریخ انتشار: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span> |
@@ -155,7 +197,7 @@
                                 <article>
                                     @if (isset($content->images['thumb']))
                                         <div><img src="{{ $content->images['thumb'] }}  alt=" {{ $content->title }} "></div>
-                                                 @endif
+                                                      @endif
                                             <footer>
                                                 <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
                                                 {!! $content->brief_description !!}
@@ -199,6 +241,23 @@
 
                             @csrf
                             <div>
+                                <div class="rating">
+                                    <span>امتیاز: </span>
+                                    <input name="rate" type="radio" id="st5" value="5" />
+                                    <label for="st5" title="عالی"></label>
+                                    <input name="rate" type="radio" id="st4" value="4" />
+                                    <label for="st4" title="خوب"></label>
+                                    <input name="rate" type="radio" id="st3" value="3" />
+                                    <label for="st3" title="معمولی"></label>
+                                    <input name="rate" type="radio" id="st2" value="2" />
+                                    <label for="st2" title="ضعیف"></label>
+                                    <input name="rate" type="radio" id="st1" value="1" />
+                                    <label for="st1" title="بد"></label>
+                                    <span id="rating-hover-label"></span>
+                                </div>
+                            </div>
+
+                            <div>
                                 <label for="comment_name">نام:</label>
                                 <input id="comment_name" type="text" name="name" value="{{ old('name') }}">
                             </div>
@@ -218,6 +277,13 @@
                                 <div class="date">{{ convertGToJ($comment['created_at']) }}</div>
                             </div>
                             <div class="article">
+                                <div>
+                                    @for ($i = $comment->rate; $i >= 1; $i--)
+                                        <img width="20" height="20"
+                                            srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
+                                            src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                                    @endfor
+                                </div>
                                 <div class="text">{{ $comment['comment'] }}</div>
                             </div>
                         </div>

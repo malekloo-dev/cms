@@ -39,14 +39,7 @@
             "name": "{{ $detail->attr['brand'] }}"
         },
 
-        "aggregateRating":
-        {
-            "@type": "AggregateRating",
-            "ratingValue": "{{ $detail->attr['rate'] }}",
-            "ratingCount": "{{ $detail->viewCount }}",
-            "bestRating": "5",
-            "worstRating": "0"
-        },
+
         "offers":
         {
             "@type": "Offer",
@@ -59,24 +52,47 @@
             "seller":
             {
                 "@type": "Organization",
-                "name": "ریموت یدک"
+                "name": "{{ env('TEMPLATE_NAME') }}"
             }
         }
         @if(isset($detail->comments))
         ,"review":
         [
+            @php
+            $rateCount = $rateAvrage = 0;
+            @endphp
+
             @foreach ($detail->comments as $comment)
+
+            @php
+            $rateCount++;
+            $rateAvrage = $rateAvrage + $comment['rate'] / $rateCount;
+            @endphp
                 {
                     "@type":"review",
                     "author":"{{ $comment['name'] }}",
                     "datePublished":"{{ $comment['created_at'] }}",
-                    "reviewBody":"{{ $comment['comment'] }}"
+                    "reviewBody":"{{ $comment['comment'] }}",
+                    "reviewRating": {
+                        "@type": "Rating",
+                        "bestRating": "5",
+                        "ratingValue": "{{ $comment['rate'] }}",
+                        "worstRating": "0"
+                      }
                 }
                 @if(!$loop->last)
                 ,
                 @endif
             @endforeach
-        ]
+        ],
+        "aggregateRating":
+        {
+            "@type": "AggregateRating",
+            "ratingValue": "{{ intval($rateAvrage) }}",
+            "ratingCount": "{{ $rateCount }}",
+            "bestRating": "5",
+            "worstRating": "0"
+        }
         @endif
     }
 </script>

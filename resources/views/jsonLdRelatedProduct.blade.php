@@ -21,14 +21,6 @@
             "@type": "Brand",
             "name": "{{ $content->attr['brand'] }}"
         },
-        "aggregateRating":
-        {
-            "@type": "AggregateRating",
-            "ratingValue": "{{ $content->attr['rate'] }}",
-            "ratingCount": "{{ $content->viewCount }}",
-            "bestRating": "5",
-            "worstRating": "0"
-        },
         "offers":
         {
             "@type": "Offer",
@@ -44,6 +36,28 @@
                 "name": "ریموت یدک"
             }
         }
+
+        @if(isset($content->comments))
+            @php
+            $rateCount = $rateAvrage = 0;
+            @endphp
+            @foreach ($content->comments as $comment)
+            @php
+            $rateCount++;
+            $rateAvrage = $rateAvrage + $comment['rate'] / $rateCount;
+            @endphp
+
+            @endforeach
+
+        ,"aggregateRating":
+        {
+            "@type": "AggregateRating",
+            "ratingValue": "{{ intval($rateAvrage) }}",
+            "ratingCount": "{{ $rateCount }}",
+            "bestRating": "5",
+            "worstRating": "0"
+        }
+        @endif
     }
     @isset($relatedProduct[$key+1])
         {{","}}

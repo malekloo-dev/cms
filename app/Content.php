@@ -29,8 +29,10 @@ class Content extends Model
 
     ];
 
-    public function comments(){
-        return $this->hasMany('App\Comment')->where('status','=','1');
+    public function comments()
+    {
+        $comments = $this->hasMany('App\Comment')->where('status', '=', '1');
+        
+        return $comments;
     }
-
 }
