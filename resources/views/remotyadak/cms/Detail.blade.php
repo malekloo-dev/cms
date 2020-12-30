@@ -11,6 +11,41 @@
 @endsection
 
 @section('footer')
+    <script type="text/javascript">
+        // console.log(document.getElementsByName('rating'))
+        // document.getElementsByName('rating').addEventListener('change', function() {
+        //     console.log(1)
+        // });
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const ratings = document.querySelectorAll('[name="rating"]');
+            const labels = document.querySelectorAll('.rating > label');
+
+            const change = (e) => {
+                console.log(e.target.value);
+                
+                document.getElementById('rating-hover-label').innerHTML = e.target.title;
+            }
+            const mouseenter = (e) => {
+                console.log(e.target.title);
+                document.getElementById('rating-hover-label').innerHTML = e.target.title;
+            }
+            const mouseleave = (e) => {
+                console.log('leave');
+                document.getElementById('rating-hover-label').innerHTML = '';
+            }
+
+            ratings.forEach((el) => {
+                el.addEventListener('change', change);
+            });
+            labels.forEach((el) => {
+                el.addEventListener('mouseenter', mouseenter);
+                el.addEventListener('mouseleave', mouseleave);
+            });
+        });
+
+    </script>
+
     {{-- recaptcha --}}
     {{--
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -154,7 +189,7 @@
                                 <article>
                                     @if (isset($content->images['thumb']))
                                         <div><img src="{{ $content->images['thumb'] }}  alt=" {{ $content->title }} "></div>
-                                  @endif
+                                                                @endif
                                             <footer>
                                                 <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
                                                 {!! $content->brief_description !!}
@@ -170,11 +205,24 @@
         </section>
     @endif
 
-
     <section class="comments bg-gray mt-0 mb-0">
         <div class="flex one">
             <div>
-                <div>نظرات شما</div>
+                <div>نظرات شما در مورد {{ $detail->title }}</div>
+                <div class="rating">
+                    <span>امتیاز: </span>
+                    <input name="rating"  type="checkbox" id="st5" value="5" />
+                    <label for="st5" title="عالی"></label>
+                    <input name="rating" type="checkbox" id="st4" value="4" />
+                    <label for="st4" title="خوب"></label>
+                    <input name="rating" type="checkbox" id="st3" value="3" />
+                    <label for="st3" title="معمولی"></label>
+                    <input name="rating" type="checkbox" id="st2" value="2" />
+                    <label for="st2" title="ضعیف"></label>
+                    <input name="rating" type="checkbox" id="st1" value="1" />
+                    <label for="st1" title="بد"></label>
+                    <span id="rating-hover-label"></span>
+                </div>
                 <div>
                     <div class="comment-form">
                         @if (\Session::has('success'))

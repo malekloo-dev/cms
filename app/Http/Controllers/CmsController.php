@@ -21,20 +21,20 @@ class CmsController extends Controller
     {
         $spesifiedUrl = RedirectUrl::where('url', 'like', '/' . $slug);
         if ($spesifiedUrl->exists()) {
-            header("Location: ". url($spesifiedUrl->first()->redirect_to), true, 301);
+            header("Location: " . url($spesifiedUrl->first()->redirect_to), true, 301);
             exit();
         }
 
 
         $detail = Content::where('slug', '=', $slug)
-            ->where('publish_date','<=', DB::raw('now()'))
+            ->where('publish_date', '<=', DB::raw('now()'))
             ->first();
         // dd($detail->comments);
         if ($detail === null) {
             $data['title'] = '404';
             $data['name'] = 'Page not found';
             return  response()
-                ->view(env('TEMPLATE_NAME') . '.NotFound',$data,404);
+                ->view(env('TEMPLATE_NAME') . '.NotFound', $data, 404);
         }
 
         $this->breadcrumb[] = $detail->getAttributes();
@@ -42,10 +42,10 @@ class CmsController extends Controller
 
         $seo['meta_keywords'] = $detail->meta_keywords;
         $seo['meta_description'] = $detail->meta_description;
-        $seo['url'] = url('/').'/'.$slug;
+        $seo['url'] = url('/') . '/' . $slug;
         $seo['meta_title'] = $detail->meta_title;
         $seo['og:title'] = $detail->title;
-        $seo['og:type'] = ($detail->type == 1)?'article':'product';
+        $seo['og:type'] = 'article';
 
 
         if (is_array($breadcrumb)) {
@@ -84,23 +84,23 @@ class CmsController extends Controller
         $relatedPost = array();
         $subCategory = array();
         $relatedProduct = array();
-        $editorModule=editorModule($detail->description);
+        $editorModule = editorModule($detail->description);
 
         if ($detail->type == 1) {
             $relatedPost = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'article')
                 ->where('parent_id', '=', $detail->id)
-                ->where('publish_date','<=', DB::raw('now()'))
+                ->where('publish_date', '<=', DB::raw('now()'))
                 ->get();
             $relatedProduct = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'product')
                 ->where('parent_id', '=', $detail->id)
-                ->where('publish_date','<=', DB::raw('now()'))
+                ->where('publish_date', '<=', DB::raw('now()'))
                 ->get();
 
             $subCategory = Content::where('type', '=', '1')
                 ->where('parent_id', '=', $detail->id)
-                ->where('publish_date','<=', DB::raw('now()'))
+                ->where('publish_date', '<=', DB::raw('now()'))
                 ->get();
 
             $template = env('TEMPLATE_NAME') . '.cms.DetailCategory';
@@ -109,13 +109,13 @@ class CmsController extends Controller
                 $template = env('TEMPLATE_NAME') . '.cms.' . $detail->attr['template_name'];
             }
             //dd($detail);
-            return view($template, compact(['detail', 'relatedPost', 'table_of_content', 'subCategory', 'relatedProduct', 'breadcrumb', 'images', 'seo','editorModule']));
+            return view($template, compact(['detail', 'relatedPost', 'table_of_content', 'subCategory', 'relatedProduct', 'breadcrumb', 'images', 'seo', 'editorModule']));
         } else {
             $relatedPost = Content::where('type', '=', '2')
                 ->where('parent_id', '=', $detail->parent_id)
                 ->where('id', '<>', $detail->id)
                 ->where('attr_type', '=', 'article')
-                ->where('publish_date','<=', DB::raw('now()'))
+                ->where('publish_date', '<=', DB::raw('now()'))
                 ->inRandomOrder()
                 ->limit(10)->get();
 
@@ -123,7 +123,7 @@ class CmsController extends Controller
                 ->where('parent_id', '=', $detail->parent_id)
                 ->where('id', '<>', $detail->id)
                 ->where('attr_type', '=', 'product')
-                ->where('publish_date','<=', DB::raw('now()'))
+                ->where('publish_date', '<=', DB::raw('now()'))
                 ->inRandomOrder()
                 ->limit(4)->get();
 
@@ -134,7 +134,7 @@ class CmsController extends Controller
 
             //$detail->description=editorModule($detail->description);
 
-            return view($template, compact(['detail', 'breadcrumb', 'relatedPost', 'table_of_content', 'relatedProduct', 'table_of_images', 'seo','editorModule']));
+            return view($template, compact(['detail', 'breadcrumb', 'relatedPost', 'table_of_content', 'relatedProduct', 'table_of_images', 'seo', 'editorModule']));
         }
     }
 
@@ -199,8 +199,9 @@ class CmsController extends Controller
         //$heads = preg_replace('/<\/h[1-'.$depth.']>/','</a></li>',$heads);
 
         //dd($detail->description);
-        function cleareText($val){
-           return  trim( clearHtml(str_replace('&nbsp;',' ',$val)));
+        function cleareText($val)
+        {
+            return  trim(clearHtml(str_replace('&nbsp;', ' ', $val)));
         }
 
         //$table=$winners;
@@ -209,10 +210,9 @@ class CmsController extends Controller
         $list['list'] = array();
         foreach ($winners[1] as $key => $val) {
             $item = str_replace(' ', '-', $val);
-            $label=cleareText($val);
-            $anchor=cleareText($item);
-            if(strlen($anchor)==0)
-            {
+            $label = cleareText($val);
+            $anchor = cleareText($item);
+            if (strlen($anchor) == 0) {
                 continue;
             }
             $list['list'][$count]['label'] = $anchor;
