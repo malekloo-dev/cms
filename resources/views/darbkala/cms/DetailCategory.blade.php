@@ -1,5 +1,12 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 @section('head')
+    <meta property="og:image" content="{{ url($detail->images['images']['medium'] ?? '') }}" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width"
+        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
+    <meta property="og:image:height"
+        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
+    <meta property="og:image:alt" content="{{ $detail->title }}" />
 @endsection
 
 @section('Content')
@@ -160,31 +167,39 @@
         <div class="flex one ">
             <div>
 
+                <div class="flex one two-700">
+                    <div class="two-third-700">
+                        <ul>
+                            @foreach ($table_of_content as $key => $item)
+                                <li class="toc1">
+                                    <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
+                                </li>
+                            @endforeach
 
-                @if (isset($detail->images['images']))
-                    <picture>
-                        <source media="(min-width:{{ env('CATEGORY_LARGE') }}px)"
-                            srcset="{{ $detail->images['images']['large'] ?? '' }}">
+                        </ul>
 
-                        <source media="(min-width:{{ env('CATEGORY_MEDIUM') }}px)"
-                            srcset="{{ $detail->images['images']['medium'] ?? '' }}">
+                    </div>
+                    <div class="third-700">
+                        @if (isset($detail->images['images']))
+                            <picture>
+                                <source media="(min-width:{{ env('CATEGORY_LARGE') }}px)"
+                                    srcset="{{ $detail->images['images']['large'] ?? '' }}">
 
-                        <source media="(min-width:{{ env('CATEGORY_SMALL') }}px)"
-                            srcset="{{ $detail->images['images']['small'] ?? '' }}">
+                                <source media="(min-width:{{ env('CATEGORY_MEDIUM') }}px)"
+                                    srcset="{{ $detail->images['images']['medium'] ?? '' }}">
 
-                        <img src="{{ $detail->images['images']['medium'] ?? '' }}" alt="{{ $detail->title }}"
-                            width="{{ env('CATEGORY_MEDIUM') }}" height="{{ env('CATEGORY_MEDIUM') }}">
-                    </picture>
-                @endif
+                                <source media="(min-width:{{ env('CATEGORY_SMALL') }}px)"
+                                    srcset="{{ $detail->images['images']['small'] ?? '' }}">
 
-                <ul>
-                    @foreach ($table_of_content as $key => $item)
-                        <li class="toc1">
-                            <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
-                        </li>
-                    @endforeach
+                                <img src="{{ $detail->images['images']['medium'] ?? '' }}" alt="{{ $detail->title }}"
+                                    width="{{ env('CATEGORY_MEDIUM') }}" height="{{ env('CATEGORY_MEDIUM') }}">
+                            </picture>
+                        @endif
 
-                </ul>
+
+                    </div>
+
+                </div>
 
                 @include(@env('TEMPLATE_NAME').'.DescriptionModule')
 

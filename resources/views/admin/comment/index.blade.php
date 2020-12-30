@@ -33,6 +33,7 @@
                             <th></th>
                             <th>@lang('messages.name')</th>
                             <th>@lang('messages.comment')</th>
+                            <th>@lang('messages.rate')</th>
                             <th>@lang('messages.status')</th>
                             <th>@lang('messages.content')</th>
                             <th></th>
@@ -45,7 +46,13 @@
                                 <td class="">{{ $item->name ?? '' }}</td>
                                 <td class="">{!! $item->comment !!}</td>
                                 <td class="">
-                                    @if($item->status == 1)
+                                    @for ($i = $item->rate; $i >= 1; $i--)
+                                        <img width="20" height="20"
+                                            src="{{ url('adminAssets/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                                    @endfor
+                                </td>
+                                <td class="">
+                                    @if ($item->status == 1)
                                         <i class="fa fa-check"></i>
                                     @endif
 

@@ -3,12 +3,12 @@
 @section('ckeditor')
     <script>
         /*  $(document).ready(function() {
-                                                        var $input = $("#parent_id");
-                                                        $input.select2();
-                                                        $("ul.select2-choices").sortable({
-                                                            containment: 'parent'
-                                                        });
-                                                    }); */
+                var $input = $("#parent_id");
+                $input.select2();
+                $("ul.select2-choices").sortable({
+                    containment: 'parent'
+                });
+            }); */
 
     </script>
 @endsection
@@ -38,10 +38,16 @@
                         </div>
                         <div class="col-md-4">
                             <label class="col-form-label text-md-left">@lang('messages.content'):</label>
-                            <a target="_blank" href="{{ url( $data->content->slug) }}">
+                            <a target="_blank" href="{{ url($data->content->slug) }}">
                                 {{ $data->content->title }}
                                 <i class="fa fa-external-link"></i>
                             </a>
+                        </div>
+                        <div class="col-md-2">
+                            @for ($i = $data->rate; $i >= 1; $i--)
+                                <img width="20" height="20" src="{{ url('adminAssets/img/star1x.png') }}"
+                                    alt="{{ 'star for rating' }}">
+                            @endfor
                         </div>
                     </div>
                     <div class="form-group row">

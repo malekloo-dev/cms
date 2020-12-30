@@ -18,20 +18,18 @@
         // });
         document.addEventListener('DOMContentLoaded', () => {
 
-            const ratings = document.querySelectorAll('[name="rating"]');
+            const ratings = document.querySelectorAll('[name="rate"]');
             const labels = document.querySelectorAll('.rating > label');
 
             const change = (e) => {
                 console.log(e.target.value);
-                
-                document.getElementById('rating-hover-label').innerHTML = e.target.title;
+
             }
             const mouseenter = (e) => {
-                console.log(e.target.title);
                 document.getElementById('rating-hover-label').innerHTML = e.target.title;
             }
             const mouseleave = (e) => {
-                console.log('leave');
+
                 document.getElementById('rating-hover-label').innerHTML = '';
             }
 
@@ -189,7 +187,7 @@
                                 <article>
                                     @if (isset($content->images['thumb']))
                                         <div><img src="{{ $content->images['thumb'] }}  alt=" {{ $content->title }} "></div>
-                                                                @endif
+                                                                     @endif
                                             <footer>
                                                 <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
                                                 {!! $content->brief_description !!}
@@ -209,20 +207,7 @@
         <div class="flex one">
             <div>
                 <div>نظرات شما در مورد {{ $detail->title }}</div>
-                <div class="rating">
-                    <span>امتیاز: </span>
-                    <input name="rating"  type="checkbox" id="st5" value="5" />
-                    <label for="st5" title="عالی"></label>
-                    <input name="rating" type="checkbox" id="st4" value="4" />
-                    <label for="st4" title="خوب"></label>
-                    <input name="rating" type="checkbox" id="st3" value="3" />
-                    <label for="st3" title="معمولی"></label>
-                    <input name="rating" type="checkbox" id="st2" value="2" />
-                    <label for="st2" title="ضعیف"></label>
-                    <input name="rating" type="checkbox" id="st1" value="1" />
-                    <label for="st1" title="بد"></label>
-                    <span id="rating-hover-label"></span>
-                </div>
+
                 <div>
                     <div class="comment-form">
                         @if (\Session::has('success'))
@@ -246,6 +231,23 @@
 
                             @csrf
                             <div>
+                                <div class="rating">
+                                    <span>امتیاز: </span>
+                                    <input name="rate" type="radio" id="st5" value="5" />
+                                    <label for="st5" title="عالی"></label>
+                                    <input name="rate" type="radio" id="st4" value="4" />
+                                    <label for="st4" title="خوب"></label>
+                                    <input name="rate" type="radio" id="st3" value="3" />
+                                    <label for="st3" title="معمولی"></label>
+                                    <input name="rate" type="radio" id="st2" value="2" />
+                                    <label for="st2" title="ضعیف"></label>
+                                    <input name="rate" type="radio" id="st1" value="1" />
+                                    <label for="st1" title="بد"></label>
+                                    <span id="rating-hover-label"></span>
+                                </div>
+                            </div>
+
+                            <div>
                                 <label for="comment_name">نام:</label>
                                 <input id="comment_name" type="text" name="name" value="{{ old('name') }}">
                             </div>
@@ -265,6 +267,13 @@
                                 <div class="date">{{ convertGToJ($comment['created_at']) }}</div>
                             </div>
                             <div class="article">
+                                <div>
+                                    @for ($i = $comment->rate; $i >= 1; $i--)
+                                        <img width="20" height="20"
+                                            srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
+                                            src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                                    @endfor
+                                </div>
                                 <div class="text">{{ $comment['comment'] }}</div>
                             </div>
                         </div>

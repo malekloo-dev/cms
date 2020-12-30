@@ -35,8 +35,7 @@
     <meta property="og:title" content="{{$seo['meta_title'] ?? "" }}">
     <meta property="og:description" content="{{$seo['meta_description']  ?? ""}}">
     <meta property="og:url" content="{{ Request::url() ?? $seo['url'] }}">
-    <meta property="og:image" content="{{ asset('/img/logo2x.png') }}">
-
+    
     <meta name="twitter:card" content="summary_large_image">
     <!-- <meta property="og:image:width" content="405">
     <meta property="og:image:height" content="300"> -->
