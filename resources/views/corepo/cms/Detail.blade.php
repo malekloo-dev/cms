@@ -41,8 +41,8 @@
                         <img src="{{ $detail->images['images']['medium'] ?? $detail->images['thumb'] }}"
                             sizes="(max-width:{{ env('ARTICLE_MEDIUM') }}px) 100vw {{ env('ARTICLE_MEDIUM') }}px {{ ENV('ARTICLE_LARGE') }}px"
                             alt="{{ $detail->title }}" width="{{ env('ARTICLE_MEDIUM') }}" height="100" srcset="
-                            {{ $detail->images['images']['medium'] ?? $detail->images['thumb'] }} {{ env('ARTICLE_MEDIUM') }}w,
-                            {{ $detail->images['images']['large'] ?? $detail->images['thumb'] }} 2x">
+                                {{ $detail->images['images']['medium'] ?? $detail->images['thumb'] }} {{ env('ARTICLE_MEDIUM') }}w,
+                                {{ $detail->images['images']['large'] ?? $detail->images['thumb'] }} 2x">
 
                     </figure>
                 @endif
@@ -50,14 +50,22 @@
                     <h1 class="site-name">{{ $detail->title }}</h1>
                     <div class="website"></div>
                     <div class="rate">
-                        @if ($detail->attr)
-                            @for ($i = $detail->attr['rate']; $i >= 1; $i--)
+                        @if (count($detail->comments))
+                            @php
+                            $rateAvrage = $rateSum = 0;
+                            @endphp
+                            @foreach ($detail->comments as $comment)
+                                @php
+                                $rateSum = $rateSum + $comment['rate'] ;
+                                @endphp
+                            @endforeach
+                            @for ($i = $rateSum / count($detail->comments); $i >= 1; $i--)
                                 <img width="20" height="20"
                                     srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
                                     src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
                             @endfor
+                            <span class="font-08">({{ count($detail->comments) }} نفر)</span>
                         @endif
-
                     </div>
                 </div>
             </div>
@@ -178,6 +186,27 @@
 
                             @csrf
                             <div>
+                                <div class="rating">
+                                    <span>امتیاز: </span>
+                                    <input name="rate" type="radio" id="st5" {{ old('rate') == '5' ? 'checked' : '' }}
+                                        value="5" />
+                                    <label for="st5" title="عالی"></label>
+                                    <input name="rate" type="radio" id="st4" {{ old('rate') == '4' ? 'checked' : '' }}
+                                        value="4" />
+                                    <label for="st4" title="خوب"></label>
+                                    <input name="rate" type="radio" id="st3" {{ old('rate') == '3' ? 'checked' : '' }}
+                                        value="3" />
+                                    <label for="st3" title="معمولی"></label>
+                                    <input name="rate" type="radio" id="st2" {{ old('rate') == '2' ? 'checked' : '' }}
+                                        value="2" />
+                                    <label for="st2" title="ضعیف"></label>
+                                    <input name="rate" type="radio" id="st1" {{ old('rate') == '1' ? 'checked' : '' }}
+                                        value="1" />
+                                    <label for="st1" title="بد"></label>
+                                    <span id="rating-hover-label"></span>
+                                </div>
+                            </div>
+                            <div>
                                 <label>نام:</label>
                                 <input type="text" name="name" value="{{ old('name') }}">
                             </div>
@@ -197,6 +226,13 @@
                                 <div class="date">{{ convertGToJ($comment['created_at']) }}</div>
                             </div>
                             <div class="article">
+                                <div>
+                                    @for ($i = $comment->rate; $i >= 1; $i--)
+                                        <img width="20" height="20"
+                                            srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
+                                            src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                                    @endfor
+                                </div>
                                 <div class="text">{{ $comment['comment'] }}</div>
                             </div>
                         </div>

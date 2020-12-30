@@ -33,27 +33,48 @@
             "seller":
             {
                 "@type": "Organization",
-                "name": "ریموت یدک"
+                "name": "{{ env('TEMPLATE_NAME') }}"
             }
         }
 
-        @if(isset($content->comments))
-            @php
-            $rateCount = $rateAvrage = 0;
-            @endphp
-            @foreach ($content->comments as $comment)
-            @php
-            $rateCount++;
-            $rateAvrage = $rateAvrage + $comment['rate'] / $rateCount;
-            @endphp
+        @if(count($content->comments))
+        ,"review":
+        [
+            @php $rateSum = $rateAvrage =  $jj = $j = 0;  @endphp
 
+            @foreach ($content->comments as $comment)
+                @if($comment['name'] !='' && $comment['comment'] != '')
+                    @php $jj++; @endphp
+                @endif
+                @php $rateSum = $rateSum + $comment['rate']; @endphp
             @endforeach
 
-        ,"aggregateRating":
+            @foreach ($content->comments as $comment)
+                @if($comment['name'] !='' && $comment['comment'] != '')
+                    @php $j++; @endphp
+                    {
+                        "@type":"review",
+                        "author":"{{ $comment['name'] }}",
+                        "datePublished":"{{ $comment['created_at'] }}",
+                        "reviewBody":"{{ $comment['comment'] }}",
+                        "reviewRating": {
+                            "@type": "Rating",
+                            "bestRating": "5",
+                            "ratingValue": "{{ $comment['rate'] }}",
+                            "worstRating": "0"
+                        }
+                    }
+                    @if($j < $jj)
+                        ,
+                    @endif
+                @endif
+            @endforeach
+        ],
+        "aggregateRating":
         {
             "@type": "AggregateRating",
-            "ratingValue": "{{ intval($rateAvrage) }}",
-            "ratingCount": "{{ $rateCount }}",
+            "ratingValue": "{{ intval($rateSum / count($content->comments)) }}",
+            "ratingCount": "{{ count($content->comments) }}",
             "bestRating": "5",
             "worstRating": "0"
         }

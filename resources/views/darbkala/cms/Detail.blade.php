@@ -110,21 +110,19 @@
                             <span class="rate mt-1">
                                 @if (count($detail->comments))
                                     @php
-                                    $rateCount = $rateAvrage = 0;
+                                    $rateAvrage = $rateSum = 0;
                                     @endphp
                                     @foreach ($detail->comments as $comment)
                                         @php
-                                        $rateCount++;
-                                        $rateAvrage = $rateAvrage + $comment['rate'] / $rateCount;
+                                        $rateSum = $rateSum + $comment['rate'] ;
                                         @endphp
                                     @endforeach
-
-                                    @for ($i = $rateAvrage; $i >= 1; $i--)
+                                    @for ($i = $rateSum / count($detail->comments); $i >= 1; $i--)
                                         <img width="20" height="20"
                                             srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
                                             src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
                                     @endfor
-                                    <span class="font-08">({{ $rateCount }} نفر)</span>
+                                    <span class="font-08">({{ count($detail->comments) }} نفر)</span>
                                 @endif
                             </span> |
                             {{ $detail->viewCount }} بار دیده شده |
@@ -197,7 +195,7 @@
                                 <article>
                                     @if (isset($content->images['thumb']))
                                         <div><img src="{{ $content->images['thumb'] }}  alt=" {{ $content->title }} "></div>
-                                                      @endif
+                                                           @endif
                                             <footer>
                                                 <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
                                                 {!! $content->brief_description !!}
@@ -243,15 +241,20 @@
                             <div>
                                 <div class="rating">
                                     <span>امتیاز: </span>
-                                    <input name="rate" type="radio" id="st5" value="5" />
+                                    <input name="rate" type="radio" id="st5" {{ old('rate') == '5' ? 'checked' : '' }}
+                                        value="5" />
                                     <label for="st5" title="عالی"></label>
-                                    <input name="rate" type="radio" id="st4" value="4" />
+                                    <input name="rate" type="radio" id="st4" {{ old('rate') == '4' ? 'checked' : '' }}
+                                        value="4" />
                                     <label for="st4" title="خوب"></label>
-                                    <input name="rate" type="radio" id="st3" value="3" />
+                                    <input name="rate" type="radio" id="st3" {{ old('rate') == '3' ? 'checked' : '' }}
+                                        value="3" />
                                     <label for="st3" title="معمولی"></label>
-                                    <input name="rate" type="radio" id="st2" value="2" />
+                                    <input name="rate" type="radio" id="st2" {{ old('rate') == '2' ? 'checked' : '' }}
+                                        value="2" />
                                     <label for="st2" title="ضعیف"></label>
-                                    <input name="rate" type="radio" id="st1" value="1" />
+                                    <input name="rate" type="radio" id="st1" {{ old('rate') == '1' ? 'checked' : '' }}
+                                        value="1" />
                                     <label for="st1" title="بد"></label>
                                     <span id="rating-hover-label"></span>
                                 </div>
@@ -271,22 +274,24 @@
                     </div>
 
                     @foreach ($detail->comments as $comment)
-                        <div class="comment">
-                            <div class="aside">
-                                <div class="name">{{ $comment['name'] }}</div>
-                                <div class="date">{{ convertGToJ($comment['created_at']) }}</div>
-                            </div>
-                            <div class="article">
-                                <div>
-                                    @for ($i = $comment->rate; $i >= 1; $i--)
-                                        <img width="20" height="20"
-                                            srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
-                                            src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
-                                    @endfor
+                        @if ($comment['name'] != '' && $comment['comment'] != '')
+                            <div class="comment">
+                                <div class="aside">
+                                    <div class="name">{{ $comment['name'] }}</div>
+                                    <div class="date">{{ convertGToJ($comment['created_at']) }}</div>
                                 </div>
-                                <div class="text">{{ $comment['comment'] }}</div>
+                                <div class="article">
+                                    <div>
+                                        @for ($i = $comment->rate; $i >= 1; $i--)
+                                            <img width="20" height="20"
+                                                srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
+                                                src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                                        @endfor
+                                    </div>
+                                    <div class="text">{{ $comment['comment'] }}</div>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     @endforeach
                 </div>
             </div>

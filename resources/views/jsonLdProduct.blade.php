@@ -39,7 +39,6 @@
             "name": "{{ $detail->attr['brand'] }}"
         },
 
-
         "offers":
         {
             "@type": "Offer",
@@ -55,41 +54,44 @@
                 "name": "{{ env('TEMPLATE_NAME') }}"
             }
         }
-        @if(isset($detail->comments))
+        @if(count($detail->comments))
         ,"review":
         [
-            @php
-            $rateCount = $rateAvrage = 0;
-            @endphp
+            @php $rateSum = $rateAvrage =  $jj = $j = 0;  @endphp
 
             @foreach ($detail->comments as $comment)
+                @if($comment['name'] !='' && $comment['comment'] != '')
+                    @php $jj++; @endphp
+                @endif
+                @php $rateSum = $rateSum + $comment['rate']; @endphp
+            @endforeach
 
-            @php
-            $rateCount++;
-            $rateAvrage = $rateAvrage + $comment['rate'] / $rateCount;
-            @endphp
-                {
-                    "@type":"review",
-                    "author":"{{ $comment['name'] }}",
-                    "datePublished":"{{ $comment['created_at'] }}",
-                    "reviewBody":"{{ $comment['comment'] }}",
-                    "reviewRating": {
-                        "@type": "Rating",
-                        "bestRating": "5",
-                        "ratingValue": "{{ $comment['rate'] }}",
-                        "worstRating": "0"
-                      }
-                }
-                @if(!$loop->last)
-                ,
+            @foreach ($detail->comments as $comment)
+                @if($comment['name'] !='' && $comment['comment'] != '')
+                    @php $j++; @endphp
+                    {
+                        "@type":"review",
+                        "author":"{{ $comment['name'] }}",
+                        "datePublished":"{{ $comment['created_at'] }}",
+                        "reviewBody":"{{ $comment['comment'] }}",
+                        "reviewRating": {
+                            "@type": "Rating",
+                            "bestRating": "5",
+                            "ratingValue": "{{ $comment['rate'] }}",
+                            "worstRating": "0"
+                        }
+                    }
+                    @if($j < $jj)
+                        ,
+                    @endif
                 @endif
             @endforeach
         ],
         "aggregateRating":
         {
             "@type": "AggregateRating",
-            "ratingValue": "{{ intval($rateAvrage) }}",
-            "ratingCount": "{{ $rateCount }}",
+            "ratingValue": "{{ intval($rateSum / count($detail->comments)) }}",
+            "ratingCount": "{{ count($detail->comments) }}",
             "bestRating": "5",
             "worstRating": "0"
         }

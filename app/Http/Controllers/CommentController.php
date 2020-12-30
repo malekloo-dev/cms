@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Http\Requests\CommentRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 
 class CommentController extends Controller
@@ -36,10 +37,21 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CommentRequest $request)
+    public function store(Request $request)
     {
+        if ($request->name != '' || $request->comment != '') {
+            $request->validate([
+                'name' => 'required',
+                'comment' => 'required'
+            ]);
+            $data = $request->all();
+        }else{
+            $data = $request->all();
+            $data['status'] = 1;
+        }
 
-        Comment::create($request->all());
+
+        Comment::create($data);
 
         return redirect()->back()->with('success', __('messages.comment-send-success'));
     }
@@ -81,7 +93,7 @@ class CommentController extends Controller
         $data = $comment;
         $data->update($request->all());
 
-        return redirect()->route('comment.index')->with('success',$data->comment  . ' '. Lang::get('messages.edited'));
+        return redirect()->route('comment.index')->with('success', $data->comment  . ' ' . Lang::get('messages.edited'));
     }
 
     /**
