@@ -57,7 +57,10 @@ class HomeController extends Controller
         foreach ((array) $attr as $var => $config) {
 
             if($config['type']=='banner'){
-                $data[$var]=$config['images'];
+                $data[$var]=$config;
+                unset($data[$var]['count']);
+                unset($data[$var]['type']);
+
                 continue;
             }
             $type = '';
