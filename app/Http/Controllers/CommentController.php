@@ -41,6 +41,7 @@ class CommentController extends Controller
     {
         if ($request->name != '' || $request->comment != '') {
             $request->validate([
+                'rate' => 'required',
                 'name' => 'required',
                 'comment' => 'required'
             ]);

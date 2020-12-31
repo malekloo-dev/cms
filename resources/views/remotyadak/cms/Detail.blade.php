@@ -274,22 +274,24 @@
                     </div>
 
                     @foreach ($detail->comments as $comment)
-                        <div class="comment">
-                            <div class="aside">
-                                <div class="name">{{ $comment['name'] }}</div>
-                                <div class="date">{{ convertGToJ($comment['created_at']) }}</div>
-                            </div>
-                            <div class="article">
-                                <div>
-                                    @for ($i = $comment->rate; $i >= 1; $i--)
-                                        <img width="20" height="20"
-                                            srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
-                                            src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
-                                    @endfor
+                        @if ($comment['name'] != '' && $comment['comment'] != '')
+                            <div class="comment">
+                                <div class="aside">
+                                    <div class="name">{{ $comment['name'] }}</div>
+                                    <div class="date">{{ convertGToJ($comment['created_at']) }}</div>
                                 </div>
-                                <div class="text">{{ $comment['comment'] }}</div>
+                                <div class="article">
+                                    <div>
+                                        @for ($i = $comment->rate; $i >= 1; $i--)
+                                            <img width="20" height="20"
+                                                srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
+                                                src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                                        @endfor
+                                    </div>
+                                    <div class="text">{{ $comment['comment'] }}</div>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
