@@ -104,7 +104,7 @@ class ModuleBuilderController extends Controller
             ->get();
         $data['widgets'] = Widget::find(1);
         $data['arrayContent'] = $arrayContent;
-        //dd($arrayContent);
+        //dd($data);
 
         return view('admin.moduleBuilder.Edit', $data);
     }
@@ -123,18 +123,32 @@ class ModuleBuilderController extends Controller
         $data = $request->all();
         foreach ($data['attr'] as $k => $v) {
             if ($v['type'] == 'banner') {
-
                 //continue;
                 $images = array();
                 if (isset($crud['attr'][$k]['images'])) {
                     $images = $crud['attr'][$k]['images'];
                 }
+
+
                 if (isset($v['images'])) {
                     foreach ($v['images'] as $index => $image) {
                         if (isset($v['delete'][$index])) {
                             continue;
                         }
-                        $images[$index] = $this->uploadImages($image);
+                        //if($image->mimeType)
+                        //echo '<pre/>';
+
+                        $pos = strpos($image->getMimeType(), 'video');
+                        if ($pos === false) {
+                            $images[$index] = $this->uploadImages($image);
+
+                        }else
+                        {
+                            $images[0] = $this->uploadImages($image);
+                            break;
+
+                        }
+
 
                     }
                 }
@@ -145,15 +159,28 @@ class ModuleBuilderController extends Controller
                             continue;
                     }
                 }
+                $mimeType='image';
                 foreach ($images as $index => $image) {
-                    $SortImages[]=$image;
+                    $pos = strpos($image, 'mp4');
+                    if ($pos === false) {
+                        $SortImages[]=$image;
+
+                    }else
+                    {
+                        $SortImages=array();
+                        $SortImages[]=$image;
+                        $mimeType='video';
+                        break;
+
+                    }
                 }
                 $data['attr'][$k]['images'] = $SortImages;
+                $data['attr'][$k]['mimeType'] = $mimeType;
             }
         }
 
         $crud->update($data);
-        // dd($data);
+         //dd($data);
 
         return redirect('admin/indexConfig')->with('success', 'Update! Menu Update successfully.');
 
