@@ -56,7 +56,7 @@
                                 $widget = $widgets->attr[$attr['config']['var']];
 
                                 }
-                            //dd($widget);
+
 
                             @endphp
                             @if ($attr['type']=='banner')
@@ -79,36 +79,49 @@
                                             <div class="panel-body">
 
                                                 @for ($i=0;$i<$attr['config']['count'] ;$i++)
-                                                <div class="row">
-                                                    <div class="col-md-2 ">
-                                                        <label for="parent" class="col-form-label text-md-left">
-                                                            Delete</label>
-                                                        <input type="checkbox"
-                                                               name="attr[{{ $attr['config']['var'] }}][delete][{{$i}}]" value="1" class="form-check" id="exampleCheck1">
-
-                                                    </div>
-
-
-                                                    <div class="col-md-2 ">
-                                                    @isset($widget['images'][$i])
-                                                        <img height="80" src="{{ $widget['images'][$i] }}" />
-                                                    @endisset
-                                                    </div>
-                                                    <div class="col-md-3 ">
-                                                        <div class="panel-title">
-
+                                                    <div class="row">
+                                                        <div class="col-md-1">
                                                             <label for="parent" class="col-form-label text-md-left">
-                                                                Select Image
-                                                                {{ $attr['config']['label'] }}</label>
-                                                            <input type="file" class="form-control"
-                                                                   name="attr[{{ $attr['config']['var'] }}][images][]"
-                                                                   id="images"
-                                                                   placeholder=""
-                                                                   value="{{ old('imageUrl') }}">
-                                                        </div>
-                                                    </div>
+                                                                Delete</label>
+                                                            <input type="checkbox"
+                                                                   name="attr[{{ $attr['config']['var'] }}][delete][{{$i}}]"
+                                                                   value="1" class="form-check" id="exampleCheck1">
 
-                                                </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 ">
+                                                            @if (isset($widget['images'][$i]))
+                                                                @if ($widget['mimeType']=='image')
+
+                                                                    <img height="80" src="{{ $widget['images'][$i] }}"/>
+                                                                    <label for="img" class="col-form-label text-md-left">
+                                                                        {{ $widget['images'][$i] }}  </label>
+
+                                                                @else
+
+                                                                    <img height="80"src="/{{ asset('images/movie.jpg')}}"/>
+                                                                    <label for="img" class="col-form-label text-md-left">
+                                                                        {{ $widget['images'][$i] }}  </label>
+
+                                                                @endif
+                                                            @endif
+
+                                                        </div>
+                                                        <div class="col-md-3 ">
+                                                            <div class="panel-title">
+
+                                                                <label for="parent" class="col-form-label text-md-left">
+                                                                    Select Image
+                                                                    {{ $attr['config']['label'] }}</label>
+                                                                <input type="file" class="form-control"
+                                                                       name="attr[{{ $attr['config']['var'] }}][images][]"
+                                                                       id="images"
+                                                                       placeholder=""
+                                                                       value="{{ old('imageUrl') }}">
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
                                                     <br/>
                                                 @endfor
 

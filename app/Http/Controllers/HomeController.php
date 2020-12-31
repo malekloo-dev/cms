@@ -52,12 +52,12 @@ class HomeController extends Controller
             $attr = array();
         }
 
-        DB::connection()->enableQueryLog();
+        //DB::connection()->enableQueryLog();
 
         foreach ((array) $attr as $var => $config) {
 
             if($config['type']=='banner'){
-
+                $data[$var]=$config['images'];
                 continue;
             }
             $type = '';
@@ -97,8 +97,9 @@ class HomeController extends Controller
                 $data[$var] = $module->get();
             }
 
+
         }
-        $queries = DB::getQueryLog();
+       // $queries = DB::getQueryLog();
 
         //dd($queries);
 
