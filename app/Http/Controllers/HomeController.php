@@ -56,6 +56,10 @@ class HomeController extends Controller
 
         foreach ((array) $attr as $var => $config) {
 
+            if($config['type']=='banner'){
+
+                continue;
+            }
             $type = '';
             //$data[$var] =new Content();
             $module = new Content();

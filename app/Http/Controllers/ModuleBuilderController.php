@@ -30,41 +30,49 @@ class ModuleBuilderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function getSinglePagePoint($content)
     {
-       // {{--#anchor news--}}
+        // {{--#anchor news--}}
         preg_match_all("/({{--#anchor(.*)--}})/U", $content, $pat_array);
-        return array_map('trim',$pat_array[2]);
+        return array_map('trim', $pat_array[2]);
 
     }
 
 
+    protected function uploadImages($file, $type = 'category')
+    {
+        $imagePath = "/upload/images/modules/banner/";
+        $filename = $file->getClientOriginalName();
+
+        $file = $file->move(public_path($imagePath), $filename);
+
+        return $imagePath . $filename;
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Menu  $menu
+     * @param  \App\Menu $menu
      * @return \Illuminate\Http\Response
      */
     public function edit()
     {
 
-
         //{{--module=category&label=NEWS&count=3&query=last--}}
         //{{--gallery&label=NEWS&count=3&query=last--}}
         // $template = 'O:\xampp\htdocs\cms\resources\views\remotyadak\Home.blade.php';
-        $template = resource_path('views/'. env('TEMPLATE_NAME') .'/Home.blade.php');
+        $template = resource_path('views/' . env('TEMPLATE_NAME') . '/Home.blade.php');
 
 
-        $content=file_get_contents($template);
-        preg_match_all("/({{--category&(.*)--}})|({{--categoryDetail&(.*)--}})|({{--product&(.*)--}})|({{--post(.*)--}})/U", $content, $pat_array);
+        $content = file_get_contents($template);
+        preg_match_all("/({{--category&(.*)--}})|({{--categoryDetail&(.*)--}})|({{--product&(.*)--}})|({{--post(.*)--}})|({{--banner(.*)--}})/U", $content, $pat_array);
         //{gallery&size=10&template=1}
         //parse_str($_SERVER['QUERY_STRING'], $outputArray);
-
-        //dd($pat_array[0]);
-        $module = array('category' => '1', 'product' => '1','post' => '1');
+        $module = array('category' => '1', 'product' => '1', 'post' => '1');
         $count = 0;
         foreach ($pat_array[0] as $key => $val) {
 
@@ -74,7 +82,7 @@ class ModuleBuilderController extends Controller
             //$value=str_replace('&amp;','&',$moduleStart);
             //parse_str($value, $outputArray);
             // dd($outputArray);
-            $moduleStart=str_replace('&amp;','&',$moduleStart);
+            $moduleStart = str_replace('&amp;', '&', $moduleStart);
             $moduleGetAttrArray = (explode('&', $moduleStart));
             $moduleName = $moduleGetAttrArray[0];
 
@@ -92,42 +100,70 @@ class ModuleBuilderController extends Controller
         }
 
         $data['category'] = Content::where('type', '=', '1')
-            ->where('publish_date','<=', DB::raw('now()'))
+            ->where('publish_date', '<=', DB::raw('now()'))
             ->get();
-
-        $data['widgets']= Widget::find(1);
-        $data['arrayContent']=$arrayContent;
+        $data['widgets'] = Widget::find(1);
+        $data['arrayContent'] = $arrayContent;
         //dd($arrayContent);
 
-        return view('admin.moduleBuilder.Edit',$data);
+        return view('admin.moduleBuilder.Edit', $data);
     }
 
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Menu  $menu
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Menu $menu
      * @return \Illuminate\Http\Response
      */
-    public function update($id,Request $request)
+    public function update($id, Request $request)
     {
         $crud = Widget::find(1);
         $data = $request->all();
+        foreach ($data['attr'] as $k => $v) {
+            if ($v['type'] == 'banner') {
+
+                //continue;
+                $images = array();
+                if (isset($crud['attr'][$k]['images'])) {
+                    $images = $crud['attr'][$k]['images'];
+                }
+                if (isset($v['images'])) {
+                    foreach ($v['images'] as $index => $image) {
+                        if (isset($v['delete'][$index])) {
+                            continue;
+                        }
+                        $images[$index] = $this->uploadImages($image);
+
+                    }
+                }
+                if (isset($v['delete'])) {
+
+                    foreach ($v['delete'] as $index => $image) {
+                            unset($images[$index]);
+                            continue;
+                    }
+                }
+                foreach ($images as $index => $image) {
+                    $SortImages[]=$image;
+                }
+                $data['attr'][$k]['images'] = $SortImages;
+            }
+        }
+
         $crud->update($data);
-       // dd($data);
+        // dd($data);
 
         return redirect('admin/indexConfig')->with('success', 'Update! Menu Update successfully.');
 
     }
 
 
-
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Menu  $menu
+     * @param  \App\Menu $menu
      * @return \Illuminate\Http\Response
      */
     public function destroy(Menu $menu)

@@ -14,6 +14,7 @@
 @endsection
 
 @section('Content')
+    {{--banner&label=Home Banner&var=banner&count=3--}}
 
     {{--#anchor home --}}
     <div id="home"></div>
@@ -332,6 +333,7 @@
                                     </div>
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
                                          id="module_288">
+
                                         {{--post&label=NEWS&var=news&count=3--}}
                                         @isset($news)
                                             <div class="row">
