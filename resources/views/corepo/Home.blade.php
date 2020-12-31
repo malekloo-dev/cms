@@ -99,14 +99,14 @@
                 {{--post&label=home banner&var=banners&count=3--}}
                 @isset($banners)
                     @foreach ($banners as $content)
-                    <div class="mySlides fade ">
-                        <figure class="image">
-                            <img src="{{ $content->images['images']['large']}}"
-                                sizes="(max-width:792px) 100vw 396px 792px 1584px" alt="" width="792" height="370" srcset="
-                                {{ $content->images['images']['large']}} 2x">
-                        </figure>
-                        <div class="text">{{ $content->title }}</div>
-                    </div>
+                        <div class="mySlides fade ">
+                            <figure class="image">
+                                <img src="{{ $content->images['images']['large'] }}"
+                                    sizes="(max-width:792px) 100vw 396px 792px 1584px" alt="" width="792" height="370" srcset="
+                                                {{ $content->images['images']['large'] }} 2x">
+                            </figure>
+                            <div class="text">{{ $content->title }}</div>
+                        </div>
                     @endforeach
                 @endisset
 
@@ -135,9 +135,9 @@
                     <figure class="image">
                         <img src="{{ asset('/img/bt.jpg') }}" sizes="(max-width:300px) 100vw 300px 600px " alt=""
                             width="383" height="182" srcset="
-                                    {{ asset('/img/bt-small.jpg') }} 383w,
-                                    {{ asset('/img/bt.jpg') }} 500w,
-                                    {{ asset('/img/bt-large.jpg') }} 2x">
+                                            {{ asset('/img/bt-small.jpg') }} 383w,
+                                            {{ asset('/img/bt.jpg') }} 500w,
+                                            {{ asset('/img/bt-large.jpg') }} 2x">
 
                     </figure>
                 </div>
@@ -145,9 +145,9 @@
                     <figure class="image">
                         <img src="{{ asset('/img/bt.jpg') }}" sizes="(max-width:300px) 100vw 300px 600px " alt=""
                             width="383" height="182" srcset="
-                                    {{ asset('/img/bt-small.jpg') }} 383w,
-                                    {{ asset('/img/bt.jpg') }} 500w,
-                                    {{ asset('/img/bt-large.jpg') }} 2x">
+                                            {{ asset('/img/bt-small.jpg') }} 383w,
+                                            {{ asset('/img/bt.jpg') }} 500w,
+                                            {{ asset('/img/bt-large.jpg') }} 2x">
 
                     </figure>
                 </div>
@@ -172,10 +172,11 @@
                                     <figure class="image">
                                         <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
                                             sizes="(max-width:{{ env('CATEGORY_SMALL') }}px) 100vw {{ env('CATEGORY_SMALL') }}px {{ ENV('CATEGORY_MEDIUM') }}px {{ ENV('CATEGORY_LARGE') }}px"
-                                            alt="{{ $content->title }}" width="200" height="200" srcset="
-                                                    {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL') }}w,
-                                                    {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM') }}w,
-                                                    {{ $content->images['images']['large'] ?? $content->images['thumb'] }} 2x">
+                                            alt="{{ $content->title }}" width="200" height="200"
+                                            srcset="
+                                                                    {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL') }}w,
+                                                                    {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM') }}w,
+                                                                    {{ $content->images['images']['large'] ?? $content->images['thumb'] }} 2x">
                                         <figcaption>
                                             <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
                                         </figcaption>
@@ -200,7 +201,7 @@
         <div class="flex one">
             <div>
                 <div class="flex one three-500 five-900   ">
-                    {{--post&label=topView&var=topViewPost&count=12--}}
+                    {{--post&label=topView&var=topViewPost&count=10--}}
                     @isset($topViewPost)
                         @foreach ($topViewPost as $content)
                             <div>
@@ -209,9 +210,10 @@
                                         <figure class="image">
                                             <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
                                                 sizes="(max-width:{{ env('ARTICLE_SMALL') }}px) 100vw {{ env('ARTICLE_SMALL') }}px {{ ENV('ARTICLE_MEDIUM') }}px"
-                                                alt="{{ $content->title }}" width="100" height="100" srcset="
-                                                {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
-                                                {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
+                                                alt="{{ $content->title }}" width="100" height="100"
+                                                srcset="
+                                                                {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
+                                                                {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
                                         </figure>
                                     @endif
 
@@ -220,8 +222,16 @@
                                         {!! readMore($content->brief_description, 350) !!}
                                     </div>
                                     <div class="rate mt-1">
-                                        @if (isset($content->attr['rate']))
-                                            @for ($i = $content->attr['rate']; $i >= 1; $i--)
+                                        @if (count($content->comments))
+                                            @php
+                                            $rateAvrage = $rateSum = 0;
+                                            @endphp
+                                            @foreach ($content->comments as $comment)
+                                                @php
+                                                $rateSum = $rateSum + $comment['rate'] ;
+                                                @endphp
+                                            @endforeach
+                                            @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
                                                 <img width="20" height="20"
                                                     srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
                                                     src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">

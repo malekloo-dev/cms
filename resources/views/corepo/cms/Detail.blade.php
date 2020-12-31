@@ -11,6 +11,37 @@
 
     <link rel="stylesheet" href="{{ asset('/detail.css') }}">
 @endsection
+@section('footer')
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const ratings = document.querySelectorAll('[name="rate"]');
+            const labels = document.querySelectorAll('.rating > label');
+
+            const change = (e) => {
+                console.log(e.target.value);
+
+            }
+            const mouseenter = (e) => {
+                document.getElementById('rating-hover-label').innerHTML = e.target.title;
+            }
+            const mouseleave = (e) => {
+
+                document.getElementById('rating-hover-label').innerHTML = '';
+            }
+
+            ratings.forEach((el) => {
+                el.addEventListener('change', change);
+            });
+            labels.forEach((el) => {
+                el.addEventListener('mouseenter', mouseenter);
+                el.addEventListener('mouseleave', mouseleave);
+            });
+        });
+
+    </script>
+
+@endsection
 @section('Content')
     @php
     $tableOfImages=tableOfImages($detail->description);
@@ -41,8 +72,8 @@
                         <img src="{{ $detail->images['images']['medium'] ?? $detail->images['thumb'] }}"
                             sizes="(max-width:{{ env('ARTICLE_MEDIUM') }}px) 100vw {{ env('ARTICLE_MEDIUM') }}px {{ ENV('ARTICLE_LARGE') }}px"
                             alt="{{ $detail->title }}" width="{{ env('ARTICLE_MEDIUM') }}" height="100" srcset="
-                                {{ $detail->images['images']['medium'] ?? $detail->images['thumb'] }} {{ env('ARTICLE_MEDIUM') }}w,
-                                {{ $detail->images['images']['large'] ?? $detail->images['thumb'] }} 2x">
+                                        {{ $detail->images['images']['medium'] ?? $detail->images['thumb'] }} {{ env('ARTICLE_MEDIUM') }}w,
+                                        {{ $detail->images['images']['large'] ?? $detail->images['thumb'] }} 2x">
 
                     </figure>
                 @endif
@@ -220,22 +251,24 @@
                     </div>
 
                     @foreach ($detail->comments as $comment)
-                        <div class="comment">
-                            <div class="aside">
-                                <div class="name">{{ $comment['name'] }}</div>
-                                <div class="date">{{ convertGToJ($comment['created_at']) }}</div>
-                            </div>
-                            <div class="article">
-                                <div>
-                                    @for ($i = $comment->rate; $i >= 1; $i--)
-                                        <img width="20" height="20"
-                                            srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
-                                            src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
-                                    @endfor
+                        @if ($comment['name'] != '' && $comment['comment'] != '')
+                            <div class="comment">
+                                <div class="aside">
+                                    <div class="name">{{ $comment['name'] }}</div>
+                                    <div class="date">{{ convertGToJ($comment['created_at']) }}</div>
                                 </div>
-                                <div class="text">{{ $comment['comment'] }}</div>
+                                <div class="article">
+                                    <div>
+                                        @for ($i = $comment->rate; $i >= 1; $i--)
+                                            <img width="20" height="20"
+                                                srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
+                                                src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                                        @endfor
+                                    </div>
+                                    <div class="text">{{ $comment['comment'] }}</div>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
