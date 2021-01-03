@@ -38,16 +38,16 @@
 
                                                 @if ($banner['mimeType'] == 'image')
 
-                                                    <div class="swiper-slide "
+                                                    <div class="swiper-slide "  style="min-width: 100%"
                                                         data-slide-bg="{{ $content }}">
                                                     @else
-                                                    <div class="swiper-slide "
+                                                    <div class="swiper-slide " style="min-width: 100%"
                                                         data-slide-bg="">
                                                         <style>
-                                                            -->@media(max-width:700px) {
+                                                            @media(max-width:700px) {
                                                                 .swiper-container.slider1.swiper-slider.swiper-slider__ {
                                                                     min-height: 168px !important;
-                                                                    height: 20vw !important;
+
                                                                 }
                                                             }
 
@@ -58,8 +58,8 @@
                                                         </video>
                                                 @endif
 
-                                                <div class="slide-inner">
-                                                    <div class="container">
+                                                <div class="slide-inner" style="width: 100%; min-width: 100%">
+                                                    <div class="container" style="width: 100%; min-width: 100%">
                                                         <div class="swiper-slide-caption" data-caption-animate="fadeIn"
                                                             data-caption-delay="200">
                                                             <div class="camera_caption ">
