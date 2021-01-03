@@ -10,7 +10,7 @@
                         <div class="logo-text">
                             <a href="{{ url('/') }}" title="Translog">
 
-                                <span>BMT</span>
+                                <img src="{{ asset('img/logo1x.png') }}" >
                             </a>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                                                 </li>
                                             @else
                                                 <li><a href="{{ ($menuItem['type'] == 'internal' || $menuItem['type'] == 'external') ? $menuItem['link'] : '/#'.$menuItem['link'] }}">{{ $menuItem['label'] }}</a></li>
-                                                
+
                                             @endif
 
                                         @endforeach
