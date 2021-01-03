@@ -32,7 +32,7 @@
                                     data-autoplay="false" data-loop="true" data-simulate-touch="false"
                                     data-slide-effect="slide" style="height: 50vw">
                                     <div class="swiper-wrapper">
-                                        {{--banner&label=Home Banner&var=banner&count=3--}}
+                                        {{--images&label=Home Banner&var=banner&count=3--}}
                                         @isset($banner)
                                             @foreach ($banner['images'] as $content)
 
