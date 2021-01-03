@@ -44,7 +44,7 @@ class ModuleBuilderController extends Controller
 
     protected function uploadImages($file, $type = 'category')
     {
-        $imagePath = "/upload/images/modules/banner/";
+        $imagePath = "/upload/images/modules/images/";
         $filename = $file->getClientOriginalName();
 
         $file = $file->move(public_path($imagePath), $filename);
@@ -69,7 +69,7 @@ class ModuleBuilderController extends Controller
 
 
         $content = file_get_contents($template);
-        preg_match_all("/({{--category&(.*)--}})|({{--categoryDetail&(.*)--}})|({{--product&(.*)--}})|({{--post(.*)--}})|({{--banner(.*)--}})/U", $content, $pat_array);
+        preg_match_all("/({{--category&(.*)--}})|({{--categoryDetail&(.*)--}})|({{--product&(.*)--}})|({{--post(.*)--}})|({{--images(.*)--}})/U", $content, $pat_array);
         //{gallery&size=10&template=1}
         //parse_str($_SERVER['QUERY_STRING'], $outputArray);
         $module = array('category' => '1', 'product' => '1', 'post' => '1');
@@ -122,7 +122,7 @@ class ModuleBuilderController extends Controller
         $crud = Widget::find(1);
         $data = $request->all();
         foreach ($data['attr'] as $k => $v) {
-            if ($v['type'] == 'banner') {
+            if ($v['type'] == 'images') {
                 //continue;
                 $images = array();
                 if (isset($crud['attr'][$k]['images'])) {
