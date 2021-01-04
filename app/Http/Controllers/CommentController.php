@@ -16,7 +16,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $data = Comment::all();
+        $data = Comment::all()->sortByDesc('id');
 
         return view('admin.comment.index', compact('data'));
     }

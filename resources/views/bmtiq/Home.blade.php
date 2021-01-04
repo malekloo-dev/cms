@@ -27,35 +27,36 @@
                 <div class="container container-fullwidth">
                     <div class="row">
                         <div class="moduletable  ">
-                            <div class="module_container">
+                            <div class="module_container" style="position: relative">
                                 <div id="swiper-slider_208" class="swiper-container slider1 swiper-slider swiper-slider__"
                                     data-autoplay="false" data-loop="true" data-simulate-touch="false"
                                     data-slide-effect="slide" style="height: 50vw">
+
                                     <div class="swiper-wrapper">
-                                        {{--images&label=Home Banner&var=banner&count=3--}}
+                                        {{--images&label=Home
+                                        Banner&var=banner&count=3--}}
                                         @isset($banner)
                                             @foreach ($banner['images'] as $content)
 
                                                 @if ($banner['mimeType'] == 'image')
 
-                                                    <div class="swiper-slide "  style="min-width: 100%"
+                                                    <div class="swiper-slide " style="min-width: 100%"
                                                         data-slide-bg="{{ $content }}">
                                                     @else
-                                                    <div class="swiper-slide " style="min-width: 100%"
-                                                        data-slide-bg="">
-                                                        <style>
-                                                            @media(max-width:700px) {
-                                                                .swiper-container.slider1.swiper-slider.swiper-slider__ {
-                                                                    min-height: 168px !important;
+                                                        <div class="swiper-slide " style="min-width: 100%" data-slide-bg="">
+                                                            <style>
+                                                                @media(max-width:700px) {
+                                                                    .swiper-container.slider1.swiper-slider.swiper-slider__ {
+                                                                        min-height: 168px !important;
 
+                                                                    }
                                                                 }
-                                                            }
 
-                                                        </style>
-                                                        <video autoplay muted loop
-                                                            style="position:absolute; left:0; right:0; width:100%; top:0">
-                                                            <source src="{{ $content }}" type="video/mp4">
-                                                        </video>
+                                                            </style>
+                                                            <video autoplay muted loop
+                                                                style="position:absolute; left:0; right:0; width:100%; top:0">
+                                                                <source src="{{ $content }}" type="video/mp4">
+                                                            </video>
                                                 @endif
 
                                                 <div class="slide-inner" style="width: 100%; min-width: 100%">
@@ -76,9 +77,9 @@
 
                                                                                         <span
                                                                                             style="color: #2a5d65;color: #2a5d65;
-                                                                                                                                    background: -webkit-linear-gradient(90deg, #292929,#2a5d65 50%);
-                                                                                                                                    -webkit-background-clip: text;
-                                                                                                                                    -webkit-text-fill-color: transparent;"
+                                                                                                                                                                    background: -webkit-linear-gradient(90deg, #292929,#2a5d65 50%);
+                                                                                                                                                                    -webkit-background-clip: text;
+                                                                                                                                                                    -webkit-text-fill-color: transparent;"
                                                                                             class="item_title_part_1 item_title_part_even item_title_part_first_half">Largest</span>
                                                                                         <span
                                                                                             class="item_title_part_2 item_title_part_odd item_title_part_first_half">
@@ -124,6 +125,17 @@
                                 <div class="swiper-pagination" data-clickable="" data-index-bullet="false">
                                 </div>
                             </div>
+                            <form class="home-form">
+                                <div>
+                                    <label>Serial</label>
+                                    <input type="text" value="">
+                                </div>
+                                <div>
+                                    <label>Serial</label>
+                                    <input type="text" value="">
+                                </div>
+                                <button class="btn btn-primary mod_tm_ajax_contact_form_btn">Send</button>
+                            </form>
 
                         </div>
                     </div>
