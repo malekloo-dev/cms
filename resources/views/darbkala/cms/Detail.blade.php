@@ -93,20 +93,24 @@
         <div class="flex one ">
             <div>
                 <div class="top-page">
-                    <picture>
-                        <source media="(min-width:{{ env('PRODUCT_MEDIUM') }}px)"
-                            srcset="{{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['large']) ?? '' }} 2x">
-                        <source media="(min-width:{{ env('PRODUCT_SMALL') }}px)"
-                            srcset="{{ str_replace(' ', '%20', $detail->images['images']['small']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} 2x">
-                        <img src="{{ $detail->images['images']['medium'] ?? '' }}"
-                            sizes="(max-width:{{ env('PRODUCT_MEDIUM') }}px) 100vw  {{ ENV('PRODUCT_MEDIUM') }}px {{ ENV('PRODUCT_LARGE') }}px"
-                            alt="{{ $detail->title }}" width="{{ env('PRODUCT_MEDIUM') }}"
-                            height="{{ env('PRODUCT_MEDIUM') }}">
-                    </picture>
+                    @isset($detail->images['thumb'])
+                        <picture>
+                            <source media="(min-width:{{ env('PRODUCT_MEDIUM') }}px)"
+                                srcset="{{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['large']) ?? '' }} 2x">
+                            <source media="(min-width:{{ env('PRODUCT_SMALL') }}px)"
+                                srcset="{{ str_replace(' ', '%20', $detail->images['images']['small']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} 2x">
+                            <img src="{{ $detail->images['images']['medium'] ?? '' }}"
+                                sizes="(max-width:{{ env('PRODUCT_MEDIUM') }}px) 100vw  {{ ENV('PRODUCT_MEDIUM') }}px {{ ENV('PRODUCT_LARGE') }}px"
+                                alt="{{ $detail->title }}" width="{{ env('PRODUCT_MEDIUM') }}"
+                                height="{{ env('PRODUCT_MEDIUM') }}">
+                        </picture>
+                    @endisset
                     <div>
                         <h1 class="">{{ $detail->title }}</h1>
                         <div>
-                            <span class="price text-green "> @convertCurrency($detail->attr['price']) تومان</span>
+                            @isset($detail->attr['price'])
+                                <span class="price text-green "> @convertCurrency($detail->attr['price']?? 0) تومان</span>
+                            @endisset
                             <span class="rate mt-1">
                                 @if (count($detail->comments))
                                     @php
@@ -195,7 +199,7 @@
                                 <article>
                                     @if (isset($content->images['thumb']))
                                         <div><img src="{{ $content->images['thumb'] }}  alt=" {{ $content->title }} "></div>
-                                                           @endif
+                                                                          @endif
                                             <footer>
                                                 <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
                                                 {!! $content->brief_description !!}
