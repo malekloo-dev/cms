@@ -22,26 +22,7 @@ class HomeController extends Controller
     public function index()
     {
 
-
-        //Content::increment('viewCount');
-        /*$data['topViewPost'] = Content::where('type','=','2')
-            ->orderBy('viewCount', 'desc')
-            ->where('publish_date','<=', DB::raw('now()'))
-            ->limit(10)->get();
-
-        $data['newPost'] = Content::where('type','=','2')
-            ->where('publish_date','<=', DB::raw('now()'))
-            ->orderBy('publish_date', 'desc')
-            ->limit(10)
-            ->get();
-
-        $data['category'] = Category::where('type', '=', '1')
-            ->where('parent_id','<>','0')
-            ->where('publish_date','<=', DB::raw('now()'))
-            ->get();*/
-
-
-        $data['seo'] = WebsiteSetting::all()->keyBy('variable')->map(function ($name) {
+         $data['seo'] = WebsiteSetting::all()->keyBy('variable')->map(function ($name) {
             return strtoupper($name['value']);
         });
 
@@ -56,11 +37,18 @@ class HomeController extends Controller
 
         foreach ((array) $attr as $var => $config) {
 
-            if($config['type']=='banner'){
+
+            if($config['type']=='images'){
                 $data[$var]=$config;
                 unset($data[$var]['count']);
                 unset($data[$var]['type']);
 
+                continue;
+            }
+            if($config['type']=='counter'){
+                $data[$var]=$config;
+                unset($data[$var]['count']);
+                unset($data[$var]['type']);
                 continue;
             }
             $type = '';
@@ -94,11 +82,15 @@ class HomeController extends Controller
                 ->limit($config['count']);
 
             if ($config['type'] == 'categoryDetail') {
-                $data[$var] = $module->first();
+                $data[$var]['data'] = $module->first();
 
             } else {
-                $data[$var] = $module->get();
+                $data[$var]['data'] = $module->get();
             }
+            if (isset($config['background'])){
+                $data[$var]['meta']['background'] =$config['background'];
+            }
+
 
 
         }

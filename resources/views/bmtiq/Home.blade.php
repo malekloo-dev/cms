@@ -2,7 +2,7 @@
 
 @section('head')
     <style>
-        @media(max-width:500px) {
+        @media (max-width: 500px) {
             .module_container {
                 flex-flow: column wrap !important
             }
@@ -16,6 +16,8 @@
 
 @section('Content')
 
+    {{--images&label=Logo&var=logo&count=1--}}
+
 
     {{--#anchor home --}}
     <div id="home"></div>
@@ -28,121 +30,127 @@
                     <div class="row">
                         <div class="moduletable  ">
                             <div class="module_container" style="position: relative">
-                                <div id="swiper-slider_208" class="swiper-container slider1 swiper-slider swiper-slider__"
-                                    data-autoplay="false" data-loop="true" data-simulate-touch="false"
-                                    data-slide-effect="slide" style="height: 50vw">
+                                <div id="swiper-slider_208"
+                                     class="swiper-container slider1 swiper-slider swiper-slider__"
+                                     data-autoplay="false" data-loop="true" data-simulate-touch="false"
+                                     data-slide-effect="slide" style="height: 50vw">
 
                                     <div class="swiper-wrapper">
-                                        {{--images&label=Home
-                                        Banner&var=banner&count=3--}}
-                                        @isset($banner)
-                                            @foreach ($banner['images'] as $content)
+                                        {{--images&label=Home Banner&var=banner&count=3--}}
+                                        @if(isset($banner) & isset($banner['images']))
+                                            @foreach ($banner['images'] as $key=>$content)
+
 
                                                 @if ($banner['mimeType'] == 'image')
 
                                                     <div class="swiper-slide " style="min-width: 100%"
-                                                        data-slide-bg="{{ $content }}">
-                                                    @else
-                                                        <div class="swiper-slide " style="min-width: 100%" data-slide-bg="">
-                                                            <style>
-                                                                @media(max-width:700px) {
-                                                                    .swiper-container.slider1.swiper-slider.swiper-slider__ {
-                                                                        min-height: 168px !important;
+                                                         data-slide-bg="{{ $content }}">
+                                                        @else
+                                                            <div class="swiper-slide " style="min-width: 100%"
+                                                                 data-slide-bg="">
+                                                                <style>
+                                                                    @media (max-width: 700px) {
+                                                                        .swiper-container.slider1.swiper-slider.swiper-slider__ {
+                                                                            min-height: 168px !important;
 
+                                                                        }
                                                                     }
-                                                                }
 
-                                                            </style>
-                                                            <video autoplay muted loop
-                                                                style="position:absolute; left:0; right:0; width:100%; top:0">
-                                                                <source src="{{ $content }}" type="video/mp4">
-                                                            </video>
-                                                @endif
+                                                                </style>
+                                                                <video autoplay muted loop
+                                                                       style="position:absolute; left:0; right:0; width:100%; top:0">
+                                                                    <source src="{{ $content }}" type="video/mp4">
+                                                                </video>
+                                                                @endif
 
-                                                <div class="slide-inner" style="width: 100%; min-width: 100%">
-                                                    <div class="container" style="width: 100%; min-width: 100%">
-                                                        <div class="swiper-slide-caption" data-caption-animate="fadeIn"
-                                                            data-caption-delay="200">
-                                                            <div class="camera_caption ">
+                                                                <div class="slide-inner"
+                                                                     style="width: 100%; min-width: 100%">
+                                                                    <div class="container"
+                                                                         style="width: 100%; min-width: 100%">
+                                                                        <div class="swiper-slide-caption"
+                                                                             data-caption-animate="fadeIn"
+                                                                             data-caption-delay="200">
+                                                                            <div class="camera_caption ">
 
 
-                                                                <div class="row">
-                                                                    <div class="moduletable   col-sm-5 ">
-                                                                        <div class="module_container">
-                                                                            <div class="mod-article-single mod-article-single__"
-                                                                                id="module_285">
-                                                                                <div class="item__module" id="item_180">
-                                                                                    <!-- Item Title -->
-                                                                                    <h1 class="item-title">
+                                                                                <div class="row">
+                                                                                    <div class="moduletable   col-sm-5 ">
+                                                                                        <div class="module_container">
+                                                                                            <div class="mod-article-single mod-article-single__"
+                                                                                                 id="module_285">
+                                                                                                <div class="item__module"
+                                                                                                     id="item_180">
+                                                                                                    <!-- Item Title -->
+                                                                                                    <h1 class="item-title">
 
                                                                                         <span
-                                                                                            style="color: #2a5d65;color: #2a5d65;
+                                                                                                style="color: #2a5d65;color: #2a5d65;
                                                                                                                                                                     background: -webkit-linear-gradient(90deg, #292929,#2a5d65 50%);
                                                                                                                                                                     -webkit-background-clip: text;
                                                                                                                                                                     -webkit-text-fill-color: transparent;"
-                                                                                            class="item_title_part_1 item_title_part_even item_title_part_first_half">Largest</span>
-                                                                                        <span
-                                                                                            class="item_title_part_2 item_title_part_odd item_title_part_first_half">
+                                                                                                class="item_title_part_1 item_title_part_even item_title_part_first_half">Largest</span>
+                                                                                                        <span
+                                                                                                                class="item_title_part_2 item_title_part_odd item_title_part_first_half">
                                                                                             Multi-Purpose </span>
-                                                                                        <span
-                                                                                            class="item_title_part_3 item_title_part_even item_title_part_second_half">
+                                                                                                        <span
+                                                                                                                class="item_title_part_3 item_title_part_even item_title_part_second_half">
                                                                                             Port Facility </span>
-                                                                                        <span
-                                                                                            class="item_title_part_4 item_title_part_odd item_title_part_second_half item_title_part_last">In
+                                                                                                        <span
+                                                                                                                class="item_title_part_4 item_title_part_odd item_title_part_second_half item_title_part_last">In
                                                                                             <span
-                                                                                                style="color: #2a5d65;">Iraq</span></span>
-                                                                                    </h1>
+                                                                                                    style="color: #2a5d65;">Iraq</span></span>
+                                                                                                    </h1>
+
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <!-- Read More link -->
+                                                                                <div class="btn-wrapper">
 
 
                                                                                 </div>
+
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
-                                                                </div>
-                                                                <!-- Read More link -->
-                                                                <div class="btn-wrapper">
-
-
                                                                 </div>
 
                                                             </div>
-                                                        </div>
+
+
+                                                            @endforeach
+
+                                                        @endif
+
+
                                                     </div>
-                                                </div>
-
+                                                    <!-- Swiper Pagination -->
+                                                    <div class="swiper-pagination" data-clickable=""
+                                                         data-index-bullet="false">
+                                                    </div>
+                                    </div>
+                                    <form class="home-form">
+                                        <div>
+                                            <label>Serial</label>
+                                            <input type="text" value="">
                                         </div>
+                                        <div>
+                                            <label>Serial</label>
+                                            <input type="text" value="">
+                                        </div>
+                                        <button class="btn btn-primary mod_tm_ajax_contact_form_btn">Send</button>
+                                    </form>
 
-
-                                        @endforeach
-
-                                    @endisset
-
-
-
-                                </div>
-                                <!-- Swiper Pagination -->
-                                <div class="swiper-pagination" data-clickable="" data-index-bullet="false">
                                 </div>
                             </div>
-                            <form class="home-form">
-                                <div>
-                                    <label>Serial</label>
-                                    <input type="text" value="">
-                                </div>
-                                <div>
-                                    <label>Serial</label>
-                                    <input type="text" value="">
-                                </div>
-                                <button class="btn btn-primary mod_tm_ajax_contact_form_btn">Send</button>
-                            </form>
-
                         </div>
                     </div>
                 </div>
-            </div>
-    </div>
-    </header>
+        </header>
 
 
     </div>
@@ -166,24 +174,27 @@
                                 <div class="module_container">
                                     <div class='page_header'>
                                         <h2 class="moduleTitle "><span
-                                                class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">NEWS
+                                                    class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">NEWS
                                             </span>
 
                                         </h2>
                                     </div>
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
-                                        id="module_288">
+                                         id="module_288">
 
                                         {{--post&label=NEWS&var=news&count=3--}}
                                         @isset($news)
                                             <div class="row">
-                                                @foreach ($news as $content)
-                                                    <article class="col-sm-4 item item_num0 item__module  " id="item_182">
+                                                @foreach ($news['data'] as $content)
+                                                    <article class="col-sm-4 item item_num0 item__module  "
+                                                             id="item_182">
 
                                                         <!-- Intro Image -->
                                                         <figure class="item_img img-intro img-intro__none">
-                                                            <img src="{{ $content->images['images']['small'] ?? '' }}" alt="">
-                                                            <figcaption><a href="{{ $content->slug }}">{{ $content->title }}</a>
+                                                            <img src="{{ $content->images['images']['small'] ?? '' }}"
+                                                                 alt="">
+                                                            <figcaption><a
+                                                                        href="{{ $content->slug }}">{{ $content->title }}</a>
                                                                 <br>
                                                                 <br>
                                                                 {!! $content->brief_description !!}
@@ -199,7 +210,7 @@
                                             </div>
                                             @if (isset($content))
                                                 <a href="{{ idToSlug($content->parent_id) }}"
-                                                    class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                                   class="btn btn-primary mod_tm_ajax_contact_form_btn">
                                                     More News ...
                                                 </a>
                                             @endif
@@ -232,13 +243,14 @@
                                 <div class='page_header'>
 
                                     <h2 class="moduleTitle "><span
-                                            class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">
+                                                class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">
                                             {{ $about->title }}
                                         </span>
                                     </h2>
                                     {!! $about->brief_description !!}
                                     @isset($about->parent_id)
-                                        <a href="{{ $about->slug }}" class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                        <a href="{{ $about->slug }}"
+                                           class="btn btn-primary mod_tm_ajax_contact_form_btn">
                                             About us
                                         </a>
                                     @endisset
@@ -247,7 +259,7 @@
 
                             </div>
                             <div id="mod_tm_parallax_304" style="flex: 1 50%; "
-                                class="parallax-container mod_tm_parallax__parallax1">
+                                 class="parallax-container mod_tm_parallax__parallax1">
 
                                 <div class="mod_tm_parallax">
                                     <img src="{{ $about->images['images']['original'] ?? '' }}" alt="">
@@ -261,7 +273,7 @@
 
                                                     </div>
                                                     <div class="mod-article-single mod-article-single__center"
-                                                        id="module_305">
+                                                         id="module_305">
 
                                                     </div>
                                                 </div>
@@ -287,75 +299,33 @@
                     <div class="module_container">
                         <div id="mod_tm_counters_291" class="mod_tm_counters mod_tm_counters__ cols-4">
 
-
                             <div class="row">
-                                <div class="col-sm-3 counter_item item_num_0">
+                                {{--counter&label=Customer Counter&var=counter&count=4--}}
 
-                                    <div class="counter-wrapper">
-                                        <div class="counter-wrapper-box">
-                                            <div class="counter-wrapper-box_content">
-                                                <div class="counter-value-box">
-                                                    <div class="counter-value" data-from="0" data-to="14" data-speed="6000"
-                                                        data-decimals="0"></div>
-                                                </div>
-                                                <div class="counter-title">
-                                                    Years of Experience
+                                @isset($counter)
+                                    @foreach ($counter['data'] as $key=>$content)
+
+                                        <div class="col-sm-3 counter_item item_num_{{$key}}">
+                                            <div class="counter-wrapper">
+                                                <div class="counter-wrapper-box">
+                                                    <div class="counter-wrapper-box_content">
+                                                        <div class="counter-value-box">
+                                                            <div class="counter-value" data-from="0"
+                                                                 data-to="  {{ $content['number'] ?? '' }}"
+                                                                 data-speed="6000"
+                                                                 data-decimals="0"></div>
+                                                        </div>
+                                                        <div class="counter-title">
+                                                            {{ $content['label'] ?? '' }}
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
 
-                                <div class="col-sm-3 counter_item item_num_1">
 
-                                    <div class="counter-wrapper">
-                                        <div class="counter-wrapper-box">
-                                            <div class="counter-wrapper-box_content">
-                                                <div class="counter-value-box">
-                                                    <div class="counter-value" data-from="0" data-to="340" data-speed="6000"
-                                                        data-decimals="0"></div>
-                                                </div>
-                                                <div class="counter-title">
-                                                    Workers In Company
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-3 counter_item item_num_2">
-
-                                    <div class="counter-wrapper">
-                                        <div class="counter-wrapper-box">
-                                            <div class="counter-wrapper-box_content">
-                                                <div class="counter-value-box">
-                                                    <div class="counter-value" data-from="0" data-to="45" data-speed="6000"
-                                                        data-decimals="0"></div>
-                                                </div>
-                                                <div class="counter-title">
-                                                    Skilled Drivers in Our Fleet
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-3 counter_item item_num_3">
-
-                                    <div class="counter-wrapper">
-                                        <div class="counter-wrapper-box">
-                                            <div class="counter-wrapper-box_content">
-                                                <div class="counter-value-box">
-                                                    <div class="counter-value" data-from="0" data-to="600" data-speed="6000"
-                                                        data-decimals="0"></div>
-                                                </div>
-                                                <div class="counter-title">
-                                                    Corporate Clients
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    @endforeach
+                                @endisset
 
                             </div>
                         </div>
@@ -386,20 +356,21 @@
                                 <div class="module_container">
                                     <div class='page_header'>
                                         <h2 class="moduleTitle "><span
-                                                class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">Servises
+                                                    class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">Servises
                                             </span>
 
                                         </h2>
                                     </div>
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
-                                        id="module_288">
+                                         id="module_288">
                                         <div class="row services">
                                             {{--post&label=services&var=services&count=6--}}
                                             @isset($services)
-                                                @foreach ($services as $content)
+                                                @foreach ($services['data'] as $content)
                                                     <article class="col-sm-4 item item_num0 item__module" id="item_182">
                                                         <figure class="item_img img-intro img-intro__none">
-                                                            <img src="{{ $content->images['images']['small'] ?? '' }}" alt="">
+                                                            <img src="{{ $content->images['images']['small'] ?? '' }}"
+                                                                 alt="">
                                                             <figcaption>
                                                                 <a href="{{ $content->slug }}">{{ $content->title }}</a>
                                                             </figcaption>
@@ -409,7 +380,7 @@
                                                 @endforeach
                                                 @if (isset($content))
                                                     <a href="{{ idToSlug($content->parent_id) }}"
-                                                        class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                                       class="btn btn-primary mod_tm_ajax_contact_form_btn">
                                                         More Services ...
                                                     </a>
                                                 @endif
@@ -437,55 +408,59 @@
     <div id="careers" class="footer-1 wrap t3-sl t3-sl-footer-1 " style="padding: 4em 0;background-color: #015c65;">
         <div class="container container-fullwidth">
             <div class="row">
+                @isset($ourClients)
+                    <?php
+                        //dd($ourClients);
+                        ?>
+                    <div class="moduletable parallax3 ">
 
-                <div class="moduletable parallax3 ">
+                        <div class="module_container">
+                            <div id="mod_tm_parallax_299" class="parallax-container mod_tm_parallax__parallax3">
 
-                    <div class="module_container">
-                        <div id="mod_tm_parallax_299" class="parallax-container mod_tm_parallax__parallax3">
+                                <div class="mod_tm_parallax">
+                                    <img src="{{$ourClients['meta']['background']}}" alt="">
+                                </div>
+                                <div class="parallax-content" style="padding:150px 0">
+                                    <div class="container container-fullwidth">
+                                        <div class="row">
 
-                            <div class="mod_tm_parallax">
-                                <img src="{{ asset('images/parallax/parallax3.jpg') }}" alt="">
-                            </div>
-                            <div class="parallax-content" style="padding:150px 0">
-                                <div class="container container-fullwidth">
-                                    <div class="row">
-
-                                        <div class="moduletable type1  col-sm-12" style="padding:0">
-                                            <h2 class="moduleTitle  heading-style-2 visible-first"
-                                                style="text-align: center; margin-bottom: 2em;">
-                                                <span style="color: #333;">Our Cliens</span>
-                                            </h2>
-                                            <div class="module_container">
-                                                <div class="mod-newsflash-adv mod-newsflash-adv__type1 cols-2"
-                                                    id="module_298">
-                                                    {{--post&label=OurClients&var=ourClients&count=4--}}
-                                                    @isset($ourClients)
-                                                        @foreach ($ourClients as $content)
+                                            <div class="moduletable type1  col-sm-12" style="padding:0">
+                                                <h2 class="moduleTitle  heading-style-2 visible-first"
+                                                    style="text-align: center; margin-bottom: 2em;">
+                                                    <span style="color: #333;">Our Cliens</span>
+                                                </h2>
+                                                <div class="module_container">
+                                                    <div class="mod-newsflash-adv mod-newsflash-adv__type1 cols-2"
+                                                         id="module_298">
+                                                        {{--post&label=OurClients&var=ourClients&isBackground=1&count=4--}}
+                                                        @foreach ($ourClients['data'] as $content)
                                                             <article>
                                                                 <div class="item_content">
                                                                     <figure class=" img-intro img-intro__none">
                                                                         <img src="{{ $content->images['images']['original'] ?? '' }}"
-                                                                            alt="">
+                                                                             alt="">
                                                                         <figcaption>{{ $content->title }}</figcaption>
                                                                     </figure>
                                                                 </div>
                                                                 <div class="clearfix"></div>
                                                             </article>
                                                         @endforeach
-                                                    @endisset
 
-                                                    <div class="clearfix"></div>
+                                                        <div class="clearfix"></div>
 
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
-                </div>
+                @endisset
+
+
             </div>
         </div>
     </div>
@@ -509,13 +484,13 @@
                                 <div class="module_container">
                                     <div class='page_header'>
                                         <h2 class="moduleTitle "><span
-                                                class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">Contact
+                                                    class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">Contact
                                             </span>
 
                                         </h2>
                                     </div>
                                     <div class="mod-newsflash-adv mod-newsflash-adv__center services cols-3"
-                                        id="module_288">
+                                         id="module_288">
                                         <div class="col-md-4" style="text-align: left;">
 
                                             <div style="font-weight: bold; font-size: 1.1em;  margin-bottom: 1em;">
@@ -541,18 +516,18 @@
                                             <div class="module_container" style="background:#ddd !important">
                                                 <div class="page_header">
                                                     <h4 class="moduleTitle  heading-style-4 visible-first"><span
-                                                            class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">Request</span>
+                                                                class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">Request</span>
                                                         <span
-                                                            class="item_title_part_1 item_title_part_even item_title_part_first_half">a</span>
+                                                                class="item_title_part_1 item_title_part_even item_title_part_first_half">a</span>
                                                         <span
-                                                            class="item_title_part_2 item_title_part_odd item_title_part_second_half">Free</span>
+                                                                class="item_title_part_2 item_title_part_odd item_title_part_second_half">Free</span>
                                                         <span
-                                                            class="item_title_part_3 item_title_part_even item_title_part_second_half item_title_part_last">Quote</span>
+                                                                class="item_title_part_3 item_title_part_even item_title_part_second_half item_title_part_last">Quote</span>
                                                     </h4>
                                                 </div>
                                                 <div id="contact_293">
                                                     <form action="{{ route('contact.store') }}#contact" method="post"
-                                                        class="mod_tm_ajax_contact_form custom" id="" novalidate="">
+                                                          class="mod_tm_ajax_contact_form custom" id="" novalidate="">
                                                         @csrf
                                                         @if (\Session::has('success'))
                                                             <div class="alert alert-success " style="text-align: left">
@@ -575,32 +550,33 @@
                                                                 <div class="control control-group-input col-sm-12 ">
                                                                     <div class="control">
                                                                         <input type="text" value="{{ old('name') }}"
-                                                                            placeholder="Name" name="name"
-                                                                            class="mod_tm_ajax_contact_form_text"
-                                                                            required="" title="Name">
+                                                                               placeholder="Name" name="name"
+                                                                               class="mod_tm_ajax_contact_form_text"
+                                                                               required="" title="Name">
                                                                     </div>
                                                                 </div>
                                                                 <div class="control control-group-input col-sm-12 ">
                                                                     <div class="control">
                                                                         <input type="text" value="{{ old('lastname') }}"
-                                                                            placeholder="Last Name" name="lastname"
-                                                                            class="mod_tm_ajax_contact_form_text"
-                                                                            required="" title="Last Name">
+                                                                               placeholder="Last Name" name="lastname"
+                                                                               class="mod_tm_ajax_contact_form_text"
+                                                                               required="" title="Last Name">
                                                                     </div>
                                                                 </div>
                                                                 <div
-                                                                    class="control control-group-input col-sm-12 pull-right">
+                                                                        class="control control-group-input col-sm-12 pull-right">
                                                                     <div class="control">
-                                                                        <textarea name="comment" placeholder="Experience"
-                                                                            class="mod_tm_ajax_contact_form_textarea"
-                                                                            title="" data-autosize-on="true"
-                                                                            style="overflow: hidden; overflow-wrap: break-word; height: 98px;">{{ old('comment') }}</textarea>
+                                                                        <textarea name="comment"
+                                                                                  placeholder="Experience"
+                                                                                  class="mod_tm_ajax_contact_form_textarea"
+                                                                                  title="" data-autosize-on="true"
+                                                                                  style="overflow: hidden; overflow-wrap: break-word; height: 98px;">{{ old('comment') }}</textarea>
                                                                     </div>
                                                                 </div> <!-- Submit Button -->
                                                                 <div class="control control-group-button col-sm-6">
                                                                     <div class="control">
                                                                         <button
-                                                                            class="btn btn-primary mod_tm_ajax_contact_form_btn">
+                                                                                class="btn btn-primary mod_tm_ajax_contact_form_btn">
                                                                             Send request
                                                                         </button>
                                                                     </div>

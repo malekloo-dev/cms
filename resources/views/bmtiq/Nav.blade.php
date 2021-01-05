@@ -9,8 +9,10 @@
                     <div class="logo">
                         <div class="logo-text">
                             <a href="{{ url('/') }}" title="Translog">
+                                @if(isset($logo) & isset($logo['images']))
+                                    <img src="{{ $logo['images'][0] }}" >
+                                @endif
 
-                                <img src="{{ asset('img/logo1x.png') }}" >
                             </a>
                         </div>
                     </div>

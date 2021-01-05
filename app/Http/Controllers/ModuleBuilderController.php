@@ -42,11 +42,10 @@ class ModuleBuilderController extends Controller
     }
 
 
-    protected function uploadImages($file, $type = 'category')
+    protected function uploadImages($file, $module = '')
     {
-        $imagePath = "/upload/images/modules/images/";
+        $imagePath = "/upload/images/modules/".$module."/";
         $filename = $file->getClientOriginalName();
-
         $file = $file->move(public_path($imagePath), $filename);
 
         return $imagePath . $filename;
@@ -69,11 +68,12 @@ class ModuleBuilderController extends Controller
 
 
         $content = file_get_contents($template);
-        preg_match_all("/({{--category&(.*)--}})|({{--categoryDetail&(.*)--}})|({{--product&(.*)--}})|({{--post(.*)--}})|({{--images(.*)--}})/U", $content, $pat_array);
+        preg_match_all("/({{--category&(.*)--}})|({{--categoryDetail&(.*)--}})|({{--product&(.*)--}})|({{--post(.*)--}})|({{--counter(.*)--}})|({{--images(.*)--}})/U", $content, $pat_array);
         //{gallery&size=10&template=1}
         //parse_str($_SERVER['QUERY_STRING'], $outputArray);
         $module = array('category' => '1', 'product' => '1', 'post' => '1');
         $count = 0;
+
         foreach ($pat_array[0] as $key => $val) {
 
             $moduleStart = substr((explode('--}}', $val)[0]), 4);
@@ -104,7 +104,7 @@ class ModuleBuilderController extends Controller
             ->get();
         $data['widgets'] = Widget::find(1);
         $data['arrayContent'] = $arrayContent;
-        //dd($data);
+      //  dd($data);
 
         return view('admin.moduleBuilder.Edit', $data);
     }
@@ -122,13 +122,13 @@ class ModuleBuilderController extends Controller
         $crud = Widget::find(1);
         $data = $request->all();
         foreach ($data['attr'] as $k => $v) {
-            if ($v['type'] == 'images') {
+            if ($v['type'] == 'images')
+            {
                 //continue;
                 $images = array();
                 if (isset($crud['attr'][$k]['images'])) {
                     $images = $crud['attr'][$k]['images'];
                 }
-
 
                 if (isset($v['images'])) {
                     foreach ($v['images'] as $index => $image) {
@@ -140,11 +140,11 @@ class ModuleBuilderController extends Controller
 
                         $pos = strpos($image->getMimeType(), 'video');
                         if ($pos === false) {
-                            $images[$index] = $this->uploadImages($image);
+                            $images[$index] = $this->uploadImages($image,'images');
 
                         }else
                         {
-                            $images[0] = $this->uploadImages($image);
+                            $images[0] = $this->uploadImages($image,'images');
                             break;
 
                         }
@@ -176,7 +176,15 @@ class ModuleBuilderController extends Controller
                 }
                 $data['attr'][$k]['images'] = $SortImages;
                 $data['attr'][$k]['mimeType'] = $mimeType;
+            }else
+            {
+
+                if (isset($v['background'])) {
+                    $data['attr'][$k]['background'] = $this->uploadImages($v['background'],'list');
+                }
+
             }
+
         }
 
         $crud->update($data);

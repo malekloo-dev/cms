@@ -3,7 +3,7 @@
 @section('ckeditor')
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             var $parent = $(".parent_id");
             $parent.select2();
@@ -59,7 +59,7 @@
 
 
                             @endphp
-                            @if ($attr['type']=='banner')
+                            @if ($attr['type']=='images')
                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="heading{{ $attr['config']['var'] }}">
@@ -89,18 +89,24 @@
 
                                                         </div>
 
+                                                        <?php
+                                                        // dd($widget);
+                                                        ?>
                                                         <div class="col-md-3 ">
                                                             @if (isset($widget['images'][$i]))
                                                                 @if ($widget['mimeType']=='image')
 
                                                                     <img height="80" src="{{ $widget['images'][$i] }}"/>
-                                                                    <label for="img" class="col-form-label text-md-left">
+                                                                    <label for="img"
+                                                                           class="col-form-label text-md-left">
                                                                         {{ $widget['images'][$i] }}  </label>
 
                                                                 @else
 
-                                                                    <img height="80"src="/{{ asset('images/movie.jpg')}}"/>
-                                                                    <label for="img" class="col-form-label text-md-left">
+                                                                    <img height="80"
+                                                                         src="/{{ asset('images/movie.jpg')}}"/>
+                                                                    <label for="img"
+                                                                           class="col-form-label text-md-left">
                                                                         {{ $widget['images'][$i] }}  </label>
 
                                                                 @endif
@@ -120,6 +126,68 @@
                                                                        value="{{ old('imageUrl') }}">
                                                             </div>
                                                         </div>
+
+                                                    </div>
+                                                    <br/>
+                                                @endfor
+
+                                                <br/>
+                                                <br/>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    {{--//------------------------}}
+
+                                </div>
+                            @elseif ($attr['type']=='counter')
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="heading{{ $attr['config']['var'] }}">
+
+                                            <a class="btn-block btn" role="button" data-toggle="collapse"
+                                               data-parent="#accordion" href="#collapse{{ $attr['config']['var'] }}"
+                                               aria-expanded="true"
+                                               aria-controls="collapse{{ $attr['config']['var'] }}">
+                                                {{ $attr['config']['label'] }}
+                                            </a>
+
+                                        </div>
+
+                                        <div id="collapse{{ $attr['config']['var'] }}"
+                                             class="panel-collapse collapse {{--{{ $menu_info->module == 'category' ? 'in' : '' }}--}}"
+                                             role="tabpanel" aria-labelledby="heading{{ $attr['config']['var'] }}">
+                                            <div class="panel-body">
+
+                                                @for ($i=0;$i<$attr['config']['count'] ;$i++)
+                                                    <div class="row">
+
+                                                        @php
+                                                            $labelValue='';
+                                                            $numberValue='';
+                                                              if(isset($widget['data'][$i]['label'])){
+                                                               $labelValue=$widget['data'][$i]['label'];
+                                                               $numberValue=$widget['data'][$i]['number'];
+                                                               // dd($widget['data'][$i]['label']);
+                                                              }
+                                                        @endphp
+                                                        <div class="col-md-3 ">
+                                                            <label for="label" class="col-form-label text-md-left">
+                                                                label </label>
+                                                            <input type="text" id="label" class="form-control"
+                                                                   name="attr[{{ $attr['config']['var'] }}][data][{{$i}}][label]"
+                                                                   value="{{$labelValue}}">
+                                                        </div>
+                                                        <div class="col-md-3 ">
+                                                            <label for="number" class="col-form-label text-md-left">
+                                                                number </label>
+                                                            <input type="text" id="number" class="form-control"
+                                                                   name="attr[{{ $attr['config']['var'] }}][data][{{$i}}][number]"
+                                                                   value="{{$numberValue}}">
+                                                        </div>
+
 
                                                     </div>
                                                     <br/>
@@ -177,6 +245,7 @@
                                                                     </option>
                                                                 @endforeach
                                                             </select>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -218,9 +287,37 @@
                                                         </select>
                                                         <div id="parent_id_val" class="parent_id_val"></div>
 
-
                                                     </div>
                                                 </div>
+                                                @isset($attr['config']['isBackground'])
+                                                    <div class="row">
+                                                        <?php
+                                                        //dd($widget);
+                                                        ?>
+                                                        <div class="col-md-3 ">
+                                                            @if (isset($widget['background']))
+                                                                <img height="80" src="{{ $widget['background'] }}"/>
+                                                                <label for="img"
+                                                                       class="col-form-label text-md-left">
+                                                                    {{ $widget['background'] }}  </label>
+                                                            @endif
+                                                        </div>
+                                                        <div class="col-md-3 ">
+                                                            <div class="panel-title">
+
+                                                                <label for="parent" class="col-form-label text-md-left">Select Image</label>
+                                                                <input type="file" class="form-control"
+                                                                       name="attr[{{ $attr['config']['var'] }}][background]"
+                                                                       id="images"
+                                                                       placeholder=""
+                                                                       value="{{ old('imageUrl') }}">
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                @endisset
+
+
                                                 <br/>
                                                 <br/>
 
