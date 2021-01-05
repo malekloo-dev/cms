@@ -289,6 +289,9 @@
 
                                                     </div>
                                                 </div>
+
+                                                <br/>
+                                                <br/>
                                                 @isset($attr['config']['isBackground'])
                                                     <div class="row">
                                                         <?php
