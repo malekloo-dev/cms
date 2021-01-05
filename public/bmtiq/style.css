@@ -515,7 +515,7 @@ nav ul li:hover ul{display:block}
 .home-form{position: absolute; right:11em; top: 30%; width: 400px; background: rgba(0,93,101,.8); z-index: 10; padding: 1em;color: #fff;}
 .home-form div{display: flex; justify-content: center; align-items: center;}
 .home-form label{color:#fff; font-size: 1.3em; font-weight: bold; margin-right: 1em;}
-.home-form input{margin-top:1em; margin-bottom: 1me;}
+.home-form input{margin-top:1em; margin-bottom: 1em;}
 .home-form button{padding: .8em 3em !important;}
 @media (max-width:800px){
     .home-form{right: 5em;top:2em;}

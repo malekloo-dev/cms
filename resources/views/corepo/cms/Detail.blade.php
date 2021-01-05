@@ -193,7 +193,7 @@
     <section class="comments bg-gray mt-0 mb-0">
         <div class="flex one">
             <div>
-                <h4>نظرات شما</h4>
+                <h4>نظرات شما درباره {{ $detail->title }}</h4>
                 <div>
                     <div class="comment-form">
                         @if (\Session::has('success'))
