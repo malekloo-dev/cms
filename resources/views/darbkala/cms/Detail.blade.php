@@ -198,7 +198,7 @@
                             <div>
                                 <article>
                                     @if (isset($content->images['thumb']))
-                                        <div><img src="{{ $content->images['thumb'] }}  alt=" {{ $content->title }} "></div>
+                                        <div><img src="{{ $content->images['thumb'] }}"  alt="{{ $content->title }}"></div>
                                                                           @endif
                                             <footer>
                                                 <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
@@ -219,7 +219,7 @@
     <section class="comments bg-gray mt-0 mb-0">
         <div class="flex one">
             <div>
-                <div>نظرات شما</div>
+                <div>نظرات شما درباره {{ $detail->title }}</div>
                 <div>
                     <div class="comment-form">
                         @if (\Session::has('success'))
