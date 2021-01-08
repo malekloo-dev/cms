@@ -1,6 +1,6 @@
 <script type="application/ld+json">
     @foreach($relatedProduct as $key => $content)
-
+[
     {
         "@context": "https://schema.org/",
         "@type": "Product",
@@ -83,7 +83,7 @@
     @isset($relatedProduct[$key+1])
         {{","}}
     @endisset
-@endforeach
+    @endforeach
 
 ]
 </script>
