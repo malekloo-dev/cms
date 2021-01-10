@@ -527,4 +527,4 @@ nav ul li:hover ul{display:block}
 @media (max-width:700px){
     .home-form{ position: unset; float: left; width: 100%; }
 }
-.logo{padding: 0 !important; min-height:60px ; max-width: 100px !important;}
+.logo{padding: 0 !important; min-height:60px ; max-width: 100px !important; max-height: 60px; min-height: 60px;}
