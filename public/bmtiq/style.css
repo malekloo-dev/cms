@@ -513,14 +513,16 @@ nav ul li:hover ul{display:block}
 .pt-1{padding-top: 1em;}
 
 .home-form{position: absolute; right:11em; top: 30%; width: 400px; background: rgba(0,93,101,.8); z-index: 10; padding: 1em;color: #fff;}
-.home-form div{display: flex; justify-content: center; align-items: center;}
+.home-form div{display: flex; flex-flow:column wrap; justify-content: left; align-items: flex-start;}
 .home-form label{color:#fff; font-size: 1.3em; font-weight: bold; margin-right: 1em;}
 .home-form input{margin-top:1em; margin-bottom: 1em;}
+.home-form select{width: 100%; margin-top:1em; margin-bottom: 1em;}
+.home-form div.chzn-container-single .chzn-single{width: 100%;}
 .home-form button{padding: .8em 3em !important;}
 @media (max-width:800px){
     .home-form{right: 5em;top:2em;}
 }
 
-@media (max-width:585px){
+@media (max-width:700px){
     .home-form{ position: unset; float: left; width: 100%; }
 }

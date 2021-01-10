@@ -134,13 +134,18 @@
                                                     </div>
                                     </div>
                                     <form class="home-form">
-                                        <div>
-                                            <label>No.:</label>
-                                            <input type="text" value="">
-                                        </div>
+                                        <h4>Search BL or container</h4>
                                         <div>
                                             <label>Status:</label>
-                                            <input type="text" value="">
+                                            <select>
+                                                <option>Last Move</option>
+                                                <option>Import</option>
+                                                <option>Export Empty/Storage</option>
+                                                <option>Export full/Storage</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <input type="text" placeholder="Insert BL or Container No." value="">
                                         </div>
                                         <button class="btn btn-primary mod_tm_ajax_contact_form_btn">Send</button>
                                     </form>
@@ -418,7 +423,7 @@
                             <div id="mod_tm_parallax_299" class="parallax-container mod_tm_parallax__parallax3">
 
                                 <div class="mod_tm_parallax">
-                                    <img src="{{$ourClients['meta']['background']}}" alt="">
+                                    <img src="{{ $ourClients['meta']['background'] ?? '' }}" alt="">
                                 </div>
                                 <div class="parallax-content" style="padding:150px 0">
                                     <div class="container container-fullwidth">
