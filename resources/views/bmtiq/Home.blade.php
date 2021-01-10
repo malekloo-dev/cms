@@ -135,11 +135,11 @@
                                     </div>
                                     <form class="home-form">
                                         <div>
-                                            <label>Serial</label>
+                                            <label>No.:</label>
                                             <input type="text" value="">
                                         </div>
                                         <div>
-                                            <label>Serial</label>
+                                            <label>Status:</label>
                                             <input type="text" value="">
                                         </div>
                                         <button class="btn btn-primary mod_tm_ajax_contact_form_btn">Send</button>
