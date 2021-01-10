@@ -104,7 +104,7 @@ class ModuleBuilderController extends Controller
             ->get();
         $data['widgets'] = Widget::find(1);
         $data['arrayContent'] = $arrayContent;
-      //  dd($data);
+        //dd($data);
 
         return view('admin.moduleBuilder.Edit', $data);
     }
@@ -119,8 +119,11 @@ class ModuleBuilderController extends Controller
      */
     public function update($id, Request $request)
     {
+
         $crud = Widget::find(1);
+        //dd($crud);
         $data = $request->all();
+        $images=array();
         foreach ($data['attr'] as $k => $v) {
             if ($v['type'] == 'images')
             {
@@ -160,6 +163,8 @@ class ModuleBuilderController extends Controller
                     }
                 }
                 $mimeType='image';
+                $SortImages=array();
+
                 foreach ($images as $index => $image) {
                     $pos = strpos($image, 'mp4');
                     if ($pos === false) {
@@ -176,9 +181,11 @@ class ModuleBuilderController extends Controller
                 }
                 $data['attr'][$k]['images'] = $SortImages;
                 $data['attr'][$k]['mimeType'] = $mimeType;
-            }else
+            }else if ($v['type'] == 'post')
             {
-
+                if (isset($crud['attr'][$k]['background'])) {
+                    $data['attr'][$k]['background'] = $crud['attr'][$k]['background'];
+                }
                 if (isset($v['background'])) {
                     $data['attr'][$k]['background'] = $this->uploadImages($v['background'],'list');
                 }
