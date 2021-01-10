@@ -25,7 +25,11 @@
             <a href="{{ route('comment.index') }}" class="no-margin @if(!$ltr) text-right @endif">
                 <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-comments"></i>
                 <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.Comments')</span>
+                @isset($commentCount)
+                    <span class="budget ">{{ $commentCount ?? 0 }}</span>
+                @endisset
             </a>
+
         </li>
         <li class="no-margin">
             <a href="{{ route('contact.index') }}" class="no-margin @if(!$ltr) text-right @endif">
