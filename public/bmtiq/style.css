@@ -519,6 +519,7 @@ nav ul li:hover ul{display:block}
 .home-form select{width: 100%; margin-top:1em; margin-bottom: 1em;}
 .home-form div.chzn-container-single .chzn-single{width: 100%;}
 .home-form button{padding: .8em 3em !important;}
+.home-form .chzn-results{width: 100%;}
 @media (max-width:800px){
     .home-form{right: 5em;top:2em;}
 }
