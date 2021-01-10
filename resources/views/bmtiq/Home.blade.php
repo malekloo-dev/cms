@@ -134,9 +134,8 @@
                                                     </div>
                                     </div>
                                     <form class="home-form">
-                                        <h4>Search BL or container</h4>
+                                        <h4>Search BL Or Container No</h4>
                                         <div>
-                                            <label>Status:</label>
                                             <select>
                                                 <option>Last Move</option>
                                                 <option>Import</option>
