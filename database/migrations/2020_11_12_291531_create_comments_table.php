@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->integer('parent_id')->default(0);
             $table->unsignedBigInteger('content_id')->default(0);
             $table->string('name')->nullable();
-            $table->string('comment')->nullable();
+            $table->text('comment')->nullable();
             $table->string('rate')->default(0);
             $table->integer('status')->default(0);
             $table->timestamps();

@@ -73,7 +73,7 @@
                         "@type":"review",
                         "author":"{{ $comment['name'] }}",
                         "datePublished":"{{ $comment['created_at'] }}",
-                        "reviewBody":"{{ $comment['comment'] }}",
+                        "reviewBody":"{!! str_replace('"',"'",$comment['comment']) !!}",
                         "reviewRating": {
                             "@type": "Rating",
                             "bestRating": "5",

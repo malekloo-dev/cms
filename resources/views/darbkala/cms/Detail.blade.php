@@ -292,7 +292,7 @@
                                                 src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
                                         @endfor
                                     </div>
-                                    <div class="text">{{ $comment['comment'] }}</div>
+                                    <div class="text">{!! $comment['comment'] !!}</div>
                                 </div>
                             </div>
                         @endif
