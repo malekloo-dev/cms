@@ -60,6 +60,7 @@ return [
     'lastname'=>'last name',
     'email exist'=>'email exit',
     'config'=>'config',
+    'home config'=>'Home config',
     'Contact-send-success'=>'Contact send success',
     'module'=>'Module',
     'modules'=>'Modules',

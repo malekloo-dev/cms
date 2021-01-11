@@ -111,28 +111,13 @@
                     @endforeach
                 @endisset
 
-                {{-- <div class="mySlides fade">
-                    <picture>
-                        <source media="(min-width: 900px)"
-                            srcset="{{ asset('/img/900_main-banner.jpg') }} 1x, {{ asset('/img/1800_main-banner.jpg') }} 2x"
-                            type="image/jpeg">
-                        <source media="(min-width: 601px)"
-                            srcset="{{ asset('/img/600_main-banner.jpg') }} 1x, {{ asset('/img/1200_main-banner.jpg') }} 2x"
-                            type="image/jpeg">
-                        <source media="(max-width: 600px)"
-                            srcset="{{ asset('/img/600_main-banner.jpg') }} 1x, {{ asset('/img/600_main-banner.jpg') }} 1x"
-                            type="image/jpeg">
-                        <img class="shadow2" src="{{ asset('/img/900_main-banner.jpg') }}" type="image/jpeg"
-                            alt="my image description">
-                    </picture>
-                    <div class="text">طراحی سایت و سئو - طرح و وب</div>
-                </div> --}}
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
         <div class="full third-500 banner-left flex one">
 
             <div>
+                {{--images&label=bannerTop&var=bannerTop&count=1--}}
                 <figure class="image">
                     <img src="{{ asset('/img/bt.jpg') }}" sizes="(max-width:300px) 100vw 300px 600px " alt=""
                         width="383" height="182" srcset="
@@ -143,6 +128,7 @@
                 </figure>
             </div>
             <div class="pb-0">
+                {{--images&label=bannerBot&var=bannerBot&count=1--}}
                 <figure class="image">
                     <img src="{{ asset('/img/bt.jpg') }}" sizes="(max-width:300px) 100vw 300px 600px " alt=""
                         width="383" height="182" srcset="
