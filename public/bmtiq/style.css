@@ -531,7 +531,7 @@ nav ul li:hover ul{display:block}
 .logo a{height: 60px; display: block;}
 .logo a img{object-fit: contain; height: 100%; }
 .mainnav-position{border: none; background-color: #2a5d65; color: #fff;}
-.t3-mainnav .t3-navbar-collapse .navbar-nav li > a{color: #fff;}
+.t3-mainnav .t3-navbar-collapse .navbar-nav li > a{color: #fff; font-size: 16px;}
 .stuck-container.scroll-to-fixed-fixed{background-color: #2a5d65; color: #fff;}
-.menu-button{margin-top: 11px;}
+.menu-button{margin-top: 11px; background: none; border:2px solid #fff;}
 .t3-wrapper nav#t3-mainnav .navbar-header .navbar-toggle{color: #333;}
