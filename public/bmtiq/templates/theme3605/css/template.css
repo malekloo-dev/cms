@@ -2271,8 +2271,8 @@ body.option-com_search .counter {
 }
 .stuck-container.scroll-to-fixed-fixed .t3-mainnav .t3-navbar-collapse .navbar-nav li > a{padding-bottom: 20px;}
 
-.t3-mainnav .t3-navbar-collapse .navbar-nav li > a:hover, .t3-mainnav .t3-navbar-collapse .navbar-nav li > span:hover {
-    border-bottom:3px solid #555;
+.t3-mainnav .t3-navbar-collapse .navbar-nav li > a:hover{
+    color: #008faf;
 
 }
 .t3-mainnav .t3-navbar-collapse .navbar-nav li .caret {
