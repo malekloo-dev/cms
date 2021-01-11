@@ -145,29 +145,29 @@
     @endif
 
     @if (count($relatedPost))
-        <section class="products" id="index-best-view">
+        <section class="articles" id="index-best-view">
             <div class="flex one ">
                 <div>
-                    <div class="shadow">
-                        <h2>مقاله های زیر مجموعه {{ $detail->title }}</h2>
-                        <div class="flex one two-500 four-900 center ">
+                    <h2>مقاله های زیر مجموعه {{ $detail->title }}</h2>
+                    <div class="flex one two-500 four-900 center ">
 
-                            {{--$data['newPost']--}}
-                            @foreach ($relatedPost as $content)
-                                <div>
+                        {{--$data['newPost']--}}
+                        @foreach ($relatedPost as $content)
+                            <div>
+                                <a href="{{ $content->slug }}">
                                     <article>
                                         @if (isset($content->images['thumb']))
                                             <div><img src="{{ $content->images['thumb'] }}"></div>
                                         @endif
                                         <footer>
-                                            <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
+                                            <h2> {{ $content->title }}</h2>
                                             {!! $content->brief_description !!}
                                         </footer>
                                     </article>
-                                </div>
-                            @endforeach
+                                </a>
+                            </div>
+                        @endforeach
 
-                        </div>
                     </div>
                 </div>
             </div>

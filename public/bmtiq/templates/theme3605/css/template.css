@@ -2157,7 +2157,7 @@ body.option-com_search .counter {
     color: #fff
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     .navbar-toggle {
         display: none
     }
@@ -2434,7 +2434,7 @@ body.option-com_search .counter {
     display: none
 }
 
-@media (min-width: 320px) and (max-width: 767px) {
+@media (min-width: 320px) and (max-width: 991px) {
     .t3-wrapper {
         padding-top: 50px
     }

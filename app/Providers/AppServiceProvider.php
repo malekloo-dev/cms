@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Comment;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Route;
+
 
 
 class AppServiceProvider extends ServiceProvider
@@ -36,5 +39,12 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('convertCurrency', function ($money) {
             return "<?php echo number_format($money); ?>";
         });
+
+
+        view()->composer('admin/*', function () {
+            $commentCount = Comment::where('status','',0)->count();
+            View::share('commentCount', $commentCount);
+        });
+
     }
 }

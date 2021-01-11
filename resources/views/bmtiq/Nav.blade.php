@@ -3,23 +3,17 @@
         <div class="container ">
             <div class="row">
 
+                <div class="col-sm-2 col-xs-6 logo">
+                    <a href="{{ url('/') }}" title="Translog">
+                        @if(isset($logo) & isset($logo['images']))
+                            <img src="{{ $logo['images'][0] }}" >
+                        @endif
 
-                <!-- LOGO -->
-                <div class="col-sm-4">
-                    <div class="logo">
-                        <div class="logo-text">
-                            <a href="{{ url('/') }}" title="Translog">
-                                @if(isset($logo) & isset($logo['images']))
-                                    <img src="{{ $logo['images'][0] }}" >
-                                @endif
-
-                            </a>
-                        </div>
-                    </div>
+                    </a>
                 </div>
-                <!-- //LOGO -->
-
-
+                <div class="col-sm-2 col-xs-4 ">
+                    <button class="btn menu-button">EMPLOYEE PORTAL</button>
+                </div>
                 <div class="col-sm-8">
                     <nav id="t3-mainnav" class="navbar navbar-mainmenu t3-mainnav">
                         <div class="t3-mainnav-wrapper">
@@ -29,8 +23,6 @@
                                     data-target=".t3-navbar-collapse">
                                     <i class="fa fa-bars"></i>HOME
                                 </button>
-
-
                             </div>
 
                             <div class="t3-navbar t3-navbar-collapse navbar-collapse collapse">

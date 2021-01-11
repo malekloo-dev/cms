@@ -527,5 +527,11 @@ nav ul li:hover ul{display:block}
 @media (max-width:700px){
     .home-form{ position: unset; float: left; width: 100%; }
 }
-.logo{padding: 0 !important; min-height:64px ; max-width: 150px !important; max-height: 64px; }
-.mainnav-position{border: none;}
+.logo{padding: 0;}
+.logo a{height: 60px; display: block;}
+.logo a img{object-fit: contain; height: 100%; }
+.mainnav-position{border: none; background-color: #2a5d65; color: #fff;}
+.t3-mainnav .t3-navbar-collapse .navbar-nav li > a{color: #fff;}
+.stuck-container.scroll-to-fixed-fixed{background-color: #2a5d65; color: #fff;}
+.menu-button{margin-top: 11px;}
+.t3-wrapper nav#t3-mainnav .navbar-header .navbar-toggle{color: #333;}

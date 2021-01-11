@@ -18,7 +18,7 @@
         </div>
         <div class="flex one five-500 center  ">
             {{--category&label=category&var=category--}}
-            @foreach ($category as $content)
+            @foreach ($category['data'] as $content)
                 <a href="{{ $content->slug }}">
                     <div class="shadow hover">
                         @if (isset($content->images['thumb']))
@@ -56,7 +56,7 @@
             <div>
                 <div class="flex one two-500  four-800 center  ">
                     {{--product&label=topViewPost&var=topViewPost&count=10--}}
-                    @foreach ($topViewPost as $content)
+                    @foreach ($topViewPost['data'] as $content)
                         <div>
                             <a class="hover" href="{{ $content->slug }}">
 
