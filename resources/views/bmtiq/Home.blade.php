@@ -134,9 +134,8 @@
                                                     </div>
                                     </div>
                                     <form class="home-form">
-                                        <h4>Search BL or container</h4>
+                                        <h4>Search BL Or Container No</h4>
                                         <div>
-                                            <label>Status:</label>
                                             <select>
                                                 <option>Last Move</option>
                                                 <option>Import</option>
@@ -243,18 +242,23 @@
                 <div class="moduletable parallax1 ">
                     <div class="module_container" style="display: flex; flex-flow:wrap row">
                         {{--categoryDetail&label=ABOUT&var=about--}}
-                        @if (is_object($about))
+
+                        <?php
+                           // dd($about);
+                        ?>
+                        @isset($about)
+
                             <div class="" style="padding: 2em; flex:1 50%">
                                 <div class='page_header'>
 
                                     <h2 class="moduleTitle "><span
                                                 class="item_title_part_0 item_title_part_odd item_title_part_first_half item_title_part_first">
-                                            {{ $about->title }}
+                                            {{ $about['data']->title }}
                                         </span>
                                     </h2>
-                                    {!! $about->brief_description !!}
-                                    @isset($about->parent_id)
-                                        <a href="{{ $about->slug }}"
+                                    {!! $about['data']->brief_description !!}
+                                    @isset($about['data']->parent_id)
+                                        <a href="{{ $about['data']->slug }}"
                                            class="btn btn-primary mod_tm_ajax_contact_form_btn">
                                             About us
                                         </a>
@@ -267,7 +271,7 @@
                                  class="parallax-container mod_tm_parallax__parallax1">
 
                                 <div class="mod_tm_parallax">
-                                    <img src="{{ $about->images['images']['original'] ?? '' }}" alt="">
+                                    <img src="{{ $about['data']->images['images']['original'] ?? '' }}" alt="">
                                 </div>
                                 <div class="parallax-content">
                                     <div class="container">
@@ -287,7 +291,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
+                        @endisset
                     </div>
 
                 </div>
