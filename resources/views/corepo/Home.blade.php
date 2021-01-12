@@ -103,7 +103,7 @@
                             <figure class="image">
                                 <img src="{{ $content }}" sizes="(max-width:792px) 100vw 396px 792px 1584px" alt=""
                                     width="792" height="370" srcset="
-                                                    {{ $content }} 2x">
+                                                        {{ $content }} 2x">
                             </figure>
                             {{-- <div class="text">{{ $content->title }}</div>
                             --}}
@@ -161,9 +161,9 @@
                                         sizes="(max-width:{{ env('CATEGORY_SMALL') }}px) 100vw {{ env('CATEGORY_SMALL') }}px {{ ENV('CATEGORY_MEDIUM') }}px {{ ENV('CATEGORY_LARGE') }}px"
                                         alt="{{ $content->title }}" width="200" height="200"
                                         srcset="
-                                                                        {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL') }}w,
-                                                                        {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM') }}w,
-                                                                        {{ $content->images['images']['large'] ?? $content->images['thumb'] }} 2x">
+                                                                            {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL') }}w,
+                                                                            {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM') }}w,
+                                                                            {{ $content->images['images']['large'] ?? $content->images['thumb'] }} 2x">
                                     <figcaption>
                                         <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
                                     </figcaption>
@@ -187,6 +187,7 @@
 <section class="index-items bg-pink mt-0 mb-0">
     <div class="flex one">
         <div>
+            <h2>وبسایت ها</h2>
             <div class="flex one three-500 five-900   ">
                 {{--post&label=topView&var=topViewPost&count=10--}}
                 @isset($topViewPost['data'])
@@ -199,8 +200,62 @@
                                             sizes="(max-width:{{ env('ARTICLE_SMALL') }}px) 100vw {{ env('ARTICLE_SMALL') }}px {{ ENV('ARTICLE_MEDIUM') }}px"
                                             alt="{{ $content->title }}" width="100" height="100"
                                             srcset="
-                                                                    {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
-                                                                    {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
+                                                                        {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
+                                                                        {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
+                                    </figure>
+                                @endif
+
+                                <a href="{{ $content->slug }}"> {{ $content->title }}</a>
+                                <div class="info">
+                                    {!! readMore($content->brief_description, 350) !!}
+                                </div>
+                                <div class="rate mt-1">
+                                    @if (count($content->comments))
+                                        @php
+                                        $rateAvrage = $rateSum = 0;
+                                        @endphp
+                                        @foreach ($content->comments as $comment)
+                                            @php
+                                            $rateSum = $rateSum + $comment['rate'] ;
+                                            @endphp
+                                        @endforeach
+                                        @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
+                                            <img width="20" height="20"
+                                                srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
+                                                src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                                        @endfor
+                                    @endif
+                                </div>
+
+                            </article>
+                        </div>
+                    @endforeach
+                @endisset
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="index-items bg-gray  mt-0 mb-0">
+    <div class="flex one">
+        <div>
+            <h2>اپلیکیشن ها</h2>
+            <div class="flex one three-500 five-900   ">
+                {{--post&label=application&var=application&count=5--}}
+                @isset($application['data'])
+                    @foreach ($application['data'] as $content)
+                        <div>
+                            <article class="shadow2">
+                                @if (isset($content->images['thumb']))
+                                    <figure class="image">
+                                        <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
+                                            sizes="(max-width:{{ env('ARTICLE_SMALL') }}px) 100vw {{ env('ARTICLE_SMALL') }}px {{ ENV('ARTICLE_MEDIUM') }}px"
+                                            alt="{{ $content->title }}" width="100" height="100"
+                                            srcset="
+                                                                        {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
+                                                                        {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
                                     </figure>
                                 @endif
 
