@@ -133,7 +133,7 @@
                                                          data-index-bullet="false">
                                                     </div>
                                     </div>
-                                    <form action="/search" class="home-form">
+                                    <form action="/search" method="POST" class="home-form">
                                         <h4>Search BL Or Container No</h4>
                                         <div>
                                             <select name="status">
