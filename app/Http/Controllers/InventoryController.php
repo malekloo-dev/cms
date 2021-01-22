@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Facade\Ignition\QueryRecorder\Query;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\WMS_INVENTORY;
@@ -34,10 +35,11 @@ class InventoryController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request)
+    public function search(Request $request)
     {
 
         $data = $request->all();
+
 
         $statusList = array();
         $vessel = array();
@@ -262,7 +264,7 @@ class InventoryController extends Controller
                 or WMS_INVENTORY.skuref1='" . $data['extcaseno'] . "' ) ";
 
                 $statusList = DB::select($sql);
-                //dd($statusList);
+                // dd($statusList);
 
             } else {
                 die('Not Found');
@@ -274,8 +276,59 @@ class InventoryController extends Controller
 
         //dd($statusList);
         //$result= WMS_INVENTORY::where('InventoryId','=','937120')->get();
-
+        return response([
+            'success' => True,
+            'data' => $statusList
+        ], 200);
         return view('bmt.Inventory', compact(['data', 'statusList', 'vessel', 'shipping_name', 'isSearch']));
+
+    }
+
+
+    public function index(Request $request)
+    {
+
+        $data = $request->all();
+
+        $statusList = array();
+        $vessel = array();
+        $shipping_name = '';
+        $isSearch = 0;
+
+        if (count($data) > 0 and trim($data['extcaseno']) != '') {
+
+
+            $http = new Client;
+            //$response = $http->request('POST', 'http://213.202.217.19/api/extension.php?action=addExtension',
+            //$response = $http->request('POST', $url.'/pbx/api/extension.php?action=addExtension',
+            try {
+
+                $statusList = $http->request('POST', @env('SEARCH_SERVICE_URL') . '/api/search/',
+                    [
+                        'form_params' => [
+                            'status' => $data['status'],
+                            'extcaseno' => $data['extcaseno']
+                        ],
+                    ]);
+
+            } catch (\Exception $e) {
+
+                return $e->getMessage();
+            }
+            $result = json_decode((string)$statusList->getBody());
+
+
+            $statusList = $result->data;
+
+            //echo '<pre/>';
+            // print_r($result);
+            //die();
+            //ExtCaseNo
+            //ExtCaseNo
+        }
+
+        //$result= WMS_INVENTORY::where('InventoryId','=','937120')->get();
+        return view(@env('TEMPLATE_NAME') . '.Inventory', compact(['data', 'statusList', 'vessel', 'shipping_name', 'isSearch']));
 
     }
 

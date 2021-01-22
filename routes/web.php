@@ -47,6 +47,10 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     ]);
 });
 
+
+Route::get('/search', 'InventoryController@index')->name('inventory.show');
+Route::post('/search', 'InventoryController@index')->name('inventory.search');
+
 Auth::routes(['register' => false]);
 
 Route::get('spider','SpiderController@spider');

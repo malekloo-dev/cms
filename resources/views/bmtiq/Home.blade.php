@@ -436,7 +436,7 @@
                                             <div class="moduletable type1  col-sm-12" style="padding:0">
                                                 <h2 class="moduleTitle  heading-style-2 visible-first"
                                                     style="text-align: center; margin-bottom: 2em;">
-                                                    <span style="color: #333;">Our Cliens</span>
+                                                    <span style="color: #333;">Our Clients</span>
                                                 </h2>
                                                 <div class="module_container">
                                                     <div class="mod-newsflash-adv mod-newsflash-adv__type1 cols-2"

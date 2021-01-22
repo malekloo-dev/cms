@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 });*/
 
+Route::post('/search/', 'inventoryController@search')->name('inventory.search');
 Route::get('spider','SpiderController@spider');
 Route::get('/spider/reload', 'SpiderController@reload');
 Route::post('/spider/addToCms', 'SpiderController@addToCms');
