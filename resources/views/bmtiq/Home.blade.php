@@ -133,10 +133,10 @@
                                                          data-index-bullet="false">
                                                     </div>
                                     </div>
-                                    <form class="home-form">
+                                    <form action="/search" class="home-form">
                                         <h4>Search BL Or Container No</h4>
                                         <div>
-                                            <select>
+                                            <select name="status">
                                                 <option>Last Move</option>
                                                 <option>Import</option>
                                                 <option>Export Empty/Storage</option>
@@ -144,7 +144,7 @@
                                             </select>
                                         </div>
                                         <div>
-                                            <input type="text" placeholder="Insert BL or Container No." value="">
+                                            <input name="extcaseno" type="text" placeholder="Insert BL or Container No." value="">
                                         </div>
                                         <button class="btn btn-primary mod_tm_ajax_contact_form_btn">Send</button>
                                     </form>
