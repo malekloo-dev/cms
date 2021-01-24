@@ -29,6 +29,45 @@
     <section class="resume mt-0 mb-0 pb-5">
         <h2 class="align-center"> نمونه کار سئو</h2>
         <div class="flex one two-500  four-900 center align-center">
+
+            <div>
+                <div class="gallery">
+                    <div class="m-4">
+                        <img class="g1" src="{{ asset('img/resume/darb1.jpg') }}">
+                        <img class="g2" src="{{ asset('img/resume/darb2.jpg') }}">
+                        <img class="g3" src="{{ asset('img/resume/darb3.jpg') }}">
+                    </div>
+                </div>
+                <div>
+                    <h3>درب کالا</h3>
+                    <table class="table full m-0 align-right">
+                        <tr>
+                            <td><a href="https://darbkala.com/درب-ضد-سرقت" target="blank">درب ضد سرقت ده میل</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://darbkala.com/درب-ضد-سرقت" target="blank">درب ضد سرقت روکش راش </a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <div class="gallery">
+                    <div class="m-4">
+                        <img class="g1" src="{{ asset('img/resume/mohit1.jpg') }}">
+                        <img class="g2" src="{{ asset('img/resume/mohit2.jpg') }}">
+                        <img class="g3" src="{{ asset('img/resume/mohit3.jpg') }}">
+                    </div>
+                </div>
+                <div>
+                    <h3>محیط صنعت</h3>
+                    <table class="table full m-0 align-right">
+                        <tr>
+                            <td>صفحه سوم</td>
+                            <td><a href="https://mohitsanat.ir" target="blank">آزمایشگاه محیط زیست</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
             <div>
                 <div class="gallery">
                     <div class="m-4">
@@ -41,9 +80,12 @@
                     <h3>coRepo</h3>
                     <table class="table full m-0 align-right">
                         <tr>
+                            <td>صفحه سوم</td>
+                            <td><a href="https://corepo.ir" target="blank">رپورتاژ رایگان</a></td>
+                        </tr>
+                        <tr>
                             <td>صفحه اول</td>
-                            <td><a href="https://corepo.ir"
-                                    target="blank">سایت لست سکند</a></td>
+                            <td><a href="https://corepo.ir" target="blank">سایت لست سکند</a></td>
                         </tr>
                     </table>
                 </div>
@@ -61,13 +103,11 @@
                     <table class="table full m-0 align-right">
                         <tr>
                             <td>صفحه اول</td>
-                            <td><a href="https://remotyadak.ir/سوئیچ-و-ریموت-بنز"
-                                    target="blank">ساخت سوئیچ بنز</a></td>
+                            <td><a href="https://remotyadak.ir/سوئیچ-و-ریموت-بنز" target="blank">ساخت سوئیچ بنز</a></td>
                         </tr>
                         <tr>
                             <td>صفحه اول</td>
-                            <td><a href="https://remotyadak.ir/سوئیچ-و-ریموت-کیا"
-                                    target="blank">ساخت سوئیچ کیا</a></td>
+                            <td><a href="https://remotyadak.ir/سوئیچ-و-ریموت-کیا" target="blank">ساخت سوئیچ کیا</a></td>
                         </tr>
                     </table>
                 </div>
