@@ -1,6 +1,8 @@
 @extends('admin.layouts.app')
-@section('content')
+
+
 @section('ckeditor')
+
 
     <script>
         $(document).ready(function() {
@@ -76,6 +78,7 @@
 
 @endsection
 
+@section('content')
 
 <div class="content-control ">
     <ul class="breadcrumb">

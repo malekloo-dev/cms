@@ -39,6 +39,7 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     Route::get('indexConfig','ModuleBuilderController@edit')->name('moduleBuilder.edit');
     Route::patch('indexConfig/{id}','ModuleBuilderController@update')->name('moduleBuilder.update');
 
+    Route::get('fileManager','FileManagerController@index')->name('fileManager.index');
     Route::resources([
         'clients'   => 'ClientsController',
         'users' => 'UserController',

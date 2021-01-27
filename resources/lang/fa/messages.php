@@ -72,4 +72,5 @@ return [
     'enter email'=>'لطفا ایمیل خورد را وارد نمایید.',
     'enter address'=>'لطفا آدرس خود را وارد نمایید',
     'enter new address'=>'Enter new address',
+    'file manager'=>'مدیریت مدیا',
 ];

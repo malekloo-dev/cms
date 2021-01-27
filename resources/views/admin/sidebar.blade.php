@@ -20,6 +20,13 @@
                 <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.products')</span>
             </a>
         </li>
+
+        <li class="no-margin">
+            <a href="{{ route('fileManager.index') }}" class="no-margin @if(!$ltr) text-right @endif">
+                <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-image"></i>
+                <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.file manager')</span>
+            </a>
+        </li>
         <li class="divider"></li>
         <li class="no-margin">
             <a href="{{ route('comment.index') }}" class="no-margin @if(!$ltr) text-right @endif">
