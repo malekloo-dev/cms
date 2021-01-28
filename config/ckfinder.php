@@ -22,9 +22,9 @@
 
 $config = array();
 
-$config['loadRoutes'] = true;
-
-$config['authentication'] = '\CKSource\CKFinderBridge\CKFinderMiddleware';
+$config['loadRoutes'] = false;
+$config['authentication'] = '\App\Http\Middleware\CustomCKFinderAuth';
+// $config['authentication'] = '\CKSource\CKFinderBridge\CKFinderMiddleware';
 
 /*============================ License Key ============================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_licenseKey
@@ -37,12 +37,12 @@ $config['licenseKey']  = '';
 
 $config['privateDir'] = array(
     'backend' => 'laravel_cache',
-    'tags'    => 'ckfinder/tags',
-    'cache'   => 'ckfinder/cache',
-    'thumbs'  => 'ckfinder/cache/thumbs',
+    'tags'    => 'adminAssets/js/ckfinder/tags',
+    'cache'   => 'adminAssets/js/ckfinder/cache',
+    'thumbs'  => 'adminAssets/js/ckfinder/cache/thumbs',
     'logs'    => array(
         'backend' => 'laravel_logs',
-        'path'    => 'ckfinder/logs'
+        'path'    => 'adminAssets/js/ckfinder/logs'
     )
 );
 
@@ -82,8 +82,8 @@ $config['backends']['laravel_logs'] = array(
 $config['backends']['default'] = array(
     'name'         => 'default',
     'adapter'      => 'local',
-    'baseUrl'      => config('app.url').'/upload/images/',
-    'root'         => public_path('/upload/images/'),
+    'baseUrl'      => config('app.url').'/upload/',
+    'root'         => public_path('/upload/'),
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,
     'filesystemEncoding' => 'UTF-8'
@@ -94,14 +94,14 @@ $config['backends']['default'] = array(
 
 $config['defaultResourceTypes'] = '';
 
-$config['resourceTypes'][] = array(
-    'name'              => 'Files', // Single quotes not allowed.
-    'directory'         => 'files',
-    'maxSize'           => 0,
-    'allowedExtensions' => '7z,aiff,asf,avi,bmp,csv,doc,docx,fla,flv,gif,gz,gzip,jpeg,jpg,mid,mov,mp3,mp4,mpc,mpeg,mpg,ods,odt,pdf,png,ppt,pptx,pxd,qt,ram,rar,rm,rmi,rmvb,rtf,sdc,sitd,swf,sxc,sxw,tar,tgz,tif,tiff,txt,vsd,wav,wma,wmv,xls,xlsx,zip',
-    'deniedExtensions'  => '',
-    'backend'           => 'default'
-);
+// $config['resourceTypes'][] = array(
+//     'name'              => 'Files', // Single quotes not allowed.
+//     'directory'         => 'files',
+//     'maxSize'           => 0,
+//     'allowedExtensions' => '7z,aiff,asf,avi,bmp,csv,doc,docx,fla,flv,gif,gz,gzip,jpeg,jpg,mid,mov,mp3,mp4,mpc,mpeg,mpg,ods,odt,pdf,png,ppt,pptx,pxd,qt,ram,rar,rm,rmi,rmvb,rtf,sdc,sitd,swf,sxc,sxw,tar,tgz,tif,tiff,txt,vsd,wav,wma,wmv,xls,xlsx,zip',
+//     'deniedExtensions'  => '',
+//     'backend'           => 'default'
+// );
 
 $config['resourceTypes'][] = array(
     'name'              => 'Images',

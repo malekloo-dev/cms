@@ -2,7 +2,7 @@
 @section('content')
     <div class="content-control">
         <ul class="breadcrumb">
-            <li class="active">@lang('messages.Redirect Url')</li>
+            <li class="active">@lang('messages.file manager')</li>
         </ul>
         <div>
             {{-- <a href="{{ route('seo.redirectUrl.create') }}"
@@ -31,23 +31,28 @@
                         </ul>
                     </div>
                 @endif
-                <div class="ckfinder-widget"></div>
-                <script type="text/javascript" src="{{ url('adminAssets/js/ckfinder/ckfinder.js') }}"></script>
+                <link href="{{ url('/ckfinder/samples/css/sample.css') }}" rel="stylesheet">
+
+                <div id="ckfinder-widget"></div>
+                <script src="{{ url('/ckfinder/samples/js/sf.js') }}"></script>
+                <script src="{{ url('/ckfinder/samples/js/tree-a.js') }}"></script>
+                <script type="text/javascript" src="{{ url('/ckfinder/ckfinder.js') }}"></script>
                 <script>
                     CKFinder.config({
                         connectorPath: @json(route('ckfinder_connector'))
                     });
-
                 </script>
-
                 <script>
-                    CKFinder.start();
                     CKFinder.widget('ckfinder-widget', {
                         width: '100%',
                         height: 700
                     });
 
                 </script>
+
+                {{-- <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script> --}}
+
+
 
             </div>
         </div>

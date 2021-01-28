@@ -3,10 +3,17 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
+use CKSource\CKFinderBridge\Controller\CKFinderController;
 
 App::setLocale(env('SITE_LANG'));
 
 //Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
+
+Route::any('/ckfinder/connector', [CKFinderController::class,'requestAction'])
+    ->name('ckfinder_connector');
+
+Route::any('/ckfinder/browser', [CKFinderController::class,'browserAction'])
+    ->name('ckfinder_browser');
 
 Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
