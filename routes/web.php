@@ -9,11 +9,8 @@ App::setLocale(env('SITE_LANG'));
 
 //Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
 
-Route::any('/ckfinder/connector', [CKFinderController::class,'requestAction'])
-    ->name('ckfinder_connector');
-
-Route::any('/ckfinder/browser', [CKFinderController::class,'browserAction'])
-    ->name('ckfinder_browser');
+Route::any('/ckfinder/connector', [CKFinderController::class, 'requestAction'])->middleware(['auth'])->name('ckfinder_connector');
+Route::any('/ckfinder/browser', [CKFinderController::class, 'browserAction'])->middleware(['auth'])->name('ckfinder_browser');
 
 Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
@@ -36,17 +33,17 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
     Route::prefix('seo')->name('seo.')->group(function () {
         Route::resource('redirectUrl', 'RedirectUrlController');
-        Route::get('websiteSetting','WebsiteSettingController@edit')->name('websiteSetting.edit');
-        Route::patch('websiteSetting','WebsiteSettingController@update')->name('websiteSetting.update');
+        Route::get('websiteSetting', 'WebsiteSettingController@edit')->name('websiteSetting.edit');
+        Route::patch('websiteSetting', 'WebsiteSettingController@update')->name('websiteSetting.update');
     });
 
     Route::resource('category', 'CategoryController');
     Route::resource('menu', 'MenuController');
 
-    Route::get('indexConfig','ModuleBuilderController@edit')->name('moduleBuilder.edit');
-    Route::patch('indexConfig/{id}','ModuleBuilderController@update')->name('moduleBuilder.update');
+    Route::get('indexConfig', 'ModuleBuilderController@edit')->name('moduleBuilder.edit');
+    Route::patch('indexConfig/{id}', 'ModuleBuilderController@update')->name('moduleBuilder.update');
 
-    Route::get('fileManager','FileManagerController@index')->name('fileManager.index');
+    Route::get('fileManager', 'FileManagerController@index')->name('fileManager.index');
     Route::resources([
         'clients'   => 'ClientsController',
         'users' => 'UserController',
@@ -61,7 +58,7 @@ Route::post('/search', 'InventoryController@index')->name('inventory.search');
 
 Auth::routes(['register' => false]);
 
-Route::get('spider','SpiderController@spider');
+Route::get('spider', 'SpiderController@spider');
 Route::get('/spider/reload', 'SpiderController@reload');
 Route::post('/spider/addToCms', 'SpiderController@reloadAdd');
 
@@ -74,5 +71,5 @@ Route::get('/reload', 'ContentController@reload');
 
 Route::get('/{slug?}/{b?}', 'CmsController@request');
 
-Route::post('/comment','CommentController@store')->name('comment.store');
-Route::post('/contact','ContactController@store')->name('contact.store');
+Route::post('/comment', 'CommentController@store')->name('comment.store');
+Route::post('/contact', 'ContactController@store')->name('contact.store');

@@ -31,11 +31,11 @@
                         </ul>
                     </div>
                 @endif
-                <link href="{{ url('/ckfinder/samples/css/sample.css') }}" rel="stylesheet">
+                {{-- <link href="{{ url('/ckfinder/samples/css/sample.css') }}" rel="stylesheet"> --}}
 
                 <div id="ckfinder-widget"></div>
-                <script src="{{ url('/ckfinder/samples/js/sf.js') }}"></script>
-                <script src="{{ url('/ckfinder/samples/js/tree-a.js') }}"></script>
+                {{-- <script src="{{ url('/ckfinder/samples/js/sf.js') }}"></script> --}}
+                {{-- <script src="{{ url('/ckfinder/samples/js/tree-a.js') }}"></script> --}}
                 <script type="text/javascript" src="{{ url('/ckfinder/ckfinder.js') }}"></script>
                 <script>
                     CKFinder.config({
@@ -44,6 +44,7 @@
                 </script>
                 <script>
                     CKFinder.widget('ckfinder-widget', {
+                        // language:'fa',
                         width: '100%',
                         height: 700
                     });
