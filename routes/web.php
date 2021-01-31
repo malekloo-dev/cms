@@ -9,9 +9,6 @@ App::setLocale(env('SITE_LANG'));
 
 //Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
 
-Route::any('/ckfinder/connector', [CKFinderController::class, 'requestAction'])->middleware(['auth'])->name('ckfinder_connector');
-Route::any('/ckfinder/browser', [CKFinderController::class, 'browserAction'])->middleware(['auth'])->name('ckfinder_browser');
-
 Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
     Route::post('contents/upload-image/', 'ContentController@uploadImageSubject')->name('contents.upload');

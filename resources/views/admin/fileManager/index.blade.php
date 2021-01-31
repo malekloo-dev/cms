@@ -1,4 +1,67 @@
 @extends('admin.layouts.app')
+@section('ckeditor')
+
+
+    <script>
+        $(document).ready(function() {
+
+            var $input = $("#parent_id");
+            $input.select2();
+            $("ul.select2-choices").sortable({
+                containment: 'parent'
+            });
+
+
+
+        });
+
+        $("#meta_keywords").select2({
+            tags: [],
+            maximumInputLength: 100
+        });
+
+    </script>
+
+
+    <script src="/ckeditor5/ckeditor5-build-classic/ckeditor.js"> </script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#brief_description'), {
+                ckfinder: {
+                    uploadUrl: "{{ route('contents.upload', ['_token' => csrf_token()]) }}",
+                },
+                toolbar: {
+                    viewportTopOffset: 80
+                },
+                @if(!$ltr)
+                language: 'fa'
+                @endif
+            })
+            .then(editor => {
+                const wordCountPlugin = editor.plugins.get('WordCount');
+                const wordCountWrapper = document.getElementById('word-count1');
+                wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+
+                window.editor = editor;
+            })
+
+            .catch(err => {
+                console.error(err.stack);
+            });
+
+            ClassicEditor.replace('brief_description', {filebrowserImageBrowseUrl: '/admin/file-manager/ckeditor'});
+
+
+
+    </script>
+
+
+
+
+
+@endsection
+
+
 @section('content')
     <div class="content-control">
         <ul class="breadcrumb">
@@ -31,28 +94,18 @@
                         </ul>
                     </div>
                 @endif
-                {{-- <link href="{{ url('/ckfinder/samples/css/sample.css') }}" rel="stylesheet"> --}}
 
-                <div id="ckfinder-widget"></div>
-                {{-- <script src="{{ url('/ckfinder/samples/js/sf.js') }}"></script> --}}
-                {{-- <script src="{{ url('/ckfinder/samples/js/tree-a.js') }}"></script> --}}
-                <script type="text/javascript" src="{{ url('/ckfinder/ckfinder.js') }}"></script>
-                <script>
-                    CKFinder.config({
-                        connectorPath: @json(route('ckfinder_connector'))
-                    });
-                </script>
-                <script>
-                    CKFinder.widget('ckfinder-widget', {
-                        // language:'fa',
-                        width: '100%',
-                        height: 700
-                    });
+                <meta name="csrf-token" content="{{ csrf_token() }}">
 
-                </script>
+                {{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"> --}}
+                {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> --}}
+                <link rel="stylesheet" href="{{ url('/vendor/file-manager/css/file-manager.css') }}">
+                <script src="{{ url('/vendor/file-manager/js/file-manager.js') }}"></script>
 
-                {{-- <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script> --}}
 
+                <div style="height: 600px;">
+                    <div id="brief_description"></div>
+                </div>
 
 
             </div>
