@@ -1181,3 +1181,4 @@ input:focus,textarea:focus{border:1px solid #ccc}
 .product-detail .top-page picture{max-width:300px;margin:1em}
 .toc1 a{color:#db3600}
 .ltr{direction:ltr}
+.contact-form fieldset .control{margin-bottom:1em}
