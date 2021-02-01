@@ -6,6 +6,7 @@ use App\Content;
 use App\Category;
 use App\Widget;
 use App\WebsiteSetting;
+use Illuminate\Database\Eloquent\Collection;
 //use App\Home;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,31 +23,30 @@ class HomeController extends Controller
     public function index()
     {
 
-         $data['seo'] = WebsiteSetting::all()->keyBy('variable')->map(function ($name) {
+        $data['seo'] = WebsiteSetting::all()->keyBy('variable')->map(function ($name) {
             return strtoupper($name['value']);
         });
 
         $attr = Widget::find(1);
-        if(is_object($attr)){
+        if (is_object($attr)) {
             $attr = $attr->attr;
-        }else{
+        } else {
             $attr = array();
         }
-
         //DB::connection()->enableQueryLog();
 
         foreach ((array) $attr as $var => $config) {
 
 
-            if($config['type']=='images'){
-                $data[$var]=$config;
+            if ($config['type'] == 'images') {
+                $data[$var] = $config;
                 unset($data[$var]['count']);
                 unset($data[$var]['type']);
 
                 continue;
             }
-            if($config['type']=='counter'){
-                $data[$var]=$config;
+            if ($config['type'] == 'counter') {
+                $data[$var] = $config;
                 unset($data[$var]['count']);
                 unset($data[$var]['type']);
                 continue;
@@ -58,11 +58,9 @@ class HomeController extends Controller
             if ($config['type'] == 'post') {
                 $module = $module->where('type', '=', '2');
                 $module = $module->where('attr_type', '=', 'article');
-
             } else if ($config['type'] == 'product') {
                 $module = $module->where('type', '=', '2');
                 $module = $module->where('attr_type', '=', 'product');
-
             } else if ($config['type'] == 'category') {
                 $module = $module->where('type', '=', '1');
             } else if ($config['type'] == 'categoryDetail') {
@@ -74,7 +72,7 @@ class HomeController extends Controller
 
             $sort = explode(' ', $config['sort']);
 
-            $module = $module->orderby($sort[0],$sort[1]);
+            $module = $module->orderby($sort[0], $sort[1]);
 
 
             $module = $module
@@ -83,18 +81,18 @@ class HomeController extends Controller
 
             if ($config['type'] == 'categoryDetail') {
                 $data[$var]['data'] = $module->first();
-
             } else {
                 $data[$var]['data'] = $module->get();
+                // get children
+                if (isset($config['child']) && $config['child'] == 'true') {
+                    $data[$var]['data'] = $this->getCatChildOfcontent($config['parent_id'],$data[$var]['data']);
+                }
             }
-            if (isset($config['background'])){
-                $data[$var]['meta']['background'] =$config['background'];
+            if (isset($config['background'])) {
+                $data[$var]['meta']['background'] = $config['background'];
             }
-
-
-
         }
-       // $queries = DB::getQueryLog();
+        // $queries = DB::getQueryLog();
 
         //dd($queries);
 
@@ -102,6 +100,24 @@ class HomeController extends Controller
         //dd($data);
 
         return view(@env('TEMPLATE_NAME') . '.Home', $data);
+    }
+
+    function getCatChildOfcontent($parentId, $temp)
+    {
+        $cat =  Content::where([['parent_id', '=', $parentId], ['type', '=', 1]])->get()->toArray();
+
+        $content =  Content::where([['parent_id', '=', $parentId], ['type', '=', 2],['id','<>',$temp[0]->id]])
+        ->where('publish_date', '<=', DB::raw('now()'))->get();
+        $temp = $temp->merge($content);
+
+        if (count($cat) == 0) {
+            return $temp;
+        } else {
+            foreach ($cat as $k => $v) {
+                $temp =  $this->getCatChildOfcontent($v["id"], $temp);
+            }
+            return $temp;
+        }
     }
 
     /**
@@ -136,7 +152,6 @@ class HomeController extends Controller
         //Home::create($request->all());
 
         return Redirect('Homes')->with('success', 'Greate! Home created successfully.');
-
     }
 
     /**
@@ -221,6 +236,4 @@ class HomeController extends Controller
 
         // return redirect('Homes');
     }
-
-
 }

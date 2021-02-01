@@ -91,8 +91,6 @@
 
 
 
-
-
     <section class="index-item-top banner pb-0">
         <div class="flex two">
             <div class="full two-third-500 slideshow-container ltr">
@@ -299,7 +297,8 @@
         <div>
             <h2> مقالات</h2>
             <div class="flex one two-500   ">
-                {{--post&label=articles&var=articles&count=6 --}}
+                {{--post&label=articles&var=articles&count=6&child=true--}}
+                
                 @isset($articles['data'])
                     @foreach ($articles['data'] as $content)
                         <div>

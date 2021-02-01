@@ -73,4 +73,5 @@ return [
     'enter address'=>'لطفا آدرس خود را وارد نمایید',
     'enter new address'=>'Enter new address',
     'file manager'=>'مدیریت مدیا',
+    'child'=>'گرفتن اطلاعات زیر مجموعه ها',
 ];

@@ -289,7 +289,15 @@
 
                                                     </div>
                                                 </div>
-
+                                                @isset($attr['config']['child'])
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label for="attr[{{ $attr['config']['var'] }}][child]">@lang('messages.child')</label>
+                                                            <input id="attr[{{ $attr['config']['var'] }}][child]" value="true" type="checkbox"
+                                                            name="attr[{{ $attr['config']['var'] }}][child]">
+                                                        </div>
+                                                    </div>
+                                                @endisset
                                                 <br/>
                                                 <br/>
                                                 @isset($attr['config']['isBackground'])

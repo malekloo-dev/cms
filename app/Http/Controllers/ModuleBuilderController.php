@@ -79,6 +79,7 @@ class ModuleBuilderController extends Controller
             $moduleStart = substr((explode('--}}', $val)[0]), 4);
 
 
+
             //$value=str_replace('&amp;','&',$moduleStart);
             //parse_str($value, $outputArray);
             // dd($outputArray);
@@ -96,7 +97,6 @@ class ModuleBuilderController extends Controller
             $arrayContent[$count]['type'] = $moduleName;
             $arrayContent[$count]['config'] = $moduleAttr;
             $count++;
-
         }
 
         $data['category'] = Content::where('type', '=', '1')
@@ -104,7 +104,6 @@ class ModuleBuilderController extends Controller
             ->get();
         $data['widgets'] = Widget::find(1);
         $data['arrayContent'] = $arrayContent;
-        //dd($data);
 
         return view('admin.moduleBuilder.Edit', $data);
     }
@@ -125,6 +124,7 @@ class ModuleBuilderController extends Controller
         $data = $request->all();
         $images=array();
         foreach ($data['attr'] as $k => $v) {
+            
             if ($v['type'] == 'images')
             {
                 //continue;
