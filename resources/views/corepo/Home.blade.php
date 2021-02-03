@@ -292,13 +292,13 @@
 
 
 
-<section class="index-items bg-gray2 mt-0 mb-0">
+<section class=" bg-gray2 mt-0 mb-0">
     <div class="flex one">
         <div>
             <h2> مقالات</h2>
-            <div class="flex one two-500   ">
+            <div class="flex one two-500 three-700  ">
                 {{--post&label=articles&var=articles&count=6&child=true--}}
-                
+
                 @isset($articles['data'])
                     @foreach ($articles['data'] as $content)
                         <div>

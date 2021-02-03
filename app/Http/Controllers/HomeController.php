@@ -106,7 +106,8 @@ class HomeController extends Controller
     {
         $cat =  Content::where([['parent_id', '=', $parentId], ['type', '=', 1]])->get()->toArray();
 
-        $content =  Content::where([['parent_id', '=', $parentId], ['type', '=', 2],['id','<>',$temp[0]->id]])
+
+        $content =  Content::where([['parent_id', '=', $parentId], ['type', '=', 2]])
         ->where('publish_date', '<=', DB::raw('now()'))->get();
         $temp = $temp->merge($content);
 
