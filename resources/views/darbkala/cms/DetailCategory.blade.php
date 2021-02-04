@@ -136,8 +136,8 @@
                                     </article>
                                 </div>
                             @endforeach
-
                         </div>
+                        {{ $relatedProduct->links()  }}
                     </div>
                 </div>
             </div>
@@ -213,6 +213,7 @@
                                 </a>
                             </div>
                         @endforeach
+
 
                     </div>
                 </div>

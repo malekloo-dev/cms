@@ -12,8 +12,8 @@
 @section('Content')
 
     @php
-    $tableOfImages=tableOfImages($detail->description);
-    $append='';
+    $tableOfImages = tableOfImages($detail->description);
+    $append = '';
     @endphp
     @if (count($relatedProduct))
         @include('jsonLdRelatedProduct')
@@ -48,7 +48,7 @@
                     <h2>دسته بندی: {{ $detail->title }}</h2>
                     <div class="flex one two-800   ">
 
-                        {{--$data['newPost']--}}
+                        {{-- $data['newPost'] --}}
                         @foreach ($subCategory as $content)
                             <div class="height-full">
 
@@ -85,7 +85,7 @@
 
                         <div class="flex one  two-1100  ">
 
-                            {{--$data['newPost']--}}
+                            {{-- $data['newPost'] --}}
                             @foreach ($relatedProduct as $content)
                                 <div>
                                     <article>
@@ -93,9 +93,7 @@
                                             @if (isset($content->images['thumb']))
                                                 <picture>
                                                     <img src="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }}"
-                                                        {{--
-                                                        srcset="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }} ,{{ str_replace(' ', '%20', $content->images['images']['medium']) ?? '' }} 2x"
-                                                        --}} alt="{{ $content->title }}"
+                                                        {{-- srcset="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }} ,{{ str_replace(' ', '%20', $content->images['images']['medium']) ?? '' }} 2x" --}} alt="{{ $content->title }}"
                                                         width="{{ env('PRODUCT_SMALL') }}"
                                                         height="{{ env('PRODUCT_SMALL') }}">
                                                 </picture>
@@ -111,11 +109,11 @@
                                             <div class="rate mt-1">
                                                 @if (count($content->comments))
                                                     @php
-                                                    $rateAvrage = $rateSum = 0;
+                                                        $rateAvrage = $rateSum = 0;
                                                     @endphp
                                                     @foreach ($content->comments as $comment)
                                                         @php
-                                                        $rateSum = $rateSum + $comment['rate'] ;
+                                                            $rateSum = $rateSum + $comment['rate'];
                                                         @endphp
                                                     @endforeach
                                                     @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
@@ -142,35 +140,6 @@
         </section>
     @endif
 
-    @if (count($relatedPost))
-        <section class="products" id="index-best-view">
-            <div class="flex one ">
-                <div>
-                    <div class="shadow">
-                        <h2>مقاله های زیر مجموعه {{ $detail->title }}</h2>
-                        <div class="flex one two-500 four-900 center ">
-
-                            {{--$data['newPost']--}}
-                            @foreach ($relatedPost as $content)
-                                <div>
-                                    <article>
-                                        @if (isset($content->images['thumb']))
-                                            <div><img src="{{ $content->images['thumb'] }}"></div>
-                                        @endif
-                                        <footer>
-                                            <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
-                                            {!! $content->brief_description !!}
-                                        </footer>
-                                    </article>
-                                </div>
-                            @endforeach
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endif
 
 
     <section class="" id="">
@@ -205,8 +174,37 @@
 
                 @include(@env('TEMPLATE_NAME').'.DescriptionModule')
 
-                {{-- {!! $detail->description !!}--}}
             </div>
         </div>
     </section>
+
+    @if (count($relatedPost))
+        <section class="products" id="index-best-view">
+            <div class="flex one ">
+                <div>
+                    <h2>مقاله های زیر مجموعه {{ $detail->title }}</h2>
+                    <div class="flex one two-500 four-900 center ">
+
+                        @foreach ($relatedPost as $content)
+                            <div>
+                                <a href="{{ $content->slug }}">
+                                    <article>
+                                        @if (isset($content->images['thumb']))
+                                            <div><img src="{{ $content->images['thumb'] }}"></div>
+                                        @endif
+                                        <footer>
+                                            <h2> {{ $content->title }}</h2>
+                                            {!! $content->brief_description !!}
+                                        </footer>
+                                    </article>
+                                </a>
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
 @endsection

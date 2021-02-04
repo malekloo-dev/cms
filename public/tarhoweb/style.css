@@ -1091,3 +1091,15 @@ div.attr>div>div>div{padding: 1em; margin: .3em;}
 div.attr>div>div>:nth-child(odd){flex:1;font-weight: bold; background-color: #eee;}
 div.attr>div>div>:nth-child(even){flex:4; background-color: #f4f4f4;}
 .rounded{border-radius: 5px;}
+
+nav[role=navigation]{display:flex;direction:ltr}
+nav[role=navigation]>:not(.hidden){display:none}
+nav[role=navigation] p{margin:0;padding:0}
+nav[role=navigation] .hidden{justify-content:space-between;display:flex;align-items:center}
+nav[role=navigation] .justify-between{justify-content:space-between;float:1 1 0}
+nav[role=navigation] .w-5{width:1.25rem;height:1.25rem}
+nav[role=navigation] span{display:inline-flex;}
+nav[role=navigation] a{--tw-space-x-reverse:0;display:inline-flex;padding-left:1rem;padding-right:1rem;padding-top:.5rem;padding-bottom:.5rem;font-size:.875rem;line-height:1.25rem;border-width:1px;border-color:rgba(255,255,255,var(--tw-bg-opacity))}
+nav[role=navigation] span>span>span{border: none;color:#ccc;margin-right:calc(-1px * var(--tw-space-x-reverse));margin-left:calc(-1px * calc(1 - var(--tw-space-x-reverse)));display:inline-flex;padding-left:1rem;padding-right:1rem;padding-top:.5rem;padding-bottom:.5rem;font-size:.875rem;line-height:1.25rem;border-width:1px;border-color:rgba(255,255,255,var(--tw-bg-opacity))}
+nav[role=navigation] span>*{margin-right:calc(-1px * var(--tw-space-x-reverse));margin-left:calc(-1px * calc(1 - var(--tw-space-x-reverse)));}
+nav[role=navigation] span>svg{border: none;}

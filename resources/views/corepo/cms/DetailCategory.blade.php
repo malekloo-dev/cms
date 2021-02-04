@@ -91,8 +91,8 @@
 @section('Content')
 
     @php
-    $tableOfImages=tableOfImages($detail->description);
-    $append='';
+    $tableOfImages = tableOfImages($detail->description);
+    $append = '';
     @endphp
 
     @if (count($relatedProduct))
@@ -126,9 +126,9 @@
                                         <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
                                             sizes="(max-width:{{ env('CATEGORY_SMALL') }}px) 100vw {{ env('CATEGORY_SMALL') }}px {{ ENV('CATEGORY_MEDIUM') }}px {{ ENV('CATEGORY_LARGE') }}px"
                                             alt="{{ $content->title }}" width="200" height="200" srcset="
-                                {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL') }}w,
-                                {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM') }}w,
-                                {{ $content->images['images']['large'] ?? $content->images['thumb'] }} 2x">
+                                    {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL') }}w,
+                                    {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM') }}w,
+                                    {{ $content->images['images']['large'] ?? $content->images['thumb'] }} 2x">
                                         <figcaption>
                                             <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
                                         </figcaption>
@@ -159,7 +159,7 @@
 
                         <div class="flex one two-500 four-900 center ">
 
-                            {{--$data['newPost']--}}
+                            {{-- $data['newPost'] --}}
                             @foreach ($relatedProduct as $content)
                                 <div>
                                     <article>
@@ -167,9 +167,10 @@
                                             <figure class="image">
                                                 <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
                                                     sizes="(max-width:{{ env('ARTICLE_SMALL') }}px) 100vw {{ env('ARTICLE_SMALL') }}px {{ ENV('ARTICLE_MEDIUM') }}px"
-                                                    alt="{{ $content->title }}" width="100" height="100" srcset="
-                                            {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
-                                            {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
+                                                    alt="{{ $content->title }}" width="100" height="100"
+                                                    srcset="
+                                                {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
+                                                {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
                                             </figure>
 
                                         @endif
@@ -188,52 +189,57 @@
         </section>
     @endif
 
-    @if (count($relatedPost))
-        <section class="products" id="index-best-view">
-            <div class="flex one ">
-                <div>
-                    <div class="shadow">
-                        <h2>مقاله های زیر مجموعه {{ $detail->title }}</h2>
-                        <div class="flex one two-500 four-900 center ">
-
-                            {{--$data['newPost']--}}
-                            @foreach ($relatedPost as $content)
-                                <div>
-                                    <article>
-                                        @if (isset($content->images['thumb']))
-                                            <figure class="image">
-                                                <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
-                                                    sizes="(max-width:{{ env('ARTICLE_SMALL') }}px) 100vw {{ env('ARTICLE_SMALL') }}px {{ ENV('ARTICLE_MEDIUM') }}px"
-                                                    alt="{{ $content->title }}" width="100" height="100" srcset="
-                                            {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
-                                            {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
-                                            </figure>
-
-                                        @endif
-                                        <footer>
-                                            <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
-                                            {!! $content->brief_description !!}
-                                        </footer>
-                                    </article>
-                                </div>
-                            @endforeach
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endif
 
 
     <section class="" id="">
         <div class="flex one ">
             <div>
                 <h1 class="">{{ $detail->title }}</h1>
+                <ul>
+                    @foreach ($table_of_content as $key => $item)
+                        <li class="toc1">
+                            <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
+                        </li>
+                    @endforeach
 
+                </ul>
 
                 @include(@env('TEMPLATE_NAME').'.DescriptionModule')
             </div>
         </div>
     </section>
+
+
+    @if (count($relatedPost))
+        <section class="products" id="index-best-view">
+            <div class="flex one ">
+                <div>
+                    <h2>مقاله های زیر مجموعه {{ $detail->title }}</h2>
+                    <div class="flex one two-500 four-900 center ">
+                        @foreach ($relatedPost as $content)
+                            <div>
+                                <article>
+                                    @if (isset($content->images['thumb']))
+                                        <figure class="image">
+                                            <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
+                                                sizes="(max-width:{{ env('ARTICLE_SMALL') }}px) 100vw {{ env('ARTICLE_SMALL') }}px {{ ENV('ARTICLE_MEDIUM') }}px"
+                                                alt="{{ $content->title }}" width="100" height="100"
+                                                srcset="
+                                                {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
+                                                {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
+                                        </figure>
+
+                                    @endif
+                                    <footer>
+                                        <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
+                                        {!! $content->brief_description !!}
+                                    </footer>
+                                </article>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
 @endsection

@@ -96,8 +96,11 @@ class CmsController extends Controller
                 ->where('attr_type', '=', 'product')
                 ->where('parent_id', '=', $detail->id)
                 ->where('publish_date', '<=', DB::raw('now()'))
-                ->get();
+                ->paginate(20);
+            // ->get();
 
+            // dd($relatedProduct);
+            // dd($relatedProduct->links());
             $subCategory = Content::where('type', '=', '1')
                 ->where('parent_id', '=', $detail->id)
                 ->where('publish_date', '<=', DB::raw('now()'))
@@ -109,7 +112,18 @@ class CmsController extends Controller
                 $template = env('TEMPLATE_NAME') . '.cms.' . $detail->attr['template_name'];
             }
             //dd($detail);
-            return view($template, compact(['detail', 'relatedPost', 'table_of_content', 'subCategory', 'relatedProduct', 'breadcrumb', 'images', 'seo', 'editorModule']));
+            // dd($relatedProduct->links());
+            return view($template, [
+                'detail' => $detail,
+                'relatedProduct' => $relatedProduct,
+                'relatedPost' => $relatedPost,
+                'breadcrumb' => $breadcrumb,
+                'table_of_content' => $table_of_content,
+                'subCategory' => $subCategory,
+                'images' => $images,
+                'seo' => $seo,
+                'editorModule' => $editorModule
+            ]);
         } else {
             $relatedPost = Content::where('type', '=', '2')
                 ->where('parent_id', '=', $detail->parent_id)

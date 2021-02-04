@@ -103,7 +103,7 @@
     </section>
 
 
-    <section class="index-items bg-gray home-top-view">
+    <section class="index-items articles bg-gray home-top-view mb-0">
         <div class="flex one">
             <div>
                 <h2>مقالات درب کالا</h2>

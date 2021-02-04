@@ -63,7 +63,11 @@
                     <table class="table full m-0 align-right">
                         <tr>
                             <td>صفحه سوم</td>
-                            <td><a href="https://mohitsanat.ir" target="blank">آزمایشگاه محیط زیست</a></td>
+                            <td><a href="https://mohitsanat.ir" target="blank">آزمایشگاه معتمد</a></td>
+                        </tr>
+                        <tr>
+                            <td>صفحه سوم</td>
+                            <td><a href="https://mohitsanat.ir/آزمایشگاه-محیط-زیست" target="blank">آزمایشگاه محیط زیست</a></td>
                         </tr>
                     </table>
                 </div>
@@ -126,11 +130,11 @@
                     <table class="table full m-0 align-right">
                         <tr>
                             <td>۱</td>
-                            <td>ساخت سوئیچ بی ام و</td>
+                            <td><a href="https://iranunlock.com/سوئیچ-و-ریموت-بنز" target="blank">ساخت سوئیچ بنز</a></td>
                         </tr>
                         <tr>
                             <td>۱</td>
-                            <td>ساخت سوئیچ بنز</td>
+                            <td><a href="https://iranunlock.com/ساخت-سوئیچ-کیا" target="blank">ساخت سوئیچ کیا</a></td>
                         </tr>
                         <tr>
                             <td>۱</td>
