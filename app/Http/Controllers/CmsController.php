@@ -99,7 +99,7 @@ class CmsController extends Controller
                 ->paginate(20);
             // ->get();
 
-            // dd($relatedProduct);
+
             // dd($relatedProduct->links());
             $subCategory = Content::where('type', '=', '1')
                 ->where('parent_id', '=', $detail->id)
