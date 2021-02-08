@@ -229,14 +229,17 @@ class CmsController extends Controller
             if (strlen($anchor) == 0) {
                 continue;
             }
-            $list['list'][$count]['label'] = $anchor;
-            $list['list'][$count]['anchor'] = cleareText($item);
+            $list['list'][$count]['label'] = $label;
+            $list['list'][$count]['anchor'] = $anchor;
             $table_of_content = '';
             $anchor = '<a name="' . str_replace(' ', '-', cleareText($val)) . '"></a>' . $winners[0][$key];
             $content = str_replace($winners[0][$key], $anchor, $content);
 
             $count++;
         }
+        //echo '<pre/>';
+        //print_r($list);
+        //dd();
 
         // print_r($winners[0]);
         // die();
