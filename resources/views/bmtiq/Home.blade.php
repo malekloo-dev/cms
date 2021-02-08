@@ -134,13 +134,14 @@
                                                     </div>
                                     </div>
                                     <form action="/search" method="POST" class="home-form">
+                                        @csrf
                                         <h4>Search BL Or Container No</h4>
                                         <div>
                                             <select name="status">
-                                                <option>Last Move</option>
-                                                <option>Import</option>
-                                                <option>Export Empty/Storage</option>
-                                                <option>Export full/Storage</option>
+                                                <option value="4">Last Move</option>
+                                                <option value="1">Import</option>
+                                                <option value="2">Export Empty/Storage</option>
+                                                <option value="3">Export full/Storage</option>
                                             </select>
                                         </div>
                                         <div>
