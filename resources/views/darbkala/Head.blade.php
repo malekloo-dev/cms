@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html dir="rtl" lang="fa-IR">
 <head>
     <title>{{$seo['meta_title'] ?? "" }}</title>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="{{$seo['meta_keywords'] ?? "" }}">
@@ -10,7 +9,6 @@
 
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <meta name="theme-color" content="#fa490e"/>
-
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#fa490e">
     <meta name="apple-mobile-web-app-title" content="ریموت">

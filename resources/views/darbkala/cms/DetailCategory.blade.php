@@ -24,6 +24,7 @@
     @if (count($relatedProduct))
         @include('jsonLdRelatedProduct')
     @endif
+    @include('jsonLdFaq')
 
 
 

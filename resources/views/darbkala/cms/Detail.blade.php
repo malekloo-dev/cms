@@ -75,6 +75,8 @@
     @if ($detail->attr_type == 'product')
         @include('jsonLdProduct')
     @endif
+    @include('jsonLdFaq')
+
 
     <section class="breadcrumb">
         <div class="flex one  ">
