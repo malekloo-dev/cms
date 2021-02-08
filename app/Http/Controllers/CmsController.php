@@ -131,7 +131,7 @@ class CmsController extends Controller
                 ->where('attr_type', '=', 'article')
                 ->where('publish_date', '<=', DB::raw('now()'))
                 ->inRandomOrder()
-                ->limit(10)->get();
+                ->limit(4)->get();
 
             $relatedProduct = Content::where('type', '=', '2')
                 ->where('parent_id', '=', $detail->parent_id)
