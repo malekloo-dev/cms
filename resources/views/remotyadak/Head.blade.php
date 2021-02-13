@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa">
-
+<html dir="rtl" lang="fa-IR">
 <head>
     <title>{{ $seo['meta_title'] ?? '' }}</title>
 
