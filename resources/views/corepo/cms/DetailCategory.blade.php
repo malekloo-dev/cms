@@ -191,7 +191,7 @@
 
 
 
-    <section class="" id="">
+    <section class="category-content" id="">
         <div class="flex one ">
             <div>
                 <h1 class="">{{ $detail->title }}</h1>

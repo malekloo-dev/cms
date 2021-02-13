@@ -107,23 +107,26 @@
         </div>
     </section>
 
-    <section class="" id="">
-        <div class="flex one ">
-            <div>
+    <section class="content-detail" id="">
+        <div class="flex one two-700">
+            <div class="fourth-500">
+                <div>
+                    <div>محل تلیغ شما</div>
+                </div>
+            </div>
+            <div class="three-fourth-500 ">
+                <div>
+                    <ul>
+                        @foreach ($table_of_content as $key => $item)
+                            <li class="toc1">
+                                <a id="test" href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
+                            </li>
+                        @endforeach
 
+                    </ul>
+                    @include(@env('TEMPLATE_NAME').'.DescriptionModule')
+                </div>
 
-
-
-
-                <ul>
-                    @foreach ($table_of_content as $key => $item)
-                        <li class="toc1">
-                            <a id="test" href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
-                        </li>
-                    @endforeach
-
-                </ul>
-                @include(@env('TEMPLATE_NAME').'.DescriptionModule')
             </div>
         </div>
     </section>
