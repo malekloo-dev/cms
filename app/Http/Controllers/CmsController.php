@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use App\RedirectUrl;
-
+use App\Widget;
 use PDF;
 
 class CmsController extends Controller
@@ -19,13 +19,14 @@ class CmsController extends Controller
 
     public function request($slug)
     {
+        // redirect url
         $spesifiedUrl = RedirectUrl::where('url', 'like', '/' . $slug);
         if ($spesifiedUrl->exists()) {
             header("Location: " . url($spesifiedUrl->first()->redirect_to), true, 301);
             exit();
         }
 
-
+        // detail
         $detail = Content::where('slug', '=', $slug)
             ->where('publish_date', '<=', DB::raw('now()'))
             ->first();
@@ -39,6 +40,11 @@ class CmsController extends Controller
 
         $this->breadcrumb[] = $detail->getAttributes();
         $breadcrumb = $this->get_parent($detail->parent_id);
+        if (is_array($breadcrumb)) {
+            krsort($breadcrumb);
+        } else {
+            $breadcrumb = array();
+        }
 
         $seo['meta_keywords'] = $detail->meta_keywords;
         $seo['meta_description'] = $detail->meta_description;
@@ -48,11 +54,6 @@ class CmsController extends Controller
         $seo['og:type'] = 'article';
 
 
-        if (is_array($breadcrumb)) {
-            krsort($breadcrumb);
-        } else {
-            $breadcrumb = array();
-        }
 
         $table_of_content = array();
         $table_of_images = array();
@@ -86,6 +87,8 @@ class CmsController extends Controller
         $relatedProduct = array();
         $editorModule = editorModule($detail->description);
 
+
+
         if ($detail->type == 1) {
             $relatedPost = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'article')
@@ -107,13 +110,19 @@ class CmsController extends Controller
                 ->get();
 
             $template = env('TEMPLATE_NAME') . '.cms.DetailCategory';
+            //Widget
+            $widget = $this->getWidget('DetailCategory');
 
             if ($detail->attr_type == 'html') {
+                $widget = $this->getWidget($detail->attr['template_name']);
                 $template = env('TEMPLATE_NAME') . '.cms.' . $detail->attr['template_name'];
             }
             //dd($detail);
             // dd($relatedProduct->links());
-            return view($template, [
+
+
+
+            return view($template, $widget,[
                 'detail' => $detail,
                 'relatedProduct' => $relatedProduct,
                 'relatedPost' => $relatedPost,
@@ -142,15 +151,122 @@ class CmsController extends Controller
                 ->limit(4)->get();
 
             $template = env('TEMPLATE_NAME') . '.cms.Detail';
+            $widget = $this->getWidget('Detail');
             if ($detail->attr_type == 'html') {
+                $widget = $this->getWidget($detail->attr['template_name']);
                 $template = env('TEMPLATE_NAME') . '.cms.' . $detail->attr['template_name'];
             }
 
             //$detail->description=editorModule($detail->description);
 
-            return view($template, compact(['detail', 'breadcrumb', 'relatedPost', 'table_of_content', 'relatedProduct', 'table_of_images', 'seo', 'editorModule']));
+            return view($template, $widget,compact([
+                'detail',
+                'breadcrumb',
+                'relatedPost',
+                'table_of_content',
+                'relatedProduct',
+                'table_of_images',
+                'seo',
+                'editorModule'
+            ]));
         }
     }
+
+    public function getWidget($fileName)
+    {
+
+
+        // $attr = Widget::find(1);
+        $attr = Widget::where('file_name', '=', $fileName)->first();
+        
+        if (is_object($attr)) {
+            $attr = $attr->attr;
+        } else {
+            $attr = array();
+        }
+        $data = array();
+        foreach ((array) $attr as $var => $config) {
+
+
+
+            if ($config['type'] == 'images') {
+                $data[$var] = $config;
+                unset($data[$var]['count']);
+                unset($data[$var]['type']);
+
+                continue;
+            }
+            if ($config['type'] == 'counter') {
+                $data[$var] = $config;
+                unset($data[$var]['count']);
+                unset($data[$var]['type']);
+                continue;
+            }
+            $type = '';
+            //$data[$var] =new Content();
+            $module = new Content();
+
+            if ($config['type'] == 'post') {
+                $module = $module->where('type', '=', '2');
+                $module = $module->where('attr_type', '=', 'article');
+            } else if ($config['type'] == 'product') {
+                $module = $module->where('type', '=', '2');
+                $module = $module->where('attr_type', '=', 'product');
+            } else if ($config['type'] == 'category') {
+                $module = $module->where('type', '=', '1');
+            } else if ($config['type'] == 'categoryDetail') {
+                $module = $module->where('type', '=', '1')->where('id', '=', $config['parent_id']);
+            }
+            if ($config['parent_id'] != 0 and $config['type'] != 'categoryDetail') {
+                $module = $module->where('parent_id', '=', $config['parent_id']);
+            }
+
+            $sort = explode(' ', $config['sort']);
+
+            $module = $module->orderby($sort[0], $sort[1]);
+
+
+            $module = $module
+                ->where('publish_date', '<=', DB::raw('now()'))
+                ->limit($config['count']);
+
+            if ($config['type'] == 'categoryDetail') {
+                $data[$var]['data'] = $module->first();
+            } else {
+                $data[$var]['data'] = $module->get();
+
+                // get children
+                if (isset($config['child']) && $config['child'] == 'true') {
+                    $data[$var]['data'] = $this->getCatChildOfcontent($config['parent_id'], $data[$var]['data']);
+                }
+            }
+            if (isset($config['background'])) {
+                $data[$var]['meta']['background'] = $config['background'];
+            }
+        }
+
+        return $data;
+    }
+    function getCatChildOfcontent($parentId, $temp)
+    {
+        $cat =  Content::where([['parent_id', '=', $parentId], ['type', '=', 1]])->get()->toArray();
+
+
+        $content =  Content::where([['parent_id', '=', $parentId], ['type', '=', 2]])
+        ->where('publish_date', '<=', DB::raw('now()'))->get();
+        $temp = $temp->merge($content);
+
+        if (count($cat) == 0) {
+            return $temp;
+        } else {
+            foreach ($cat as $k => $v) {
+                $temp =  $this->getCatChildOfcontent($v["id"], $temp);
+            }
+            return $temp;
+        }
+    }
+
+
 
     public function tableOfImage($content)
     {

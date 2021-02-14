@@ -12,6 +12,6 @@ class Widget extends Model
         'attr' => 'array',
     ];
     protected $fillable = [
-        'attr'
+        'attr','file_name'
     ];
 }

@@ -74,4 +74,5 @@ return [
     'enter new address'=>'Enter new address',
     'file manager'=>'مدیریت مدیا',
     'child'=>'گرفتن اطلاعات زیر مجموعه ها',
+    'module config'=>' ماژول ها',
 ];

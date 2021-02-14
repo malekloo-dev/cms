@@ -7,8 +7,7 @@ use App\Menu;
 use App\Widget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
-
+use Illuminate\Support\Facades\File;
 
 class ModuleBuilderController extends Controller
 {
@@ -38,18 +37,16 @@ class ModuleBuilderController extends Controller
         // {{--#anchor news--}}
         preg_match_all("/({{--#anchor(.*)--}})/U", $content, $pat_array);
         return array_map('trim', $pat_array[2]);
-
     }
 
 
     protected function uploadImages($file, $module = '')
     {
-        $imagePath = "/upload/images/modules/".$module."/";
+        $imagePath = "/upload/images/modules/" . $module . "/";
         $filename = $file->getClientOriginalName();
         $file = $file->move(public_path($imagePath), $filename);
 
         return $imagePath . $filename;
-
     }
 
     /**
@@ -58,22 +55,26 @@ class ModuleBuilderController extends Controller
      * @param  \App\Menu $menu
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($fileName)
     {
 
         //{{--module=category&label=NEWS&count=3&query=last--}}
         //{{--gallery&label=NEWS&count=3&query=last--}}
         // $template = 'O:\xampp\htdocs\cms\resources\views\remotyadak\Home.blade.php';
-        $template = resource_path('views/' . env('TEMPLATE_NAME') . '/Home.blade.php');
-
+        if ($fileName == 'Home') {
+            $template = resource_path('views/' . env('TEMPLATE_NAME') . "/$fileName.blade.php");
+        } else {
+            $template = resource_path('views/' . env('TEMPLATE_NAME') . "/cms/$fileName.blade.php");
+        }
 
         $content = file_get_contents($template);
+
         preg_match_all("/({{--category&(.*)--}})|({{--categoryDetail&(.*)--}})|({{--product&(.*)--}})|({{--post(.*)--}})|({{--counter(.*)--}})|({{--images(.*)--}})/U", $content, $pat_array);
         //{gallery&size=10&template=1}
         //parse_str($_SERVER['QUERY_STRING'], $outputArray);
         $module = array('category' => '1', 'product' => '1', 'post' => '1');
         $count = 0;
-
+        $arrayContent = array();
         foreach ($pat_array[0] as $key => $val) {
 
             $moduleStart = substr((explode('--}}', $val)[0]), 4);
@@ -91,7 +92,6 @@ class ModuleBuilderController extends Controller
             if (count($moduleGetAttrArray) > 1) {
                 $queryString = substr($moduleStart, strlen($moduleName));
                 parse_str(htmlspecialchars_decode($queryString), $moduleAttr);
-
             }
 
             $arrayContent[$count]['type'] = $moduleName;
@@ -102,10 +102,30 @@ class ModuleBuilderController extends Controller
         $data['category'] = Content::where('type', '=', '1')
             ->where('publish_date', '<=', DB::raw('now()'))
             ->get();
-        $data['widgets'] = Widget::find(1);
+        // $data['widgets'] = Widget::find(1);
+        $data['widgets'] = Widget::where('file_name','=',$fileName)->first();
+
         $data['arrayContent'] = $arrayContent;
 
-        return view('admin.moduleBuilder.Edit', $data);
+
+        $files = array();
+        $cmsDirectory = resource_path('views/' . env('TEMPLATE_NAME') . '/cms/');
+        $filesSpl = File::allfiles($cmsDirectory);
+
+        foreach ($filesSpl as $file) {
+            $itemFileName = explode('.', $file->getFilename());
+            $files[$itemFileName[0]] = $file->getFilename();
+        }
+        // dd($files[0]->getFilename());
+        // dd($files);
+
+        return view('admin.moduleBuilder.Edit', [
+            'arrayContent' => $data['arrayContent'],
+            'widgets' => $data['widgets'],
+            'category' => $data['category'],
+            'files' => $files,
+            'fileName' => $fileName
+        ]);
     }
 
 
@@ -116,17 +136,19 @@ class ModuleBuilderController extends Controller
      * @param  \App\Menu $menu
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request)
+    public function update($fileName, Request $request)
     {
 
-        $crud = Widget::find(1);
-        //dd($crud);
+        // $crud = Widget::find(1);
+        // $crud = Widget::where('file_name','=',$fileName)->first();
+        $crud = Widget::firstOrNew(['file_name' => $fileName]);
+
         $data = $request->all();
-        $images=array();
+        
+        $images = array();
         foreach ($data['attr'] as $k => $v) {
-            
-            if ($v['type'] == 'images')
-            {
+
+            if ($v['type'] == 'images') {
                 //continue;
                 $images = array();
                 if (isset($crud['attr'][$k]['images'])) {
@@ -143,62 +165,51 @@ class ModuleBuilderController extends Controller
 
                         $pos = strpos($image->getMimeType(), 'video');
                         if ($pos === false) {
-                            $images[$index] = $this->uploadImages($image,'images');
-
-                        }else
-                        {
-                            $images[0] = $this->uploadImages($image,'images');
+                            $images[$index] = $this->uploadImages($image, 'images');
+                        } else {
+                            $images[0] = $this->uploadImages($image, 'images');
                             break;
-
                         }
-
-
                     }
                 }
                 if (isset($v['delete'])) {
 
                     foreach ($v['delete'] as $index => $image) {
-                            unset($images[$index]);
-                            continue;
+                        unset($images[$index]);
+                        continue;
                     }
                 }
-                $mimeType='image';
-                $SortImages=array();
+                $mimeType = 'image';
+                $SortImages = array();
 
                 foreach ($images as $index => $image) {
                     $pos = strpos($image, 'mp4');
                     if ($pos === false) {
-                        $SortImages[]=$image;
-
-                    }else
-                    {
-                        $SortImages=array();
-                        $SortImages[]=$image;
-                        $mimeType='video';
+                        $SortImages[] = $image;
+                    } else {
+                        $SortImages = array();
+                        $SortImages[] = $image;
+                        $mimeType = 'video';
                         break;
-
                     }
                 }
                 $data['attr'][$k]['images'] = $SortImages;
                 $data['attr'][$k]['mimeType'] = $mimeType;
-            }else if ($v['type'] == 'post')
-            {
+            } else if ($v['type'] == 'post') {
                 if (isset($crud['attr'][$k]['background'])) {
                     $data['attr'][$k]['background'] = $crud['attr'][$k]['background'];
                 }
                 if (isset($v['background'])) {
-                    $data['attr'][$k]['background'] = $this->uploadImages($v['background'],'list');
+                    $data['attr'][$k]['background'] = $this->uploadImages($v['background'], 'list');
                 }
-
             }
-
         }
+        // dd($data);
+        $crud->attr = $data['attr'];
+        $crud->save();
 
-        $crud->update($data);
-         //dd($data);
 
-        return redirect('admin/indexConfig')->with('success', 'Update! Menu Update successfully.');
-
+        return redirect('admin/indexConfig/' . $fileName)->with('success', 'Update! Menu Update successfully.');
     }
 
 

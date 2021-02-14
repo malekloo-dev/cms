@@ -27,7 +27,8 @@ class HomeController extends Controller
             return strtoupper($name['value']);
         });
 
-        $attr = Widget::find(1);
+        // $attr = Widget::find(1);
+        $attr = Widget::where('file_name','=','Home')->first();
         if (is_object($attr)) {
             $attr = $attr->attr;
         } else {
@@ -83,6 +84,7 @@ class HomeController extends Controller
                 $data[$var]['data'] = $module->first();
             } else {
                 $data[$var]['data'] = $module->get();
+
                 // get children
                 if (isset($config['child']) && $config['child'] == 'true') {
                     $data[$var]['data'] = $this->getCatChildOfcontent($config['parent_id'],$data[$var]['data']);
@@ -104,6 +106,7 @@ class HomeController extends Controller
 
     function getCatChildOfcontent($parentId, $temp)
     {
+
         $cat =  Content::where([['parent_id', '=', $parentId], ['type', '=', 1]])->get()->toArray();
 
 

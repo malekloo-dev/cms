@@ -44,8 +44,8 @@
 @endsection
 @section('Content')
     @php
-    $tableOfImages=tableOfImages($detail->description);
-    $append='';
+    $tableOfImages = tableOfImages($detail->description);
+    $append = '';
     @endphp
 
     @if ($detail->attr_type == 'product')
@@ -72,8 +72,8 @@
                         <img src="{{ $detail->images['images']['medium'] ?? $detail->images['thumb'] }}"
                             sizes="(max-width:{{ env('ARTICLE_MEDIUM') }}px) 100vw {{ env('ARTICLE_MEDIUM') }}px {{ ENV('ARTICLE_LARGE') }}px"
                             alt="{{ $detail->title }}" width="{{ env('ARTICLE_MEDIUM') }}" height="100" srcset="
-                                        {{ $detail->images['images']['medium'] ?? $detail->images['thumb'] }} {{ env('ARTICLE_MEDIUM') }}w,
-                                        {{ $detail->images['images']['large'] ?? $detail->images['thumb'] }} 2x">
+                                            {{ $detail->images['images']['medium'] ?? $detail->images['thumb'] }} {{ env('ARTICLE_MEDIUM') }}w,
+                                            {{ $detail->images['images']['large'] ?? $detail->images['thumb'] }} 2x">
 
                     </figure>
                 @endif
@@ -83,11 +83,11 @@
                     <div class="rate">
                         @if (count($detail->comments))
                             @php
-                            $rateAvrage = $rateSum = 0;
+                                $rateAvrage = $rateSum = 0;
                             @endphp
                             @foreach ($detail->comments as $comment)
                                 @php
-                                $rateSum = $rateSum + $comment['rate'] ;
+                                    $rateSum = $rateSum + $comment['rate'];
                                 @endphp
                             @endforeach
                             @for ($i = $rateSum / count($detail->comments); $i >= 1; $i--)
@@ -112,6 +112,37 @@
             <div class="fourth-500">
                 <div>
                     <div>محل تلیغ شما</div>
+                    <div>وبسایت ها</div>
+                    {{--category&label=sideCategory&var=sideCategory&count=6--}}
+                    @isset($sideCategory['data'])
+                        <ul>
+                            @foreach ($sideCategory['data'] as $item)
+                                <li>
+                                    <a href="{{ url($item->slug) }}">{{ $item->title }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endisset
+
+                    <div>آخرین مقالات</div>
+                    {{--post&label=sideLastPost&var=sideLastPost&count=6&child=true--}}
+                    @isset($sideLastPost['data'])
+                        <ul class="p-0">
+                            @foreach ($sideLastPost['data'] as $content)
+                                <li class="flex ">
+                                    <a class="flex three" href="{{ url($content->slug) }}">
+                                        @if (isset($content->images['thumb']))
+                                            <div class="third"><img style="width: 100%" src="{{ $content->images['thumb'] }}"></div>
+                                        @endif
+                                        <div class="two-third">
+
+                                            {{ $content->title }}
+                                        </div>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endisset
                 </div>
             </div>
             <div class="three-fourth-500 ">
@@ -126,7 +157,6 @@
                     </ul>
                     @include(@env('TEMPLATE_NAME').'.DescriptionModule')
                 </div>
-
             </div>
         </div>
     </section>
@@ -139,7 +169,7 @@
                         <h2>محصولات مرتبط {{ $detail->title }}</h2>
                         <div class="flex one two-500 four-900 center ">
 
-                            {{--$data['newPost']--}}
+                            {{-- $data['newPost'] --}}
                             @foreach ($relatedProduct as $content)
                                 <div>
                                     <article>
@@ -169,7 +199,7 @@
                         <h2>مقاله های مرتبط {{ $detail->title }}</h2>
                         <div class="flex one two-500 four-900 center ">
 
-                            {{--$data['newPost']--}}
+                            {{-- $data['newPost'] --}}
                             @foreach ($relatedPost as $content)
                                 <div>
                                     <article>

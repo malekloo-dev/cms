@@ -92,9 +92,9 @@
 
         <li class="divider"></li>
         <li class="no-margin">
-            <a href="{{ route('moduleBuilder.edit') }}" class="no-margin @if(!$ltr) text-right @endif">
+            <a href="{{ route('moduleBuilder.edit',['fileName'=>'Home']) }}" class="no-margin @if(!$ltr) text-right @endif">
                 <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-wrench"></i>
-                <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.home config')</span>
+                <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.module config')</span>
             </a>
         </li>
         <li class="divider"></li>
