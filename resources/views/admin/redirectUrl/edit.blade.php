@@ -16,7 +16,7 @@
 <div class="content-control">
     <ul class="breadcrumb">
         <li><a href="{{ route('seo.redirectUrl.index') }}">@lang('messages.Redirect Url')</a></li>
-        <li>@lang('messages.add') </li>
+        <li>@lang('messages.edit') </li>
     </ul>
 </div>
 
@@ -31,7 +31,7 @@
 
                     <div class="col-md-6">
                         <label for="url" class="col-form-label ">url:</label>
-                        <input type="text" class="form-control ltr text-left" name="url"
+                        <input type="text" placeholder="/last-url" class="form-control ltr text-left" name="url"
                             value="{{ $redirectUrl['url'] }}" />
                         <span class="text-danger">{{ $errors->first('url') }}</span>
                     </div>
@@ -39,7 +39,7 @@
 
                     <div class="col-md-6">
                         <label for="redirect_to" class=" col-form-label ">Redirect to:</label>
-                        <input type="text" class="form-control ltr text-left" name="redirect_to"
+                        <input type="text" placeholder="/new-url" class="form-control ltr text-left" name="redirect_to"
                             value="{{ $redirectUrl['redirect_to'] }}" />
                         <span class="text-danger">{{ $errors->first('redirect_to') }}</span>
                     </div>
