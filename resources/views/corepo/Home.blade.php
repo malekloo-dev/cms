@@ -115,25 +115,26 @@
 
             <div>
                 {{--images&label=bannerTop&var=bannerTop&count=1 --}}
+                @isset($bannerTop['images'])
+
                 <figure class="image">
-                    <img src="{{ asset('/img/bt.jpg') }}" sizes="(max-width:300px) 100vw 300px 600px " alt=""
-                        width="383" height="182" srcset="
-                                            {{ asset('/img/bt-small.jpg') }} 383w,
-                                            {{ asset('/img/bt.jpg') }} 500w,
-                                            {{ asset('/img/bt-large.jpg') }} 2x">
+                    <img src="{{ url($bannerTop['images'][0]) }}" sizes="(max-width:300px) 100vw 300px 600px " alt=""
+                        width="383" height="182" >
 
                 </figure>
+                @endisset
             </div>
             <div class="pb-0">
                 {{--images&label=bannerBot&var=bannerBot&count=1 --}}
+                @isset($bannerBot['images'])
+
                 <figure class="image">
-                    <img src="{{ asset('/img/bt.jpg') }}" sizes="(max-width:300px) 100vw 300px 600px " alt=""
-                        width="383" height="182" srcset="
-                                            {{ asset('/img/bt-small.jpg') }} 383w,
-                                            {{ asset('/img/bt.jpg') }} 500w,
-                                            {{ asset('/img/bt-large.jpg') }} 2x">
+                    <img src="{{ url($bannerBot['images'][0]) }}" sizes="(max-width:300px) 100vw 300px 600px " alt=""
+                        width="383" height="182" >
 
                 </figure>
+                @endisset
+
             </div>
 
 
@@ -186,7 +187,7 @@
         <div>
             <h2>وبسایت ها</h2>
             <div class="flex one three-500 five-900   ">
-                {{--post&label=topView&var=topViewPost&count=10 --}}
+                {{--post&label=topView&var=topViewPost&count=10&child=true--}}
                 @isset($topViewPost['data'])
                     @foreach ($topViewPost['data'] as $content)
                         <div>

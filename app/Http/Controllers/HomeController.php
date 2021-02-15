@@ -87,7 +87,7 @@ class HomeController extends Controller
 
                 // get children
                 if (isset($config['child']) && $config['child'] == 'true') {
-                    $data[$var]['data'] = $this->getCatChildOfcontent($config['parent_id'],$data[$var]['data']);
+                    $data[$var]['data'] = $this->getCatChildOfcontent($config['parent_id'],$data[$var]['data'],$config);
                 }
             }
             if (isset($config['background'])) {
@@ -104,8 +104,10 @@ class HomeController extends Controller
         return view(@env('TEMPLATE_NAME') . '.Home', $data);
     }
 
-    function getCatChildOfcontent($parentId, $temp)
+    function getCatChildOfcontent($parentId, $temp,$config)
     {
+
+        if(count($temp) >= $config['count']) return $temp;
 
         $cat =  Content::where([['parent_id', '=', $parentId], ['type', '=', 1]])->get()->toArray();
 
@@ -118,7 +120,7 @@ class HomeController extends Controller
             return $temp;
         } else {
             foreach ($cat as $k => $v) {
-                $temp =  $this->getCatChildOfcontent($v["id"], $temp);
+                $temp =  $this->getCatChildOfcontent($v["id"], $temp,$config);
             }
             return $temp;
         }
