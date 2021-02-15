@@ -66,6 +66,8 @@
 
 
                             <div class="col-md-8 btn-block">
+                                @if(count($arrayContent))
+
 
                                 @foreach ($arrayContent as $Key => $attr)
                                     @php
@@ -371,7 +373,7 @@
                                 <button type="submit" class="btn btn-success  mat-btn ">
                                     @lang('messages.edit')
                                 </button>
-
+                                @endif
 
                             </div>
 

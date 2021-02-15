@@ -104,6 +104,13 @@ class ModuleBuilderController extends Controller
             ->get();
         // $data['widgets'] = Widget::find(1);
         $data['widgets'] = Widget::where('file_name','=',$fileName)->first();
+        if($data['widgets'] == null){
+            $data['widgets'] = new Widget;
+            $data['widgets']->file_name = $fileName;
+            $data['widgets']->attr = '';
+            $data['widgets']->save();
+        }
+        
 
         $data['arrayContent'] = $arrayContent;
 
@@ -144,7 +151,7 @@ class ModuleBuilderController extends Controller
         $crud = Widget::firstOrNew(['file_name' => $fileName]);
 
         $data = $request->all();
-        
+
         $images = array();
         foreach ($data['attr'] as $k => $v) {
 
