@@ -110,7 +110,7 @@ class ModuleBuilderController extends Controller
             $data['widgets']->attr = '';
             $data['widgets']->save();
         }
-        
+
 
         $data['arrayContent'] = $arrayContent;
 
@@ -149,6 +149,7 @@ class ModuleBuilderController extends Controller
         // $crud = Widget::find(1);
         // $crud = Widget::where('file_name','=',$fileName)->first();
         $crud = Widget::firstOrNew(['file_name' => $fileName]);
+
 
         $data = $request->all();
 

@@ -56,12 +56,12 @@
     <section class="index-items home-top-view">
         <div class="flex one">
             <div>
-                <div class="flex one two-500  five-800 center ">
-                    {{--product&label=topViewPost&var=topViewPost&count=10--}}
+                <div class="flex one two-500  six-800 center ">
+                    {{--product&label=topViewPost&var=topViewPost&count=12--}}
                     @isset($topViewPost['data'])
                         @foreach ($topViewPost['data'] as $content)
                             <div>
-                                <a class="hover" href="{{ $content->slug }}">
+                                <a class="hover shadow2" href="{{ $content->slug }}">
 
                                     @if (isset($content->images['thumb']))
                                         <div><img src="{{ $content->images['thumb'] }}"></div>
@@ -69,7 +69,7 @@
                                     <footer>
                                         <h3> {{ $content->title }}</h3>
                                         <div>
-                                            <div class="rate mt-1">
+                                            <div class="rate">
                                                 @if (count($content->comments))
                                                     @php
                                                         $rateAvrage = $rateSum = 0;
@@ -103,16 +103,16 @@
     </section>
 
 
-    <section class="index-items articles bg-gray home-top-view mb-0">
+    <section class="index-items articles bg-gray2 home-top-view mb-0">
         <div class="flex one">
             <div>
                 <h2>مقالات درب کالا</h2>
-                <div class="flex one two-500  four-800 center ">
-                    {{--post&label=articles&var=articles&count=4--}}
+                <div class="flex one two-500  five-800 center ">
+                    {{--post&label=articles&var=articles&count=5--}}
                     @isset($articles['data'])
                         @foreach ($articles['data'] as $content)
                             <div>
-                                <a class="hover" href="{{ $content->slug }}">
+                                <a class="hover shadow2" href="{{ $content->slug }}">
 
                                     @if (isset($content->images['thumb']))
                                         <div><img width="288" height="190" src="{{ $content->images['thumb'] }}"></div>

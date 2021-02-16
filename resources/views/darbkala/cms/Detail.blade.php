@@ -91,20 +91,20 @@
         </div>
     </section>
 
-    <section class="product-detail" id="">
+    <section class="product-detail " id="">
         <div class="flex one ">
-            <div>
+            <div class="bg-white border-radius-5">
                 <div class="top-page">
                     @isset($detail->images['thumb'])
                         <picture>
                             <source media="(min-width:{{ env('PRODUCT_MEDIUM') }}px)"
-                                srcset="{{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['large']) ?? '' }} 2x">
-                            <source media="(min-width:{{ env('PRODUCT_SMALL') }}px)"
                                 srcset="{{ str_replace(' ', '%20', $detail->images['images']['small']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} 2x">
-                            <img src="{{ $detail->images['images']['medium'] ?? '' }}"
-                                sizes="(max-width:{{ env('PRODUCT_MEDIUM') }}px) 100vw  {{ ENV('PRODUCT_MEDIUM') }}px {{ ENV('PRODUCT_LARGE') }}px"
+                            <source media="(min-width:{{ env('PRODUCT_SMALL') }}px)"
+                                srcset="{{ str_replace(' ', '%20', $detail->images['images']['small']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['small']) ?? '' }} 2x">
+                            <img src="{{ $detail->images['images']['small'] ?? '' }}"
+                                sizes="(max-width:{{ env('PRODUCT_SMALL') }}px) 100vw  {{ ENV('PRODUCT_SMALL') }}px {{ ENV('PRODUCT_SMALL') }}px"
                                 alt="{{ $detail->title }}" width="{{ env('PRODUCT_MEDIUM') }}"
-                                height="{{ env('PRODUCT_MEDIUM') }}">
+                                height="{{ env('PRODUCT_SMALL') }}">
                         </picture>
                     @endisset
                     <div>
@@ -133,22 +133,24 @@
                             </span> |
                             {{ $detail->viewCount }} بار دیده شده |
                             تاریخ انتشار: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span> |
+
+                            <ul>
+                                @foreach ($table_of_content as $key => $item)
+                                    <li class="toc1">
+                                        <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
+                                    </li>
+                                @endforeach
+
+                            </ul>
+
+
+                            @include(@env('TEMPLATE_NAME').'.DescriptionModule')
+
                         </div>
                     </div>
                 </div>
 
 
-                <ul>
-                    @foreach ($table_of_content as $key => $item)
-                        <li class="toc1">
-                            <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
-                        </li>
-                    @endforeach
-
-                </ul>
-
-
-                @include(@env('TEMPLATE_NAME').'.DescriptionModule')
 
 
             </div>
@@ -189,7 +191,7 @@
     @endif
 
     @if (count($relatedPost))
-        <section class="articles" id="index-best-view">
+        <section class="articles bg-orange" id="index-best-view">
             <div class="flex one ">
                 <div>
                     <h2>مقاله های مرتبط {{ $detail->title }}</h2>
@@ -199,7 +201,7 @@
                         @foreach ($relatedPost as $content)
                             <div>
                                 <a href="{{ $content->slug }}">
-                                    <article>
+                                    <article class="shadow1">
                                         @if (isset($content->images['thumb']))
                                             <div><img src="{{ $content->images['thumb'] }}" alt="{{ $content->title }}">
                                             </div>

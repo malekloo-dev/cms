@@ -96,7 +96,7 @@
                             {{-- $data['newPost'] --}}
                             @foreach ($relatedProduct as $content)
                                 <div>
-                                    <article>
+                                    <article class="shadow">
                                         <div>
                                             @if (isset($content->images['thumb']))
                                                 <picture>
@@ -154,7 +154,7 @@
 
         <section class="" id="">
             <div class="flex one ">
-                <div>
+                <div class="bg-white p-1 border-radius-5">
 
                     <div class="flex one two-700">
                         <div class="two-third-700">
@@ -197,18 +197,19 @@
             </div>
         </section>
 
-        @if (count($relatedPost))
-            <section class="articles" id="articles">
+        {{--post&label=relatedPost&var=relatedPost&count=5 --}}
+        @if (isset($relatedPost['data']))
+            <section class="articles bg-orange mb-0" id="articles">
                 <div class="flex one ">
-                    <div>
+                    <div class="">
                         <h2>مقاله های زیر مجموعه {{ $detail->title }}</h2>
-                        <div class="flex one two-500 four-900 center ">
+                        <div class="flex one two-500 five-900 center ">
 
                             {{-- $data['newPost'] --}}
-                            @foreach ($relatedPost as $content)
+                            @foreach ($relatedPost['data'] as $content)
                                 <div>
                                     <a href="{{ $content->slug }}">
-                                        <article>
+                                        <article class="shadow1">
                                             @if (isset($content->images['thumb']))
                                                 <div><img src="{{ $content->images['thumb'] }}"></div>
                                             @endif

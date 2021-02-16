@@ -16,16 +16,17 @@ class CreateWidgetsTable extends Migration
     {
         Schema::create('widgets', function (Blueprint $table) {
             $table->id();
-            $table->longtext('attr');
+            $table->longtext('attr')->nullable();
+            $table->string('file_name')->nullable();
             $table->timestamps();
         });
 
-        DB::table('widgets')->insert(
-            array(
-                'id'=>1,
-                'attr' => '{\"news\":{\"parent_id\":\"0\",\"sort\":\"viewCount asc\",\"type\":\"post\",\"count\":\"3\"},\"bestCategory\":{\"parent_id\":\"36\",\"sort\":\"publish_date desc\",\"type\":\"category\",\"count\":\"3\"},\"product\":{\"parent_id\":\"34\",\"sort\":\"publish_date desc\",\"type\":\"product\",\"count\":\"3\"}}',
-               )
-        );
+        // DB::table('widgets')->insert(
+        //     array(
+        //         'id'=>1,
+        //         'attr' => '{\"news\":{\"parent_id\":\"0\",\"sort\":\"viewCount asc\",\"type\":\"post\",\"count\":\"3\"},\"bestCategory\":{\"parent_id\":\"36\",\"sort\":\"publish_date desc\",\"type\":\"category\",\"count\":\"3\"},\"product\":{\"parent_id\":\"34\",\"sort\":\"publish_date desc\",\"type\":\"product\",\"count\":\"3\"}}',
+        //        )
+        // );
     }
 
     /**

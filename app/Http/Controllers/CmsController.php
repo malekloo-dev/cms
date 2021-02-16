@@ -178,12 +178,13 @@ class CmsController extends Controller
 
         // $attr = Widget::find(1);
         $attr = Widget::where('file_name', '=', $fileName)->first();
-        
+
         if (is_object($attr)) {
             $attr = $attr->attr;
         } else {
             $attr = array();
         }
+        
         $data = array();
         foreach ((array) $attr as $var => $config) {
 
