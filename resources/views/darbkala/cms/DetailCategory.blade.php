@@ -214,8 +214,8 @@
                                                 <div><img src="{{ $content->images['thumb'] }}"></div>
                                             @endif
                                             <footer>
-                                                <h2> {{ $content->title }}</h2>
-                                                {!! $content->brief_description !!}
+                                                <h2> {{ readmore($content->title,80) }}</h2>
+                                                {!! readmore($content->brief_description,210) !!}
                                             </footer>
                                         </article>
                                     </a>
