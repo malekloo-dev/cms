@@ -63,17 +63,16 @@
             </div>
         </div>
     </section>
-
     <section class="intro" id="">
         <div class="flex one two-500  ">
-            <div class="third-500">
+            <div class="">
                 @if (isset($detail->images['thumb']))
                     <figure class="image">
-                        <img src="{{ $detail->images['images']['medium'] ?? $detail->images['thumb'] }}"
-                            sizes="(max-width:{{ env('ARTICLE_MEDIUM') }}px) 100vw {{ env('ARTICLE_MEDIUM') }}px {{ ENV('ARTICLE_LARGE') }}px"
-                            alt="{{ $detail->title }}" width="{{ env('ARTICLE_MEDIUM') }}" height="100" srcset="
-                                            {{ $detail->images['images']['medium'] ?? $detail->images['thumb'] }} {{ env('ARTICLE_MEDIUM') }}w,
-                                            {{ $detail->images['images']['large'] ?? $detail->images['thumb'] }} 2x">
+                        <img src="{{ $detail->images['images']['small'] ?? $detail->images['thumb'] }}"
+                            alt="{{ $detail->title }}" width="189" height="100"
+                            srcset="
+                            {{ $detail->images['images']['small'] ?? $detail->images['thumb'] }} 1x,
+                            {{ $detail->images['images']['large'] ?? $detail->images['thumb'] }} 2x">
 
                     </figure>
                 @endif
@@ -100,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <div class="two-third-500">
+            <div class="">
 
                 {!! $detail->brief_description !!}
             </div>
@@ -132,7 +131,7 @@
                                 <li class="flex ">
                                     <a class="flex three" href="{{ url($content->slug) }}">
                                         @if (isset($content->images['thumb']))
-                                            <div class="third"><img style="width: 100%" src="{{ $content->images['thumb'] }}"></div>
+                                            <div class="third"><img style="width: 100%" alt="{{ $content->title }}" src="{{ $content->images['thumb'] }}"></div>
                                         @endif
                                         <div class="two-third">
 
