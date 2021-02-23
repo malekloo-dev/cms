@@ -41,6 +41,8 @@
     <!-- <meta property="og:image:width" content="405">
     <meta property="og:image:height" content="300"> -->
 
+    <script src="https://www.p30rank.ir/google"></script>
     @yield('head')
+
 </head>
 <body>

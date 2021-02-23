@@ -1,0 +1,50 @@
+{
+    "name": "darbkala",
+    "short_name": "darbkala",
+    "icons": [
+        {
+            "src": "img/logo-96-96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "img/logo-128-128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "img/logo-144-144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "img/logo-152-152.png",
+            "sizes": "152x152",
+            "type": "image/png"
+        },
+        {
+            "src": "img/logo-192-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "img/logo-256-256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "img/logo-512-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "lang": "fa-IR",
+    "start_url": "/",
+    "scop": ".",
+    "dir": "rtl",
+    "display": "standalone",
+    "background_color": "#fa490e",
+    "theme_color": "#fa490e",
+    "orientation": "portrait"
+}
