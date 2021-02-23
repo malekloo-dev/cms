@@ -24,7 +24,13 @@
     <meta name="msapplication-square96x96logo" content="{{ asset('/img/logo-96-96.png') }}">
     <meta name="msapplication-square152x152logo" content="{{ asset('/img/logo-152-152.png') }}">
 
-    <link rel="stylesheet" href="{{ asset('/style.css') }}">
+    <link href="{{ asset('owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('borderlessartins-v2.css')}}" rel="stylesheet">
+    <link href="{{ asset('Index.css')}}" rel="stylesheet">
+    <link href="{{ asset('style.css')}}" rel="stylesheet">
+
+
     <link rel="icon" href="{{ asset('/img/fav.png') }}" type="image/png">
     <link rel="stylesheet" media="bogus">
 
