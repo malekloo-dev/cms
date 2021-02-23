@@ -3,7 +3,7 @@
        <div class="row">
           <div class="col-1">
              <div id="wb_Image1" style="display:inline-block;width:198px;height:69px;z-index:0;">
-                <img src="images/output-onlinepngtools.png" id="Image1" alt="">
+                <img src="{{ asset('images/output-onlinepngtools.png') }}" id="Image1" alt="">
              </div>
           </div>
           <div class="col-2">

@@ -28,7 +28,7 @@
     <link href="{{ asset('font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{ asset('borderlessartins-v2.css')}}" rel="stylesheet">
     <link href="{{ asset('Index.css')}}" rel="stylesheet">
-    <link href="{{ asset('style.css')}}" rel="stylesheet">
+    {{-- <link href="{{ asset('style.css')}}" rel="stylesheet"> --}}
 
 
     <link rel="icon" href="{{ asset('/img/fav.png') }}" type="image/png">
@@ -44,14 +44,6 @@
     <!-- <meta property="og:image:width" content="405">
     <meta property="og:image:height" content="300"> -->
 
-    <script>
-        // document.addEventListener('DOMContentLoaded', (e) => {
-        //     var element = document.getElementsByTagName("html");
-        //     element.classList.add("loaded");
-
-        // });
-    </script>
-    <script src="https://www.p30rank.ir/google"></script>
     @yield('head')
 </head>
 
