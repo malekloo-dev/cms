@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="fa-IR">
+<html dir="ltr" lang="fa-IR">
 <head>
     <title>{{$seo['meta_title'] ?? "" }}</title>
     <meta charset="utf-8">

@@ -38,7 +38,7 @@
             </div>
             <div class="col-2">
                 <div id="wb_Image2" style="display:inline-block;width:282px;height:188px;z-index:28;">
-                    <img src="images/pngflow.com.png" id="Image2" alt="">
+                    <img src="{{ asset('images/pngflow.com.png') }}" id="Image2" alt="">
                 </div>
             </div>
             <div class="col-3">
