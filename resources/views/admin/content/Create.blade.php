@@ -1,6 +1,9 @@
 @extends('admin.layouts.app')
 
 
+@include('admin.cropper')
+
+
 @section('ckeditor')
 
 
@@ -169,6 +172,7 @@
                             (@lang('messages.product') {{ env('PRODUCT_LARGE') }}px)</label>
                         <input type="file" class="form-control" name="images" id="images"
                             placeholder="تصویر مقاله را وارد کنید" value="{{ old('imageUrl') }}">
+                            <input type="hidden" name="imageJson">
                     </div>
 
                 </div>

@@ -1,28 +1,30 @@
 @extends('admin.layouts.app')
-@section('content')
+
+@include('admin.cropper')
 @section('ckeditor')
 
-    <script>
+<script>
 
-        $(document).ready(function() {
+    $(document).ready(function() {
 
-            var $input = $("#parent_id");
-            $input.select2();
-            $("ul.select2-choices").sortable({
-                containment: 'parent'
-            });
-
+        var $input = $("#parent_id");
+        $input.select2();
+        $("ul.select2-choices").sortable({
+            containment: 'parent'
         });
 
-        $("#meta_keywords").select2({
-            tags:[],
-            maximumInputLength: 100
-        });
+    });
+
+    $("#meta_keywords").select2({
+        tags:[],
+        maximumInputLength: 100
+    });
 
     </script>
 
 @endsection
 
+@section('content')
 
 <div class="content-control">
     <ul class="breadcrumb">
@@ -107,6 +109,7 @@
                     <div class="col-sm-6">
                         <label for="images" class="control-label">تصویر مقاله (سایز مقاله {{ env('ARTICLE_LARGE') }}px) (سایز محصول {{ env('PRODUCT_LARGE') }}px)</label>
                         <input type="file" class="form-control" name="images" id="images" placeholder="تصویر مقاله را وارد کنید" value="{{ old('imageUrl') }}">
+                        <input type="hidden" name="imageJson">
                     </div>
 
                 </div>
