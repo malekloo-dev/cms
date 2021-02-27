@@ -9,5 +9,6 @@
 </footer>--}}
 
 @yield('ckeditor')
+@yield('footer')
 </body>
 </html>

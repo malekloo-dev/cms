@@ -18,37 +18,61 @@ use Illuminate\Support\Str;
 
 class ContentController extends Controller
 {
-    protected function uploadImages($file, $type = 'article')
+    protected function uploadImages($request, $type = 'article')
     {
+        $file = $request->imageJson;
+        $fileOrg = $request->file('images');
         $year = Carbon::now()->year;
         $imagePath = "/upload/images/{$year}/";
-        $filename = $file->getClientOriginalName();
+        $filenameOrg = $fileOrg->getClientOriginalName();
+        // dd($filenameOrg);
 
-        $file = $file->move(public_path($imagePath), $filename);
+
+        $image_parts = explode(";base64,", $file);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+        $image_base64 = base64_decode($image_parts[1]);
+
+        $fileName = str_replace(' ','-',$request->title) ?? $filenameOrg;
+        $fileType = ($image_type == 'jpeg') ? 'jpg' : $image_type;
+        $fileNameAndType = $fileName . '.' . $fileType;
+
+
+        // dd(public_path() . $imagePath . $fileNameAndType);
+        $file = $fileOrg->move(public_path($imagePath), $fileName.'-org.'.$fileType); // original
+        // dd(public_path($imagePath));
         // $sizes = ["300", "600", "900"];
+        file_put_contents(public_path() . $imagePath . $fileNameAndType, $image_base64); // croped
 
-
-        $url['images'] = $this->resize($file->getRealPath(), $type, $imagePath, $filename);
+        // dd($file->getRealPath());
+        // $url['images'] = $this->resize($file->getRealPath(), $type, $imagePath, $filename);
+        $url['images'] = $this->resize(base_path() .'/public'. $imagePath . $fileNameAndType, $type, $imagePath, $fileNameAndType, $fileName, $fileType);
         $url['thumb'] = $url['images']['small'];
-
+        $url['images']['org'] = $imagePath . $fileName.'-org.'.$fileType;
+        // dd($url);
         return $url;
     }
 
-    private function resize($path, $type, $imagePath, $filename)
+    private function resize($path, $type, $imagePath, $fileNameAndType, $fileName, $fileType)
     {
+
         $sizes = array(
             "small" => @env(Str::upper($type) . '_SMALL'),
             'medium' => @env(Str::upper($type) . '_MEDIUM'),
             'large' => @env(Str::upper($type) . '_LARGE')
         );
 
-        $images['original'] = $imagePath . $filename;
+        $images['crop'] = $imagePath . $fileNameAndType;
         foreach ($sizes as $name => $size) {
-            $images[$name] = $imagePath . "{$name}_" . $filename;
+            $images[$name] = $imagePath  . $fileName . "-{$name}." . $fileType;
 
-            Image::make($path)->resize($size, null, function ($constraint) {
+            // dd($path);
+            $img = Image::make($path);
+            // dd($path);
+            $img->resize($size, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path($images[$name]),75);
+            });
+            $img->save(public_path($images[$name]), 75);
         }
 
 
@@ -110,7 +134,7 @@ class ContentController extends Controller
         $imagesUrl = '';
         //dd($request->file('images'));
         if ($request->file('images')) {
-            $imagesUrl = $this->uploadImages($request->file('images'));
+            $imagesUrl = $this->uploadImages($request);
         }
 
         $data = $request->all();
@@ -131,9 +155,8 @@ class ContentController extends Controller
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
-        $result= Content::create($data);
+        $result = Content::create($data);
         return $result;
-
     }
 
     /**
@@ -238,7 +261,7 @@ class ContentController extends Controller
         //$inputs = $request->all();
 
         if ($file) {
-            $images = $this->uploadImages($request->file('images'));
+            $images = $this->uploadImages($request);
         } elseif ($crud->images != '') {
             $images = $crud->images;
             $images['thumb'] = $request->get('imagesThumb');
@@ -270,7 +293,7 @@ class ContentController extends Controller
         //        //$inputs = $request->all();
         //
         //        if($file) {
-        //            $images = $this->uploadImages($request->file('images'));
+        //            $images = $this->uploadImages($request);
         //        } else {
         //            $images = $crud->images;
         //            $images['thumb'] =  $request->get('imagesThumb');
@@ -362,7 +385,7 @@ class ContentController extends Controller
      */
     public function sitemap()
     {
-        $postList = Content::where('publish_date','<=', DB::raw('now()'))->get();
+        $postList = Content::where('publish_date', '<=', DB::raw('now()'))->get();
 
 
         // $sitemap = siteMap::createIndex()

@@ -17,6 +17,7 @@
 
     <link href="{{ url('/adminAssets/css/animate.min.css') }}" rel="stylesheet">
     <link href="{{ url('/adminAssets/css/jquery-ui.min.css') }}" rel="stylesheet">
+    {{-- <link href="{{ url('/adminAssets/css/bootstrap.min.4.4.1.css') }}" rel="stylesheet"> --}}
     <link href="{{ url('/adminAssets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url('/adminAssets/css/bootstrap-theme.css') }}" rel="stylesheet">
     <link href="{{ url('/adminAssets/css/font-awesome.min.css') }}" rel="stylesheet">
@@ -35,6 +36,7 @@
     <!-- Scripts -->
     <script src="{{ url('/adminAssets/js/jquery.min.js') }}"></script>
     <script src="{{ url('/adminAssets/js/jquery-ui.min.js') }}"></script>
+    {{-- <script src="{{ url('/adminAssets/js/bootstrap.min.4.4.1.js') }}"></script> --}}
     <script src="{{ url('/adminAssets/js/bootstrap.min.js') }}"></script>
     <script src="{{ url('/adminAssets/js/demo-setup.js') }}"></script>
     <script src="{{ url('/adminAssets/js/dependencies-setup.js') }}"></script>
@@ -94,6 +96,9 @@
             };
         });
     </script>
+
+
+@yield('head')
 </head>
 
 <body>

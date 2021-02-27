@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
-use CKSource\CKFinderBridge\Controller\CKFinderController;
+// use CKSource\CKFinderBridge\Controller\CKFinderController;
 
 App::setLocale(env('SITE_LANG'));
 
@@ -12,6 +12,8 @@ App::setLocale(env('SITE_LANG'));
 Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
     Route::post('contents/upload-image/', 'ContentController@uploadImageSubject')->name('contents.upload');
+    Route::get('image-cropper', 'ImageCropperController@index');
+    Route::post('image-cropper/upload', 'ImageCropperController@upload');
 
     Route::get('/', 'IndexController@index')->name('admin');
 
