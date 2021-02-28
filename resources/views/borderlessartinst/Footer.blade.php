@@ -42,16 +42,19 @@
                 </div>
             </div>
             <div class="col-3">
-                <label for="Card5" id="contactLabel3" style="display:inline-block;z-index:29;">Contact
-                    Us</label>
-                <input type="text" id="contactName" style="display:block;width: 100%;height:38px;z-index:30;"
-                    name="name" value="" spellcheck="false" placeholder="Name">
-                <input type="text" id="contactEmail" style="display:block;width: 100%;height:38px;z-index:31;"
-                    name="email" value="" spellcheck="false" placeholder="Email">
-                <textarea name="message" id="contactMessage" style="display:block;width: 100%;;height:85px;z-index:32;"
-                    rows="2" cols="25" spellcheck="false" placeholder="Message"></textarea>
-                <a id="contactButton" href="mailto:info@borderlessartinst.com"
-                    style="display:block;width: 100%;;height:32px;z-index:33;">Send</a>
+                <form method="POST" action="{{ route('contact.store') }}">
+                    <label for="Card5" id="contactLabel3" style="display:inline-block;z-index:29;">Contact
+                        Us</label>
+                    <input type="text" id="contactName" style="display:block;width: 100%;height:38px;z-index:30;"
+                        name="name" value="" spellcheck="false" placeholder="Name">
+                    <input type="text" id="contactEmail" style="display:block;width: 100%;height:38px;z-index:31;"
+                        name="email" value="" spellcheck="false" placeholder="Email">
+                    <textarea name="message" id="contactMessage"
+                        style="display:block;width: 100%;;height:85px;z-index:32;" rows="2" cols="25" spellcheck="false"
+                        placeholder="Message"></textarea>
+                    <a id="contactButton" href="mailto:info@borderlessartinst.com"
+                        style="display:block;width: 100%;;height:32px;z-index:33;">Send</a>
+                </form>
             </div>
         </div>
         <div class="row" style="margin-top:1em;">
