@@ -43,8 +43,8 @@
             </div>
             <div class="col-3">
                 <form method="POST" action="{{ route('contact.store') }}">
-                    <label for="Card5" id="contactLabel3" style="display:inline-block;z-index:29;">Contact
-                        Us</label>
+                    @csrf
+                    <label for="Card5" id="contactLabel3" style="display:inline-block;z-index:29;">Contact Us</label>
                     <input type="text" id="contactName" style="display:block;width: 100%;height:38px;z-index:30;"
                         name="name" value="" spellcheck="false" placeholder="Name">
                     <input type="text" id="contactEmail" style="display:block;width: 100%;height:38px;z-index:31;"
