@@ -132,7 +132,6 @@
                 //     data: {
                 //         '_token': $('meta[name="_token"]').attr('content'),
                 //         'fileName':fileName,
-                //         'type': `{{ $content_info->attr_type }}`,
                 //         'image': base64data
                 //     },
                 //     success: function(data){
