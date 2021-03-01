@@ -33,7 +33,7 @@
                 <div class="featur">
                     <div>پیاده سازی GTM</div>
                     <div>تحقیق و تحلیل کلمات کلیدی</div>
-                    <div>۵ کلمه</div>
+                    <div>۱ کلمه</div>
                     <div>بهینه سازی صفحه فرود</div>
                     <div>On Page SEO</div>
                     <div>Off Page SEO</div>
@@ -60,7 +60,7 @@
                 <div class="featur">
                     <div>پیاده سازی GTM</div>
                     <div>تحقیق و تحلیل کلمات کلیدی</div>
-                    <div>۱۵ کلمه</div>
+                    <div>۲ کلمه</div>
                     <div>بهینه سازی صفحه فرود</div>
                     <div>On Page SEO</div>
                     <div>Off Page SEO</div>
@@ -86,7 +86,7 @@
                 <div class="featur">
                     <div>پیاده سازی GTM</div>
                     <div>تحقیق و تحلیل کلمات کلیدی</div>
-                    <div>۲۵ کلمه</div>
+                    <div>۴ کلمه</div>
                     <div>بهینه سازی صفحه فرود</div>
                     <div>On Page SEO</div>
                     <div>Off Page SEO</div>

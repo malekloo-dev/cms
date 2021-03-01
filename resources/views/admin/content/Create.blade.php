@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 
-@include('admin.cropper')
+{{-- @include('admin.cropper') --}}
 
 
 @section('ckeditor')
@@ -146,6 +146,10 @@
                         <div id="word-count2"></div>
                     </div>
 
+                    <div class="col-md-12">
+                        @include('admin.gridMaker')
+                    </div>
+
                 </div>
 
 
@@ -263,7 +267,3 @@
 @endsection
 
 
-<span class="text-danger">{{ $errors->first('brief_description') }}</span>
-<span class="text-danger">{{ $errors->first('description') }}</span>
-<span class="text-danger">{{ $errors->first('status') }}</span>
-<span class="text-danger">{{ $errors->first('publish_date') }}</span>
