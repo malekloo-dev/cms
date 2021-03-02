@@ -54,28 +54,28 @@
             });
 
 
-        ClassicEditor
-            .create(document.querySelector('#description'), {
-                ckfinder: {
-                    uploadUrl: "{{ route('contents.upload', ['_token' => csrf_token()]) }}",
-                },
-                toolbar: {
-                    viewportTopOffset: 80
-                },
-                @if(!$ltr)
-                language: 'fa'
-                @endif
-            })
-            .then(editor => {
-                const wordCountPlugin = editor.plugins.get('WordCount');
-                const wordCountWrapper = document.getElementById('word-count2');
-                wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+        // ClassicEditor
+        //     .create(document.querySelector('#description'), {
+        //         ckfinder: {
+        //             uploadUrl: "{{ route('contents.upload', ['_token' => csrf_token()]) }}",
+        //         },
+        //         toolbar: {
+        //             viewportTopOffset: 80
+        //         },
+        //         @if(!$ltr)
+        //         language: 'fa'
+        //         @endif
+        //     })
+        //     .then(editor => {
+        //         const wordCountPlugin = editor.plugins.get('WordCount');
+        //         const wordCountWrapper = document.getElementById('word-count2');
+        //         wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
 
-                window.editor = editor;
-            })
-            .catch(err => {
-                console.error(err.stack);
-            });
+        //         window.editor = editor;
+        //     })
+        //     .catch(err => {
+        //         console.error(err.stack);
+        //     });
 
     </script>
 
@@ -149,12 +149,16 @@
                 <div class="form-group row">
                     <div class="col-md-12">
                         <label for="name" class=" col-form-label text-md-left">@lang('messages.description'):</label>
-                        <textarea class="form-control" id="description"
-                            name="description">{{ old('description', $content_info->description) }}</textarea>
-                        <div id="word-count2"></div>
+                        {{-- <textarea class="form-control" id="description"
+                            name="description">{{ old('description', $content_info->description) }}</textarea> --}}
+                        {{-- <div id="word-count2"></div> --}}
                         <span class="text-danger">{{ $errors->first('description') }}</span>
+
                     </div>
 
+                    <div class="col-md-12">
+                        @include('admin.gridMaker')
+                    </div>
                 </div>
 
 

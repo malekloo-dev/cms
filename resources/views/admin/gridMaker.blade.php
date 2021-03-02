@@ -11,13 +11,14 @@
 <!-- Ckeditor js -->
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.9.2/ckeditor.js"></script> --}}
 {{-- <script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script> --}}
-<script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
+{{-- <script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script> --}}
+<script src="/ckeditor4/ckeditor.js"></script>
 
 <!-- Grid editor CSS -->
 <link rel="stylesheet" type="text/css" href="{{ url('/adminAssets/css/grideditor.css') }}" />
 <!-- Grid editor javascript -->
 <script src="{{ url('/adminAssets/js/jquery.grideditor.min.js') }}"></script>
-
+{{-- <script type="text/javascript" src="/ckeditor4/plugins/ckfinder/ckfinder.js"></script> --}}
 <script>
     $(function() {
         // Initialize grid editor
@@ -25,16 +26,32 @@
             new_row_layouts: [
                 [12],
                 [6, 6],
-                [4, 8]
+                [4, 8],
+                [2, 10],
             ],
+            // source_textarea: 'textarea.description',
             content_types: ['ckeditor'],
             ckeditor: {
                 config: {
-                    language: 'fa',
+                    extraPlugins:['ckfinder'],
+                    @if(!$ltr)
+                        language: 'fa',
+                    @endif
+                    // ckfinder: {
+                    //     uploadUrl: "{{ route('contents.upload', ['_token' => csrf_token()]) }}",
+                    // },
                     on: {
                         instanceReady: function(evt) {
+
                             var instance = this;
                             console.log('instance ready', evt, instance);
+
+
+                            // var html = $('#gridMacker').gridEditor('getHtml');
+                            // var html = $('#gridMacker').html();
+
+                            // $('#gridMackerText').val(html);
+
                         }
                     }
                 }
@@ -43,10 +60,30 @@
 
         // Get resulting html
         var html = $('#gridMacker').gridEditor('getHtml');
+        // $('#gridMackerText').val(html);
+
+    });
+
+    $('form').on('submit', function() {
+        var html = $('#gridMacker').gridEditor('getHtml');
+        $('textarea#description').val(html);
 
     });
 
 </script>
+
+	{{-- <script type="text/javascript" src="/ckfinder/ckfinder_v1.js"></script>
+    <script type="text/javascript">
+var finder = new CKFinder();
+finder.BasePath = '/ckfinder/';
+finder.Skin = 'v1';
+finder.Create();
+</script> --}}
+
+{{--
+    $CKEditor = new CKEditor();
+
+    CKFinder::SetupCKEditor( $CKEditor, '../common/ckfinder/' ) ; --}}
 
 <style>
     .row.ui-sortable {
@@ -68,33 +105,43 @@
     .col-1 {
         max-width: 8.333333%;
     }
+
     .col-2 {
         max-width: 16.666667%;
     }
+
     .col-3 {
         max-width: 25%;
     }
+
     .col-4 {
         max-width: 33.333333%;
     }
+
     .col-5 {
         max-width: 41.666667%;
     }
+
     .col-6 {
         max-width: 50%
     }
+
     .col-7 {
         max-width: 58.333333%
     }
+
     .col-8 {
         max-width: 66.666667%;
     }
+
     .col-9 {
         max-width: 75%;
     }
+
     .col-10 {
         max-width: 83.333333%;
     }
+
     .col-11 {
         max-width: 91.666667%;
     }
@@ -214,17 +261,23 @@
         margin: 0 2px;
         padding: 3px 3px;
     }
-    .ge-mainControls .ge-wrapper.ge-fixed{position: relative;}
-    .ge-mainControls .fa.fa-plus{ display: none}
+
+    .ge-mainControls .ge-wrapper.ge-fixed {
+        position: relative;
+    }
+
+    .ge-mainControls .fa.fa-plus {
+        display: none
+    }
+
 </style>
 
 
+<textarea id="description" class="description"
+                            name="description">
+
+
+                        </textarea>
 <div id="gridMacker">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h2>Lorem ipsum dolor.</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro distinctio atque molestiae optio,
-                consequuntur? Iusto ratione cumque dolor aut dolore!</p>
-        </div>
-    </div>
+        {!! old('description', $content_info->description) !!}
 </div>

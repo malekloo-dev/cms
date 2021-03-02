@@ -121,7 +121,6 @@ class CmsController extends Controller
             // dd($relatedProduct->links());
 
 
-
             return view($template, $widget,[
                 'detail' => $detail,
                 'relatedProduct' => $relatedProduct,
@@ -184,7 +183,7 @@ class CmsController extends Controller
         } else {
             $attr = array();
         }
-        
+
         $data = array();
         foreach ((array) $attr as $var => $config) {
 

@@ -25,7 +25,6 @@
 
     </script>
 
-
     <script src="/ckeditor5/ckeditor5-build-classic/ckeditor.js"> </script>
     <script>
         ClassicEditor
@@ -53,28 +52,28 @@
             });
 
 
-        ClassicEditor
-            .create(document.querySelector('#description'), {
-                ckfinder: {
-                    uploadUrl: "{{ route('contents.upload', ['_token' => csrf_token()]) }}",
-                },
-                toolbar: {
-                    viewportTopOffset: 80
-                },
-                @if(!$ltr)
-                language: 'fa'
-                @endif
-            })
-            .then(editor => {
-                const wordCountPlugin = editor.plugins.get('WordCount');
-                const wordCountWrapper = document.getElementById('word-count2');
-                wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+        // ClassicEditor
+        //     .create(document.querySelector('#description'), {
+        //         ckfinder: {
+        //             uploadUrl: "{{ route('contents.upload', ['_token' => csrf_token()]) }}",
+        //         },
+        //         toolbar: {
+        //             viewportTopOffset: 80
+        //         },
+        //         @if(!$ltr)
+        //         language: 'fa'
+        //         @endif
+        //     })
+        //     .then(editor => {
+        //         const wordCountPlugin = editor.plugins.get('WordCount');
+        //         const wordCountWrapper = document.getElementById('word-count2');
+        //         wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
 
-                window.editor = editor;
-            })
-            .catch(err => {
-                console.error(err.stack);
-            });
+        //         window.editor = editor;
+        //     })
+        //     .catch(err => {
+        //         console.error(err.stack);
+        //     });
 
     </script>
 
@@ -141,8 +140,7 @@
                 <div class="form-group row">
                     <div class="col-md-12">
                         <label for="name">@lang('messages.description'):</label>
-                        <textarea class="form-control" id="description"
-                            name="description">{{ old('description') }}</textarea>
+                        {{-- <textarea class="form-control" id="description"name="description">{{ old('description') }}</textarea> --}}
                         <div id="word-count2"></div>
                     </div>
 
