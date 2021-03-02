@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 
-{{-- @include('admin.cropper') --}}
+@include('admin.cropper')
 
 
 @section('ckeditor')
