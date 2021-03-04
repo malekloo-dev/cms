@@ -73,19 +73,19 @@
 
           <div class="col-3 social-link">
              <div id="wb_FontAwesomeIcon3"
-                style="display:inline-block;width:23px;height:23px;text-align:center;z-index:4;">
+                style="display:inline-block;text-align:center;z-index:4;">
                 <a href="https://www.facebook.com/borderlessart.inst" target="_blank" title="Facebook">
                    <div id="FontAwesomeIcon3"><i class="fa fa-facebook"></i></div>
                 </a>
              </div>
              <div id="wb_FontAwesomeIcon4"
-                style="display:inline-block;width:23px;height:23px;text-align:center;z-index:5;">
+                style="display:inline-block;text-align:center;z-index:5;">
                 <a href="https://www.instagram.com/borderless_art/?hl=en" target="_blank" title="Instagram">
                    <div id="FontAwesomeIcon4"><i class="fa fa-instagram"></i></div>
                 </a>
              </div>
              <div id="wb_FontAwesomeIcon5"
-                style="display:inline-block;width:23px;height:23px;text-align:center;z-index:6;">
+                style="display:inline-block;text-align:center;z-index:6;">
                 <a href="https://www.youtube.com/channel/UCf-w0o7VCZnjTByx-rWgtqQ" target="_blank" title="Youtube">
                    <div id="FontAwesomeIcon5"><i class="fa fa-youtube-play"></i></div>
                 </a>

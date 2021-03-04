@@ -4,19 +4,19 @@
             <div class="col-1">
                 <label for="Card5" id="contactLabel1" style="display:block;width:100%;z-index:22;">Follow Us</label>
                 <div id="wb_contactIcon2"
-                    style="display:inline-block;width:28px;height:28px;text-align:center;z-index:23;">
+                    style="display:inline-block;text-align:center;z-index:23;">
                     <a href="https://www.facebook.com/borderlessart.inst" title="Facebook">
                         <div id="contactIcon2"><i class="fa fa-facebook"></i></div>
                     </a>
                 </div>
                 <div id="wb_contactIcon3"
-                    style="display:inline-block;width:28px;height:28px;text-align:center;z-index:24;">
+                    style="display:inline-block;text-align:center;z-index:24;">
                     <a href="https://www.instagram.com/borderless_art/?hl=en" title="Instagram">
                         <div id="contactIcon3"><i class="fa fa-instagram"></i></div>
                     </a>
                 </div>
                 <div id="wb_contactIcon4"
-                    style="display:inline-block;width:28px;height:28px;text-align:center;z-index:25;">
+                    style="display:inline-block;text-align:center;z-index:25;">
                     <a href="https://www.youtube.com/channel/UCf-w0o7VCZnjTByx-rWgtqQ" title="Youtube">
                         <div id="contactIcon4"><i class="fa fa-youtube-play"></i></div>
                     </a>

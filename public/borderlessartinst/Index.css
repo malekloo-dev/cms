@@ -2836,4 +2836,4 @@ body
 section > div{max-width: 1140px; padding:10px 15px !important; margin:0  auto !important;}
 section h1{margin: 0 !important; padding: 0 !important;}
 .header col-1{ padding-left: 0;}
-#bg-gray{background-color: #EDE9E1;}
+#bg-gray{background-color: #EDE9E1; padding: 1em; margin-top:1em ; margin-bottom: 1em;}
