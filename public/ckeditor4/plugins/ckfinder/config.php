@@ -60,7 +60,6 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-// $baseUrl = '/statics/userfiles/';
 $baseUrl = '/upload/';
 
 /*
@@ -203,13 +202,13 @@ $config['ResourceType'][] = Array(
 		'allowedExtensions' => 'bmp,gif,jpeg,jpg,png,avi,iso,mp3',
 		'deniedExtensions' => '');
 
-// $config['ResourceType'][] = Array(
-// 		'name' => 'Flash',
-// 		'url' => $baseUrl . 'flash',
-// 		'directory' => $baseDir . 'flash',
-// 		'maxSize' => 0,
-// 		'allowedExtensions' => 'swf,flv',
-// 		'deniedExtensions' => '');
+$config['ResourceType'][] = Array(
+		'name' => 'Flash',
+		'url' => $baseUrl . 'flash',
+		'directory' => $baseDir . 'flash',
+		'maxSize' => 0,
+		'allowedExtensions' => 'swf,flv',
+		'deniedExtensions' => '');
 
 /*
  Due to security issues with Apache modules, it is recommended to leave the

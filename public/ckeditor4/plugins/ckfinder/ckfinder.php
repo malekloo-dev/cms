@@ -10,8 +10,8 @@
  * modifying or distribute this file or part of its contents. The contents of
  * this file is part of the Source Code of CKFinder.
  */
+echo 222;die();
 if ( version_compare( phpversion(), '5', '<' ) )
-    require_once 'core/ckfinder_php4.php' ;
+	require_once 'core/ckfinder_php4.php' ;
 else
 	require_once 'core/ckfinder_php5.php' ;
-

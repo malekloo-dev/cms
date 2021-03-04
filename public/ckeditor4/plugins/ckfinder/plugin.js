@@ -3,6 +3,8 @@
 
 CKEDITOR.plugins.add( 'ckfinder', {
     init: function( editor ) {
-        editor.config.filebrowserBrowseUrl = '/ckeditor4/plugins/ckfinder/ckfinder.php';
+        // alert(33);
+        // editor.config.filebrowserBrowseUrl = '/ckeditor4/plugins/ckfinder/ckfinder.php';
+        // editor.config.filebrowserBrowseUrl = 'ckfinder.php';
     }
 });

@@ -63,18 +63,19 @@
                             <div>
                                 <article>
                                     @if (isset($detail2->images['thumb']))
-                                        <img src="{{ $detail2->images['images']['small'] ?? $detail2->images['thumb'] }}"
-                                            sizes="(max-width:{{ env('ARTICLE_SMALL') }}px) 100vw {{ env('ARTICLE_SMALL') }}px {{ ENV('ARTICLE_MEDIUM') }}px"
-                                            alt="{{ $detail2->title }}" width="332" height="463"
-                                            srcset="
-                                                                        {{ $detail2->images['images']['small'] ?? $detail2->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
-                                                                        {{ $detail2->images['images']['medium'] ?? $detail2->images['thumb'] }} 2x">
+                                        <a href="{{ $detail2->slug }}">
+                                            <img src="{{ $detail2->images['images']['small'] ?? $detail2->images['thumb'] }}"
+                                                sizes="(max-width:{{ env('ARTICLE_SMALL') }}px) 100vw {{ env('ARTICLE_SMALL') }}px {{ ENV('ARTICLE_MEDIUM') }}px"
+                                                alt="{{ $detail2->title }}" width="332" height="463"
+                                                srcset="
+                                                                            {{ $detail2->images['images']['small'] ?? $detail2->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
+                                                                            {{ $detail2->images['images']['medium'] ?? $detail2->images['thumb'] }} {{ env('ARTICLE_MEDIUM') }}w,
+                                                                            {{ $detail2->images['images']['large'] ?? $detail2->images['thumb'] }} {{ env('ARTICLE_LARGE') }}w">
 
-
+                                        </a>
                                     @endif
                                     <footer>
                                         <h2><a href="{{ $detail2->slug }}"> {{ $detail2->title }}</a></h2>
-                                        {!! readMore($detail2->brief_description, 200) !!}
                                     </footer>
                                 </article>
                             </div>
@@ -87,7 +88,24 @@
 
 
     <style>
-        .products footer{text-align: center}
+        .films footer {
+            text-align: center
+        }
+
+        .films article {
+            background-color: #000;
+        }
+
+        .films article footer a {
+            color: #fff;
+            padding: 1em;
+            display: block
+        }
+
+        .films img {
+            width: 100%
+        }
+
     </style>
 
 

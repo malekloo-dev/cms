@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@include('admin.cropper')
+
 
 
 @section('ckeditor')
@@ -190,14 +190,14 @@
 
                             <input type="hidden" name="imageJson">
 
-
+                            @include('admin.cropper')
 
                     </div>
 
                 </div>
 
-                <div class="form-group row">
-                    <div class="col-sm-12">
+                <div class="form-group row ">
+                    <div class="col-sm-12" style="display: flex">
                         @if (is_array($content_info->images))
                             @foreach ($content_info->images['images'] as $key => $image)
                                 <div class="col-sm-2">

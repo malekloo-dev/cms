@@ -33,7 +33,7 @@
             content_types: ['ckeditor'],
             ckeditor: {
                 config: {
-                    extraPlugins:['ckfinder'],
+                    extraPlugins:['ckfinder','html5video','widget','widgetselection','clipboard','lineutils','spacingsliders'],
                     @if(!$ltr)
                         language: 'fa',
                     @endif
@@ -72,18 +72,6 @@
 
 </script>
 
-	{{-- <script type="text/javascript" src="/ckfinder/ckfinder_v1.js"></script>
-    <script type="text/javascript">
-var finder = new CKFinder();
-finder.BasePath = '/ckfinder/';
-finder.Skin = 'v1';
-finder.Create();
-</script> --}}
-
-{{--
-    $CKEditor = new CKEditor();
-
-    CKFinder::SetupCKEditor( $CKEditor, '../common/ckfinder/' ) ; --}}
 
 <style>
     .row.ui-sortable {
@@ -273,7 +261,7 @@ finder.Create();
 </style>
 
 
-<textarea id="description" class="description"
+<textarea id="description" style="display: none" class="description"
                             name="description">
 
 

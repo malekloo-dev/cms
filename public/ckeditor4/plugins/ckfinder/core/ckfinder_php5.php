@@ -33,7 +33,6 @@ class CKFinder
 	// PHP 5 Constructor
 	function __construct( $basePath = CKFINDER_DEFAULT_BASEPATH, $width = '100%', $height = 400, $selectFunction = null )
 	{
-
 		$this->BasePath			= $basePath ;
 		$this->Width			= $width ;
 		$this->Height			= $height ;
@@ -44,7 +43,6 @@ class CKFinder
 	// Renders CKFinder in the current page.
 	public function Create()
 	{
-
 		echo $this->CreateHtml() ;
 	}
 
@@ -69,7 +67,7 @@ class CKFinder
 			$url = $this->BasePath ;
 
 		$qs = "" ;
-        // echo $url;die();
+
 		if ( empty( $url ) )
 			$url = CKFINDER_DEFAULT_BASEPATH ;
 
@@ -150,6 +148,7 @@ class CKFinder
 	// Non-static method of attaching CKFinder to FCKeditor
 	public function SetupFCKeditorObject( &$editorObj, $imageType = null, $flashType = null )
 	{
+
 		$url = $this->BasePath ;
 
 		// If it is a path relative to the current page.
@@ -231,11 +230,3 @@ class CKFinder
 		$editorObj->config['filebrowserFlashUploadUrl'] = $dir . 'core/connector/php/connector.php?command=QuickUpload&type=' . ( empty( $flashType ) ? 'Flash' : $flashType ) ;
 	}
 }
-
-// $finder = new CKFinder() ;
-// // $finder->BasePath = '../../' ;	// The path for the installation of CKFinder (default = "/ckfinder/").
-// $finder->BasePath = '/ckeditor4/plugins/ckfinder/' ;	// The path for the installation of CKFinder (default = "/ckfinder/").
-// $finder->SelectFunction = 'ShowFileInfo' ;
-// $finder->Create() ;
-
-

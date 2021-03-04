@@ -9,10 +9,13 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.uiColor = '#AADC6E';
 
 
-    config.filebrowserBrowseUrl = '/ckeditor4/plugins/ckfinder/ckfinder.html';
+    config.filebrowserBrowseUrl      = '/ckeditor4/plugins/ckfinder/ckfinder.html';
     config.filebrowserImageBrowseUrl = '/ckeditor4/plugins/ckfinder/ckfinder.html?type=Images';
     config.filebrowserFlashBrowseUrl = '/ckeditor4/plugins/ckfinder/ckfinder.html?type=Flash';
-    config.filebrowserUploadUrl = '/ckeditor4/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+    // config.filebrowserFileBrowseUrl = '/ckeditor4/plugins/ckfinder/ckfinder.html?type=Files';
+
+    config.filebrowserUploadUrl      = '/ckeditor4/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
     config.filebrowserImageUploadUrl = '/ckeditor4/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
     config.filebrowserFlashUploadUrl = '/ckeditor4/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash';
+    // config.filebrowserFileUploadUrl = '/ckeditor4/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
 };

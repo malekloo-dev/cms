@@ -9,6 +9,8 @@
         content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
     <meta property="og:image:alt" content="{{ $detail->title }}" />
 
+    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
 @endsection
 
@@ -43,8 +45,7 @@
     </script>
 
     {{-- recaptcha --}}
-    {{--
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- <meta name="csrf-token" content="{{ csrf_token() }}">
     <script type="text/javascript">
         function callbackThen(response) {
             // read HTTP status
@@ -70,8 +71,8 @@
 
 @section('Content')
     @php
-    $tableOfImages=tableOfImages($detail->description);
-    $append='';
+    $tableOfImages = tableOfImages($detail->description);
+    $append = '';
     @endphp
 
     @if ($detail->attr_type == 'product')
@@ -80,36 +81,24 @@
     @include('jsonLdFaq')
 
 
+    <section class="breadcrumb">
+        <div class="flex one  ">
+            <div class="p-0">
+                <a href="/">Home </a>
+                @foreach ($breadcrumb as $key => $item)
+                    <span>></span>
+                    <a href="{{ $item['slug'] }}">{{ $item['title'] }}</a>
+                @endforeach
 
-
-    <section class="product-detail " id="">
-        <section class="breadcrumb">
-            <div class="flex one  ">
-                <div class="p-0">
-                    <a href="/">Home </a>
-                    @foreach ($breadcrumb as $key => $item)
-                        <span>></span>
-                        <a href="{{ $item['slug'] }}">{{ $item['title'] }}</a>
-                    @endforeach
-
-                </div>
             </div>
-        </section>
+        </div>
+    </section>
+
+    <section class="detail" id="">
+
         <div class="flex one ">
             <div class="bg-white border-radius-5">
                 <div class="top-page">
-                    @isset($detail->images['thumb'])
-                        <picture>
-                            <source media="(min-width:{{ env('PRODUCT_MEDIUM') }}px)"
-                                srcset="{{ str_replace(' ', '%20', $detail->images['images']['small']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} 2x">
-                            <source media="(min-width:{{ env('PRODUCT_SMALL') }}px)"
-                                srcset="{{ str_replace(' ', '%20', $detail->images['images']['small']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['small']) ?? '' }} 2x">
-                            <img src="{{ $detail->images['images']['small'] ?? '' }}"
-                                sizes="(max-width:{{ env('PRODUCT_SMALL') }}px) 100vw  {{ ENV('PRODUCT_SMALL') }}px {{ ENV('PRODUCT_SMALL') }}px"
-                                alt="{{ $detail->title }}" width="{{ env('PRODUCT_MEDIUM') }}"
-                                height="{{ env('PRODUCT_SMALL') }}">
-                        </picture>
-                    @endisset
                     <div>
                         <h1 class="">{{ $detail->title }}</h1>
                         <div>
@@ -119,11 +108,11 @@
                             <span class="rate mt-1">
                                 @if (count($detail->comments))
                                     @php
-                                    $rateAvrage = $rateSum = 0;
+                                        $rateAvrage = $rateSum = 0;
                                     @endphp
                                     @foreach ($detail->comments as $comment)
                                         @php
-                                        $rateSum = $rateSum + $comment['rate'] ;
+                                            $rateSum = $rateSum + $comment['rate'];
                                         @endphp
                                     @endforeach
                                     @for ($i = $rateSum / count($detail->comments); $i >= 1; $i--)
@@ -160,61 +149,33 @@
         </div>
     </section>
 
-    @if (count($relatedProduct))
-        <section class="products bg-gray m-0 pt-1 pb-1" id="index-best-view">
-            <div class="flex one ">
-                <div>
-                    <h2>محصولات مرتبط {{ $detail->title }}</h2>
-                    <div class="flex one two-500 four-900  ">
 
-                        {{--$data['newPost']--}}
-                        @foreach ($relatedProduct as $content)
-                            <div class="">
-                                <a href="{{ url($content->slug) }}">
-                                    <article class="shadow">
-                                        @if (isset($content->images['thumb']))
-                                            <div><img width="150" height="150px"
-                                                    src="{{ $content->images['images']['small'] }}"
-                                                    alt="{{ $content->title }}"></div>
-                                        @endif
-                                        <footer>
-                                            <h3> {{ $content->title }}</h3>
-                                            {!! $content->brief_description !!}
-                                        </footer>
-                                    </article>
-                                </a>
-                            </div>
-                        @endforeach
-
-                    </div>
-
-                </div>
-            </div>
-        </section>
-    @endif
 
     @if (count($relatedPost))
-        <section class="articles bg-orange" id="index-best-view">
+        <section class="films bg-orange" id="index-best-view">
             <div class="flex one ">
                 <div>
-                    <h2>مقاله های مرتبط {{ $detail->title }}</h2>
+                    <h2>Related to {{ $detail->title }}</h2>
                     <div class="flex one two-500 four-900 center ">
 
-                        {{--$data['newPost']--}}
+                        {{-- $data['newPost'] --}}
                         @foreach ($relatedPost as $content)
                             <div>
-                                <a href="{{ $content->slug }}">
-                                    <article class="shadow1">
-                                        @if (isset($content->images['thumb']))
-                                            <div><img src="{{ $content->images['thumb'] }}" alt="{{ $content->title }}">
+
+                                <article class="shadow1">
+                                    @if (isset($content->images['thumb']))
+                                        <a href="{{ $content->slug }}">
+                                            <div><img src="{{ $content->images['thumb'] }}"
+                                                    alt="{{ $content->title }}">
                                             </div>
-                                        @endif
-                                        <footer>
-                                            <h2> {{ $content->title }}</h2>
-                                            {!! $content->brief_description !!}
-                                        </footer>
-                                    </article>
-                                </a>
+                                        </a>
+                                    @endif
+                                    <footer>
+                                        <h2> <a href="{{ $content->slug }}">{{ $content->title }}</a></h2>
+
+                                    </footer>
+                                </article>
+
                             </div>
                         @endforeach
 
@@ -225,6 +186,27 @@
         </section>
     @endif
 
+    <style>
+        .films footer {
+            text-align: center
+        }
 
+        .films article {
+            background-color: #000;
+        }
+
+        .films article footer a {
+            color: #fff;
+            padding: 1em;
+            display: block
+        }
+
+        .films img {
+            width: 100%
+        }
+
+
+
+    </style>
 
 @endsection

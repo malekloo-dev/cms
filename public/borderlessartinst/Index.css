@@ -2830,9 +2830,10 @@ body
 .sixth-2000{width:16.66666%;display:block}
 }
 .breadcrumb{background:#f5f5f5; }
-.breadcrumb a{color:#333;font-size:.7em}
-.breadcrumb span{color:#888;font-size:.7em}
+.breadcrumb a{color:#333;font-size:1em}
+.breadcrumb span{color:#888;font-size:.9em}
 .breadcrumb .flex > div{ padding-bottom: 0 !important;}
 section > div{max-width: 1140px; padding:10px 15px !important; margin:0  auto !important;}
 section h1{margin: 0 !important; padding: 0 !important;}
 .header col-1{ padding-left: 0;}
+#bg-gray{background-color: #EDE9E1;}

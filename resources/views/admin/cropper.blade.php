@@ -1,4 +1,4 @@
-@section('head')
+
     <meta name="_token" content="{{ csrf_token() }}">
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> --}}
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous" /> --}}
@@ -11,7 +11,8 @@
     <style type="text/css">
         img {
           display: block;
-          max-width: 100%;
+          max-width: 300px;
+          max-height: 300px;
         }
         .preview {
           overflow: hidden;
@@ -24,8 +25,6 @@
           max-width: 1000px !important;
         }
         </style>
-@endsection
-@section('footer')
 <div class="modal fade" style="direction: ltr;" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -38,10 +37,10 @@
         <div class="modal-body">
           <div class="img-container">
               <div class="row">
-                  <div class="col-md-8">
+                  <div class="col-lg-8 col-md-8 col-sm-8" style="max-width: 50%;float: inherit;">
                       <img id="image" src="https://avatars0.githubusercontent.com/u/3456749">
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-lg-4 col-md-4 col-sm-4" style="max-width: 50%;float: inherit;">
                       <div class="preview"></div>
                   </div>
               </div>
@@ -145,6 +144,4 @@
 
     </script>
 
-
-@endsection
 
