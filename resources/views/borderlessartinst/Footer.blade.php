@@ -63,6 +63,15 @@
     </div>
 </div>
 
+<div id="upStickyLayer"
+        style="position:fixed;text-align:left;left:auto;right:25px;top:auto;bottom:25px;width:50px;height:50px;z-index:40;">
+        <div id="wb_upIcon" style="position:absolute;left:9px;top:9px;width:24px;height:24px;text-align:center;z-index:21;">
+            <a href="#intro">
+                <div id="upIcon"><i class="fa fa-angle-up"></i></div>
+            </a>
+        </div>
+    </div>
+
 
 
 

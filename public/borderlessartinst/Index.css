@@ -27,15 +27,15 @@ body
 #LayoutGrid1
 {
    box-sizing: border-box;
-   padding: 20px 15px 20px 15px;
+   padding: 20px 0px 20px 0px;
    margin-right: auto;
    margin-left: auto;
-   max-width: 1024px;
+   max-width: 1140px;
 }
 #LayoutGrid1 > .row
 {
    margin-right: -15px;
-   margin-left: -15px;
+   .flex5px;
 }
 #LayoutGrid1 > .row > .col-1, #LayoutGrid1 > .row > .col-2, #LayoutGrid1 > .row > .col-3
 {
@@ -119,10 +119,10 @@ body
 #header
 {
    box-sizing: border-box;
-   padding: 15px 15px 15px 15px;
+   padding: 15px 0px ;
    margin-right: auto;
    margin-left: auto;
-   max-width: 1024px;
+   max-width: 1140px;
 }
 #header > .row
 {
@@ -351,7 +351,7 @@ body
 #coffee
 {
    position: relative;
-   padding: 10px 10px 10px 10px;
+   padding: 10px 0;
    margin-top: 0px;
    margin-bottom: 0px;
    margin-right: auto;
@@ -448,7 +448,7 @@ body
 #about
 {
    box-sizing: border-box;
-   padding: 0px 15px 0px 15px;
+   padding: 15px 15px;
    margin-right: auto;
    margin-left: auto;
    max-width: 1140px;
@@ -2368,7 +2368,7 @@ body
 .product-detail .col-1,.product-detail .col-2,.product-detail .col-3,.product-detail .col-4,.product-detail .col-5,.product-detail .col-6,.product-detail .col-7,.product-detail .col-8,.product-detail .col-9,.product-detail .col-10,.product-detail .col-11,.product-detail .col-12{padding: 1em;}
 .product-detail  .row{display:flex !important}
 .product-detail{max-width: 1024px; margin: auto;}
-.flex{display:-ms-flexbox;display:flex;margin-left:-1em;width:calc(100%);flex-wrap:wrap;transition:all .3s ease}
+.flex{display:-ms-flexbox;display:flex;width:calc(100%);flex-wrap:wrap;transition:all .3s ease}
 .flex>*{box-sizing:border-box;flex:1 1 auto;padding-left:.5em;padding-right:.5em;padding-bottom:1em}
 .flex[class*=eight]>*,.flex[class*=eleven]>*,.flex[class*=five]>*,.flex[class*=four]>*,.flex[class*=nine]>*,.flex[class*=one]>*,.flex[class*=seven]>*,.flex[class*=six]>*,.flex[class*=ten]>*,.flex[class*=three]>*,.flex[class*=twelve]>*,.flex[class*=two]>*{flex-grow:0}
 .flex.grow>*{flex-grow:1}
@@ -2829,3 +2829,10 @@ body
 .four-fifth-2000{width:80%;display:block}
 .sixth-2000{width:16.66666%;display:block}
 }
+.breadcrumb{background:#f5f5f5; }
+.breadcrumb a{color:#333;font-size:.7em}
+.breadcrumb span{color:#888;font-size:.7em}
+.breadcrumb .flex > div{ padding-bottom: 0 !important;}
+section > div{max-width: 1140px; padding:10px 15px !important; margin:0  auto !important;}
+section h1{margin: 0 !important; padding: 0 !important;}
+.header col-1{ padding-left: 0;}

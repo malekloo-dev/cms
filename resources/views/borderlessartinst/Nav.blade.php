@@ -2,9 +2,11 @@
     <div id="LayoutGrid1">
        <div class="row">
           <div class="col-1">
+              <a href="/">
              <div id="wb_Image1" style="display:inline-block;width:198px;height:69px;z-index:0;">
                 <img src="{{ asset('images/output-onlinepngtools.png') }}" id="Image1" alt="">
              </div>
+              </a>
           </div>
           <div class="col-2">
              <div id="wb_Text1">
