@@ -8,8 +8,10 @@
 @endsection
 
 @section('Content')
-
-    <div id="wb_intro">
+    {{--images&label=banner&var=banner&count=1--}}
+    @isset($banner['images'])
+    @foreach ($banner['images'] as $key=>$content)
+    <div id="wb_intro" style="background-image: url({{ $content }})">
         <div id="intro">
             <div class="col-1">
                 <div id="wb_introText">
@@ -19,12 +21,16 @@
                             Kubrick</span></p>
                 </div>
                 <div id="wb_introShape" style="display:inline-block;width:120px;height:44px;z-index:8;position:relative;">
-                    <a href="#about"><img src="images/img0001.png" id="introShape" alt=""
+                    <a href="#about">
+                        <img src="{{ asset('images/img0001.png') }}" id="introShape" alt=""
                             style="width:120px;height:44px;"></a>
                 </div>
             </div>
         </div>
     </div>
+    @endforeach
+    @endisset
+
     <div id="wb_introLayoutGrid">
         <div id="introLayoutGrid">
             <div class="row">
