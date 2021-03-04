@@ -64,7 +64,7 @@
                                 <a class="hover shadow2" href="{{ $content->slug }}">
 
                                     @if (isset($content->images['thumb']))
-                                        <div><img src="{{ $content->images['thumb'] }}"></div>
+                                        <div><img alt="{{ $content->title }}" src="{{ $content->images['thumb'] }}"></div>
                                     @endif
                                     <footer>
                                         <h3> {{ $content->title }}</h3>
