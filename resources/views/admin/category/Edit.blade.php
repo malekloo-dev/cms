@@ -1,5 +1,4 @@
 @extends('admin.layouts.app')
-@section('content')
 @section('ckeditor')
 
 
@@ -25,52 +24,29 @@
 <script src="/ckeditor5/ckeditor5-build-classic/ckeditor.js"> </script>
 <script>
     ClassicEditor
-        .create(document.querySelector('#brief_description'), {
-            ckfinder: {
-                uploadUrl: "{{route('contents.upload', ['_token' => csrf_token() ])}}",
-            },
-            toolbar: {
-                viewportTopOffset: 80
-            },
-            @if(!$ltr)
-                language: 'fa'
-                @endif
-        })
-        .then(editor => {
-            const wordCountPlugin = editor.plugins.get('WordCount');
-            const wordCountWrapper = document.getElementById('word-count1');
-            wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+    .create(document.querySelector('#brief_description'), {
+        ckfinder: {
+            uploadUrl: "{{route('contents.upload', ['_token' => csrf_token() ])}}",
+        },
+        toolbar: {
+            viewportTopOffset: 80
+        },
+        @if(!$ltr)
+        language: 'fa'
+        @endif
+    })
+    .then(editor => {
+        const wordCountPlugin = editor.plugins.get('WordCount');
+        const wordCountWrapper = document.getElementById('word-count1');
+        wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
 
-            window.editor = editor;
-        })
+        window.editor = editor;
+    })
 
-        .catch(err => {
-            console.error(err.stack);
-        });
+    .catch(err => {
+        console.error(err.stack);
+    });
 
-
-    ClassicEditor
-        .create(document.querySelector('#description'), {
-            ckfinder: {
-                uploadUrl: "{{route('contents.upload', ['_token' => csrf_token() ])}}",
-            },
-            toolbar: {
-                viewportTopOffset: 80
-            },
-            @if(!$ltr)
-                language: 'fa'
-                @endif
-        })
-        .then(editor => {
-            const wordCountPlugin = editor.plugins.get('WordCount');
-            const wordCountWrapper = document.getElementById('word-count2');
-            wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
-
-            window.editor = editor;
-        })
-        .catch(err => {
-            console.error(err.stack);
-        });
 </script>
 
 
@@ -79,6 +55,7 @@
 
 @endsection
 
+@section('content')
 
 
 <div class="content-control">
@@ -98,18 +75,18 @@
                 @method('PATCH')
                 @csrf
                 <div class="form-group row">
-                    <div class="col-md-5">
+                    <div class="col-5 col-md-5">
                         <label for="name" class=" col-form-label">@lang('messages.title'):</label>
                         <input type="text" class="form-control" name="title" value="{{ old('title',$content_info->title) }}" />
                         <span class="text-danger">{{ $errors->first('title') }}</span>
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-5 col-md-5">
                         <label for="slug" class="col-form-label text-md-left">@lang('messages.url') :</label>
                         <input type="text" class="form-control" name="slug" value="{{ old('slug',$content_info->slug) }}" />
                         <span class="text-danger">{{ $errors->first('slug') }}</span>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-2 col-md-2">
                         <label for="name" class=" col-form-label text-md-left">@lang('messages.publish date'):</label>
                         <input type="{{($ltr)?'date':'datetime'}}" class="form-control @if(!$ltr) datepicker @endif" name="publish_date"
                         value="{{ old('publish_date',$content_info->publish_date) }}" />
@@ -123,7 +100,7 @@
                 @if ($content_info->attr_type=='html')
 
                 <div class="form-group row">
-                    <label for="brand" class="col-md-12 col-form-label text-md-left">template name:</label>
+                    <label for="brand" class="col-md-12 col-form-label text-md-left">@lang('messages.static template') @lang('messages.name'):</label>
                     <div class="col-md-12">
                         <input type="text" class="form-control" name="attr[template_name]" value="{{ old('attr[template_name]',$content_info->attr['template_name']) }}" />
                     </div>
@@ -132,7 +109,7 @@
 
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label for="name" class="col-form-label text-md-left">Brief Description:</label>
+                        <label for="name" class="col-form-label text-md-left">@lang('messages.brief'):</label>
                         <textarea class="form-control" id="brief_description" name="brief_description" rows="10" placeholder="Enter your Content">{{ old('brief_description',$content_info->brief_description) }}</textarea>
                         <div id="word-count1"></div>
                     </div>
@@ -140,20 +117,20 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label for="name" class=" col-form-label text-md-left">Description:</label>
-                        <textarea class="form-control" id="description" name="description">{{ old('description',$content_info->description) }}</textarea>
-                        <div id="word-count2"></div>
+                        <label for="name" class=" col-form-label text-md-left">@lang('messages.description'):</label>
+                    </div>
+                    <div class="col-md-12">
+                        @include('admin.gridMaker')
                     </div>
 
                 </div>
 
 
                 <div class="form-group row">
-                    <div class="col-md-6">
+                    <div class="col-6 col-md-6">
                         <label for="name" class=" col-form-label text-md-left">@lang('messages.category')</label>
 
-                        {{--<select multiple name="parent_id" id="parent_id" class="form-control" >--}}
-                        <select name="parent_id" id="parent_id" {{--class="form-control"--}}>
+                        <select name="parent_id" id="parent_id" >
 
                             <option value="0" {{ $content_info->parent_id == 0 ? 'selected' : '' }}>@lang('messages.parent')</option>
                             @foreach($category as $Key => $fields)
@@ -169,10 +146,13 @@
 
 
                 <div class="form-group row">
-                    <div class="col-md-6">
+                    <div class="col-6 col-md-6">
                         <label for="images" class="control-label">@lang('messages.image')   (@lang('messages.size'){{ env('CATEGORY_LARGE') }}px)</label>
                         <input type="file" class="form-control" name="images" id="images" placeholder="@lang('messages.select image')"
                         value="{{ old('imageUrl') }}">
+
+                        @include('admin.cropper')
+
                     </div>
                 </div>
                 <div class="form-group row">

@@ -48,7 +48,12 @@
         <div class="flex one">
             <h1>{{ $detail->title }}</h1>
         </div>
+
+        @if($detail->description != '')
+        @include(@env('TEMPLATE_NAME').'.DescriptionModule')
+        @endisset
     </section>
+
 
 
 

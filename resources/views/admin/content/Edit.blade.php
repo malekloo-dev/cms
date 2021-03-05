@@ -100,24 +100,27 @@
     <div class="panel panel-default  pos-abs chat-panel bottom-0">
 
         <div class="panel-body full-height">
+            @if ($errors->any())
+                    {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
+                @endif
             <form method="post" action="{{ route('contents.update', $content_info->id) }}"
                 enctype="multipart/form-data">
                 @method('PATCH')
                 @csrf
                 <div class="form-group row">
-                    <div class="col-md-5">
+                    <div class="col-5 col-lg-5 col-md-5">
                         <label for="title" class=" col-form-label text-md-left">@lang('messages.title'):</label>
                         <input type="text" class="form-control" name="title"
                             value="{{ old('title', $content_info->title) }}" />
                         <span class="text-danger">{{ $errors->first('title') }}</span>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-5 col-md-5">
                         <label for="slug" class=" col-form-label text-md-left">@lang('messages.url') :</label>
                         <input type="text" class="form-control" name="slug"
                             value="{{ old('slug', $content_info->slug) }}" />
                         <span class="text-danger">{{ $errors->first('slug') }}</span>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-2 col-md-2">
                         <label for="name">@lang('messages.publish date') :</label>
                         <input  type="{{ ($ltr)?'date':'' }}" class="form-control @if(!$ltr) datepicker @endif" name="publish_date"
                             value="{{ old('publish_date', $content_info->publish_date) }}" />
@@ -163,7 +166,7 @@
 
 
                 <div class="form-group row">
-                    <div class="col-md-6">
+                    <div class="col-6 col-md-6">
                         <label for="name" >@lang('messages.category'):</label>
                         {{--<select multiple name="parent_id" id="parent_id"
                             class="form-control">--}}
@@ -182,13 +185,12 @@
 
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-6">
+                    <div class="col-6 col-sm-6">
                         <label for="images" class="control-label">@lang('messages.image') (@lang('messages.content') {{ env('ARTICLE_LARGE') }}px)
                             (@lang('messages.product') {{ env('PRODUCT_LARGE') }}px)</label>
                         <input type="file" class="form-control" name="images" id="images"
                             placeholder="@lang('messages.select image')" value="{{ old('imageUrl') }}">
 
-                            <input type="hidden" name="imageJson">
 
                             @include('admin.cropper')
 
@@ -215,13 +217,13 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-6">
                         <label for="meta_title">Meta Title</label>
                         <input type="text" class="form-control" name="meta_title"
                             value="{{ old('meta_keywords', $content_info->meta_title) }}" />
                         <span class="text-danger">{{ $errors->first('meta_title') }}</span>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-6">
                         <label for="name" class=" text-md-left">meta keywords</label>
                         <input id="meta_keywords" type="text" name="meta_keywords"
                             value="{{ old('meta_keywords', $content_info->meta_keywords) }}" />

@@ -74,4 +74,7 @@ return [
     'enter email'=>'Please enter email',
     'enter address'=>'Enter address',
     'enter new address'=>'Enter new address',
+    'file manager'=>'File manager',
+    'child'=>'Child',
+    'module config'=>'Modules',
 ];
