@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\RedirectUrl;
+use App\Models\RedirectUrl;
 use App\Http\Requests\RedirectUrlRequest;
 
 class RedirectUrlController extends Controller

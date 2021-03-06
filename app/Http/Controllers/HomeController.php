@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Content;
-use App\Category;
-use App\Widget;
-use App\WebsiteSetting;
+use App\Models\Content;
+use App\Models\Category;
+use App\Models\Widget;
+use App\Models\WebsiteSetting;
 use Illuminate\Database\Eloquent\Collection;
-//use App\Home;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;

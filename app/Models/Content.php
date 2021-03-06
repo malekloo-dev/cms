@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,7 +32,7 @@ class Content extends Model
     public function comments()
     {
         $comments = $this->hasMany('App\Comment')->where('status', '=', '1');
-        
+
         return $comments;
     }
 }

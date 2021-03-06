@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Content;
-use App\export;
+use App\Models\Content;
+use App\Models\export;
 use App\Sitemap;
 use Carbon\Carbon;
 use Illuminate\Http\Request;

@@ -6,7 +6,7 @@
  * Time: 11:50 AM
  */
 
-namespace App;
+namespace App\Models;
 
 trait FilterBuilder
 {

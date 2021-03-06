@@ -1,9 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
+
 
 use Illuminate\Notifications\Notifiable;
 
@@ -11,6 +13,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     use FilterBuilder;
+    use HasRoles;
     public $timestamps = false;
 
 
@@ -60,11 +63,11 @@ class User extends Authenticatable
         return $token;
     }
 
-    public function index(Request $request)
-    {
-        dd(auth()->guard('api')->user());
-        return User::all();
-    }
+    // public function index(Request $request)
+    // {
+    //     dd(auth()->guard('api')->user());
+    //     return User::all();
+    // }
     public function article()
     {
         return $this->hasMany(Article::class);

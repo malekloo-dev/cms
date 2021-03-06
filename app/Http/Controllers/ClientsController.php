@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Clients;
+use App\Models\Clients;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

@@ -6,8 +6,8 @@
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
-use App\Content;
-use App\Menu;
+use App\Models\Content;
+use App\Models\Menu;
 use Morilog\Jalali\CalendarUtils;
 
 function h_encrypt($string)

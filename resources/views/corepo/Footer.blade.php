@@ -7,7 +7,7 @@
                 <div class="two-fourth-500">
                     <div>وبسایت ها</div>
                     <ul class="flex one two-700">
-                        <?php $subMenu = App\Menu::where('menu', '=', '1')
+                        <?php $subMenu = App\Models\Menu::where('menu', '=', '1')
                         ->where('parent', '=', 7)
                         ->orderBy('sort')
                         ->get(); ?>
@@ -21,7 +21,7 @@
                 <div class="fourth-500">
                     <div>مقاله ها</div>
                     <ul class="flex one ">
-                        <?php $subMenu = App\Menu::where('menu', '=', '1')
+                        <?php $subMenu = App\Models\Menu::where('menu', '=', '1')
                         ->where('parent', '=', 34)
                         ->orderBy('sort')
                         ->get(); ?>

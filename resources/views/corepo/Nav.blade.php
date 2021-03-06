@@ -27,11 +27,11 @@
                             </div>
                         </a>
                     </li>
-                    @foreach (App\Menu::where('parent', '=', '0')
+                    @foreach (App\Models\Menu::where('parent', '=', '0')
                         ->orderBy('sort')
                         ->get()
                     as $menuItem)
-                        <?php $subMenu = App\Menu::where('menu', '=', '1')
+                        <?php $subMenu = App\Models\Menu::where('menu', '=', '1')
                         ->where('parent', '=', $menuItem['id'])
                         ->orderBy('sort')
                         ->get(); ?>

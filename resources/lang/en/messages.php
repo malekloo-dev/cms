@@ -77,4 +77,6 @@ return [
     'file manager'=>'File manager',
     'child'=>'Child',
     'module config'=>'Modules',
+    'role'=>'Role',
+    'permission'=>'Permission',
 ];

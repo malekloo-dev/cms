@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Content;
+use App\Models\Content;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
-use App\RedirectUrl;
-use App\Widget;
+use App\Models\RedirectUrl;
+use App\Models\Widget;
 use PDF;
 
 class CmsController extends Controller

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Content;
-use App\Menu;
-use App\Widget;
+use App\Models\Content;
+use App\Models\Menu;
+use App\Models\Widget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -52,7 +52,7 @@ class ModuleBuilderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Menu $menu
+     * @param  \App\Models\Menu $menu
      * @return \Illuminate\Http\Response
      */
     public function edit($fileName)
@@ -140,7 +140,7 @@ class ModuleBuilderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Menu $menu
+     * @param  \App\Models\Menu $menu
      * @return \Illuminate\Http\Response
      */
     public function update($fileName, Request $request)
@@ -224,7 +224,7 @@ class ModuleBuilderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Menu $menu
+     * @param  \App\Models\Menu $menu
      * @return \Illuminate\Http\Response
      */
     public function destroy(Menu $menu)

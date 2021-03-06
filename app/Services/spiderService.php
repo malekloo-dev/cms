@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Role;
-use App\spider;
+use App\Models\Role;
+use App\Models\spider;
 use CURLFile;
 use DOMDocument;
 use DOMXPath;
