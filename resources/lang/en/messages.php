@@ -78,5 +78,7 @@ return [
     'child'=>'Child',
     'module config'=>'Modules',
     'role'=>'Role',
+    'roles'=>'Roles',
     'permission'=>'Permission',
+    'permissions'=>'Permissions',
 ];

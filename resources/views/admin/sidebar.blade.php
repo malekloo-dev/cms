@@ -105,7 +105,7 @@
             </a>
         </li>
         <li class="no-margin">
-            <a href="" class="no-margin @if(!$ltr) text-right @endif">
+            <a href="{{ route('role.index') }}" class="no-margin @if(!$ltr) text-right @endif">
                 <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-address-card"></i>
                 <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.role')</span>
             </a>

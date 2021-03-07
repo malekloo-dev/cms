@@ -1,5 +1,21 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\CmsController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContentController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageCropperController;
+use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ModuleBuilderController;
+use App\Http\Controllers\RedirectUrlController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SpiderController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebsiteSettingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
@@ -11,63 +27,72 @@ App::setLocale(env('SITE_LANG'));
 
 Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
-    Route::post('contents/upload-image/', 'ContentController@uploadImageSubject')->name('contents.upload');
-    Route::get('image-cropper', 'ImageCropperController@index');
-    Route::post('image-cropper/upload', 'ImageCropperController@upload');
+    Route::post('contents/upload-image/', [ContentController::class,'uploadImageSubject'])->name('contents.upload');
+    Route::get('image-cropper', [ImageCropperController::class,'index']);
+    Route::post('image-cropper/upload', [ImageCropperController::class,'upload']);
 
     Route::get('/', 'IndexController@index')->name('admin');
 
 
     /** for adminContent  */
-    //Route::resource('contents', 'ContentController');
-    Route::get('contents', 'ContentController@index')->name('contents.index');
-    Route::get('contents/create', 'ContentController@create')->name('contents.create');
-
-    Route::get('contents/{type}', 'ContentController@index')->name('contents.show');
-    Route::post('contents', 'ContentController@store')->name('contents.store');
-    Route::delete('contents/{content}', 'ContentController@destroy')->name('contents.destroy');
-    Route::PATCH('contents/{content}', 'ContentController@update')->name('contents.update');
-    Route::get('contents/{content}/edit', 'ContentController@edit')->name('contents.edit');
+    //Route::resource('contents', [ContentController::class,');
+    Route::get('contents', [ContentController::class,'index'])->name('contents.index');
+    Route::get('contents/create', [ContentController::class,'create'])->name('contents.create');
+    Route::get('contents/{type}', [ContentController::class,'index'])->name('contents.show');
+    Route::post('contents', [ContentController::class,'store'])->name('contents.store');
+    Route::delete('contents/{content}', [ContentController::class,'destroy'])->name('contents.destroy');
+    Route::PATCH('contents/{content}', [ContentController::class,'update'])->name('contents.update');
+    Route::get('contents/{content}/edit', [ContentController::class,'edit'])->name('contents.edit');
 
 
     Route::prefix('seo')->name('seo.')->group(function () {
-        Route::resource('redirectUrl', 'RedirectUrlController');
-        Route::get('websiteSetting', 'WebsiteSettingController@edit')->name('websiteSetting.edit');
-        Route::patch('websiteSetting', 'WebsiteSettingController@update')->name('websiteSetting.update');
+        Route::resource('redirectUrl', RedirectUrlController::class);
+        Route::get('websiteSetting', [WebsiteSettingController::class,'edit'])->name('websiteSetting.edit');
+        Route::patch('websiteSetting', [WebsiteSettingController::class,'update'])->name('websiteSetting.update');
     });
 
-    Route::resource('category', 'CategoryController');
-    Route::resource('menu', 'MenuController');
+    Route::resource('category', CategoryController::class);
+    Route::resource('menu', MenuController::class);
 
-    Route::get('indexConfig/{fileName}', 'ModuleBuilderController@edit')->name('moduleBuilder.edit');
-    Route::patch('indexConfig/{fileName}', 'ModuleBuilderController@update')->name('moduleBuilder.update');
+    Route::get('indexConfig/{fileName}', [ModuleBuilderController::class,'edit'])->name('moduleBuilder.edit');
+    Route::patch('indexConfig/{fileName}', [ModuleBuilderController::class,'update'])->name('moduleBuilder.update');
 
     Route::resources([
-        'clients'   => 'ClientsController',
-        'users' => 'UserController',
-        'contact' => 'ContactController',
-        'comment' => 'CommentController'
+        'clients'   => ClientsController::class,
+        'users' => UserController::class,
+        'contact' => ContactController::class,
+        'comment' => CommentController::class
     ]);
+
+    Route::get('role', [RoleController::class,'index'])->name('role.index');
+    Route::get('role/create', [RoleController::class,'create'])->name('role.create');
+    Route::patch('role', [RoleController::class,'store'])->name('role.store');
+    Route::get('role/{roleId}/edit', [RoleController::class,'create'])->name('role.edit');
+    Route::patch('role/{roleId}', [RoleController::class,'update'])->name('role.update');
+    Route::delete('role/{roleId}', [RoleController::class,'create'])->name('role.destroy');
+    Route::get('role/{roleId}/permissions', [RoleController::class,'permissions'])->name('role.permissions.index');
+    Route::patch('role/{roleId}/permissions', [RoleController::class,'permissionStore'])->name('role.permission.store');
+    Route::get('role/{roleId}/users', [RoleController::class,'permission'])->name('role.users.index');
 });
 
 
-Route::get('/search', 'InventoryController@index')->name('inventory.show');
-Route::post('/search', 'InventoryController@index')->name('inventory.search');
+Route::get('/search', [InventoryController::class,'index'])->name('inventory.show');
+Route::post('/search', [InventoryController::class,'index'])->name('inventory.search');
 
 Auth::routes(['register' => false]);
 
-Route::get('spider', 'SpiderController@spider');
-Route::get('/spider/reload', 'SpiderController@reload');
-Route::post('/spider/addToCms', 'SpiderController@reloadAdd');
+Route::get('spider', [SpiderController::class,'spider']);
+Route::get('/spider/reload', [SpiderController::class,'reload']);
+Route::post('/spider/addToCms', [SpiderController::class,'reloadAdd']);
 
 
 //Route::get('/search/', 'inventoryController@index')->name('inventory.show');
 //Route::post('/search/', 'inventoryController@index')->name('inventory.search');
 
-Route::get('/', 'HomeController@index');
-Route::get('/reload', 'ContentController@reload');
+Route::get('/', [HomeController::class,'index']);
+Route::get('/reload', [ContentController::class,'reload']);
 
-Route::get('/{slug?}/{b?}', 'CmsController@request');
+Route::get('/{slug?}/{b?}', [CmsController::class,'request']);
 
-Route::post('/comment', 'CommentController@store')->name('comment.store');
-Route::post('/contact', 'ContactController@store')->name('contact.store');
+Route::post('/comment', [CommentController::class,'store'])->name('comment.store');
+Route::post('/contact', [CommentController::class,'store'])->name('contact.store');

@@ -267,5 +267,5 @@
 
                         </textarea>
 <div id="gridMacker">
-        {!! old('description', $content_info->description) !!}
+        {!! old('description', $content_info->description??'') !!}
 </div>
