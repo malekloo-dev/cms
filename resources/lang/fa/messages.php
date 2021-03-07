@@ -75,4 +75,10 @@ return [
     'file manager'=>'مدیریت مدیا',
     'child'=>'گرفتن اطلاعات زیر مجموعه ها',
     'module config'=>' ماژول ها',
+    'role'=>'رول',
+    'roles'=>'رول ها',
+    'permission'=>'پرمیشن',
+    'permissions'=>'پرمیشن ها',
+    'exist'=>'وجود دارد',
+    'close'=>'بستن',
 ];

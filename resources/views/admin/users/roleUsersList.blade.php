@@ -6,7 +6,7 @@
             <li class="active">{{ $role->name }} @lang('messages.users')</li>
         </ul>
         <div>
-            <a href="{{ route('role.users.assign', $role->id) }}" data-toggle="modal" data-target="#addUser"
+            <a href="{{ route('role.users.assign', $role->id) }}" data-toggle="modal" data-target="#add"
                 class="btn btn-success btn-icon mat-button ">
                 <i class="fa fa-plus"></i> @lang('messages.add')
             </a>
@@ -77,7 +77,7 @@
     </div>
 
 
-    <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

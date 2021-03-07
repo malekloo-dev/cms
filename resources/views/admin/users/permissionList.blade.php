@@ -6,7 +6,7 @@
             <li class="active">{{ $role->name }} @lang('messages.permissions')</li>
         </ul>
         <div>
-            <a href="{{ route('role.permission.create',$role->id) }}" class="btn btn-success btn-icon mat-button ">
+            <a data-toggle="modal" data-target="#add" class="btn btn-success btn-icon mat-button ">
                 <i class="fa fa-plus"></i> @lang('messages.add')
             </a>
         </div>
@@ -24,14 +24,9 @@
                     </div>
                 @endif
 
-                @if (\Session::has('error'))
-                    <div class="alert alert-danger">
-                        <ul>
-                            <li>{!! \Session::get('error') !!}</li>
-                        </ul>
-                    </div>
+                @if ($errors->any())
+                    {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
                 @endif
-
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -75,4 +70,31 @@
         </div>
     </div>
 
+    <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">@lang('messages.permission')</h5>
+                </div>
+                <form action="{{ route('role.permission.store', $role->id) }}" method="POST">
+                    <div class="modal-body">
+                        @csrf
+                        <div class="form-group row">
+
+                            <div class="col-md-12">
+                                <label for="url" class="col-form-label ">@lang('messages.name'):</label>
+                                <input type="text" placeholder="" class="form-control" name="name"
+                                    value="{{ old('name') }}" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">@lang('messages.add')</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('messages.close')</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection

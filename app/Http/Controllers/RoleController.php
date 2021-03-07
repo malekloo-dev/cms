@@ -41,12 +41,11 @@ class RoleController extends Controller
         return view('admin.users.permissionList', compact('role'));
     }
 
-    public function permissionCreate(Role $role)
-    {
-        return view('admin.users.permissionCreate', compact('role'));
-    }
     public function permissionStore(Request $request, Role $role)
     {
+        $request->validate([
+            'name' => 'required'
+        ]);
         $permission = Permission::findOrCreate($request->name);
         $role->givePermissionTo($permission);
 
