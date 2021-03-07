@@ -4,17 +4,19 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\CmsController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageCropperController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ModuleBuilderController;
 use App\Http\Controllers\RedirectUrlController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SpiderController;
-// use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebsiteSettingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,13 +27,17 @@ App::setLocale(env('SITE_LANG'));
 
 //Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
 
-Route::prefix('/admin')->middleware(['auth'])->group(function () {
+Route::prefix('/company')->middleware(['role:company'])->group(function () {
+    Route::get('/', [CompanyController::class,'index'])->name('company.panel');
+
+});
+Route::prefix('/admin')->middleware(['auth','role:super admin'])->group(function () {
 
     Route::post('contents/upload-image/', [ContentController::class,'uploadImageSubject'])->name('contents.upload');
     Route::get('image-cropper', [ImageCropperController::class,'index']);
     Route::post('image-cropper/upload', [ImageCropperController::class,'upload']);
 
-    Route::get('/', 'IndexController@index')->name('admin');
+    Route::get('/', [IndexController::class,'index'])->name('admin');
 
 
     /** for adminContent  */
@@ -46,29 +52,25 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
 
     Route::prefix('seo')->name('seo.')->group(function () {
-        Route::resource('redirectUrl', RedirectUrlController::class);
+        Route::resource('redirectUrl', 'RedirectUrlController');
         Route::get('websiteSetting', [WebsiteSettingController::class,'edit'])->name('websiteSetting.edit');
         Route::patch('websiteSetting', [WebsiteSettingController::class,'update'])->name('websiteSetting.update');
     });
 
-    Route::resource('category', CategoryController::class);
-    Route::resource('menu', MenuController::class);
+    Route::resource('category', 'CategoryController');
+    Route::resource('menu', 'MenuController');
 
     Route::get('indexConfig/{fileName}', [ModuleBuilderController::class,'edit'])->name('moduleBuilder.edit');
     Route::patch('indexConfig/{fileName}', [ModuleBuilderController::class,'update'])->name('moduleBuilder.update');
 
     Route::resources([
-        'clients'   => ClientsController::class,
-        'users' => UserController::class,
-        'contact' => ContactController::class,
-        'comment' => CommentController::class
+        'clients'   => 'ClientsController',
+        'users' => 'UserController',
+        'contact' => 'ContactController',
+        'comment' => 'CommentController',
+        'role'=>'RoleController'
     ]);
 
-    Route::get('role', [RoleController::class,'index'])->name('role.index');
-    Route::post('role', [RoleController::class,'store'])->name('role.store');
-    Route::get('role/{roleId}/edit', [RoleController::class,'create'])->name('role.edit');
-    Route::patch('role/{roleId}', [RoleController::class,'update'])->name('role.update');
-    Route::delete('role/{role}', [RoleController::class,'destroy'])->name('role.destroy');
 
     Route::get('role/{role}/permissions', [RoleController::class,'permissions'])->name('role.permissions.index');
     Route::get('role/{role}/permissions/create', [RoleController::class,'permissionCreate'])->name('role.permission.create');

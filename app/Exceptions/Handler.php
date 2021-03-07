@@ -52,8 +52,8 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof \Spatie\Permission\Exceptions\PermissionAlreadyExists) {
-            return redirect()->back()->with('error',Lang::get('messages.permission').' '.Lang::get('messages.exist'));
-        }
+            return redirect()->back()->with('error', Lang::get('messages.permission') . ' ' . Lang::get('messages.exist'));
+        } 
 
         return parent::render($request, $exception);
     }

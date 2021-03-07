@@ -54,7 +54,6 @@ class RoleController extends Controller
     {
         $allUsers = User::all();
 
-
         return view('admin.users.roleUsersList', compact('role', 'allUsers'));
     }
 }

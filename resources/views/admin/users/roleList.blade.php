@@ -42,7 +42,7 @@
                             <div>
 
                                 <a href="{{ route('role.permissions.index', $item->id) }}"
-                                    title=" @lang('messages.permissions')">{{ count($item->permissions) }} <i
+                                    title=" @lang('messages.permissions')"><span class="text-orange">{{ count($item->permissions) }}</span> <i
                                         class="fa fa-lock    font-full-plus-half-em"></i>
                                 </a>
                                 <a href="{{ route('role.users.index', $item->id) }}" title="@lang('messages.users')"> {{ count($item->users) }} <i
@@ -133,6 +133,7 @@
             padding: .5em;
             border-radius: 4px;
             align-items: center;
+            box-shadow: 0 1px 2px rgb(0 0 0 / 10%) inset;
         }
 
         .items .tools>* {
