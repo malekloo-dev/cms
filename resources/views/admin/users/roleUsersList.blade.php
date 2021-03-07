@@ -2,11 +2,12 @@
 @section('content')
     <div class="content-control">
         <ul class="breadcrumb">
-            <li><a href="{{ route('role.index') }}">@lang('messages.roles')</a></li>
-            <li class="active">{{ $role->name }} @lang('messages.permissions')</li>
+            <li><a href="{{ route('role.index') }}">@lang('messages.role')</a></li>
+            <li class="active">{{ $role->name }} @lang('messages.users')</li>
         </ul>
         <div>
-            <a href="{{ route('role.permission.create',$role->id) }}" class="btn btn-success btn-icon mat-button ">
+            <a href="{{ route('role.users.assign', $role->id) }}" data-toggle="modal" data-target="#addUser"
+                class="btn btn-success btn-icon mat-button ">
                 <i class="fa fa-plus"></i> @lang('messages.add')
             </a>
         </div>
@@ -35,12 +36,12 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>@lang('messages.permission')</th>
+                            <th>@lang('messages.user')</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($role->permissions as $item)
+                        @foreach ($role->users as $item)
                             <tr>
                                 <td>{{ $item->name }}</td>
 
@@ -75,4 +76,26 @@
         </div>
     </div>
 
+
+    <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">@lang('messages.user')</h5>
+                </div>
+                <div class="modal-body">
+                    <select name="" id="" class="select2">
+                        @foreach ($allUsers as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

@@ -14,7 +14,7 @@ use App\Http\Controllers\ModuleBuilderController;
 use App\Http\Controllers\RedirectUrlController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SpiderController;
-use App\Http\Controllers\UserController;
+// use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebsiteSettingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -66,13 +66,17 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
 
     Route::get('role', [RoleController::class,'index'])->name('role.index');
     Route::get('role/create', [RoleController::class,'create'])->name('role.create');
-    Route::patch('role', [RoleController::class,'store'])->name('role.store');
+    Route::post('role', [RoleController::class,'store'])->name('role.store');
     Route::get('role/{roleId}/edit', [RoleController::class,'create'])->name('role.edit');
     Route::patch('role/{roleId}', [RoleController::class,'update'])->name('role.update');
-    Route::delete('role/{roleId}', [RoleController::class,'create'])->name('role.destroy');
-    Route::get('role/{roleId}/permissions', [RoleController::class,'permissions'])->name('role.permissions.index');
-    Route::patch('role/{roleId}/permissions', [RoleController::class,'permissionStore'])->name('role.permission.store');
-    Route::get('role/{roleId}/users', [RoleController::class,'permission'])->name('role.users.index');
+    Route::delete('role/{role}', [RoleController::class,'create'])->name('role.destroy');
+
+    Route::get('role/{role}/permissions', [RoleController::class,'permissions'])->name('role.permissions.index');
+    Route::get('role/{role}/permissions/create', [RoleController::class,'permissionCreate'])->name('role.permission.create');
+    Route::post('role/{role}/permissions', [RoleController::class,'permissionStore'])->name('role.permission.store');
+
+    Route::get('role/{role}/users', [RoleController::class,'users'])->name('role.users.index');
+    Route::post('role/{role}/users', [RoleController::class,'usersAssign'])->name('role.users.assign');
 });
 
 

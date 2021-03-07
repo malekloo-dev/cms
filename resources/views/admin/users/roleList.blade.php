@@ -42,7 +42,7 @@
                             <div>
 
                                 <a href="{{ route('role.permissions.index', $item->id) }}"
-                                    title="@lang('messages.permission')"> <i
+                                    title="@lang('messages.permissions')"> <i
                                         class="fa fa-lock    font-full-plus-half-em"></i>
                                 </a>
                                 <a href="{{ route('role.users.index', $item->id) }}" title="@lang('messages.users')"> <i

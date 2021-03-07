@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
-    function index(){
+    function index()
+    {
         $roles = Role::all();
-
 
         return view('admin.users.roleList', compact('roles'));
     }
 
-    function create(){
+    function create()
+    {
         return view('admin.users.roleCreate');
-
     }
 
     public function store(Request $request)
@@ -26,25 +28,36 @@ class RoleController extends Controller
 
         return redirect()->route('role.index')->with('success', $role->name . ' افزوده شد.');
     }
+    public function destroy(Role $role)
+    {
+        //todo remove from user
+        //todo remove permission
 
-    function permissions($roleId){
-        $role = Role::findById($roleId);
-        $permissions = $role->permissions()->get();
-
-
-        // $role = Role::create(['name' => 'writer']);
-        // dd($role);
-
-        // $permission = Permission::create(['name' => 'edit company']);
-
-        // $permission->assignRole($role);
-
-
-        // $role->givePermissionTo($permission);
-        return view('admin.users.permissionList',compact('role','permissions'));
+        dd('destroy');
     }
 
-    function permissionStore(Request $request){
+    public function permissions(Role $role)
+    {
+        return view('admin.users.permissionList', compact('role'));
+    }
 
+    public function permissionCreate(Role $role)
+    {
+        return view('admin.users.permissionCreate', compact('role'));
+    }
+    public function permissionStore(Request $request, Role $role)
+    {
+        $permission = Permission::findOrCreate($request->name);
+        $role->givePermissionTo($permission);
+
+        return redirect()->route('role.permissions.index', $role->id)->with('success', Lang::get('messages.added'));
+    }
+
+    public function users(Role $role)
+    {
+        $allUsers = User::all();
+
+
+        return view('admin.users.roleUsersList', compact('role', 'allUsers'));
     }
 }

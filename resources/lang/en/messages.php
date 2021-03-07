@@ -81,4 +81,5 @@ return [
     'roles'=>'Roles',
     'permission'=>'Permission',
     'permissions'=>'Permissions',
+    'exist'=>'exist',
 ];
