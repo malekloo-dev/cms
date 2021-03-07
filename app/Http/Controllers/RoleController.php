@@ -17,23 +17,21 @@ class RoleController extends Controller
         return view('admin.users.roleList', compact('roles'));
     }
 
-    function create()
-    {
-        return view('admin.users.roleCreate');
-    }
-
     public function store(Request $request)
     {
         $role = Role::create(['name' => $request->name]);
 
-        return redirect()->route('role.index')->with('success', $role->name . ' افزوده شد.');
+        return redirect()->route('role.index')->with('success', $role->name . Lang::get('messages.added'));
     }
     public function destroy(Role $role)
     {
-        //todo remove from user
-        //todo remove permission
+        $role->revokePermissionTo($role->permission);
 
-        dd('destroy');
+        //todo remove from user
+
+        $role->delete();
+
+        return redirect()->route('role.index')->with('success', $role->name . Lang::get('messages.deleted'));
     }
 
     public function permissions(Role $role)

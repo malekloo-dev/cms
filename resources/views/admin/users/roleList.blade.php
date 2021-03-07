@@ -5,7 +5,7 @@
             <li class="active">@lang('messages.roles')</li>
         </ul>
         <div>
-            <a href="{{ route('role.create') }}" class="btn btn-success btn-icon mat-button ">
+            <a href="" class="btn btn-success btn-icon mat-button " data-toggle="modal" data-target="#add">
                 <i class="fa fa-plus"></i> @lang('messages.add')
             </a>
         </div>
@@ -42,10 +42,10 @@
                             <div>
 
                                 <a href="{{ route('role.permissions.index', $item->id) }}"
-                                    title="@lang('messages.permissions')"> <i
+                                    title=" @lang('messages.permissions')">{{ count($item->permissions) }} <i
                                         class="fa fa-lock    font-full-plus-half-em"></i>
                                 </a>
-                                <a href="{{ route('role.users.index', $item->id) }}" title="@lang('messages.users')"> <i
+                                <a href="{{ route('role.users.index', $item->id) }}" title="@lang('messages.users')"> {{ count($item->users) }} <i
                                         class="fa fa-users    font-full-plus-half-em"></i> </a>
                             </div>
 
@@ -72,7 +72,33 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">@lang('messages.role')</h5>
+                </div>
+                <form action="{{ route('role.store') }}" method="POST">
+                    <div class="modal-body">
+                        @csrf
+                        <div class="form-group row">
 
+                            <div class="col-md-12">
+                                <label for="url" class="col-form-label ">@lang('messages.name'):</label>
+                                <input type="text" placeholder="" class="form-control" name="name"
+                                    value="{{ old('name') }}" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">@lang('messages.add')</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('messages.close')</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <style>
         .p-1 {
             padding: .5em;
