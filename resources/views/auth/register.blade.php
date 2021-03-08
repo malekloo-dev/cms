@@ -22,7 +22,7 @@
             @csrf
 
             <div class="form-group row">
-                <label for="name" class="col-md-12 col-form-label">{{ __('Name') }}</label>
+                <label for="name" class="col-md-12 col-form-label">@lang('messages.name')</label>
 
                 <div class="col-md-12">
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="email" class="col-md-12 col-form-label ">{{ __('E-Mail Address') }}</label>
+                <label for="email" class="col-md-12 col-form-label ">@lang('messages.email')</label>
 
                 <div class="col-md-12">
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
@@ -52,7 +52,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="password" class="col-md-12 col-form-label ">{{ __('Password') }}</label>
+                <label for="password" class="col-md-12 col-form-label ">@lang('messages.password')</label>
 
                 <div class="col-md-12">
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
@@ -68,7 +68,7 @@
 
             <div class="form-group row">
                 <label for="password-confirm"
-                    class="col-md-12 col-form-label ">{{ __('Confirm Password') }}</label>
+                    class="col-md-12 col-form-label ">@lang('messages.confirm') @lang('messages.password')</label>
 
                 <div class="col-md-12">
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required
@@ -80,8 +80,9 @@
             <div class="form-group row mb-0">
                 <div class="col-md-12 pull-right">
                     <button type="submit" class="btn btn-success btn-block pull-right mat-btn ">
-                        {{ __('Register') }}
+                        @lang('messages.register')
                     </button>
+                    <a class="p-1" href="{{ route('login') }}">@lang('messages.login')</a>
 
                 </div>
             </div>

@@ -81,4 +81,8 @@ return [
     'permissions'=>'پرمیشن ها',
     'exist'=>'وجود دارد',
     'close'=>'بستن',
+    'profile'=>'پروفایل',
+    'register'=>'ثبت نام',
+    'register date'=>'تاریخ ثبت نام',
+
 ];

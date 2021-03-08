@@ -35,15 +35,17 @@
 
 
             <div class="form-group">
-                <button type="submit" class="btn btn-info mat-btn  btn-block">
+                <button type="submit" class="btn btn-info   btn-block">
                     <i class="fa fa-lock"></i> @lang('messages.login')
                 </button>
+
+                <a class="p-1" href="{{ route('register') }}">@lang('messages.register')</a>
+
 
             </div>
         </form>
     </section>
     <style>
-
         section.login {
             background-color: #fff;
             padding: 1em;

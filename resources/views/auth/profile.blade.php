@@ -7,6 +7,10 @@
 
         <div>
             <h1>@lang('messages.profile')</h1>
+            <div>@lang('messages.name'): {{ $user->name }}</div>
+            <div>@lang('messages.register date'): {{ convertGToJ($user->date) }}</div>
+            
+
         </div>
     </section>
     <style>

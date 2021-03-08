@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -10,6 +11,7 @@ class CompanyController extends Controller
         return view('auth.dashboard');
     }
     public function profile(){
-        return view('auth.profile');
+        $user = Auth::user();
+        return view('auth.profile',compact('user'));
     }
 }
