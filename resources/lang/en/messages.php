@@ -83,4 +83,5 @@ return [
     'permissions'=>'Permissions',
     'exist'=>'exist',
     'close'=>'Close',
+    'profile'=>'Profile',
 ];

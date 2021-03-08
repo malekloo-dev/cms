@@ -26,10 +26,10 @@ Route::get('/spider/reload', 'SpiderController@reload');
 Route::post('/spider/addToCms', 'SpiderController@addToCms');
 
 
-Route::post('/login', [
-    'as' => 'login',
-    'uses' => 'AuthController@login'
-]);
+// Route::post('/login', [
+//     'as' => 'login',
+//     'uses' => 'AuthController@login'
+// ]);
 
 
 /* Route::group(['prefix' => 'questions'], function ()
@@ -83,23 +83,23 @@ Route::post('/login', [
 
 
 
-Route::group(['prefix' => 'clients'], function ()
-{
+// Route::group(['prefix' => 'clients'], function ()
+// {
 
-    Route::post('/', [
-        'as' => 'clients.store',
-        'uses' => 'ClientsController@store',
-    ]);
+//     Route::post('/', [
+//         'as' => 'clients.store',
+//         'uses' => 'ClientsController@store',
+//     ]);
 
-    Route::get('/', [
-        'as' => 'clients.index',
-        'uses' => 'ClientsController@index',
-        'middleware' => 'auth:api'
-    ]);
+//     Route::get('/', [
+//         'as' => 'clients.index',
+//         'uses' => 'ClientsController@index',
+//         'middleware' => 'auth:api'
+//     ]);
 
 
 
-});
+// });
 
 
 /* Route::group(['prefix' => 'bots'], function ()

@@ -29,16 +29,6 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $data['articlesCount'] = Content::where('type', '=', '2')
-            ->where('attr_type', '=', 'article')
-            ->count();
-
-        $data['productsCount'] = Content::where('type', '=', '2')
-            ->where('attr_type', '=', 'product')
-            ->count();
-
-        $data['commentsCount'] = Comment::count();
-
-        return view('admin.index', compact('data'));
+        
     }
 }

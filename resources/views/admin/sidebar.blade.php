@@ -9,13 +9,13 @@
         </li>
         <li class="divider"></li>
         <li class="no-margin">
-            <a href="{{ route('contents.show',['type'=>'article']) }}" class="no-margin @if(!$ltr) text-right @endif">
+            <a href="{{ route('contents.type.show',['type'=>'article']) }}" class="no-margin @if(!$ltr) text-right @endif">
                 <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-folder-o"></i>
                 <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.content')</span>
             </a>
         </li>
         <li class="no-margin">
-            <a href="{{ route('contents.show',['type'=>'product']) }}" class="no-margin @if(!$ltr) text-right @endif">
+            <a href="{{ route('contents.type.show',['type'=>'product']) }}" class="no-margin @if(!$ltr) text-right @endif">
                 <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-shopping-cart"></i>
                 <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.products')</span>
             </a>

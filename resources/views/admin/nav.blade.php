@@ -13,13 +13,9 @@
                 <ul class="dropdown-menu animated fadeInDown pull-right mat-elevation-z4" role="menu">
                     <li><a class="text-right left">{{ Auth::user()->name }}</a></li>
                     <li>
-                        <a class="dropdown-item text-right" href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            @lang('messages.logout')
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" >
                             @csrf
+                            <button class="btn btn-link">@lang('messages.logout')</button>
                         </form>
                     </li>
                 </ul>
