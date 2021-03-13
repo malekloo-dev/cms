@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="fa-IR">
+
 <head>
-    <title>{{$seo['meta_title'] ?? "" }}</title>
+    <title>{{ $seo['meta_title'] ?? '' }}</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="{{$seo['meta_keywords'] ?? "" }}">
-    <meta name="description" content="{{$seo['meta_description']  ?? ""}}">
+    <meta name="keywords" content="{{ $seo['meta_keywords'] ?? '' }}">
+    <meta name="description" content="{{ $seo['meta_description'] ?? '' }}">
 
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
-    <meta name="theme-color" content="#fff"/>
+    <meta name="theme-color" content="#fff" />
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#fa490e">
@@ -26,23 +27,23 @@
     <meta name="msapplication-square100x100logo" content="{{ asset('/img/fav.png') }}">
 
 
-    <link rel="stylesheet" href="{{ asset('/style.css') }}">
+    {{-- <link rel="stylesheet" href="{{ url(env('TEMPLATE_NAME') . '/' . 'style.css') }}"> --}}
+    <link rel="stylesheet" href="{{ mix(env('TEMPLATE_NAME') . '/' . env('TEMPLATE_NAME') . '.min.css') }}">
     <link rel="icon" href="{{ asset('/img/fav.png') }}" type="image/png">
     <link rel="stylesheet" media="bogus">
 
     <meta property="og:locale" content="fa_IR">
-    <meta property="og:type" content="{{$seo['og:type'] ?? "" }}">
-    <meta property="og:title" content="{{$seo['meta_title'] ?? "" }}">
-    <meta property="og:description" content="{{$seo['meta_description']  ?? ""}}">
-    <meta property="og:url" content="{{ $seo['url'] ?? ""}}">
+    <meta property="og:type" content="{{ $seo['og:type'] ?? '' }}">
+    <meta property="og:title" content="{{ $seo['meta_title'] ?? '' }}">
+    <meta property="og:description" content="{{ $seo['meta_description'] ?? '' }}">
+    <meta property="og:url" content="{{ $seo['url'] ?? '' }}">
     <meta property="og:image" content="{{ asset('/img/logo2x.png') }}">
 
     <meta name="twitter:card" content="summary_large_image">
-    <!-- <meta property="og:image:width" content="405">
-    <meta property="og:image:height" content="300"> -->
 
     <script src="https://www.p30rank.ir/google"></script>
     @yield('head')
 
 </head>
+
 <body>

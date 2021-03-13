@@ -96,10 +96,12 @@ class CreatePermissionTables extends Migration
             array(
                 'id' => 1,
                 'name' => 'super admin',
+                'guard_name'=>'web'
             ),
             array(
                 'id' => 2,
                 'name' => 'company',
+                'guard_name'=>'web'
             )
         );
 
