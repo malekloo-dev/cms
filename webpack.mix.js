@@ -23,11 +23,11 @@ mix.options({
 
 var template = dotenv.parsed.TEMPLATE_NAME;
 
-mix.setPublicPath('public/')
-    .sass('resources/css/' + template + '.scss', '/' + template, {
+mix.setPublicPath('public/' + template + '/')
+    .sass('resources/css/' + template + '.scss', '/', {
         sassOptions: {
             strictMath: true
         }
     })
-    .minify('public/' + template + '/' + template + '.css')
+    .minify(template + '.css')
     .version();

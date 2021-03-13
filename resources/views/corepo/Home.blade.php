@@ -283,7 +283,7 @@
 
 
 
-<section class=" bg-gray2 mt-0 mb-0">
+<section class=" bg-gray2 mt-0 mb-0 articles-home">
     <div class="flex one">
         <div>
             <h2> مقالات</h2>
@@ -298,7 +298,7 @@
                                     @if (isset($content->images['thumb']))
                                         <figure class="image">
                                             <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
-                                                alt="{{ $content->title }}" width="100" height="100">
+                                                alt="{{ $content->title }}" width="200" height="200">
                                         </figure>
                                     @endif
 

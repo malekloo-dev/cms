@@ -27,8 +27,7 @@
     <meta name="msapplication-square100x100logo" content="{{ asset('/img/fav.png') }}">
 
 
-    {{-- <link rel="stylesheet" href="{{ url(env('TEMPLATE_NAME') . '/' . 'style.css') }}"> --}}
-    <link rel="stylesheet" href="{{ mix(env('TEMPLATE_NAME') . '/' . env('TEMPLATE_NAME') . '.min.css') }}">
+    <link rel="stylesheet" href="{{ mix('/'.env('TEMPLATE_NAME').'.min.css',env('TEMPLATE_NAME')) }}">
     <link rel="icon" href="{{ asset('/img/fav.png') }}" type="image/png">
     <link rel="stylesheet" media="bogus">
 
