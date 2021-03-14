@@ -39,22 +39,14 @@
                     <i class="fa fa-lock"></i> @lang('messages.login')
                 </button>
 
-                <a class="p-1" href="{{ route('register') }}">@lang('messages.register')</a>
-
 
             </div>
         </form>
     </section>
-    <style>
-        section.login {
-            background-color: #fff;
-            padding: 1em;
-            border-radius: 5px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
-            margin: 5em auto
-        }
+    <section class="extra-link">
+        <a href="{{ route('register') }}">@lang('messages.register')</a>
 
-    </style>
-
+        <a href="{{ route('password.request') }}">@lang('messages.forgot')</a>
+    </section>
+    
 @endsection

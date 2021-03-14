@@ -82,23 +82,15 @@
                     <button type="submit" class="btn btn-success btn-block pull-right mat-btn ">
                         @lang('messages.register')
                     </button>
-                    <a class="p-1" href="{{ route('login') }}">@lang('messages.login')</a>
 
                 </div>
             </div>
         </form>
     </section>
-    <style>
+    <section class="extra-link">
+        <a href="{{ route('login') }}">@lang('messages.login')</a>
 
-        section.register {
-            background-color: #fff;
-            padding: 1em;
-            border-radius: 5px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
-            margin: 5em auto
-        }
-
-    </style>
+        <a href="{{ route('password.request') }}">@lang('messages.forgot')</a>
+    </section>
 
 @endsection

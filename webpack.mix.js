@@ -29,5 +29,5 @@ mix.setPublicPath('public/' + template + '/')
             strictMath: true
         }
     })
-    .minify(template + '.css')
+    // .minify('public/'+template + '/'+template + '.css')
     .version();

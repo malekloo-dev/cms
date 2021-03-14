@@ -84,5 +84,10 @@ return [
     'profile'=>'پروفایل',
     'register'=>'ثبت نام',
     'register date'=>'تاریخ ثبت نام',
+    'forgot'=>'فراموشی رمز عبور',
+    'Send Password Reset Link'=>'ارسال لینک پسورد',
+    'store name'=>'نام شرکت یا مغازه',
+    'mobile'=>'شماره موبایل',
+    'site'=>'سایت',
 
 ];

@@ -9,15 +9,5 @@
             <h1>@lang('messages.Dashboard')</h1>
         </div>
     </section>
-    <style>
-
-        section.panel {
-            background-color: #fff;
-            padding: 1em;
-            max-width: 1140px;
-            margin: 5em auto
-        }
-
-    </style>
 
 @endsection

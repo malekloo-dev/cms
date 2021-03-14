@@ -1,7 +1,9 @@
 $template : darbkala;
-$theme-color1:rgba(250, 73, 14, 1) ;
+$theme-color1:#fa490e ;
 $theme-color2:rgba(255, 136, 45, 1) ;
+$theme-color3:#ea1c44 ;
 $a:#d13501;
+$menu-color:#fff;
 
 @import "app.scss";
 
@@ -9,8 +11,8 @@ $a:#d13501;
 // nav  //
 //////////
 .top-menu {
-    min-height: $menu-height;
-    background: $top-menu;
+    min-height: $theme-color1;
+    background: $theme-color1;
     background: linear-gradient(90deg, $theme-color1 0, $theme-color2 100%);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     display: block;
@@ -77,7 +79,7 @@ nav ul li.parent > div {
     display: none;
 }
 nav li li a {
-    color: #ea1c44 !important;
+    color: $theme-color3 !important;
     width: 100%;
     padding: 1em 2em !important;
     white-space: nowrap;
@@ -88,7 +90,7 @@ nav li li a {
     font-size: 0.9em !important;
 }
 nav li li a:hover {
-    color: #ea1c44 !important;
+    color: $theme-color3 !important;
     font-weight: 700;
     transform: scale(1.05);
 }
@@ -97,7 +99,7 @@ nav li ul {
     padding: 0;
     position: absolute;
     background-color: #fff;
-    border-top: 3px solid #ea1c44;
+    border-top: 3px solid $theme-color3;
     border-radius: 10px 10px 10px 10px;
     box-shadow: 1px 0 20px rgba(0, 0, 0, 0.12);
 }
@@ -182,7 +184,7 @@ nav .burger:after {
     }
     nav ul li ul {
         position: relative;
-        border-right: 3px solid #ea1c44;
+        border-right: 3px solid $theme-color3;
         border-top: none;
         box-shadow: none;
         background-color: rgba(0, 0, 0, 0.1);

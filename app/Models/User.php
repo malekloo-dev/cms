@@ -72,4 +72,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Article::class);
     }
+
+    public function company()
+    {
+        return $this->hasOne(Company::class,'user_id');
+    }
+
 }

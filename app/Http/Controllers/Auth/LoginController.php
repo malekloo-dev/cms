@@ -102,11 +102,12 @@ class LoginController extends Controller
 
         // User role
         $roles = Auth::user()->getRoleNames();
-        // dd($roles->search('super admin'));
+
+        // dd($roles->contains('super admin'));
         // Check user role
         if ($roles->contains('super admin'))
             return '/admin';
         else
-            return '/login';
+            return '/company';
     }
 }
