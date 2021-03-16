@@ -99,10 +99,9 @@
                     @foreach ($banners['images'] as $content)
                         <div class="mySlides fade ">
                             <figure class="image">
-                                <img src="{{ $content }}"
-                                 alt="" width="792" height="370" >
+                                <img src="{{ $content }}" alt="" width="792" height="370">
                             </figure>
-                            {{-- <div class="text">{{ $content->title }}</div> --}}
+                            {{--<div class="text">{{ $content->title }}</div> --}}
                         </div>
                     @endforeach
                 @endisset
@@ -116,22 +115,20 @@
                 {{--images&label=bannerTop&var=bannerTop&count=1 --}}
                 @isset($bannerTop['images'])
 
-                <figure class="image">
-                    <img src="{{ url($bannerTop['images'][0]) }}" alt=""
-                        width="383" height="182" >
+                    <figure class="image">
+                        <img src="{{ url($bannerTop['images'][0]) }}" alt="" width="383" height="182">
 
-                </figure>
+                    </figure>
                 @endisset
             </div>
             <div class="pb-0">
                 {{--images&label=bannerBot&var=bannerBot&count=1 --}}
                 @isset($bannerBot['images'])
 
-                <figure class="image">
-                    <img src="{{ url($bannerBot['images'][0]) }}"  alt=""
-                        width="383" height="182" >
+                    <figure class="image">
+                        <img src="{{ url($bannerBot['images'][0]) }}" alt="" width="383" height="182">
 
-                </figure>
+                    </figure>
                 @endisset
 
             </div>
@@ -157,8 +154,8 @@
                                     <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
                                         alt="{{ $content->title }}" width="40" height="40"
                                         srcset="
-                                        {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL') }}w,
-                                        {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM') }}w">
+                                            {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL') }}w,
+                                            {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM') }}w">
                                     <figcaption>
                                         <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
                                     </figcaption>
@@ -184,7 +181,7 @@
         <div>
             <h2>وبسایت ها</h2>
             <div class="flex one three-500 five-900   ">
-                {{--post&label=topView&var=topViewPost&count=10&child=true--}}
+                {{--post&label=topView&var=topViewPost&count=10&child=true --}}
                 @isset($topViewPost['data'])
                     @foreach ($topViewPost['data'] as $content)
                         <div>
@@ -193,8 +190,7 @@
                                     @if (isset($content->images['thumb']))
                                         <figure class="image">
                                             <img src="{{ $content->images['images']['medium'] ?? $content->images['thumb'] }}"
-                                                width="198" height="100"
-                                                alt="{{ $content->title }}" >
+                                                width="198" height="100" alt="{{ $content->title }}">
                                         </figure>
                                     @endif
 
@@ -237,8 +233,8 @@
     <div class="flex one">
         <div>
             <h2>اپلیکیشن ها</h2>
-            <div class="flex one three-500 five-900   ">
-                {{--post&label=application&var=application&count=5 --}}
+            <div class="flex two three-500 five-900   ">
+                {{--post&label=application&var=application&count=4 --}}
                 @isset($application['data'])
                     @foreach ($application['data'] as $content)
                         <div>
@@ -263,7 +259,7 @@
                                                 @endphp
                                             @endforeach
                                             @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
-                                                <img width="20" height="20"
+                                                <img width="18" height="18"
                                                     srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
                                                     src="{{ asset('/img/star1x.png') }}"
                                                     alt="{{ 'star for rating' }}">
@@ -275,6 +271,19 @@
                             </a>
                         </div>
                     @endforeach
+                    <div>
+                        <a href="/اپلیکیشن">
+                            <article class="shadow2 py-3">
+                                <svg height="70px" width="70px" id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1"
+                                    viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <path
+                                        d="M28,14H8.8l4.62-4.62C13.814,8.986,14,8.516,14,8c0-0.984-0.813-2-2-2c-0.531,0-0.994,0.193-1.38,0.58l-7.958,7.958  C2.334,14.866,2,15.271,2,16s0.279,1.08,0.646,1.447l7.974,7.973C11.006,25.807,11.469,26,12,26c1.188,0,2-1.016,2-2  c0-0.516-0.186-0.986-0.58-1.38L8.8,18H28c1.104,0,2-0.896,2-2S29.104,14,28,14z" />
+                                </svg>
+                                <div class="title ">تمام اپلیکیشن ها</div>
+                            </article>
+                        </a>
+                    </div>
                 @endisset
             </div>
         </div>
@@ -288,7 +297,7 @@
         <div>
             <h2> مقالات</h2>
             <div class="flex one two-500 three-700  ">
-                {{--post&label=articles&var=articles&count=6&child=true--}}
+                {{--post&label=articles&var=articles&count=6&child=true --}}
 
                 @isset($articles['data'])
                     @foreach ($articles['data'] as $content)

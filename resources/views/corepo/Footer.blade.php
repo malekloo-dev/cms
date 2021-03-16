@@ -1,4 +1,4 @@
-<section id="footer" class="mt-2">
+<section id="footer" >
 
 
     <section class="footer-links">

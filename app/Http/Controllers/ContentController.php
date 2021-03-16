@@ -104,11 +104,11 @@ class ContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $request,$type)
     {
         $result = app('App\Http\Controllers\CategoryController')->tree_set();
         $data['category'] = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
-        $data['attr_type'] = $request->type;
+        $data['attr_type'] = $type;
         /*if($request->type=='html')
         {
             return view('admin.content.CreateHtml',$data);

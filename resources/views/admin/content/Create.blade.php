@@ -84,7 +84,7 @@
 
 <div class="content-control ">
     <ul class="breadcrumb">
-        <li><a href="{{ route('contents.show', ['type' => $attr_type]) }}" class=""> @lang('messages.'. $attr_type .'s'
+        <li><a href="{{ route('contents.type.show', ['type' => $attr_type]) }}" class=""> @lang('messages.'. $attr_type .'s'
                 ) </a></li>
         <li class="active">@lang('messages.add') @lang('messages.'. $attr_type )</li>
     </ul>

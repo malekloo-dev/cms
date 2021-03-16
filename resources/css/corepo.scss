@@ -1005,30 +1005,70 @@ section.row aside{width:200px}
 pre{width:100%}
 pre code{background:0 0}
 comment-box.visual{margin-top:60px}
-.p-0{padding:0}
-.p-1{padding:1em}
-.pr-1{padding-right:1em}
-.pl-1{padding-left:1em}
-.pb-0{padding-bottom:0}
-.pb-1{padding-bottom:1em}
-.pb-2{padding-bottom:2em}
-.pb-5{padding-bottom:5em}
-.pt-0{padding-top:0}
-.pt-1{padding-top:1em}
-.pt-2{padding-top:2em}
-.pt-5{padding-top:5em}
-.m-0{margin:0}
-.m-1{margin:1em}
-.mt-05{margin-top:.5em}
-.mt-0{margin-top:0}
-.mt-1{margin-top:1em}
-.mt-2{margin-top:2em}
-.mt-3{margin-top:3em}
-.mt-5{margin-top:5em}
-.mb-0{margin-bottom:0}
-.mb-1{margin-bottom:1!important}
-.mb-2{margin-bottom:2!important}
-.mb-5{margin-bottom:5em}
+$sizes: 5;
+
+@mixin margin-classes {
+    @for $i from 0 through $sizes {
+        $margin: $i * 1em !important;
+        /* margin #{$margin} */
+        .m-#{$i} {
+            margin: $margin;
+        }
+        .ml-#{$i} {
+            margin-left: $margin;
+        }
+        .mr-#{$i} {
+            margin-right: $margin;
+        }
+        .mt-#{$i} {
+            margin-top: $margin;
+        }
+        .mb-#{$i} {
+            margin-bottom: $margin;
+        }
+        .mx-#{$i} {
+            margin-left: $margin;
+            margin-right: $margin;
+        }
+        .my-#{$i} {
+            margin-top: $margin;
+            margin-bottom: $margin;
+        }
+    }
+}
+@include margin-classes;
+
+@mixin padding-classes {
+    @for $i from 0 through $sizes {
+        $padding: $i * 1em;
+        /* padding #{$padding} */
+        .p-#{$i} {
+            padding: $padding;
+        }
+        .pl-#{$i} {
+            padding-left: $padding;
+        }
+        .pr-#{$i} {
+            padding-right: $padding;
+        }
+        .pt-#{$i} {
+            padding-top: $padding;
+        }
+        .pb-#{$i} {
+            padding-bottom: $padding;
+        }
+        .px-#{$i} {
+            padding-left: $padding;
+            padding-right: $padding;
+        }
+        .py-#{$i} {
+            padding-top: $padding;
+            padding-bottom: $padding;
+        }
+    }
+}
+@include padding-classes;
+
 .font-08{font-size:.8em}
 .font-09{font-size:.9em}
 .font-1{font-size:1em}
@@ -1136,4 +1176,4 @@ nav[role=navigation] span>svg{border:none}
 .category-content > div{background-color: #fff;border-radius: 15px; padding: 1em;}
 
 // home
-.articles-home img{height: 200px !important;}
+.articles-home figure img{height: 200px !important;}

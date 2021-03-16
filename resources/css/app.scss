@@ -3426,6 +3426,7 @@ section.panel {
     }
 
     .company-nav {
+        width: 200px;
         background-color: #eee !important;
         display: flex;
         justify-content: space-between;
@@ -3440,6 +3441,7 @@ section.panel {
             list-style: none;
             padding: 0;
             flex-direction: column;
+            width: 100%;
             li {
                 padding: .5em;
                 margin: 0;

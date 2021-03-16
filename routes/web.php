@@ -8,8 +8,8 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageCropperController;
-use App\Http\Controllers\IndexController;
-use App\Http\Controllers\InventoryController;
+// use App\Http\Controllers\IndexController;
+// use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ModuleBuilderController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SpiderController;
@@ -19,22 +19,22 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 
 App::setLocale(env('SITE_LANG'));
+dd(env('TEMPLATE_NAME'));
 
-
-Route::prefix('/company')->middleware(['auth','role:super admin|company'])->group(function () {
+Route::prefix('/company')->middleware(['auth', 'role:super admin|company'])->group(function () {
     Route::get('/', [CompanyController::class, 'dashboard'])->name('company.dashboard');
     Route::get('profile', [CompanyController::class, 'profile'])->name('company.profile');
+    Route::get('products', [CompanyController::class, 'products'])->name('company.products');
 });
 Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(function () {
 
     Route::get('/', [AdminController::class, 'index'])->name('admin');
 
+    Route::get('contents/{type}', [ContentController::class, 'index'])->name('contents.type.show');
+    Route::get('contents/create/{type}', [ContentController::class, 'create'])->name('contents.create');
     Route::post('contents/upload-image/', [ContentController::class, 'uploadImageSubject'])->name('contents.upload');
     Route::get('image-cropper', [ImageCropperController::class, 'index']);
     Route::post('image-cropper/upload', [ImageCropperController::class, 'upload']);
-
-
-    Route::get('contents/{type}', [ContentController::class, 'index'])->name('contents.type.show');
 
 
     Route::prefix('seo')->name('seo.')->group(function () {
@@ -53,10 +53,11 @@ Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(functio
         'comment' => 'CommentController',
         'role' => 'RoleController',
         'category' => 'CategoryController',
-        'menu' => 'MenuController',
-        'contents' => 'ContentController'
+        'menu' => 'MenuController'
     ]);
-
+    Route::resource('contents', 'ContentController')->except([
+        'create'
+    ]);
 
     Route::get('role/{role}/permissions', [RoleController::class, 'permissions'])->name('role.permissions.index');
     Route::get('role/{role}/permissions/create', [RoleController::class, 'permissionCreate'])->name('role.permission.create');
@@ -73,8 +74,8 @@ Route::get('admin/login', [AdminLoginController::class, 'showLoginForm'])->name(
 
 Auth::routes();
 
-Route::get('/search', [InventoryController::class, 'index'])->name('inventory.show');
-Route::post('/search', [InventoryController::class, 'index'])->name('inventory.search');
+// Route::get('/search', [InventoryController::class, 'index'])->name('inventory.show');
+// Route::post('/search', [InventoryController::class, 'index'])->name('inventory.search');
 
 
 Route::get('spider', [SpiderController::class, 'spider']);
@@ -87,5 +88,5 @@ Route::get('/reload', [ContentController::class, 'reload']);
 
 Route::get('/{slug?}/{b?}', [CmsController::class, 'request']);
 
-Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
-Route::post('/contact', [CommentController::class, 'store'])->name('contact.store');
+Route::post('/comment', [CommentController::class, 'store'])->name('comment.client.store');
+Route::post('/contact', [CommentController::class, 'store'])->name('contact.client.store');

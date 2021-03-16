@@ -21,7 +21,7 @@
         </li>
         <li class="{{ Request::is('company')?'active':'' }}"><a href="{{ route('company.dashboard') }}">{{ __('messages.Dashboard') }}</a></li>
         <li class="{{ Request::is('company/profile')?'active':'' }}"><a href="{{ route('company.profile') }}"> {{ __('messages.profile') }}</a></li>
-        <li class="{{ Request::is('company/products')?'active':'' }}"><a class="no-border" href=""> {{ __('messages.Products') }}</a></li>
+        <li class="{{ Request::is('company/products')?'active':'' }}"><a class="no-border" href="{{ route('company.products') }}"> {{ __('messages.Products') }}</a></li>
         <li>
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf

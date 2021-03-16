@@ -56,7 +56,7 @@
     <section class="index-items home-top-view">
         <div class="flex one">
             <div>
-                <div class="flex one two-500  six-800 center ">
+                <div class="flex two two-500  six-800 center ">
                     {{--product&label=topViewPost&var=topViewPost&count=12--}}
                     @isset($topViewPost['data'])
                         @foreach ($topViewPost['data'] as $content)

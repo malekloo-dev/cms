@@ -244,7 +244,7 @@
                                 {!! implode('', $errors->all('<div>:message</div>')) !!}
                             </div>
                         @endif
-                        <form action="{{ route('comment.store') }}#comment" id="comment" method="post">
+                        <form action="{{ route('comment.client.store') }}#comment" id="comment" method="post">
                             <input type="hidden" name="content_id" value="{{ $detail->id }}">
 
                             @csrf

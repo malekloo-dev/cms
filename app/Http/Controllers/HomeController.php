@@ -98,9 +98,9 @@ class HomeController extends Controller
         //dd($queries);
 
         //$data['arrayContent']=$arrayContent;
-        //dd($data);
+        // dd($data);
 
-        return view(@env('TEMPLATE_NAME') . '.Home', $data);
+        return view(env("TEMPLATE_NAME") . '.Home', $data);
     }
 
     function getCatChildOfcontent($parentId, $temp,$config)
