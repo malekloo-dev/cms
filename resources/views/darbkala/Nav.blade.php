@@ -53,20 +53,21 @@
                         ->orderBy('sort')
                         ->get(); ?>
                         @if (count($subMenu))
-                            <li class="parent"><a href="{{ $menuItem['link'] }}">{{ $menuItem['label'] }}</a>
+
+                            <li class="parent"><a href="{{ url($menuItem['link']) }}">{{ $menuItem['label'] }}</a>
                                 <div><img width="16" height="16" alt="arrow-down"
                                         src="{{ url(env('TEMPLATE_NAME').'/img/arrow-down.png') }}"></div>
                                 <ul>
                                     @foreach ($subMenu as $subMenuItem)
                                         <li><a
-                                                href="{{ $subMenuItem['type'] == 'internal' || $subMenuItem['type'] == 'external' ? $subMenuItem['link'] : '/#' . $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a>
+                                                href="{{ $subMenuItem['type'] == 'internal' || $subMenuItem['type'] == 'external' ? url($subMenuItem['link']) : '/#' . url($subMenuItem['link']) }}">{{ $subMenuItem['label'] }}</a>
                                         </li>
                                     @endforeach
                                 </ul>
                             </li>
                         @else
                             <li><a
-                                    href="{{ $menuItem['type'] == 'internal' || $menuItem['type'] == 'external' ? $menuItem['link'] : '/#' . $menuItem['link'] }}">{{ $menuItem['label'] }}</a>
+                                    href="{{ $menuItem['type'] == 'internal' || $menuItem['type'] == 'external' ? url($menuItem['link']) : '/#' . url($menuItem['link']) }}">{{ $menuItem['label'] }}</a>
                             </li>
 
                         @endif

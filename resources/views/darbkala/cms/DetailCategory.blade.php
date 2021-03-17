@@ -43,9 +43,9 @@
         </section>
     @endif
 
-    <section>
+    <section class="p-0 ">
         <div class="flex one">
-            <h1>{{ $detail->title }}</h1>
+            <h1 class="p-0">{{ $detail->title }}</h1>
         </div>
     </section>
 
@@ -88,16 +88,16 @@
     @if (count($relatedProduct))
         <section class="category-products mt-1" id="products">
             <div class="flex one ">
-                <div>
+                <div class="p-0">
                     <div class="">
 
                         <div class="flex one  two-1100  ">
 
                             {{-- $data['newPost'] --}}
                             @foreach ($relatedProduct as $content)
-                                <div>
+                                <div >
                                     <article class="shadow">
-                                        <div>
+                                        <div >
                                             @if (isset($content->images['thumb']))
                                                 <picture>
                                                     <img loading="lazy"
@@ -107,15 +107,6 @@
                                                         height="{{ env('PRODUCT_SMALL') }}">
                                                 </picture>
                                             @endif
-                                        </div>
-                                        <footer>
-                                            <a href="{{ $content->slug }}">
-                                                <h2>{{ $content->title }}</h2>
-                                            </a>
-                                            <div class="brand">برند: {{ $content->attr['brand'] }}</div>
-                                            <div class="price text-green">قیمت: @convertCurrency($content->attr['price'])
-                                                تومان </div>
-                                            <div class="view-count">{{ $content->viewCount }} بار دیده شده</div>
                                             <div class="rate mt-1">
                                                 @if (count($content->comments))
                                                     @php
@@ -127,7 +118,7 @@
                                                         @endphp
                                                     @endforeach
                                                     @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
-                                                        <img width="20" height="20"
+                                                        <img width="16" height="16"
                                                             srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
                                                             src="{{ asset('/img/star1x.png') }}"
                                                             alt="{{ 'star for rating' }}">
@@ -135,6 +126,17 @@
                                                     <span class="font-08">({{ count($content->comments) }} نفر)</span>
                                                 @endif
                                             </div>
+                                            <div class="view-count">{{ $content->viewCount }} بار دیده شده</div>
+                                        </div>
+                                        <footer>
+                                            <a href="{{ $content->slug }}">
+                                                <h2>{{ $content->title }}</h2>
+                                            </a>
+                                            <div class="brand">برند: {{ $content->attr['brand'] }}</div>
+                                            <div class="price text-green">قیمت: @convertCurrency($content->attr['price'])
+                                                تومان </div>
+
+
                                             <div class="brief">
                                                 {!! readMore($content->brief_description, 250) !!}
                                             </div>

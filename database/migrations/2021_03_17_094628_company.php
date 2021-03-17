@@ -17,9 +17,19 @@ class Company extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->default(0);
             $table->string('name')->nullable();
+            $table->string('manager')->nullable();
+            $table->string('sale_manager')->nullable();
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('province')->nullable();
             $table->string('mobile')->nullable();
+            $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('site')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string('telegram')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('logo')->nullable();
 
             $table->timestamps();
 

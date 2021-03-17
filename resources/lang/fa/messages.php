@@ -89,5 +89,13 @@ return [
     'store name'=>'نام شرکت یا مغازه',
     'mobile'=>'شماره موبایل',
     'site'=>'سایت',
+    'sale manager'=>'مدیر فروش',
+    'phone'=>'تلفن',
+    'address'=>'آدرس',
+    'city'=>'شهر',
+    'province'=>'استان',
+    'whatsapp'=>'واتس آپ',
+    'telegram'=>'تلگرام',
+    'instagram'=>'اینستاگرام',
 
 ];
