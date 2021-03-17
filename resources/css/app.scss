@@ -3166,9 +3166,16 @@ section.wide {
     width: 240px;
 }
 
+.ltr {
+    direction: ltr;
+}
+.contact-form fieldset .control {
+    margin-bottom: 1em;
+}
 ////////////
 //  bread //
 ////////////
+
 .breadcrumb {
     background: #f5f5f5;
     a {
@@ -3237,18 +3244,20 @@ section.wide {
 .image-style-align-left {
     float: left;
 }
+
 figure.image {
     display: table;
     clear: both;
     text-align: center;
     margin: auto;
+    img {
+        max-width: 100%;
+        margin: 0 auto;
+        display: block;
+        height: auto;
+    }
 }
-figure.image > img {
-    max-width: 100%;
-    margin: 0 auto;
-    display: block;
-    height: auto;
-}
+
 picture {
     display: table;
     clear: both;
@@ -3321,6 +3330,71 @@ div.attr > div > div > :nth-child(even) {
     margin-bottom: 1em;
 }
 
+////////////////
+// pagination //
+////////////////
+nav[role="navigation"] {
+    display: flex;
+    direction: ltr;
+}
+nav[role="navigation"] > :not(.hidden) {
+    display: none;
+}
+nav[role="navigation"] p {
+    margin: 0;
+    padding: 0;
+}
+nav[role="navigation"] .hidden {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}
+nav[role="navigation"] .justify-between {
+    justify-content: space-between;
+    float: 1 1 0;
+}
+nav[role="navigation"] .w-5 {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+nav[role="navigation"] span {
+    display: inline-flex;
+}
+nav[role="navigation"] a {
+    --tw-space-x-reverse: 0;
+    display: inline-flex;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+nav[role="navigation"] span > span > span {
+    border: none;
+    color: #ccc;
+    margin-right: calc(-1px * var(--tw-space-x-reverse));
+    margin-left: calc(-1px * calc(1 - var(--tw-space-x-reverse)));
+    display: inline-flex;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+nav[role="navigation"] span > * {
+    margin-right: calc(-1px * var(--tw-space-x-reverse));
+    margin-left: calc(-1px * calc(1 - var(--tw-space-x-reverse)));
+}
+nav[role="navigation"] span > svg {
+    border: none;
+}
+
 //////////////
 //  footer  //
 //////////////
@@ -3329,6 +3403,9 @@ div.attr > div > div > :nth-child(even) {
     color: #475667;
     padding: 0;
     margin: 0;
+    .footer-links {
+        margin: 0;
+    }
 }
 #footer > div {
     max-width: 1200px;
@@ -3496,10 +3573,10 @@ section.panel {
                 display: none;
             }
             .rotate1 {
-                transform: rotate(45deg) translate(5px , 5px);
+                transform: rotate(45deg) translate(5px, 5px);
             }
             .rotate2 {
-                transform: rotate(-45deg) translate(6px , -6px);
+                transform: rotate(-45deg) translate(6px, -6px);
             }
         }
         .company-nav {
