@@ -99,6 +99,7 @@ class HomeController extends Controller
 
         //$data['arrayContent']=$arrayContent;
         // dd($data);
+        //dd(env("TEMPLATE_NAME"));
 
         return view(env("TEMPLATE_NAME") . '.Home', $data);
     }

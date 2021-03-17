@@ -1,9 +1,9 @@
-$template : darbkala;
-$theme-color1:#fa490e ;
-$theme-color2:rgba(255, 136, 45, 1) ;
-$theme-color3:#ea1c44 ;
-$a:#d13501;
-$menu-color:#fff;
+$template: darbkala;
+$theme-color1: #fa490e;
+$theme-color2: rgba(255, 136, 45, 1);
+$theme-color3: #ea1c44;
+$a: #d13501;
+$menu-color: #fff;
 
 @import "app.scss";
 
@@ -376,7 +376,6 @@ nav[role="navigation"] span > svg {
     }
 }
 
-
 .products article {
     padding: 10px;
     -webkit-border-radius: 3px;
@@ -504,7 +503,7 @@ nav[role="navigation"] span > svg {
     flex-flow: column;
 }
 .index-items img {
-    width: 80%;
+    width: 60%;
     height: 100%;
     object-fit: cover;
 }
@@ -516,17 +515,33 @@ nav[role="navigation"] span > svg {
     overflow: hidden;
     background-color: #fff;
 }
-.index-items.articles img {
-    height: 190px;
+.index-items.articles {
+    a{
+        padding: 0;
+        display: flex;
+        height: 100px;
+        align-items: center;
+        div{
+            height: 100%;
+            img {
+                height: 100%;
+                object-fit: cover;
+                width: 80px;
+            }
+        }
+
+    }
+
+    h3 {
+        font-size: 1em;
+    }
+    footer {
+        height: auto;
+        padding: 0 1em;
+        font-size: 0.9em;
+    }
 }
-.index-items.articles h3 {
-    font-size: 1em;
-}
-.index-items.articles footer {
-    height: auto;
-    padding: 0 1em;
-    font-size: 0.9em;
-}
+
 .index-item-top img {
     object-fit: contain;
     width: 100%;

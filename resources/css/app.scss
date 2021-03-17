@@ -2668,7 +2668,9 @@ tr:nth-child(even) {
 .shadow3 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.no-border{border: none !important;}
+.no-border {
+    border: none !important;
+}
 .card,
 .modal .overlay ~ * {
     position: relative;
@@ -2991,7 +2993,7 @@ $sizes: 5;
 
 @mixin padding-classes {
     @for $i from 0 through $sizes {
-        $padding: $i * 1em;
+        $padding: $i * 1em !important;
         /* padding #{$padding} */
         .p-#{$i} {
             padding: $padding;
@@ -3431,6 +3433,10 @@ section.panel {
         display: flex;
         justify-content: space-between;
         padding: 0;
+        margin: 0 !important;
+        .burger {
+            display: none;
+        }
         svg {
             background-color: #fff;
             padding: 1em;
@@ -3443,18 +3449,17 @@ section.panel {
             flex-direction: column;
             width: 100%;
             li {
-                padding: .5em;
+                padding: 0.5em;
                 margin: 0;
                 &:first-child {
                     text-align: center;
                 }
                 a {
-                    padding:0 0.5em;
+                    padding: 0 0.5em;
                     display: block;
                 }
-                &.active{
+                &.active {
                     background-color: white;
-
                 }
             }
         }
@@ -3466,6 +3471,45 @@ section.panel {
             padding: 0 1em;
             border-radius: 4px !important;
             margin-top: 2em;
+            text-decoration: none;
+        }
+    }
+}
+@media (max-width: 960px) {
+    section.panel {
+        flex-direction: column;
+        margin: 0 !important;
+        display: block;
+        .burger {
+            display: flex !important;
+            flex-direction: column;
+            width: 30px;
+            height: 20px;
+            justify-content: space-between;
+            span {
+                background-color: #111;
+                height: 4px;
+                width: 100%;
+                border-radius: 3px;
+            }
+            .hide {
+                display: none;
+            }
+            .rotate1 {
+                transform: rotate(45deg) translate(5px , 5px);
+            }
+            .rotate2 {
+                transform: rotate(-45deg) translate(6px , -6px);
+            }
+        }
+        .company-nav {
+            padding: 1em;
+            width: 100%;
+            display: block;
+            ul {
+                display: none;
+                width: 100%;
+            }
         }
     }
 }

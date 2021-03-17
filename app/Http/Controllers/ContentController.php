@@ -167,6 +167,7 @@ class ContentController extends Controller
      */
     public function store(Request $request)
     {
+        
         $this->storeService($request);
 
         $this->sitemap();

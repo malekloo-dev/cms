@@ -1,7 +1,6 @@
 @extends('admin.layouts.app')
 
 
-@include('admin.cropper')
 
 
 @section('ckeditor')
@@ -96,17 +95,17 @@
             <form action="{{ route('contents.store') }}" method="POST" name="add_content" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
-                    <div class="col-md-5">
+                    <div class="col-5 col-md-5">
                         <label for="name" class="col-md-12 col-form-label ">@lang('messages.title'):</label>
                         <input type="text" class="form-control" name="title" value="{{ old('title') }}" />
                         <span class="text-danger">{{ $errors->first('title') }}</span>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-5 col-md-5">
                         <label for="slug">@lang('messages.url') :</label>
                         <input type="text" class="form-control" name="slug" value="{{ old('slug') }}" />
                         <span class="text-danger">{{ $errors->first('slug') }}</span>
                     </div>
-                    <div class="col-md-2">
+                    <div class=" col-2 col-md-2">
                         <label for="name"> @lang('messages.publish date'):</label>
                         <input type="{{($ltr)?'date':''}}" class="form-control {{ (!$ltr)? 'datepicker': 'date'}}  " name="publish_date" value="{{ old(
                             'date2',
@@ -169,12 +168,15 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-sm-6">
+                    <div class="col-6 col-sm-6">
                         <label for="images" class="control-label">@lang('messages.content') @lang('messages.image') (@lang('messages.content') {{ env('ARTICLE_LARGE') }}px)
                             (@lang('messages.product') {{ env('PRODUCT_LARGE') }}px)</label>
                         <input type="file" class="form-control" name="images" id="images"
-                            placeholder="تصویر مقاله را وارد کنید" value="{{ old('imageUrl') }}">
+                            placeholder="@lang('messages.select image')" value="{{ old('imageUrl') }}">
                             <input type="hidden" name="imageJson">
+
+                            @include('admin.cropper')
+
                     </div>
 
                 </div>

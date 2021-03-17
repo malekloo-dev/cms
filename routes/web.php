@@ -19,13 +19,18 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 
 App::setLocale(env('SITE_LANG'));
-dd(env('TEMPLATE_NAME'));
+
+
 
 Route::prefix('/company')->middleware(['auth', 'role:super admin|company'])->group(function () {
     Route::get('/', [CompanyController::class, 'dashboard'])->name('company.dashboard');
     Route::get('profile', [CompanyController::class, 'profile'])->name('company.profile');
     Route::get('products', [CompanyController::class, 'products'])->name('company.products');
 });
+
+
+
+
 Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(function () {
 
     Route::get('/', [AdminController::class, 'index'])->name('admin');

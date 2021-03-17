@@ -1,7 +1,12 @@
 <div class="company-nav">
+    <div class="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     <ul>
         <li>
-            <svg  id="bold" enable-background="new 0 0 24 24" height="100" viewBox="0 0 24 24" width="100"
+            <svg id="bold" enable-background="new 0 0 24 24" height="100" viewBox="0 0 24 24" width="100"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="m19 19.5v-5c0-1.654 1.346-3 3-3 .552 0 1 .448 1 1 0 .556-.454 1.007-1.012 1-.548-.007-.988.452-.988 1v3c0 1.105-.895 2-2 2z" />
@@ -19,9 +24,12 @@
         <li>
             {{ Auth::user()->name }}
         </li>
-        <li class="{{ Request::is('company')?'active':'' }}"><a href="{{ route('company.dashboard') }}">{{ __('messages.Dashboard') }}</a></li>
-        <li class="{{ Request::is('company/profile')?'active':'' }}"><a href="{{ route('company.profile') }}"> {{ __('messages.profile') }}</a></li>
-        <li class="{{ Request::is('company/products')?'active':'' }}"><a class="no-border" href="{{ route('company.products') }}"> {{ __('messages.Products') }}</a></li>
+        <li class="{{ Request::is('company') ? 'active' : '' }}"><a
+                href="{{ route('company.dashboard') }}">{{ __('messages.Dashboard') }}</a></li>
+        <li class="{{ Request::is('company/profile') ? 'active' : '' }}"><a href="{{ route('company.profile') }}">
+                {{ __('messages.profile') }}</a></li>
+        <li class="{{ Request::is('company/products') ? 'active' : '' }}"><a class="no-border"
+                href="{{ route('company.products') }}"> {{ __('messages.Products') }}</a></li>
         <li>
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
@@ -30,3 +38,16 @@
         </li>
     </ul>
 </div>
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+<script>
+    $('.burger').click(function(){
+        $('.company-nav ul').slideToggle();
+        $(this).children('span:last-child').toggleClass('hide');
+        $(this).children('span:nth-child(1)').toggleClass('rotate1');
+        $(this).children('span:nth-child(2)').toggleClass('rotate2');
+    })
+</script>
