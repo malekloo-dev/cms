@@ -53,9 +53,9 @@
                 <div class="">@lang('messages.city'): <span>{{ $user->company->city ?? '' }}</span></div>
                 <div class="">@lang('messages.province'): <span>{{ $user->company->province ?? '' }}</span></div>
 
-                <div class="">@lang('messages.whatsapp'): <span class="ltr">{{ $user->company->whatsapp }}</span></div>
-                <div class="">@lang('messages.telegram'): <span>{{ $user->company->telegram }}</span></div>
-                <div class="">@lang('messages.instagram'): <span>{{ $user->company->instagram }}</span></div>
+                <div class="">@lang('messages.whatsapp'): <span class="ltr">{{ $user->company->whatsapp ?? '' }}</span></div>
+                <div class="">@lang('messages.telegram'): <span>{{ $user->company->telegram ?? ''}}</span></div>
+                <div class="">@lang('messages.instagram'): <span>{{ $user->company->instagram ?? ''}}</span></div>
                 <div class="">@lang('messages.register date'): <span>{{ convertGToJ($user->date) }}</span></div>
 
             </div>
