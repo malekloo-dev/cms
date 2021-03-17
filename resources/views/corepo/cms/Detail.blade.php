@@ -111,6 +111,16 @@
             <div class="fourth-500">
                 <div>
                     <div>محل تلیغ شما</div>
+                    {{--images&label=adv&var=adv&count=3--}}
+                    @if (isset($adv) && isset($adv['images']))
+                        <div class="text-center">
+                            @foreach ($adv['images'] as $k => $content)
+                            <a href="{{ $adv['url'][$k] }}" @if(!isset($adv['follow'][$k])) rel="nofollow" @endif>
+                                <img width="200px" height="200px"  src="{{$content}}" alt="محل تبلیغ کریپو" >
+                            </a>
+                                @endforeach
+                        </div>
+                    @endisset
                     <div>وبسایت ها</div>
                     {{--category&label=sideCategory&var=sideCategory&count=6--}}
                     @isset($sideCategory['data'])

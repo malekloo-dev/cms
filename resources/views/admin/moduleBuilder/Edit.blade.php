@@ -104,7 +104,8 @@
                                                         <div class="panel-body">
 
                                                             @for ($i = 0; $i < $attr['config']['count']; $i++)
-                                                                <div class="row">
+                                                                <div class="row"
+                                                                    style="border-bottom:1px dashed #ccc; padding-bottom:1em;">
                                                                     <div class="col-md-1">
                                                                         <label for="parent"
                                                                             class="col-form-label text-md-left">
@@ -127,7 +128,7 @@
                                                                                     src="{{ $widget['images'][$i] }}" />
                                                                                 <label for="img"
                                                                                     class="col-form-label text-md-left">
-                                                                                    {{ $widget['images'][$i] }}
+
                                                                                 </label>
 
                                                                             @else
@@ -144,19 +145,40 @@
 
                                                                     </div>
                                                                     <div class="col-md-3 ">
-                                                                        <div class="panel-title">
 
-                                                                            <label for="parent"
-                                                                                class="col-form-label text-md-left">
-                                                                                Select Image
-                                                                                {{ $attr['config']['label'] }}</label>
-                                                                            <input type="file" class="form-control"
-                                                                                name="attr[{{ $attr['config']['var'] }}][images][]"
-                                                                                id="images" placeholder=""
-                                                                                value="{{ old('imageUrl') }}">
-                                                                        </div>
+                                                                        <label for="parent"
+                                                                            class="col-form-label text-md-left">@lang('messages.image')</label>
+                                                                        <input type="file" class="form-control"
+                                                                            name="attr[{{ $attr['config']['var'] }}][images][{{ $i }}]"
+                                                                            id="images" placeholder=""
+                                                                            value="{{ old('imageUrl') }}">
+
                                                                     </div>
+                                                                    <div class="col-md-5">
+                                                                        <label for=""
+                                                                            class="col-form-label text-md-left">
+                                                                            @lang('messages.name')</label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="attr[{{ $attr['config']['var'] }}][name][{{ $i }}]"
+                                                                            id="" placeholder=""
+                                                                            value="{{ $widget['name'][$i] ?? ''}}">
+                                                                    </div>
+                                                                    <div class="col-md-1">
+                                                                        <label for="attr[{{ $attr['config']['var'] }}][follow][{{ $i }}]">follow</label>
+                                                                        <input type="checkbox"
+                                                                        {{ (isset($widget['follow'][$i]) && $widget['follow'][$i] == '1' ) ? 'checked' : '' }}
+                                                                        id="attr[{{ $attr['config']['var'] }}][follow][{{ $i }}]" value="1" name="attr[{{ $attr['config']['var'] }}][follow][{{ $i }}]">
 
+                                                                    </div>
+                                                                    <div class="col-md-7">
+                                                                        <label for=""
+                                                                            class="col-form-label text-md-left ">Url</label>
+                                                                        <input type="text" class="ltr form-control"
+                                                                            name="attr[{{ $attr['config']['var'] }}][url][{{ $i }}]"
+                                                                            id="" placeholder=""
+                                                                            value="{{ $widget['url'][$i] ?? '' }}">
+
+                                                                    </div>
                                                                 </div>
                                                                 <br />
                                                             @endfor
@@ -413,7 +435,7 @@
                 @lang('messages.category'):
                 <pre>&lbrace;&lbrace;--category&label=category&var=category--&rbrace;&rbrace;    <button class="pull-right" onclick="copyToClipboard('&lbrace;&lbrace;--category&label=category&var=category--&rbrace;&rbrace;')">Copy</button>
                 </pre>
-                <pre>
+                <pre style="background-color: #fafafa">
 &#64;isset($category['data'])
     &#64;foreach ($category['data'] as $content)
         &lt;a href="&lbrace;&lbrace; $content->slug }}">
@@ -454,7 +476,7 @@
                 </pre>
             </div>
             <div class="col-12 col-md-12">
-                <pre>
+                <pre style="background-color: #fafafa">
 &#64;isset($topViewPost['data'])
 &#64;foreach ($topViewPost['data'] as $content)
     &lt;div>
@@ -502,7 +524,7 @@
                 <pre>&lbrace;&lbrace;--images&label=banner&var=banners&count=3--&rbrace;&rbrace;
                     <button class="pull-right" onclick="copyToClipboard('&lbrace;&lbrace;--images&label=banner&var=banners&count=3--&rbrace;&rbrace;    ')">Copy</button>
                 </pre>
-                <pre>
+                <pre style="background-color: #fafafa">
 &#64;if (isset($banners) && isset($banners['images']))
     &#64;foreach ($banners['images'] as $content)
         &lt;img src="&lbrace;&lbrace;$content&rbrace;&rbrace;" alt="" &gt;
