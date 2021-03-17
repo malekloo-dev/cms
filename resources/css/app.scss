@@ -3508,6 +3508,15 @@ section.panel {
             margin: 0 !important;
         }
     }
+    .profile {
+        display: flex;
+        flex-flow:row wrap;
+        .flex > div {
+            span{
+                font-weight: bold;
+            }
+        }
+    }
 
     .company-nav {
         width: 200px;
@@ -3596,7 +3605,9 @@ section.panel {
     }
 
     nav[role="navigation"] {
-        .flex{margin: 0;}
+        .flex {
+            margin: 0;
+        }
         .hidden {
             flex-direction: column;
             display: none !important;
@@ -3611,13 +3622,13 @@ section.panel {
                 padding: 0 !important;
                 text-align: center;
             }
-            .ml-3{
+            .ml-3 {
                 margin: 0 !important;
             }
-            a{
+            a {
                 justify-content: flex-end;
             }
-            > *{
+            > * {
                 width: 30px;
             }
         }
