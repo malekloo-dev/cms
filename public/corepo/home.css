@@ -33,9 +33,6 @@ to{opacity:1}
 .category-section .next2,.category-section .prev2{position:absolute;width:auto;background:rgba(0,0,0,.05);padding:0 .5em;color:#717171;font-size:23px;font-weight:700;cursor:pointer;top:43px;user-select:none}
 .category-section .next2{left:0;border-radius:0 5px 5px 0}
 .category-section .prev2{right:0;border-radius:5px 0 0 5px}
-article{background:#fff; color:#222;padding:1em;text-align:center;border-radius:10px;min-height:412px}
-article figure img{height:100px!important;border-radius:10px;width:auto}
-article .title{color:#000;font-weight:700;display:block}
 .info{height:200px;overflow:hidden;width:100%;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
 .info p{display: inline-block;}
 .application article{min-height: auto;}

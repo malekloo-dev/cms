@@ -4878,7 +4878,8 @@ nav .burger:after {
     margin: 0;
   }
 
-  nav .burger ~ .menu, nav .show:checked ~ .burger {
+  nav .burger ~ .menu,
+nav .show:checked ~ .burger {
     position: fixed;
     min-height: 100%;
     top: 0;
@@ -4949,7 +4950,7 @@ nav .burger:after {
     display: block;
     margin: 0.3em;
     text-align: right;
-    max-width: calc(100% - .6em);
+    max-width: calc(100% - 0.6em);
   }
 
   nav .burger ~ .menu > a {
@@ -4966,12 +4967,14 @@ nav .burger:after {
     right: 10px;
   }
 }
-input, textarea {
+input,
+textarea {
   border: 0;
   border: 1px solid #ccc;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   border: 1px solid #ccc;
 }
 
@@ -4993,4 +4996,25 @@ input:focus, textarea:focus {
 
 .articles-home figure img {
   height: 200px !important;
+}
+
+article {
+  background: #fff;
+  color: #222;
+  padding: 1em;
+  text-align: center;
+  border-radius: 10px;
+  min-height: 412px;
+}
+
+article figure img {
+  height: 100px !important;
+  border-radius: 10px;
+  width: auto;
+}
+
+article .title {
+  color: #000;
+  font-weight: 700;
+  display: block;
 }

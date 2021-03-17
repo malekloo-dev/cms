@@ -5,39 +5,6 @@
 
 
 @section('footer')
-    <script>
-        var slideIndex = 1;
-        showSlides(slideIndex);
-
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName("mySlides");
-            var dots = document.getElementsByClassName("dot");
-            if (n > slides.length) {
-                slideIndex = 1
-            }
-            if (n < 1) {
-                slideIndex = slides.length
-            }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex - 1].style.display = "block";
-            //dots[slideIndex - 1].className += " active";
-        }
-
-    </script>
 
     <script src="{{ asset('/siema.min.js') }}"></script>
     <script>
@@ -126,9 +93,9 @@
                                         <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
                                             sizes="(max-width:{{ env('CATEGORY_SMALL') }}px) 100vw {{ env('CATEGORY_SMALL') }}px {{ ENV('CATEGORY_MEDIUM') }}px {{ ENV('CATEGORY_LARGE') }}px"
                                             alt="{{ $content->title }}" width="200" height="200" srcset="
-                                    {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL') }}w,
-                                    {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM') }}w,
-                                    {{ $content->images['images']['large'] ?? $content->images['thumb'] }} 2x">
+                                        {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL') }}w,
+                                        {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM') }}w,
+                                        {{ $content->images['images']['large'] ?? $content->images['thumb'] }} 2x">
                                         <figcaption>
                                             <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
                                         </figcaption>
@@ -159,7 +126,7 @@
 
                         <div class="flex one two-500 four-900 center ">
 
-                            {{-- $data['newPost'] --}}
+                            {{--$data['newPost'] --}}
                             @foreach ($relatedProduct as $content)
                                 <div>
                                     <article>
@@ -169,8 +136,8 @@
                                                     sizes="(max-width:{{ env('ARTICLE_SMALL') }}px) 100vw {{ env('ARTICLE_SMALL') }}px {{ ENV('ARTICLE_MEDIUM') }}px"
                                                     alt="{{ $content->title }}" width="100" height="100"
                                                     srcset="
-                                                {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
-                                                {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
+                                                    {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
+                                                    {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
                                             </figure>
 
                                         @endif
@@ -188,6 +155,56 @@
             </div>
         </section>
     @endif
+
+    <section class="index-items bg-pink mt-0 mb-0">
+        <div class="flex one">
+            <div>
+                <h2>{{ $detail->title ?? '' }}</h2>
+                <div class="flex one three-500 five-900   ">
+                    @isset($relatedPost)
+                        @foreach ($relatedPost as $content)
+                            <div>
+                                <a href="{{ $content->slug }}">
+                                    <article class="shadow2">
+                                        @if (isset($content->images['thumb']))
+                                            <figure class="image">
+                                                <img src="{{ $content->images['images']['medium'] ?? $content->images['thumb'] }}"
+                                                    width="198" height="100" alt="{{ $content->title }}">
+                                            </figure>
+                                        @endif
+
+                                        <div class="title">{{ $content->title }}</div>
+                                        <div class="info">
+                                            {!! readMore($content->brief_description, 250) !!}
+                                        </div>
+                                        <div class="rate mt-1">
+                                            @if (count($content->comments))
+                                                @php
+                                                    $rateAvrage = $rateSum = 0;
+                                                @endphp
+                                                @foreach ($content->comments as $comment)
+                                                    @php
+                                                        $rateSum = $rateSum + $comment['rate'];
+                                                    @endphp
+                                                @endforeach
+                                                @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
+                                                    <img width="20" height="20"
+                                                        srcset="{{ asset('/img/star1x.png') }} , {{ asset('/img/star2x.png') }} 2x"
+                                                        src="{{ asset('/img/star1x.png') }}"
+                                                        alt="{{ 'star for rating' }}">
+                                                @endfor
+                                            @endif
+                                        </div>
+
+                                    </article>
+                                </a>
+                            </div>
+                        @endforeach
+                    @endisset
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
@@ -225,8 +242,8 @@
                                                 sizes="(max-width:{{ env('ARTICLE_SMALL') }}px) 100vw {{ env('ARTICLE_SMALL') }}px {{ ENV('ARTICLE_MEDIUM') }}px"
                                                 alt="{{ $content->title }}" width="100" height="100"
                                                 srcset="
-                                                {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
-                                                {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
+                                                    {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
+                                                    {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
                                         </figure>
 
                                     @endif

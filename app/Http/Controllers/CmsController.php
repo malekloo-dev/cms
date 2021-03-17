@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use App\Models\RedirectUrl;
 use App\Models\Widget;
+use Illuminate\Database\Eloquent\Collection;
 use PDF;
+use PhpParser\ErrorHandler\Collecting;
 
 class CmsController extends Controller
 {
@@ -30,7 +32,6 @@ class CmsController extends Controller
         $detail = Content::where('slug', '=', $slug)
             ->where('publish_date', '<=', DB::raw('now()'))
             ->first();
-        // dd($detail->comments);
         if ($detail === null) {
             $data['title'] = '404';
             $data['name'] = 'Page not found';
@@ -95,6 +96,9 @@ class CmsController extends Controller
                 ->where('parent_id', '=', $detail->id)
                 ->where('publish_date', '<=', DB::raw('now()'))
                 ->get();
+
+            $relatedPost = $this->getCatChildOfcontent($detail['id'], $relatedProduct);
+
             $relatedProduct = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'product')
                 ->where('parent_id', '=', $detail->id)
@@ -112,6 +116,7 @@ class CmsController extends Controller
             $template = env('TEMPLATE_NAME') . '.cms.DetailCategory';
             //Widget
             $widget = $this->getWidget('DetailCategory');
+
 
             if ($detail->attr_type == 'html') {
                 $widget = $this->getWidget($detail->attr['template_name']);
@@ -247,13 +252,16 @@ class CmsController extends Controller
 
         return $data;
     }
-    function getCatChildOfcontent($parentId, $temp)
+    function getCatChildOfcontent($parentId, $temp )
     {
+
         $cat =  Content::where([['parent_id', '=', $parentId], ['type', '=', 1]])->get()->toArray();
 
 
         $content =  Content::where([['parent_id', '=', $parentId], ['type', '=', 2]])
         ->where('publish_date', '<=', DB::raw('now()'))->get();
+        if(gettype($temp) == 'array'){ $temp =  new Collection;}
+        
         $temp = $temp->merge($content);
 
         if (count($cat) == 0) {
