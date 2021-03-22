@@ -1,6 +1,6 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 @section('head')
-    <meta property="og:image" content="{{ url($detail->images['images']['medium'] ?? '') }}" />
+    <meta property="og:image" content="{{ url($detail->images['images']['large'] ?? '') }}" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width"
         content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />

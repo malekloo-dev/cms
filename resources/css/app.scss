@@ -3612,15 +3612,15 @@ section.panel {
             flex-direction: column;
             display: none !important;
         }
-
         > :not(.hidden) {
             padding: 0;
             display: flex !important;
-            align-items: center;
+            align-items: stretch;
             width: auto;
             .px-4 {
-                padding: 0 !important;
+                padding: 0 1em !important;
                 text-align: center;
+                align-items: center;
             }
             .ml-3 {
                 margin: 0 !important;
