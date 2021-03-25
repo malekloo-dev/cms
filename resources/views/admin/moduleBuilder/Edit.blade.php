@@ -125,7 +125,7 @@
                                                                             @if ($widget['mimeType'] == 'image')
 
                                                                                 <img height="80"
-                                                                                    src="{{ $widget['images'][$i] }}" />
+                                                                                    src="{{ url($widget['images'][$i]) }}" />
                                                                                 <label for="img"
                                                                                     class="col-form-label text-md-left">
 
@@ -519,15 +519,17 @@
 &#64;endisset
                 </pre>
             </div>
-            <div class="col-6 col-md-6">
+            <div class="col-12 col-md-12">
                 @lang('messages.image') :
                 <pre>&lbrace;&lbrace;--images&label=banner&var=banners&count=3--&rbrace;&rbrace;
                     <button class="pull-right" onclick="copyToClipboard('&lbrace;&lbrace;--images&label=banner&var=banners&count=3--&rbrace;&rbrace;    ')">Copy</button>
                 </pre>
                 <pre style="background-color: #fafafa">
 &#64;if (isset($banners) && isset($banners['images']))
-    &#64;foreach ($banners['images'] as $content)
-        &lt;img src="&lbrace;&lbrace;$content&rbrace;&rbrace;" alt="" &gt;
+    &#64;foreach ($banners['images'] as $k => $content)
+        &lt;a href='&lbrace;&lbrace; $adv['url'][$k] &rbrace;&rbrace;' &#64;if (!isset($adv['follow'][$k])) rel="nofollow" &#64;endif>
+            &lt;img src="&lbrace;&lbrace;$content&rbrace;&rbrace;" alt="&lbrace;&lbrace; $adv['name'][$k] &rbrace;&rbrace;" &gt;
+        &lt;/a>
     &#64;endforeach
 &#64;endisset
                 </pre>

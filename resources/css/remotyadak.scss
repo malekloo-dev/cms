@@ -1,5 +1,5 @@
 $template: remotyadak;
-$body:#fff;
+$body: #fff;
 $theme-color1: #fa490e;
 $theme-color2: rgba(255, 136, 45, 1);
 $theme-color3: #ea1c44;
@@ -10,6 +10,22 @@ $menu-color: #fff;
 @import "app.scss";
 @import "grid.scss";
 
+.h-100 {
+    height: 100%;
+}
+.cover {
+    object-fit: cover !important;
+}
+.index-img picture {
+    width: 100%;
+    img{
+        width: 100%;
+        height: 100%;
+    }
+}
+.breadcrumb{
+    margin-top: 0;
+}
 //////////
 // nav  //
 //////////
@@ -53,19 +69,21 @@ nav .hamburger span {
 nav ul {
     list-style: none;
     margin: 0;
+    li {
+        display: inline-block;
+        position: relative;
+        margin: 0;
+        a {
+            padding: 10px 10px 10px 20px;
+            display: block;
+        }
+        li {
+            display: block;
+            width: 130px;
+        }
+    }
 }
-nav ul li {
-    display: inline-block;
-    position: relative;
-    margin: 0;
-}
-nav li a {
-    padding: 10px 10px 10px 20px;
-    display: block;
-}
-nav li li {
-    display: block;
-}
+
 nav ul > li.parent > a::after {
     position: absolute;
     display: inline-block;
@@ -98,6 +116,9 @@ nav li li a:hover {
     transform: scale(1.05);
 }
 nav li ul {
+    width: 390px;
+    flex-flow: wrap row;
+    left: 0;
     display: none;
     padding: 0;
     position: absolute;
@@ -110,7 +131,7 @@ nav li ul ul {
     left: 100%;
 }
 nav ul li:hover ul {
-    display: block;
+    display: flex;
 }
 nav .menu {
     text-align: left;
@@ -149,7 +170,7 @@ nav .brand {
 }
 nav .brand * {
     vertical-align: middle;
-    height: 78px;
+    height: 64px;
 }
 nav .logo {
     height: 2em;
@@ -186,6 +207,7 @@ nav .burger:after {
         display: block;
     }
     nav ul li ul {
+        width: 100%;
         position: relative;
         border-right: 3px solid $theme-color3;
         border-top: none;
@@ -205,11 +227,15 @@ nav .burger:after {
         display: none;
     }
     nav ul li.parent > div {
-        display: block;
-        background: 0 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.2);
         position: absolute;
         left: 10px;
-        top: 15px;
+        top: 7px;
         outline: 0;
         z-index: 999999;
     }
@@ -583,7 +609,7 @@ nav[role="navigation"] span > svg {
 .category-list img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 .category-list div.border {
     border: 1px solid #f4f4f4;

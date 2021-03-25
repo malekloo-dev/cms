@@ -3,7 +3,7 @@
 
         <nav>
             <a href="/" class="brand">
-                <img height="78" width="172" alt="ریموت یدک لوگو"
+                <img height="64" width="143" alt="ریموت یدک لوگو"
                     srcset="{{ asset('/img/logo1x.png') }} 1x, {{ asset('/img/logo2x.png') }} 2x"
                     src="{{ asset('/img/logo1x.png') }}" />
             </a>

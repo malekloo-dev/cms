@@ -60,7 +60,7 @@ class ModuleBuilderController extends Controller
 
         //{{--module=category&label=NEWS&count=3&query=last--}}
         //{{--gallery&label=NEWS&count=3&query=last--}}
-        // $template = 'O:\xampp\htdocs\cms\resources\views\remotyadak\Home.blade.php';
+
         if ($fileName == 'Home') {
             $template = resource_path('views/' . env('TEMPLATE_NAME') . "/$fileName.blade.php");
         } else {
@@ -75,6 +75,7 @@ class ModuleBuilderController extends Controller
         $module = array('category' => '1', 'product' => '1', 'post' => '1');
         $count = 0;
         $arrayContent = array();
+
         foreach ($pat_array[0] as $key => $val) {
 
             $moduleStart = substr((explode('--}}', $val)[0]), 4);
@@ -104,7 +105,7 @@ class ModuleBuilderController extends Controller
             ->get();
         // $data['widgets'] = Widget::find(1);
         $data['widgets'] = Widget::where('file_name','=',$fileName)->first();
-        
+
         if($data['widgets'] == null){
             $data['widgets'] = new Widget;
             $data['widgets']->file_name = $fileName;
@@ -158,7 +159,7 @@ class ModuleBuilderController extends Controller
         foreach ($data['attr'] as $k => $v) {
 
             if ($v['type'] == 'images') {
-                //continue;
+
                 $images = array();
                 if (isset($crud['attr'][$k]['images'])) {
                     $images = $crud['attr'][$k]['images'];
@@ -175,6 +176,7 @@ class ModuleBuilderController extends Controller
                         $pos = strpos($image->getMimeType(), 'video');
                         if ($pos === false) {
                             $images[$index] = $this->uploadImages($image, 'images');
+                            
                         } else {
                             $images[0] = $this->uploadImages($image, 'images');
                             break;

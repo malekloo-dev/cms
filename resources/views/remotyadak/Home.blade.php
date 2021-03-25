@@ -10,35 +10,25 @@
 @section('Content')
 
 
-    <section class="index-item-top bg-gray mt-0 mb-0 pb-2">
+    <section class="index-img bg-gray mt-0 mb-0 pb-2">
         <div class="text-center pb-1">
             <h1>مرکز ساخت سوئیچ و ریموت</h1>
         </div>
-        <div class="flex one four-500 center  ">
-            <a href="https://iranunlock.com" rel="nofollow" target="blank">
-                <div class="shadow hover">
-                    <picture>
-                        <img src="{{ asset('img/mehrabani.jpg') }}" alt="iran unlock" width="" height="">
-                    </picture>
-                </div>
-            </a>
-            <a href="https://sakhteswitch.com" rel="nofollow" target="blank">
-                <div class="shadow hover">
-                    <picture>
-                        <img src="{{ asset('img/mehrabani.jpg') }}" alt="sakhteswitch" width="" height="">
-                    </picture>
-                </div>
-            </a>
-            <a href="/تماس-با-ما" target="blank">
-                <div class="shadow hover text-center" style="height: 100%">
-                    جای تبلیغ شما
-                </div>
-            </a>
-            <a href="/تماس-با-ما" target="blank">
-                <div class="shadow hover text-center" style="height: 100%">
-                    جای تبلیغ شما
-                </div>
-            </a>
+        <div class="flex two five-500  center ">
+            {{--images&label=banner&var=banners&count=5--}}
+            @if (isset($banners) && isset($banners['images']))
+                @foreach ($banners['images'] as $k => $content)
+                <a href="{{ $banners['url'][$k] }}" @if (!isset($banners['follow'][$k])) rel="nofollow" @endif target="blank">
+                    <div class="shadow  p-0">
+                        <picture>
+                            <img class="cover" src="{{ $content }}" alt="{{ $banners['name'][$k] }}" width="200" height="200">
+                        </picture>
+                    </div>
+                </a>
+
+                @endforeach
+            @endisset
+
         </div>
     </section>
 
@@ -48,13 +38,13 @@
         <div class="text-center pb-1">
             <h2>دسته بندی</h2>
         </div>
-        <div class="flex one five-500 center  ">
+        <div class="flex two five-500 center  ">
             {{--category&label=category&var=category&count=15--}}
             @isset($category['data'])
 
                 @foreach ($category['data'] as $content)
                     <a href="{{ $content->slug }}">
-                        <div class="shadow hover">
+                        <div class="shadow hover h-100">
 
                             @if (isset($content->images['images']))
                                 <picture>
