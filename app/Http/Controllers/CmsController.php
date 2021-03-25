@@ -97,7 +97,7 @@ class CmsController extends Controller
                 ->where('publish_date', '<=', DB::raw('now()'))
                 ->get();
 
-            $relatedPost = $this->getCatChildOfcontent($detail['id'], $relatedProduct);
+            $relatedPost = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'article');
 
             $relatedProduct = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'product')
@@ -105,6 +105,9 @@ class CmsController extends Controller
                 ->where('publish_date', '<=', DB::raw('now()'))
                 ->paginate(20);
             // ->get();
+
+            $relatedPost = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
+
 
 
             // dd($relatedProduct->links());
@@ -126,7 +129,7 @@ class CmsController extends Controller
             // dd($relatedProduct->links());
 
 
-            return view($template, $widget,[
+            return view($template, $widget, [
                 'detail' => $detail,
                 'relatedProduct' => $relatedProduct,
                 'relatedPost' => $relatedPost,
@@ -163,7 +166,7 @@ class CmsController extends Controller
 
             //$detail->description=editorModule($detail->description);
 
-            return view($template, $widget,compact([
+            return view($template, $widget, compact([
                 'detail',
                 'breadcrumb',
                 'relatedPost',
@@ -190,6 +193,7 @@ class CmsController extends Controller
         }
 
         $data = array();
+
         foreach ((array) $attr as $var => $config) {
 
 
@@ -252,23 +256,30 @@ class CmsController extends Controller
 
         return $data;
     }
-    function getCatChildOfcontent($parentId, $temp )
+    function getCatChildOfcontent($parentId, $temp, $attr_type = '')
     {
 
         $cat =  Content::where([['parent_id', '=', $parentId], ['type', '=', 1]])->get()->toArray();
 
 
-        $content =  Content::where([['parent_id', '=', $parentId], ['type', '=', 2]])
-        ->where('publish_date', '<=', DB::raw('now()'))->get();
-        if(gettype($temp) == 'array'){ $temp =  new Collection;}
-        
+        $content =  Content::where([['parent_id', '=', $parentId], ['type', '=', 2], ['attr_type', '=', $attr_type]])
+            ->where('publish_date', '<=', DB::raw('now()'));
+
+        if ($attr_type != '') $content = $content->where('attr_type', '=', $attr_type);
+
+        $content = $content->get();
+
+        if (gettype($temp) == 'array') {
+            $temp =  new Collection;
+        }
+
         $temp = $temp->merge($content);
 
         if (count($cat) == 0) {
             return $temp;
         } else {
             foreach ($cat as $k => $v) {
-                $temp =  $this->getCatChildOfcontent($v["id"], $temp);
+                $temp =  $this->getCatChildOfcontent($v["id"], $temp, $attr_type);
             }
             return $temp;
         }

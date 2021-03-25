@@ -2181,7 +2181,7 @@ body {
     font-size: 1rem;
     line-height: 2;
     color: #111;
-    background: #f4f4f4;
+    background: $body;
 }
 article,
 aside,
@@ -3361,7 +3361,7 @@ nav[role="navigation"] {
     }
     .hidden {
         justify-content: space-between;
-        display: flex;
+        display: flex !important;
         align-items: center;
         padding: 0;
     }

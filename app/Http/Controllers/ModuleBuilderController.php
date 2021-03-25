@@ -104,6 +104,7 @@ class ModuleBuilderController extends Controller
             ->get();
         // $data['widgets'] = Widget::find(1);
         $data['widgets'] = Widget::where('file_name','=',$fileName)->first();
+        
         if($data['widgets'] == null){
             $data['widgets'] = new Widget;
             $data['widgets']->file_name = $fileName;

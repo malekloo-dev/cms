@@ -1,5 +1,5 @@
-$template: darbkala;
-$body:#f4f4f4;
+$template: remotyadak;
+$body:#fff;
 $theme-color1: #fa490e;
 $theme-color2: rgba(255, 136, 45, 1);
 $theme-color3: #ea1c44;
@@ -393,7 +393,6 @@ nav[role="navigation"] span > svg {
     font-size: 0.75em;
 }
 .products article > div {
-    height: 450px;
     overflow: hidden;
 }
 .products img {

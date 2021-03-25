@@ -49,7 +49,7 @@
             <h2>دسته بندی</h2>
         </div>
         <div class="flex one five-500 center  ">
-            {{--category&label=category&var=category&count=5--}}
+            {{--category&label=category&var=category&count=15--}}
             @isset($category['data'])
 
                 @foreach ($category['data'] as $content)
@@ -91,8 +91,7 @@
             <div>
                 <div class="flex one two-500  four-800 center  ">
 
-                    {{--product&label=top
-                    products&var=products&count=12--}}
+                    {{--product&label=topProducts&var=products&count=12--}}
                     @isset($products['data'])
 
 
@@ -101,7 +100,7 @@
                                 <a class="hover" href="{{ $content->slug }}">
 
                                     @if (isset($content->images['thumb']))
-                                        <div><img src="{{ $content->images['thumb'] }}"></div>
+                                        <div><img width="{{ env('PRODUCT_SMALL_W') }}" height="{{ env('PRODUCT_SMALL_H') }}" alt="{{ $content->title }}" src="{{ $content->images['thumb'] }}"></div>
                                     @endif
                                     <footer>
                                         <h3> {{ $content->title }}</h3>

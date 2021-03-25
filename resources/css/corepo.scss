@@ -1,4 +1,5 @@
 $template: corepo;
+$body:#f4f4f4;
 $theme-color1: #ffd243;
 $theme-color2: rgba(255, 136, 45, 1);
 $theme-color3: #ea1c44;
@@ -7,6 +8,7 @@ $a-hover: #1e2135;
 $menu-color: #fff;
 
 @import "app.scss";
+@import "grid.scss";
 
 .top-menu {
     background: #fff;
