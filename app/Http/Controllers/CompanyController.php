@@ -27,6 +27,9 @@ class CompanyController extends Controller
 
         $imagesUrl = $this->uploadImages($request, $user);
 
+        $user->company->logo = $imagesUrl;
+        $user->company->save();
+
         return response(array('status' => true, 'url' => $imagesUrl), 200);
     }
 
