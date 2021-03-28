@@ -3510,9 +3510,9 @@ section.panel {
     }
     .profile {
         display: flex;
-        flex-flow:row wrap;
+        flex-flow: row wrap;
         .flex > div {
-            span{
+            span {
                 font-weight: bold;
             }
         }
@@ -3533,6 +3533,10 @@ section.panel {
             padding: 1em;
             border-radius: 50%;
         }
+        img {
+            background-color: #fff;
+            border-radius: 50%;
+        }
         ul {
             display: flex;
             list-style: none;
@@ -3540,10 +3544,32 @@ section.panel {
             flex-direction: column;
             width: 100%;
             li {
+                position: relative;
                 padding: 0.5em;
                 margin: 0;
                 &:first-child {
                     text-align: center;
+                    justify-content: center;
+                    display: flex;
+                    align-items: center;
+                    > div {
+                        border-radius: 50%;
+                        width: 100px;
+                        height: 100px;
+                        background-color: rgba(0, 0, 0, 0.5);
+                        display: none;
+                        position: absolute;
+                        color: #fff;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+                        input {
+                            display: none;
+                        }
+                    }
+                    &:hover div {
+                        display: flex;
+                    }
                 }
                 a {
                     padding: 0 0.5em;
