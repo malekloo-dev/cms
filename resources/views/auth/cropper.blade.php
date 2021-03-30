@@ -13,24 +13,34 @@
 
 <style type="text/css">
     .cropper img {
-          display: block;
-          max-width: 300px;
-          max-height: 300px;
-        }
-        .cropper .preview {
-          overflow: hidden;
-          width: {{ env('ARTICLE_SMALL_W') }}px;
-          height: {{ env('ARTICLE_SMALL_H') }}px;
-          margin: 10px;
-          border: 1px solid red;
-        }
-       .cropper .modal-lg{
-          max-width: 1000px !important;
-        }
+        display: block;
+        max-width: 100px;
+        max-height: 100px;
+    }
+
+    .cropper .cropper-bg {
+        max-width: 100%;
+    }
+
+    .cropper .preview {
+        overflow: hidden;
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        border-radius: 50%;
+        background-color: #fff;
+    }
+
+    .cropper .modal-lg {
+        max-width: 1000px !important;
+    }
+    .modal-content{
+        background-color: #efefef
+    }
 
 </style>
-<div class="modal fade cropper" style="direction: ltr;" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-    aria-hidden="true">
+<div class="modal fade cropper" style="direction: ltr;" id="modal" tabindex="-1" role="dialog"
+    aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -42,18 +52,18 @@
             <div class="modal-body">
                 <div class="img-container">
                     <div class="row">
-                        <div class="col-lg-8 col-md-8 col-sm-8" style="max-width: 50%;float: inherit;">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="float: inherit;">
                             <img id="image" src="">
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4" style="max-width: 50%;float: inherit;">
+                        <div class="col-lg-4 col-md-6 col-sm-6  col-xs-12" style="float: inherit;">
                             <div class="preview"></div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="crop">Crop</button>
+                <button type="button" class="btn  close" data-dismiss="modal">@lang('messages.cancel')</button>
+                <button type="button" class="btn btn-primary" id="crop">@lang('messages.crop')</button>
             </div>
         </div>
     </div>
@@ -65,6 +75,9 @@
     $("body").on("click", "#images", function(e) {
         $(this).val('');
     });
+    $('#modal .close').on('click', function() {
+        $modal.modal('hide');
+    })
     $("body").on("change", "#images", function(e) {
         var files = e.target.files;
         var done = function(url) {
@@ -95,7 +108,7 @@
         cropper = new Cropper(image, {
             //   aspectRatio: 1,
             //   viewMode: 3,
-            aspectRatio: 1 / 1,
+            aspectRatio: 1,
             viewMode: 0,
             preview: '.preview'
         });
@@ -144,7 +157,7 @@
                         $modal.modal('hide');
                         $('.company-logo svg').hide();
                         $('.company-logo img').show();
-                        $('.company-logo img').attr('src',data.url);
+                        $('.company-logo img').attr('src', data.url);
 
                         // alert("success upload image");
                     }

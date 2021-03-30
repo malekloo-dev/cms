@@ -98,5 +98,6 @@ return [
     'telegram'=>'تلگرام',
     'instagram'=>'اینستاگرام',
     'cancel'=>'انصراف',
+    'crop'=>'برش',
 
 ];

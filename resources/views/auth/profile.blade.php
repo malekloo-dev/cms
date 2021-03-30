@@ -7,6 +7,12 @@
         <div class="profile">
             <h1 class="full">@lang('messages.profile')</h1>
             <div class="flex one two-700 three-1100">
+                <div class="" onclick="document.getElementById('images').click();">
+                    @lang('messages.edit') @lang('messages.image')
+
+                    <img style="padding:0 0.5em" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAACCUlEQVQ4jdXUPWiTQRgH8P9zqYhuGWIlie4dtA7SpULRRbr5iYIVpLz33tvBIYvoIJ74tfqxJHchYBXUIuLg5uTg1ClDFIQuQkLaJYPE6c37d9CEt5qG103/2/Pc3e/uWQ741yPpIgiCci6XOw1gb8bz30XkTbVabf8BBkFQVko1AXQBdDKCRQDTSqnZITo1kkXOAtgsFouHrLVJFs1aqzqdTmswGJwD8AgAVArMk9ychAVBMBOG4T1jzBIAsdYmJLsikh/uUTsd/j2VSmWPUuqDiJwk6Ywxl8ftywz2+/0CgALJWwBaJGf+CgyC4HAURfuGtXPuK4BXAN4BOJAkyWom0Fo7pbV+qpRqJkmyobVeTKEXlVLlXq93sF6vf84C7mq32y9EZJHkHMmHIvI2DMNTAKC1PjIYDK7m8/n5nSbbBorIvIgcI3nce7/uvb9J0gJYM8bcF5GPInICwHut9XKWF26RXPDet4YN7/0DAM9I3iD5xDk3R3JFRFwYhisTQZKfvPdf0j1jzBkASwBue++v/7rEi8gygMcicnTSC7fFGHOB5EsAd51zNr1Wq9VWSV4CsHssSLInItPWWgUAWusrJJ8DuOacuzPuwlKp9BrABsnesDf6HKIoKiVJ0gSwhZ8fxAKAbwDWJwxRAlCI43i20Wh0toEp9DzJ/ROQUUSkG8fx2hD7P/IDjnbjmjZON9wAAAAASUVORK5CYII=">
+
+                </div>
                 <div class="">
                     @lang('messages.store name'):
                     <span class="text-editor" data-field='name'
@@ -94,6 +100,11 @@
             var val = $(this).text();
             $('#edit-profile').modal('show');
             $('.profile-editor-modal input[type=text]').attr('name', field);
+            if(['email','mobile','site','whatsapp','telegram','instagram'].includes(field)){
+                $('.profile-editor-modal input[type=text]').css('direction','ltr');
+            }else{
+                $('.profile-editor-modal input[type=text]').css('direction','rtl');
+            }
             $('.profile-editor-modal input[type=text]').val(val);
             $('.profile-editor-modal label').html(label);
 
@@ -122,26 +133,33 @@
                     }
                 });
             });
+
+            $('#edit-profile .close').on('click', function() {
+                $('#edit-profile').modal('hide');
+            })
         });
 
     </script>
 
 
-    <div class="modal fade profile-editor-modal" id="edit-profile" style="" tabindex="-1" role="dialog"
-        aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal fade profile-editor-modal" id="edit-profile" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
 
                 <div class="modal-body">
                     <div class="img-container">
                         <div class="row">
-                            <div class="col-md-12">
-                                <form>
+                            <form>
+                                <div class="col-md-12 py-1 ">
                                     <label for=""></label>
                                     <input type="text" name="">
+                                </div>
+                                <div class="col-md-12">
                                     <input type="submit" class="btn btn-primary" value="@lang('messages.edit')">
-                                </form>
-                            </div>
+                                    <a class="btn close" href="#">@lang('messages.cancel')</a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
