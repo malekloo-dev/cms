@@ -99,63 +99,55 @@
 
         });
 
+        $(function() {
 
-        $('#edit-profile form').submit(function(e) {
-            // e.preventDefault();
-            e.stopPropagation();
+            $('#edit-profile form').submit(function(e) {
 
-            alert(1);
+                e.preventDefault();
 
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: "{{ route('company.profile.update') }}",
-                data: {
-                    '_token': $('meta[name="_token"]').attr('content'),
-                    'fileName': fileName,
-                    'image': base64data
-                },
-                success: function(data) {
-                    $modal.modal('hide');
-                    $('.company-logo svg').hide();
-                    $('.company-logo img').show();
-                    $('.company-logo img').attr('src', data.url);
-
-                    // alert("success upload image");
-                }
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "{{ route('company.profile.update') }}",
+                    data: {
+                        '_token': $('meta[name="_token"]').attr('content'),
+                        'data': $('#edit-profile form').serializeArray()
+                    },
+                    success: function(data) {
+                        $('#edit-profile').modal('hide');
+                        $('span[data-field=' + data.data.name + ']').text(data.data.value);
+                        $('span[data-field=' + data.data.name + ']').append(
+                            '<img class="fa-edit" style="padding:0 0.5em" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAACxUlEQVQ4jZ3ST2hcVRTH8e959735E0V3rmwpuOomWUygCsGW2IYxUxcWkjShxYCTl1WQoRtxlYUoqBsZSe1tUsVgF01L/0hc1WZqqOgipNiAq64KWbhIUmn+jPPuPd3Ma0NMTNKzutzD+fA7lyu8WEkcx58AReCytfZ82jAvog0NDb0vIheAg0Cpvb09mJubq+0brFQq+ba2tq+iKJr03kfAW83W0RTdF9ja2toLfOG974qiaMh7nwHeTNFCofD3nsCenp5MR0fHl0EQ/KCqS8CZJlr23ueAIwCq+tKu4MjISDaTyVwDBoCatfb7QqFQ34R+6JzLi8gREflGdsPq9fo1oEtV+7z3D4Ig+FpEPgDKwOfA/SiKjjcajU5r7dUdEw4ODuaA68AJoNd7v2CMmRGRAvCqtfbjNKmqvmat/Qwg3AnLZDLXgU6gF3hgjKkBrwN319fXzw0PD/eLyCXn3KNsNvtTOvuflSuVSn51dfUGcExEelV1AZgBDjSxUj6fPwOcB3601p7dPB9sg90CjgF9SZLcB24DB0RkNgzDky0tLaeBMWDeOffR1kDPEsZx3ALcBN4G+pxz8801D4nIrDGm2znXp6pWROaTJOmamJhY2goGAKOjo2GKqWqPMeZPY8yvwCFgRlWLjUajX1Ut8IeqvrMd9gxcXFzsBI6rajkMwwXn3AxwUETuACeBARH5Fvg9m80WrbWPt8M2v2EJeJLL5a547weAV4BfVPU9EekHLgC/JUlSrFar/+yEwfNvUwJuV6vVOvBpHMfLwHeqehqwInLPGNNtrX3yfxhAUC6XDwNvqOrP6eXy8vJFVR0UkYvA7Nra2rtjY2O7YgChiJQARKQYx7GKSLeqngBeVtV7GxsbpcnJydW9YOnKpeb5FHBKVR8Cl4DplZWV2tTU1L97xdKES6paA6ZVdXp8fPyv/QBb6ylonDPZbLKXSwAAAABJRU5ErkJggg==">'
+                        )
+                    }
+                });
             });
         });
 
     </script>
 
 
-    <div class="modal fade profile-editor-modal" id="edit-profile" style="" id="modal" tabindex="-1" role="dialog"
+    <div class="modal fade profile-editor-modal" id="edit-profile" style="" tabindex="-1" role="dialog"
         aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
+
                 <div class="modal-body">
                     <div class="img-container">
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="#" >
+                                <form>
                                     <label for=""></label>
                                     <input type="text" name="">
+                                    <input type="submit" class="btn btn-primary" value="@lang('messages.edit')">
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('messages.cancel')</button>
-                    <button type="submit" class="btn btn-primary" id="edit">@lang('messages.edit')</button>
-                </div>
             </div>
         </div>
     </div>
+
+
 @endsection

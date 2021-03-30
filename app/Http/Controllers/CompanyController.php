@@ -36,10 +36,12 @@ class CompanyController extends Controller
     public function profileUpdate(Request $request)
     {
         $user = Auth::user();
+        $name = $request->all()['data'][0]['name'];
+        $value = $request->all()['data'][0]['value'];
+        $user->company->$name = $value;
+        $user->company->save();
 
-        $user->company::update($request->all());
-
-        return response(array('status' => true, 'url' => $user->company), 200);
+        return response(array('status' => true, 'data' => ['name' => $name, 'value' => $value]), 200);
     }
 
 
