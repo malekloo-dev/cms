@@ -14,8 +14,8 @@
 <style type="text/css">
     .cropper img {
         display: block;
-        max-width: 100px;
-        max-height: 100px;
+        max-width: 200px;
+        max-height: 200px;
     }
 
     .cropper .cropper-bg {
@@ -26,7 +26,7 @@
         overflow: hidden;
         width: 100px;
         height: 100px;
-        margin: 10px;
+        margin: 10px auto;
         border-radius: 50%;
         background-color: #fff;
     }
@@ -43,21 +43,16 @@
     aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
             <div class="modal-body">
                 <div class="img-container">
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="float: inherit;">
-                            <img id="image" src="">
-                        </div>
                         <div class="col-lg-4 col-md-6 col-sm-6  col-xs-12" style="float: inherit;">
                             <div class="preview"></div>
                         </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="float: inherit;">
+                            <img id="image" src="">
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -120,8 +115,8 @@
     $("#crop").click(function() {
         canvas = cropper.getCroppedCanvas({
             fillColor: '#fff',
-            width: 100,
-            height: 100,
+            width: 200,
+            height: 200,
             imageSmoothingEnabled: false,
             imageSmoothingQuality: 'high',
         });
