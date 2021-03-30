@@ -1,7 +1,7 @@
 .intro{background:#fff;border-radius:15px}
 .intro .third-500{display:flex;align-items:start}
 .intro .third-500 h1{padding:0!important}
-.intro figure{float:right;height:100px;flex:1;display:block;margin:10px 20px 20px 20px}
+.intro figure{float:right;height:200px;flex:1;display:block;margin:10px 20px 20px 20px}
 .intro figure img{border-radius:15px;width:auto;height:100%;object-fit:cover}
 .intro .third-500>div:last-child{flex:2}
 @media(max-width:500px){

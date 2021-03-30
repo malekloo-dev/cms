@@ -33,6 +33,15 @@ class CompanyController extends Controller
         return response(array('status' => true, 'url' => $imagesUrl), 200);
     }
 
+    public function profileUpdate(Request $request)
+    {
+        $user = Auth::user();
+
+        $user->company::update($request->all());
+
+        return response(array('status' => true, 'url' => $user->company), 200);
+    }
+
 
 
 

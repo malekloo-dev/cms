@@ -97,5 +97,6 @@ return [
     'whatsapp'=>'واتس آپ',
     'telegram'=>'تلگرام',
     'instagram'=>'اینستاگرام',
+    'cancel'=>'انصراف',
 
 ];

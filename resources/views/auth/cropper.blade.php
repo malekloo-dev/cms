@@ -12,24 +12,24 @@
 <script src="{{ url('/adminAssets/js/cropper.js') }}"></script>
 
 <style type="text/css">
-    img {
+    .cropper img {
           display: block;
           max-width: 300px;
           max-height: 300px;
         }
-        .preview {
+        .cropper .preview {
           overflow: hidden;
           width: {{ env('ARTICLE_SMALL_W') }}px;
           height: {{ env('ARTICLE_SMALL_H') }}px;
           margin: 10px;
           border: 1px solid red;
         }
-        .modal-lg{
+       .cropper .modal-lg{
           max-width: 1000px !important;
         }
 
 </style>
-<div class="modal fade" style="direction: ltr;" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+<div class="modal fade cropper" style="direction: ltr;" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">

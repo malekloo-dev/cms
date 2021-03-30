@@ -3514,6 +3514,10 @@ section.panel {
         .flex > div {
             span {
                 font-weight: bold;
+                &.text-editor:hover{
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
             }
         }
     }

@@ -46,7 +46,8 @@ class ContentController extends Controller
 
         // dd($file->getRealPath());
         // $url['images'] = $this->resize($file->getRealPath(), $type, $imagePath, $filename);
-        $url['images'] = $this->resize(base_path() .'/public'. $imagePath . $fileNameAndType, $type, $imagePath, $fileNameAndType, $fileName, $fileType);
+
+        $url['images'] = $this->resize( $imagePath . $fileNameAndType, $type, $imagePath, $fileNameAndType, $fileName, $fileType);
         $url['thumb'] = $url['images']['small'];
         $url['images']['org'] = $imagePath . $fileName.'-org.'.$fileType;
         // dd($url);
@@ -67,7 +68,7 @@ class ContentController extends Controller
             $images[$name] = $imagePath  . $fileName . "-{$name}." . $fileType;
 
             // dd($path);
-            $img = Image::make($path);
+            $img = Image::make(public_path($path));
             // dd($path);
             $img->resize($size, null, function ($constraint) {
                 $constraint->aspectRatio();
@@ -167,7 +168,7 @@ class ContentController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $this->storeService($request);
 
         $this->sitemap();

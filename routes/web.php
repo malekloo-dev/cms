@@ -26,6 +26,7 @@ Route::prefix('/company')->middleware(['auth', 'role:super admin|company'])->gro
     Route::get('/', [CompanyController::class, 'dashboard'])->name('company.dashboard');
     Route::get('profile', [CompanyController::class, 'profile'])->name('company.profile');
     Route::post('profileChangeLogo', [CompanyController::class, 'profileChangeLogo'])->name('company.profile.changeLogo');
+    Route::post('profileUpdate', [CompanyController::class, 'profileUpdate'])->name('company.profile.update');
     Route::get('products', [CompanyController::class, 'products'])->name('company.products');
 });
 

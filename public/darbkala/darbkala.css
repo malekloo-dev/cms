@@ -4554,6 +4554,10 @@ section.panel .profile {
 section.panel .profile .flex > div span {
   font-weight: bold;
 }
+section.panel .profile .flex > div span.text-editor:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 section.panel .company-nav {
   width: 200px;
   background-color: #eee !important;

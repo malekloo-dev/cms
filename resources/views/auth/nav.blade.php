@@ -73,7 +73,7 @@
 @endsection
 
 
-@section('footer')
+@section('cropper')
 
     @include('auth.cropper')
 
