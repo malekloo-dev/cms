@@ -99,5 +99,6 @@ return [
     'instagram'=>'اینستاگرام',
     'cancel'=>'انصراف',
     'crop'=>'برش',
+    'my location'=>'موقعیت من',
 
 ];

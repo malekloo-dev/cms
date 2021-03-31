@@ -30,6 +30,7 @@ class Company extends Migration
             $table->string('telegram')->nullable();
             $table->string('instagram')->nullable();
             $table->string('logo')->nullable();
+            $table->string('location')->nullable();
 
             $table->timestamps();
 

@@ -49,21 +49,23 @@
     </ul>
 </div>
 
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+    <script>
+        $('.burger').click(function() {
+            $('.company-nav ul').slideToggle();
+            $(this).children('span:last-child').toggleClass('hide');
+            $(this).children('span:nth-child(1)').toggleClass('rotate1');
+            $(this).children('span:nth-child(2)').toggleClass('rotate2');
+        })
 
-<script>
-    $('.burger').click(function() {
-        $('.company-nav ul').slideToggle();
-        $(this).children('span:last-child').toggleClass('hide');
-        $(this).children('span:nth-child(1)').toggleClass('rotate1');
-        $(this).children('span:nth-child(2)').toggleClass('rotate2');
-    })
+    </script>
 
-</script>
 
 @section('bootstrap')
+
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.rtl.min.css"
         integrity="sha384-4dNpRvNX0c/TdYEbYup8qbjvjaMrgUPh+g4I03CnNtANuv+VAvPL6LqdwzZKV38G" crossorigin="anonymous">
@@ -71,6 +73,8 @@
         integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous">
     </script>
 @endsection
+
+
 
 
 @section('cropper')

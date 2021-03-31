@@ -4547,9 +4547,29 @@ section.panel > div:last-child {
   flex: 1;
   margin: 0 !important;
 }
-section.panel .profile {
-  display: flex;
-  flex-flow: row wrap;
+section.panel .map-area {
+  display: block;
+}
+section.panel .map-area #mapid {
+  height: 280px;
+  border-radius: 3px;
+}
+section.panel .map-area.map-editor {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  z-index: 999;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  bottom: 0;
+  padding: 2em;
+  text-align: center;
+}
+section.panel .map-area.map-editor #mapid {
+  height: 300px;
+}
+section.panel .map-area.map-editor a.cancel {
+  color: #fff;
 }
 section.panel .profile .flex > div span {
   font-weight: bold;

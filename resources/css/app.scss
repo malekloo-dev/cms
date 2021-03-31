@@ -3494,6 +3494,7 @@ section.extra-link {
     max-width: 400px;
     margin: 1em auto 5em;
 }
+
 section.panel {
     padding: 1em;
     display: flex;
@@ -3508,13 +3509,38 @@ section.panel {
             margin: 0 !important;
         }
     }
+
+    .map-area {
+        #mapid {
+            height: 280px;
+            border-radius: 3px;
+        }
+        display: block;
+        &.map-editor {
+            position: fixed;
+            width: 100%;
+            top: 0px;
+            z-index: 999;
+            left: 0;
+            background: rgba(0, 0, 0, 0.8);
+            bottom: 0;
+            padding: 2em;
+            text-align: center;
+            #mapid{
+                height: 300px;
+            }
+            a.cancel{
+                color: #fff;
+            }
+        }
+    }
     .profile {
-        display: flex;
-        flex-flow: row wrap;
+        // display: flex;
+        // flex-flow: row wrap;
         .flex > div {
             span {
                 font-weight: bold;
-                &.text-editor:hover{
+                &.text-editor:hover {
                     text-decoration: underline;
                     cursor: pointer;
                 }
