@@ -1,5 +1,5 @@
 $template: darbkala;
-$body:#f4f4f4;
+$body: #f4f4f4;
 $theme-color1: #fa490e;
 $theme-color2: rgba(255, 136, 45, 1);
 $theme-color3: #ea1c44;
@@ -22,89 +22,100 @@ $menu-color: #fff;
     width: 100%;
     position: relative;
     z-index: 9;
-}
-.top-menu .container {
-    padding: 0;
-    margin: 0 auto;
+    .container {
+        padding: 0;
+        margin: 0 auto;
+    }
 }
 nav {
     width: 100%;
     margin: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 1em 0.6em;
     z-index: 10000;
     transition: all 0.3s;
     transform-style: preserve-3d;
     position: relative;
+    display: flex;
+    align-items: center;
+
+    .burger {
+        float: left;
+        position: relative;
+    }
+    .hamburger {
+        display: block;
+        span {
+            background: #fff;
+            width: 21px;
+            height: 3px;
+            display: block;
+            border-radius: 4px;
+            margin-bottom: 3px;
+        }
+    }
+    .brand {
+        float: right;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+    }
+    ul {
+        list-style: none;
+        margin: 0;
+        li {
+            display: inline-block;
+            position: relative;
+            margin: 0;
+            a {
+                padding: 10px 10px 10px 20px;
+                display: block;
+            }
+            li {
+                display: block;
+                a {
+                    color: $theme-color3 !important;
+                    width: 100%;
+                    padding: 1em 2em !important;
+                    white-space: nowrap;
+                    display: block !important;
+                    border-bottom: 3px solid rgba(0, 0, 0, 0) !important;
+                    text-align: right;
+                    transition: all 0.3s !important;
+                    font-size: 0.9em !important;
+                    &:hover {
+                        color: $theme-color3 !important;
+                        font-weight: 700;
+                        transform: scale(1.05);
+                    }
+                }
+            }
+            ul {
+                display: none;
+                padding: 0;
+                position: absolute;
+                background-color: #fff;
+                border-top: 3px solid $theme-color3;
+                border-radius: 10px 10px 10px 10px;
+                box-shadow: 1px 0 20px rgba(0, 0, 0, 0.12);
+            }
+        }
+        > li.parent > a::after {
+            position: absolute;
+            display: inline-block;
+            content: "";
+            background-image: url(img/arrow-down.png);
+            margin-right: 0.5em;
+            width: 8px;
+            height: 8px;
+            top: 1.5em;
+            background-size: 0.5em;
+            background-repeat: no-repeat;
+        }
+    }
 }
-nav .hamburger {
-    display: block;
-}
-nav .hamburger span {
-    background: #fff;
-    width: 21px;
-    height: 3px;
-    display: block;
-    border-radius: 4px;
-    margin-bottom: 3px;
-}
-nav ul {
-    list-style: none;
-    margin: 0;
-}
-nav ul li {
-    display: inline-block;
-    position: relative;
-    margin: 0;
-}
-nav li a {
-    padding: 10px 10px 10px 20px;
-    display: block;
-}
-nav li li {
-    display: block;
-}
-nav ul > li.parent > a::after {
-    position: absolute;
-    display: inline-block;
-    content: "";
-    background-image: url(img/arrow-down.png);
-    margin-right: 0.5em;
-    width: 8px;
-    height: 8px;
-    top: 1.5em;
-    background-size: 0.5em;
-    background-repeat: no-repeat;
-}
+
 nav ul li.parent > div {
     display: none;
-}
-nav li li a {
-    color: $theme-color3 !important;
-    width: 100%;
-    padding: 1em 2em !important;
-    white-space: nowrap;
-    display: block !important;
-    border-bottom: 3px solid rgba(0, 0, 0, 0) !important;
-    text-align: right;
-    transition: all 0.3s !important;
-    font-size: 0.9em !important;
-}
-nav li li a:hover {
-    color: $theme-color3 !important;
-    font-weight: 700;
-    transform: scale(1.05);
-}
-nav li ul {
-    display: none;
-    padding: 0;
-    position: absolute;
-    background-color: #fff;
-    border-top: 3px solid $theme-color3;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: 1px 0 20px rgba(0, 0, 0, 0.12);
 }
 nav li ul ul {
     left: 100%;
@@ -124,33 +135,7 @@ nav .menu {
 nav .menu a {
     color: $menu-color;
 }
-nav .brand {
-    float: right;
-    position: relative;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-nav .burger {
-    float: left;
-    position: relative;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-nav .brand {
-    z-index: 1;
-    top: 1.6em;
-    font-weight: 700;
-    float: right;
-    max-width: 12em;
-    white-space: nowrap;
-    color: inherit;
-}
-nav .brand * {
-    vertical-align: middle;
-    height: 78px;
-}
+
 nav .logo {
     height: 2em;
     margin-right: 0.3em;
@@ -177,29 +162,31 @@ nav .burger:after {
     right: 0;
 }
 @media all and (max-width: 60em) {
-    nav ul {
-        padding: 0;
-        margin: 0 !important;
-        max-width: none !important;
-    }
-    nav ul li {
-        display: block;
-    }
-    nav ul li ul {
-        position: relative;
-        border-right: 3px solid $theme-color3;
-        border-top: none;
-        box-shadow: none;
-        background-color: rgba(0, 0, 0, 0.1);
-        border-radius: 0;
-    }
-    nav ul li ul ul {
-        position: relative;
-        left: 0;
-    }
-    nav li li a {
-        padding: 8px 0.3rem !important;
-        color: #fff !important;
+    nav {
+        ul {
+            padding: 0;
+            margin: 0 !important;
+            max-width: none !important;
+            li {
+                display: block;
+                ul {
+                    position: relative;
+                    border-right: 3px solid $theme-color3;
+                    border-top: none;
+                    box-shadow: none;
+                    background-color: rgba(0, 0, 0, 0.1);
+                    border-radius: 0;
+                    ul {
+                        position: relative;
+                        left: 0;
+                    }
+                }
+                li a {
+                    padding: 8px 0.3rem !important;
+                    color: #fff !important;
+                }
+            }
+        }
     }
     nav ul > li.parent a::after {
         display: none;
@@ -216,7 +203,6 @@ nav .burger:after {
     nav .burger {
         display: inline-block;
         cursor: pointer;
-        bottom: -1000em;
         margin: 0;
     }
     nav .burger ~ .menu,
@@ -296,6 +282,9 @@ nav.transparent .pseudo.button {
 nav.transparent .show:checked ~ .burger {
     color: transparent;
 }
+//////////////
+//pagination//
+//////////////
 nav[role="navigation"] {
     display: flex;
     direction: ltr;
@@ -363,9 +352,6 @@ nav[role="navigation"] span > svg {
         height: 5em;
         width: auto;
         position: relative;
-    }
-    nav .brand {
-        top: 1.5em;
     }
     .intro {
         margin: 1em auto 1em !important;
@@ -743,23 +729,27 @@ nav[role="navigation"] span > svg {
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         width: 100%;
         z-index: 9999999;
+        ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            margin: 0;
+            padding: 0;
+            z-index: 2;
+            li {
+                margin: 0;
+                flex: 1 1 50%;
+                text-align: center;
+                a {
+                    font-size: 0.9em;
+                    padding: 1em;
+                    display: block;
+                }
+            }
+        }
     }
-    .mobile-menu ul {
-        list-style: none;
-        display: flex;
-        justify-content: space-around;
-        margin: 0;
-        padding: 0;
-        z-index: 2;
-    }
-    .mobile-menu ul li {
-        margin: 0;
-        flex: 1 1 50%;
-        text-align: center;
-    }
-    .mobile-menu ul li a {
-        font-size: 0.9em;
-        padding: 1em;
-        display: block;
+
+    #footer {
+        padding-bottom: 60px;
     }
 }

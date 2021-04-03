@@ -115,8 +115,8 @@
     $("#crop").click(function() {
         canvas = cropper.getCroppedCanvas({
             fillColor: '#fff',
-            width: 200,
-            height: 200,
+            width: 100,
+            height: 100,
             imageSmoothingEnabled: false,
             imageSmoothingQuality: 'high',
         });

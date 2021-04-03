@@ -26,6 +26,8 @@
     <meta name="msapplication-square96x96logo" content="{{ asset('/img/logo-96-96.png') }}">
     <meta name="msapplication-square152x152logo" content="{{ asset('/img/logo-152-152.png') }}">
 
+    @yield('bootstrap')
+
     <link rel="stylesheet" href="{{ mix('/'.env('TEMPLATE_NAME').'.css',env('TEMPLATE_NAME')) }}">
     <link rel="icon" href="{{ asset('/img/fav.png') }}" type="image/png">
     <link rel="stylesheet" media="bogus">

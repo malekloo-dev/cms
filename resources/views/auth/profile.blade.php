@@ -1,14 +1,5 @@
 @extends(@env('TEMPLATE_NAME').'.App')
-@section('map')
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin="anonymous" />
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
 
-@endsection
 @section('Content')
 
     <section class="panel ">
@@ -119,6 +110,13 @@
 
 @section('footer')
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="anonymous" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
 
     <script>
         $.each($('.profile .text-editor'), function(i, n) {
@@ -177,127 +175,135 @@
 
     </script>
 
-    @if (Auth::user()->company->location != '')
+    <script>
+        
+        var map = L.map('mapid')
+            .setView([{{ Auth::user()->company->location ?? '31.5,51.2' }}], 16);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://tarhoweb.com">Tarhoweb</a> contributors',
+            // zoomOffset: -1
+            // maxZoom: 18,
+            // tileSize: 512
+        }).addTo(map);
 
 
-        <script>
-            var map = L.map('mapid')
-                .setView([{{ Auth::user()->company->location }}], 16);
+        //marker
+        var marker = L.marker([{{ Auth::user()->company->location ?? '31.5,51.2' }}])
+            .addTo(map)
+            .bindPopup(`@lang('messages.my location')`)
+            .openPopup();
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://tarhoweb.com">Tarhoweb</a> contributors',
-                // zoomOffset: -1
-                // maxZoom: 18,
-                // tileSize: 512
-            }).addTo(map);
+        //access location
+        map.locate({
+            setView: true,
+            maxZoom: 16
+        });
+
+        //meghyas
+        L.control.scale().addTo(map);
+
+        //scroll disable zoom
+        map.scrollWheelZoom.disable();
 
 
-            //marker
-            var marker = L.marker([{{ Auth::user()->company->location }}])
-                .addTo(map)
-                .bindPopup(`@lang('messages.my location')`)
-                .openPopup();
 
-            //access location
-            map.locate({
-                setView: true,
-                maxZoom: 16
+        //change pin locate
+        $('.location-editor').click(function() {
+            marker.dragging.enable();
+            map.scrollWheelZoom.enable();
+
+
+            $('.map-area').toggleClass('map-editor');
+
+            $('.map-area').append('<div class="guid">@lang("messages.map edit guid")</div>');
+
+            $('.map-area').append('<button class="btn btn-info edit">@lang("messages.edit")</button>' +
+                '<a class="btn cancel">@lang("messages.cancel")</a>');
+
+        });
+
+
+
+        $('body').on('click', '.map-editor button.edit', function() {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "{{ route('company.profile.update') }}",
+                data: {
+                    '_token': $('meta[name="_token"]').attr('content'),
+                    'data': [{
+                        'name': 'location',
+                        'value': marker.getLatLng().lat + ',' + marker.getLatLng().lng
+                    }]
+                },
+                success: function(data) {
+                    marker.dragging.disable();
+                    map.scrollWheelZoom.disable();
+
+                    $('.map-area .edit,.map-area .cancel,.map-area .guid').remove();
+                    $('.map-area').toggleClass('map-editor');
+                }
             });
+        });
 
-            //meghyas
-            L.control.scale().addTo(map);
 
-            //scroll disable zoom
+
+        $('body').on('click', '.map-editor a.cancel', function() {
+            marker.dragging.disable();
             map.scrollWheelZoom.disable();
+            $('.map-area .edit,.map-area .cancel,.map-area .guid').remove();
+            $('.map-area').toggleClass('map-editor');
+        });
 
 
 
-            //change pin locate
-            $('.location-editor').click(function() {
-                marker.dragging.enable();
-                map.scrollWheelZoom.enable();
+        function onMapClick(e) {
 
+            if ($(".map-area").hasClass("map-editor")) {
+                marker.setLatLng(e.latlng);
+                map.panTo(e.latlng);
+            }
 
-                $('.map-area').toggleClass('map-editor');
-
-                $('.map-area').append('<button class="btn btn-info edit">@lang("messages.edit")</button>' +
-                    '<a class="btn cancel">@lang("messages.cancel")</a>');
-
-            });
-
-            $('body').on('click', '.map-editor button.edit', function() {
-
-
-
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: "{{ route('company.profile.update') }}",
-                    data: {
-                        '_token': $('meta[name="_token"]').attr('content'),
-                        'data': [{
-                            'name': 'location',
-                            'value': marker.getLatLng().lat + ',' + marker.getLatLng().lng
-                        }]
-                    },
-                    success: function(data) {
-                        marker.dragging.disable();
-                        map.scrollWheelZoom.disable();
-
-                        $('.map-area .edit,.map-area .cancel').remove();
-                        $('.map-area').toggleClass('map-editor');
-                    }
+            marker.on('dragend', function(event) {
+                var marker = event.target;
+                var position = marker.getLatLng();
+                marker.setLatLng(new L.LatLng(position.lat, position.lng), {
+                    draggable: 'true'
                 });
+                map.panTo(new L.LatLng(position.lat, position.lng))
             });
+            map.addLayer(marker);
+        };
 
-            $('body').on('click', '.map-editor a.cancel', function() {
-                marker.dragging.disable();
-                map.scrollWheelZoom.disable();
+        map.on('click', onMapClick);
 
-                $('.map-area .edit,.map-area .cancel').remove();
-                $('.map-area').toggleClass('map-editor');
+    </script>
 
-            });
+<div class="modal fade profile-editor-modal" id="edit-profile" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
 
-
-            // function onLocationFound(e) {
-            //     var marker = L.marker([e.latlng.lat, e.latlng.lng]).update(marker);
-
-            //     // alert('New latitude is ' + e.latlng.lat)
-
-            //     map.setView([e.latlng.lat, e.latlng.lng], 16);
-
-
-            // }
-
-            // map.on('locationfound', onLocationFound);
-
-        </script>
-    @endisset
-    <div class="modal fade profile-editor-modal" id="edit-profile" tabindex="-1" role="dialog"
-        aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-
-                <div class="modal-body">
-                    <div class="img-container">
-                        <div class="row">
-                            <form>
-                                <div class="col-md-12 py-1 ">
-                                    <label for=""></label>
-                                    <input type="text" name="">
-                                </div>
-                                <div class="col-md-12">
-                                    <input type="submit" class="btn btn-primary" value="@lang('messages.edit')">
-                                    <a class="btn close" href="#">@lang('messages.cancel')</a>
-                                </div>
-                            </form>
-                        </div>
+            <div class="modal-body">
+                <div class="img-container">
+                    <div class="row">
+                        <form>
+                            <div class="col-md-12 py-1 ">
+                                <label for=""></label>
+                                <input type="text" name="">
+                            </div>
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-primary" value="@lang('messages.edit')">
+                                <a class="btn close" href="#">@lang('messages.cancel')</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
 @endsection

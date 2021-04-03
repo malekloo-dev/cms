@@ -21,6 +21,9 @@
     <meta name="msapplication-TileColor" content="#fff">
     <meta name="msapplication-square100x100logo" content="{{ asset('/img/fav.png') }}">
 
+    @yield('bootstrap')
+
+
     <link rel="stylesheet" href="{{ asset('style.css') }}">
     <link rel="icon" href="{{ asset('/img/fav.png') }}" type="image/x-icon">
     <link rel="stylesheet" media="bogus">

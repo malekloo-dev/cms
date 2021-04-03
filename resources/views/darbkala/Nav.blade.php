@@ -79,11 +79,10 @@
                             <a href="{{ route('company.dashboard') }}">پروفایل</a>
                         </li>
                     @else
-
                         <li>
                             <a href="{{ route('login') }}">ورود</a>
-                        <li>
                         </li>
+                        <li>
                         <a href="{{ route('register') }}">ثبت نام</a>
                         </li>
                     @endauth
