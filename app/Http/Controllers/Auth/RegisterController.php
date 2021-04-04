@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -78,6 +79,12 @@ class RegisterController extends Controller
 
     protected function registered($request, $user)
     {
+        Company::create([
+            'user_id'=> $user->id,
+            'name' => $user->name,
+            'email' => $user->email
+        ]);
+
         $user->assignRole('company');
     }
     protected function redirectTo()
