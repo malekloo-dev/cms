@@ -33,10 +33,11 @@
             content_types: ['ckeditor'],
             ckeditor: {
                 config: {
-                    extraPlugins:['ckfinder','html5video','widget','widgetselection','clipboard','lineutils','spacingsliders','N1ED-editor'],
+                    extraPlugins:['ckfinder','html5video','widget','widgetselection','clipboard','lineutils','spacingsliders'],
                     @if(!$ltr)
                         language: 'fa',
                     @endif
+                    allowedContent:false,
                     // ckfinder: {
                     //     uploadUrl: "{{ route('contents.upload', ['_token' => csrf_token()]) }}",
                     // },

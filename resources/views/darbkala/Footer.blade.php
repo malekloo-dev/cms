@@ -1,7 +1,7 @@
 <section class="wide" id="footer">
     <div class="container">
         <div class="social-network">
-            <a href="https://twitter.com/DarbkalaC" target="_blanck">
+            <a href="https://twitter.com/DarbkalaC" target="_blank">
 
                 <svg width="32pt" height="32pt" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 496 496"
@@ -33,7 +33,7 @@
                 </svg>
 
             </a>
-            <a href="https://www.facebook.com/darb.kala" target="_blanck">
+            <a href="https://www.facebook.com/darb.kala" target="_blank">
 
                 <svg width="32pt" height="32pt" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -49,7 +49,7 @@
                 </svg>
 
             </a>
-            <a href="https://www.instagram.com/darbkala/" target="_blanck">
+            <a href="https://www.instagram.com/darbkala/" target="_blank">
 
 
                 <svg width="32pt" height="32pt" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +77,7 @@
                 </svg>
 
             </a>
-            <a href="https://www.linkedin.com/company/darbkala/" target="_blanck">
+            <a href="https://www.linkedin.com/company/darbkala/" target="_blank">
                 <svg  viewBox="0 0 512 512" width="32pt" height="32pt" xmlns="http://www.w3.org/2000/svg">
                     <g>
                         <path
@@ -87,9 +87,9 @@
             </a>
         </div>
         <div class="flex grow one text-center">
-            <div> شرکت درب کالا، پلتفرم تبلیغاتی و مشاوره در زمینه <a target="_blanck"
+            <div> شرکت درب کالا، پلتفرم تبلیغاتی و مشاوره در زمینه <a target="_blank"
                     href="{{ url('/درب-ضد-سرقت') }}">درب ضد سرقت</a> .
-                ساخته شده توسط <a target="_blanck" href="https://tarhoweb.com">طرح و وب</a></div>
+                ساخته شده توسط <a target="_blank" href="https://tarhoweb.com">طرح و وب</a></div>
         </div>
     </div>
 </section>
