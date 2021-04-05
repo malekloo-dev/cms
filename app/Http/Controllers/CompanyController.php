@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
+use App\Models\Content;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
@@ -86,5 +89,21 @@ class CompanyController extends Controller
         $url = $imagePath . $fileNameAndType;
         // dd($url);
         return $url;
+    }
+
+
+    function profileShow(Request $request, $id)
+    {
+
+        $company = Company::find($id);
+
+        $produsct = Content::where('publish_date', '<=', DB::raw('now()'));
+        $produsct = $produsct->where('type', '=', '2');
+        $produsct = $produsct->where('attr_type', '=', 'product');
+        $produsct = $produsct->orderby('id', 'desc');
+        $produsct = $produsct->get();
+        
+
+        return view('auth.profileShow', compact('company','produsct'));
     }
 }

@@ -93,6 +93,7 @@ Route::post('/spider/addToCms', [SpiderController::class, 'reloadAdd']);
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/reload', [ContentController::class, 'reload']);
 
+Route::get('/profile/{id?}', [CompanyController::class, 'profileShow'])->name('profile.index');
 Route::get('/{slug?}/{b?}', [CmsController::class, 'request']);
 
 Route::post('/comment', [CommentController::class, 'store'])->name('comment.client.store');
