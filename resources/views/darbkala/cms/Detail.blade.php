@@ -110,7 +110,15 @@
                     <div>
                         <h1 class="">{{ $detail->title }}</h1>
                         <div>
-                            @empty(!$detail->companies->first()) <div> <a href="{{ url('/profile/'.$detail->companies->first()->id) }}">{{ $detail->companies->first()->name ?? '' }}</a> </div>@endempty
+                            @empty(!$detail->companies->first())
+                                <div class="company-logo">
+                                    <a href="{{ url('/profile/'.$detail->companies->first()->id) }}">
+                                        @if (isset($detail->companies->first()->logo) || $detail->companies->first()->logo == '' || !file_exists(public_path($detail->companies->first()->logo)))
+                                            <img src="{{ url($detail->companies->first()->logo) }}" width="50" height="50" class="border-radius-50" alt="">
+                                        @endif
+                                        {{ $detail->companies->first()->name ?? '' }}</a>
+                                </div>
+                                @endempty
                             @isset($detail->attr['price'])
                                 <span class="price text-green "> @convertCurrency($detail->attr['price']?? 0) تومان</span>
                             @endisset

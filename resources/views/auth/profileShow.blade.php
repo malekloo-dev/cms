@@ -25,7 +25,7 @@
                                 d="m19.25 19.5h-14.5c-.414 0-.75-.336-.75-.75v-2c0-1.517 1.233-2.75 2.75-2.75h10.5c1.517 0 2.75 1.233 2.75 2.75v2c0 .414-.336.75-.75.75z" />
                         </svg>
                     @else
-                        <img class="border-radius-15" src="{{ url($company->logo) }}">
+                        <img class="border-radius-50" src="{{ url($company->logo) }}">
                     @endif
                 </div>
                 <div class="flex one two-700 three-1100 four-fifth ">

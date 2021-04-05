@@ -663,9 +663,18 @@ nav[role="navigation"] span > svg {
         margin: 0;
     }
 }
-.product-detail .rate {
-    display: flex;
-    margin: auto;
+.product-detail {
+    .company-logo a {
+        display: flex;
+        align-items: center;
+        img{
+            margin-left:1em;
+        }
+    }
+    .rate {
+        display: flex;
+        margin: auto;
+    }
 }
 .product-detail .rate img {
     width: 20px;

@@ -2447,6 +2447,9 @@ section.wide {
 .border-radius-15 {
     border-radius: 15px;
 }
+.border-radius-50 {
+    border-radius: 50%;
+}
 
 .search1 > h3 {
     font-weight: 400;
@@ -2958,7 +2961,7 @@ section.panel {
         }
     }
     .profile-show{
-        
+
     }
 }
 @media (max-width: 960px) {
