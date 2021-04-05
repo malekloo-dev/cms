@@ -3,103 +3,100 @@
 @section('Content')
 
     <section class="profile-show">
-        <div class="">
-            <h1 class="full">@lang('messages.profile')</h1>
+        <div class="flex shadow">
+            <h1 class="full">{{ $company->name ?? '' }}</h1>
             <div class="map-area">
                 <div id="mapid"></div>
             </div>
-            <div class="flex one two-700 three-1100 mt-2">
-                
-                @if (!isset($company->logo) || $company->logo == '' ||   !file_exists(public_path($company->logo )))
-            <svg id="bold" enable-background="new 0 0 24 24" height="100" viewBox="0 0 24 24" width="100"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="m19 19.5v-5c0-1.654 1.346-3 3-3 .552 0 1 .448 1 1 0 .556-.454 1.007-1.012 1-.548-.007-.988.452-.988 1v3c0 1.105-.895 2-2 2z" />
-                <path
-                    d="m5 19.5v-5c0-1.654-1.346-3-3-3-.552 0-1 .448-1 1 0 .556.454 1.007 1.012 1 .548-.007.988.452.988 1v3c0 1.105.895 2 2 2z" />
-                <path d="m16.25 24h-8.5c-.552 0-1-.448-1-1s.448-1 1-1h8.5c.552 0 1 .448 1 1s-.448 1-1 1z" />
-                <path d="m12 24c-.552 0-1-.448-1-1v-4.25c0-.552.448-1 1-1s1 .448 1 1v4.25c0 .552-.448 1-1 1z" />
-                <path
-                    d="m17.061 13h-10.122c-.518 0-1.006-.228-1.339-.624-.334-.396-.474-.916-.385-1.426l1.652-9.5c.146-.84.871-1.45 1.724-1.45h6.817c.854 0 1.579.61 1.724 1.451l1.652 9.5c.089.51-.051 1.03-.385 1.426-.332.395-.82.623-1.338.623z" />
-                <path
-                    d="m19.25 19.5h-14.5c-.414 0-.75-.336-.75-.75v-2c0-1.517 1.233-2.75 2.75-2.75h10.5c1.517 0 2.75 1.233 2.75 2.75v2c0 .414-.336.75-.75.75z" />
-            </svg>
-            <img style="display: none">
-
-        @else
-            <img src="{{ url($company->logo) }}">
-            @endif
-                <div class="">
-                    @lang('messages.store name'):
-                    <span class="text-editor" data-field='name'
-                        data-label="@lang('messages.store name')">{{ $company->name ?? '' }}</span>
+            <div class="flex one five-700  ">
+                <div class="one">
+                    @if (!isset($company->logo) || $company->logo == '' || !file_exists(public_path($company->logo)))
+                        <svg id="bold" enable-background="new 0 0 24 24" height="100" viewBox="0 0 24 24" width="100"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="m19 19.5v-5c0-1.654 1.346-3 3-3 .552 0 1 .448 1 1 0 .556-.454 1.007-1.012 1-.548-.007-.988.452-.988 1v3c0 1.105-.895 2-2 2z" />
+                            <path
+                                d="m5 19.5v-5c0-1.654-1.346-3-3-3-.552 0-1 .448-1 1 0 .556.454 1.007 1.012 1 .548-.007.988.452.988 1v3c0 1.105.895 2 2 2z" />
+                            <path d="m16.25 24h-8.5c-.552 0-1-.448-1-1s.448-1 1-1h8.5c.552 0 1 .448 1 1s-.448 1-1 1z" />
+                            <path d="m12 24c-.552 0-1-.448-1-1v-4.25c0-.552.448-1 1-1s1 .448 1 1v4.25c0 .552-.448 1-1 1z" />
+                            <path
+                                d="m17.061 13h-10.122c-.518 0-1.006-.228-1.339-.624-.334-.396-.474-.916-.385-1.426l1.652-9.5c.146-.84.871-1.45 1.724-1.45h6.817c.854 0 1.579.61 1.724 1.451l1.652 9.5c.089.51-.051 1.03-.385 1.426-.332.395-.82.623-1.338.623z" />
+                            <path
+                                d="m19.25 19.5h-14.5c-.414 0-.75-.336-.75-.75v-2c0-1.517 1.233-2.75 2.75-2.75h10.5c1.517 0 2.75 1.233 2.75 2.75v2c0 .414-.336.75-.75.75z" />
+                        </svg>
+                    @else
+                        <img class="border-radius-15" src="{{ url($company->logo) }}">
+                    @endif
                 </div>
-                <div class=" ">
-                    @lang('messages.name'):
-                    <span class="text-editor" data-field="manager"
-                        data-label="@lang('messages.name')">{{ $company->manager ?? '' }}</span>
-                </div>
-                <div class="">@lang('messages.sale manager'):
-                    <span class="text-editor" data-field="sale_manager"
-                        data-label="@lang('messages.sale manager')">{{ $company->sale_manager ?? '' }}</span>
-                </div>
-                <div class="">@lang('messages.mobile'):
-                    <span class="text-editor" data-field="mobile"
-                        data-label="@lang('messages.mobile')">{{ $company->mobile ?? '' }}</span>
-                </div>
-                <div class="">@lang('messages.phone'):
-                    <span class="ltr">
-                        @isset($company->phone)
-                            @foreach ($company->phone as $item)
-                                {{ $item }}
-                                @if (!$loop->last)
-                                    -
-                                @endif
-                            @endforeach
-                        @endisset
-                    </span>
-                </div>
-                <div class="">@lang('messages.site'):
-                    <span class="text-editor" data-field="site"
-                        data-label="@lang('messages.site')">{{ $company->site ?? '' }}</span>
-                </div>
+                <div class="flex one two-700 three-1100 four-fifth ">
+                    <div class="">
+                        @lang('messages.name'):
+                        <span class="text-editor" data-field="manager"
+                            data-label="@lang('messages.name')">{{ $company->manager ?? '' }}</span>
+                    </div>
+                    <div class="">@lang('messages.sale manager'):
+                        <span class="text-editor" data-field="sale_manager"
+                            data-label="@lang('messages.sale manager')">{{ $company->sale_manager ?? '' }}</span>
+                    </div>
+                    <div class="">@lang('messages.mobile'):
+                        <span class="text-editor" data-field="mobile"
+                            data-label="@lang('messages.mobile')">{{ $company->mobile ?? '' }}</span>
+                    </div>
+                    <div class="">@lang('messages.phone'):
+                        <span class="ltr">
+                            @isset($company->phone)
+                                @foreach ($company->phone as $item)
+                                    {{ $item }}
+                                    @if (!$loop->last)
+                                        -
+                                    @endif
+                                @endforeach
+                            @endisset
+                        </span>
+                    </div>
+                    <div class="">@lang('messages.site'):
+                        <span class="text-editor" data-field="site"
+                            data-label="@lang('messages.site')">{{ $company->site ?? '' }}</span>
+                    </div>
 
-                <div class="">@lang('messages.email'): <span class="text-editor" data-field="email"
-                        data-label="@lang('messages.email')">{{ $company->email ?? '' }}</span>
+                    <div class="">@lang('messages.email'): <span class="text-editor" data-field="email"
+                            data-label="@lang('messages.email')">{{ $company->email ?? '' }}</span>
+                    </div>
+
+                    <div class="">@lang('messages.address'): <span class="text-editor" data-field="address"
+                            data-label="@lang('messages.address')">{{ $company->address ?? '' }}</span></div>
+
+                    <div class="">@lang('messages.city'): <span class="text-editor" data-field="city"
+                            data-label="@lang('messages.city')">{{ $company->city ?? '' }}</span>
+                    </div>
+
+                    <div class="">@lang('messages.province'): <span class="text-editor" data-field="province"
+                            data-label="@lang('messages.province')">{{ $company->province ?? '' }}</span></div>
+
+                    <div class="">@lang('messages.whatsapp'): <span class="ltr text-editor" data-field="whatsapp"
+                            data-label="@lang('messages.whatsapp')">{{ $company->whatsapp ?? '' }}</span>
+                    </div>
+
+                    <div class="">@lang('messages.telegram'): <span class="text-editor" data-field="telegram"
+                            data-label="@lang('messages.telegram')">{{ $company->telegram ?? '' }}</span></div>
+
+                    <div class="">@lang('messages.instagram'): <span class="text-editor" data-field="instagram"
+                            data-label="@lang('messages.instagram')">{{ $company->instagram ?? '' }}</span></div>
+
+                    <div class="">@lang('messages.register date'): <span>{{ convertGToJ($company->date ?? '') }}</span></div>
                 </div>
-
-                <div class="">@lang('messages.address'): <span class="text-editor" data-field="address"
-                        data-label="@lang('messages.address')">{{ $company->address ?? '' }}</span></div>
-
-                <div class="">@lang('messages.city'): <span class="text-editor" data-field="city"
-                        data-label="@lang('messages.city')">{{ $company->city ?? '' }}</span>
-                </div>
-
-                <div class="">@lang('messages.province'): <span class="text-editor" data-field="province"
-                        data-label="@lang('messages.province')">{{ $company->province ?? '' }}</span></div>
-
-                <div class="">@lang('messages.whatsapp'): <span class="ltr text-editor" data-field="whatsapp"
-                        data-label="@lang('messages.whatsapp')">{{ $company->whatsapp ?? '' }}</span>
-                </div>
-
-                <div class="">@lang('messages.telegram'): <span class="text-editor" data-field="telegram"
-                        data-label="@lang('messages.telegram')">{{ $company->telegram ?? '' }}</span></div>
-
-                <div class="">@lang('messages.instagram'): <span class="text-editor" data-field="instagram"
-                        data-label="@lang('messages.instagram')">{{ $company->instagram ?? '' }}</span></div>
-
-                <div class="">@lang('messages.register date'): <span>{{ convertGToJ($company->date ?? '') }}</span></div>
             </div>
+
         </div>
     </section>
 
-
-    {{-- products --}}
+    {{-- all contents --}}
     <section class="index-items home-top-view">
         <div class="flex one">
             <div>
-                <div class="flex two two-500  six-800 center ">
-                    @foreach ($produsct as $content)
+                <h2 class="text-right">محتوای ارسالی</h2>
+                <div class="flex two two-500  six-800  ">
+                    @foreach ($company->contents as $content)
                         <div>
                             <a class="hover shadow2" href="{{ url($content->slug) }}">
 

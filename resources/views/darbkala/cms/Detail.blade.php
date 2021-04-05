@@ -110,6 +110,7 @@
                     <div>
                         <h1 class="">{{ $detail->title }}</h1>
                         <div>
+                            @empty(!$detail->companies->first()) <div> <a href="{{ url('/profile/'.$detail->companies->first()->id) }}">{{ $detail->companies->first()->name ?? '' }}</a> </div>@endempty
                             @isset($detail->attr['price'])
                                 <span class="price text-green "> @convertCurrency($detail->attr['price']?? 0) تومان</span>
                             @endisset
@@ -128,7 +129,7 @@
                                             srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
                                             src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
                                     @endfor
-                                    <span class="font-08">({{ count($detail->comments) }} نفر)</span>
+                                    <span class="font-08">({{ count($detail->comments) }} نفر)   </span>
                                 @endif
                             </span> |
                             {{ $detail->viewCount }} بار دیده شده |

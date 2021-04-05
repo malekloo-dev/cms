@@ -14,4 +14,10 @@ class Company extends Model
         'name', 'manager', 'sale_manager', 'address', 'city', 'province', 'mobile',
         'phone', 'email', 'site', 'whatsapp', 'telegram', 'instagram', 'logo', 'user_id'
     ];
+
+
+    public function contents()
+    {
+        return $this->belongsToMany(Content::class,'company_content','company_id','content_id');
+    }
 }

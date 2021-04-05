@@ -97,13 +97,14 @@ class CompanyController extends Controller
 
         $company = Company::find($id);
 
-        $produsct = Content::where('publish_date', '<=', DB::raw('now()'));
-        $produsct = $produsct->where('type', '=', '2');
-        $produsct = $produsct->where('attr_type', '=', 'product');
-        $produsct = $produsct->orderby('id', 'desc');
-        $produsct = $produsct->get();
-        
+        // $produsct = Content::where('publish_date', '<=', DB::raw('now()'));
+        // $produsct = $produsct->where('company_id', '=', $company->id);
+        // $produsct = $produsct->where('type', '=', '2');
+        // $produsct = $produsct->where('attr_type', '=', 'product');
+        // $produsct = $produsct->orderby('id', 'desc');
+        // $produsct = $produsct->get();
 
-        return view('auth.profileShow', compact('company','produsct'));
+
+        return view('auth.profileShow', compact('company'));
     }
 }

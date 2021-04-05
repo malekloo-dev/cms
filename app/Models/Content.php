@@ -35,4 +35,10 @@ class Content extends Model
 
         return $comments;
     }
+
+
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class);
+    }
 }
