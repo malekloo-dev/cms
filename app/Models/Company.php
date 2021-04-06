@@ -18,6 +18,6 @@ class Company extends Model
 
     public function contents()
     {
-        return $this->belongsToMany(Content::class,'company_content','company_id','content_id');
+        return $this->belongsToMany(Content::class,'company_contents','company_id','content_id');
     }
 }

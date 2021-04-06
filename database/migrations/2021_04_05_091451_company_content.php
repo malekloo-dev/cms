@@ -13,7 +13,7 @@ class CompanyContent extends Migration
      */
     public function up()
     {
-        Schema::create('company_content', function (Blueprint $table) {
+        Schema::create('company_contents', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('company_id')->default(0);
             $table->unsignedBigInteger('content_id')->default(0);
@@ -23,7 +23,7 @@ class CompanyContent extends Migration
             $table->foreign('company_id')->references('id')->on('companies')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            
+
             $table->foreign('content_id')->references('id')->on('contents')
             ->onDelete('cascade')
             ->onUpdate('cascade');
@@ -37,6 +37,6 @@ class CompanyContent extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('company_content');
+        Schema::dropIfExists('company_contents');
     }
 }

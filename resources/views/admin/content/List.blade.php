@@ -76,7 +76,7 @@
                                 </td>
                                 <td>
                                     @if ($content->attr != null)
-                                        {{ $content->attr['rate'] }}
+                                        {{ $content->attr['rate'] ?? ''}}
                                     @endif
                                 </td>
                                 <td>

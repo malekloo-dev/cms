@@ -5,8 +5,8 @@
     <section class="profile-show">
         <div class="flex shadow">
             <h1 class="full">{{ $company->name ?? '' }}</h1>
-            <div class="map-area">
-                <div id="mapid"></div>
+            <div class="map-area" style="display: block; width: 100%">
+                <div id="mapid" style="width: 100%; height: 200px;"></div>
             </div>
             <div class="flex one five-700  ">
                 <div class="one">
@@ -83,7 +83,8 @@
                     <div class="">@lang('messages.instagram'): <span class="text-editor" data-field="instagram"
                             data-label="@lang('messages.instagram')">{{ $company->instagram ?? '' }}</span></div>
 
-                    <div class="">@lang('messages.register date'): <span>{{ convertGToJ($company->date ?? '') }}</span></div>
+                    <div class="">@lang('messages.register date'): <span>{{ convertGToJ($company->date ?? '') }}</span>
+                    </div>
                 </div>
             </div>
 
@@ -139,18 +140,28 @@
 
 @endsection
 
+@section('bootstrap')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.rtl.min.css"
+        integrity="sha384-4dNpRvNX0c/TdYEbYup8qbjvjaMrgUPh+g4I03CnNtANuv+VAvPL6LqdwzZKV38G" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
+        integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous">
+    </script>
+@endsection
 
 @section('footer')
+
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin="anonymous" />
+
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
 
     <script>
+
         var map = L.map('mapid')
             .setView([{{ $company->location ?? '31.5,51.2' }}], 16);
 

@@ -23,12 +23,9 @@
             <img style="display: none">
 
         @else
-            <img src="{{ url(Auth::user()->company->logo) }}">
+            <img src="{{ url(Auth::user()->company->logo) }}?{{ uniqid() }}">
             @endif
-            <div onclick="document.getElementById('images').click();">
-                @lang('messages.edit')
-                <input type="file" name="images" id="images">
-            </div>
+            
 
         </li>
         <li>
@@ -38,7 +35,7 @@
                 href="{{ route('company.dashboard') }}">{{ __('messages.Dashboard') }}</a></li>
         <li class="{{ Request::is('company/profile') ? 'active' : '' }}"><a href="{{ route('company.profile') }}">
                 {{ __('messages.profile') }}</a></li>
-        <li class="{{ Request::is('company/products') ? 'active' : '' }}"><a class="no-border"
+        <li class="{{ (Request::is('company/products') || Request::is('company/products/create')) ? 'active' : '' }}"><a class="no-border"
                 href="{{ route('company.products') }}"> {{ __('messages.Products') }}</a></li>
         <li>
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -65,8 +62,6 @@
 
 
 @section('bootstrap')
-
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.rtl.min.css"
         integrity="sha384-4dNpRvNX0c/TdYEbYup8qbjvjaMrgUPh+g4I03CnNtANuv+VAvPL6LqdwzZKV38G" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
@@ -77,8 +72,3 @@
 
 
 
-@section('cropper')
-
-    @include('auth.cropper')
-
-@endsection

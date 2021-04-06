@@ -1,7 +1,8 @@
 .flex {
     display: -ms-flexbox;
     display: flex;
-    margin-left: -1em;
+    margin-left: -0.5em;
+    margin-right: -0.5em;
     width: calc(100%);
     flex-wrap: wrap;
     transition: all 0.3s ease;
@@ -1450,8 +1451,6 @@
     }
 }
 
-
-
 //////////
 // main //
 //////////
@@ -1744,7 +1743,6 @@ button {
     margin: 0.3em 0;
     cursor: pointer;
     transition: all 0.3s;
-    border-radius: 50px;
     height: auto;
     vertical-align: baseline;
     box-shadow: 0 0 rgba(0, 0, 0, 0) inset;
@@ -2372,6 +2370,7 @@ $sizes: 5;
 .font-15 {
     font-size: 1.5em;
 }
+.bold{font-weight: bold;}
 .align-left,
 .text-left {
     text-align: left;
@@ -2401,6 +2400,10 @@ $sizes: 5;
 }
 .bg-pink {
     background-color: #e81e6c;
+    color: #fff;
+}
+.bg-purple{
+    background-color: #5e0a69;
     color: #fff;
 }
 
@@ -2842,7 +2845,6 @@ section.panel {
         }
     }
 
-
     .map-area {
         #mapid {
             height: 280px;
@@ -2859,16 +2861,16 @@ section.panel {
             bottom: 0;
             padding: 2em;
             text-align: center;
-            .guid{
+            .guid {
                 color: #000;
                 background: rgba(236, 233, 23, 0.9);
-                border-radius: 0 0 3px 3px ;
+                border-radius: 0 0 3px 3px;
             }
-            #mapid{
+            #mapid {
                 height: 300px;
                 border-radius: 3px 3px 0 0;
             }
-            a.cancel{
+            a.cancel {
                 color: #fff;
             }
         }
@@ -2960,8 +2962,47 @@ section.panel {
             text-decoration: none;
         }
     }
-    .profile-show{
-
+    .list {
+        .item {
+            display: flex;
+            flex-flow: row wrap;
+            border-bottom: 1px solid #ddd;
+            &:last-child {
+                border-bottom: none;
+            }
+            > div {
+                flex-grow: 1;
+                flex: 1 1 auto;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                &.info {
+                    display: flex;
+                    flex-flow: row wrap;
+                    >div{
+                        flex-grow: 1;
+                    }
+                }
+                &:last-child {
+                    margin-bottom: 2px;
+                    flex-grow: 1;
+                    justify-content: center;
+                    max-width: 115px;
+                    > * {
+                        margin-right: 2px;
+                    }
+                }
+            }
+        }
+    }
+    .widget{
+        h2{
+            font-size: 1em;
+        }
+        &:hover{
+            color: #fff;
+            transform: scale(1.03);
+        }
     }
 }
 @media (max-width: 960px) {

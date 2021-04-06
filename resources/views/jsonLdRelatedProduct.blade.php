@@ -20,7 +20,7 @@
         "mpn": "{{$content->id}}",
         "brand": {
             "@type": "Brand",
-            "name": "{{ $content->attr['brand'] }}"
+            "name": "{{ $content->attr['brand'] ?? '' }}"
         },
         "offers":
         {

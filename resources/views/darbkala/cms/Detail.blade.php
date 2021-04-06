@@ -110,7 +110,7 @@
                     <div>
                         <h1 class="">{{ $detail->title }}</h1>
                         <div>
-                            @empty(!$detail->companies->first())
+                            @empty(!$detail->companies)
                                 <div class="company-logo">
                                     <a href="{{ url('/profile/'.$detail->companies->first()->id) }}">
                                         @if (isset($detail->companies->first()->logo) || $detail->companies->first()->logo == '' || !file_exists(public_path($detail->companies->first()->logo)))
