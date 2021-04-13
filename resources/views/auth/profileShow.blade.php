@@ -179,11 +179,7 @@
             .bindPopup(`@lang('messages.my location')`)
             .openPopup();
 
-        //access location
-        map.locate({
-            setView: true,
-            maxZoom: 16
-        });
+
 
         //meghyas
         L.control.scale().addTo(map);
