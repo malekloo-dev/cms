@@ -36,6 +36,10 @@ class Category extends Model
 
         return $comments;
     }
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class,'company_contents','content_id','company_id');
+    }
 
     public function content()
     {
