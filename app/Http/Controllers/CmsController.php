@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Content;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -19,6 +20,71 @@ class CmsController extends Controller
     public $breadcrumb;
 
 
+    public function showContent($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule)
+    {
+
+    }
+
+    public function showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule)
+    {
+        //dd($detail->content);
+
+        $relatedPost = Content::where('type', '=', '2')
+            ->where('attr_type', '=', 'article')
+            ->where('parent_id', '=', $detail->id)
+            ->where('publish_date', '<=', DB::raw('now()'))
+            ->get();
+
+        if (env('All_CONTENT_SUB_CATEGORY') == 1) {
+            $relatedPost = $this->getCatChildOfcontent($detail['id'], $relatedPost, 'article');
+        }
+
+
+        $relatedProduct = Content::where('type', '=', '2')
+            ->where('attr_type', '=', 'product')
+            ->where('parent_id', '=', $detail->id)
+            ->where('publish_date', '<=', DB::raw('now()'))
+            ->paginate(20);
+        // ->get();
+
+        if (env('All_CONTENT_SUB_CATEGORY') == 1) {
+            $relatedProduct = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
+        }
+
+
+        // dd($relatedProduct->links());
+        $subCategory = Content::where('type', '=', '1')
+            ->where('parent_id', '=', $detail->id)
+            ->where('publish_date', '<=', DB::raw('now()'))
+            ->get();
+
+        $template = env('TEMPLATE_NAME') . '.cms.DetailCategory';
+        //Widget
+        $widget = $this->getWidget('DetailCategory');
+
+
+        if ($detail->attr_type == 'html') {
+            $widget = $this->getWidget($detail->attr['template_name']);
+            $template = env('TEMPLATE_NAME') . '.cms.' . $detail->attr['template_name'];
+        }
+        //dd($detail);
+        // dd($relatedProduct->links());
+
+
+        return view($template, $widget, [
+            'detail' => $detail,
+            'relatedProduct' => $relatedProduct,
+            'relatedPost' => $relatedPost,
+            'breadcrumb' => $breadcrumb,
+            'table_of_content' => $table_of_content,
+            'subCategory' => $subCategory,
+            'images' => $images,
+            'seo' => $seo,
+            'editorModule' => $editorModule
+        ]);
+
+    }
+
     public function request($slug)
     {
         // redirect url
@@ -29,13 +95,15 @@ class CmsController extends Controller
         }
 
         // detail
-        $detail = Content::where('slug', '=', $slug)
+        $detail = Category::where('slug', '=', $slug)
             ->where('publish_date', '<=', DB::raw('now()'))
             ->first();
+
+
         if ($detail === null) {
             $data['title'] = '404';
             $data['name'] = 'Page not found';
-            return  response()
+            return response()
                 ->view(env('TEMPLATE_NAME') . '.NotFound', $data, 404);
         }
 
@@ -53,7 +121,6 @@ class CmsController extends Controller
         $seo['meta_title'] = $detail->meta_title;
         $seo['og:title'] = $detail->title;
         $seo['og:type'] = 'article';
-
 
 
         $table_of_content = array();
@@ -81,7 +148,6 @@ class CmsController extends Controller
         }
 
 
-
         $detail->increment('viewCount');
         $relatedPost = array();
         $subCategory = array();
@@ -89,8 +155,11 @@ class CmsController extends Controller
         $editorModule = editorModule($detail->description);
 
 
-
         if ($detail->type == 1) {
+
+
+            return $this->showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule);
+
             $relatedPost = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'article')
                 ->where('parent_id', '=', $detail->id)
@@ -107,7 +176,6 @@ class CmsController extends Controller
             // ->get();
 
             $relatedPost = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
-
 
 
             // dd($relatedProduct->links());
@@ -194,8 +262,7 @@ class CmsController extends Controller
 
         $data = array();
 
-        foreach ((array) $attr as $var => $config) {
-
+        foreach ((array)$attr as $var => $config) {
 
 
             if ($config['type'] == 'images') {
@@ -256,13 +323,14 @@ class CmsController extends Controller
 
         return $data;
     }
+
     function getCatChildOfcontent($parentId, $temp, $attr_type = '')
     {
 
-        $cat =  Content::where([['parent_id', '=', $parentId], ['type', '=', 1]])->get()->toArray();
+        $cat = Content::where([['parent_id', '=', $parentId], ['type', '=', 1]])->get()->toArray();
 
 
-        $content =  Content::where([['parent_id', '=', $parentId], ['type', '=', 2], ['attr_type', '=', $attr_type]])
+        $content = Content::where([['parent_id', '=', $parentId], ['type', '=', 2], ['attr_type', '=', $attr_type]])
             ->where('publish_date', '<=', DB::raw('now()'));
 
         if ($attr_type != '') $content = $content->where('attr_type', '=', $attr_type);
@@ -270,7 +338,7 @@ class CmsController extends Controller
         $content = $content->get();
 
         if (gettype($temp) == 'array') {
-            $temp =  new Collection;
+            $temp = new Collection;
         }
 
         $temp = $temp->merge($content);
@@ -279,12 +347,11 @@ class CmsController extends Controller
             return $temp;
         } else {
             foreach ($cat as $k => $v) {
-                $temp =  $this->getCatChildOfcontent($v["id"], $temp, $attr_type);
+                $temp = $this->getCatChildOfcontent($v["id"], $temp, $attr_type);
             }
             return $temp;
         }
     }
-
 
 
     public function tableOfImage($content)
@@ -331,8 +398,10 @@ class CmsController extends Controller
         //$tag = $matches[1];
         // dd($matches);
         $depth = 3;
-        $pattern = '/<h[2-' . $depth . ']*[^>]*>.*?<\/h[2-' . $depth . ']>/';
+        // $pattern = '/<h[2-' . $depth . ']*[^>]*>.*?<\/h[2-' . $depth . ']>/';
         $pattern = '|<h[^>]+>(.*)</h[^>]+>|iU';
+        $pattern = '|<h2[^>]+>(.*)</h[^>]+>|iU';
+        //dd($pattern);
 
         $whocares = preg_match_all($pattern, $content, $winners);
 
@@ -350,7 +419,7 @@ class CmsController extends Controller
         //dd($detail->description);
         function cleareText($val)
         {
-            return  trim(clearHtml(str_replace('&nbsp;', ' ', $val)));
+            return trim(clearHtml(str_replace('&nbsp;', ' ', $val)));
         }
 
         //$table=$winners;

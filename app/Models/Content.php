@@ -29,6 +29,14 @@ class Content extends Model
 
     ];
 
+
+//    public function category()
+//    {
+//        return $this->belongsToMany('App\Models\Category','contents_category','content_id','cat_id');
+//    }
+
+
+
     public function comments()
     {
         $comments = $this->hasMany('App\Models\Comment')->where('status', '=', '1');

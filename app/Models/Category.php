@@ -31,6 +31,10 @@ class Category extends Model
 
     ];
 
+    public function content()
+    {
+        return $this->belongsToMany('App\Models\Content','contents_category','cat_id','content_id');
+    }
 
     public function childs()
     {

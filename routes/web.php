@@ -20,6 +20,19 @@ use Illuminate\Support\Facades\App;
 
 App::setLocale(env('SITE_LANG'));
 
+//DB::listen(function ($query) {
+//    echo '<pre style="background-color:yellow;' .
+//        'font-size:x-small;">' .
+//        'Query fired ' .
+//        '"' . $query->sql . '" ' .
+//        '<small>(' . __FILE__ . ' - ' . __LINE__ . ')</small>' .
+//        '</pre>';
+//
+//});
+
+
+
+
 
 
 Route::prefix('/company')->middleware(['auth', 'role:super admin|company'])->group(function () {

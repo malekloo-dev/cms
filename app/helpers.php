@@ -151,7 +151,34 @@ if (!function_exists('editorModule')) {
     function editorModule($content)
     {
 
+        //$content=str_replace('r','',$content);
+
+        // $input=preg_replace('/\s+/', ' ', $input);
+       // $content = strip_tags(trim($content));
+
+
+        //$input=strip_tags(trim(preg_replace('/\s+/', ' ',$input)));
+        // $input = str_replace("&nbsp;", '', $input);
+        // echo $input;
+        $content = str_replace("\r\n\r\n\r\n", "\r\n", $content);
+        $content = str_replace("\r\n\r\n", "\r\n", $content);
+        $content = str_replace("\r\n", "", $content);
+        $content = str_replace("\n", "", $content);
+
+        //dd($content);
+
+        //$input = str_replace("\t", ' ', $input);
+
+        // echo "<br/>********anjam shod********<br/>";
+        //$input = decode_entities_full($input, ENT_COMPAT, "utf-8");
+
+        //$content = trim(preg_replace('/\s\s+/', ' ', $content));
+
+        //dd($content);
+
+
         preg_match_all("/({gallery(.*){\/gallery})|({attr}(.*){\/attr})|({faq}(.*){\/faq})/U", $content, $pat_array);
+
 
         //{gallery&size=10&template=1}
         //parse_str($_SERVER['QUERY_STRING'], $outputArray);
