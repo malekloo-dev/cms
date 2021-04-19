@@ -79,7 +79,8 @@
                     <h1 class="site-name">{{ $detail->title }}</h1>
                     <div class="website"></div>
                     <div class="rate">
-                        @if (count($detail->comments))
+
+                        @if (isset($detail->comments) && count($detail->comments))
                             @php
                                 $rateAvrage = $rateSum = 0;
                             @endphp
@@ -291,6 +292,8 @@
                             data-callback='onSubmit' data-action='submit'>ارسال نظر</button>
                     </form>
                 </div>
+                @isset($detail->comments)
+
 
                 @foreach ($detail->comments as $comment)
                     @if ($comment['name'] != '' && $comment['comment'] != '')
@@ -312,6 +315,7 @@
                         </div>
                     @endif
                 @endforeach
+                @endisset
             </div>
         </div>
     </div>

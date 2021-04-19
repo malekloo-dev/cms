@@ -17,7 +17,7 @@ class Comment extends Model
 
 
     public function content(){
-        return $this->belongsTo('App\Content');
+        return $this->belongsTo('App\Models\Content');
     }
 
 }

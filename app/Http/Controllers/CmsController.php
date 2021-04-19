@@ -209,6 +209,7 @@ class CmsController extends Controller
                 'editorModule' => $editorModule
             ]);
         } else {
+            
             $relatedPost = Content::where('type', '=', '2')
                 ->where('parent_id', '=', $detail->parent_id)
                 ->where('id', '<>', $detail->id)

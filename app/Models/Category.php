@@ -30,10 +30,16 @@ class Category extends Model
 
 
     ];
+    public function comments()
+    {
+        $comments = $this->hasMany(Comment::class,'content_id')->where('status', '=', '1');
+
+        return $comments;
+    }
 
     public function content()
     {
-        return $this->belongsToMany('App\Models\Content','contents_category','cat_id','content_id');
+        return $this->belongsToMany(Content::class,'contents_category','cat_id','content_id');
     }
 
     public function childs()
