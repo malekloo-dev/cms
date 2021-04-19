@@ -70,8 +70,8 @@
                     <figure class="image">
                         <img src="{{ $detail->images['images']['small'] ?? $detail->images['thumb'] }}"
                             alt="{{ $detail->title }}" width="189" height="100" srcset="
-                                {{ $detail->images['images']['small'] ?? $detail->images['thumb'] }} 1x,
-                                {{ $detail->images['images']['large'] ?? $detail->images['thumb'] }} 2x">
+                                    {{ $detail->images['images']['small'] ?? $detail->images['thumb'] }} 1x,
+                                    {{ $detail->images['images']['large'] ?? $detail->images['thumb'] }} 2x">
 
                     </figure>
                 @endif
@@ -111,7 +111,7 @@
             <div class="fourth-500">
                 <div>
                     <div class="mb-1">محل تبلیغ شما</div>
-                    {{--images&label=adv&var=adv&count=3 --}}
+                    {{-- images&label=adv&var=adv&count=3 --}}
                     @if (isset($adv) && isset($adv['images']))
                         <div class="text-center">
                             @foreach ($adv['images'] as $k => $content)
@@ -122,7 +122,7 @@
                         </div>
                     @endisset
                     <div>وبسایت ها</div>
-                    {{--category&label=sideCategory&var=sideCategory&count=6 --}}
+                    {{-- category&label=sideCategory&var=sideCategory&count=6 --}}
                     @isset($sideCategory['data'])
                         <ul>
                             @foreach ($sideCategory['data'] as $item)
@@ -134,7 +134,7 @@
                     @endisset
 
                     <div>آخرین مقالات</div>
-                    {{--post&label=sideLastPost&var=sideLastPost&count=6&child=true --}}
+                    {{-- post&label=sideLastPost&var=sideLastPost&count=6&child=true --}}
                     @isset($sideLastPost['data'])
                         <ul class="p-0">
                             @foreach ($sideLastPost['data'] as $content)
@@ -179,7 +179,7 @@
                     <h2>محصولات مرتبط {{ $detail->title }}</h2>
                     <div class="flex one two-500 four-900 center ">
 
-                        {{--$data['newPost'] --}}
+                        {{-- $data['newPost'] --}}
                         @foreach ($relatedProduct as $content)
                             <div>
                                 <article>
@@ -209,7 +209,7 @@
                     <h2>مقاله های مرتبط {{ $detail->title }}</h2>
                     <div class="flex one two-500 four-900 center ">
 
-                        {{--$data['newPost'] --}}
+                        {{-- $data['newPost'] --}}
                         @foreach ($relatedPost as $content)
                             <div>
                                 <article>
@@ -293,28 +293,26 @@
                     </form>
                 </div>
                 @isset($detail->comments)
-
-
-                @foreach ($detail->comments as $comment)
-                    @if ($comment['name'] != '' && $comment['comment'] != '')
-                        <div class="comment">
-                            <div class="aside">
-                                <div class="name">{{ $comment['name'] }}</div>
-                                <div class="date">{{ convertGToJ($comment['created_at']) }}</div>
-                            </div>
-                            <div class="article">
-                                <div>
-                                    @for ($i = $comment->rate; $i >= 1; $i--)
-                                        <img width="20" height="20"
-                                            srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
-                                            src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
-                                    @endfor
+                    @foreach ($detail->comments as $comment)
+                        @if ($comment['name'] != '' && $comment['comment'] != '')
+                            <div class="comment">
+                                <div class="aside">
+                                    <div class="name">{{ $comment['name'] }}</div>
+                                    <div class="date">{{ convertGToJ($comment['created_at']) }}</div>
                                 </div>
-                                <div class="text">{!! $comment['comment'] !!}</div>
+                                <div class="article">
+                                    <div>
+                                        @for ($i = $comment->rate; $i >= 1; $i--)
+                                            <img width="20" height="20"
+                                                srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
+                                                src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                                        @endfor
+                                    </div>
+                                    <div class="text">{!! $comment['comment'] !!}</div>
+                                </div>
                             </div>
-                        </div>
-                    @endif
-                @endforeach
+                        @endif
+                    @endforeach
                 @endisset
             </div>
         </div>
