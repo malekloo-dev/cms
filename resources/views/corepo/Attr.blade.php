@@ -3,10 +3,10 @@
     @foreach($module['content'] as $key=>$attr)
         <div class="">
             <div >
-                {!!  $attr['field']!!}
+                {!! isset($attr['field']) ? $attr['field'] :'' !!}
             </div>
             <div >
-                {!!  $attr['value']!!}
+                {!! isset($attr['value']) ? $attr['value'] :'' !!}
             </div>
         </div>
         @endforeach
