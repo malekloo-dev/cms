@@ -29,8 +29,9 @@
                 @endforeach
             ],
         @endif
+    {!! isset($attr['value']) ? $attr['value'] :'' !!}
 
-        "description": "@foreach($editorModule as $key=>$module) @if ($module['type']=='description') {{clearHtml($module['content'])}} @endif  @if ($module['type']=='attr'){!!  "مشخصا فنی : "!!} @foreach($module['content'] as $key=>$attr){!!  clearHtml($attr['field'])!!} : {!!  clearHtml($attr['value'])!!} - @endforeach @endif @endforeach",
+        "description": "@foreach($editorModule as $key=>$module) @if ($module['type']=='description') {{clearHtml($module['content'])}} @endif @if ($module['type']=='attr'){!!  "مشخصا فنی : "!!}@foreach($module['content'] as $key=>$attr) {!! isset($attr['field']) ? clearHtml($attr['field']) :'' !!} :   {!! isset($attr['value']) ? clearHtml($attr['value']) :'' !!} - @endforeach @endif @endforeach",
         "sku": "{{$detail->id}}",
         "mpn": "{{$detail->id}}",
         "brand":

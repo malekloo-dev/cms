@@ -27,7 +27,6 @@ class CmsController extends Controller
 
     public function showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule)
     {
-        //dd($detail->content);
 
         $relatedPost = Content::where('type', '=', '2')
             ->where('attr_type', '=', 'article')
@@ -40,12 +39,15 @@ class CmsController extends Controller
         }
 
 
-        $relatedProduct = Content::where('type', '=', '2')
-            ->where('attr_type', '=', 'product')
-            ->where('parent_id', '=', $detail->id)
-            ->where('publish_date', '<=', DB::raw('now()'))
-            ->paginate(20);
-        // ->get();
+        $relatedProduct=$detail->products()->paginate(20);
+
+        //        dd($relatedProduct);
+        //        $relatedProduct = Content::where('type', '=', '2')
+        //            ->where('attr_type', '=', 'product')
+        //            ->where('parent_id', '=', $detail->id)
+        //            ->where('publish_date', '<=', DB::raw('now()'))
+        //            ->paginate(20);
+        //        // ->get();
 
         if (env('All_CONTENT_SUB_CATEGORY') == 1) {
             $relatedProduct = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
@@ -60,14 +62,14 @@ class CmsController extends Controller
 
         $template = env('TEMPLATE_NAME') . '.cms.DetailCategory';
         //Widget
-        $widget = $this->getWidget('DetailCategory');
-
 
         if ($detail->attr_type == 'html') {
             $widget = $this->getWidget($detail->attr['template_name']);
             $template = env('TEMPLATE_NAME') . '.cms.' . $detail->attr['template_name'];
+        }else{
+            $widget = $this->getWidget('DetailCategory');
+
         }
-        //dd($detail);
         // dd($relatedProduct->links());
 
 
@@ -157,7 +159,6 @@ class CmsController extends Controller
 
         if ($detail->type == 1) {
 
-
             return $this->showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule);
 
             $relatedPost = Content::where('type', '=', '2')
@@ -209,7 +210,6 @@ class CmsController extends Controller
                 'editorModule' => $editorModule
             ]);
         } else {
-            
             $relatedPost = Content::where('type', '=', '2')
                 ->where('parent_id', '=', $detail->parent_id)
                 ->where('id', '<>', $detail->id)
@@ -251,7 +251,6 @@ class CmsController extends Controller
     public function getWidget($fileName)
     {
 
-
         // $attr = Widget::find(1);
         $attr = Widget::where('file_name', '=', $fileName)->first();
 
@@ -265,7 +264,9 @@ class CmsController extends Controller
 
         foreach ((array)$attr as $var => $config) {
 
-
+            if (!isset($config['type'])){
+                continue;
+            }
             if ($config['type'] == 'images') {
                 $data[$var] = $config;
                 unset($data[$var]['count']);

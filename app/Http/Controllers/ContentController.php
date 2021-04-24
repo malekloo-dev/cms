@@ -143,7 +143,7 @@ class ContentController extends Controller
         $data['publish_date'] = convertJToG($date);
 
 
-        $data['parent_id'] = $request->parent_id[0];
+        $data['parent_id'] = $request->parent_id_hide[0];
         $data['type'] = '2';
         $data['images'] = $imagesUrl;
         if ($request->slug == '') {
@@ -156,8 +156,10 @@ class ContentController extends Controller
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
-        $result = Content::create($data);
-        return $result;
+        $object = Content::create($data);
+        $object->categories()->attach($request->parent_id_hide);
+
+        return $object;
     }
 
     /**
@@ -195,6 +197,7 @@ class ContentController extends Controller
      */
     public function edit($id)
     {
+
         $where = array('id' => $id);
         $content_info = Content::where($where)->first();
 
@@ -255,10 +258,12 @@ class ContentController extends Controller
         $crud = Content::find($id);
 
         $data = $request->all();
+
         $date = $data['publish_date'];
         $data['publish_date'] = convertJToG($date);
 
-        $data['parent_id'] = $request->parent_id[0];
+        $data['parent_id'] = $request->parent_id_hide[0];
+
         $file = $request->file('images');
         //$inputs = $request->all();
 
@@ -283,7 +288,9 @@ class ContentController extends Controller
         $data['slug'] = str_replace('--', '-', $data['slug']);
 
         $crud->update($data);
+        $crud->categories()->sync($request->parent_id_hide);
 
+        //dd($crud);
 
         //        $crud->title = $request->get('title');
         //        $crud->brief_description = $request->get('brief_description');
@@ -324,6 +331,7 @@ class ContentController extends Controller
     {
         $crud = Content::find($id);
         $crud->delete();
+        $crud->categories()->detach();
 
         return redirect('admin/contents?type=' . $crud->attr_type);
     }

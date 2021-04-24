@@ -11,14 +11,50 @@
 
             var $input = $("#parent_id");
             $input.select2();
-            $("ul.select2-choices").sortable({
-                containment: 'parent'
-            });
 
+            $input.on("selecting unselecting change", function() {
+                setOption($("#parent_id").parent().find("ul.select2-choices"));
 
+            })
+            setOption($("#parent_id").parent().find("ul.select2-choices"));
+            $("#parent_id").parent().find("ul.select2-choices").sortable({
+                containment: 'parent',
+                update : function(){ setOption(this)},
 
         });
 
+        function setOption($this) {
+                var $select = $("#parent_id");
+                //$(this).closest(".select2-container").next();
+                var options;
+                options = $select.find("option");
+                $("#parent_id_hide").empty();
+                //var newoptions = '';
+                var newoptions = [];
+                // Clear option
+                $($this).find(".select2-search-choice").each(function (i, tag) {
+
+                    options.each(function (j, option) {
+                        var optionTag='';
+                        if ($.trim($(tag).text()) == $.trim($(option).text())) {
+                            // console.log(option.val());
+                            //$("#par_idd").append(new Option($(tag).text(),  $(option).val()));
+                            optionTag = new Option($(tag).text(), $(option).val());
+                            $("#par_idd").append(new Option($(tag).text(), $(option).val()));
+                            //newoptions=newoptions+','+$(option).val();
+                            newoptions.push(optionTag);
+                            //$("#par_idd").append(option);
+                        }
+
+                    });
+                });
+
+                $("#parent_id_hide").empty();
+                $("#parent_id_hide").append(newoptions);
+                $('#parent_id_hide option').prop('selected', true);
+
+            }
+        });
         $("#meta_keywords").select2({
             tags: [],
             maximumInputLength: 100
@@ -170,7 +206,9 @@
                         <label for="name" >@lang('messages.category'):</label>
                         {{--<select multiple name="parent_id" id="parent_id"
                             class="form-control">--}}
-                            <select id="parent_id" class="js-example-basic-multiple" name="parent_id[]"
+                        <input type="text" id="parent" class="parent" name="parent" value="">
+
+                        <select id="parent_id" class="js-example-basic-multiple" name="parent_id[]"
                                 multiple="multiple">
 
                                 @foreach ($category as $Key => $fields)
@@ -180,8 +218,11 @@
                                 @endforeach
                             </select>
                             <div id="parent_id_val" class="parent_id_val"></div>
+                        <select style="visibility: hidden" id="parent_id_hide"  name="parent_id_hide[]" multiple="multiple">
+                        </select>
                             <span class="text-danger">{{ $errors->first('parent_id') }}</span>
                     </div>
+
 
                 </div>
                 <div class="form-group row">

@@ -54,4 +54,12 @@ class Content extends Model
     {
         return $this->hasOne(Category::class,'id','parent_id');
     }
+
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'contents_category', 'content_id', 'cat_id')/*->withTimestamps()*/ ;
+    }
+
+
 }
