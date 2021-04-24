@@ -41,7 +41,7 @@
 
     <meta name="twitter:card" content="summary_large_image">
 
-    <script src="https://www.p30rank.ir/google"></script>
+    {{-- <script src="https://www.p30rank.ir/google"></script> --}}
     @yield('head')
     @yield('map')
 
