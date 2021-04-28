@@ -34,7 +34,7 @@
 
 
     {{--#anchor top --}}
-    <section class="index-item-top bg-orange mt-0 mb-0">
+    <section class="index-item-top bg-gray2 mt-0 mb-0">
         <div class="text-center pb-1">
             <h2>دسته بندی</h2>
         </div>
