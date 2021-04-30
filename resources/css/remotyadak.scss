@@ -1,7 +1,7 @@
 $template: remotyadak;
 $body: #fff;
-$theme-color1: #fa490e;
-$theme-color2: rgba(255, 136, 45, 1);
+$theme-color1: #061229;
+$theme-color2: #1b405e;
 $theme-color3: #ea1c44;
 $a: #d13501;
 $a-hover: #1e2135;
@@ -471,8 +471,8 @@ nav[role="navigation"] span > svg {
     color: #fff;
     padding: 2em;
     text-align: center;
-    background: #fa490e;
-    background: linear-gradient(90deg, rgba(250, 73, 14, 1) 0, rgba(255, 136, 45, 1) 100%);
+    background: $theme-color1;
+    background: linear-gradient(90deg, $theme-color1 0, $theme-color2 100%);
 }
 #index-category {
     text-align: center;
