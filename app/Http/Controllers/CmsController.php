@@ -28,18 +28,22 @@ class CmsController extends Controller
     public function showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule)
     {
 
-        $relatedPost = Content::where('type', '=', '2')
-            ->where('attr_type', '=', 'article')
-            ->where('parent_id', '=', $detail->id)
-            ->where('publish_date', '<=', DB::raw('now()'))
-            ->get();
+
 
         if (env('All_CONTENT_SUB_CATEGORY') == 1) {
+            $relatedPost = Content::where('type', '=', '2')
+                ->where('attr_type', '=', 'article')
+                ->where('parent_id', '=', $detail->id)
+                ->where('publish_date', '<=', DB::raw('now()'))
+                ->get();
             $relatedPost = $this->getCatChildOfcontent($detail['id'], $relatedPost, 'article');
+        }else{
+            $relatedPost=$detail->posts()->paginate(20);
+
+
         }
 
 
-        $relatedProduct=$detail->products()->paginate(20);
 
         //        dd($relatedProduct);
         //        $relatedProduct = Content::where('type', '=', '2')
@@ -50,11 +54,19 @@ class CmsController extends Controller
         //        // ->get();
 
         if (env('All_CONTENT_SUB_CATEGORY') == 1) {
+            $relatedProduct = Content::where('type', '=', '2')
+                ->where('attr_type', '=', 'product')
+                ->where('parent_id', '=', $detail->id)
+                ->where('publish_date', '<=', DB::raw('now()'))
+                ->paginate(20);
             $relatedProduct = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
+        }else{
+            $relatedProduct=$detail->products()->paginate(20);
+
         }
 
 
-        // dd($relatedProduct->links());
+         //dd($relatedPost);
         $subCategory = Content::where('type', '=', '1')
             ->where('parent_id', '=', $detail->id)
             ->where('publish_date', '<=', DB::raw('now()'))
@@ -70,10 +82,10 @@ class CmsController extends Controller
             $widget = $this->getWidget('DetailCategory');
 
         }
-        // dd($relatedProduct->links());
 
 
-        return view($template, $widget, [
+        return view($template,[
+            'widget' => $widget,
             'detail' => $detail,
             'relatedProduct' => $relatedProduct,
             'relatedPost' => $relatedPost,

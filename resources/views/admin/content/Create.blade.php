@@ -10,36 +10,55 @@
         $(document).ready(function() {
 
             var $input = $("#parent_id");
-            $input.select2();
+            var $parent_id_hide = $("#parent_id_hide");
+            var $parent = $('#parent_id_hide').find(':selected').val();
 
-            $input.on("selecting unselecting change", function() {
+            $parent_id_hide.select2();
+            $input.select2();
+            $input.on("selecting unselecting change", function () {
                 setOption($("#parent_id").parent().find("ul.select2-choices"));
 
             })
-            setOption($("#parent_id").parent().find("ul.select2-choices"));
+            $parent_id_hide.on("selecting unselecting change", function () {
+                $parent = $('#parent_id_hide').find(':selected').val();
+
+            })
+
             $("#parent_id").parent().find("ul.select2-choices").sortable({
                 containment: 'parent',
-                update : function(){ setOption(this)},
+                update: function () {
+                    setOption(this)
+                },
 
             });
 
+            @php
+                //todo add old value
+                //$categoryImplode= "'".implode("','",$content_info->categories->pluck('id')->toArray())."'";
+            @endphp
+            {{--$input.val([{!! $categoryImplode !!}]);--}}
+            $input.trigger('change'); // Notify any JS components that the value changed
             function setOption($this) {
                 var $select = $("#parent_id");
                 //$(this).closest(".select2-container").next();
                 var options;
                 options = $select.find("option");
-                $("#parent_id_hide").empty();
+                //$("#parent_id_hide").empty();
                 //var newoptions = '';
                 var newoptions = [];
                 // Clear option
                 $($this).find(".select2-search-choice").each(function (i, tag) {
 
+                    var $exist=0;
                     options.each(function (j, option) {
-                        var optionTag='';
+                        var optionTag = '';
                         if ($.trim($(tag).text()) == $.trim($(option).text())) {
                             // console.log(option.val());
                             //$("#par_idd").append(new Option($(tag).text(),  $(option).val()));
                             optionTag = new Option($(tag).text(), $(option).val());
+                            if ($(option).val() == $parent) {
+                                $exist = 1;
+                            }
                             $("#par_idd").append(new Option($(tag).text(), $(option).val()));
                             //newoptions=newoptions+','+$(option).val();
                             newoptions.push(optionTag);
@@ -49,11 +68,33 @@
                     });
                 });
 
+
+                //$parent = $('#parent_id_hide').find(':selected').val();
+
                 $("#parent_id_hide").empty();
-                $("#parent_id_hide").append(newoptions);
-                $('#parent_id_hide option').prop('selected', true);
+                //$('#parent_id_hide option:selected').removeAttr('selected');
+                $('#parent_id_hide').select2('destroy');
+                $parent_id_hide.select2();
+                if (newoptions.length > 0) {
+                    $("#parent_id_hide").append(newoptions);
+                    $parent_id_hide.val($parent);
+                }
+                // $parent_id_hide.val($parent);
+
+                //$('#parent_id_hide').select2('destroy');
+
+                //if ($exist != 0) {
+                // }
+                $parent_id_hide.trigger('change'); // Notify any JS components that the value changed
+
+
+                //getselector();
+
 
             }
+
+
+
         });
 
         $("#meta_keywords").select2({
@@ -202,7 +243,8 @@
                                 @endforeach
                             </select>
                             <div id="parent_id_val" class="parent_id_val"></div>
-                        <select style="visibility: hidden" id="parent_id_hide"  name="parent_id_hide[]" multiple="multiple"></select>
+                        <select {{--style="visibility: hidden" --}} id="parent_id_hide" name="parent_id_hide">
+                        </select>
                             <span class="text-danger">{{ $errors->first('parent_id') }}</span>
                     </div>
                 </div>

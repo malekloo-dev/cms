@@ -54,7 +54,11 @@
     <script src="{{ url('/adminAssets/js/persian-datepicker.min.js') }}"></script>
     <script src="{{ url('/adminAssets/js/popper.js') }}"></script>
 
+    {{--<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />--}}
 
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>--}}
+
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>--}}
 
     <script>
         $(function() {

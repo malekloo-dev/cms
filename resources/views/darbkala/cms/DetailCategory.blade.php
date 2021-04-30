@@ -1,12 +1,12 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 @section('head')
-    <meta property="og:image" content="{{ url($detail->images['images']['large'] ?? '') }}" />
-    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image" content="{{ url($detail->images['images']['large'] ?? '') }}"/>
+    <meta property="og:image:type" content="image/jpeg"/>
     <meta property="og:image:width"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
+          content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}"/>
     <meta property="og:image:height"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
-    <meta property="og:image:alt" content="{{ $detail->title }}" />
+          content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}"/>
+    <meta property="og:image:alt" content="{{ $detail->title }}"/>
     @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
         <link rel="prev" href="{{ json_decode($relatedProduct->toJson())->prev_page_url }}">
     @endif
@@ -64,7 +64,7 @@
                                     <a href="{{ $content->slug }}">
                                         <div class="flex one three-700 height-100">
                                             @if (isset($content->images['thumb']))
-                                                <div class="p-0"><img src="{{ $content->images['thumb'] }}" /></div>
+                                                <div class="p-0"><img src="{{ $content->images['thumb'] }}"/></div>
                                             @endif
                                             <div class="one two-third-700 pr-1">
                                                 <h2 class="p-0"> {{ $content->title }}</h2>
@@ -95,16 +95,16 @@
 
                             {{-- $data['newPost'] --}}
                             @foreach ($relatedProduct as $content)
-                                <div >
+                                <div>
                                     <article class="shadow">
-                                        <div >
+                                        <div>
                                             @if (isset($content->images['thumb']))
                                                 <picture>
                                                     <img loading="lazy"
-                                                        src="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }}"
-                                                        {{-- srcset="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }} ,{{ str_replace(' ', '%20', $content->images['images']['medium']) ?? '' }} 2x" --}} alt="{{ $content->title }}"
-                                                        width="{{ env('PRODUCT_SMALL') }}"
-                                                        height="{{ env('PRODUCT_SMALL') }}">
+                                                         src="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }}"
+                                                         {{-- srcset="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }} ,{{ str_replace(' ', '%20', $content->images['images']['medium']) ?? '' }} 2x" --}} alt="{{ $content->title }}"
+                                                         width="{{ env('PRODUCT_SMALL') }}"
+                                                         height="{{ env('PRODUCT_SMALL') }}">
                                                 </picture>
                                             @endif
                                             <div class="rate mt-1">
@@ -119,9 +119,9 @@
                                                     @endforeach
                                                     @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
                                                         <img width="16" height="16"
-                                                            srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
-                                                            src="{{ asset('/img/star1x.png') }}"
-                                                            alt="{{ 'star for rating' }}">
+                                                             srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
+                                                             src="{{ asset('/img/star1x.png') }}"
+                                                             alt="{{ 'star for rating' }}">
                                                     @endfor
                                                     <span class="font-08">({{ count($content->comments) }} نفر)</span>
                                                 @endif
@@ -133,8 +133,10 @@
                                                 <h2>{{ $content->title }}</h2>
                                             </a>
                                             <div class="brand">برند: {{ $content->attr['brand'] }}</div>
-                                            <div class="price text-green">قیمت: @convertCurrency($content->attr['price'])
-                                                تومان </div>
+                                            <div class="price text-green">
+                                                قیمت: @convertCurrency($content->attr['price'])
+                                                تومان
+                                            </div>
 
 
                                             <div class="brief">
@@ -174,17 +176,17 @@
                             @if (isset($detail->images['images']))
                                 <picture>
                                     <source media="(min-width:{{ env('CATEGORY_LARGE') }}px)"
-                                        srcset="{{ $detail->images['images']['large'] ?? '' }}">
+                                            srcset="{{ $detail->images['images']['large'] ?? '' }}">
 
                                     <source media="(min-width:{{ env('CATEGORY_MEDIUM') }}px)"
-                                        srcset="{{ $detail->images['images']['medium'] ?? '' }}">
+                                            srcset="{{ $detail->images['images']['medium'] ?? '' }}">
 
                                     <source media="(min-width:{{ env('CATEGORY_SMALL') }}px)"
-                                        srcset="{{ $detail->images['images']['small'] ?? '' }}">
+                                            srcset="{{ $detail->images['images']['small'] ?? '' }}">
 
                                     <img src="{{ $detail->images['images']['medium'] ?? '' }}"
-                                        alt="{{ $detail->title }}" width="{{ env('CATEGORY_MEDIUM') }}"
-                                        height="{{ env('CATEGORY_MEDIUM') }}">
+                                         alt="{{ $detail->title }}" width="{{ env('CATEGORY_MEDIUM') }}"
+                                         height="{{ env('CATEGORY_MEDIUM') }}">
                                 </picture>
                             @endif
 
@@ -199,16 +201,17 @@
             </div>
         </section>
 
+
         {{--post&label=relatedPost&var=relatedPost&count=5 --}}
-        @if (isset($relatedPost['data']))
+        @if (isset($relatedPost))
             <section class="articles bg-orange mb-0" id="articles">
                 <div class="flex one ">
                     <div class="">
                         <h2>مقاله های زیر مجموعه {{ $detail->title }}</h2>
                         <div class="flex one two-500 five-900 center ">
 
-                            {{-- $data['newPost'] --}}
-                            @foreach ($relatedPost['data'] as $content)
+                            @foreach ($relatedPost as $content)
+
                                 <div>
                                     <a href="{{ $content->slug }}">
                                         <article class="shadow1">
@@ -230,7 +233,6 @@
                 </div>
             </section>
         @endif
-
 
 
         <div class="mobile-menu">

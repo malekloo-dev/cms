@@ -55,6 +55,14 @@ class Category extends Model
             ->where('attr_type', '=', 'product')
             ->where('publish_date', '<=', DB::raw('now()'));
 
+    }
+    public function posts()
+    {
+
+        return $this->belongsToMany(Content::class,'contents_category','cat_id','content_id')
+            ->where('type', '=', '2')
+            ->where('attr_type', '=', 'article  ')
+            ->where('publish_date', '<=', DB::raw('now()'));
 
     }
 

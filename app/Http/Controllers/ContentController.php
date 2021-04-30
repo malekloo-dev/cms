@@ -141,9 +141,12 @@ class ContentController extends Controller
         $data = $request->all();
         $date = $data['publish_date'];
         $data['publish_date'] = convertJToG($date);
+        $data['parent_id_hide'] = $request->parent_id;
+        $data['parent_id'] = $request->parent_id_hide;
+        if( $data['parent_id']==''){
+            $data['parent_id']=$data['parent_id_hide'][0];
+        }
 
-
-        $data['parent_id'] = $request->parent_id_hide[0];
         $data['type'] = '2';
         $data['images'] = $imagesUrl;
         if ($request->slug == '') {
@@ -157,7 +160,7 @@ class ContentController extends Controller
         $data['slug'] = str_replace('--', '-', $data['slug']);
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         $object = Content::create($data);
-        $object->categories()->attach($request->parent_id_hide);
+        $object->categories()->attach($data['parent_id_hide']);
 
         return $object;
     }
@@ -262,7 +265,12 @@ class ContentController extends Controller
         $date = $data['publish_date'];
         $data['publish_date'] = convertJToG($date);
 
-        $data['parent_id'] = $request->parent_id_hide[0];
+
+        $data['parent_id_hide'] = $request->parent_id;
+        $data['parent_id'] = $request->parent_id_hide;
+        if( $data['parent_id']==''){
+            $data['parent_id']=$data['parent_id_hide'][0];
+        }
 
         $file = $request->file('images');
         //$inputs = $request->all();
@@ -288,8 +296,9 @@ class ContentController extends Controller
         $data['slug'] = str_replace('--', '-', $data['slug']);
 
         $crud->update($data);
-        $crud->categories()->sync($request->parent_id_hide);
-
+        //$crud->categories()->sync($request->parent_id_hide);
+        $crud->categories()->detach();
+        $crud->categories()->attach($data['parent_id_hide']);
         //dd($crud);
 
         //        $crud->title = $request->get('title');
