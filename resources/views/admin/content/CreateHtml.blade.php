@@ -260,7 +260,7 @@
 
                     <div class="form-group row">
                         <label for="name" class="col-md-12 col-form-label text-md-left">Category</label>
-                        <div class="col-md-12">
+                        <div class="col-6 col-md-6">
                             {{--<select multiple name="parent_id" id="parent_id" class="form-control" >--}}
                                 <select id="parent_id"  class="js-example-basic-multiple" name="parent_id[]" multiple="multiple">
 
@@ -268,6 +268,9 @@
                                     <option value="{{$fields['id']}}">{!! $fields['symbol'].$fields['title']!!}</option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="col-6 col-md-6">
+                            <label for="name">@lang('messages.main category'):</label>
                             <div id="parent_id_val" class="parent_id_val"></div>
                             <select style="visibility: hidden" id="parent_id_hide"  name="parent_id_hide[]" multiple="multiple"></select>
 
