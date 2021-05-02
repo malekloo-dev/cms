@@ -14,7 +14,7 @@
                 <div style="cursor: pointer" class="" onclick="document.getElementById('images').click();">
                     @lang('messages.edit') @lang('messages.image')
                     <input type="file" style="display:none" name="images" id="images">
-                    
+
                     <img style="padding:0 0.5em"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAACCUlEQVQ4jdXUPWiTQRgH8P9zqYhuGWIlie4dtA7SpULRRbr5iYIVpLz33tvBIYvoIJ74tfqxJHchYBXUIuLg5uTg1ClDFIQuQkLaJYPE6c37d9CEt5qG103/2/Pc3e/uWQ741yPpIgiCci6XOw1gb8bz30XkTbVabf8BBkFQVko1AXQBdDKCRQDTSqnZITo1kkXOAtgsFouHrLVJFs1aqzqdTmswGJwD8AgAVArMk9ychAVBMBOG4T1jzBIAsdYmJLsikh/uUTsd/j2VSmWPUuqDiJwk6Ywxl8ftywz2+/0CgALJWwBaJGf+CgyC4HAURfuGtXPuK4BXAN4BOJAkyWom0Fo7pbV+qpRqJkmyobVeTKEXlVLlXq93sF6vf84C7mq32y9EZJHkHMmHIvI2DMNTAKC1PjIYDK7m8/n5nSbbBorIvIgcI3nce7/uvb9J0gJYM8bcF5GPInICwHut9XKWF26RXPDet4YN7/0DAM9I3iD5xDk3R3JFRFwYhisTQZKfvPdf0j1jzBkASwBue++v/7rEi8gygMcicnTSC7fFGHOB5EsAd51zNr1Wq9VWSV4CsHssSLInItPWWgUAWusrJJ8DuOacuzPuwlKp9BrABsnesDf6HKIoKiVJ0gSwhZ8fxAKAbwDWJwxRAlCI43i20Wh0toEp9DzJ/ROQUUSkG8fx2hD7P/IDjnbjmjZON9wAAAAASUVORK5CYII=">
                 </div>
@@ -181,6 +181,15 @@
         });
 
     </script>
+
+
+
+
+
+
+
+
+
 
     <script>
         var map = L.map('mapid')

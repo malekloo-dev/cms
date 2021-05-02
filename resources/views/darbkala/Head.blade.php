@@ -28,6 +28,7 @@
 
 
     @yield('bootstrap')
+    
     <link rel="stylesheet" href="{{ mix('/'.env('TEMPLATE_NAME').'.css',env('TEMPLATE_NAME')) }}" >
     <link rel="icon" href="{{ url(env('TEMPLATE_NAME') . '/img/fav.png') }}" type="image/png">
     <link rel="stylesheet" media="bogus">
@@ -50,7 +51,7 @@
 
 
 
-    <script src="https://www.p30rank.ir/google" async></script>
+    {{-- <script src="https://www.p30rank.ir/google" async></script> --}}
     @yield('head')
 
 </head>

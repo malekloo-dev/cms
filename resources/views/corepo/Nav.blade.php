@@ -39,7 +39,7 @@
                         @if (count($subMenu))
                             <li class="parent"><a href="{{ $menuItem['link'] }}">{{ $menuItem['label'] }}</a>
                                 <div><img width="16" height="16" alt="arrow-down"
-                                        src="{{ asset('/img/arrow-down.png') }}"></div>
+                                        src="{{ url(env('TEMPLATE_NAME').'/img/arrow-down.png') }}"></div>
                                 <ul>
                                     @foreach ($subMenu as $subMenuItem)
                                         <li><a
@@ -56,6 +56,19 @@
                         @endif
 
                     @endforeach
+
+                    @auth
+                        <li>
+                            <a href="{{ route('company.dashboard') }}">پروفایل</a>
+                        </li>
+                    @else
+                        <li>
+                            <a href="{{ route('login') }}">ورود</a>
+                        </li>
+                        <li>
+                        <a href="{{ route('register') }}">ثبت نام</a>
+                        </li>
+                    @endauth
 
                 </ul>
             </div>

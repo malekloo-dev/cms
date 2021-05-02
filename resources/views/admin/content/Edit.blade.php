@@ -109,7 +109,7 @@
                     language: 'fa'
                 @endif
             })
-            .then(editor = > {
+            .then(editor => {
                 const wordCountPlugin = editor.plugins.get('WordCount');
                 const wordCountWrapper = document.getElementById('word-count1');
                 wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
@@ -117,7 +117,7 @@
                 window.editor = editor;
             })
 
-            .catch(err = > {
+            .catch(err => {
                 console.error(err.stack);
             });
 
