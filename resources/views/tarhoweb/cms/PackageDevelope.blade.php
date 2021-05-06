@@ -21,7 +21,7 @@
 
 
 <section class="pro-design-intro m-0 pt-0">
-    <h1 class="align-center">پکیج طراحی سایت حرفه ای</h1>
+    <h1 class="align-center">اجاره سایت حرفه ای</h1>
     <div class="flex one two-500 three-900 center">
         <div>
             <div class="price-list">
@@ -36,44 +36,19 @@
                     <div>مدیریت محتوا</div>
                     <div>بهینه سازی صفحه فرود</div>
                     <div>فشرده سازی و بهینه سازی seo</div>
-                    <div>-</div>
+                    <div>هزینه طراحی قالب جداگانه محاسبه میشود</div>
                     <div>-</div>
                     <div>پشتیبانی ماهیانه ۱۵۰ هزار تومان</div>
 
                 </div>
                 <div class="price">
                     <div class="font-2">
-                        ۲،۵۰۰،۰۰۰ تومان
+                        ۵۰۰،۰۰۰ تومان
                     </div>
                 </div>
             </div>
         </div>
-        <div>
-            <div class="price-list">
 
-                <div class="head">
-                    <h2>Plan B</h2>
-
-                    <div>3-8 Pages</div>
-                </div>
-
-                <div class="featur">
-                    <div>دامنه و هاست ۱ ساله</div>
-                    <div>طراحی سفارشی</div>
-                    <div>واکنشگرا</div>
-                    <div>مدیریت محتوا</div>
-                    <div>فرم تماس با ما</div>
-                    <div>فشرده سازی و بهینه سازی seo</div>
-                    <div>سئو</div>
-                    <div>پشتیبانی ماهیانه ۱۰۰ هزار تومان</div>
-                </div>
-                <div class="price">
-                    <div class="font-2">
-                        ۴،۵۰۰،۰۰۰ تومان
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
 
@@ -88,14 +63,12 @@
             <div class="flex one  center">
                 <div>
                     <div class="price-list">
-                        <div class="head">
-                            <h2>پکیج طراحی سفارشی</h2>
-                        </div>
+
 
                         <div class="price">
                             شروع قیمت از
                             <div class="font-2">
-                                ۷،۰۰۰،۰۰۰ تومان
+                                ۲۰،۰۰۰،۰۰۰ تومان
                             </div>
                         </div>
                     </div>
@@ -157,7 +130,6 @@
                     <div>فشرده سازی و بهینه سازی seo</div>
                     <div>پشتیبانی ماهیانه ۲۰۰ هزار تومان</div>
                     <div>-</div>
-                    <div>-</div>
                 </div>
                 <div class="price">
                     <div class="font-2">
@@ -183,12 +155,12 @@
                     <div>فشرده سازی و بهینه سازی seo</div>
                     <div>پشتیبانی ماهیانه ۲۰۰ هزار تومان</div>
                     <div>قرار دادن محتوا</div>
-                    <div>دو زبانه</div>
+
 
                 </div>
                 <div class="price">
                     <div class="font-2">
-                        ۲،۵۰۰،۰۰۰ تومان
+                        ۳،۰۰۰،۰۰۰ تومان
                     </div>
                 </div>
             </div>

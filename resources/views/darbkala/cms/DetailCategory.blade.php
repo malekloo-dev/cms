@@ -1,12 +1,12 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 @section('head')
-    <meta property="og:image" content="{{ url($detail->images['images']['large'] ?? '') }}"/>
-    <meta property="og:image:type" content="image/jpeg"/>
+    <meta property="og:image" content="{{ url($detail->images['images']['large'] ?? '') }}" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width"
-          content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}"/>
+        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
     <meta property="og:image:height"
-          content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}"/>
-    <meta property="og:image:alt" content="{{ $detail->title }}"/>
+        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
+    <meta property="og:image:alt" content="{{ $detail->title }}" />
     @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
         <link rel="prev" href="{{ json_decode($relatedProduct->toJson())->prev_page_url }}">
     @endif
@@ -64,7 +64,7 @@
                                     <a href="{{ $content->slug }}">
                                         <div class="flex one three-700 height-100">
                                             @if (isset($content->images['thumb']))
-                                                <div class="p-0"><img src="{{ $content->images['thumb'] }}"/></div>
+                                                <div class="p-0"><img src="{{ $content->images['thumb'] }}" /></div>
                                             @endif
                                             <div class="one two-third-700 pr-1">
                                                 <h2 class="p-0"> {{ $content->title }}</h2>
@@ -87,26 +87,45 @@
 
     @if (count($relatedProduct))
         <section class="category-products mt-1" id="products">
-            <div class="flex one ">
-                <div class="p-0">
+            <div class="flex one four-800 ">
+                <div class="one-fourth-800 filter">
+
+                </div>
+                <div class="three-fourth-800 p-0">
                     <div class="">
 
-                        <div class="flex one  two-1100  ">
+                        <div class="flex one   ">
 
                             {{-- $data['newPost'] --}}
                             @foreach ($relatedProduct as $content)
                                 <div>
+                                    <a href="{{ $content->slug }}">
                                     <article class="shadow">
                                         <div>
                                             @if (isset($content->images['thumb']))
                                                 <picture>
                                                     <img loading="lazy"
-                                                         src="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }}"
-                                                         {{-- srcset="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }} ,{{ str_replace(' ', '%20', $content->images['images']['medium']) ?? '' }} 2x" --}} alt="{{ $content->title }}"
-                                                         width="{{ env('PRODUCT_SMALL') }}"
-                                                         height="{{ env('PRODUCT_SMALL') }}">
+                                                        src="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }}"
+                                                        {{-- srcset="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }} ,
+                                                        {{ str_replace(' ', '%20', $content->images['images']['medium']) ?? '' }} 2x"  --}}
+                                                        alt="{{ $content->title }}"
+                                                        width="{{ env('PRODUCT_SMALL_W') }}"
+                                                        height="{{ env('PRODUCT_SMALL_H') }}">
                                                 </picture>
                                             @endif
+
+                                        </div>
+                                        <div class="info">
+                                            <h2>{{ $content->title }}</h2>
+
+
+                                            <div class="brief">
+                                                {!! readMore($content->brief_description, 250) !!}
+                                            </div>
+
+                                        </div>
+                                        <footer>
+
                                             <div class="rate mt-1">
                                                 @if (count($content->comments))
                                                     @php
@@ -119,31 +138,41 @@
                                                     @endforeach
                                                     @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
                                                         <img width="16" height="16"
-                                                             srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
-                                                             src="{{ asset('/img/star1x.png') }}"
-                                                             alt="{{ 'star for rating' }}">
+                                                            srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
+                                                            src="{{ asset('/img/star1x.png') }}"
+                                                            alt="{{ 'star for rating' }}">
                                                     @endfor
                                                     <span class="font-08">({{ count($content->comments) }} نفر)</span>
                                                 @endif
                                             </div>
+
+
+
                                             <div class="view-count">{{ $content->viewCount }} بار دیده شده</div>
-                                        </div>
-                                        <footer>
-                                            <a href="{{ $content->slug }}">
-                                                <h2>{{ $content->title }}</h2>
-                                            </a>
+
+
+
                                             <div class="brand">برند: {{ $content->attr['brand'] }}</div>
+
+                                            @if(count($content->companies))
+                                                <div class="company-logo">
+                                                    @if (isset($content->companies->first()->logo) || $content->companies->first()->logo == '' || !file_exists(public_path($content->companies->first()->logo)))
+                                                        <img src="{{ url($content->companies->first()->logo) }}" width="30" height="30" class="border-radius-50" alt="" />
+                                                    @endif
+                                                    {{ $content->companies->first()->name ?? '' }}
+                                                </div>
+                                            @endif
+
+
+
+
                                             <div class="price text-green">
-                                                قیمت: @convertCurrency($content->attr['price'])
-                                                تومان
-                                            </div>
-
-
-                                            <div class="brief">
-                                                {!! readMore($content->brief_description, 250) !!}
-                                            </div>
+                                                @convertCurrency($content->attr['price'])
+                                               تومان
+                                           </div>
                                         </footer>
                                     </article>
+                                    </a>
                                 </div>
                             @endforeach
                         </div>
@@ -176,17 +205,17 @@
                             @if (isset($detail->images['images']))
                                 <picture>
                                     <source media="(min-width:{{ env('CATEGORY_LARGE') }}px)"
-                                            srcset="{{ $detail->images['images']['large'] ?? '' }}">
+                                        srcset="{{ $detail->images['images']['large'] ?? '' }}">
 
                                     <source media="(min-width:{{ env('CATEGORY_MEDIUM') }}px)"
-                                            srcset="{{ $detail->images['images']['medium'] ?? '' }}">
+                                        srcset="{{ $detail->images['images']['medium'] ?? '' }}">
 
                                     <source media="(min-width:{{ env('CATEGORY_SMALL') }}px)"
-                                            srcset="{{ $detail->images['images']['small'] ?? '' }}">
+                                        srcset="{{ $detail->images['images']['small'] ?? '' }}">
 
                                     <img src="{{ $detail->images['images']['medium'] ?? '' }}"
-                                         alt="{{ $detail->title }}" width="{{ env('CATEGORY_MEDIUM') }}"
-                                         height="{{ env('CATEGORY_MEDIUM') }}">
+                                        alt="{{ $detail->title }}" width="{{ env('CATEGORY_MEDIUM') }}"
+                                        height="{{ env('CATEGORY_MEDIUM') }}">
                                 </picture>
                             @endif
 
@@ -202,7 +231,7 @@
         </section>
 
 
-        {{--post&label=relatedPost&var=relatedPost&count=5 --}}
+        {{-- post&label=relatedPost&var=relatedPost&count=5 --}}
         @if (isset($relatedPost))
             <section class="articles bg-orange mb-0" id="articles">
                 <div class="flex one ">
@@ -219,8 +248,8 @@
                                                 <div><img src="{{ $content->images['thumb'] }}"></div>
                                             @endif
                                             <footer>
-                                                <h2> {{ readmore($content->title,80) }}</h2>
-                                                {!! readmore($content->brief_description,210) !!}
+                                                <h2> {{ readmore($content->title, 80) }}</h2>
+                                                {!! readmore($content->brief_description, 210) !!}
                                             </footer>
                                         </article>
                                     </a>

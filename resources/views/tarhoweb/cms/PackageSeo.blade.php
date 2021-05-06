@@ -31,9 +31,8 @@
                     <div>قرار داد ۶ ماهه</div>
                 </div>
                 <div class="featur">
-                    <div>پیاده سازی GTM</div>
                     <div>تحقیق و تحلیل کلمات کلیدی</div>
-                    <div>۱ کلمه</div>
+                    <div>جستجوی ۴ کلمه ای</div>
                     <div>بهینه سازی صفحه فرود</div>
                     <div>On Page SEO</div>
                     <div>Off Page SEO</div>
@@ -58,9 +57,8 @@
                 </div>
 
                 <div class="featur">
-                    <div>پیاده سازی GTM</div>
                     <div>تحقیق و تحلیل کلمات کلیدی</div>
-                    <div>۲ کلمه</div>
+                    <div>جستجوی ۳ کلمه ای</div>
                     <div>بهینه سازی صفحه فرود</div>
                     <div>On Page SEO</div>
                     <div>Off Page SEO</div>
@@ -84,19 +82,18 @@
                     <div>قرار داد ۶ ماهه</div>
                 </div>
                 <div class="featur">
-                    <div>پیاده سازی GTM</div>
                     <div>تحقیق و تحلیل کلمات کلیدی</div>
-                    <div>۴ کلمه</div>
+                    <div>جستجوی ۲ کلمه ای</div>
                     <div>بهینه سازی صفحه فرود</div>
                     <div>On Page SEO</div>
                     <div>Off Page SEO</div>
-                    <div>قرار دادن محتوا ۱۲ صفحه ماهیانه</div>
+                    <div>قرار دادن محتوا ۸ صفحه ماهیانه</div>
                     <div>گزارش ماهیانه</div>
                 </div>
                 <div class="price">
                     ماهیانه
                     <div class="font-2">
-                        ۲،۵۰۰،۰۰۰ تومان
+                        ۵،۰۰۰،۰۰۰ تومان
                     </div>
                 </div>
             </div>

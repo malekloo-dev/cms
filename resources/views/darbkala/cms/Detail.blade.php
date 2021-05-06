@@ -95,53 +95,60 @@
         <div class="flex one ">
             <div class="bg-white border-radius-5">
                 <div class="top-page">
-                    @isset($detail->images['thumb'])
-                        <picture>
-                            <source media="(min-width:{{ env('PRODUCT_MEDIUM') }}px)"
-                                srcset="{{ str_replace(' ', '%20', $detail->images['images']['small']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} 2x">
-                            <source media="(min-width:{{ env('PRODUCT_SMALL') }}px)"
-                                srcset="{{ str_replace(' ', '%20', $detail->images['images']['small']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['small']) ?? '' }} 2x">
-                            <img src="{{ $detail->images['images']['small'] ?? '' }}"
-                                sizes="(max-width:{{ env('PRODUCT_SMALL') }}px) 100vw  {{ ENV('PRODUCT_SMALL') }}px {{ ENV('PRODUCT_SMALL') }}px"
-                                alt="{{ $detail->title }}" width="{{ env('PRODUCT_MEDIUM') }}"
-                                height="{{ env('PRODUCT_SMALL') }}">
-                        </picture>
-                    @endisset
+
                     <div>
                         <h1 class="">{{ $detail->title }}</h1>
                         <div>
-                            @if(count($detail->companies))
-                                <div class="company-logo">
-                                    <a href="{{ url('/profile/'.$detail->companies->first()->id) }}">
-                                        @if (isset($detail->companies->first()->logo) || $detail->companies->first()->logo == '' || !file_exists(public_path($detail->companies->first()->logo)))
-                                            <img src="{{ url($detail->companies->first()->logo) }}" width="50" height="50" class="border-radius-50" alt="">
-                                        @endif
-                                        {{ $detail->companies->first()->name ?? '' }}</a>
+                            <div class="flex five">
+                                <div class="one-fifth">
+                                    @isset($detail->images['thumb'])
+                                        <picture>
+                                            <img src="{{ $detail->images['images']['medium'] ?? '' }}"
+
+                                                alt="{{ $detail->title }}"
+                                                width="{{ env('PRODUCT_MEDIUM_W') }}"
+                                                height="{{ env('PRODUCT_MEDIUM_H') }}">
+                                        </picture>
+                                    @endisset
                                 </div>
-                                @endif
-                            @isset($detail->attr['price'])
-                                <span class="price text-green "> @convertCurrency($detail->attr['price']?? 0) تومان</span>
-                            @endisset
-                            <span class="rate mt-1">
-                                @if (count($detail->comments))
-                                    @php
-                                    $rateAvrage = $rateSum = 0;
-                                    @endphp
-                                    @foreach ($detail->comments as $comment)
-                                        @php
-                                        $rateSum = $rateSum + $comment['rate'] ;
-                                        @endphp
-                                    @endforeach
-                                    @for ($i = $rateSum / count($detail->comments); $i >= 1; $i--)
-                                        <img width="20" height="20"
-                                            srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
-                                            src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
-                                    @endfor
-                                    <span class="font-08">({{ count($detail->comments) }} نفر)   </span>
-                                @endif
-                            </span> |
-                            {{ $detail->viewCount }} بار دیده شده |
-                            تاریخ انتشار: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span> |
+                                <div>
+                                    @if(count($detail->companies))
+                                        <div class="company-logo">
+                                            <a href="{{ url('/profile/'.$detail->companies->first()->id) }}">
+                                                @if (isset($detail->companies->first()->logo) || $detail->companies->first()->logo == '' || !file_exists(public_path($detail->companies->first()->logo)))
+                                                    <img src="{{ url($detail->companies->first()->logo) }}" width="50" height="50" class="border-radius-50" alt="">
+                                                @endif
+                                                {{ $detail->companies->first()->name ?? '' }}</a>
+                                        </div>
+                                    @endif
+
+                                    @isset($detail->attr['price'])
+                                        <span class="price text-green "> @convertCurrency($detail->attr['price']?? 0) تومان</span>
+                                    @endisset
+
+                                    <span class="rate mt-1">
+                                        @if (count($detail->comments))
+                                            @php
+                                            $rateAvrage = $rateSum = 0;
+                                            @endphp
+                                            @foreach ($detail->comments as $comment)
+                                                @php
+                                                $rateSum = $rateSum + $comment['rate'] ;
+                                                @endphp
+                                            @endforeach
+                                            @for ($i = $rateSum / count($detail->comments); $i >= 1; $i--)
+                                                <img width="20" height="20"
+                                                    srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
+                                                    src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                                            @endfor
+                                            <span class="font-08">({{ count($detail->comments) }} نفر)   </span>
+                                        @endif
+                                    </span> |
+                                    {{ $detail->viewCount }} بار دیده شده |
+                                    تاریخ انتشار: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span> |
+
+                                </div>
+                            </div>
 
                             <ul>
                                 @foreach ($table_of_content as $key => $item)

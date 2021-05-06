@@ -1,8 +1,8 @@
 .flex {
     display: -ms-flexbox;
     display: flex;
-    margin-left: -0.5em;
-    margin-right: -0.5em;
+    // margin-left: -0.5em;
+    // margin-right: -0.5em;
     width: calc(100%);
     flex-wrap: wrap;
     transition: all 0.3s ease;
@@ -2581,7 +2581,7 @@ figure.image {
 }
 
 picture {
-    display: table;
+    // display: table;
     clear: both;
     text-align: center;
     margin: auto;
@@ -2590,7 +2590,7 @@ picture > img {
     max-width: 100%;
     margin: 0 auto;
     display: block;
-    height: auto;
+    // height: auto;
 }
 
 //////////////////////
