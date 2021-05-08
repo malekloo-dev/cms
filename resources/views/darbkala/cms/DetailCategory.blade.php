@@ -7,6 +7,7 @@
     <meta property="og:image:height"
         content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
     <meta property="og:image:alt" content="{{ $detail->title }}" />
+
     @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
         <link rel="prev" href="{{ json_decode($relatedProduct->toJson())->prev_page_url }}">
     @endif

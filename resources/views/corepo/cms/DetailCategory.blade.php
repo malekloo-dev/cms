@@ -1,6 +1,13 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 @section('head')
     <link rel="stylesheet" href="{{ asset('/detail.category.css') }}">
+
+    @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
+        <link rel="prev" href="{{ json_decode($relatedProduct->toJson())->prev_page_url }}">
+    @endif
+    @if (json_decode($relatedProduct->toJson())->next_page_url != null)
+        <link rel="next" href="{{ json_decode($relatedProduct->toJson())->next_page_url }}">
+    @endif
 @endsection
 
 
@@ -91,11 +98,10 @@
                                 @if (isset($content->images['thumb']))
                                     <figure class="image">
                                         <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
-                                            sizes="(max-width:{{ env('CATEGORY_SMALL') }}px) 100vw {{ env('CATEGORY_SMALL') }}px {{ ENV('CATEGORY_MEDIUM') }}px {{ ENV('CATEGORY_LARGE') }}px"
-                                            alt="{{ $content->title }}" width="200" height="200" srcset="
-                                        {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL') }}w,
-                                        {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM') }}w,
-                                        {{ $content->images['images']['large'] ?? $content->images['thumb'] }} 2x">
+                                            alt="{{ $content->title }}" width="{{ env('CATEGORY_SMALL_W') }}" height="{{ env('CATEGORY_SMALL_H') }}" srcset="
+                                            {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
+                                            {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
+                                            {{ $content->images['images']['large'] ?? $content->images['thumb'] }} {{ env('CATEGORY_LARGE_W') }}w">
                                         <figcaption>
                                             <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
                                         </figcaption>
@@ -126,7 +132,7 @@
 
                         <div class="flex one two-500 four-900 center ">
 
-                            {{--$data['newPost'] --}}
+                            {{-- $data['newPost'] --}}
                             @foreach ($relatedProduct as $content)
                                 <div>
                                     <article>
@@ -136,8 +142,8 @@
                                                     sizes="(max-width:{{ env('ARTICLE_SMALL') }}px) 100vw {{ env('ARTICLE_SMALL') }}px {{ ENV('ARTICLE_MEDIUM') }}px"
                                                     alt="{{ $content->title }}" width="100" height="100"
                                                     srcset="
-                                                    {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
-                                                    {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
+                                                        {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
+                                                        {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
                                             </figure>
 
                                         @endif
@@ -160,8 +166,8 @@
         <div class="flex one">
             <div>
                 <h2>{{ $detail->title ?? '' }}</h2>
-                <div class="flex one three-500 five-900   ">
-                    @isset($relatedPost)
+                @isset($relatedPost)
+                    <div class="flex one three-500 five-900   ">
                         @foreach ($relatedPost as $content)
                             <div>
                                 <a href="{{ $content->slug }}">
@@ -200,8 +206,9 @@
                                 </a>
                             </div>
                         @endforeach
-                    @endisset
-                </div>
+                    </div>
+                    {{ $relatedPost->links() }}
+                @endisset
             </div>
         </div>
     </section>
