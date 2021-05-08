@@ -266,8 +266,10 @@
                     <div class="form-group row">
                         <div class="col-6 col-sm-6">
                             <label for="images" class="control-label">@lang('messages.image')
-                                (@lang('messages.content') {{ env('ARTICLE_LARGE') }}px)
-                                (@lang('messages.product') {{ env('PRODUCT_LARGE') }}px)</label>
+                                <br>
+                                (@lang('messages.content') w:{{ env('ARTICLE_LARGE_W') }}px h:{{ env('ARTICLE_LARGE_H') }}px)
+                                <br>
+                                (@lang('messages.product') w:{{ env('PRODUCT_LARGE_W') }}px h:{{ env('PRODUCT_LARGE_H') }}px)</label>
                             <input type="file" class="form-control" name="images" id="images"
                                 placeholder="@lang('messages.select image')" value="{{ old('imageUrl') }}">
 

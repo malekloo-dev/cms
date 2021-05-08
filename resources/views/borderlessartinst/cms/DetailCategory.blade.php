@@ -3,9 +3,9 @@
     <meta property="og:image" content="{{ url($detail->images['images']['medium'] ?? '') }}" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
+        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W') }}" />
     <meta property="og:image:height"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
+        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H') }}" />
     <meta property="og:image:alt" content="{{ $detail->title }}" />
     @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
         <link rel="prev" href="{{ json_decode($relatedProduct->toJson())->prev_page_url }}">
@@ -70,12 +70,12 @@
                                     @if (isset($detail2->images['thumb']))
                                         <a href="{{ $detail2->slug }}">
                                             <img src="{{ $detail2->images['images']['small'] ?? $detail2->images['thumb'] }}"
-                                                sizes="(max-width:{{ env('ARTICLE_SMALL') }}px) 100vw {{ env('ARTICLE_SMALL') }}px {{ ENV('ARTICLE_MEDIUM') }}px"
+                                                sizes="(max-width:{{ env('ARTICLE_SMALL_W') }}px) 100vw {{ env('ARTICLE_SMALL_W') }}px {{ ENV('ARTICLE_MEDIUM_W') }}px"
                                                 alt="{{ $detail2->title }}" width="332" height="463"
                                                 srcset="
-                                                                            {{ $detail2->images['images']['small'] ?? $detail2->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
-                                                                            {{ $detail2->images['images']['medium'] ?? $detail2->images['thumb'] }} {{ env('ARTICLE_MEDIUM') }}w,
-                                                                            {{ $detail2->images['images']['large'] ?? $detail2->images['thumb'] }} {{ env('ARTICLE_LARGE') }}w">
+                                                                            {{ $detail2->images['images']['small'] ?? $detail2->images['thumb'] }} {{ env('ARTICLE_SMALL_W') }}w,
+                                                                            {{ $detail2->images['images']['medium'] ?? $detail2->images['thumb'] }} {{ env('ARTICLE_MEDIUM_W') }}w,
+                                                                            {{ $detail2->images['images']['large'] ?? $detail2->images['thumb'] }} {{ env('ARTICLE_LARGE_W') }}w">
 
                                         </a>
                                     @endif

@@ -4,9 +4,9 @@
     <meta property="og:image" content="{{ url($detail->images['images']['medium'] ?? '') }}" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
+        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W') }}" />
     <meta property="og:image:height"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
+        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H') }}" />
     <meta property="og:image:alt" content="{{ $detail->title }}" />
 @endsection
 
@@ -47,17 +47,17 @@
 
                 @if (isset($detail->images['images']))
                     <picture>
-                        <source media="(min-width:{{ env('CATEGORY_LARGE') }}px)"
+                        <source media="(min-width:{{ env('CATEGORY_LARGE_W') }}px)"
                             srcset="{{ $detail->images['images']['large'] ?? '' }}">
 
-                        <source media="(min-width:{{ env('CATEGORY_MEDIUM') }}px)"
+                        <source media="(min-width:{{ env('CATEGORY_MEDIUM_W') }}px)"
                             srcset="{{ $detail->images['images']['medium'] ?? '' }}">
 
-                        <source media="(min-width:{{ env('CATEGORY_SMALL') }}px)"
+                        <source media="(min-width:{{ env('CATEGORY_SMALL_W') }}px)"
                             srcset="{{ $detail->images['images']['small'] ?? '' }}">
 
                         <img src="{{ $detail->images['images']['medium'] ?? '' }}" alt="{{ $detail->title }}"
-                            width="{{ env('CATEGORY_MEDIUM') }}" height="{{ env('CATEGORY_MEDIUM') }}">
+                            width="{{ env('CATEGORY_MEDIUM_W') }}" height="{{ env('CATEGORY_MEDIUM_W') }}">
                     </picture>
                 @endif
 

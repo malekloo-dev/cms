@@ -17,8 +17,8 @@
         }
         .preview {
           overflow: hidden;
-          width: {{ env('ARTICLE_SMALL_W') }}px;
-          height: {{ env('ARTICLE_SMALL_H') }}px;
+          width: {{ env(Str::upper($content_info->attr_type).'_SMALL_W') }}px;
+          height: {{ env(Str::upper($content_info->attr_type).'_SMALL_H') }}px;
           margin: 10px;
           border: 1px solid red;
         }
@@ -38,6 +38,7 @@
         <div class="modal-body">
           <div class="img-container">
               <div class="row">
+
                   <div class="col-lg-8 col-md-8 col-sm-8" style="max-width: 50%;float: inherit;">
                       <img id="image" src="https://avatars0.githubusercontent.com/u/3456749">
                   </div>
@@ -90,7 +91,7 @@
         cropper = new Cropper(image, {
         //   aspectRatio: 1,
         //   viewMode: 3,
-          aspectRatio: {{ env('ARTICLE_SMALL_W') }}/{{ env('ARTICLE_SMALL_H') }},
+          aspectRatio: {{ env(Str::upper($content_info->attr_type).'_SMALL_W') }}/{{ env(Str::upper($content_info->attr_type).'_SMALL_H') }},
           viewMode: 0,
           preview: '.preview'
         });
@@ -102,8 +103,8 @@
     $("#crop").click(function(){
         canvas = cropper.getCroppedCanvas({
             fillColor:'#fff',
-            width: {{ env('ARTICLE_SMALL_W') }},
-            height: {{ env('ARTICLE_SMALL_H') }},
+            width: {{ env(Str::upper($content_info->attr_type).'_SMALL_W') }},
+            height: {{ env(Str::upper($content_info->attr_type).'_SMALL_H') }},
             imageSmoothingEnabled: false,
             imageSmoothingQuality: 'high',
           });

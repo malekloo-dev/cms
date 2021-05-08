@@ -49,14 +49,14 @@
                             @if (isset($content->images['images']))
                                 <picture>
 
-                                    <source media="(min-width:{{ env('CATEGORY_MEDIUM') }}px)"
+                                    <source media="(min-width:{{ env('CATEGORY_MEDIUM_W') }}px)"
                                         srcset="{{ $content->images['images']['medium'] ?? '' }}">
 
-                                    <source media="(min-width:{{ env('CATEGORY_SMALL') }}px)"
+                                    <source media="(min-width:{{ env('CATEGORY_SMALL_W') }}px)"
                                         srcset="{{ $content->images['images']['small'] ?? '' }}">
 
                                     <img src="{{ $content->images['images']['medium'] ?? '' }}" alt="{{ $content->title }}"
-                                        width="{{ env('CATEGORY_MEDIUM') }}" height="{{ env('CATEGORY_MEDIUM') }}">
+                                        width="{{ env('CATEGORY_MEDIUM_W') }}" height="{{ env('CATEGORY_MEDIUM_W') }}">
                                 </picture>
                             @endif
 

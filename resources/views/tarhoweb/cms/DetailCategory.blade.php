@@ -43,10 +43,10 @@
                                     @if (isset($content->images['thumb']))
                                         <figure class="image">
                                             <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
-                                                sizes="(max-width:{{ env('CATEGORY_SMALL') }}px) 100vw {{ env('CATEGORY_SMALL') }}px {{ ENV('CATEGORY_MEDIUM') }}px"
-                                                alt="{{ $content->title }}" width="{{ ENV('CATEGORY_SMALL') }}"
-                                                height="{{ ENV('CATEGORY_SMALL') }}" srcset="
-                                            {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL') }}w,
+                                                sizes="(max-width:{{ env('CATEGORY_SMALL_W') }}px) 100vw {{ env('CATEGORY_SMALL_W') }}px {{ ENV('CATEGORY_MEDIUM_W') }}px"
+                                                alt="{{ $content->title }}" width="{{ ENV('CATEGORY_SMALL_W') }}"
+                                                height="{{ ENV('CATEGORY_SMALL_W') }}" srcset="
+                                            {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
                                             {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
                                         </figure>
 

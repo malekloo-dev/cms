@@ -445,8 +445,8 @@
                     &lt;img src="&lbrace;&lbrace; $content->images['images']['small'] ?? $content->images['thumb'] }}"
                             alt="&lbrace;&lbrace; $content->title }}" width="40" height="40"
                             srcset="
-                            &lbrace;&lbrace; $content->images['images']['small'] ?? $content->images['thumb'] }} &lbrace;&lbrace; env('CATEGORY_SMALL') }}w,
-                            &lbrace;&lbrace; $content->images['images']['medium'] ?? $content->images['thumb'] }} &lbrace;&lbrace; env('CATEGORY_MEDIUM') }}w">
+                            &lbrace;&lbrace; $content->images['images']['small'] ?? $content->images['thumb'] }} &lbrace;&lbrace; env('CATEGORY_SMALL_W') }}w,
+                            &lbrace;&lbrace; $content->images['images']['medium'] ?? $content->images['thumb'] }} &lbrace;&lbrace; env('CATEGORY_MEDIUM_W') }}w">
                                 &lt;figcaption>
                         &lt;h3 class="p-0 m-0 text-center"> &lbrace;&lbrace; $content->title }}</h3>
                     &lt;/figcaption>

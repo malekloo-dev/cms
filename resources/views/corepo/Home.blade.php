@@ -154,8 +154,8 @@
                                     <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
                                         alt="{{ $content->title }}" width="40" height="40"
                                         srcset="
-                                            {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL') }}w,
-                                            {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM') }}w">
+                                            {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
+                                            {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM_W') }}w">
                                     <figcaption>
                                         <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
                                     </figcaption>

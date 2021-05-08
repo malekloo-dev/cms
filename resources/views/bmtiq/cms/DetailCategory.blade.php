@@ -133,22 +133,7 @@
                             <div>
 
 
-                                {{-- @if (isset($detail->images['images']))
-                                    <picture>
-                                        <source media="(min-width:{{ env('CATEGORY_LARGE') }}px)"
-                                            srcset="{{ $detail->images['images']['large'] ?? '' }}">
-
-                                        <source media="(min-width:{{ env('CATEGORY_MEDIUM') }}px)"
-                                            srcset="{{ $detail->images['images']['medium'] ?? '' }}">
-
-                                        <source media="(min-width:{{ env('CATEGORY_SMALL') }}px)"
-                                            srcset="{{ $detail->images['images']['small'] ?? '' }}">
-
-                                        <img src="{{ $detail->images['images']['medium'] ?? '' }}"
-                                            alt="{{ $detail->title }}" width="{{ env('CATEGORY_MEDIUM') }}"
-                                            height="{{ env('CATEGORY_MEDIUM') }}">
-                                    </picture>
-                                @endif --}}
+                           
 
                                 @if(count($table_of_content)>0)
                                 <ul>

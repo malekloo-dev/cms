@@ -20,6 +20,7 @@ class ContentController extends Controller
 {
     protected function uploadImages($request, $type = 'article')
     {
+        // dd($type);
         $file = $request->imageJson;
         $fileOrg = $request->file('images');
         $year = Carbon::now()->year;
@@ -58,11 +59,11 @@ class ContentController extends Controller
     {
 
         $sizes = array(
-            "small" => @env(Str::upper($type) . '_SMALL'),
-            'medium' => @env(Str::upper($type) . '_MEDIUM'),
-            'large' => @env(Str::upper($type) . '_LARGE')
+            "small" => @env(Str::upper($type) . '_SMALL_W'),
+            'medium' => @env(Str::upper($type) . '_MEDIUM_W'),
+            'large' => @env(Str::upper($type) . '_LARGE_W')
         );
-
+        // dd($sizes);
         $images['crop'] = $imagePath . $fileNameAndType;
         foreach ($sizes as $name => $size) {
             $images[$name] = $imagePath  . $fileName . "-{$name}." . $fileType;
@@ -135,7 +136,8 @@ class ContentController extends Controller
         $imagesUrl = '';
         //dd($request->file('images'));
         if ($request->file('images')) {
-            $imagesUrl = $this->uploadImages($request);
+            // dd($request->attr_type);
+            $imagesUrl = $this->uploadImages($request,$request->attr_type);
         }
 
         $data = $request->all();
@@ -274,9 +276,8 @@ class ContentController extends Controller
 
         $file = $request->file('images');
         //$inputs = $request->all();
-
         if ($file) {
-            $images = $this->uploadImages($request);
+            $images = $this->uploadImages($request,$crud->attr_type);
         } elseif ($crud->images != '') {
             $images = $crud->images;
             $images['thumb'] = $request->get('imagesThumb');
@@ -296,6 +297,8 @@ class ContentController extends Controller
         $data['slug'] = str_replace('--', '-', $data['slug']);
 
         $crud->update($data);
+
+
         //$crud->categories()->sync($request->parent_id_hide);
         $crud->categories()->detach();
         $crud->categories()->attach($data['parent_id_hide']);

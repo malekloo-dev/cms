@@ -4,9 +4,9 @@
     <meta property="og:image" content="{{ url($detail->images['images']['medium'] ?? '') }}" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
+        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W') }}" />
     <meta property="og:image:height"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
+        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H') }}" />
     <meta property="og:image:alt" content="{{ $detail->title }}" />
 @endsection
 
@@ -99,8 +99,8 @@
                     <div>
                         <h1 class="">{{ $detail->title }}</h1>
                         <div>
-                            <div class="flex five">
-                                <div class="one-fifth">
+                            <div class="flex five-500">
+                                <div class="one one-fifth-500">
                                     @isset($detail->images['thumb'])
                                         <picture>
                                             <img src="{{ $detail->images['images']['medium'] ?? '' }}"
@@ -111,7 +111,7 @@
                                         </picture>
                                     @endisset
                                 </div>
-                                <div>
+                                <div class="four-fifth-500">
                                     @if(count($detail->companies))
                                         <div class="company-logo">
                                             <a href="{{ url('/profile/'.$detail->companies->first()->id) }}">

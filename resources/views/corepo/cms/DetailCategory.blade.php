@@ -139,10 +139,10 @@
                                         @if (isset($content->images['thumb']))
                                             <figure class="image">
                                                 <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
-                                                    sizes="(max-width:{{ env('ARTICLE_SMALL') }}px) 100vw {{ env('ARTICLE_SMALL') }}px {{ ENV('ARTICLE_MEDIUM') }}px"
+                                                    sizes="(max-width:{{ env('ARTICLE_SMALL_W') }}px) 100vw {{ env('ARTICLE_SMALL_W') }}px {{ ENV('ARTICLE_MEDIUM_W') }}px"
                                                     alt="{{ $content->title }}" width="100" height="100"
                                                     srcset="
-                                                        {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL') }}w,
+                                                        {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL_W') }}w,
                                                         {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
                                             </figure>
 

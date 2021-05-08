@@ -4,9 +4,9 @@
     <meta property="og:image" content="{{ url($detail->images['images']['medium'] ?? '') }}" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
+        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W') }}" />
     <meta property="og:image:height"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM') : env('ARTICLE_MEDIUM') }}" />
+        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H') }}" />
     <meta property="og:image:alt" content="{{ $detail->title }}" />
 @endsection
 
@@ -95,14 +95,14 @@
             <div>
                 <div class="top-page">
                     <picture>
-                        <source media="(min-width:{{ env('PRODUCT_MEDIUM') }}px)"
+                        <source media="(min-width:{{ env('PRODUCT_MEDIUM_W') }}px)"
                             srcset="{{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['large']) ?? '' }} 2x">
-                        <source media="(min-width:{{ env('PRODUCT_SMALL') }}px)"
+                        <source media="(min-width:{{ env('PRODUCT_SMALL_W') }}px)"
                             srcset="{{ str_replace(' ', '%20', $detail->images['images']['small']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} 2x">
                         <img src="{{ $detail->images['images']['medium'] ?? '' }}"
-                            sizes="(max-width:{{ env('PRODUCT_MEDIUM') }}px) 100vw  {{ ENV('PRODUCT_MEDIUM') }}px {{ ENV('PRODUCT_LARGE') }}px"
-                            alt="{{ $detail->title }}" width="{{ env('PRODUCT_MEDIUM') }}"
-                            height="{{ env('PRODUCT_MEDIUM') }}">
+                            sizes="(max-width:{{ env('PRODUCT_MEDIUM_W') }}px) 100vw  {{ ENV('PRODUCT_MEDIUM_W') }}px {{ ENV('PRODUCT_LARGE_W') }}px"
+                            alt="{{ $detail->title }}" width="{{ env('PRODUCT_MEDIUM_W') }}"
+                            height="{{ env('PRODUCT_MEDIUM_W') }}">
                     </picture>
                     <div>
                         <h1 class="">{{ $detail->title }}</h1>

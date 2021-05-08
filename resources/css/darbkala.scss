@@ -494,9 +494,9 @@ nav[role="navigation"] span > svg {
     flex-flow: column;
 }
 .index-items img {
-    width: 60%;
-    height: 100%;
-    object-fit: cover;
+    // width: 60%;
+    // height: 100%;
+    // object-fit: cover;
 }
 .index-items a {
     display: block;
@@ -607,11 +607,13 @@ nav[role="navigation"] span > svg {
 
         .info{
             flex: 2;
+            padding: 0 1em;
         }
 
         picture img {
             border-radius: 3px;
             object-fit: contain;
+
         }
         h2 {
             font-size: 1em;
