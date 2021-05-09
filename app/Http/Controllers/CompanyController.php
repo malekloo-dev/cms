@@ -36,9 +36,9 @@ class CompanyController extends Controller
     {
         $user = Auth::user();
 
-        $imagesUrl = $this->uploadImages($request->image, $user->company->id);
+        $imagesUrl = $this->uploadImages($request->image, $user->company->id,'company');
 
-        $user->company->logo = $imagesUrl['images']['large'];
+        $user->company->logo = $imagesUrl['images'];
         $user->company->save();
 
         return response(array('status' => true, 'url' => $imagesUrl), 200);
@@ -236,9 +236,9 @@ class CompanyController extends Controller
     {
 
         $sizes = array(
-            "small" => @env(Str::upper($type) . '_SMALL'),
-            'medium' => @env(Str::upper($type) . '_MEDIUM'),
-            'large' => @env(Str::upper($type) . '_LARGE')
+            "small" => @env(Str::upper($type) . '_SMALL_W'),
+            'medium' => @env(Str::upper($type) . '_MEDIUM_W'),
+            'large' => @env(Str::upper($type) . '_LARGE_W')
         );
 
         $images['crop'] = $imagePath . $fileNameAndType;

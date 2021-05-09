@@ -24,8 +24,8 @@
 
     .cropper .preview {
         overflow: hidden;
-        width: 100px;
-        height: 100px;
+        width: 300px;
+        height: 300px;
         margin: 10px auto;
         border-radius: 50%;
         background-color: #fff;
@@ -115,8 +115,8 @@
     $("#crop").click(function() {
         canvas = cropper.getCroppedCanvas({
             fillColor: '#fff',
-            width: 100,
-            height: 100,
+            width: 300,
+            height: 300,
             imageSmoothingEnabled: false,
             imageSmoothingQuality: 'high',
         });
@@ -152,7 +152,7 @@
                         $modal.modal('hide');
                         $('.company-logo svg').hide();
                         $('.company-logo img').show();
-                        $('.company-logo img').attr('src', data.url);
+                        $('.company-logo img').attr('src', data.url.images.large);
 
                         // alert("success upload image");
                     }

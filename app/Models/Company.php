@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     protected $casts = [
-        'phone' => 'array'
+        'phone' => 'array',
+        'logo' => 'array'
     ];
 
     protected $fillable = [

@@ -156,9 +156,10 @@
                                             <div class="brand">برند: {{ $content->attr['brand'] }}</div>
 
                                             @if(count($content->companies))
+
                                                 <div class="company-logo">
-                                                    @if (isset($content->companies->first()->logo) || $content->companies->first()->logo == '' || !file_exists(public_path($content->companies->first()->logo)))
-                                                        <img src="{{ url($content->companies->first()->logo) }}" width="30" height="30" class="border-radius-50" alt="" />
+                                                    @if (isset($content->companies->first()->logo['small']) || $content->companies->first()->logo['small'] == '' || !file_exists(public_path($content->companies->first()->logo['small'])))
+                                                        <img src="{{ url($content->companies->first()->logo['small']) }}" width="30" height="30" class="border-radius-50" alt="" />
                                                     @endif
                                                     {{ $content->companies->first()->name ?? '' }}
                                                 </div>

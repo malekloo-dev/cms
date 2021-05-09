@@ -115,8 +115,8 @@
                                     @if(count($detail->companies))
                                         <div class="company-logo">
                                             <a href="{{ url('/profile/'.$detail->companies->first()->id) }}">
-                                                @if (isset($detail->companies->first()->logo) || $detail->companies->first()->logo == '' || !file_exists(public_path($detail->companies->first()->logo)))
-                                                    <img src="{{ url($detail->companies->first()->logo) }}" width="50" height="50" class="border-radius-50" alt="">
+                                                @if (isset($detail->companies->first()->logo['small']) || $detail->companies->first()->logo['small'] == '' || !file_exists(public_path($detail->companies->first()->logo['small'])))
+                                                    <img src="{{ url($detail->companies->first()->logo['small']) }}" width="50" height="50" class="border-radius-50" alt="">
                                                 @endif
                                                 {{ $detail->companies->first()->name ?? '' }}</a>
                                         </div>

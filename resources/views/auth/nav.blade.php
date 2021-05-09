@@ -6,7 +6,7 @@
     </div>
     <ul>
         <li class="company-logo">
-            @if (!isset(Auth::user()->company->logo) || Auth::user()->company->logo == '' ||   !file_exists(public_path(Auth::user()->company->logo )))
+            @if (!isset(Auth::user()->company->logo['large']) || Auth::user()->company->logo['large'] == '' ||   !file_exists(public_path(Auth::user()->company->logo['large'] )))
             <svg id="bold" enable-background="new 0 0 24 24" height="100" viewBox="0 0 24 24" width="100"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -23,9 +23,9 @@
             <img style="display: none">
 
         @else
-            <img src="{{ url(Auth::user()->company->logo) }}?{{ uniqid() }}">
+            <img src="{{ url(Auth::user()->company->logo['large']) }}?{{ uniqid() }}">
             @endif
-            
+
 
         </li>
         <li>
