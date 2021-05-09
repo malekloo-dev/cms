@@ -625,6 +625,7 @@ nav[role="navigation"] span > svg {
             background-color: #eee;
             padding: 5px 10px;
             border-radius: 50px;
+            font-size: .8em;
 
             > * {
                 margin-left: 1em;
@@ -647,6 +648,7 @@ nav[role="navigation"] span > svg {
             display: flex;
             justify-content: center;
             font-size: 12px;
+            white-space: nowrap;
             img {
                 width: 16px;
             }
@@ -705,10 +707,7 @@ nav[role="navigation"] span > svg {
     .mt-1 {
         margin: 0;
     }
-}
 
-
-@media (max-width: 600px) {
     .product-detail .rate,
     .product-detail .view-count {
         position: relative;
@@ -717,10 +716,14 @@ nav[role="navigation"] span > svg {
     }
     .product-detail .rate {
         width: 100%;
+        white-space: nowrap;
     }
     h1 {
         font-size: 1.2em;
         text-align: center;
+    }
+    .flex{
+        justify-content: center;
     }
     h2 {
         font-size: 1.2em;

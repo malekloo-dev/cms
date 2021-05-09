@@ -141,7 +141,7 @@
                                                     srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
                                                     src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
                                             @endfor
-                                            <span class="font-08">({{ count($detail->comments) }} نفر)   </span>
+                                            <span class="font-07">({{ count($detail->comments) }} نفر)   </span>
                                         @endif
                                     </span> |
                                     {{ $detail->viewCount }} بار دیده شده |

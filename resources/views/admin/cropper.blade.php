@@ -17,8 +17,8 @@
         }
         .preview {
           overflow: hidden;
-          width: {{ env(Str::upper($content_info->attr_type).'_SMALL_W') }}px;
-          height: {{ env(Str::upper($content_info->attr_type).'_SMALL_H') }}px;
+          width: {{ env(Str::upper($content_info->attr_type).'_LARGE_W') }}px;
+          height: {{ env(Str::upper($content_info->attr_type).'_LARGE_H') }}px;
           margin: 10px;
           border: 1px solid red;
         }
@@ -103,8 +103,8 @@
     $("#crop").click(function(){
         canvas = cropper.getCroppedCanvas({
             fillColor:'#fff',
-            width: {{ env(Str::upper($content_info->attr_type).'_SMALL_W') }},
-            height: {{ env(Str::upper($content_info->attr_type).'_SMALL_H') }},
+            width: {{ env(Str::upper($content_info->attr_type).'_LARGE_W') }},
+            height: {{ env(Str::upper($content_info->attr_type).'_LARGE_H') }},
             imageSmoothingEnabled: false,
             imageSmoothingQuality: 'high',
           });

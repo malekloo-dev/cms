@@ -205,17 +205,12 @@
                         <div class="third-700">
                             @if (isset($detail->images['images']))
                                 <picture>
-                                    <source media="(min-width:{{ env('CATEGORY_LARGE_W') }}px)"
-                                        srcset="{{ $detail->images['images']['large'] ?? '' }}">
 
-                                    <source media="(min-width:{{ env('CATEGORY_MEDIUM_W') }}px)"
-                                        srcset="{{ $detail->images['images']['medium'] ?? '' }}">
-
-                                    <source media="(min-width:{{ env('CATEGORY_SMALL_W') }}px)"
-                                        srcset="{{ $detail->images['images']['small'] ?? '' }}">
 
                                     <img src="{{ $detail->images['images']['medium'] ?? '' }}"
-                                        alt="{{ $detail->title }}" width="{{ env('CATEGORY_MEDIUM_W') }}"
+                                        alt="{{ $detail->title }}"
+
+                                        width="{{ env('CATEGORY_MEDIUM_W') }}"
                                         height="{{ env('CATEGORY_MEDIUM_W') }}">
                                 </picture>
                             @endif
@@ -246,7 +241,12 @@
                                     <a href="{{ $content->slug }}">
                                         <article class="shadow1">
                                             @if (isset($content->images['thumb']))
-                                                <div><img src="{{ $content->images['thumb'] }}"></div>
+                                                <div><img
+                                                    src="{{ $content->images['images']['medium'] }}"
+
+                                                    width="{{ env('ARTICLE_MEDIUM_W') }}"
+                                                    height="{{ env('ARTICLE_MEDIUM_H') }}"
+                                                    ></div>
                                             @endif
                                             <footer>
                                                 <h2> {{ readmore($content->title, 80) }}</h2>

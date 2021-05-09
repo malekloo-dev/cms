@@ -20,7 +20,7 @@ class ContentController extends Controller
 {
     protected function uploadImages($request, $type = 'article')
     {
-        // dd($type);
+
         $file = $request->imageJson;
         $fileOrg = $request->file('images');
         $year = Carbon::now()->year;
@@ -59,9 +59,9 @@ class ContentController extends Controller
     {
 
         $sizes = array(
-            "small" => @env(Str::upper($type) . '_SMALL_W'),
-            'medium' => @env(Str::upper($type) . '_MEDIUM_W'),
-            'large' => @env(Str::upper($type) . '_LARGE_W')
+            "small" => env(Str::upper($type) . '_SMALL_W'),
+            'medium' => env(Str::upper($type) . '_MEDIUM_W'),
+            'large' => env(Str::upper($type) . '_LARGE_W')
         );
         // dd($sizes);
         $images['crop'] = $imagePath . $fileNameAndType;
@@ -77,7 +77,7 @@ class ContentController extends Controller
             $img->save(public_path($images[$name]), 75);
         }
 
-
+        // dd(1);
         return $images;
     }
 

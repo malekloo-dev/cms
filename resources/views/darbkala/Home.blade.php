@@ -17,7 +17,7 @@
             <h1>مرجع تخصصی اطلاعات درب </h1>
         </div>
         <div class="flex one five-500 center  ">
-            {{-- image&label=category&var=category --}}
+            {{--image&label=category&var=category --}}
             @isset($category['data'])
                 @foreach ($category['data'] as $content)
                     <a href="{{ $content->slug }}">
@@ -45,7 +45,7 @@
         </div>
 
         <div class="flex one five-500 center  ">
-            {{-- category&label=category&var=category --}}
+            {{--category&label=category&var=category --}}
             @isset($category['data'])
                 @foreach ($category['data'] as $content)
                     <a href="{{ $content->slug }}">
@@ -80,12 +80,12 @@
     </section>
 
 
-    {{-- #anchor topViewProduct --}}
+    {{--#anchor topViewProduct --}}
     <section class="index-items home-top-view">
         <div class="flex one">
             <div>
                 <div class="flex two two-500 three-700 six-900 center ">
-                    {{-- product&label=topViewPost&var=topViewPost&count=11 --}}
+                    {{--product&label=topViewPost&var=topViewPost&count=11 --}}
                     @isset($topViewPost['data'])
                         @foreach ($topViewPost['data'] as $content)
                             <div>
@@ -100,10 +100,9 @@
                                                 {{ $content->images['images']['large'] }} 2880w
                                                     "
                                                     sizes="
-                                                    (min-width:1366px) 127px,
-                                                    (min-width:1536px) 172px,
-                                                    (min-width:850px) 227px
-
+                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
+                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
+                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
                                                     "
                                                     ></div>
                                     @endif
@@ -162,14 +161,14 @@
             <div>
                 <h2>مقالات درب کالا</h2>
                 <div class="flex one two-500  three-800 center ">
-                    {{-- post&label=articles&var=articles&count=9 --}}
+                    {{--post&label=articles&var=articles&count=9 --}}
                     @isset($articles['data'])
                         @foreach ($articles['data'] as $content)
                             <div>
                                 <a class="hover shadow2" href="{{ $content->slug }}">
 
                                     @if (isset($content->images['thumb']))
-                                        <div><img width="288" height="190" src="{{ $content->images['thumb'] }}"></div>
+                                        <div><img width="{{ env('ARTICLE_SMALL_W') }}" height="{{ env('ARTICLE_SMALL_H') }}" src="{{ $content->images['thumb'] }}"></div>
                                     @endif
                                     <footer>
                                         <h3> {{ $content->title }}</h3>
@@ -185,7 +184,7 @@
     </section>
 
 
-    {{-- #anchor footer --}}
+    {{--#anchor footer --}}
 
 
 @endsection
