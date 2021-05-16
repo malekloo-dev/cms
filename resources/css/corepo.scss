@@ -3,7 +3,7 @@ $body: #f4f4f4;
 $theme-color1: #ffd243;
 $theme-color2: rgba(255, 136, 45, 1);
 $theme-color3: #ea1c44;
-$a: #33354c;
+$a: #9b0909;
 $a-hover: #1e2135;
 $menu-color: #fff;
 
@@ -358,7 +358,7 @@ article {
         min-height: auto;
         align-items: center;
         text-align: inherit;
-        
+
 
         .title {
             flex: 1 0 100%;
@@ -431,18 +431,18 @@ figure {
 .prev:hover {
     background-color: rgba(255, 255, 255, 0.4);
 }
-.text {
-    color: #f2f2f2;
-    background: rgba(0, 0, 0, 0.6);
-    font-size: 15px;
-    padding: 3px 12px 3px 5em;
-    position: absolute;
-    bottom: 15px;
-    right: 0;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 50px 0 0 50px;
-}
+// .text {
+//     color: #f2f2f2;
+//     background: rgba(0, 0, 0, 0.6);
+//     font-size: 15px;
+//     padding: 3px 12px 3px 5em;
+//     position: absolute;
+//     bottom: 15px;
+//     right: 0;
+//     text-align: center;
+//     background: rgba(0, 0, 0, 0.6);
+//     border-radius: 50px 0 0 50px;
+// }
 .active,
 .dot:hover {
     background-color: #717171;

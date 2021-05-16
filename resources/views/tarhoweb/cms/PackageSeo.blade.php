@@ -32,7 +32,7 @@
                 </div>
                 <div class="featur">
                     <div>تحقیق و تحلیل کلمات کلیدی</div>
-                    <div>جستجوی ۴ کلمه ای</div>
+                    <div>جستجوی ۵ و ۶ کلمه ای</div>
                     <div>بهینه سازی صفحه فرود</div>
                     <div>On Page SEO</div>
                     <div>Off Page SEO</div>
@@ -58,7 +58,7 @@
 
                 <div class="featur">
                     <div>تحقیق و تحلیل کلمات کلیدی</div>
-                    <div>جستجوی ۳ کلمه ای</div>
+                    <div>جستجوی ۴ و ۵ کلمه ای</div>
                     <div>بهینه سازی صفحه فرود</div>
                     <div>On Page SEO</div>
                     <div>Off Page SEO</div>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="featur">
                     <div>تحقیق و تحلیل کلمات کلیدی</div>
-                    <div>جستجوی ۲ کلمه ای</div>
+                    <div>جستجوی ۳ و ۴ کلمه ای</div>
                     <div>بهینه سازی صفحه فرود</div>
                     <div>On Page SEO</div>
                     <div>Off Page SEO</div>
@@ -93,7 +93,7 @@
                 <div class="price">
                     ماهیانه
                     <div class="font-2">
-                        ۵،۰۰۰،۰۰۰ تومان
+                        ۵،۵۰۰،۰۰۰ تومان
                     </div>
                 </div>
             </div>
