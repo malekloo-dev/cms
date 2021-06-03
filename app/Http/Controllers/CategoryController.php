@@ -263,6 +263,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        $attr_type = 'CATEGORY';
         $where = array('id' => $id);
         $content_info = Category::where($where)->first();
 
@@ -291,7 +292,7 @@ class CategoryController extends Controller
 
         //print_r($content_info);
         //die();
-        return view('admin.category.Edit', compact(['content_info', 'category']));
+        return view('admin.category.Edit', compact(['content_info', 'category','attr_type']));
     }
 
     /**
