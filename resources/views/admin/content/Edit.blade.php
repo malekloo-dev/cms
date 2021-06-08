@@ -94,17 +94,16 @@
 
     </script>
 
+<script src="/ckeditor4/ckeditor.js"></script>
 
-    <script src="/ckeditor5/ckeditor5-build-classic/ckeditor.js"></script>
+    {{-- <script src="/ckeditor5/ckeditor5-build-classic/ckeditor.js"></script> --}}
     <script>
-        ClassicEditor
-            .create(document.querySelector('#brief_description'), {
+        CKEDITOR
+            .replace(document.querySelector('#brief_description'), {
                 ckfinder: {
                     uploadUrl: "{{ route('contents.upload', ['_token' => csrf_token()]) }}",
                 },
-                toolbar: {
-                    viewportTopOffset: 80
-                },
+
                 @if (!$ltr)
                     language: 'fa'
                 @endif
@@ -122,28 +121,6 @@
             });
 
 
-        // ClassicEditor
-        //     .create(document.querySelector('#description'), {
-        //         ckfinder: {
-        //             uploadUrl: "{{ route('contents.upload', ['_token' => csrf_token()]) }}",
-        //         },
-        //         toolbar: {
-        //             viewportTopOffset: 80
-        //         },
-        @if (!$ltr)
-            // language: 'fa'
-            // @endif
-        //     })
-        //     .then(editor => {
-        //         const wordCountPlugin = editor.plugins.get('WordCount');
-        //         const wordCountWrapper = document.getElementById('word-count2');
-        //         wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
-
-        //         window.editor = editor;
-        //     })
-        //     .catch(err => {
-        //         console.error(err.stack);
-        //     });
 
     </script>
 

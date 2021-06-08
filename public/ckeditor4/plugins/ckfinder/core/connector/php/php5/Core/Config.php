@@ -398,14 +398,27 @@ class CKFinder_Connector_Core_Config
             return $_null;
         }
 
-        reset($GLOBALS['config']['ResourceType']);
-        while (list($_key,$_resourceTypeNode) = each($GLOBALS['config']['ResourceType'])) {
+
+        // edited by m.marjani
+        for($i=0;$i< count($GLOBALS['config']['ResourceType']) ; $i++){
+            $_resourceTypeNode = current($GLOBALS['config']['ResourceType']);
             if ($_resourceTypeNode['name'] === $resourceTypeName) {
                 $this->_resourceTypeConfigCache[$resourceTypeName] = new CKFinder_Connector_Core_ResourceTypeConfig($_resourceTypeNode);
 
                 return $this->_resourceTypeConfigCache[$resourceTypeName];
             }
+            next($GLOBALS['config']['ResourceType']);
         }
+
+        // reset($GLOBALS['config']['ResourceType']);
+
+        // while (list($_key,$_resourceTypeNode) = each($GLOBALS['config']['ResourceType'])) {
+        //     if ($_resourceTypeNode['name'] === $resourceTypeName) {
+        //         $this->_resourceTypeConfigCache[$resourceTypeName] = new CKFinder_Connector_Core_ResourceTypeConfig($_resourceTypeNode);
+
+        //         return $this->_resourceTypeConfigCache[$resourceTypeName];
+        //     }
+        // }
 
         return $_null;
     }
