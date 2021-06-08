@@ -12,15 +12,16 @@
             }); */
 
     </script>
-<script src="/ckeditor5/ckeditor5-build-classic/ckeditor.js"> </script>
+    <script src="/ckeditor4/ckeditor.js"></script>
+
 <script>
-    ClassicEditor
-        .create(document.querySelector('#comment'), {
+
+    CKEDITOR
+        .replace(document.querySelector('#comment'), {
+
+
             ckfinder: {
                 uploadUrl: "{{ route('contents.upload', ['_token' => csrf_token()]) }}",
-            },
-            toolbar: {
-                viewportTopOffset: 80
             },
             @if(!$ltr)
             language: 'fa'

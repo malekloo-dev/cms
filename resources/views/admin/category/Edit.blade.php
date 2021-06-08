@@ -22,16 +22,12 @@
 
 <script src="/ckeditor4/ckeditor.js"></script>
 
-{{-- <script src="/ckeditor5/ckeditor5-build-classic/ckeditor.js"> </script> --}}
 <script>
     CKEDITOR
     .replace(document.querySelector('#brief_description'), {
         ckfinder: {
             uploadUrl: "{{route('contents.upload', ['_token' => csrf_token() ])}}",
         },
-        // toolbar: {
-        //     viewportTopOffset: 80
-        // },
         @if(!$ltr)
         language: 'fa'
         @endif

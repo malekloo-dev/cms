@@ -8,6 +8,14 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
 
+    config.extraPlugins = 'image2';
+
+    // config.image2_alignClasses = [ 'image-left', 'image-center', 'image-right' ];
+    // config.image2_captionedClass = 'image-captioned';
+    // config.image2_altRequired = true;
+
+    // config.disableObjectResizing = false;
+    // config.disableNativeTableHandles = false;
 
     config.filebrowserBrowseUrl      = '/ckeditor4/plugins/ckfinder/ckfinder.html';
     config.filebrowserImageBrowseUrl = '/ckeditor4/plugins/ckfinder/ckfinder.html?type=Images';

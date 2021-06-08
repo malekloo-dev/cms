@@ -33,7 +33,7 @@
             content_types: ['ckeditor'],
             ckeditor: {
                 config: {
-                    extraPlugins:['ckfinder','html5video','widget','widgetselection','clipboard','lineutils','spacingsliders'],
+                    extraPlugins:['ckfinder','html5video','widget','widgetselection','clipboard','lineutils','spacingsliders','image2'],
                     @if(!$ltr)
                         language: 'fa',
                     @endif
