@@ -17,7 +17,7 @@
         }
         .preview {
           overflow: hidden;
-          width: {{ env(Str::upper($content_info->attr_type??$attr_type).'_LARGE_W') }}px;
+          width: {{ env(Str::upper( $content_info->attr_type ?? $attr_type ).'_LARGE_W') }}px;
           height: {{ env(Str::upper($content_info->attr_type??$attr_type).'_LARGE_H') }}px;
           margin: 10px;
           border: 1px solid red;

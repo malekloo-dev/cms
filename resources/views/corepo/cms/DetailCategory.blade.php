@@ -165,7 +165,7 @@
     <section class="index-items bg-pink mt-0 mb-0">
         <div class="flex one">
             <div>
-                <h2>{{ $detail->title ?? '' }}</h2>
+                <h1>{{ $detail->title ?? '' }}</h1>
                 @isset($relatedPost)
                     <div class="flex one three-500 five-900   ">
                         @foreach ($relatedPost as $content)
@@ -218,7 +218,6 @@
     <section class="category-content" id="">
         <div class="flex one ">
             <div>
-                <h1 class="">{{ $detail->title }}</h1>
                 <ul>
                     @foreach ($table_of_content as $key => $item)
                         <li class="toc1">

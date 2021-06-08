@@ -12,7 +12,7 @@
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.9.2/ckeditor.js"></script> --}}
 {{-- <script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script> --}}
 {{-- <script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script> --}}
-<script src="/ckeditor4/ckeditor.js"></script>
+{{-- <script src="/ckeditor4/ckeditor.js"></script> --}}
 
 <!-- Grid editor CSS -->
 <link rel="stylesheet" type="text/css" href="{{ url('/adminAssets/css/grideditor.css') }}" />
