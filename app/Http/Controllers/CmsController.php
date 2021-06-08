@@ -390,13 +390,13 @@ class CmsController extends Controller
 
             foreach ($tag->childNodes as $tag1) {
                 //print_r($tag1);
-                if ($tag1->tagName == 'img') {
+                if ($tag1->nodeName == 'img') {
                     foreach ($tag1->attributes as $tag3) {
                         $images[$count]['src'] = $tag3->value;
                         break;
                     }
                 }
-                if ($tag1->tagName == 'figcaption') {
+                if ($tag1->nodeName == 'figcaption') {
                     $images[$count]['alt'] = $tag1->nodeValue;
                 }
             }
