@@ -387,7 +387,6 @@ class CmsController extends Controller
             $count++;
             // echo '<pre/>';
             // print_r($tag);
-
             foreach ($tag->childNodes as $tag1) {
                 //print_r($tag1);
                 if ($tag1->nodeName == 'img') {
