@@ -57,7 +57,7 @@ Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(functio
 
     Route::get('/', [AdminController::class, 'index'])->name('admin');
 
-    Route::get('contents/{type}', [ContentController::class, 'index'])->name('contents.type.show');
+    Route::get('contents/{type}/{company?}/{companyId?}', [ContentController::class, 'index'])->name('contents.type.show');
     Route::get('contents/create/{type}', [ContentController::class, 'create'])->name('contents.create');
     Route::post('contents/upload-image/', [ContentController::class, 'uploadImageSubject'])->name('contents.upload');
     Route::get('image-cropper', [ImageCropperController::class, 'index']);
@@ -95,7 +95,8 @@ Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(functio
 
     // Route::post('logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 
-
+    Route::get('company', [CompanyController::class, 'companyList'])->name('admin.company.index');
+    Route::get('company/create', [CompanyController::class, 'companyCreate'])->name('admin.company.create');
 });
 Route::get('admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login.form');
 

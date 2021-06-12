@@ -86,14 +86,28 @@ class ContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request,$type='article',$company='',$companyId='')
     {
-        $type = 'article';
+
         if (isset($request->type)) {
             $type = $request->type;
         }
+
         $data['type'] = $type;
-        $data['contents'] = Content::where('type', '=', '2')->where('attr_type', '=', $type)->orderBy('id', 'desc')->paginate(1000);
+
+        $contents = Content::where('type', '=', '2')->where('attr_type', '=', $type)->orderBy('id', 'desc');
+
+        if($companyId != ''){
+            $contents = $contents->whereHas('companies',function($q) use($companyId){
+                $q->where('company_id','=',$companyId);
+            });
+        }
+
+        $contents = $contents->paginate(1000);
+        // dd($contents);
+
+        $data['contents'] = $contents;
+        // dd($data);
 
         $data['category'] = Content::where('type', '=', '1')->orderBy('id', 'desc')->get()->keyBy('id');
         //dd($data);

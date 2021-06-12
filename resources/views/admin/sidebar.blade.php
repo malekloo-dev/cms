@@ -8,6 +8,10 @@
             </a>
         </li>
         <li class="divider"></li>
+
+
+
+
         <li class="no-margin">
             <a href="{{ route('contents.type.show',['type'=>'article']) }}" class="no-margin @if(!$ltr) text-right @endif">
                 <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-folder-o"></i>
@@ -21,7 +25,17 @@
             </a>
         </li>
 
+        <li class="no-margin">
+            <a href="{{ route('category.index') }}" class="no-margin @if(!$ltr) text-right @endif">
+                <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-bars"></i>
+                <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.category')</span>
+            </a>
+        </li>
         <li class="divider"></li>
+
+
+
+
         <li class="no-margin">
             <a href="{{ route('comment.index') }}" class="no-margin @if(!$ltr) text-right @endif">
                 <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-comments"></i>
@@ -36,14 +50,6 @@
             <a href="{{ route('contact.index') }}" class="no-margin @if(!$ltr) text-right @endif">
                 <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-envelope"></i>
                 <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.contact')</span>
-            </a>
-        </li>
-        <li class="divider"></li>
-
-        <li class="no-margin">
-            <a href="{{ route('category.index') }}" class="no-margin @if(!$ltr) text-right @endif">
-                <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-bars"></i>
-                <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.category')</span>
             </a>
         </li>
 
@@ -70,17 +76,18 @@
         </li> --}}
 
 
-        <li class="no-margin">
-            <a href="/admin/menu?menu=1" class="no-margin @if(!$ltr) text-right @endif">
-                <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-envelope"></i>
-                <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.menu')</span>
-            </a>
-        </li>
         <li class="divider"></li>
         <li class="no-margin">
             <a href="{{ route('seo.redirectUrl.index') }}" class="no-margin @if(!$ltr) text-right @endif">
                 <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-unlink"></i>
                 <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.Redirect Url')</span>
+            </a>
+        </li>
+
+        <li class="no-margin">
+            <a href="/admin/menu?menu=1" class="no-margin @if(!$ltr) text-right @endif">
+                <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-envelope"></i>
+                <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.menu')</span>
             </a>
         </li>
         <li class="no-margin">
@@ -98,6 +105,13 @@
             </a>
         </li>
         <li class="divider"></li>
+        <li class="no-margin">
+            <a href="{{ route('admin.company.index') }}" class="no-margin @if(!$ltr) text-right @endif">
+                <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-user"></i>
+                <span class="sidebar-text @if(!$ltr) text-right @endif">@lang('messages.companies')</span>
+            </a>
+        </li>
+
         <li class="no-margin">
             <a href="{{ route('users.index') }}" class="no-margin @if(!$ltr) text-right @endif">
                 <i class="sidebar-icon @if(!$ltr) pull-right @endif fa fa-users"></i>

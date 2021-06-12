@@ -6,7 +6,11 @@
                 @lang('messages.'.$type.'s')
             </li>
         </ul>
-
+        @if ($contents->first()->companies->count() > 0)
+            <a class=" btn btn-warning btn-icon btn-sm  mat-button " href="{{ route('contents.type.show',['type'=>$type]) }}">
+                <i class="fa fa-close"></i>{{ $contents->first()->companies->first()->name }}
+            </a>
+        @endif
         <div>
             <a href="{{ route('contents.create', ['type' => $type]) }}" class=" btn btn-success btn-icon  mat-button ">
                 <i class="fa fa-plus"></i>@lang('messages.add')

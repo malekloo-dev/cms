@@ -359,7 +359,6 @@ article {
         align-items: center;
         text-align: inherit;
 
-
         .title {
             flex: 1 0 100%;
         }
@@ -526,7 +525,49 @@ figure {
     align-items: center;
     justify-content: center;
 
-    figure.image{
+    figure.image {
         width: 70%;
+    }
+}
+
+//detail
+.intro {
+    background: #fff;
+    border-radius: 15px;
+    .third-500 {
+        display: flex;
+        align-items: flex-start;
+        h1 {
+            padding: 0 !important;
+        }
+    }
+    figure {
+        float: right;
+        flex: 1;
+        display: block;
+        img {
+            border-radius: 15px;
+            width: auto;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .third-500 > div:last-child {
+        flex: 2;
+    }
+}
+
+@media (max-width: 500px) {
+    .intro figure {
+        margin: 0;
+        width: 100%;
+        img {
+            margin: 0;
+            width: 100%;
+        }
+    }
+    #detail h1 {
+        font-size: 1.3em;
+        text-align: center;
     }
 }

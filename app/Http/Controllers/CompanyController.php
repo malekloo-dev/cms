@@ -282,4 +282,19 @@ class CompanyController extends Controller
 
         return redirect()->route('company.products')->with('success', Lang::get('messages.Greate! Content created successfully.'));
     }
+
+
+
+
+
+    public function companyList(){
+        $companies = Company::all();
+
+        return view('admin.company.index',compact('companies'));
+    }
+
+    public function companyCreate(){
+
+        return view('admin.company.createOrUpdate');
+    }
 }

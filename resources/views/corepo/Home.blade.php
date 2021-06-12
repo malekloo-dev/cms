@@ -239,7 +239,7 @@
                 <div>
                     <h2>اپلیکیشن ها</h2>
                     <div class="flex two grow one-800  ">
-                        {{--post&label=application&var=application&count=4 --}}
+                        {{--post&label=application&var=application&count=5 --}}
                         @isset($application['data'])
                             @foreach ($application['data'] as $content)
                                 <div>

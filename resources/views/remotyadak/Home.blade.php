@@ -12,7 +12,7 @@
 
     <section class="index-img bg-gray mt-0 mb-0 pb-2">
         <div class="text-center pb-1">
-            <h1>مرکز ساخت سوئیچ و ریموت</h1>
+            <h1>مرجع تخصصی خدمات خودرو</h1>
         </div>
         <div class="flex two five-500  center ">
             {{--images&label=banner&var=banners&count=5--}}
@@ -34,9 +34,9 @@
 
 
     {{--#anchor top --}}
-    <section class="index-item-top bg-gray2 mt-0 mb-0">
+    <section class="index-item-top bg-blue2 mt-0 mb-0">
         <div class="text-center pb-1">
-            <h2>دسته بندی</h2>
+            <h2>خدمات سوئیچ و ریموت</h2>
         </div>
         <div class="flex two five-500 center  ">
             {{--category&label=category&var=category&count=15--}}
@@ -61,7 +61,7 @@
                             @endif
 
 
-                            <h2 class="p-0 m-0 text-center"> {{ $content->title }}</h2>
+                            <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
 
 
                         </div>
@@ -71,12 +71,48 @@
         </div>
     </section>
 
-    <section class="wide  m-0" id="index-comment">
-        <div>خدمات ریموت یدک</div>
+
+
+    <section class="index-item-top bg-gray mt-0 mb-0">
+        <div class="text-center pb-1">
+            <h2>تعمیرگاه های تخصصی</h2>
+        </div>
+        <div class="flex two five-500 center  ">
+            {{--category&label=category2&var=category2&count=15--}}
+            @isset($category2['data'])
+
+                @foreach ($category2['data'] as $content)
+                    <a href="{{ $content->slug }}">
+                        <div class="shadow hover h-100">
+
+                            @if (isset($content->images['images']))
+                                <picture>
+
+                                    <source media="(min-width:{{ env('CATEGORY_MEDIUM_W') }}px)"
+                                        srcset="{{ $content->images['images']['medium'] ?? '' }}">
+
+                                    <source media="(min-width:{{ env('CATEGORY_SMALL_W') }}px)"
+                                        srcset="{{ $content->images['images']['small'] ?? '' }}">
+
+                                    <img src="{{ $content->images['images']['medium'] ?? '' }}" alt="{{ $content->title }}"
+                                        width="{{ env('CATEGORY_MEDIUM_W') }}" height="{{ env('CATEGORY_MEDIUM_W') }}">
+                                </picture>
+                            @endif
+
+
+                            <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+
+
+                        </div>
+                    </a>
+                @endforeach
+            @endisset
+        </div>
     </section>
 
 
-    <section class="index-items home-top-view">
+    <section class="index-items bg-blue home-top-view">
+
         <div class="flex one">
             <div>
                 <div class="flex one two-500  four-800 center  ">
@@ -87,7 +123,7 @@
 
                         @foreach ($products['data'] as $content)
                             <div>
-                                <a class="hover" href="{{ $content->slug }}">
+                                <a class="hover " href="{{ $content->slug }}">
 
                                     @if (isset($content->images['thumb']))
                                         <div><img width="{{ env('PRODUCT_SMALL_W') }}" height="{{ env('PRODUCT_SMALL_H') }}" alt="{{ $content->title }}" src="{{ $content->images['thumb'] }}"></div>

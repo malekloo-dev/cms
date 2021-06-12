@@ -63,9 +63,9 @@
             </div>
         </div>
     </section>
-    <section class="intro" id="">
+    <section class="intro" id="detail">
         <div class="flex one two-500  ">
-            <div class="">
+            <div class="fourth-500">
                 @if (isset($detail->images['thumb']))
                     <figure class="image">
                         <img src="{{ $detail->images['images']['small'] ?? $detail->images['thumb'] }}"
@@ -75,8 +75,11 @@
 
                     </figure>
                 @endif
+
+            </div>
+            <div class="">
                 <div>
-                    <h1 class="site-name">{{ $detail->title }}</h1>
+                    <h1 class="site-name pt-0">{{ $detail->title }}</h1>
                     <div class="website"></div>
                     <div class="rate">
 
@@ -98,9 +101,6 @@
                         @endif
                     </div>
                 </div>
-            </div>
-            <div class="">
-
                 {!! $detail->brief_description !!}
             </div>
         </div>
