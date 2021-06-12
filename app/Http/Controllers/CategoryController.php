@@ -63,9 +63,9 @@ class CategoryController extends Controller
     private function resize($path, $type, $imagePath, $filename)
     {
         $sizes = array(
-                "small"=>env(Str::upper($type).'_SMALL'),
-                'medium'=>env(Str::upper($type).'_MEDIUM'),
-                'large'=>env(Str::upper($type).'_LARGE')
+                "small"=>env(Str::upper($type).'_SMALL_W'),
+                'medium'=>env(Str::upper($type).'_MEDIUM_W'),
+                'large'=>env(Str::upper($type).'_LARGE_W')
         );
 
 
@@ -96,9 +96,11 @@ class CategoryController extends Controller
     public function create(Request $request)
     {
         $result = $this->tree_set();
-        $data['attr_type']=$request->type;
-        $data['category'] = $this->convertTemplateSelect1($result);
-        return view('admin.category.Create', $data);
+        $attr_type=$request->type;
+        $category = $this->convertTemplateSelect1($result);
+        return view('admin.category.Edit', compact([ 'category','attr_type']));
+
+        // return view('admin.category.Create', $data);
     }
 
     public function convertTemplateSelect1($listCat, $_input = array(), $start = '|-', $befor = '', $after = '', $level = 0)
@@ -181,12 +183,11 @@ class CategoryController extends Controller
              //'description' => 'required',
              //'body' => 'required',
              //'images' => 'required|mimes:jpeg,png,bmp',
-
          ));
 
         $imagesUrl = '';
         if ($request->file('images')) {
-            $imagesUrl = $this->uploadImages($request->file('images'));
+            $imagesUrl = $this->uploadImages($request->file('images'),'category');
         }
 
         $data = $request->all();
@@ -207,7 +208,7 @@ class CategoryController extends Controller
 
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         Category::create($data);
-        return redirect('admin/category?type=' . $request->attr_type)->with('success', 'Greate! Content created successfully.');
+        return redirect('admin/category')->with('success', 'Greate! Content created successfully.');
     }
 
     public function store1(Request $request)
@@ -339,13 +340,14 @@ class CategoryController extends Controller
         $crud = Category::find($id);
 
         $data = $request->all();
+        //$data['attr_type']='category';
         $date = $data['publish_date'];
         $data['publish_date'] = convertJToG($date);
         $file = $request->file('images');
         //$inputs = $request->all();
 
         if ($file) {
-            $images = $this->uploadImages($request->file('images'));
+            $images = $this->uploadImages($request->file('images'),'category');
         } else {
             $images = $crud->images;
             if ($images != '') {
@@ -367,7 +369,7 @@ class CategoryController extends Controller
         $crud->update($data);
 
 
-        return redirect('admin/category?type=' . $crud->attr_type)->with('success', 'Update! Content created successfully.');
+        return redirect('admin/category')->with('success', 'Update! Content created successfully.');
     }
 
     /**

@@ -49,7 +49,7 @@
                         @foreach ($companies as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td class="">{{ $item->name ?? '' }} <a href="{{ route('contents.type.show',['type'=>'product','company'=>'company','companyId'=>$item->id]) }}">@lang('messages.products')</a></td>
+                                <td class="">{{ $item->name ?? '' }} <a href="{{ route('contents.type.show',['type'=>'product','companyId'=>$item->id]) }}">@lang('messages.products')</a></td>
                                 <td class="">{{ $item->email ?? '' }}</td>
                                 <td class="">{{ $item->mobile ?? '' }}</td>
                                 <td class=""><img src="{{ $item->logo['small'] ?? '' }}" alt=""></td>

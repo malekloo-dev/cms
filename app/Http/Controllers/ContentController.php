@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Content;
 use App\Models\export;
 use App\Sitemap;
@@ -86,18 +87,20 @@ class ContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$type='article',$company='',$companyId='')
+    public function index(Request $request,$type='article')
     {
 
         if (isset($request->type)) {
             $type = $request->type;
         }
+        $companyId=$request->companyId;
 
         $data['type'] = $type;
 
         $contents = Content::where('type', '=', '2')->where('attr_type', '=', $type)->orderBy('id', 'desc');
 
         if($companyId != ''){
+            $data['company']=Company::find($companyId);
             $contents = $contents->whereHas('companies',function($q) use($companyId){
                 $q->where('company_id','=',$companyId);
             });

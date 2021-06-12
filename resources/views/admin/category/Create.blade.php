@@ -132,8 +132,8 @@
                             value="{{ old('publish_date', Carbon\Carbon::now()->format('Y-m-d')) }}" />
                     </div>
                 </div>
-
                 @if ($attr_type == 'html')
+
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="brand" class=" col-form-label text-md-left">template name:</label>
