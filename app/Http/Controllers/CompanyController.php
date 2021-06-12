@@ -294,7 +294,9 @@ class CompanyController extends Controller
     }
 
     public function companyCreate(){
+        $company = array();
 
-        return view('admin.company.createOrUpdate');
+        
+        return view('admin.company.createOrUpdate',compact('company'));
     }
 }

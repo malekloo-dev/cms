@@ -68,25 +68,25 @@
                 <div class="">
                     @lang('messages.store name'):
                     <span class="text-editor" data-field='name'
-                        data-label="@lang('messages.store name')">{{ $user->company->name ?? '' }}</span>
+                        data-label="@lang('messages.store name')">{{ $company->name ?? '' }}</span>
                 </div>
                 <div class=" ">
                     @lang('messages.name'):
                     <span class="text-editor" data-field="manager"
-                        data-label="@lang('messages.name')">{{ $user->company->manager ?? '' }}</span>
+                        data-label="@lang('messages.name')">{{ $company->manager ?? '' }}</span>
                 </div>
                 <div class="">@lang('messages.sale manager'):
                     <span class="text-editor" data-field="sale_manager"
-                        data-label="@lang('messages.sale manager')">{{ $user->company->sale_manager ?? '' }}</span>
+                        data-label="@lang('messages.sale manager')">{{ $company->sale_manager ?? '' }}</span>
                 </div>
                 <div class="">@lang('messages.mobile'):
                     <span class="text-editor" data-field="mobile"
-                        data-label="@lang('messages.mobile')">{{ $user->company->mobile ?? '' }}</span>
+                        data-label="@lang('messages.mobile')">{{ $company->mobile ?? '' }}</span>
                 </div>
                 <div class="">@lang('messages.phone'):
                     <span class="ltr">
-                        @isset($user->company->phone)
-                            @foreach ($user->company->phone as $item)
+                        @isset($company->phone)
+                            @foreach ($company->phone as $item)
                                 {{ $item }}
                                 @if (!$loop->last)
                                     -
@@ -97,34 +97,32 @@
                 </div>
                 <div class="">@lang('messages.site'):
                     <span class="text-editor" data-field="site"
-                        data-label="@lang('messages.site')">{{ $user->company->site ?? '' }}</span>
+                        data-label="@lang('messages.site')">{{ $company->site ?? '' }}</span>
                 </div>
 
                 <div class="">@lang('messages.email'): <span class="text-editor" data-field="email"
-                        data-label="@lang('messages.email')">{{ $user->company->email ?? '' }}</span>
+                        data-label="@lang('messages.email')">{{ $company->email ?? '' }}</span>
                 </div>
 
                 <div class="">@lang('messages.address'): <span class="text-editor" data-field="address"
-                        data-label="@lang('messages.address')">{{ $user->company->address ?? '' }}</span></div>
+                        data-label="@lang('messages.address')">{{ $company->address ?? '' }}</span></div>
 
                 <div class="">@lang('messages.city'): <span class="text-editor" data-field="city"
-                        data-label="@lang('messages.city')">{{ $user->company->city ?? '' }}</span>
+                        data-label="@lang('messages.city')">{{ $company->city ?? '' }}</span>
                 </div>
 
                 <div class="">@lang('messages.province'): <span class="text-editor" data-field="province"
-                        data-label="@lang('messages.province')">{{ $user->company->province ?? '' }}</span></div>
+                        data-label="@lang('messages.province')">{{ $company->province ?? '' }}</span></div>
 
                 <div class="">@lang('messages.whatsapp'): <span class="ltr text-editor" data-field="whatsapp"
-                        data-label="@lang('messages.whatsapp')">{{ $user->company->whatsapp ?? '' }}</span>
+                        data-label="@lang('messages.whatsapp')">{{ $company->whatsapp ?? '' }}</span>
                 </div>
 
                 <div class="">@lang('messages.telegram'): <span class="text-editor" data-field="telegram"
-                        data-label="@lang('messages.telegram')">{{ $user->company->telegram ?? '' }}</span></div>
+                        data-label="@lang('messages.telegram')">{{ $company->telegram ?? '' }}</span></div>
 
                 <div class="">@lang('messages.instagram'): <span class="text-editor" data-field="instagram"
-                        data-label="@lang('messages.instagram')">{{ $user->company->instagram ?? '' }}</span></div>
-
-                <div class="">@lang('messages.register date'): <span>{{ convertGToJ($user->date) }}</span></div>
+                        data-label="@lang('messages.instagram')">{{ $company->instagram ?? '' }}</span></div>
 
             </div>
 
