@@ -2,14 +2,9 @@
 @section('content')
     <div class="content-control">
         <ul class="breadcrumb">
-            <li class="active">@lang('messages.companies')</li>
+            <li class="active"><a href="{{ route('admin.company.index') }}">@lang('messages.companies')</a> </li>
+            <li class="active">@lang('messages.add') </li>
         </ul>
-        <div>
-            <a href="{{ route('admin.company.create') }}" class=" btn btn-success btn-icon  mat-button ">
-                <i class="fa fa-plus"></i>@lang('messages.add')
-            </a>
-
-        </div>
     </div>
 
     <div class="content-body">
@@ -33,7 +28,6 @@
 
 
         <div class="profile">
-            <h1 class="full">@lang('messages.profile')</h1>
             <div class="map-area">
                 <div id="mapid"></div>
             </div>
