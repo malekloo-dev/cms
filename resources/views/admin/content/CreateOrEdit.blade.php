@@ -33,7 +33,7 @@
 
                 @endphp
             @endisset
-            $input.val([{!! $categoryImplode ?? '' !!}]);
+            $input.val([{!! ($categoryImplode ?? '') !!}]);
             $input.trigger('change'); // Notify any JS components that the value changed
             function setOption($this) {
                 var $select = $("#parent_id");
@@ -375,10 +375,11 @@
                         </div>
                         <div class="col-md-4">
                             <label for="name" class="col-form-label text-md-left">@lang('messages.status'):</label>
+
                             <select class="form-control" name="status">
-                                <option value="1" {{ $content_info->status??'1' == '1' ? 'selected' : '' }}>
+                                <option value="1" {{ ($content_info->status??'1') == '1' ? 'selected' : '' }}>
                                     @lang('messages.Active')</option>
-                                <option value="0" {{ $content_info->status??'' == '0' ? 'selected' : '' }}>
+                                <option value="0" {{ ($content_info->status??'') == '0' ? 'selected' : '' }}>
                                     @lang('messages.Disactive')</option>
                             </select>
                         </div>

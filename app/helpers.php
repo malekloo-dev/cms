@@ -370,6 +370,8 @@ if (!function_exists('tableOfImages')) {
          * libxml_use_internal_errors(true);
         $dom->loadHTML('...');
         libxml_clear_errors();*/
+        // dd($content);
+        if($content == null) $content='<div></div>';
         @$doc->loadHTML($content);
 
         /*echo '<pre/>';
