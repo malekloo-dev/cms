@@ -6,9 +6,7 @@
                 @lang('messages.'.$type.'s')
             </li>
         </ul>
-        <?php
-/*        dd($contents);
-        */?>
+
         @isset($company)
             <a class=" btn btn-warning btn-icon btn-sm  mat-button " href="{{ route('contents.type.show',['type'=>$type]) }}">
                 <i class="fa fa-close"></i>{{ $company->name }}
@@ -53,7 +51,7 @@
                             <th>@lang('messages.category')</th>
                             <th  class="text-center">@lang('messages.status')</th>
                             <th>@lang('messages.publish date')</th>
-                            <th>@lang('messages.rate')</th>
+                            <th>@lang('messages.company')</th>
                             <th>@lang('messages.image')</th>
                             <th></th>
                         </tr>
@@ -83,9 +81,11 @@
 
                                 </td>
                                 <td>
-                                    @if ($content->attr != null)
-                                        {{ $content->attr['rate'] ?? ''}}
+                                    @if($content->companies->count())
+                                    <a href="{{ route('contents.type.show',['type'=>$type,'companyId'=>$content->companies->first()->id]) }}">{{ $content->companies->first()->name}}</a>
+
                                     @endif
+
                                 </td>
                                 <td>
                                     @isset($content->images['images']['small'])
@@ -122,6 +122,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                @lang('messages.total') {{ $contents->total() }} |
+                @lang('messages.page') {{ $contents->currentPage() }}
+                {{ $contents->appends(Request::except('page'))->links() }}
             </div>
         </div>
     </div>

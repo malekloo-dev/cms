@@ -92,10 +92,12 @@
     </section>
 
     {{-- all contents --}}
+    @if (isset($company->contents) && $company->contents->count())
+
+
     <section class="index-items home-top-view">
         <div class="flex one">
             <div>
-                <h2 class="text-right">محتوای ارسالی</h2>
                 <div class="flex two two-500  six-800  ">
                     @foreach ($company->contents as $content)
                         <div>
@@ -137,6 +139,7 @@
             </div>
         </div>
     </section>
+    @endif
 
 @endsection
 

@@ -196,7 +196,7 @@
                 <div class="form-group row">
                     <div class="col-md-6">
                         <label for="meta_title" class=" col-form-label ">Meta Title</label>
-                        <input type="text" class="form-control" name="meta_title" value="{{ old('meta_keywords',$content_info->meta_title??'') }}" />
+                        <input type="text" class="form-control" name="meta_title" value="{{ old('meta_title',$content_info->meta_title??'') }}" />
                         <span class="text-danger">{{ $errors->first('meta_title') }}</span>
                     </div>
 
@@ -224,7 +224,11 @@
 
 
                 <button type="submit" class="btn btn-success pull-right mat-btn radius-all  mat-elevation-z">
+                    @if(Request()->is('*create*'))
+                    @lang('messages.add')
+                    @else
                     @lang('messages.edit')
+                    @endif
                 </button>
             </form>
         </div>

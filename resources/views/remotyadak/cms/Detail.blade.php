@@ -107,6 +107,13 @@
                     <div>
                         <h1 class="">{{ $detail->title }}</h1>
                         <div>
+                            @if(count($detail->companies))
+                                        <div class="company-logo">
+                                            فروشگاه / تعمیرگاه
+                                            <a href="{{ url('/profile/'.$detail->companies->first()->id) }}">
+                                                {{ $detail->companies->first()->name ?? '' }}</a>
+                                        </div>
+                                    @endif
                             <span class="rate mt-1">
                                 @if (count($detail->comments))
                                     @php

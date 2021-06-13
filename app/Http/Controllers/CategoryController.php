@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use PDF;
 use Illuminate\Support\Str;
@@ -24,22 +23,10 @@ class CategoryController extends Controller
     public function index()
     {
 
-
-        //$contents = Category::where('type', '=', 1)->orderBy('id', 'desc')->paginate(10);
         $contents = $this->tree_set();
         $contents = $this->convertTemplateTable1($contents);
-        //dd($contents);
 
-        // dd($contents);
         return view('admin.category.List', compact('contents'));
-    }
-
-    public function index1()
-    {
-
-        //return view('vendor.wmenu.scripts');
-        // $menulist = Menus::all();
-        // return view('vendor.wmenu.menu-html', compact('menulist'));
     }
 
 
@@ -50,8 +37,6 @@ class CategoryController extends Controller
         $filename = $file->getClientOriginalName();
 
         $file = $file->move(public_path($imagePath), $filename);
-        // $sizes = ["300", "600", "900"];
-
 
         $url['images'] = $this->resize($file->getRealPath(), $type, $imagePath, $filename);
 
@@ -80,10 +65,6 @@ class CategoryController extends Controller
             })->save(public_path($images[$name]));
         }
 
-
-
-
-
         return $images;
     }
 
@@ -98,7 +79,7 @@ class CategoryController extends Controller
         $result = $this->tree_set();
         $attr_type=$request->type;
         $category = $this->convertTemplateSelect1($result);
-        return view('admin.category.Edit', compact([ 'category','attr_type']));
+        return view('admin.category.createOrEdit', compact([ 'category','attr_type']));
 
         // return view('admin.category.Create', $data);
     }
@@ -293,7 +274,7 @@ class CategoryController extends Controller
 
         //print_r($content_info);
         //die();
-        return view('admin.category.Edit', compact(['content_info', 'category','attr_type']));
+        return view('admin.category.createOrEdit', compact(['content_info', 'category','attr_type']));
     }
 
     /**

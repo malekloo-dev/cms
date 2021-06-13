@@ -106,7 +106,7 @@ class ContentController extends Controller
             });
         }
 
-        $contents = $contents->paginate(1000);
+        $contents = $contents->paginate(10);
         // dd($contents);
 
         $data['contents'] = $contents;
