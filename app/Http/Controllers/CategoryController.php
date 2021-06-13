@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use PDF;
 use Illuminate\Support\Str;
@@ -79,7 +80,7 @@ class CategoryController extends Controller
         $result = $this->tree_set();
         $attr_type=$request->type;
         $category = $this->convertTemplateSelect1($result);
-        return view('admin.category.createOrEdit', compact([ 'category','attr_type']));
+        return view('admin.category.CreateOrEdit', compact([ 'category','attr_type']));
 
         // return view('admin.category.Create', $data);
     }
@@ -274,7 +275,7 @@ class CategoryController extends Controller
 
         //print_r($content_info);
         //die();
-        return view('admin.category.createOrEdit', compact(['content_info', 'category','attr_type']));
+        return view('admin.category.CreateOrEdit', compact(['content_info', 'category','attr_type']));
     }
 
     /**
@@ -362,8 +363,16 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $crud = Category::find($id);
+        $images = $crud->images['images'];
         $attr_type = $crud->attr_type;
         $crud->delete();
+
+        $images =  array_map( function ($item) {
+            return trim($item,'/');
+        },array_values($images) ) ;
+
+        File::delete($images);
+
 
         return redirect('admin/category?type=' . $attr_type);
     }

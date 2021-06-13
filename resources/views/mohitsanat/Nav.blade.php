@@ -19,19 +19,7 @@
                 </span>
 
             </label>
-            {{-- <script>
-                function myFunction() {
-                    var element = document.getElementById("bmenu1");
-                    element.classList.add("burger");
-                    element.classList.add("toggle");
-                    element.classList.add("pseudo");
-                    element.classList.add("button");
-                }
 
-                myFunction();
-                }
-
-            </script> --}}
             <div class="menu">
 
                 <ul>

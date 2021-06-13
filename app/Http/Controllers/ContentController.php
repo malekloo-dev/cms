@@ -9,6 +9,7 @@ use App\Sitemap;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
@@ -125,6 +126,7 @@ class ContentController extends Controller
      */
     public function create(Request $request,$type)
     {
+
         $result = app('App\Http\Controllers\CategoryController')->tree_set();
         $data['category'] = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
         $data['attr_type'] = $type;
@@ -134,7 +136,7 @@ class ContentController extends Controller
 
         }else
         {*/
-        return view('admin.content.Create', $data);
+        return view('admin.content.CreateOrEdit', $data);
 
         //}
     }
@@ -142,9 +144,10 @@ class ContentController extends Controller
     public function storeService(Request $request)
     {
 
-        //dd($request->all());
+        // dd($request->all());
         $this->validate($request, array(
             'parent_id' => 'required',
+            'title' => 'required',
             //'description' => 'required',
             //'body' => 'required',
             //'images' => 'required|mimes:jpeg,png,bmp',
@@ -226,7 +229,7 @@ class ContentController extends Controller
         $result = app('App\Http\Controllers\CategoryController')->tree_set();
         $category = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
 
-        $template = 'admin.content.Edit';
+        $template = 'admin.content.CreateOrEdit';
 
         /*if($content_info->attr_type=='html')
         {
@@ -263,6 +266,7 @@ class ContentController extends Controller
              'description' => 'required',
          ]);
         */
+
         $this->validate($request, array(
             'parent_id' => 'required',
         ));
@@ -347,7 +351,7 @@ class ContentController extends Controller
 
         $this->sitemap();
 
-        return redirect('admin/contents?type=' . $crud->attr_type);
+        return redirect('admin/contents/' . $crud->attr_type);
     }
 
     /**
@@ -358,11 +362,21 @@ class ContentController extends Controller
      */
     public function destroy($id)
     {
+
+
         $crud = Content::find($id);
+        $images = $crud->images['images'];
         $crud->delete();
         $crud->categories()->detach();
 
-        return redirect('admin/contents?type=' . $crud->attr_type);
+        $images =  array_map( function ($item) {
+            return trim($item,'/');
+        },array_values($images) ) ;
+
+        File::delete($images);
+
+
+        return redirect('admin/contents/' . $crud->attr_type);
     }
 
 

@@ -18,7 +18,7 @@
                 <i class="fa fa-plus"></i>@lang('messages.add')
             </a>
 
-            <a href="{{ route('contents.create', ['type' => 'html']) }}" class=" btn btn-info btn-icon  mat-button ">
+            <a href="{{ route('contents.create', ['type' => $type,'template'=>'html']) }}" class=" btn btn-info btn-icon  mat-button ">
                 <i class="fa fa-plus"></i> @lang('messages.add') @lang('messages.static template')
             </a>
         </div>
@@ -53,6 +53,7 @@
                             <th>@lang('messages.publish date')</th>
                             <th>@lang('messages.company')</th>
                             <th>@lang('messages.image')</th>
+                            <th>@lang('messages.html')</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -92,7 +93,11 @@
                                         <img height="30" src="{{ $content->images['images']['small'] }}" />
                                     @endisset
                                 </td>
-
+                                <td>
+                                    @if (isset($content->attr['template_name']))
+                                        <i class="fa fa-check"></i>
+                                    @endif
+                                </td>
                                 <td class="width-100">
                                     <div class="row">
                                         <div class="col-xs-6">
