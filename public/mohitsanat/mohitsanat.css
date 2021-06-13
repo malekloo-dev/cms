@@ -3821,7 +3821,7 @@ section.panel .company-nav ul li.active {
 }
 section.panel .company-nav button {
   background-color: #44a007;
-  color: #fff;
+  color: #2d610a;
   width: 100%;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4) inset;
   padding: 0 1em;
@@ -5002,9 +5002,9 @@ img {
 }
 
 .top-menu {
-  min-height: #428b11;
-  background: #428b11;
-  background: linear-gradient(90deg, #428b11 0, #56b616 100%);
+  min-height: #fff;
+  background: #fff;
+  background: linear-gradient(90deg, #fff 0, #fff 100%);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   display: block;
   width: 100%;
@@ -5128,7 +5128,7 @@ nav .menu {
 }
 
 nav .menu a {
-  color: #fff;
+  color: #2d610a;
 }
 
 nav .logo {
@@ -5673,7 +5673,7 @@ nav[role=navigation] span > svg {
 }
 .category-products article h2 {
   font-size: 1em;
-  color: #428b11;
+  color: #fff;
 }
 .category-products article .company-logo {
   display: flex;

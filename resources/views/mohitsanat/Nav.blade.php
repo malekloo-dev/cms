@@ -3,7 +3,7 @@
 
         <nav>
             <a href="/" class="brand">
-                <img height="78" width="201" alt=" درب کالا لوگو"
+                <img height="80" width="100" alt=" درب کالا لوگو"
                     srcset="{{ url(env('TEMPLATE_NAME').'/img/logo1x.png') }} 1x, {{ url(env('TEMPLATE_NAME').'/img/logo2x.png') }} 2x"
                     src="{{ url(env('TEMPLATE_NAME').'/img/logo1x.png') }}" />
             </a>
