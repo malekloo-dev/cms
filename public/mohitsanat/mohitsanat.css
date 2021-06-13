@@ -2620,9 +2620,31 @@ tr:nth-child(even) {
   transform: translateX(-50%) translateY(-50%) scale(1, 1);
 }
 
+#callnowbutton {
+  display: none;
+}
+
 @media (max-width: 60em) {
   .modal .overlay ~ * {
     min-width: 90%;
+  }
+
+  #callnowbutton {
+    display: block;
+    position: fixed;
+    text-decoration: none;
+    z-index: 2147483647;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    transform: scale(1);
+    bottom: 15px;
+    left: 20px;
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNjAgNjAiPjxwYXRoIGQ9Ik03LjEwNCAxNC4wMzJsMTUuNTg2IDEuOTg0YzAgMC0wLjAxOSAwLjUgMCAwLjk1M2MwLjAyOSAwLjc1Ni0wLjI2IDEuNTM0LTAuODA5IDIuMSBsLTQuNzQgNC43NDJjMi4zNjEgMy4zIDE2LjUgMTcuNCAxOS44IDE5LjhsMTYuODEzIDEuMTQxYzAgMCAwIDAuNCAwIDEuMSBjLTAuMDAyIDAuNDc5LTAuMTc2IDAuOTUzLTAuNTQ5IDEuMzI3bC02LjUwNCA2LjUwNWMwIDAtMTEuMjYxIDAuOTg4LTI1LjkyNS0xMy42NzRDNi4xMTcgMjUuMyA3LjEgMTQgNy4xIDE0IiBmaWxsPSIjMDA5ZDAwIi8+PHBhdGggZD0iTTcuMTA0IDEzLjAzMmw2LjUwNC02LjUwNWMwLjg5Ni0wLjg5NSAyLjMzNC0wLjY3OCAzLjEgMC4zNWw1LjU2MyA3LjggYzAuNzM4IDEgMC41IDIuNTMxLTAuMzYgMy40MjZsLTQuNzQgNC43NDJjMi4zNjEgMy4zIDUuMyA2LjkgOS4xIDEwLjY5OWMzLjg0MiAzLjggNy40IDYuNyAxMC43IDkuMSBsNC43NC00Ljc0MmMwLjg5Ny0wLjg5NSAyLjQ3MS0xLjAyNiAzLjQ5OC0wLjI4OWw3LjY0NiA1LjQ1NWMxLjAyNSAwLjcgMS4zIDIuMiAwLjQgMy4xMDVsLTYuNTA0IDYuNSBjMCAwLTExLjI2MiAwLjk4OC0yNS45MjUtMTMuNjc0QzYuMTE3IDI0LjMgNy4xIDEzIDcuMSAxMyIgZmlsbD0iI2ZmZmZmZiIvPjwvc3ZnPg==) center/45px 45px no-repeat #00bb00;
+  }
+  #callnowbutton span {
+    display: none;
   }
 }
 [data-tooltip] {
@@ -3189,6 +3211,11 @@ section.row aside {
 
 .bg-gray2 {
   background-color: #e2e2e2;
+}
+
+.bg-gray-dark {
+  background-color: #414141;
+  color: #fff;
 }
 
 .bg-white {
@@ -5034,7 +5061,7 @@ nav .hamburger {
   display: block;
 }
 nav .hamburger span {
-  background: #fff;
+  background: #2d610a;
   width: 21px;
   height: 3px;
   display: block;
@@ -5184,7 +5211,9 @@ nav .burger:after {
   }
   nav ul li li a {
     padding: 8px 0.3rem !important;
-    color: #fff !important;
+  }
+  nav ul li a {
+    margin-left: 50px;
   }
 
   nav ul > li.parent a::after {
@@ -5217,7 +5246,7 @@ nav .show:checked ~ .burger {
     margin: 0;
     transition: all 0.5s ease;
     transform: none;
-    background: linear-gradient(90deg, #fa490e 0, #ff882d 100%);
+    background: linear-gradient(90deg, #fff 0, #fff 100%);
     z-index: 1;
   }
 

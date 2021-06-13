@@ -146,9 +146,9 @@
 
                         <select name="parent_id" id="parent_id" >
 
-                            <option value="0" {{ $content_info->parent_id??'' == 0 ? 'selected' : '' }}>@lang('messages.parent')</option>
+                            <option value="0" {{ ($content_info->parent_id??'') == 0 ? 'selected' : '' }}>@lang('messages.parent')</option>
                             @foreach($category as $Key => $fields)
-                            <option value="{{$fields['id']}}" {{ $content_info->parent_id??'' == $fields['id'] ? 'selected' : '' }}>{!!
+                            <option value="{{$fields['id']}}" {{ ($content_info->parent_id??'') == $fields['id'] ? 'selected' : '' }}>{!!
                                 $fields['symbol'].$fields['title']!!}</option>
                             @endforeach
                         </select>
@@ -216,8 +216,8 @@
                     <div class="col-md-3">
                         <label for="name" class=" col-form-label text-md-left">@lang('messages.status'):</label>
                         <select class=" select2" name="status">
-                            <option value="1" {{ $content_info->status??'' == '1' ? 'selected' : '' }}>@lang('messages.Active')</option>
-                            <option value="0" {{ $content_info->status??'' == '0' ? 'selected' : '' }}>@lang('messages.Disactive')</option>
+                            <option value="1" {{ ($content_info->status??'') == '1' ? 'selected' : '' }}>@lang('messages.Active')</option>
+                            <option value="0" {{ ($content_info->status??'') == '0' ? 'selected' : '' }}>@lang('messages.Disactive')</option>
                         </select>
                     </div>
                 </div>

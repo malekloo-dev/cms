@@ -78,7 +78,7 @@
     @include('jsonLdFaq')
 
 
-    <section class="breadcrumb">
+    <section class="breadcrumb mt-0">
         <div class="flex one  ">
             <div class="p-0">
                 <a href="/">خانه </a>

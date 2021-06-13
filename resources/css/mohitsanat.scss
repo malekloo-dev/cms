@@ -44,7 +44,7 @@ nav {
     .hamburger {
         display: block;
         span {
-            background: #fff;
+            background: $theme-color3;
             width: 21px;
             height: 3px;
             display: block;
@@ -185,7 +185,10 @@ nav .burger:after {
                 }
                 li a {
                     padding: 8px 0.3rem !important;
-                    color: #fff !important;
+                    // color: #fff !important;
+                }
+                a{
+                    margin-left: 50px;
                 }
             }
         }
@@ -217,7 +220,7 @@ nav .burger:after {
         margin: 0;
         transition: all 0.5s ease;
         transform: none;
-        background: linear-gradient(90deg, rgba(250, 73, 14, 1) 0, rgba(255, 136, 45, 1) 100%);
+        background: linear-gradient(90deg, $theme-color1 0, $theme-color2 100%);
         z-index: 1;
     }
     nav .show:checked ~ .burger {

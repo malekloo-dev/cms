@@ -31,7 +31,7 @@ class CategoryController extends Controller
     }
 
 
-    protected function uploadImages($file,$type = 'category')
+    protected function uploadImages($file, $type = 'category')
     {
         $year = Carbon::now()->year;
         $imagePath = "/upload/images/{$year}/";
@@ -49,9 +49,9 @@ class CategoryController extends Controller
     private function resize($path, $type, $imagePath, $filename)
     {
         $sizes = array(
-                "small"=>env(Str::upper($type).'_SMALL_W'),
-                'medium'=>env(Str::upper($type).'_MEDIUM_W'),
-                'large'=>env(Str::upper($type).'_LARGE_W')
+            "small" => env(Str::upper($type) . '_SMALL_W'),
+            'medium' => env(Str::upper($type) . '_MEDIUM_W'),
+            'large' => env(Str::upper($type) . '_LARGE_W')
         );
 
 
@@ -78,9 +78,9 @@ class CategoryController extends Controller
     public function create(Request $request)
     {
         $result = $this->tree_set();
-        $attr_type=$request->type;
+        $attr_type = $request->type;
         $category = $this->convertTemplateSelect1($result);
-        return view('admin.category.CreateOrEdit', compact([ 'category','attr_type']));
+        return view('admin.category.CreateOrEdit', compact(['category', 'attr_type']));
 
         // return view('admin.category.Create', $data);
     }
@@ -138,9 +138,9 @@ class CategoryController extends Controller
     {
         $items = Category::where('type', '=', 1);
         foreach ($searchmap as $condition) {
-            $items=$items->where($condition[0], $condition[1], $condition[2]);
+            $items = $items->where($condition[0], $condition[1], $condition[2]);
         }
-        $items=$items->orderBy('parent_id', 'desc')->get();
+        $items = $items->orderBy('parent_id', 'desc')->get();
         $list = array();
 
         foreach ($items as $item) {
@@ -161,15 +161,15 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, array(
-             'title' => 'required|max:250',
-             //'description' => 'required',
-             //'body' => 'required',
-             //'images' => 'required|mimes:jpeg,png,bmp',
-         ));
+            'title' => 'required|max:250',
+            //'description' => 'required',
+            //'body' => 'required',
+            //'images' => 'required|mimes:jpeg,png,bmp',
+        ));
 
         $imagesUrl = '';
         if ($request->file('images')) {
-            $imagesUrl = $this->uploadImages($request->file('images'),'category');
+            $imagesUrl = $this->uploadImages($request->file('images'), 'category');
         }
 
         $data = $request->all();
@@ -178,12 +178,12 @@ class CategoryController extends Controller
         $data['parent_id'] = $request->parent_id;
         $data['type'] = '1';
         $data['images'] = $imagesUrl;
-        if($request->slug==''){
-            $data['slug']=$request->title;
-        }else{
-            $data['slug']=$request->slug;
+        if ($request->slug == '') {
+            $data['slug'] = $request->title;
+        } else {
+            $data['slug'] = $request->slug;
         }
-        $data['slug'] = preg_replace('/\s+/', '-',$data['slug']);
+        $data['slug'] = preg_replace('/\s+/', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
@@ -212,12 +212,12 @@ class CategoryController extends Controller
         $data['publish_date'] = convertJToG($date);
         $data['type'] = 1;
         //$data['images']= $imagesUrl;
-        if($request->slug==''){
-            $data['slug']=$request->title;
-        }else{
-            $data['slug']=$request->slug;
+        if ($request->slug == '') {
+            $data['slug'] = $request->title;
+        } else {
+            $data['slug'] = $request->slug;
         }
-        $data['slug'] = preg_replace('/\s+/', '-',$data['slug']);
+        $data['slug'] = preg_replace('/\s+/', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
@@ -256,17 +256,17 @@ class CategoryController extends Controller
             ['id', '<>', $id]
 
         ];*/
-        $searchmap=array();
+        $searchmap = array();
         $result = $this->tree_set($searchmap);
 
         $category = $this->convertTemplateSelect1($result);
-        $filter[$id]='';
-        foreach ($category as $id=>$obj) {
+        $filter[$id] = '';
+        foreach ($category as $id => $obj) {
             if (isset($filter[$id])) {
                 unset($category[$id]);
             }
             if (isset($filter[$obj->parent_id])) {
-                $filter[$id]='';
+                $filter[$id] = '';
                 unset($category[$id]);
             }
         }
@@ -275,7 +275,7 @@ class CategoryController extends Controller
 
         //print_r($content_info);
         //die();
-        return view('admin.category.CreateOrEdit', compact(['content_info', 'category','attr_type']));
+        return view('admin.category.CreateOrEdit', compact(['content_info', 'category', 'attr_type']));
     }
 
     /**
@@ -329,7 +329,7 @@ class CategoryController extends Controller
         //$inputs = $request->all();
 
         if ($file) {
-            $images = $this->uploadImages($request->file('images'),'category');
+            $images = $this->uploadImages($request->file('images'), 'category');
         } else {
             $images = $crud->images;
             if ($images != '') {
@@ -338,12 +338,12 @@ class CategoryController extends Controller
         }
         $data['images'] = $images;
 
-        if($request->slug==''){
-            $data['slug']=$request->title;
-        }else{
-            $data['slug']=$request->slug;
+        if ($request->slug == '') {
+            $data['slug'] = $request->title;
+        } else {
+            $data['slug'] = $request->slug;
         }
-        $data['slug'] = preg_replace('/\s+/', '-',$data['slug']);
+        $data['slug'] = preg_replace('/\s+/', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
         $data['slug'] = str_replace('--', '-', $data['slug']);
@@ -363,15 +363,17 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $crud = Category::find($id);
-        $images = $crud->images['images'];
+        $images = $crud->images['images']??'';
         $attr_type = $crud->attr_type;
         $crud->delete();
 
-        $images =  array_map( function ($item) {
-            return trim($item,'/');
-        },array_values($images) ) ;
+        if (is_array($images)) {
+            $images =  array_map(function ($item) {
+                return trim($item, '/');
+            }, array_values($images));
 
-        File::delete($images);
+            File::delete($images);
+        }
 
 
         return redirect('admin/category?type=' . $attr_type);

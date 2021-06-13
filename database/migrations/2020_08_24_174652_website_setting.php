@@ -27,6 +27,7 @@ class WebsiteSetting extends Migration
             ['variable'=>'meta_keywords','value'=>''],
             ['variable'=>'url','value'=>''],
             ['variable'=>'og:type','value'=>''],
+            ['variable'=>'phone','value'=>''],
         ]);
     }
 

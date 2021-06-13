@@ -54,6 +54,20 @@
                                 <td class="">
                                     @if ($item->status == 1)
                                         <i class="fa fa-check"></i>
+                                    @else
+                                    @if ($errors->any())
+                                        {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
+                                    @endif
+                                        <form method="post" action="{{ route('comment.update',$item->id) }}">
+                                            <input type="hidden" name="content_id" value="{{ $item->content->id }}">
+                                            <input type="hidden" name="name" value="{{ $item->name }}">
+                                            <input type="hidden" name="comment" value="{{ $item->comment }}">
+
+                                            @method('PATCH')
+                                            @csrf
+                                            <input type="hidden" name="status" value="1" >
+                                            <button class="btn btn-sm">تایید</button>
+                                        </form>
                                     @endif
 
                                 </td>

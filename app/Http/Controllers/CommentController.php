@@ -91,6 +91,7 @@ class CommentController extends Controller
      */
     public function update(CommentRequest $request, Comment $comment)
     {
+        
         $data = $comment;
         $data->update($request->all());
 

@@ -234,6 +234,8 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
 
+        'WebsiteSetting'=> App\Models\WebsiteSetting::class,
+
     ],
 
 ];

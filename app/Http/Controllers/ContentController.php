@@ -16,6 +16,8 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+use function PHPUnit\Framework\assertIsArray;
+
 //use PDF;
 
 class ContentController extends Controller
@@ -298,6 +300,16 @@ class ContentController extends Controller
         $file = $request->file('images');
         //$inputs = $request->all();
         if ($file) {
+
+            $images = $crud->images['images']??'';
+            if (is_array($images)) {
+                $images =  array_map(function ($item) {
+                    return trim($item, '/');
+                }, array_values($images));
+
+                File::delete($images);
+            }
+
             $images = $this->uploadImages($request,$crud->attr_type);
         } elseif ($crud->images != '') {
             $images = $crud->images;
@@ -365,15 +377,17 @@ class ContentController extends Controller
 
 
         $crud = Content::find($id);
-        $images = $crud->images['images'];
+        $images = $crud->images['images']??'';
         $crud->delete();
         $crud->categories()->detach();
 
-        $images =  array_map( function ($item) {
-            return trim($item,'/');
-        },array_values($images) ) ;
+        if(is_array($images)){
+            $images =  array_map( function ($item) {
+                return trim($item,'/');
+            },array_values($images) ) ;
 
-        File::delete($images);
+            File::delete($images);
+        }
 
 
         return redirect('admin/contents/' . $crud->attr_type);
