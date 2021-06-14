@@ -54,8 +54,7 @@
         <section class="category-list" id="index-best-view">
             <div class="flex one ">
                 <div>
-                    <h2>دسته بندی: {{ $detail->title }}</h2>
-                    <div class="flex one two-800   ">
+                    <div class="flex one three-800   ">
 
                         {{-- $data['newPost'] --}}
                         @foreach ($subCategory as $content)
@@ -84,6 +83,97 @@
                 </div>
             </div>
         </section>
+    @endif
+
+
+    @if (!Request::get('page'))
+
+        <section class="" id="">
+            <div class="flex one ">
+                <div class="bg-white p-1 border-radius-5">
+
+                    <div class="flex one two-700">
+                        <div class="two-third-700">
+                            <ul>
+                                @foreach ($table_of_content as $key => $item)
+                                    <li class="toc1">
+                                        <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
+                                    </li>
+                                @endforeach
+
+                            </ul>
+
+                        </div>
+                        <div class="third-700">
+                            @if (isset($detail->images['images']))
+                                <picture>
+
+
+                                    <img src="{{ $detail->images['images']['medium'] ?? '' }}"
+                                        alt="{{ $detail->title }}"
+
+                                        width="{{ env('CATEGORY_MEDIUM_W') }}"
+                                        height="{{ env('CATEGORY_MEDIUM_W') }}">
+                                </picture>
+                            @endif
+
+
+                        </div>
+
+                    </div>
+
+                    @include(@env('TEMPLATE_NAME').'.DescriptionModule')
+
+                </div>
+            </div>
+        </section>
+
+
+        {{-- post&label=relatedPost&var=relatedPost&count=5 --}}
+        @if (isset($relatedPost))
+            <section class="articles bg-green mb-0" id="articles">
+                <div class="flex one ">
+                    <div class="">
+                        <h2>مقاله های زیر مجموعه {{ $detail->title }}</h2>
+                        <div class="flex one two-500 five-900 center ">
+
+                            @foreach ($relatedPost as $content)
+
+                                <div>
+                                    <a href="{{ $content->slug }}">
+                                        <article class="shadow1">
+                                            @if (isset($content->images['thumb']))
+                                                <div><img
+                                                    src="{{ $content->images['images']['medium'] }}"
+
+                                                    width="{{ env('ARTICLE_MEDIUM_W') }}"
+                                                    height="{{ env('ARTICLE_MEDIUM_H') }}"
+                                                    ></div>
+                                            @endif
+                                            <footer>
+                                                <h2> {{ readmore($content->title, 80) }}</h2>
+                                                {!! readmore($content->brief_description, 210) !!}
+                                            </footer>
+                                        </article>
+                                    </a>
+                                </div>
+                            @endforeach
+
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        @endif
+
+
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="#products">محصولات</a></li>
+                <li><a href="#articles">مقالات</a></li>
+            </ul>
+        </div>
+
     @endif
 
     @if (count($relatedProduct))
@@ -185,94 +275,6 @@
         </section>
     @endif
 
-    @if (!Request::get('page'))
 
-        <section class="" id="">
-            <div class="flex one ">
-                <div class="bg-white p-1 border-radius-5">
-
-                    <div class="flex one two-700">
-                        <div class="two-third-700">
-                            <ul>
-                                @foreach ($table_of_content as $key => $item)
-                                    <li class="toc1">
-                                        <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
-                                    </li>
-                                @endforeach
-
-                            </ul>
-
-                        </div>
-                        <div class="third-700">
-                            @if (isset($detail->images['images']))
-                                <picture>
-
-
-                                    <img src="{{ $detail->images['images']['medium'] ?? '' }}"
-                                        alt="{{ $detail->title }}"
-
-                                        width="{{ env('CATEGORY_MEDIUM_W') }}"
-                                        height="{{ env('CATEGORY_MEDIUM_W') }}">
-                                </picture>
-                            @endif
-
-
-                        </div>
-
-                    </div>
-
-                    @include(@env('TEMPLATE_NAME').'.DescriptionModule')
-
-                </div>
-            </div>
-        </section>
-
-
-        {{-- post&label=relatedPost&var=relatedPost&count=5 --}}
-        @if (isset($relatedPost))
-            <section class="articles bg-green mb-0" id="articles">
-                <div class="flex one ">
-                    <div class="">
-                        <h2>مقاله های زیر مجموعه {{ $detail->title }}</h2>
-                        <div class="flex one two-500 five-900 center ">
-
-                            @foreach ($relatedPost as $content)
-
-                                <div>
-                                    <a href="{{ $content->slug }}">
-                                        <article class="shadow1">
-                                            @if (isset($content->images['thumb']))
-                                                <div><img
-                                                    src="{{ $content->images['images']['medium'] }}"
-
-                                                    width="{{ env('ARTICLE_MEDIUM_W') }}"
-                                                    height="{{ env('ARTICLE_MEDIUM_H') }}"
-                                                    ></div>
-                                            @endif
-                                            <footer>
-                                                <h2> {{ readmore($content->title, 80) }}</h2>
-                                                {!! readmore($content->brief_description, 210) !!}
-                                            </footer>
-                                        </article>
-                                    </a>
-                                </div>
-                            @endforeach
-
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-        @endif
-
-
-        <div class="mobile-menu">
-            <ul>
-                <li><a href="#products">محصولات</a></li>
-                <li><a href="#articles">مقالات</a></li>
-            </ul>
-        </div>
-
-    @endif
 
 @endsection
