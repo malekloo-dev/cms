@@ -173,6 +173,7 @@ class CategoryController extends Controller
         }
 
         $data = $request->all();
+        $date['attr_type'] = 'category';
         $date = $data['publish_date'];
         $data['publish_date'] = convertJToG($date);
         $data['parent_id'] = $request->parent_id;
@@ -322,7 +323,7 @@ class CategoryController extends Controller
         $crud = Category::find($id);
 
         $data = $request->all();
-        //$data['attr_type']='category';
+        $data['attr_type']='category';
         $date = $data['publish_date'];
         $data['publish_date'] = convertJToG($date);
         $file = $request->file('images');

@@ -20,7 +20,7 @@
     @endif
 
     @if (count($breadcrumb))
-        <section class="breadcrumb">
+        <section class="breadcrumb m-0" >
             <div class="flex one  ">
                 <div class="p-0">
                     <a href="/">خانه </a>

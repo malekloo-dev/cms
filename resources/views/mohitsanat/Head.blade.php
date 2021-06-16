@@ -28,7 +28,7 @@
 
 
     @yield('bootstrap')
-    
+
     <link rel="stylesheet" href="{{ mix('/'.env('TEMPLATE_NAME').'.css',env('TEMPLATE_NAME')) }}" >
     <link rel="icon" href="{{ url(env('TEMPLATE_NAME') . '/img/fav.png') }}" type="image/png">
     <link rel="stylesheet" media="bogus">
@@ -41,11 +41,11 @@
 
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@DarbkalaC">
+    <meta name="twitter:site" content="@Mohitsanat">
     <meta name="twitter:title" content="{{$seo['meta_title'] ?? "" }}" />
     <meta name="twitter:description" content="{{$seo['meta_description']  ?? ""}}" />
-    <meta name="twitter:creator" content="@DarbkalaC">
-    <meta name="twitter:domain" content="https://darbkala.com/">
+    <meta name="twitter:creator" content="@Mohitsanat">
+    <meta name="twitter:domain" content="{{ url('/') }}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="{{ asset('/img/logo2x.png') }}">
 

@@ -75,7 +75,7 @@ class CmsController extends Controller
         $template = env('TEMPLATE_NAME') . '.cms.DetailCategory';
         //Widget
 
-        if ($detail->attr_type == 'html') {
+        if (isset($detail->attr['template_name'])) {
             $widget = $this->getWidget($detail->attr['template_name']);
             $template = env('TEMPLATE_NAME') . '.cms.' . $detail->attr['template_name'];
         }else{
@@ -202,7 +202,7 @@ class CmsController extends Controller
             $widget = $this->getWidget('DetailCategory');
 
 
-            if ($detail->attr_type == 'html') {
+            if (isset($detail->attr['template_name'])) {
                 $widget = $this->getWidget($detail->attr['template_name']);
                 $template = env('TEMPLATE_NAME') . '.cms.' . $detail->attr['template_name'];
             }
@@ -240,7 +240,7 @@ class CmsController extends Controller
 
             $template = env('TEMPLATE_NAME') . '.cms.Detail';
             $widget = $this->getWidget('Detail');
-            if ($detail->attr_type == 'html') {
+            if (isset($detail->attr['template_name'])) {
                 $widget = $this->getWidget($detail->attr['template_name']);
                 $template = env('TEMPLATE_NAME') . '.cms.' . $detail->attr['template_name'];
             }

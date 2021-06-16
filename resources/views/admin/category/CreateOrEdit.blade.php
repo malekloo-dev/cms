@@ -57,6 +57,14 @@
 
 @section('content')
 
+@php
+    $template = '';
+    if(Request()->get('template'))$template = Request()->get('template');
+    if(isset($content_info->attr['template_name'])) $template = $content_info->attr['template_name'];
+
+@endphp
+
+
 <div class="content-control">
     <ul class="breadcrumb">
         <li><a href="{{ route('category.index')}}">@lang('messages.category')</a></li>
@@ -111,12 +119,12 @@
 
 
 
-                @if (isset($content_info->attr_type) and ($content_info->attr_type=='html'))
+                @if (isset($template) && $template!='')
 
                 <div class="form-group row">
-                    <label for="brand" class="col-md-12 col-form-label text-md-left">@lang('messages.static template') @lang('messages.name'):</label>
+                    <label for="brand" class="col-md-12 col-form-label text-md-left">@lang('messages.static template') @lang('messages.name')(exp:Contact):</label>
                     <div class="col-md-12">
-                        <input type="text" class="form-control" name="attr[template_name]" value="{{ old('attr[template_name]',$content_info->attr['template_name']) }}" />
+                        <input type="text" class="form-control" name="attr[template_name]" value="{{ old('attr[template_name]',$content_info->attr['template_name']??'') }}" />
                     </div>
                 </div>
                 @endif

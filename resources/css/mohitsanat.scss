@@ -187,7 +187,7 @@ nav .burger:after {
                     padding: 8px 0.3rem !important;
                     // color: #fff !important;
                 }
-                a{
+                a {
                     margin-left: 50px;
                 }
             }
@@ -561,37 +561,44 @@ nav[role="navigation"] span > svg {
     }
 }
 
-.category-list article {
-    display: inline-block;
+.category-list {
+    article {
+        display: inline-block;
+        > div {
+            width: 300px;
+            height: 200px;
+            float: right;
+            > img {
+                object-fit: contain;
+            }
+        }
+    }
+    div.border {
+        border: 1px solid #f4f4f4;
+    }
+    div.hover-box:hover {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    div.height-full {
+        display: flex;
+    }
+    h2{
+        font-size: 1em;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    p {
+        color: #616161;
+    }
+    .price {
+        font-weight: 700;
+    }
 }
-.category-list article > div {
-    width: 300px;
-    height: 200px;
-    float: right;
-}
-.category-list article > div > img {
-    object-fit: contain;
-}
-.category-list img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.category-list div.border {
-    border: 1px solid #f4f4f4;
-}
-.category-list div.hover-box:hover {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-.category-list div.height-full {
-    display: flex;
-}
-.category-list p {
-    color: #616161;
-}
-.category-list .price {
-    font-weight: 700;
-}
+
+
 .height-100 {
     height: 100%;
 }
@@ -605,10 +612,10 @@ nav[role="navigation"] span > svg {
         border: 1px solid #f4f4f4;
         height: 100%;
         flex-direction: row;
-        justify-content:center;
-        padding: .5em;
+        justify-content: center;
+        padding: 0.5em;
 
-        .info{
+        .info {
             flex: 2;
             padding: 0 1em;
         }
@@ -616,7 +623,6 @@ nav[role="navigation"] span > svg {
         picture img {
             border-radius: 3px;
             object-fit: contain;
-
         }
         h2 {
             font-size: 1em;
@@ -628,7 +634,7 @@ nav[role="navigation"] span > svg {
             background-color: #eee;
             padding: 5px 10px;
             border-radius: 50px;
-            font-size: .8em;
+            font-size: 0.8em;
 
             > * {
                 margin-left: 1em;
@@ -663,15 +669,14 @@ nav[role="navigation"] span > svg {
             padding: 0;
             align-items: center;
         }
-        .price{
+        .price {
             margin-top: 1em;
         }
     }
 }
 
-
 .product-detail {
-    picture img{
+    picture img {
         object-fit: contain;
         height: 100%;
     }
@@ -685,7 +690,7 @@ nav[role="navigation"] span > svg {
     .rate {
         display: flex;
         margin: auto;
-        img{
+        img {
             width: 20px;
         }
     }
@@ -725,7 +730,7 @@ nav[role="navigation"] span > svg {
         font-size: 1.2em;
         text-align: center;
     }
-    .flex{
+    .flex {
         justify-content: center;
     }
     h2 {

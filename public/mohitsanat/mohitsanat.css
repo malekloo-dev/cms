@@ -5636,41 +5636,36 @@ nav[role=navigation] span > svg {
 .category-list article {
   display: inline-block;
 }
-
 .category-list article > div {
   width: 300px;
   height: 200px;
   float: right;
 }
-
 .category-list article > div > img {
   -o-object-fit: contain;
      object-fit: contain;
 }
-
+.category-list div.border {
+  border: 1px solid #f4f4f4;
+}
+.category-list div.hover-box:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.category-list div.height-full {
+  display: flex;
+}
+.category-list h2 {
+  font-size: 1em;
+}
 .category-list img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-
-.category-list div.border {
-  border: 1px solid #f4f4f4;
-}
-
-.category-list div.hover-box:hover {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.category-list div.height-full {
-  display: flex;
-}
-
 .category-list p {
   color: #616161;
 }
-
 .category-list .price {
   font-weight: 700;
 }

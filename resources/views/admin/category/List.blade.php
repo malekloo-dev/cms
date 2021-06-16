@@ -8,7 +8,7 @@
             <a href="{{ route('category.create') }}" class=" btn btn-success btn-icon  mat-button ">
                 <i class="fa fa-plus"></i> @lang('messages.add')
             </a>
-            <a href="{{ route('category.create', ['type' => 'html']) }}" class=" btn btn-info btn-icon  mat-button ">
+            <a href="{{ route('category.create', ['template' => 'html']) }}" class=" btn btn-info btn-icon  mat-button ">
                 <i class="fa fa-plus"></i> @lang('messages.add') @lang('messages.static template')
             </a>
         </div>
@@ -25,6 +25,7 @@
                             <th>@lang('messages.brief')</th>
                             <th>@lang('messages.status')</th>
                             <th>@lang('messages.image')</th>
+                            <th>@lang('messages.html')</th>
                             <td></td>
                         </tr>
                     </thead>
@@ -46,6 +47,12 @@
                                         <img height="30" src="{{ $content->images['images']['small'] }}" />
                                     @endisset
                                 </td>
+                                <td>
+                                    @if (isset($content->attr['template_name']))
+                                        <i class="fa fa-check"></i>
+                                    @endif
+                                </td>
+
                                 <td class="width-100">
                                     <div class="col-md-6">
 

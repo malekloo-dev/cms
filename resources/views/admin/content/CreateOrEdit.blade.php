@@ -99,7 +99,6 @@
 
 <script src="/ckeditor4/ckeditor.js"></script>
 
-    {{-- <script src="/ckeditor5/ckeditor5-build-classic/ckeditor.js"></script> --}}
     <script>
         CKEDITOR
             .replace(document.querySelector('#brief_description'), {

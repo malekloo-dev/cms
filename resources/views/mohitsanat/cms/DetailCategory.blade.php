@@ -128,9 +128,8 @@
             </div>
         </section>
 
-
         {{-- post&label=relatedPost&var=relatedPost&count=5 --}}
-        @if (isset($relatedPost))
+        @if (isset($relatedPost) && count($relatedPost))
             <section class="articles bg-green mb-0" id="articles">
                 <div class="flex one ">
                     <div class="">
@@ -167,12 +166,12 @@
         @endif
 
 
-        <div class="mobile-menu">
+        {{-- <div class="mobile-menu">
             <ul>
                 <li><a href="#products">محصولات</a></li>
                 <li><a href="#articles">مقالات</a></li>
             </ul>
-        </div>
+        </div> --}}
 
     @endif
 
