@@ -42,6 +42,12 @@ class Category extends Model
         return $this->belongsToMany(Company::class,'company_contents','content_id','company_id');
     }
 
+
+    public function companiesCategory()
+    {
+        return $this->belongsToMany(Company::class,'company_category','cat_id','company_id');
+    }
+
     public function content()
     {
         return $this->belongsToMany(Content::class,'contents_category','cat_id','content_id');
@@ -65,6 +71,7 @@ class Category extends Model
             ->where('publish_date', '<=', DB::raw('now()'));
 
     }
+
 
     public function childs()
     {

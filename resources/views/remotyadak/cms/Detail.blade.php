@@ -94,6 +94,7 @@
         <div class="flex one ">
             <div>
                 <div class="top-page">
+                    @if (isset($detail->images['images']['medium']))
                     <picture>
                         <source media="(min-width:{{ env('PRODUCT_MEDIUM_W') }}px)"
                             srcset="{{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['large']) ?? '' }} 2x">
@@ -104,6 +105,8 @@
                             alt="{{ $detail->title }}" width="{{ env('PRODUCT_MEDIUM_W') }}"
                             height="{{ env('PRODUCT_MEDIUM_W') }}">
                     </picture>
+
+                    @endif
                     <div>
                         <h1 class="">{{ $detail->title }}</h1>
                         <div>

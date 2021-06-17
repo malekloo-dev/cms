@@ -77,8 +77,55 @@
         </section>
     @endif
 
+
+
+
+    @if (count($relatedCompany))
+        <section class="category-products m-0 bg-blue" id="index-best-view">
+            <div class="flex one ">
+                <div>
+                    <div class="">
+
+                        <div class="flex one  two-1100  ">
+
+                            {{-- $data['newPost'] --}}
+                            @foreach ($relatedCompany as $content)
+                                <div>
+                                    <a href="{{ route('profile.index',$content->id) }}">
+                                    <article>
+                                        <div>
+                                            @if (isset($content->logo['medium']))
+                                                <picture>
+                                                    <img src="{{ str_replace(' ', '%20', $content->logo['large']) ?? '' }}"
+                                                        width="{{ env('PRODUCT_SMALL_W') }}"
+                                                        height="{{ env('PRODUCT_SMALL_W') }}">
+                                                </picture>
+                                            @endif
+                                        </div>
+                                        <footer>
+                                                <h2>{{ $content->name }}</h2>
+                                                <div> {{ $content->mobile }}</div>
+                                                <div>{{ $content->phone }}</div>
+                                                <div>{{ $content->address }}</div>
+
+                                            </footer>
+                                        </article>
+                                    </a>
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+
+
+
     @if (count($relatedProduct))
-        <section class="category-products mt-1" id="index-best-view">
+        <section class="category-products m-0 bg-gray" id="index-best-view">
             <div class="flex one ">
                 <div>
                     <div class="">
@@ -139,6 +186,7 @@
             </div>
         </section>
     @endif
+
 
 
 

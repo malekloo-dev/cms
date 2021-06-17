@@ -22,7 +22,6 @@ class CmsController extends Controller
 
     public function showContent($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule)
     {
-
     }
 
     public function showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule)
@@ -37,10 +36,8 @@ class CmsController extends Controller
                 ->where('publish_date', '<=', DB::raw('now()'))
                 ->get();
             $relatedPost = $this->getCatChildOfcontent($detail['id'], $relatedPost, 'article');
-        }else{
-            $relatedPost=$detail->posts()->paginate(20);
-
-
+        } else {
+            $relatedPost = $detail->posts()->paginate(20);
         }
 
 
@@ -60,17 +57,18 @@ class CmsController extends Controller
                 ->where('publish_date', '<=', DB::raw('now()'))
                 ->paginate(20);
             $relatedProduct = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
-        }else{
-            $relatedProduct=$detail->products()->paginate(20);
-
+        } else {
+            $relatedProduct = $detail->products()->paginate(20);
         }
 
 
-         //dd($relatedPost);
+        //dd($relatedPost);
         $subCategory = Content::where('type', '=', '1')
             ->where('parent_id', '=', $detail->id)
             ->where('publish_date', '<=', DB::raw('now()'))
             ->get();
+
+        $relatedCompany = $detail->companiesCategory()->paginate(20);
 
         $template = env('TEMPLATE_NAME') . '.cms.DetailCategory';
         //Widget
@@ -78,17 +76,16 @@ class CmsController extends Controller
         if (isset($detail->attr['template_name'])) {
             $widget = $this->getWidget($detail->attr['template_name']);
             $template = env('TEMPLATE_NAME') . '.cms.' . $detail->attr['template_name'];
-        }else{
+        } else {
             $widget = $this->getWidget('DetailCategory');
-
         }
 
-
-        return view($template,[
+        return view($template, [
             'widget' => $widget,
             'detail' => $detail,
             'relatedProduct' => $relatedProduct,
             'relatedPost' => $relatedPost,
+            'relatedCompany' => $relatedCompany,
             'breadcrumb' => $breadcrumb,
             'table_of_content' => $table_of_content,
             'subCategory' => $subCategory,
@@ -96,7 +93,6 @@ class CmsController extends Controller
             'seo' => $seo,
             'editorModule' => $editorModule
         ]);
-
     }
 
     public function request($slug)
@@ -276,7 +272,7 @@ class CmsController extends Controller
 
         foreach ((array)$attr as $var => $config) {
 
-            if (!isset($config['type'])){
+            if (!isset($config['type'])) {
                 continue;
             }
             if ($config['type'] == 'images') {

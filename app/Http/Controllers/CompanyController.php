@@ -76,7 +76,10 @@ class CompanyController extends Controller
 
         // dd($category);
 
-        return view('auth.productsCreateOrUpdate', compact('user', 'category'));
+
+        $attr_type = 'product';
+
+        return view('auth.productsCreateOrUpdate', compact('user', 'category','attr_type'));
     }
 
     public function productsStore(Request $request)

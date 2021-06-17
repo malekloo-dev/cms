@@ -1,6 +1,6 @@
 
 <input type="hidden" name="imageJson" value="{{ old('imageJson',($content_info->imageJson??($company->imageJson??''))) }}">
-<img height="" src="{{ $cropperPreview }}" id="cropperPreview" >
+<img height="" src="{{ $cropperPreview ??''}}" id="cropperPreview" >
 <meta name="_token" content="{{ csrf_token() }}">
 
 <link href="{{ url('/adminAssets/css/cropper.css') }}" rel="stylesheet">
