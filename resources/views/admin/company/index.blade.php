@@ -73,7 +73,7 @@
 
                                         </div>
                                         <div class="col-md-6">
-                                            <a href="{{ route('comment.edit', $item->id) }}"
+                                            <a href="{{ route('admin.company.update', $item->id) }}"
                                                 class="font-full-plus-half-em text-success btn-xs pull-right"
                                                 title="@lang('messages.edit')">
                                                 <i class="fa fa-edit"></i>

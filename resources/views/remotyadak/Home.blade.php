@@ -111,11 +111,12 @@
     </section>
 
 
-    <section class="index-items bg-blue home-top-view">
+    <section class="index-items bg-blue home-top-view m-0">
 
         <div class="flex one">
+            <h2>محصولات</h2>
             <div>
-                <div class="flex one two-500  four-800 center  ">
+                <div class="flex one three-500  center  ">
 
                     {{--product&label=topProducts&var=products&count=12--}}
                     @isset($products['data'])
@@ -123,12 +124,12 @@
 
                         @foreach ($products['data'] as $content)
                             <div>
-                                <a class="hover " href="{{ $content->slug }}">
+                                <a class="hover" href="{{ $content->slug }}">
 
                                     @if (isset($content->images['thumb']))
-                                        <div><img width="{{ env('PRODUCT_SMALL_W') }}" height="{{ env('PRODUCT_SMALL_H') }}" alt="{{ $content->title }}" src="{{ $content->images['thumb'] }}"></div>
+                                        <div class="" ><img width="{{ env('PRODUCT_SMALL_W') }}" height="{{ env('PRODUCT_SMALL_H') }}" alt="{{ $content->title }}" src="{{ $content->images['thumb'] }}"></div>
                                     @endif
-                                    <footer>
+                                    <div class="">
                                         <h3> {{ $content->title }}</h3>
                                         <div>
                                             <div class="rate mt-1">
@@ -152,7 +153,7 @@
                                                 @convertCurrency($content->attr['price']??0) تومان
                                             @endif
                                         </div>
-                                    </footer>
+                                    </div>
 
                                 </a>
                             </div>

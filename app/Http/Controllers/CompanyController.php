@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\Content;
 use App\Models\CompanyContents;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Lang;
 use Intervention\Image\Facades\Image;
 
@@ -36,7 +38,7 @@ class CompanyController extends Controller
     {
         $user = Auth::user();
 
-        $imagesUrl = $this->uploadImages($request->image, $user->company->id,'company');
+        $imagesUrl = $this->uploadImages($request->image, $user->company->id, 'company');
 
         $user->company->logo = $imagesUrl['images'];
         $user->company->save();
@@ -201,7 +203,10 @@ class CompanyController extends Controller
         // $file = $request->image;
         // $fileOrg = $request->file('images');
         $year = Carbon::now()->year;
-        $imagePath = "/upload/images/{$year}/";
+        if($type == 'company')
+            $imagePath = "/upload/images/company/";
+        else
+            $imagePath = "/upload/images/{$year}/";
         // $filenameOrg = $fileOrg->getClientOriginalName();
         // dd($filenameOrg);
 
@@ -287,16 +292,89 @@ class CompanyController extends Controller
 
 
 
-    public function companyList(){
+    public function companyList()
+    {
         $companies = Company::all();
 
-        return view('admin.company.index',compact('companies'));
+        return view('admin.company.index', compact('companies'));
     }
 
-    public function companyCreate(){
-        $company = array();
+    public function companyCreateOrUpdate(Request $request, Company $company)
+    {
+        $categoryImplode = $cropperPreview = '';
+        $result = app('App\Http\Controllers\CategoryController')->tree_set();
+        $category = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
+        // dd($company->exists());
 
-        
-        return view('admin.company.createOrUpdate',compact('company'));
+        if ($company->exists()) {
+            $categoryImplode = "'" . implode("','", $company->categories->pluck('id')->toArray()) . "'";
+            $cropperPreview = $company->logo['images']['small'] ?? '';
+        }
+
+        return view('admin.company.createOrUpdate', compact(
+            'company',
+            'cropperPreview',
+            'category',
+            'categoryImplode'
+        ));
+    }
+
+    public function companyStore(Request $request)
+    {
+        $this->validate($request, array(
+            'name' => 'required',
+            'manager' => 'required',
+            'mobile' => 'required',
+            'email' => 'unique:users,email'
+        ));
+        $data = $request->all();
+        $data['password'] = Hash::make(123456);
+
+
+        $user = $this->companyStoreService($data, new Company);
+
+        return redirect()->route('admin.company.index')->with('success', Lang::get('messages.Greate! Company created successfully.'));
+    }
+
+    public function companyEdit(Request $request, Company $company)
+    {
+        $this->validate($request, array(
+            'name' => 'required',
+            'manager' => 'required',
+            'mobile' => 'required',
+        ));
+
+        $data = $request->all();
+
+        $this->companyStoreService($data, $company);
+
+        return redirect()->route('admin.company.index')->with('success', Lang::get('messages.Greate! Company edited successfully.'));
+    }
+
+
+
+    public function companyStoreService($data, $company)
+    {
+        if ($company->exists()) {
+
+            $company->update($data);
+            $user = User::where('id', '=', $company->user_id)->first();
+        } else {
+            $user = User::create($data);
+            $company = $company($data);
+            $user->company()->save($company);
+        }
+        if ($data['imageJson'])
+            $imagesUrl = $this->uploadImages($data['imageJson'], $user->company->id, 'company');
+
+        dd($imagesUrl);
+
+        $user->company->logo = $imagesUrl['images'];
+        $user->company->save();
+
+        return $user;
+    }
+    public function companyDestroy(Company $company)
+    {
     }
 }

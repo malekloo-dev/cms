@@ -112,5 +112,9 @@ return [
     'total'=>'تعداد کل',
     'page'=>'صفحه',
     'html'=>'استاتیک',
+    'manager'=>'مدیر',
+    'user'=>'کاربر',
+    'Greate! Company created successfully.'=>'کمپانی اضافه شد.',
+    'Greate! Company edited successfully.'=>'کمپانی ویرایش شد.',
 
 ];

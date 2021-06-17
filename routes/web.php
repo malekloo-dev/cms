@@ -96,7 +96,12 @@ Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(functio
     // Route::post('logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 
     Route::get('company', [CompanyController::class, 'companyList'])->name('admin.company.index');
-    Route::get('company/create', [CompanyController::class, 'companyCreate'])->name('admin.company.create');
+    Route::get('company/create', [CompanyController::class, 'companyCreateOrupdate'])->name('admin.company.create');
+    Route::post('company/create', [CompanyController::class, 'companyStore'])->name('admin.company.store');
+    Route::get('company/edit/{company}', [CompanyController::class, 'companyCreateOrUpdate'])->name('admin.company.update');
+    Route::patch('company/edit/{company}', [CompanyController::class, 'companyEdit'])->name('admin.company.edit');
+    Route::delete('company/{company}', [CompanyController::class, 'companyDestroy'])->name('admin.company.destroy');
+
 });
 Route::get('admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login.form');
 

@@ -10,132 +10,180 @@
     <div class="content-body">
         <div class="panel panel-default pos-abs chat-panel bottom-0">
             <div class="panel-body full-height">
-                @if (\Session::has('success'))
-                    <div class="alert alert-success">
-                        <ul>
-                            <li>{!! \Session::get('success') !!}</li>
-                        </ul>
-                    </div>
-                @endif
-
-                @if (\Session::has('error'))
-                    <div class="alert alert-danger">
-                        <ul>
-                            <li>{!! \Session::get('error') !!}</li>
-                        </ul>
-                    </div>
+                @if ($errors->any())
+                    {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
                 @endif
 
 
-        <div class="profile">
-            <div class="map-area">
-                <div id="mapid"></div>
-            </div>
-            <div class="flex one two-700 three-1100 mt-2">
-                <div style="cursor: pointer" class="" onclick="document.getElementById('images').click();">
-                    @lang('messages.edit') @lang('messages.image')
-                    <input type="file" style="display:none" name="images" id="images">
+                <form
+                    action="{{ Request()->is('*create*') ? route('admin.company.store') : route('admin.company.edit', $company->id) }}"
+                    method="POST" enctype="multipart/form-data">
+                    @if (Request()->is('*edit*'))
+                        @method('PATCH')
+                    @endif
 
-                    <img style="padding:0 0.5em"
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAACCUlEQVQ4jdXUPWiTQRgH8P9zqYhuGWIlie4dtA7SpULRRbr5iYIVpLz33tvBIYvoIJ74tfqxJHchYBXUIuLg5uTg1ClDFIQuQkLaJYPE6c37d9CEt5qG103/2/Pc3e/uWQ741yPpIgiCci6XOw1gb8bz30XkTbVabf8BBkFQVko1AXQBdDKCRQDTSqnZITo1kkXOAtgsFouHrLVJFs1aqzqdTmswGJwD8AgAVArMk9ychAVBMBOG4T1jzBIAsdYmJLsikh/uUTsd/j2VSmWPUuqDiJwk6Ywxl8ftywz2+/0CgALJWwBaJGf+CgyC4HAURfuGtXPuK4BXAN4BOJAkyWom0Fo7pbV+qpRqJkmyobVeTKEXlVLlXq93sF6vf84C7mq32y9EZJHkHMmHIvI2DMNTAKC1PjIYDK7m8/n5nSbbBorIvIgcI3nce7/uvb9J0gJYM8bcF5GPInICwHut9XKWF26RXPDet4YN7/0DAM9I3iD5xDk3R3JFRFwYhisTQZKfvPdf0j1jzBkASwBue++v/7rEi8gygMcicnTSC7fFGHOB5EsAd51zNr1Wq9VWSV4CsHssSLInItPWWgUAWusrJJ8DuOacuzPuwlKp9BrABsnesDf6HKIoKiVJ0gSwhZ8fxAKAbwDWJwxRAlCI43i20Wh0toEp9DzJ/ROQUUSkG8fx2hD7P/IDjnbjmjZON9wAAAAASUVORK5CYII=">
-                </div>
+                    @csrf
 
-                <div style="cursor: pointer" class="location-editor">
-                    @lang('messages.edit') @lang('messages.my location')
+                    <div class="row">
+                        <div class="col-md-12  col-sm-12 form-group">
+                            <div class="map-area">
+                                <div id="mapid" style="min-height: 200px"></div>
+                            </div>
+                            <input class="form-control" name="location" type="hidden"
+                                value="{{ old('location', $company->location ?? '') }}">
+                        </div>
+                    </div>
 
-                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172"
-                        style=" fill:#000000;">
-                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-                            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
-                            font-family="none" font-weight="none" font-size="none" text-anchor="none"
-                            style="mix-blend-mode: normal">
-                            <path d="M0,172v-172h172v172z" fill="none"></path>
-                            <g fill="#666666">
-                                <path
-                                    d="M86,7.16667c-23.75033,0 -43,19.24967 -43,43c0,30.71633 43,78.83333 43,78.83333c0,0 43,-48.117 43,-78.83333c0,-23.75033 -19.24967,-43 -43,-43zM86,34.81152c8.48533,0 15.35514,6.86981 15.35514,15.35514c0,8.47817 -6.87698,15.35514 -15.35514,15.35514c-8.47817,0 -15.35514,-6.86981 -15.35514,-15.35514c0,-8.48533 6.86981,-15.35514 15.35514,-15.35514zM34.4056,107.5l-20.07227,50.16667h143.33333l-20.07226,-50.16667h-17.10482c-3.47583,5.23883 -6.96544,10.09067 -10.17611,14.33333h17.59473l8.5944,21.5h-101.00521l8.5944,-21.5h17.59473c-3.21067,-4.24267 -6.70027,-9.0945 -10.17611,-14.33333z">
-                                </path>
-                            </g>
-                        </g>
-                    </svg>
-                </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 form-group">
+                            @php
+                                $attr_type = 'company';
+                            @endphp
 
-                <div class="">
-                    @lang('messages.store name'):
-                    <span class="text-editor" data-field='name'
-                        data-label="@lang('messages.store name')">{{ $company->name ?? '' }}</span>
-                </div>
-                <div class=" ">
-                    @lang('messages.name'):
-                    <span class="text-editor" data-field="manager"
-                        data-label="@lang('messages.name')">{{ $company->manager ?? '' }}</span>
-                </div>
-                <div class="">@lang('messages.sale manager'):
-                    <span class="text-editor" data-field="sale_manager"
-                        data-label="@lang('messages.sale manager')">{{ $company->sale_manager ?? '' }}</span>
-                </div>
-                <div class="">@lang('messages.mobile'):
-                    <span class="text-editor" data-field="mobile"
-                        data-label="@lang('messages.mobile')">{{ $company->mobile ?? '' }}</span>
-                </div>
-                <div class="">@lang('messages.phone'):
-                    <span class="ltr">
-                        @isset($company->phone)
-                            @foreach ($company->phone as $item)
-                                {{ $item }}
-                                @if (!$loop->last)
-                                    -
+                            @include('admin.cropper')
+
+                            <input type="file" style="" name="images" id="images">
+                            {{-- <div style="cursor: pointer" class="" onclick="document.getElementById('images').click();">
+                                @lang('messages.add') @lang('messages.image')
+                            </div> --}}
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 form-group">
+                            <label for="name">@lang('messages.category'):</label>
+                            <select id="parent_id" name="parent_id[]" multiple>
+                                @foreach ($category as $Key => $fields)
+                                    <option value="{{ $fields['id'] }}">{!! $fields['symbol'] . $fields['title'] !!}</option>
+                                @endforeach
+                            </select>
+
+                            <span class="text-danger">{{ $errors->first('parent_id') }}</span>
+                        </div>
+                        <div class="col-sm-6 col-md-6 form-group">
+
+                            <label for="name">@lang('messages.main category'):</label>
+
+                            <div id="parent_id_val" class="parent_id_val"></div>
+                            <select id="parent_id_hide" name="parent_id_hide">
+                                <option value="{!! $company->parent_id ?? '' !!}"></option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+
+                        <div class="col-md-3  col-sm-3 form-group">
+                            @lang('messages.store name'):
+                            <input class="form-control" name="name" type="text"
+                                value="{{ old('name', $company->name ?? '') }}">
+                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                        </div>
+
+                        <div class="col-md-3  col-sm-3 form-group">
+                            @lang('messages.manager'):
+                            <input class="form-control" name="manager" type="text"
+                                value="{{ old('manager', $company->manager ?? '') }}">
+                            <span class="text-danger">{{ $errors->first('manager') }}</span>
+
+                        </div>
+
+                        <div class="col-md-3  col-sm-3 form-group">@lang('messages.sale manager'):
+                            <input class="form-control" name="sale_manager" type="text"
+                                value="{{ old('sale_manager', $company->sale_manager ?? '') }}">
+                            <span class="text-danger">{{ $errors->first('sale_manager') }}</span>
+                        </div>
+
+                        <div class="col-md-3  col-sm-3 form-group">@lang('messages.mobile'):
+                            <input class="form-control" name="mobile" type="text"
+                                value="{{ old('mobile', $company->mobile ?? '') }}">
+                            <span class="text-danger">{{ $errors->first('mobile') }}</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-3  col-sm-3 form-group">@lang('messages.phone'):
+                            <input id="phone" type="text" class="" name="phone"
+                                value="{{ old('meta_title', $company->phone ?? '') }}" />
+                            <span class="text-danger">{{ $errors->first('phone') }}</span>
+                        </div>
+
+                        <div class="col-md-3  col-sm-3 form-group">@lang('messages.site'):
+                            <input class="form-control" name="site" type="text"
+                                value="{{ old('site', $company->site ?? '') }}">
+                            <span class="text-danger">{{ $errors->first('site') }}</span>
+                        </div>
+
+
+                        <div class="col-md-3  col-sm-3 form-group">@lang('messages.email'):
+                            <input class="form-control" name="email" type="text"
+                                value="{{ old('email', $company->email ?? '') }}">
+                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                        </div>
+
+                        <div class="col-md-3  col-sm-3 form-group">@lang('messages.address'):
+                            <input class="form-control" name="address" type="text"
+                                value="{{ old('address', $company->address ?? '') }}">
+                            <span class="text-danger">{{ $errors->first('address') }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-3  col-sm-3 form-group">@lang('messages.city'):
+                            <input class="form-control" name="city" type="text"
+                                value="{{ old('city', $company->city ?? '') }}">
+                            <span class="text-danger">{{ $errors->first('city') }}</span>
+                        </div>
+
+                        <div class="col-md-3  col-sm-3 form-group">@lang('messages.province'):
+                            <input class="form-control" name="province" type="text"
+                                value="{{ old('province', $company->province ?? '') }}">
+                            <span class="text-danger">{{ $errors->first('province') }}</span>
+                        </div>
+
+                        <div class="col-md-3  col-sm-3 form-group">@lang('messages.whatsapp'):
+                            <input class="form-control" name="whatsapp" type="text"
+                                value="{{ old('whatsapp', $company->whatsapp ?? '') }}">
+                            <span class="text-danger">{{ $errors->first('whatsapp') }}</span>
+                        </div>
+
+                        <div class="col-md-3  col-sm-3 form-group">@lang('messages.telegram'):
+                            <input class="form-control" name="telegram" type="text"
+                                value="{{ old('telegram', $company->telegram ?? '') }}">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3  col-sm-3 form-group">@lang('messages.instagram'):
+                            <input class="form-control" name="instagram" type="text"
+                                value="{{ old('instagram', $company->instagram ?? '') }}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <button type="submit" class="btn btn-success  @if (!$ltr) pull-right @endif mat-btn ">
+
+                                                                             @if (Request()->is('*create*'))
+                                @lang('messages.add')
+                            @else
+                                @lang('messages.edit')
                                 @endif
-                            @endforeach
-                        @endisset
-                    </span>
-                </div>
-                <div class="">@lang('messages.site'):
-                    <span class="text-editor" data-field="site"
-                        data-label="@lang('messages.site')">{{ $company->site ?? '' }}</span>
-                </div>
-
-                <div class="">@lang('messages.email'): <span class="text-editor" data-field="email"
-                        data-label="@lang('messages.email')">{{ $company->email ?? '' }}</span>
-                </div>
-
-                <div class="">@lang('messages.address'): <span class="text-editor" data-field="address"
-                        data-label="@lang('messages.address')">{{ $company->address ?? '' }}</span></div>
-
-                <div class="">@lang('messages.city'): <span class="text-editor" data-field="city"
-                        data-label="@lang('messages.city')">{{ $company->city ?? '' }}</span>
-                </div>
-
-                <div class="">@lang('messages.province'): <span class="text-editor" data-field="province"
-                        data-label="@lang('messages.province')">{{ $company->province ?? '' }}</span></div>
-
-                <div class="">@lang('messages.whatsapp'): <span class="ltr text-editor" data-field="whatsapp"
-                        data-label="@lang('messages.whatsapp')">{{ $company->whatsapp ?? '' }}</span>
-                </div>
-
-                <div class="">@lang('messages.telegram'): <span class="text-editor" data-field="telegram"
-                        data-label="@lang('messages.telegram')">{{ $company->telegram ?? '' }}</span></div>
-
-                <div class="">@lang('messages.instagram'): <span class="text-editor" data-field="instagram"
-                        data-label="@lang('messages.instagram')">{{ $company->instagram ?? '' }}</span></div>
+                            </button>
+                        </div>
+                    </div>
+                </form>
 
             </div>
-
-
         </div>
     </div>
-</div>
-</div>
-
-@endsection
-
-@section('cropper')
-
-    @include('auth.cropper')
-
-@endsection
 
 
-@section('footer')
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -145,59 +193,94 @@
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
 
+
     <script>
-        $.each($('.profile .text-editor'), function(i, n) {
-            $(this).append(
-                '<img class="fa-edit" style="padding:0 0.5em" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAACxUlEQVQ4jZ3ST2hcVRTH8e959735E0V3rmwpuOomWUygCsGW2IYxUxcWkjShxYCTl1WQoRtxlYUoqBsZSe1tUsVgF01L/0hc1WZqqOgipNiAq64KWbhIUmn+jPPuPd3Ma0NMTNKzutzD+fA7lyu8WEkcx58AReCytfZ82jAvog0NDb0vIheAg0Cpvb09mJubq+0brFQq+ba2tq+iKJr03kfAW83W0RTdF9ja2toLfOG974qiaMh7nwHeTNFCofD3nsCenp5MR0fHl0EQ/KCqS8CZJlr23ueAIwCq+tKu4MjISDaTyVwDBoCatfb7QqFQ34R+6JzLi8gREflGdsPq9fo1oEtV+7z3D4Ig+FpEPgDKwOfA/SiKjjcajU5r7dUdEw4ODuaA68AJoNd7v2CMmRGRAvCqtfbjNKmqvmat/Qwg3AnLZDLXgU6gF3hgjKkBrwN319fXzw0PD/eLyCXn3KNsNvtTOvuflSuVSn51dfUGcExEelV1AZgBDjSxUj6fPwOcB3601p7dPB9sg90CjgF9SZLcB24DB0RkNgzDky0tLaeBMWDeOffR1kDPEsZx3ALcBN4G+pxz8801D4nIrDGm2znXp6pWROaTJOmamJhY2goGAKOjo2GKqWqPMeZPY8yvwCFgRlWLjUajX1Ut8IeqvrMd9gxcXFzsBI6rajkMwwXn3AxwUETuACeBARH5Fvg9m80WrbWPt8M2v2EJeJLL5a547weAV4BfVPU9EekHLgC/JUlSrFar/+yEwfNvUwJuV6vVOvBpHMfLwHeqehqwInLPGNNtrX3yfxhAUC6XDwNvqOrP6eXy8vJFVR0UkYvA7Nra2rtjY2O7YgChiJQARKQYx7GKSLeqngBeVtV7GxsbpcnJydW9YOnKpeb5FHBKVR8Cl4DplZWV2tTU1L97xdKES6paA6ZVdXp8fPyv/QBb6ylonDPZbLKXSwAAAABJRU5ErkJggg==">'
-            )
+        var $input = $("#parent_id");
+        var $parent_id_hide = $("#parent_id_hide");
+        var $parent = $('#parent_id_hide').find(':selected').val();
+
+        $input.on("selecting unselecting change", function() {
+            setOption($("#parent_id").parent().find("ul.select2-choices"));
+
+        })
+        $parent_id_hide.on("selecting unselecting change", function() {
+            $parent = $('#parent_id_hide').find(':selected').val();
+
+        })
+
+        $("#parent_id").parent().find("ul.select2-choices").sortable({
+            containment: 'parent',
+            update: function() {
+                setOption(this)
+            },
         });
+        $input.val([`{!! $categoryImplode ?? '' !!}`]);
 
-        $('.profile .text-editor').click(function() {
+        $input.trigger('change'); // Notify any JS components that the value changed
 
-            $('.profile-editor-modal input[type=text]').attr('name', '');
-            $('.profile-editor-modal label').html('');
-            var field = $(this).data('field');
-            var label = $(this).data('label');
-            var val = $(this).text();
-            $('#edit-profile').modal('show');
-            $('.profile-editor-modal input[type=text]').attr('name', field);
-            if (['email', 'mobile', 'site', 'whatsapp', 'telegram', 'instagram'].includes(field)) {
-                $('.profile-editor-modal input[type=text]').css('direction', 'ltr');
-            } else {
-                $('.profile-editor-modal input[type=text]').css('direction', 'rtl');
-            }
-            $('.profile-editor-modal input[type=text]').val(val);
-            $('.profile-editor-modal label').html(label);
+        function setOption($this) {
+            var $select = $("#parent_id");
+            //$(this).closest(".select2-container").next();
+            var options;
+            options = $select.find("option");
+            //$("#parent_id_hide").empty();
+            //var newoptions = '';
+            var newoptions = [];
+            // Clear option
+            $($this).find(".select2-search-choice").each(function(i, tag) {
 
-        });
-
-        $(function() {
-
-            $('#edit-profile form').submit(function(e) {
-
-                e.preventDefault();
-
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: "{{ route('company.profile.update') }}",
-                    data: {
-                        '_token': $('meta[name="_token"]').attr('content'),
-                        'data': $('#edit-profile form').serializeArray()
-                    },
-                    success: function(data) {
-                        $('#edit-profile').modal('hide');
-                        $('span[data-field=' + data.data.name + ']').text(data.data.value);
-                        $('span[data-field=' + data.data.name + ']').append(
-                            '<img class="fa-edit" style="padding:0 0.5em" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAACxUlEQVQ4jZ3ST2hcVRTH8e959735E0V3rmwpuOomWUygCsGW2IYxUxcWkjShxYCTl1WQoRtxlYUoqBsZSe1tUsVgF01L/0hc1WZqqOgipNiAq64KWbhIUmn+jPPuPd3Ma0NMTNKzutzD+fA7lyu8WEkcx58AReCytfZ82jAvog0NDb0vIheAg0Cpvb09mJubq+0brFQq+ba2tq+iKJr03kfAW83W0RTdF9ja2toLfOG974qiaMh7nwHeTNFCofD3nsCenp5MR0fHl0EQ/KCqS8CZJlr23ueAIwCq+tKu4MjISDaTyVwDBoCatfb7QqFQ34R+6JzLi8gREflGdsPq9fo1oEtV+7z3D4Ig+FpEPgDKwOfA/SiKjjcajU5r7dUdEw4ODuaA68AJoNd7v2CMmRGRAvCqtfbjNKmqvmat/Qwg3AnLZDLXgU6gF3hgjKkBrwN319fXzw0PD/eLyCXn3KNsNvtTOvuflSuVSn51dfUGcExEelV1AZgBDjSxUj6fPwOcB3601p7dPB9sg90CjgF9SZLcB24DB0RkNgzDky0tLaeBMWDeOffR1kDPEsZx3ALcBN4G+pxz8801D4nIrDGm2znXp6pWROaTJOmamJhY2goGAKOjo2GKqWqPMeZPY8yvwCFgRlWLjUajX1Ut8IeqvrMd9gxcXFzsBI6rajkMwwXn3AxwUETuACeBARH5Fvg9m80WrbWPt8M2v2EJeJLL5a547weAV4BfVPU9EekHLgC/JUlSrFar/+yEwfNvUwJuV6vVOvBpHMfLwHeqehqwInLPGNNtrX3yfxhAUC6XDwNvqOrP6eXy8vJFVR0UkYvA7Nra2rtjY2O7YgChiJQARKQYx7GKSLeqngBeVtV7GxsbpcnJydW9YOnKpeb5FHBKVR8Cl4DplZWV2tTU1L97xdKES6paA6ZVdXp8fPyv/QBb6ylonDPZbLKXSwAAAABJRU5ErkJggg==">'
-                        )
+                var $exist = 0;
+                options.each(function(j, option) {
+                    var optionTag = '';
+                    if ($.trim($(tag).text()) == $.trim($(option).text())) {
+                        // console.log(option.val());
+                        //$("#par_idd").append(new Option($(tag).text(),  $(option).val()));
+                        optionTag = new Option($(tag).text(), $(option).val());
+                        if ($(option).val() == $parent) {
+                            $exist = 1;
+                        }
+                        $("#par_idd").append(new Option($(tag).text(), $(option).val()));
+                        //newoptions=newoptions+','+$(option).val();
+                        newoptions.push(optionTag);
+                        //$("#par_idd").append(option);
                     }
+
                 });
             });
 
-            $('#edit-profile .close').on('click', function() {
-                $('#edit-profile').modal('hide');
-            })
+
+            //$parent = $('#parent_id_hide').find(':selected').val();
+
+            $("#parent_id_hide").empty();
+            //$('#parent_id_hide option:selected').removeAttr('selected');
+            $('#parent_id_hide').select2('destroy');
+            $parent_id_hide.select2();
+            if (newoptions.length > 0) {
+                $("#parent_id_hide").append(newoptions);
+                $parent_id_hide.val($parent);
+            }
+            // $parent_id_hide.val($parent);
+
+            //$('#parent_id_hide').select2('destroy');
+
+            //if ($exist != 0) {
+            // }
+            $parent_id_hide.trigger('change'); // Notify any JS components that the value changed
+
+
+            //getselector();
+
+
+        };
+
+    </script>
+
+    <script>
+        $("#parent_id").select2();
+        $("#parent_id_hide").select2();
+        $("#phone").select2({
+            tags: [],
+            maximumInputLength: 100
         });
 
     </script>
@@ -206,14 +289,9 @@
 
 
 
-
-
-
-
-
     <script>
         var map = L.map('mapid')
-            .setView([{{ Auth::user()->company->location ?? '31.5,51.2' }}], 16);
+            .setView([{{ $company->location ?? '35.65,51.4' }}], 12);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://tarhoweb.com">Tarhoweb</a> contributors',
@@ -224,121 +302,78 @@
 
 
         //marker
-        var marker = L.marker([{{ Auth::user()->company->location ?? '31.5,51.2' }}])
-            .addTo(map)
-            .bindPopup(`@lang('messages.my location')`)
-            .openPopup();
-
-        //access location
-        map.locate({
-            setView: true,
-            maxZoom: 16
-        });
-
+        var marker = L.marker([{{ $company->location ?? '35.65,51.4' }}])
+            .addTo(map);
+        // .bindPopup(`@lang('messages.my location')`)
+        // .openPopup();
+        marker.dragging.enable();
+        $('input[name=location]').val(marker.getLatLng().lat + ',' + marker.getLatLng().lng);
         //meghyas
         L.control.scale().addTo(map);
 
         //scroll disable zoom
-        map.scrollWheelZoom.disable();
+        map.scrollWheelZoom.enable();
 
 
 
-        //change pin locate
-        $('.location-editor').click(function() {
-            marker.dragging.enable();
-            map.scrollWheelZoom.enable();
+        // $('body').on('click', '.map-editor button.edit', function() {
+        //     $.ajax({
+        //         type: "POST",
+        //         dataType: "json",
+        //         url: "{{ route('company.profile.update') }}",
+        //         data: {
+        //             '_token': $('meta[name="_token"]').attr('content'),
+        //             'data': [{
+        //                 'name': 'location',
+        //                 'value': marker.getLatLng().lat + ',' + marker.getLatLng().lng
+        //             }]
+        //         },
+        //         success: function(data) {
+        //             marker.dragging.disable();
+        //             map.scrollWheelZoom.disable();
 
-
-            $('.map-area').toggleClass('map-editor');
-
-            $('.map-area').append('<div class="guid">@lang("messages.map edit guid")</div>');
-
-            $('.map-area').append('<button class="btn btn-info edit">@lang("messages.edit")</button>' +
-                '<a class="btn cancel">@lang("messages.cancel")</a>');
-
-        });
-
-
-
-        $('body').on('click', '.map-editor button.edit', function() {
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: "{{ route('company.profile.update') }}",
-                data: {
-                    '_token': $('meta[name="_token"]').attr('content'),
-                    'data': [{
-                        'name': 'location',
-                        'value': marker.getLatLng().lat + ',' + marker.getLatLng().lng
-                    }]
-                },
-                success: function(data) {
-                    marker.dragging.disable();
-                    map.scrollWheelZoom.disable();
-
-                    $('.map-area .edit,.map-area .cancel,.map-area .guid').remove();
-                    $('.map-area').toggleClass('map-editor');
-                }
-            });
-        });
+        //             $('.map-area .edit,.map-area .cancel,.map-area .guid').remove();
+        //             $('.map-area').toggleClass('map-editor');
+        //         }
+        //     });
+        // });
 
 
 
-        $('body').on('click', '.map-editor a.cancel', function() {
-            marker.dragging.disable();
-            map.scrollWheelZoom.disable();
-            $('.map-area .edit,.map-area .cancel,.map-area .guid').remove();
-            $('.map-area').toggleClass('map-editor');
-        });
+        // $('body').on('click', '.map-editor a.cancel', function() {
+        //     marker.dragging.disable();
+        //     map.scrollWheelZoom.disable();
+        //     $('.map-area .edit,.map-area .cancel,.map-area .guid').remove();
+        //     $('.map-area').toggleClass('map-editor');
+        // });
 
 
 
         function onMapClick(e) {
 
-            if ($(".map-area").hasClass("map-editor")) {
-                marker.setLatLng(e.latlng);
-                map.panTo(e.latlng);
-            }
+            marker.setLatLng(e.latlng);
+            map.panTo(e.latlng);
 
-            marker.on('dragend', function(event) {
-                var marker = event.target;
-                var position = marker.getLatLng();
-                marker.setLatLng(new L.LatLng(position.lat, position.lng), {
-                    draggable: 'true'
-                });
-                map.panTo(new L.LatLng(position.lat, position.lng))
-            });
-            map.addLayer(marker);
+            // map.addLayer(marker);
+
+            $('input[name=location]').val(marker.getLatLng().lat + ',' + marker.getLatLng().lng);
         };
 
+        marker.on('dragend', function(event) {
+            var marker = event.target;
+            var position = marker.getLatLng();
+
+            marker.setLatLng(new L.LatLng(position.lat, position.lng), {
+                draggable: 'true'
+            });
+
+            map.panTo(new L.LatLng(position.lat, position.lng));
+            $('input[name=location]').val(marker.getLatLng().lat + ',' + marker.getLatLng().lng);
+
+        });
         map.on('click', onMapClick);
 
     </script>
-
-    <div class="modal fade profile-editor-modal" id="edit-profile" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-
-                <div class="modal-body">
-                    <div class="img-container">
-                        <div class="row">
-                            <form>
-                                <div class="col-md-12 py-1 ">
-                                    <label for=""></label>
-                                    <input type="text" name="">
-                                </div>
-                                <div class="col-md-12">
-                                    <input type="submit" class="btn btn-primary" value="@lang('messages.edit')">
-                                    <a class="btn close" href="#">@lang('messages.cancel')</a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 @endsection

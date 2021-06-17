@@ -49,7 +49,7 @@
                                 </td>
                                 <td>
                                     @if (isset($content->attr['template_name']))
-                                        <i class="fa fa-check"></i>
+                                        <i title="{{ $content->attr['template_name'] }}" class="fa fa-check"></i>
                                     @endif
                                 </td>
 
