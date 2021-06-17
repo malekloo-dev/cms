@@ -39,6 +39,7 @@
                             <th>@lang('messages.email')</th>
                             <th>@lang('messages.mobile')</th>
                             <th>@lang('messages.logo')</th>
+                            <th>@lang('messages.catrgory')</th>
 
                             <th>@lang('messages.updated at')</th>
                             <th>@lang('messages.created at')</th>
@@ -49,10 +50,25 @@
                         @foreach ($companies as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td class="">{{ $item->name ?? '' }} <a href="{{ route('contents.type.show',['type'=>'product','companyId'=>$item->id]) }}">@lang('messages.products')</a></td>
+                                <td class="">
+                                    <a href="{{ route('profile.index', $item->id) }}" target="__blank"><i
+                                            class="fa fa-external-link"></i></a>
+                                    {{ $item->name ?? '' }} <a
+                                        href="{{ route('contents.type.show', ['type' => 'product', 'companyId' => $item->id]) }}">@lang('messages.products')</a>
+                                </td>
                                 <td class="">{{ $item->email ?? '' }}</td>
                                 <td class="">{{ $item->mobile ?? '' }}</td>
                                 <td class=""><img src="{{ $item->logo['small'] ?? '' }}" alt=""></td>
+                                <td>
+                                    @foreach ($item->categories as $it)
+                                        @if ($it->id == $item->category->id)
+                                            <i class="fa fa-check"></i>
+                                        @endif
+                                        {{ $it->title ?? '' }}
+                                        <br>
+                                    @endforeach
+
+                                </td>
 
                                 <td class="">{{ convertGToJ($item->updated_at) }}</td>
                                 <td class="">{{ convertGToJ($item->created_at) }}</td>

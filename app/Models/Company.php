@@ -12,7 +12,7 @@ class Company extends Model
     ];
 
     protected $fillable = [
-        'name', 'manager', 'sale_manager', 'address', 'city', 'province', 'mobile','location',
+        'name','parent_id', 'manager', 'sale_manager', 'address', 'city', 'province', 'mobile','location',
         'phone', 'email', 'site', 'whatsapp', 'telegram', 'instagram', 'logo', 'user_id'
     ];
 

@@ -44,14 +44,7 @@
                     </div>
                     <div class="">@lang('messages.phone'):
                         <span class="ltr">
-                            @isset($company->phone)
-                                @foreach ($company->phone as $item)
-                                    {{ $item }}
-                                    @if (!$loop->last)
-                                        -
-                                    @endif
-                                @endforeach
-                            @endisset
+                            {{ $company->phone ?? '' }}
                         </span>
                     </div>
                     <div class="">@lang('messages.site'):

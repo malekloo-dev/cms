@@ -1,13 +1,14 @@
 
 <input type="hidden" name="imageJson" value="{{ old('imageJson',($content_info->imageJson??($company->imageJson??''))) }}">
-<img src="{{ $cropperPreview ?? '' }}" id="cropperPreview" >
+<img height="" src="{{ $cropperPreview }}" id="cropperPreview" >
 <meta name="_token" content="{{ csrf_token() }}">
 
 <link href="{{ url('/adminAssets/css/cropper.css') }}" rel="stylesheet">
 <script src="{{ url('/adminAssets/js/cropper.js') }}"></script>
 
 <style type="text/css">
-    img {
+
+    .modal-cropper img {
         display: block;
         max-width: 300px;
         max-height: 300px;
@@ -26,7 +27,7 @@
     }
 
 </style>
-<div class="modal fade" style="direction: ltr;" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+<div class="modal fade modal-cropper" style="direction: ltr;" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -62,7 +63,8 @@
     var image = document.getElementById('image');
     var cropper;
 
-    $('#cropperPreview').attr('src',$('input[name=imageJson]').val())
+    if($('[name=imageJson]').val() != '')
+        $('#cropperPreview').attr('src',$('input[name=imageJson]').val())
 
 
     $("body").on("change", "#images", function(e) {

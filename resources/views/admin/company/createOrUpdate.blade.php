@@ -25,27 +25,24 @@
                     @csrf
 
                     <div class="row">
-                        <div class="col-md-12  col-sm-12 form-group">
+                        <div class="col-md-8  col-sm-8 form-group">
                             <div class="map-area">
-                                <div id="mapid" style="min-height: 200px"></div>
+                                <div id="mapid" style="min-height: 300px"></div>
                             </div>
                             <input class="form-control" name="location" type="hidden"
                                 value="{{ old('location', $company->location ?? '') }}">
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 form-group">
+                        <div class="col-md-4 col-sm-4 form-group text-center">
                             @php
                                 $attr_type = 'company';
                             @endphp
 
                             @include('admin.cropper')
 
-                            <input type="file" style="" name="images" id="images">
-                            {{-- <div style="cursor: pointer" class="" onclick="document.getElementById('images').click();">
-                                @lang('messages.add') @lang('messages.image')
-                            </div> --}}
+                            <input type="file" style="display: none" name="images" id="images">
+                            <div style="cursor: pointer;" class="btn btn-info" onclick="document.getElementById('images').click();">
+                                @lang('messages.add') / @lang('messages.edit') @lang('messages.image')
+                            </div>
                         </div>
                     </div>
 
@@ -55,7 +52,7 @@
                             <label for="name">@lang('messages.category'):</label>
                             <select id="parent_id" name="parent_id[]" multiple>
                                 @foreach ($category as $Key => $fields)
-                                    <option value="{{ $fields['id'] }}">{!! $fields['symbol'] . $fields['title'] !!}</option>
+                                    <option value="{{ $fields['id'] }}" >{!! $fields['symbol'] . $fields['title'] !!}</option>
                                 @endforeach
                             </select>
 
@@ -66,8 +63,9 @@
                             <label for="name">@lang('messages.main category'):</label>
 
                             <div id="parent_id_val" class="parent_id_val"></div>
+
                             <select id="parent_id_hide" name="parent_id_hide">
-                                <option value="{!! $company->parent_id ?? '' !!}"></option>
+                                <option value="{!! ($company->parent_id ?? '') !!}"></option>
                             </select>
 
                         </div>
@@ -193,8 +191,12 @@
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
 
+    <style>
+        #cropperPreview{border-radius: 50%;}
+    </style>
 
     <script>
+$(document).ready(function() {
         var $input = $("#parent_id");
         var $parent_id_hide = $("#parent_id_hide");
         var $parent = $('#parent_id_hide').find(':selected').val();
@@ -214,7 +216,7 @@
                 setOption(this)
             },
         });
-        $input.val([`{!! $categoryImplode ?? '' !!}`]);
+        $input.val([{!! $categoryImplode ?? '' !!}]);
 
         $input.trigger('change'); // Notify any JS components that the value changed
 
@@ -272,6 +274,7 @@
 
 
         };
+    });
 
     </script>
 

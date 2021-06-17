@@ -17,6 +17,7 @@ class Company extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->default(0);
             $table->string('name')->nullable();
+            $table->integer('parent_id')->default(0);
             $table->string('manager')->nullable();
             $table->string('sale_manager')->nullable();
             $table->string('address')->nullable();

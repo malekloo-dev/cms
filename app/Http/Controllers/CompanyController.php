@@ -203,7 +203,7 @@ class CompanyController extends Controller
         // $file = $request->image;
         // $fileOrg = $request->file('images');
         $year = Carbon::now()->year;
-        if($type == 'company')
+        if ($type == 'company')
             $imagePath = "/upload/images/company/";
         else
             $imagePath = "/upload/images/{$year}/";
@@ -292,6 +292,13 @@ class CompanyController extends Controller
 
 
 
+
+
+
+
+
+
+
     public function companyList()
     {
         $companies = Company::all();
@@ -306,10 +313,11 @@ class CompanyController extends Controller
         $category = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
         // dd($company->exists());
 
-        if ($company->exists()) {
+        if ($company->exists) {
             $categoryImplode = "'" . implode("','", $company->categories->pluck('id')->toArray()) . "'";
-            $cropperPreview = $company->logo['images']['small'] ?? '';
+            $cropperPreview = $company->logo['large'] ?? '';
         }
+
 
         return view('admin.company.createOrUpdate', compact(
             'company',
@@ -325,7 +333,7 @@ class CompanyController extends Controller
             'name' => 'required',
             'manager' => 'required',
             'mobile' => 'required',
-            'email' => 'unique:users,email'
+            'email' => 'required|unique:users,email'
         ));
         $data = $request->all();
         $data['password'] = Hash::make(123456);
@@ -355,26 +363,49 @@ class CompanyController extends Controller
 
     public function companyStoreService($data, $company)
     {
-        if ($company->exists()) {
 
+        $parent_id_hide = $data['parent_id_hide'];
+        $data['parent_id_hide'] = $data['parent_id'];
+        $data['parent_id'] = $parent_id_hide;
+        if( $data['parent_id']==''){
+            $data['parent_id']=$data['parent_id_hide'][0];
+        }
+
+        if ($company->exists) {
             $company->update($data);
             $user = User::where('id', '=', $company->user_id)->first();
+
+            $company->categories()->detach();
         } else {
             $user = User::create($data);
-            $company = $company($data);
+            $data['user_id'] = $user->id;
+            $company = Company::create($data);
+
             $user->company()->save($company);
         }
-        if ($data['imageJson'])
+        $user->assignRole('company');
+
+        $company->categories()->attach($data['parent_id_hide']);
+
+
+        if ($data['imageJson']) {
             $imagesUrl = $this->uploadImages($data['imageJson'], $user->company->id, 'company');
+            $user->company->logo = $imagesUrl['images'];
+            $user->company->save();
+        }
 
-        dd($imagesUrl);
-
-        $user->company->logo = $imagesUrl['images'];
-        $user->company->save();
 
         return $user;
     }
     public function companyDestroy(Company $company)
     {
+        // $company->delete();
+        // $companu->dettach();
+        // $compnay->contents;
+        // unllink
+
+        return redirect()->route('admin.company.index')->with('success', Lang::get('messages.deleted'));
+
+
     }
 }
