@@ -88,23 +88,26 @@
 
     @if (!Request::get('page'))
 
-        <section class="" id="">
-            <div class="flex one ">
-                <div class="bg-white p-1 border-radius-5">
+        <section class="my-0 py-0" id="">
+            <div class="flex one my-0 ">
+                <div class="bg-white py-0 border-radius-5">
 
-                    <div class="flex one two-700">
-                        <div class="two-third-700">
+                    <div class="flex m-0 one two-700">
+                        <div class="two-third-700 p-0">
+                            @if (count($table_of_content)>0)
+
                             <ul>
                                 @foreach ($table_of_content as $key => $item)
-                                    <li class="toc1">
-                                        <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
-                                    </li>
+                                <li class="toc1">
+                                    <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
+                                </li>
                                 @endforeach
 
                             </ul>
+                            @endif
 
                         </div>
-                        <div class="third-700">
+                        <div class="third-700 p-0">
                             @if (isset($detail->images['images']))
                                 <picture>
 

@@ -207,7 +207,7 @@
     @endif
 
     @if (count($relatedPost))
-        <section class="articles bg-orange" id="index-best-view">
+        <section class="articles bg-green" id="index-best-view">
             <div class="flex one ">
                 <div>
                     <h2>مقاله های مرتبط {{ $detail->title }}</h2>

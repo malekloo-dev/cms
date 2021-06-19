@@ -13,6 +13,7 @@ $menu-color: #2d610a;
 //////////
 // nav  //
 //////////
+
 .top-menu {
     min-height: $theme-color1;
     background: $theme-color1;
@@ -88,6 +89,7 @@ nav {
                         transform: scale(1.05);
                     }
                 }
+
             }
             ul {
                 display: none;
@@ -99,30 +101,52 @@ nav {
                 box-shadow: 1px 0 20px rgba(0, 0, 0, 0.12);
             }
         }
-        > li.parent > a::after {
-            position: absolute;
-            display: inline-block;
-            content: "";
-            background-image: url(img/arrow-down.png);
-            margin-right: 0.5em;
-            width: 8px;
-            height: 8px;
-            top: 1.5em;
-            background-size: 0.5em;
-            background-repeat: no-repeat;
-        }
     }
+
+    .arrow {
+        border: solid $menu-color;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 3px;
+        top: 20px;
+        margin-right: 5px;
+
+        position: absolute;
+      }
+
+      .right {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+      }
+
+      .left {
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+        left: 10px;
+      }
+
+      .up {
+        transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+      }
+
+      .down {
+          left: 10px;
+          transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+      }
 }
 .brand {
     flex: 1;
 }
 nav ul li.parent > div {
-    display: none;
+    // display: none;
 }
 nav li ul ul {
-    left: 100%;
+    right: 100%;
+    top: 0;
 }
-nav ul li:hover ul {
+nav ul li:hover > ul {
     display: block;
 }
 nav .menu {
@@ -181,6 +205,7 @@ nav .burger:after {
                     ul {
                         position: relative;
                         left: 0;
+                        right: auto;
                     }
                 }
                 li a {
@@ -193,6 +218,7 @@ nav .burger:after {
             }
         }
     }
+
     nav ul > li.parent a::after {
         display: none;
     }
@@ -200,8 +226,8 @@ nav .burger:after {
         display: block;
         background: 0 0;
         position: absolute;
-        left: 10px;
-        top: 15px;
+        left: 0;
+        top: 0;
         outline: 0;
         z-index: 999999;
     }
