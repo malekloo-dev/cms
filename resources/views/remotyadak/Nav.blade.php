@@ -48,16 +48,15 @@
                         ->get(); ?>
                         @if (count($subMenu))
                             <li class="parent"><a href="{{ $menuItem['link'] }}">{{ $menuItem['label'] }}</a>
-                                <div><img width="16" height="16" alt="arrow-down"
-                                        src="{{ url(env('TEMPLATE_NAME') . '/img/arrow-down.png') }}"></div>
+                                <div><i class="arrow down"></i></div>
                                 <ul>
                                     @foreach ($subMenu as $subMenuItem)
-                                        <li><a href="{{ ($subMenuItem['type'] == 'internal' || $subMenuItem['type'] == 'external') ? $subMenuItem['link'] : '/#'.$subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a></li>
+                                        <li><a href="{{ in_array($subMenuItem['link'], ['internal', 'external']) ? $subMenuItem['link'] : '/#'.$subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a></li>
                                     @endforeach
                                 </ul>
                             </li>
                         @else
-                            <li><a href="{{ ($menuItem['type'] == 'internal' || $menuItem['type'] == 'external') ? url($menuItem['link']) : '/#'.$menuItem['link'] }}">{{ $menuItem['label'] }}</a></li>
+                            <li><a href="{{ in_array($menuItem['link'], ['internal', 'external']) ? url($menuItem['link']) : '/#'.$menuItem['link'] }}">{{ $menuItem['label'] }}</a></li>
 
                         @endif
 

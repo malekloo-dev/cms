@@ -6,6 +6,7 @@ $theme-color3: #ea1c44;
 $a: #d13501;
 $a-hover: #1e2135;
 $menu-color: #fff;
+$p:#1e2135;
 
 @import "app.scss";
 @import "grid.scss";
@@ -18,12 +19,12 @@ $menu-color: #fff;
 }
 .index-img picture {
     width: 100%;
-    img{
+    img {
         width: 100%;
         height: 100%;
     }
 }
-.breadcrumb{
+.breadcrumb {
     margin-top: 0;
 }
 //////////
@@ -84,21 +85,21 @@ nav ul {
     }
 }
 
-nav ul > li.parent > a::after {
-    position: absolute;
-    display: inline-block;
-    content: "";
-    background-image: url(img/arrow-down.png);
-    margin-right: 0.5em;
-    width: 8px;
-    height: 8px;
-    top: 1.5em;
-    background-size: 0.5em;
-    background-repeat: no-repeat;
-}
-nav ul li.parent > div {
-    display: none;
-}
+// nav ul > li.parent > a::after {
+//     position: absolute;
+//     display: inline-block;
+//     content: "";
+//     background-image: url(img/arrow-down.png);
+//     margin-right: 0.5em;
+//     width: 8px;
+//     height: 8px;
+//     top: 1.5em;
+//     background-size: 0.5em;
+//     background-repeat: no-repeat;
+// }
+// nav ul li.parent > div {
+//     display: none;
+// }
 nav li li a {
     color: $theme-color3 !important;
     width: 100%;
@@ -255,7 +256,7 @@ nav .burger:after {
         margin: 0;
         transition: all 0.5s ease;
         transform: none;
-        background: linear-gradient(90deg, rgba(250, 73, 14, 1) 0, rgba(255, 136, 45, 1) 100%);
+        background: $theme-color1;
         z-index: 1;
     }
     nav .show:checked ~ .burger {
@@ -522,7 +523,7 @@ nav[role="navigation"] span > svg {
         overflow: hidden;
         background-color: #fff;
         display: flex;
-        :first-child{
+        :first-child {
             flex: 0 1 100px;
         }
     }
@@ -565,12 +566,8 @@ nav[role="navigation"] span > svg {
             padding: 0 1em;
             font-size: 0.9em;
         }
-
     }
 }
-
-
-
 
 .index-item-top img {
     object-fit: contain;
@@ -598,37 +595,43 @@ nav[role="navigation"] span > svg {
     }
 }
 
-.category-list article {
-    display: inline-block;
+.category-list {
+    article {
+        display: inline-block;
+        > div {
+            width: 300px;
+            height: 200px;
+            float: right;
+            > img {
+                object-fit: contain;
+            }
+        }
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    div.border {
+        border: 1px solid #f4f4f4;
+    }
+    div.hover-box:hover {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    div.height-full {
+        display: flex;
+    }
+    p {
+        color: #616161;
+    }
+    .price {
+        font-weight: 700;
+    }
+    .hover-box {
+        background-color: #fff;
+    }
 }
-.category-list article > div {
-    width: 300px;
-    height: 200px;
-    float: right;
-}
-.category-list article > div > img {
-    object-fit: contain;
-}
-.category-list img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-.category-list div.border {
-    border: 1px solid #f4f4f4;
-}
-.category-list div.hover-box:hover {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-.category-list div.height-full {
-    display: flex;
-}
-.category-list p {
-    color: #616161;
-}
-.category-list .price {
-    font-weight: 700;
-}
+
 .height-100 {
     height: 100%;
 }
@@ -638,6 +641,7 @@ nav[role="navigation"] span > svg {
         display: flex;
         border: 1px solid #f4f4f4;
         height: 100%;
+        background-color: #fff;
         > div {
             flex: 0 0 25%;
 
@@ -650,6 +654,7 @@ nav[role="navigation"] span > svg {
         }
         a h2 {
             font-size: 1em;
+            color: #000;
         }
         .brief {
             font-size: 0.75em;
@@ -685,6 +690,38 @@ nav[role="navigation"] span > svg {
     padding: 0;
     align-items: flex-start;
 }
+
+.companies {
+    article {
+        position: relative;
+        display: flex;
+        border: 1px solid #f4f4f4;
+        height: 100%;
+        color: $p;
+        background-color: #fff;
+        > div {
+            flex: 0 0 25%;
+            a {
+                flex: 1;
+            }
+        }
+        h2{
+            color: #333;
+            font-size: 1.3em;
+        }
+        img {
+            object-fit: cover;
+            border-radius: 3px;
+            width: 100%;
+            height: 100%;
+        }
+        footer {
+            flex: 1;
+            margin: 0 10px 0 0;
+            padding: 0;
+        }
+    }
+}
 @media (max-width: 600px) {
     .category-products article {
         flex-flow: column;
@@ -703,6 +740,14 @@ nav[role="navigation"] span > svg {
     }
     .mt-1 {
         margin: 0;
+    }
+
+    .companies{
+        article{
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
     }
 }
 .product-detail .rate {
@@ -728,6 +773,7 @@ nav[role="navigation"] span > svg {
     }
     h2 {
         font-size: 1.2em;
+        text-align: center;
     }
 }
 .product-detail .top-page {

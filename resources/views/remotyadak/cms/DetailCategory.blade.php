@@ -21,7 +21,7 @@
 
 
     @if (count($breadcrumb))
-        <section class="breadcrumb">
+        <section class="breadcrumb my-0">
             <div class="flex one  ">
                 <div class="p-0">
                     <a href="/">خانه </a>
@@ -35,17 +35,16 @@
         </section>
     @endif
 
-    <section>
+    <section class="bg-gray my-0 py-0">
         <div class="flex one">
             <h1>{{ $detail->title }}</h1>
         </div>
     </section>
 
     @if (count($subCategory))
-        <section class="category-list" id="index-best-view">
+        <section class="category-list bg-gray my-0" id="index-best-view">
             <div class="flex one ">
                 <div>
-                    <h2>دسته بندی: {{ $detail->title }}</h2>
                     <div class="flex one two-800   ">
 
                         {{-- $data['newPost'] --}}
@@ -81,16 +80,16 @@
 
 
     @if (count($relatedCompany))
-        <section class="category-products m-0 bg-blue" id="index-best-view">
+        <section class="companies m-0 bg-blue" id="index-best-view">
             <div class="flex one ">
                 <div>
                     <div class="">
 
-                        <div class="flex one  two-1100  ">
+                        <div class="flex one  two-800  ">
 
                             {{-- $data['newPost'] --}}
                             @foreach ($relatedCompany as $content)
-                                <div>
+                                <div class="hover">
                                     <a href="{{ route('profile.index',$content->id) }}">
                                     <article>
                                         <div>
