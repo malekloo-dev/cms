@@ -186,7 +186,7 @@
                                 <a href="{{ url($content->slug) }}">
                                     <article class="shadow">
                                         @if (isset($content->images['thumb']))
-                                            <div><img width="150" height="150px"
+                                            <div><img width="150" height="150"
                                                     src="{{ $content->images['images']['small'] }}"
                                                     alt="{{ $content->title }}"></div>
                                         @endif
@@ -219,7 +219,7 @@
                                 <a href="{{ $content->slug }}">
                                     <article class="shadow1">
                                         @if (isset($content->images['thumb']))
-                                            <div><img src="{{ $content->images['thumb'] }}" alt="{{ $content->title }}">
+                                            <div><img width="{{ env('ARTICLE_MEDIUM_W') }}" height="{{ env('ARTICLE_MEDIUM_H') }}" src="{{ $content->images['images']['medium'] }}" alt="{{ $content->title }}">
                                             </div>
                                         @endif
                                         <footer>

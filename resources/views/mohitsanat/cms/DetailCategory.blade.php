@@ -64,10 +64,10 @@
                                     <a href="{{ $content->slug }}">
                                         <div class="flex one three-700 height-100">
                                             @if (isset($content->images['thumb']))
-                                                <div class="p-0"><img src="{{ $content->images['thumb'] }}" /></div>
+                                                <div class="p-0"><img alt="{{ $content->title }}" width="80" src="{{ $content->images['thumb'] }}" /></div>
                                             @endif
                                             <div class="one two-third-700 pr-1">
-                                                <h2 class="p-0"> {{ $content->title }}</h2>
+                                                <p class="p-0"> {{ $content->title }}</p>
                                                 {!! $content->brief_description !!}
 
                                             </div>
@@ -105,21 +105,6 @@
 
                             </ul>
                             @endif
-
-                        </div>
-                        <div class="third-700 p-0">
-                            @if (isset($detail->images['images']))
-                                <picture>
-
-
-                                    <img src="{{ $detail->images['images']['medium'] ?? '' }}"
-                                        alt="{{ $detail->title }}"
-
-                                        width="{{ env('CATEGORY_MEDIUM_W') }}"
-                                        height="{{ env('CATEGORY_MEDIUM_W') }}">
-                                </picture>
-                            @endif
-
 
                         </div>
 
