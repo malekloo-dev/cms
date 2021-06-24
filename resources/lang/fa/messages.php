@@ -47,7 +47,7 @@ return [
     'now'=>'امروز',
     'website setting'=>'تنظیمات کلی سئو ',
     'parent'=>'مادر ',
-    'description'=>'Description',
+    'description'=>'توضیحات',
     'brand'=>'برند',
     'price'=>'قیمت',
     'discount'=>'تخفیف',

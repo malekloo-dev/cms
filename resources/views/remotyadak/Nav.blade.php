@@ -51,12 +51,12 @@
                                 <div><i class="arrow down"></i></div>
                                 <ul>
                                     @foreach ($subMenu as $subMenuItem)
-                                        <li><a href="{{ in_array($subMenuItem['link'], ['internal', 'external']) ? $subMenuItem['link'] : '/#'.$subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a></li>
+                                        <li><a href="{{ in_array($subMenuItem['type'], ['internal', 'external']) ? $subMenuItem['link'] : '/#'.$subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a></li>
                                     @endforeach
                                 </ul>
                             </li>
                         @else
-                            <li><a href="{{ in_array($menuItem['link'], ['internal', 'external']) ? url($menuItem['link']) : '/#'.$menuItem['link'] }}">{{ $menuItem['label'] }}</a></li>
+                            <li><a href="{{ in_array($menuItem['type'], ['internal', 'external']) ? url($menuItem['link']) : '/#'.$menuItem['link'] }}">{{ $menuItem['label'] }}</a></li>
 
                         @endif
 

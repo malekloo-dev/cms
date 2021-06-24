@@ -18,6 +18,7 @@ class Company extends Migration
             $table->unsignedBigInteger('user_id')->default(0);
             $table->string('name')->nullable();
             $table->integer('parent_id')->default(0);
+            $table->text('description')->nullable();
             $table->string('manager')->nullable();
             $table->string('sale_manager')->nullable();
             $table->string('address')->nullable();
@@ -32,6 +33,7 @@ class Company extends Migration
             $table->string('instagram')->nullable();
             $table->string('logo')->nullable();
             $table->string('location')->nullable();
+
 
             $table->timestamps();
 

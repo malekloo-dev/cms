@@ -56,8 +56,6 @@
                             data-label="@lang('messages.email')">{{ $company->email ?? '' }}</span>
                     </div>
 
-                    <div class="">@lang('messages.address'): <span class="text-editor" data-field="address"
-                            data-label="@lang('messages.address')">{{ $company->address ?? '' }}</span></div>
 
                     <div class="">@lang('messages.city'): <span class="text-editor" data-field="city"
                             data-label="@lang('messages.city')">{{ $company->city ?? '' }}</span>
@@ -65,6 +63,10 @@
 
                     <div class="">@lang('messages.province'): <span class="text-editor" data-field="province"
                             data-label="@lang('messages.province')">{{ $company->province ?? '' }}</span></div>
+
+                            <div class="full">@lang('messages.address'): <span class="text-editor" data-field="address"
+                                data-label="@lang('messages.address')">{{ $company->address ?? '' }}</span></div>
+
 
                     <div class="">@lang('messages.whatsapp'): <span class="ltr text-editor" data-field="whatsapp"
                             data-label="@lang('messages.whatsapp')">{{ $company->whatsapp ?? '' }}</span>
@@ -78,6 +80,10 @@
 
                     <div class="">@lang('messages.register date'): <span>{{ convertGToJ($company->date ?? '') }}</span>
                     </div>
+
+                    <div class="full">@lang('messages.description'): <span class="text-editor" data-field="description"
+                        data-label="@lang('messages.description')">{{ $company->description ?? '' }}</span></div>
+
                 </div>
             </div>
 

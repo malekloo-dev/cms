@@ -162,6 +162,14 @@
                                 value="{{ old('instagram', $company->instagram ?? '') }}">
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-12  col-sm-12 form-group">@lang('messages.description'):
+                            <textarea name="description" class="form-control" cols="30" rows="10">{{ old('description', $company->description ?? '') }}</textarea>
+                            
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-12">
 
