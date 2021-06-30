@@ -6,7 +6,7 @@ $theme-color3: #ea1c44;
 $a: #d13501;
 $a-hover: #1e2135;
 $menu-color: #fff;
-$p:#1e2135;
+$p: #1e2135;
 
 @import "app.scss";
 @import "grid.scss";
@@ -55,67 +55,59 @@ nav {
     transition: all 0.3s;
     transform-style: preserve-3d;
     position: relative;
-}
-nav .hamburger {
-    display: block;
-}
-nav .hamburger span {
-    background: #fff;
-    width: 21px;
-    height: 3px;
-    display: block;
-    border-radius: 4px;
-    margin-bottom: 3px;
-}
-nav ul {
-    list-style: none;
-    margin: 0;
-    li {
-        display: inline-block;
-        position: relative;
+
+    ul {
+        list-style: none;
         margin: 0;
-        a {
-            padding: 10px 10px 10px 20px;
-            display: block;
-        }
         li {
+            display: inline-block;
+            position: relative;
+            margin: 0;
+            a {
+                padding: 10px 10px 10px 10px;
+                display: block;
+            }
+            li {
+                display: block;
+                width: 130px;
+                a {
+                    color: $theme-color3 !important;
+                    width: 100%;
+                    padding: 1em 2em !important;
+                    white-space: nowrap;
+                    display: block !important;
+                    border-bottom: 3px solid rgba(0, 0, 0, 0) !important;
+                    text-align: right;
+                    transition: all 0.3s !important;
+                    font-size: 0.9em !important;
+
+                    &:hover {
+                        color: $theme-color3 !important;
+                        font-weight: 700;
+                        transform: scale(1.05);
+                    }
+                }
+            }
+        }
+        li.parent {
+            a {
+                padding: 10px 10px 10px 30px;
+            }
+        }
+    }
+    .hamburger {
+        display: block;
+        span {
+            background: #fff;
+            width: 21px;
+            height: 3px;
             display: block;
-            width: 130px;
+            border-radius: 4px;
+            margin-bottom: 3px;
         }
     }
 }
 
-// nav ul > li.parent > a::after {
-//     position: absolute;
-//     display: inline-block;
-//     content: "";
-//     background-image: url(img/arrow-down.png);
-//     margin-right: 0.5em;
-//     width: 8px;
-//     height: 8px;
-//     top: 1.5em;
-//     background-size: 0.5em;
-//     background-repeat: no-repeat;
-// }
-// nav ul li.parent > div {
-//     display: none;
-// }
-nav li li a {
-    color: $theme-color3 !important;
-    width: 100%;
-    padding: 1em 2em !important;
-    white-space: nowrap;
-    display: block !important;
-    border-bottom: 3px solid rgba(0, 0, 0, 0) !important;
-    text-align: right;
-    transition: all 0.3s !important;
-    font-size: 0.9em !important;
-}
-nav li li a:hover {
-    color: $theme-color3 !important;
-    font-weight: 700;
-    transform: scale(1.05);
-}
 nav li ul {
     width: 390px;
     flex-flow: wrap row;
@@ -231,7 +223,7 @@ nav .burger:after {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 40px;
+        width: 30px;
         height: 40px;
         background: rgba(0, 0, 0, 0.2);
         position: absolute;
@@ -705,7 +697,7 @@ nav[role="navigation"] span > svg {
                 flex: 1;
             }
         }
-        h2{
+        h2 {
             color: #333;
             font-size: 1.3em;
         }
@@ -742,8 +734,8 @@ nav[role="navigation"] span > svg {
         margin: 0;
     }
 
-    .companies{
-        article{
+    .companies {
+        article {
             flex-direction: column;
             align-items: center;
             text-align: center;

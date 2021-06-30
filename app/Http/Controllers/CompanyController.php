@@ -19,6 +19,8 @@ use Intervention\Image\Facades\Image;
 
 class CompanyController extends Controller
 {
+
+
     public function dashboard()
     {
         $user = Auth::user();
@@ -278,9 +280,15 @@ class CompanyController extends Controller
         // $produsct = $produsct->where('attr_type', '=', 'product');
         // $produsct = $produsct->orderby('id', 'desc');
         // $produsct = $produsct->get();
-
-
-        return view('auth.profileShow', compact('company'));
+        $breadcrumb = $this->get_parent($company->category->parent_id);
+        if (is_array($breadcrumb)) {
+            krsort($breadcrumb);
+        } else {
+            $breadcrumb = array();
+        }
+        $breadcrumb[1] = $company->category->toArray();
+        // dd($breadcrumb);
+        return view('auth.profileShow', compact('company','breadcrumb'));
     }
 
 
@@ -292,6 +300,20 @@ class CompanyController extends Controller
     }
 
 
+
+    public function get_parent($id)
+    {
+        global $conn;
+        $tree_rs = Content::where('id', '=', $id)->first();
+        if (!is_object($tree_rs)) {
+            return $this->breadcrumb;
+        }
+        $this->breadcrumb[] = $tree_rs->getAttributes();
+        if ($tree_rs->parent_id != 0) {
+            $this->get_parent($tree_rs->parent_id);
+        }
+        return $this->breadcrumb;
+    }
 
 
 

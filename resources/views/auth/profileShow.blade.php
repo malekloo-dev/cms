@@ -2,6 +2,21 @@
 
 @section('Content')
 
+
+    <section class="breadcrumb my-0" style="padding:10px">
+        <div class="flex one  ">
+            <div class="p-0">
+                <a href="/">خانه </a>
+                @if (count($breadcrumb))
+                    @foreach ($breadcrumb as $key => $item)
+                        <span>></span>
+                        <a href="{{ url($item['slug']) }}">{{ $item['title'] }}</a>
+                    @endforeach
+                @endif
+            </div>
+        </div>
+    </section>
+
     <section class="profile-show">
         <div class="flex shadow">
             <h1 class="full">{{ $company->name ?? '' }}</h1>
@@ -29,60 +44,75 @@
                     @endif
                 </div>
                 <div class="flex one two-700 three-1100 four-fifth ">
-                    <div class="">
-                        @lang('messages.name'):
-                        <span class="text-editor" data-field="manager"
-                            data-label="@lang('messages.name')">{{ $company->manager ?? '' }}</span>
-                    </div>
-                    <div class="">@lang('messages.sale manager'):
-                        <span class="text-editor" data-field="sale_manager"
-                            data-label="@lang('messages.sale manager')">{{ $company->sale_manager ?? '' }}</span>
-                    </div>
-                    <div class="">@lang('messages.mobile'):
-                        <span class="text-editor" data-field="mobile"
-                            data-label="@lang('messages.mobile')">{{ $company->mobile ?? '' }}</span>
-                    </div>
-                    <div class="">@lang('messages.phone'):
-                        <span class="ltr">
-                            {{ $company->phone ?? '' }}
-                        </span>
-                    </div>
-                    <div class="">@lang('messages.site'):
-                        <span class="text-editor" data-field="site"
-                            data-label="@lang('messages.site')">{{ $company->site ?? '' }}</span>
-                    </div>
+
+                    @if ($company->manager != '')
+                        <div class="">
+                            @lang('messages.name'):
+                            <span class="text-editor" data-field="manager"
+                                data-label="@lang('messages.name')">{{ $company->manager ?? '' }}</span>
+                        </div>
+                    @endif
+                    @if ($company->sale_manager != '')
+                        <div class="">@lang('messages.sale manager'):
+                            <span class="text-editor" data-field="sale_manager"
+                                data-label="@lang('messages.sale manager')">{{ $company->sale_manager ?? '' }}</span>
+                        </div>
+                    @endif
+                    @if ($company->mobile != '')
+                        <div class="">@lang('messages.mobile'):
+                            <span class="text-editor" data-field="mobile"
+                                data-label="@lang('messages.mobile')">{{ $company->mobile ?? '' }}</span>
+                        </div>
+                    @endif
+                    @if ($company->phone != '')
+                        <div class="">@lang('messages.phone'):
+                            <span class="ltr">
+                                {{ $company->phone ?? '' }}
+                            </span>
+                        </div>
+                    @endif
+                    @if ($company->site != '')
+                        <div class="">@lang('messages.site'):
+                            <span class="text-editor" data-field="site"
+                                data-label="@lang('messages.site')">{{ $company->site ?? '' }}</span>
+                        </div>
+                    @endif
+
 
                     <div class="">@lang('messages.email'): <span class="text-editor" data-field="email"
                             data-label="@lang('messages.email')">{{ $company->email ?? '' }}</span>
                     </div>
 
+                    @if ($company->cite != '')
+                        <div class="">@lang('messages.city'): <span class="text-editor" data-field="city"
+                                data-label="@lang('messages.city')">{{ $company->city ?? '' }}</span>
+                        </div>
+                    @endif
 
-                    <div class="">@lang('messages.city'): <span class="text-editor" data-field="city"
-                            data-label="@lang('messages.city')">{{ $company->city ?? '' }}</span>
-                    </div>
+                    <div class="full">@lang('messages.address'): <span class="text-editor" data-field="address"
+                            data-label="@lang('messages.address')">{{ $company->address ?? '' }}</span></div>
 
-                    <div class="">@lang('messages.province'): <span class="text-editor" data-field="province"
-                            data-label="@lang('messages.province')">{{ $company->province ?? '' }}</span></div>
+                    @if ($company->whatsapp != '')
+                        <div class="">@lang('messages.whatsapp'): <span class="ltr text-editor" data-field="whatsapp"
+                                data-label="@lang('messages.whatsapp')">{{ $company->whatsapp ?? '' }}</span>
+                        </div>
+                    @endif
 
-                            <div class="full">@lang('messages.address'): <span class="text-editor" data-field="address"
-                                data-label="@lang('messages.address')">{{ $company->address ?? '' }}</span></div>
+                    @if ($company->telegram != '')
+                        <div class="">@lang('messages.telegram'): <span class="text-editor" data-field="telegram"
+                                data-label="@lang('messages.telegram')">{{ $company->telegram ?? '' }}</span></div>
+                    @endif
 
-
-                    <div class="">@lang('messages.whatsapp'): <span class="ltr text-editor" data-field="whatsapp"
-                            data-label="@lang('messages.whatsapp')">{{ $company->whatsapp ?? '' }}</span>
-                    </div>
-
-                    <div class="">@lang('messages.telegram'): <span class="text-editor" data-field="telegram"
-                            data-label="@lang('messages.telegram')">{{ $company->telegram ?? '' }}</span></div>
-
-                    <div class="">@lang('messages.instagram'): <span class="text-editor" data-field="instagram"
-                            data-label="@lang('messages.instagram')">{{ $company->instagram ?? '' }}</span></div>
+                    @if ($company->instagram != '')
+                        <div class="">@lang('messages.instagram'): <span class="text-editor" data-field="instagram"
+                                data-label="@lang('messages.instagram')">{{ $company->instagram ?? '' }}</span></div>
+                    @endif
 
                     <div class="">@lang('messages.register date'): <span>{{ convertGToJ($company->date ?? '') }}</span>
                     </div>
 
                     <div class="full">@lang('messages.description'): <span class="text-editor" data-field="description"
-                        data-label="@lang('messages.description')">{{ $company->description ?? '' }}</span></div>
+                            data-label="@lang('messages.description')">{{ $company->description ?? '' }}</span></div>
 
                 </div>
             </div>
@@ -94,50 +124,51 @@
     @if (isset($company->contents) && $company->contents->count())
 
 
-    <section class="index-items home-top-view">
-        <div class="flex one">
-            <div>
-                <div class="flex two two-500  six-800  ">
-                    @foreach ($company->contents as $content)
-                        <div>
-                            <a class="hover shadow2" href="{{ url($content->slug) }}">
+        <section class="index-items home-top-view">
+            <div class="flex one">
+                <div>
+                    <div class="flex two two-500  six-800  ">
+                        @foreach ($company->contents as $content)
+                            <div>
+                                <a class="hover shadow2" href="{{ url($content->slug) }}">
 
-                                @if (isset($content->images['thumb']))
-                                    <div><img alt="{{ $content->title }}" src="{{ $content->images['thumb'] }}"></div>
-                                @endif
-                                <footer>
-                                    <h3> {{ $content->title }}</h3>
-                                    <div>
-                                        <div class="rate">
-                                            @if (count($content->comments))
-                                                @php
-                                                    $rateAvrage = $rateSum = 0;
-                                                @endphp
-                                                @foreach ($content->comments as $comment)
+                                    @if (isset($content->images['thumb']))
+                                        <div><img alt="{{ $content->title }}" src="{{ $content->images['thumb'] }}">
+                                        </div>
+                                    @endif
+                                    <footer>
+                                        <h3> {{ $content->title }}</h3>
+                                        <div>
+                                            <div class="rate">
+                                                @if (count($content->comments))
                                                     @php
-                                                        $rateSum = $rateSum + $comment['rate'];
+                                                        $rateAvrage = $rateSum = 0;
                                                     @endphp
-                                                @endforeach
-                                                @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
-                                                    <img width="20" height="20"
-                                                        srcset="{{ url(env('TEMPLATE_NAME') . '/img/star2x.png') }} 2x , {{ url(env('TEMPLATE_NAME') . '/img/star1x.png') }} 1x"
-                                                        src="{{ url(env('TEMPLATE_NAME') . '/img/star1x.png') }}"
-                                                        alt="{{ 'star for rating' }}">
-                                                @endfor
+                                                    @foreach ($content->comments as $comment)
+                                                        @php
+                                                            $rateSum = $rateSum + $comment['rate'];
+                                                        @endphp
+                                                    @endforeach
+                                                    @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
+                                                        <img width="20" height="20"
+                                                            srcset="{{ url(env('TEMPLATE_NAME') . '/img/star2x.png') }} 2x , {{ url(env('TEMPLATE_NAME') . '/img/star1x.png') }} 1x"
+                                                            src="{{ url(env('TEMPLATE_NAME') . '/img/star1x.png') }}"
+                                                            alt="{{ 'star for rating' }}">
+                                                    @endfor
+                                                @endif
+                                            </div>
+                                            @if (isset($content->attr['price']))
+                                                @convertCurrency($content->attr['price']??0) تومان
                                             @endif
                                         </div>
-                                        @if (isset($content->attr['price']))
-                                            @convertCurrency($content->attr['price']??0) تومان
-                                        @endif
-                                    </div>
-                                </footer>
-                            </a>
-                        </div>
-                    @endforeach
+                                    </footer>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     @endif
 
 @endsection
@@ -163,7 +194,6 @@
         crossorigin=""></script>
 
     <script>
-
         var map = L.map('mapid')
             .setView([{{ $company->location ?? '31.5,51.2' }}], 16);
 
@@ -188,7 +218,6 @@
 
         //scroll disable zoom
         map.scrollWheelZoom.disable();
-
     </script>
 
 

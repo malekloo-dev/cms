@@ -31,22 +31,41 @@ class CategoryController extends Controller
     }
 
 
-    protected function uploadImages($file, $type = 'category')
+    protected function uploadImages($request, $type = 'category')
     {
+
+        $file = $request->imageJson;
+        $fileOrg = $request->file('images');
         $year = Carbon::now()->year;
         $imagePath = "/upload/images/{$year}/";
-        $filename = $file->getClientOriginalName();
+        $filenameOrg = $fileOrg->getClientOriginalName();
 
-        $file = $file->move(public_path($imagePath), $filename);
+        $image_parts = explode(";base64,", $file);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+        $image_base64 = base64_decode($image_parts[1]);
 
-        $url['images'] = $this->resize($file->getRealPath(), $type, $imagePath, $filename);
+        $fileName = str_replace(' ','-',$request->title) ?? $filenameOrg;
+        $fileType = ($image_type == 'jpeg') ? 'jpg' : $image_type;
+        $fileNameAndType = $fileName . '.' . $fileType;
 
+        $file = $fileOrg->move(public_path($imagePath), $fileName.'-org.'.$fileType); // original
+        file_put_contents(public_path() . $imagePath . $fileNameAndType, $image_base64); // croped
+
+        // $file = $file->move(public_path($imagePath), $filename);
+
+        // $url['images'] = $this->resize($file->getRealPath(), $type, $imagePath, $filename);
+
+        // $url['thumb'] = $url['images']['small'];
+
+        $url['images'] = $this->resize( $imagePath . $fileNameAndType, $type, $imagePath, $fileNameAndType, $fileName, $fileType);
         $url['thumb'] = $url['images']['small'];
+        $url['images']['org'] = $imagePath . $fileName.'-org.'.$fileType;
 
         return $url;
     }
 
-    private function resize($path, $type, $imagePath, $filename)
+    private function resize($path, $type, $imagePath, $fileNameAndType,$fileName,$fileType)
     {
         $sizes = array(
             "small" => env(Str::upper($type) . '_SMALL_W'),
@@ -54,16 +73,23 @@ class CategoryController extends Controller
             'large' => env(Str::upper($type) . '_LARGE_W')
         );
 
+        $images['crop'] = $imagePath . $fileNameAndType;
 
-        $images['original'] = $imagePath . $filename;
+        // $images['original'] = $imagePath . $filename;
 
         foreach ($sizes as $name => $size) {
 
-            $images[$name] = $imagePath . "{$name}_" . $filename;
+            // $images[$name] = $imagePath . "{$name}_" . $filename;
+            $images[$name] = $imagePath  . $fileName . "-{$name}." . $fileType;
 
-            Image::make($path)->resize($size, null, function ($constraint) {
+            $img = Image::make(public_path($path));
+            $img->resize($size, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path($images[$name]));
+            });
+            $img->save(public_path($images[$name]), 75);
+            // Image::make($path)->resize($size, null, function ($constraint) {
+            //     $constraint->aspectRatio();
+            // })->save(public_path($images[$name]));
         }
 
         return $images;
@@ -169,7 +195,7 @@ class CategoryController extends Controller
 
         $imagesUrl = '';
         if ($request->file('images')) {
-            $imagesUrl = $this->uploadImages($request->file('images'), 'category');
+            $imagesUrl = $this->uploadImages($request, 'category');
         }
 
         $data = $request->all();
@@ -330,7 +356,7 @@ class CategoryController extends Controller
         //$inputs = $request->all();
 
         if ($file) {
-            $images = $this->uploadImages($request->file('images'), 'category');
+            $images = $this->uploadImages($request, 'category');
         } else {
             $images = $crud->images;
             if ($images != '') {

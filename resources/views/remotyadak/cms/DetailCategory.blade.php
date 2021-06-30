@@ -55,7 +55,8 @@
                                     <a href="{{ $content->slug }}">
                                         <div class="flex one three-700 height-100">
                                             @if (isset($content->images['thumb']))
-                                                <div class="p-0"><img alt="{{ $content->title }}" src="{{ $content->images['thumb'] }}" /></div>
+                                                <div class="p-0"><img alt="{{ $content->title }}"
+                                                        src="{{ $content->images['thumb'] }}" /></div>
                                             @endif
                                             <div class="one two-third-700 pr-1">
                                                 <h2 class="p-0"> {{ $content->title }}</h2>
@@ -90,18 +91,18 @@
                             {{-- $data['newPost'] --}}
                             @foreach ($relatedCompany as $content)
                                 <div class="hover">
-                                    <a href="{{ route('profile.index',$content->id) }}">
-                                    <article>
-                                        <div>
-                                            @if (isset($content->logo['medium']))
-                                                <picture>
-                                                    <img src="{{ str_replace(' ', '%20', $content->logo['large']) ?? '' }}"
-                                                        width="{{ env('PRODUCT_SMALL_W') }}"
-                                                        height="{{ env('PRODUCT_SMALL_W') }}">
-                                                </picture>
-                                            @endif
-                                        </div>
-                                        <footer>
+                                    <a href="{{ route('profile.index', $content->id) }}">
+                                        <article>
+                                            <div>
+                                                @if (isset($content->logo['medium']))
+                                                    <picture>
+                                                        <img src="{{ str_replace(' ', '%20', $content->logo['large']) ?? '' }}"
+                                                            width="{{ env('PRODUCT_SMALL_W') }}"
+                                                            height="{{ env('PRODUCT_SMALL_W') }}">
+                                                    </picture>
+                                                @endif
+                                            </div>
+                                            <footer>
                                                 <h2>{{ $content->name }}</h2>
                                                 <div> {{ $content->mobile }}</div>
                                                 <div>{{ $content->phone }}</div>
@@ -192,21 +193,11 @@
     <section class="" id="">
         <div class="flex one ">
             <div>
-
-
                 @if (isset($detail->images['images']))
                     <picture>
-                        <source media="(min-width:{{ env('CATEGORY_LARGE_W') }}px)"
-                            srcset="{{ $detail->images['images']['large'] ?? '' }}">
-
-                        <source media="(min-width:{{ env('CATEGORY_MEDIUM_W') }}px)"
-                            srcset="{{ $detail->images['images']['medium'] ?? '' }}">
-
-                        <source media="(min-width:{{ env('CATEGORY_SMALL_W') }}px)"
-                            srcset="{{ $detail->images['images']['small'] ?? '' }}">
-
                         <img src="{{ $detail->images['images']['medium'] ?? '' }}" alt="{{ $detail->title }}"
-                            width="{{ env('CATEGORY_MEDIUM_W') }}" height="{{ env('CATEGORY_MEDIUM_W') }}">
+                            width="{{ env('CATEGORY_MEDIUM_W') }}" height="{{ env('CATEGORY_MEDIUM_W') }}"
+                            >
                     </picture>
                 @endif
 
@@ -237,7 +228,9 @@
                                 <a href="{{ $content->slug }}">
                                     <article>
                                         @if (isset($content->images['thumb']))
-                                            <div><img  width="{{ env('PRODUCT_SMALL_W') }}" height="{{ env('PRODUCT_SMALL_H') }}" alt="{{ $content->title }}" src="{{ $content->images['thumb'] }}"></div>
+                                            <div><img width="{{ env('PRODUCT_SMALL_W') }}"
+                                                    height="{{ env('PRODUCT_SMALL_H') }}" alt="{{ $content->title }}"
+                                                    src="{{ $content->images['thumb'] }}"></div>
                                         @endif
                                         <footer>
                                             <h2> {{ $content->title }}</h2>

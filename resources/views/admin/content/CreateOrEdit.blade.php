@@ -288,10 +288,9 @@
                                     <div class="col-sm-2">
                                         <label class="control-label">
                                             {{ $key }}
-                                            <input type="radio" name="imagesThumb" value="{{ $image }}"
-                                                {{ $content_info->images['thumb'] == $image ? 'checked' : '' }} />
+
                                             <a href="{{ $image }}" target="_blank"><img src="{{ $image }}"
-                                                    width="100%"></a>
+                                                    width="{{ (env(Str::upper($attr_type).'_' . Str::upper($key) . '_W')??env(Str::upper($attr_type).'_LARGE_W')) /4 }}"></a>
                                         </label>
                                     </div>
                                 @endforeach
@@ -397,4 +396,9 @@
             </div>
         </div>
 
+        <style>
+        #cropperPreview {
+            width: {{ env('CATEGORY_SMALL_W') }}px !important
+        }
+    </style>
 @endsection
