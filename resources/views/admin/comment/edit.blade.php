@@ -27,17 +27,17 @@
             language: 'fa'
             @endif
         })
-        .then(editor => {
-            const wordCountPlugin = editor.plugins.get('WordCount');
-            const wordCountWrapper = document.getElementById('word-count1');
-            wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+        // .then(editor => {
+        //     const wordCountPlugin = editor.plugins.get('WordCount');
+        //     const wordCountWrapper = document.getElementById('word-count1');
+        //     wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
 
-            window.editor = editor;
-        })
+        //     window.editor = editor;
+        // })
 
-        .catch(err => {
-            console.error(err.stack);
-        });
+        // .catch(err => {
+        //     console.error(err.stack);
+        // });
 </script>
 
 @endsection

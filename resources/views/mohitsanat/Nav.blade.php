@@ -1,9 +1,6 @@
 <div class="top-menu">
     <section class="p-0 m-0">
-
-
         <div class="">
-
             <nav>
                 <a href="/" class="brand">
                     <img height="80" width="100" alt=" درب کالا لوگو"
@@ -20,7 +17,6 @@
                         <span></span>
                         <span></span>
                     </span>
-
                 </label>
 
                 <div class="menu">
@@ -62,7 +58,7 @@
                                                         href="{{ url($subMenuItem['link']) }}">{{ $subMenuItem['label'] }}</a>
 
                                                     <div><i class="arrow left"></i></div>
-                                                        <ul>
+                                                    <ul>
                                                         @foreach ($subMenu2 as $subMenuItem2)
                                                             <li><a
                                                                     href="{{ in_array($subMenuItem2['type'], ['internal', 'external']) ? url($subMenuItem2['link']) : '/#' . url($subMenuItem2['link']) }}">
