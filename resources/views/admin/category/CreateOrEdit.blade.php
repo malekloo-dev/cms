@@ -61,7 +61,7 @@
     if (isset($content_info->attr['template_name'])) {
         $template = $content_info->attr['template_name'];
     }
-
+    $attr_type = 'category';
     @endphp
 
 
