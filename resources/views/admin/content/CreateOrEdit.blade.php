@@ -397,7 +397,7 @@
         </div>
 
         <style>
-        #cropperPreview {
+        #cropperPreview,#cropperPreviewPng {
             width: {{ env('CATEGORY_SMALL_W') }}px !important
         }
     </style>
