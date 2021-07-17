@@ -109,6 +109,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                @lang('messages.total') {{ $data->total() }} |
+                @lang('messages.page') {{ $data->currentPage() }}
+                {{ $data->links() }}
             </div>
         </div>
     </div>
