@@ -66,12 +66,12 @@
     <section class="intro" id="detail">
         <div class="flex one two-500  ">
             <div class="fourth-500">
-                @if (isset($detail->images['thumb']))
+                @if (isset($detail->images['images']['small']))
                     <figure class="image">
-                        <img src="{{ $detail->images['images']['small'] ?? $detail->images['thumb'] }}"
+                        <img src="{{ $detail->images['images']['medium']  }}"
                             alt="{{ $detail->title }}" width="189" height="100" srcset="
-                                    {{ $detail->images['images']['small'] ?? $detail->images['thumb'] }} 1x,
-                                    {{ $detail->images['images']['large'] ?? $detail->images['thumb'] }} 2x">
+                                    {{ $detail->images['images']['medium']  }} 1x,
+                                    {{ $detail->images['images']['large'] ?? $detail->images['images']['medium'] }} 2x">
 
                     </figure>
                 @endif
@@ -102,6 +102,8 @@
                     </div>
                 </div>
                 {!! $detail->brief_description !!}
+                <hr>
+                دسته بندی: {{ $detail->categories }}
             </div>
         </div>
     </section>
@@ -110,19 +112,9 @@
         <div class="flex one two-700">
             <div class="fourth-500">
                 <div>
-                    <div class="mb-1">محل تبلیغ شما</div>
-                    {{-- images&label=adv&var=adv&count=3 --}}
-                    @if (isset($adv) && isset($adv['images']))
-                        <div class="text-center">
-                            @foreach ($adv['images'] as $k => $content)
-                                <a target="_blanck" href="{{ $adv['url'][$k] }}" @if (!isset($adv['follow'][$k])) rel="nofollow" @endif>
-                                    <img width="200px" height="200px" src="{{ $content }}" alt="محل تبلیغ کریپو">
-                                </a>
-                            @endforeach
-                        </div>
-                    @endisset
-                    <div>وبسایت ها</div>
-                    {{-- category&label=sideCategory&var=sideCategory&count=6 --}}
+
+                    <div> دسته بندی ها</div>
+                    {{--category&label=sideCategory&var=sideCategory&count=6 --}}
                     @isset($sideCategory['data'])
                         <ul>
                             @foreach ($sideCategory['data'] as $item)
@@ -133,8 +125,8 @@
                         </ul>
                     @endisset
 
-                    <div>آخرین مقالات</div>
-                    {{-- post&label=sideLastPost&var=sideLastPost&count=6&child=true --}}
+                    <div> نوشته های تازه</div>
+                    {{--post&label=sideLastPost&var=sideLastPost&count=6&child=true --}}
                     @isset($sideLastPost['data'])
                         <ul class="p-0">
                             @foreach ($sideLastPost['data'] as $content)

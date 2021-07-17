@@ -1,65 +1,53 @@
-<section id="footer" >
+<section class="footer-links m-0 " id="footer">
+    <div class="container">
+        <div class="flex one three-500">
 
-
-    <section class="footer-links">
-        <div class="container">
-            <div class="flex one two-500">
-                <div class="two-fourth-500">
-                    <div>وبسایت ها</div>
-                    <ul class="flex one two-700">
-                        <?php $subMenu = App\Models\Menu::where('menu', '=', '1')
-                        ->where('parent', '=', 7)
-                        ->orderBy('sort')
-                        ->get(); ?>
-                        @foreach ($subMenu as $subMenuItem)
-                            <li><a
-                                    href="{{ $subMenuItem['type'] == 'internal' || $subMenuItem['type'] == 'external' ? $subMenuItem['link'] : '/#' . $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-                <div class="fourth-500">
-                    <div>مقاله ها</div>
-                    <ul class="flex one ">
-                        <?php $subMenu = App\Models\Menu::where('menu', '=', '1')
-                        ->where('parent', '=', 34)
-                        ->orderBy('sort')
-                        ->get(); ?>
-                        @foreach ($subMenu as $subMenuItem)
-                            <li><a
-                                    href="{{ $subMenuItem['type'] == 'internal' || $subMenuItem['type'] == 'external' ? $subMenuItem['link'] : '/#' . $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-                <div class="fourth-500">
-                    <ul>
-                        <li><a href="/رپورتاژ">رپورتاژ آگهی</a></li>
-                        <li><a href="/تعرفه">تعرفه تبلیغات</a></li>
-                        <li><a href="/اپلیکیشن">اپلیکیشن</a></li>
-                    </ul>
-                    <div>خانواده ما</div>
-                    <ul>
-                        <li><a target="_blanck" href="https://darbkala.com">درب کالا</a></li>
-                        <li><a target="_blanck" href="https://remotyadak.ir">ریموت یدک</a></li>
-                        <li><a target="_blanck" href="https://corepo.ir">کریپو</a></li>
-                    </ul>
+            <div class="">
+                <div> تماس با ما</div>
+                <div class="">
+                    پاساژ امجد طبقه ۳ پلاک۱۶ فروشگاه عصر آی تی <br>
+                    021-66740231-2 <br>
+                    66740447 – 66740172 <br>
+                    09122986181
                 </div>
             </div>
-        </div>
-    </section>
-    <section class="footer-copyright">
-        <div class="container">
-            <div class="flex one">
-                <div class="text-center">
-                    <div>ویژن شرکت corepo
-                        ایجاد پلتفرم تبلیغاتی و آگهی می باشد.
-                        ساخته شده توسط <a target="_blanck" href="https://tarhoweb.com">طرح و وب</a></div>
+
+            <div class="">
+                <div>درباره ما</div>
+                <div class="flex one ">
+                    عصر آی تی با سال ها تجربه در زمینه واردات و تولید کالاهای الکترونیکی از جمله سیم ، کابل ، رابط و
+                    تبدیل می باشد. این فروشگاه در پاساژ امجد مشغول به فعالیت بوده و عرضه کننده مستقیم و بدون واسط
+                    کالای الکترونیکی به خریدار می باشد.
+
+
                 </div>
             </div>
+
+            <div class="">
+                <div>محصولات ما</div>
+                <ul>
+                    <li><a href="/رپورتاژ">رپورتاژ آگهی</a></li>
+                    <li><a href="/تعرفه">تعرفه تبلیغات</a></li>
+                    <li><a href="/اپلیکیشن">اپلیکیشن</a></li>
+                </ul>
+
+            </div>
         </div>
-    </section>
+    </div>
 </section>
+<section class="footer-copyright mt-0">
+    <div class="container">
+        <div class="flex one">
+            <div class="text-center">
+                <div>
+                    این وب سایت متعلق به فروشگاه عصر آی تی می باشد.
+
+                    ساخته شده توسط <a target="_blanck" href="https://tarhoweb.com">طرح و وب</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 
 
@@ -69,8 +57,8 @@
     var TEMPLATE_NAME = `{{ env('TEMPLATE_NAME') }}`;
 </script>
 {{-- <script src="{{ url('/main.js') }}"></script> --}}
-@if (WebsiteSetting::where('variable','=','phone')->first())
-    <a href="tel:{{  WebsiteSetting::where('variable','=','phone')->first() }}" id="callnowbutton"></a>
+@if (WebsiteSetting::where('variable', '=', 'phone')->first())
+    <a href="tel:{{ WebsiteSetting::where('variable', '=', 'phone')->first() }}" id="callnowbutton"></a>
 @endif
 </body>
 

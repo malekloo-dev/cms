@@ -98,9 +98,9 @@
                                             alt="{{ $content->title }}" width="{{ env('CATEGORY_SMALL_W') }}"
                                             height="{{ env('CATEGORY_SMALL_H') }}"
                                             srcset="
-                                                {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
-                                                {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
-                                                {{ $content->images['images']['large'] ?? $content->images['thumb'] }} {{ env('CATEGORY_LARGE_W') }}w">
+                                                    {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
+                                                    {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
+                                                    {{ $content->images['images']['large'] ?? $content->images['thumb'] }} {{ env('CATEGORY_LARGE_W') }}w">
                                         <figcaption>
                                             <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
                                         </figcaption>
@@ -138,8 +138,8 @@
                                                     sizes="(max-width:{{ env('ARTICLE_SMALL_W') }}px) 100vw {{ env('ARTICLE_SMALL_W') }}px {{ ENV('ARTICLE_MEDIUM_W') }}px"
                                                     alt="{{ $content->title }}" width="100" height="100"
                                                     srcset="
-                                                            {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL_W') }}w,
-                                                            {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
+                                                                {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL_W') }}w,
+                                                                {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
                                             </figure>
 
                                         @endif
@@ -158,7 +158,7 @@
         </section>
     @endif
 
-    <section class="index-items bg-gray2 mt-0 mb-0">
+    <section class="index-items bg-gray2 my-0 ">
         <div class="flex one">
             <div>
                 <h1>{{ $detail->title ?? '' }}</h1>
@@ -211,17 +211,19 @@
 
 
 
-    <section class="category-content" id="">
+    <section class="category-content p-0 m-0" id="">
         <div class="flex one ">
-            <div>
-                <ul>
-                    @foreach ($table_of_content as $key => $item)
-                        <li class="toc1">
-                            <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
-                        </li>
-                    @endforeach
+            <div class="p-0">
+                @if (count($table_of_content))
+                    <ul>
+                        @foreach ($table_of_content as $key => $item)
+                            <li class="toc1">
+                                <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
+                            </li>
+                        @endforeach
 
-                </ul>
+                    </ul>
+                @endif
 
                 @include(@env('TEMPLATE_NAME').'.DescriptionModule')
             </div>
