@@ -1,32 +1,70 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
+@push('script')
+    <script src="{{ asset('/siema.min.js') }}"></script>
+    <script>
+        var w;
+        var perPageNumber;
+
+        function perPage() {
+            w = window.innerWidth;
+            if (w <= 500) {
+                perPageNumber = 1;
+            } else if (w <= 768) {
+                perPageNumber = 5;
+            } else if (w <= 1024) {
+                perPageNumber = 5;
+            } else {
+                perPageNumber = 7;
+            }
+        }
+
+
+        document.getElementsByTagName("BODY")[0].onresize = function() {
+            mySiema.destroy();
+            perPage();
+            mySiema.init();
+        };
+
+
+        perPage();
+        var mySiema = new Siema({
+            selector: '.siema',
+            duration: 200,
+            easing: 'ease-out',
+            perPage: perPageNumber,
+            startIndex: 0,
+            draggable: true,
+            multipleDrag: true,
+            threshold: 20,
+            loop: false,
+            rtl: true,
+            onInit: () => {},
+            onChange: () => {
+
+            },
+        });
+        document.querySelector('.prev2').addEventListener('click', () => mySiema.prev());
+        document.querySelector('.next2').addEventListener('click', () => mySiema.next());
+    </script>
+@endpush
 
 @section('Content')
-
-    <section class="index-item-top banner pb-0">
-        <div class="flex on">
-            <div class="full  slideshow-container ltr">
-                {{--images&label=banner&var=banners&count=3 --}}
-                @if (isset($banners) && isset($banners['images']))
-                    @foreach ($banners['images'] as $content)
-                        <div class="mySlides fade ">
-                            <figure class="image">
-                                <img src="{{ $content }}" alt="" width="792" height="370">
-                            </figure>
-                        </div>
-                    @endforeach
-                @endisset
-
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-
+    <section class="banner wide pb-0">
+        <div>
+            {{--images&label=banner&var=banners&count=1 --}}
+            @if (isset($banners) && isset($banners['images']))
+                @foreach ($banners['images'] as $content)
+                    <img src="{{ $content }}" alt="عصر آی تی">
+                @endforeach
+            @endisset
+    </div>
 </section>
 
 
 
 
-<section class="index-item-top  mt-0 mb-0 pt-2 pb-2 bg-white category-section" onresize="onResize()">
+<section class=" shadowy-1 my-0 py-3  category-section" onresize="onResize()">
     <div class="flex one  ">
         <div class="siema p-0">
             {{--category&label=cat&var=category&count=10 --}}
@@ -39,8 +77,8 @@
                                     <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
                                         alt="{{ $content->title }}" width="40" height="40"
                                         srcset="
-                                                                                    {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
-                                                                                    {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM_W') }}w">
+                                                                                            {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
+                                                                                            {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM_W') }}w">
                                     <figcaption>
                                         <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
                                     </figcaption>
@@ -60,58 +98,23 @@
 </section>
 
 
-
-<section class="index-items bg-pink mt-0 mb-0">
-    <div class="flex one">
-        <div>
-            <h2>وبسایت ها</h2>
-            <div class="flex one three-500 five-900   ">
-                {{--post&label=topView&var=topViewPost&count=10&child=true --}}
-                @isset($topViewPost['data'])
-                    @foreach ($topViewPost['data'] as $content)
-                        <div>
-                            <a href="{{ $content->slug }}">
-                                <article class="shadow2">
-                                    @if (isset($content->images['thumb']))
-                                        <figure class="image">
-                                            <img src="{{ $content->images['images']['medium'] ?? $content->images['thumb'] }}"
-                                                width="{{ env('ARTICLE_SMALL_W') }}"
-                                                height="{{ env('ARTICLE_SMALL_H') }}" alt="{{ $content->title }}">
-                                        </figure>
-                                    @endif
-
-                                    <div class="title">{{ $content->title }}</div>
-                                    <div class="info">
-                                        {!! readMore($content->brief_description, 250) !!}
-                                    </div>
-                                    <div class="rate mt-1">
-                                        @if (count($content->comments))
-                                            @php
-                                                $rateAvrage = $rateSum = 0;
-                                            @endphp
-                                            @foreach ($content->comments as $comment)
-                                                @php
-                                                    $rateSum = $rateSum + $comment['rate'];
-                                                @endphp
-                                            @endforeach
-                                            @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
-                                                <img width="20" height="20"
-                                                    srcset="{{ asset('/img/star1x.png') }} , {{ asset('/img/star2x.png') }} 2x"
-                                                    src="{{ asset('/img/star1x.png') }}"
-                                                    alt="{{ 'star for rating' }}">
-                                            @endfor
-                                        @endif
-                                    </div>
-
-                                </article>
-                            </a>
-                        </div>
-                    @endforeach
-                @endisset
+{{--categoryDetail&label=about&var=about&count=1  --}}
+@isset($about['data'])
+<section class="my-0 py-5 bg-gray">
+    <div>
+        <div class="flex three">
+            <div class="two-third middle flex">
+                <h2>فروشگاه عصر آی تی</h2>
+                {!! $about['data']->brief_description !!}
+            </div>
+            <div class="third">
+                <img src="{{ $about['data']->images['images']['large'] }}" alt="">
             </div>
         </div>
     </div>
-</section>
+    </section>
+@endisset
+
 
 
 

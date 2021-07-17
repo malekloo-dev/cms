@@ -126,8 +126,8 @@
                             <div>
                                 <a class="hover" href="{{ $content->slug }}">
 
-                                    @if (isset($content->images['thumb']))
-                                        <div class="" ><img width="{{ env('PRODUCT_SMALL_W') }}" height="{{ env('PRODUCT_SMALL_H') }}" alt="{{ $content->title }}" src="{{ $content->images['thumb'] }}"></div>
+                                    @if (isset($content->images['images']['small']))
+                                        <div class="" ><img width="{{ env('PRODUCT_SMALL_W') }}" height="{{ env('PRODUCT_SMALL_H') }}" alt="{{ $content->title }}" src="{{ $content->images['images']['small'] }}"></div>
                                     @endif
                                     <div class="">
                                         <h3> {{ $content->title }}</h3>

@@ -1,12 +1,27 @@
 
-<input type="hidden" name="imageJson" value="{{ old('imageJson',($content_info->imageJson??($company->imageJson??''))) }}">
-<img height="" src="{{ $cropperPreview ??''}}" id="cropperPreview" >
+
+<label for="jpeg" >
+    jpeg
+    <input type="radio" checked id="jpeg" name="imageJson" value="{{ old('imageJson',($content_info->imageJson??($company->imageJson??''))) }}">
+    <img height="" src="{{ $cropperPreview ??''}}" id="cropperPreview" >
+</label>
+
+<label for="png">
+    png
+    <input type="radio" id="png" name="imageJson" value="{{ old('imageJson',($content_info->imageJson??($company->imageJson??''))) }}">
+    <img height="" src="{{ $cropperPreview ??''}}" id="cropperPreviewPng" >
+</label>
+
 <meta name="_token" content="{{ csrf_token() }}">
 
 <link href="{{ url('/adminAssets/css/cropper.css') }}" rel="stylesheet">
 <script src="{{ url('/adminAssets/js/cropper.js') }}"></script>
 
 <style type="text/css">
+
+    label[for=jpeg],label[for=png]{
+        display: none
+    }
 
     .modal-cropper img {
         display: block;
@@ -108,16 +123,30 @@
     });
 
     $("#crop").click(function() {
+
+
+
         canvas = cropper.getCroppedCanvas({
-            fillColor: '#fff',
+            fillColor: '#ffffff',
             width: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_W') }},
             height: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_H') }},
             imageSmoothingEnabled: false,
             imageSmoothingQuality: 'high',
         });
+        canvasPng = cropper.getCroppedCanvas({
+            // fillColor: '#ffffff',
+            width: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_W') }},
+            height: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_H') }},
+            imageSmoothingEnabled: true,
+            imageSmoothingQuality: 'high',
+        });
         // console.log(canvas.toDataURL('image/jpeg'));
 
         canvas.toBlob(function(blob) {
+
+            $('label[for=jpeg]').show();
+            $('label[for=png]').show();
+
 
             // console.log(blob);
             url = URL.createObjectURL(blob);
@@ -133,7 +162,17 @@
             reader.onloadend = function() {
                 // console.log(reader);
                 var base64data = reader.result;
-                $('input[name=imageJson]').val(base64data)
+                $('input[name=imageJson]#jpeg').val(base64data)
+                canvasPng.toBlob(function(blob) {
+                    url = URL.createObjectURL(blob);
+                    var reader = new FileReader();
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = function() {
+                        var base64data = reader.result;
+                        $('input[name=imageJson]#png').val(base64data)
+                        $('#cropperPreviewPng').attr('src',base64data)
+                    };
+                });
                 $('#cropperPreview').attr('src',base64data)
                 $modal.modal('hide');
                 // $.ajax({
@@ -151,7 +190,7 @@
                 //     }
                 //   });
             }
-        }, 'image/jpeg');
+        }, 'image/png');
     })
 
 </script>

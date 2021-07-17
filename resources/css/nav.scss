@@ -6,8 +6,8 @@
 .top-menu {
     min-height: $theme-color1;
     background: $theme-color1;
-    background: linear-gradient(90deg, $theme-color1 0, $theme-color2 100%);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(90deg, $menu-bg-left 0, $menu-bg-right 100%);
+    box-shadow: $menu-shadow;
     display: block;
     width: 100%;
     position: relative;

@@ -1,6 +1,6 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
-@section('head')
+@push('head')
     <meta property="og:image" content="{{ url($detail->images['images']['medium'] ?? '') }}" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width"
@@ -8,10 +8,9 @@
     <meta property="og:image:height"
         content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H') }}" />
     <meta property="og:image:alt" content="{{ $detail->title }}" />
+@endpush
 
-    <link rel="stylesheet" href="{{ asset('/detail.css') }}">
-@endsection
-@section('footer')
+@push('script')
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', () => {
 
@@ -41,7 +40,8 @@
 
     </script>
 
-@endsection
+@endpush
+
 @section('Content')
     @php
     $tableOfImages = tableOfImages($detail->description);
@@ -51,7 +51,7 @@
     @if ($detail->attr_type == 'product')
         @include('jsonLdProduct')
     @endif
-    <section class="breadcrumb">
+    <section class="breadcrumb ">
         <div class="flex one  ">
             <div class="p-0">
                 <a href="/">خانه </a>

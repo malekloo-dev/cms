@@ -6,6 +6,9 @@ $theme-color3: #2d610a;
 $a: #44a007;
 $a-hover: #1e2135;
 $menu-color: #2d610a;
+$menu-bg-left:#fff;
+$menu-bg-right:#fff;
+$menu-shadow:0 3px 10px rgba(0, 0, 0, 0.2);
 
 @import "app.scss";
 @import "grid.scss";

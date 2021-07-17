@@ -54,9 +54,9 @@
                                 <div class="border hover-box p-1 full">
                                     <a href="{{ $content->slug }}">
                                         <div class="flex one three-700 height-100">
-                                            @if (isset($content->images['thumb']))
+                                            @if (isset($content->images['images']['small']))
                                                 <div class="p-0"><img alt="{{ $content->title }}"
-                                                        src="{{ $content->images['thumb'] }}" /></div>
+                                                        src="{{ $content->images['images']['small'] }}" /></div>
                                             @endif
                                             <div class="one two-third-700 pr-1">
                                                 <h2 class="p-0"> {{ $content->title }}</h2>
@@ -137,7 +137,7 @@
                                 <div>
                                     <article>
                                         <div>
-                                            @if (isset($content->images['thumb']))
+                                            @if (isset($content->images['images']['small']))
                                                 <picture>
                                                     <img src="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }}"
                                                         {{-- srcset="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }} ,{{ str_replace(' ', '%20', $content->images['images']['medium']) ?? '' }} 2x" --}} alt="{{ $content->title }}"

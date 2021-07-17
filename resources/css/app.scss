@@ -34,6 +34,9 @@
 .center {
     justify-content: center;
 }
+.middle{
+    align-content: center;
+}
 .one > * {
     width: 100%;
 }
@@ -2010,6 +2013,9 @@ tr:nth-child(even) {
 }
 .shadow3 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.shadowy-1{
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 .no-border {
     border: none !important;

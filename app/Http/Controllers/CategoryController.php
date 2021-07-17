@@ -86,7 +86,7 @@ class CategoryController extends Controller
             $img->resize($size, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $img->save(public_path($images[$name]), 75);
+            $img->save(public_path($images[$name]), 80);
             // Image::make($path)->resize($size, null, function ($constraint) {
             //     $constraint->aspectRatio();
             // })->save(public_path($images[$name]));
