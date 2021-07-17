@@ -21,14 +21,14 @@ class WebsiteSetting extends Migration
             $table->string('value',300)->nullable()->default(null);
         });
 
-        AppWebsiteSetting::insert([
-            ['variable'=>'meta_title','value'=>''],
-            ['variable'=>'meta_description','value'=>''],
-            ['variable'=>'meta_keywords','value'=>''],
-            ['variable'=>'url','value'=>''],
-            ['variable'=>'og:type','value'=>''],
-            ['variable'=>'phone','value'=>''],
-        ]);
+        // AppWebsiteSetting::insert([
+        //     ['variable'=>'meta_title','value'=>''],
+        //     ['variable'=>'meta_description','value'=>''],
+        //     ['variable'=>'meta_keywords','value'=>''],
+        //     ['variable'=>'url','value'=>''],
+        //     ['variable'=>'og:type','value'=>''],
+        //     ['variable'=>'phone','value'=>''],
+        // ]);
     }
 
     /**

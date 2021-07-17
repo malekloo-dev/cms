@@ -176,7 +176,7 @@ class ModuleBuilderController extends Controller
                         $pos = strpos($image->getMimeType(), 'video');
                         if ($pos === false) {
                             $images[$index] = $this->uploadImages($image, 'images');
-                            
+
                         } else {
                             $images[0] = $this->uploadImages($image, 'images');
                             break;

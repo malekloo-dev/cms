@@ -40,11 +40,14 @@ class AppServiceProvider extends ServiceProvider
             return "<?php echo number_format($money); ?>";
         });
 
+        
+
 
         view()->composer('admin/*', function () {
             $commentCount = Comment::where('status','',0)->count();
             View::share('commentCount', $commentCount);
         });
+
 
     }
 }
