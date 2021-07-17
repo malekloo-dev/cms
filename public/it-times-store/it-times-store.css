@@ -5271,7 +5271,7 @@ nav .show:checked ~ .burger {
     margin: 0;
     transition: all 0.5s ease;
     transform: none;
-    background: linear-gradient(90deg, #f46900 0, #11c429 100%);
+    background: linear-gradient(90deg, #f46900 0, #00F438 100%);
     z-index: 1;
   }
 
@@ -5354,6 +5354,11 @@ nav.transparent .show:checked ~ .burger {
   color: transparent;
 }
 
+h2 {
+  display: inline-block;
+  border-bottom: 5px solid #00F438;
+}
+
 .banner * {
   width: 100%;
 }
@@ -5363,14 +5368,13 @@ article {
   color: #222;
   padding: 1em;
   text-align: center;
-  border-radius: 10px;
-  min-height: 412px;
+  border-radius: 5px;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 article figure img {
-  border-radius: 10px;
+  border-radius: 5px;
   width: auto;
 }
 article .title {
@@ -5415,6 +5419,19 @@ article .title {
 .category-section .prev2 {
   right: 0;
   border-radius: 5px 0 0 5px;
+}
+
+.home-feature .item {
+  display: flex;
+}
+.home-feature .item :first-child {
+  flex: 0 1 20%;
+}
+.home-feature .item :first-child img {
+  width: auto;
+}
+.home-feature .item h3 {
+  color: #f46900;
 }
 
 .application article {

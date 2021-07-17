@@ -1,7 +1,7 @@
 $template: it-times-store;
 $body: #fff;
 $theme-color1:#f46900 ;
-$theme-color2: rgb(17, 196, 41);
+$theme-color2: #00F438;
 $theme-color3: #fff;
 
 $a: #f46900;
@@ -16,25 +16,16 @@ $menu-shadow:0 1px 0px rgba(0, 0, 0, 0.1);
 @import "grid.scss";
 @import "nav.scss";
 
+h2{
+    display: inline-block;
+    border-bottom: 5px solid $theme-color2;
+}
+
 .banner {
     * {
         width: 100%;
     }
 }
-
-// .content-detail > .flex {
-//     width: 100%;
-// }
-// .content-detail > .flex > div > div {
-//     background-color: #fff;
-//     border-radius: 15px;
-//     padding: 1em;
-// }
-// .category-content > div {
-//     background-color: #fff;
-//     border-radius: 15px;
-//     padding: 1em;
-// }
 
 
 article {
@@ -42,13 +33,12 @@ article {
     color: #222;
     padding: 1em;
     text-align: center;
-    border-radius: 10px;
-    min-height: 412px;
+    border-radius: 5px;
     height: 100%;
     display: flex;
     flex-direction: column;
     figure img {
-        border-radius: 10px;
+        border-radius: 5px;
         width: auto;
     }
     .title {
@@ -91,6 +81,28 @@ article {
     right: 0;
     border-radius: 5px 0 0 5px;
 }
+
+
+
+
+.home-feature{
+    .item{
+        display: flex;
+        :first-child{
+            flex:0 1 20%;
+            img{
+                width: auto;
+            }
+        }
+        h3{
+            color: $theme-color1;
+        }
+    }
+}
+
+
+
+
 
 .application article {
     min-height: auto;
