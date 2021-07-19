@@ -101,7 +101,7 @@
                         <div>
                             <div class="flex five-500">
                                 <div class="one one-fifth-500">
-                                    @isset($detail->images['thumb'])
+                                    @isset($detail->images['images']['medium'])
                                         <picture>
                                             <img src="{{ $detail->images['images']['medium'] ?? '' }}"
 
@@ -185,7 +185,7 @@
                             <div class="">
                                 <a href="{{ url($content->slug) }}">
                                     <article class="shadow">
-                                        @if (isset($content->images['thumb']))
+                                        @if (isset($content->images['images']['small']))
                                             <div><img width="150" height="150px"
                                                     src="{{ $content->images['images']['small'] }}"
                                                     alt="{{ $content->title }}"></div>
@@ -218,8 +218,8 @@
                             <div>
                                 <a href="{{ $content->slug }}">
                                     <article class="shadow1">
-                                        @if (isset($content->images['thumb']))
-                                            <div><img src="{{ $content->images['thumb'] }}" alt="{{ $content->title }}">
+                                        @if (isset($content->images['images']['small']))
+                                            <div><img src="{{ $content->images['images']['small'] }}" alt="{{ $content->title }}">
                                             </div>
                                         @endif
                                         <footer>

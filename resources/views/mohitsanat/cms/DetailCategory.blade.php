@@ -63,8 +63,8 @@
                                 <div class="border hover-box p-1 full">
                                     <a href="{{ $content->slug }}">
                                         <div class="flex one three-700 height-100">
-                                            @if (isset($content->images['thumb']))
-                                                <div class="p-0"><img alt="{{ $content->title }}" width="80" src="{{ $content->images['thumb'] }}" /></div>
+                                            @if (isset($content->images['images']['small']))
+                                                <div class="p-0"><img alt="{{ $content->title }}" width="80" src="{{ $content->images['images']['small'] }}" /></div>
                                             @endif
                                             <div class="one two-third-700 pr-1">
                                                 <p class="p-0"> {{ $content->title }}</p>
@@ -129,7 +129,7 @@
                                 <div>
                                     <a href="{{ $content->slug }}">
                                         <article class="shadow1">
-                                            @if (isset($content->images['thumb']))
+                                            @if (isset($content->images['images']['medium']))
                                                 <div><img
                                                     src="{{ $content->images['images']['medium'] }}"
 
@@ -180,7 +180,7 @@
                                     <a href="{{ $content->slug }}">
                                     <article class="shadow">
                                         <div>
-                                            @if (isset($content->images['thumb']))
+                                            @if (isset($content->images['images']['small']))
                                                 <picture>
                                                     <img loading="lazy"
                                                         src="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }}"
