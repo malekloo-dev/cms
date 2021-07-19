@@ -20,9 +20,10 @@ use Intervention\Image\Facades\Image;
 class CompanyController extends Controller
 {
 
-    public function __construct(public array $breadcrumb){
+    public $breadcrumb;
+    // public function __construct(public array $breadcrumb){
 
-    }
+    // }
 
     public function dashboard()
     {
