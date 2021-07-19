@@ -208,7 +208,7 @@
                                 <picture>
 
 
-                                    <img src="{{ $detail->images['images']['medium'] ?? '' }}"
+                                    <img loading="lazy" src="{{ $detail->images['images']['medium'] ?? '' }}"
                                         alt="{{ $detail->title }}"
 
                                         width="{{ env('CATEGORY_MEDIUM_W') }}"
@@ -242,7 +242,7 @@
                                     <a href="{{ $content->slug }}">
                                         <article class="shadow1">
                                             @if (isset($content->images['images']['medium']))
-                                                <div><img
+                                                <div><img loading="lazy"
                                                     src="{{ $content->images['images']['medium'] }}"
 
                                                     width="{{ env('ARTICLE_MEDIUM_W') }}"

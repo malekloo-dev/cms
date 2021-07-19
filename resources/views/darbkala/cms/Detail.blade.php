@@ -99,19 +99,17 @@
                     <div>
                         <h1 class="">{{ $detail->title }}</h1>
                         <div>
-                            <div class="flex five-500">
-                                <div class="one one-fifth-500">
-                                    @isset($detail->images['images']['medium'])
+                            <div class="flex four-500">
+                                <div class="one forth-500">
+                                    @isset($detail->images['images']['large'])
                                         <picture>
-                                            <img src="{{ $detail->images['images']['medium'] ?? '' }}"
+                                            <img src="{{ $detail->images['images']['large'] ?? '' }}"
 
-                                                alt="{{ $detail->title }}"
-                                                width="{{ env('PRODUCT_MEDIUM_W') }}"
-                                                height="{{ env('PRODUCT_MEDIUM_H') }}">
+                                                alt="{{ $detail->title }}">
                                         </picture>
                                     @endisset
                                 </div>
-                                <div class="four-fifth-500">
+                                <div class="two-third-500">
                                     @if(count($detail->companies))
                                         <div class="company-logo">
                                             <a href="{{ url('/profile/'.$detail->companies->first()->id) }}">
@@ -177,8 +175,9 @@
         <section class="products bg-gray m-0 pt-1 pb-1" id="index-best-view">
             <div class="flex one ">
                 <div>
+
                     <h2>محصولات مرتبط {{ $detail->title }}</h2>
-                    <div class="flex one two-500 four-900  ">
+                    <div class="flex one two-500 five-900  center">
 
                         {{--$data['newPost']--}}
                         @foreach ($relatedProduct as $content)
@@ -186,7 +185,7 @@
                                 <a href="{{ url($content->slug) }}">
                                     <article class="shadow">
                                         @if (isset($content->images['images']['small']))
-                                            <div><img width="150" height="150px"
+                                            <div><img loading="lazy" width="150" height="150"
                                                     src="{{ $content->images['images']['small'] }}"
                                                     alt="{{ $content->title }}"></div>
                                         @endif
@@ -218,8 +217,8 @@
                             <div>
                                 <a href="{{ $content->slug }}">
                                     <article class="shadow1">
-                                        @if (isset($content->images['images']['small']))
-                                            <div><img src="{{ $content->images['images']['small'] }}" alt="{{ $content->title }}">
+                                        @if (isset($content->images['images']['large']))
+                                            <div><img loading="lazy" height="{{ env('ARTICLE_MEDIUM_H') }}" src="{{ $content->images['images']['large'] }}" alt="{{ $content->title }}">
                                             </div>
                                         @endif
                                         <footer>

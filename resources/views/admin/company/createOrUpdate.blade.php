@@ -107,7 +107,7 @@
 
                         <div class="col-md-3  col-sm-3 form-group">@lang('messages.phone'):
                             <input id="phone" type="text" class="" name="phone"
-                                value="{{ old('meta_title', $company->phone ?? '') }}" />
+                                value="{{ old('phone', implode(',',$company->phone) ?? '') }}" />
                             <span class="text-danger">{{ $errors->first('phone') }}</span>
                         </div>
 
@@ -166,7 +166,7 @@
                     <div class="row">
                         <div class="col-md-12  col-sm-12 form-group">@lang('messages.description'):
                             <textarea name="description" class="form-control" cols="30" rows="10">{{ old('description', $company->description ?? '') }}</textarea>
-                            
+
                         </div>
                     </div>
 

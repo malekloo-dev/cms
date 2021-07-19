@@ -78,7 +78,7 @@ class ContentController extends Controller
             $img->resize($size, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $img->save(public_path($images[$name]), 75);
+            $img->save(public_path($images[$name]), 80);
         }
 
         // dd(1);

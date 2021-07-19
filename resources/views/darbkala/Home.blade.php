@@ -50,14 +50,14 @@
                 @foreach ($category['data'] as $content)
                     <a href="{{ $content->slug }}">
                         <div class="shadow hover">
-                            @if (isset($content->images['thumb']))
+                            @if (isset($content->images['images']['small']))
                                 <figure class="image">
-                                    <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
+                                    <img src="{{ $content->images['images']['small']  }}"
                                         sizes="(max-width:{{ env('CATEGORY_SMALL_W') }}px) 100vw {{ env('CATEGORY_SMALL_W') }}px {{ ENV('CATEGORY_MEDIUM_W') }}px {{ ENV('CATEGORY_LARGE_W') }}px"
                                         alt="{{ $content->title }}" width="200" height="200" srcset="
-                                                {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
-                                                {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
-                                                {{ $content->images['images']['large'] ?? $content->images['thumb'] }} 2x">
+                                                {{ $content->images['images']['small']  }} {{ env('CATEGORY_SMALL_W') }}w,
+                                                {{ $content->images['images']['medium'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
+                                                {{ $content->images['images']['large']  }} 2x">
                                     <figcaption>
                                         <h2 class="p-0 m-0 text-center"> {{ $content->title }}</h2>
                                     </figcaption>
@@ -167,8 +167,8 @@
                             <div>
                                 <a class="hover shadow2" href="{{ $content->slug }}">
 
-                                    @if (isset($content->images['thumb']))
-                                        <div><img width="{{ env('ARTICLE_SMALL_W') }}" height="{{ env('ARTICLE_SMALL_H') }}" src="{{ $content->images['thumb'] }}"></div>
+                                    @if (isset($content->images['images']['medium']))
+                                        <div><img width="{{ env('ARTICLE_MEDIUM_W') }}" height="{{ env('ARTICLE_MEDIUM_H') }}" src="{{ $content->images['images']['medium'] }}"></div>
                                     @endif
                                     <footer>
                                         <h3> {{ $content->title }}</h3>
