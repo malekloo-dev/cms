@@ -65,9 +65,15 @@
                                 <td>{{ $content->title }}</td>
                                 <td>{!! readMore($content->brief_description) !!}</td>
                                 <td>
-                                    @if (isset($content->parent_id) && isset($category[$content->parent_id]))
-                                        {{ $category[$content->parent_id]->title }}
-                                    @endif
+                                    
+
+                                    @foreach ($content->categories as $it)
+                                        @if ($it->id == $content->category->id)
+                                            <i class="fa fa-check"></i>
+                                        @endif
+                                        {{ $it->title ?? '' }}
+                                        <br>
+                                    @endforeach
                                 </td>
                                 <td class="text-center">
                                     @if ($content->status == 1)

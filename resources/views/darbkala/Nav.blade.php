@@ -48,30 +48,12 @@
                     </li> --}}
                         @foreach (App\Models\Menu::where('parent', '=', '0')->orderBy('sort')->get()
     as $menuItem)
-                            <?php $subMenu = App\Models\Menu::where('menu', '=', '1')
-                            ->where('parent', '=', $menuItem['id'])
-                            ->orderBy('sort')
-                            ->get(); ?>
-                            @if (count($subMenu))
+                            <?php $subMenu = array(); ?>
 
-                                <li class="parent"><a
-                                        href="{{ url($menuItem['link']) }}">{{ $menuItem['label'] }}</a>
-                                    <div><img width="16" height="16" alt="arrow-down"
-                                            src="{{ url(env('TEMPLATE_NAME') . '/img/arrow-down.png') }}"></div>
-                                    <ul>
-                                        @foreach ($subMenu as $subMenuItem)
-                                            <li><a
-                                                    href="{{ $subMenuItem['type'] == 'internal' || $subMenuItem['type'] == 'external' ? url($subMenuItem['link']) : '/#' . url($subMenuItem['link']) }}">{{ $subMenuItem['label'] }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @else
                                 <li><a
                                         href="{{ $menuItem['type'] == 'internal' || $menuItem['type'] == 'external' ? url($menuItem['link']) : '/#' . url($menuItem['link']) }}">{{ $menuItem['label'] }}</a>
                                 </li>
 
-                            @endif
 
                         @endforeach
 

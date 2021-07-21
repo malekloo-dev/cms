@@ -132,14 +132,14 @@
                             @foreach ($relatedProduct as $content)
                                 <div>
                                     <article>
-                                        @if (isset($content->images['thumb']))
+                                        @if (isset($content->images['images']['small']))
                                             <figure class="image">
-                                                <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
+                                                <img src="{{ $content->images['images']['small'] }}"
                                                     sizes="(max-width:{{ env('ARTICLE_SMALL_W') }}px) 100vw {{ env('ARTICLE_SMALL_W') }}px {{ ENV('ARTICLE_MEDIUM_W') }}px"
                                                     alt="{{ $content->title }}" width="100" height="100"
                                                     srcset="
-                                                                {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('ARTICLE_SMALL_W') }}w,
-                                                                {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
+                                                                {{ $content->images['images']['small'] }} {{ env('ARTICLE_SMALL_W') }}w,
+                                                                {{ $content->images['images']['medium'] }} 2x">
                                             </figure>
 
                                         @endif
@@ -168,9 +168,9 @@
                             <div>
                                 <a href="{{ $content->slug }}">
                                     <article class="shadow2">
-                                        @if (isset($content->images['thumb']))
+                                        @if (isset($content->images['images']['medium']))
                                             <figure class="image">
-                                                <img src="{{ $content->images['images']['medium'] ?? $content->images['thumb'] }}"
+                                                <img src="{{ $content->images['images']['medium'] }}"
                                                     width="198" height="100" alt="{{ $content->title }}">
                                             </figure>
                                         @endif

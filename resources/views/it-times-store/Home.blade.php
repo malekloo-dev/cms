@@ -118,7 +118,7 @@
 
 
 
-<section class="bg-gray-dark my-0">
+<section class="bg-gray-dark my-0 products">
     <div >
         <h2 class="mb-2">محصولات</h2>
         <div class="flex one five-500">
@@ -128,9 +128,9 @@
                     <div>
                         <a href="{{ $content->slug }}">
                             <article class="shadow2">
-                                @if (isset($content->images['thumb']))
+                                @if (isset($content->images['images']['small']))
                                     <figure class="image">
-                                        <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
+                                        <img src="{{ $content->images['images']['small']  }}"
                                             alt="{{ $content->title }}" width="{{ env('ARTICLE_SMALL_W') }}"
                                             height="{{ env('ARTICLE_SMALL_H') }}">
                                     </figure>
@@ -166,13 +166,13 @@
     </section>
 
 
-    <section class="home-feature">
+    <section class="home-feature my-5">
         <div class="flex one two-700">
             <div class="item">
-                <figure class="">
-                    <img width="128" height="128" src="{{ asset('img/1470399662_Marketing.png') }}"  alt="" >
+                <figure class="third-700">
+                    <img width="128" height="" src="{{ asset('img/1470399662_Marketing.png') }}"  alt="" >
                 </figure>
-                <div class="two-third">
+                <div class="two-third-700">
                     <h3>
                         تنوع بالا محصولات
                     </h3>
@@ -183,10 +183,10 @@
             </div>
 
             <div class="item">
-                <figure class="elementor-image-box-img">
-                    <img width="128" height="128" src="{{ asset('img/1470399674_App_Development.png') }}"  alt="" >
+                <figure class="third-700">
+                    <img width="128" height="" src="{{ asset('img/1470399674_App_Development.png') }}"  alt="" >
                 </figure>
-                <div>
+                <div class="two-third-700">
 
                     <h3>تضمین کیفیت</h3>
                     <p>محصولات عصر آی تی را می توانید با بالاترین کیفیت به صورت تست شده و یا بدون تست خریداری نمایید.
@@ -195,10 +195,10 @@
             </div>
 
             <div class="item">
-                <figure class="elementor-image-box-img">
-                    <img width="128" height="128" src="{{ asset('img/1470399671_SEO.png') }}"  alt="" >
+                <figure class="third-700">
+                    <img width="128" height="" src="{{ asset('img/1470399671_SEO.png') }}"  alt="" >
                 </figure>
-                <div>
+                <div class="two-third-700">
 
                     <h3>
                         ارسال به سراسر ایران
@@ -210,10 +210,10 @@
             </div>
 
             <div class="item">
-                <figure class="elementor-image-box-img">
-                    <img width="128" height="128" src="{{ asset('img/1470399667_Newsletter.png') }}"  alt="" >
+                <figure class="third-700">
+                    <img width="128" height="" src="{{ asset('img/1470399667_Newsletter.png') }}"  alt="" >
                 </figure>
-                <div>
+                <div class="two-third-700">
                     <h3>
                         مناسب ترین قیمت
                     </h3>

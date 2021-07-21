@@ -26,6 +26,8 @@
                             <th>@lang('messages.status')</th>
                             <th>@lang('messages.image')</th>
                             <th>@lang('messages.html')</th>
+                            <th>@lang('messages.content')</th>
+                            <th>@lang('messages.products')</th>
                             <td></td>
                         </tr>
                     </thead>
@@ -33,7 +35,7 @@
                         @foreach ($contents as $content)
                             <tr>
                                 <td>{{ $content->id }}</td>
-                                <td>{!! $content->symbol . $content->title !!}</td>
+                                <td><a href="{{ url($content->slug) }}" target="__blank">{!! $content->symbol . $content->title !!} <i class="fa fa-external-link"></i></a> </td>
                                 <td>{!! readMore($content->brief_description) !!}</td>
                                 <td>
                                     @if ($content->status == 1)
@@ -51,6 +53,13 @@
                                     @if (isset($content->attr['template_name']))
                                         <i title="{{ $content->attr['template_name'] }}" class="fa fa-check"></i>
                                     @endif
+                                </td>
+                                <td>
+                                    {{ count($content->posts) }}
+                                </td>
+
+                                <td>
+                                    {{ count($content->products) }}
                                 </td>
 
                                 <td class="width-100">
