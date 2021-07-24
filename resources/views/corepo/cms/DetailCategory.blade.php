@@ -13,6 +13,8 @@
 
 @section('footer')
 
+    
+
     <script src="{{ asset('/siema.min.js') }}"></script>
     <script>
         var w;

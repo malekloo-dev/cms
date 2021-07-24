@@ -35,6 +35,7 @@ class CmsController extends Controller
                 ->where('parent_id', '=', $detail->id)
                 ->where('publish_date', '<=', DB::raw('now()'))
                 ->get();
+
             $relatedPost = $this->getCatChildOfcontent($detail['id'], $relatedPost, 'article');
         } else {
             $relatedPost = $detail->posts()->paginate(20);
@@ -97,6 +98,7 @@ class CmsController extends Controller
 
     public function request($slug)
     {
+
         // redirect url
         $spesifiedUrl = RedirectUrl::where('url', 'like', '/' . $slug);
         if ($spesifiedUrl->exists()) {
@@ -175,7 +177,7 @@ class CmsController extends Controller
                 ->where('publish_date', '<=', DB::raw('now()'))
                 ->get();
 
-            $relatedPost = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'article');
+            $relatedPost = $this->getCatChildOfcontent($detail['id'], $relatedPost, 'article');
 
             $relatedProduct = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'product')
@@ -184,7 +186,7 @@ class CmsController extends Controller
                 ->paginate(20);
             // ->get();
 
-            $relatedPost = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
+            $relatedProduct = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
 
 
             // dd($relatedProduct->links());

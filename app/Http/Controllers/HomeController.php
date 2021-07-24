@@ -71,9 +71,8 @@ class HomeController extends Controller
             }
 
             $sort = explode(' ', $config['sort']);
-
+            // dd($sort);
             $module = $module->orderby($sort[0], $sort[1]);
-
 
             $module = $module
                 ->where('publish_date', '<=', DB::raw('now()'))
@@ -83,7 +82,9 @@ class HomeController extends Controller
                 $data[$var]['data'] = $module->first();
             } else {
                 $data[$var]['data'] = $module->get();
-
+                if($var == 'topViewPost'){
+                    // dd($data);
+                }
                 // get children
                 if (isset($config['child']) && $config['child'] == 'true') {
                     $data[$var]['data'] = $this->getCatChildOfcontent($config['parent_id'],$data[$var]['data'],$config);
@@ -95,7 +96,8 @@ class HomeController extends Controller
         }
         // $queries = DB::getQueryLog();
 
-        //dd($queries);
+        // dd($queries);
+        // dd($data);
 
         //$data['arrayContent']=$arrayContent;
         // dd($data);
