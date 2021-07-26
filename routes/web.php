@@ -116,6 +116,7 @@ Route::get('/spider/reload', [SpiderController::class, 'reload']);
 Route::post('/spider/addToCms', [SpiderController::class, 'reloadAdd']);
 
 
+Route::group(['middleware'=>'HtmlMinifier'], function(){
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/reload', [ContentController::class, 'reload']);
 
@@ -124,3 +125,4 @@ Route::get('/{slug?}/{b?}', [CmsController::class, 'request']);
 
 Route::post('/comment', [CommentController::class, 'store'])->name('comment.client.store');
 Route::post('/contact', [CommentController::class, 'store'])->name('contact.client.store');
+});

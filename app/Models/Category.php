@@ -53,24 +53,24 @@ class Category extends Model
         return $this->belongsToMany(Content::class,'contents_category','cat_id','content_id');
     }
 
-    public function products()
+    public function products($sortField='publish_date',$sortValue='desc')
     {
 
         return $this->belongsToMany(Content::class,'contents_category','cat_id','content_id')
             ->where('type', '=', '2')
             ->where('attr_type', '=', 'product')
             ->where('publish_date', '<=', DB::raw('now()'))
-            ->orderBy('publish_date','desc');
+            ->orderBy($sortField,$sortValue);
 
     }
-    public function posts()
+    public function posts($sortField='publish_date',$sortValue='desc')
     {
 
         return $this->belongsToMany(Content::class,'contents_category','cat_id','content_id')
             ->where('type', '=', '2')
             ->where('attr_type', '=', 'article  ')
             ->where('publish_date', '<=', DB::raw('now()'))
-            ->orderBy('publish_date','desc');
+            ->orderBy($sortField,$sortValue);
 
     }
 

@@ -181,7 +181,7 @@
         <div>
             <h2>وبسایت ها</h2>
             <div class="flex one three-500 five-900   ">
-                {{--post&label=topView&var=topViewPost&count=10&child=true --}}
+                {{--post&label=topView&var=topViewPost&count=10--}}
                 @isset($topViewPost['data'])
                     @foreach ($topViewPost['data'] as $content)
                         <div>

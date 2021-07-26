@@ -27,7 +27,7 @@ class HomeController extends Controller
         });
 
         // $attr = Widget::find(1);
-        $attr = Widget::where('file_name','=','Home')->first();
+        $attr = Widget::where('file_name', '=', 'Home')->first();
         if (is_object($attr)) {
             $attr = $attr->attr;
         } else {
@@ -51,43 +51,63 @@ class HomeController extends Controller
                 unset($data[$var]['type']);
                 continue;
             }
+            if($config['type'] == 'post'){
+                $category = Category::find($config['parent_id']);
+                $sort = explode(' ', $config['sort']);
+
+                $data[$var]['data'] = $category->posts($sort[0],$sort[1])->limit($config['count'])->get();
+                continue;
+            }
+
+
+            if($config['type'] == 'product'){
+                $category = Category::find($config['parent_id']);
+                $sort = explode(' ', $config['sort']);
+
+                $data[$var]['data'] = $category->products($sort[0],$sort[1])->limit($config['count'])->get();
+                continue;
+            }
             $type = '';
             //$data[$var] =new Content();
             $module = new Content();
 
             if ($config['type'] == 'post') {
-                $module = $module->where('type', '=', '2');
-                $module = $module->where('attr_type', '=', 'article');
+                // $module = $module->where('type', '=', '2');
+                // $module = $module->where('attr_type', '=', 'article');
             } else if ($config['type'] == 'product') {
-                $module = $module->where('type', '=', '2');
-                $module = $module->where('attr_type', '=', 'product');
+                // $module = $module->where('type', '=', '2');
+                // $module = $module->where('attr_type', '=', 'product');
             } else if ($config['type'] == 'category') {
                 $module = $module->where('type', '=', '1');
             } else if ($config['type'] == 'categoryDetail') {
                 $module = $module->where('type', '=', '1')->where('id', '=', $config['parent_id']);
             }
+
             if ($config['parent_id'] != 0 and $config['type'] != 'categoryDetail') {
                 $module = $module->where('parent_id', '=', $config['parent_id']);
             }
 
             $sort = explode(' ', $config['sort']);
-            // dd($sort);
+
+
             $module = $module->orderby($sort[0], $sort[1]);
 
             $module = $module
                 ->where('publish_date', '<=', DB::raw('now()'))
                 ->limit($config['count']);
 
+
             if ($config['type'] == 'categoryDetail') {
                 $data[$var]['data'] = $module->first();
             } else {
                 $data[$var]['data'] = $module->get();
-                if($var == 'topViewPost'){
-                    // dd($data);
-                }
+                // if ($var == 'topViewPost') {
+                //     echo $config['type'];
+                //     dd($module);
+                // }
                 // get children
                 if (isset($config['child']) && $config['child'] == 'true') {
-                    $data[$var]['data'] = $this->getCatChildOfcontent($config['parent_id'],$data[$var]['data'],$config);
+                    $data[$var]['data'] = $this->getCatChildOfcontent($config['parent_id'], $data[$var]['data'], $config);
                 }
             }
             if (isset($config['background'])) {
@@ -106,23 +126,23 @@ class HomeController extends Controller
         return view(env("TEMPLATE_NAME") . '.Home', $data);
     }
 
-    function getCatChildOfcontent($parentId, $temp,$config)
+    function getCatChildOfcontent($parentId, $temp, $config)
     {
 
-        if(count($temp) >= $config['count']) return $temp;
+        if (count($temp) >= $config['count']) return $temp;
 
         $cat =  Content::where([['parent_id', '=', $parentId], ['type', '=', 1]])->get()->toArray();
 
 
         $content =  Content::where([['parent_id', '=', $parentId], ['type', '=', 2]])
-        ->where('publish_date', '<=', DB::raw('now()'))->get();
+            ->where('publish_date', '<=', DB::raw('now()'))->get();
         $temp = $temp->merge($content);
 
         if (count($cat) == 0) {
             return $temp;
         } else {
             foreach ($cat as $k => $v) {
-                $temp =  $this->getCatChildOfcontent($v["id"], $temp,$config);
+                $temp =  $this->getCatChildOfcontent($v["id"], $temp, $config);
             }
             return $temp;
         }
