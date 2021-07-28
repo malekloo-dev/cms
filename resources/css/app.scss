@@ -1835,7 +1835,7 @@ button[disabled] {
     display: none;
 }
 .select select,
-input,
+input:not([type=checkbox]),
 textarea {
     line-height: 1.5;
     margin: 0;
@@ -1847,6 +1847,7 @@ textarea {
     transition: all 0.3s;
     width: 100%;
 }
+
 .select select:focus,
 input:focus,
 textarea:focus {
@@ -1901,7 +1902,7 @@ select[multiple] {
     background: 0 0;
     padding: 0;
 }
-[type="checkbox"],
+nav [type="checkbox"] ,
 [type="radio"] {
     opacity: 0;
     width: 0;

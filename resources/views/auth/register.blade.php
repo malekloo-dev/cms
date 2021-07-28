@@ -1,5 +1,70 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
+@section('meta-title', __('messages.register'))
+
+
+    @push('scripts')
+        <script>
+            //only number
+            function setInputFilter(textbox, inputFilter) {
+                ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+
+                    textbox.addEventListener(event, function() {
+                        this.value = this.value.replace('۰', '0');
+                        this.value = this.value.replace('۱', '1');
+                        this.value = this.value.replace('۲', '2');
+                        this.value = this.value.replace('۳', '3');
+                        this.value = this.value.replace('۴', '4');
+                        this.value = this.value.replace('۵', '5');
+                        this.value = this.value.replace('۶', '6');
+                        this.value = this.value.replace('۷', '7');
+                        this.value = this.value.replace('۸', '8');
+                        this.value = this.value.replace('۹', '9');
+
+
+                        if (inputFilter(this.value)) {
+                            this.oldValue = this.value;
+                            this.oldSelectionStart = this.selectionStart;
+                            this.oldSelectionEnd = this.selectionEnd;
+                        } else if (this.hasOwnProperty("oldValue")) {
+
+                            this.value = this.oldValue;
+
+                            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+
+                        } else {
+                            this.value = "";
+
+                        }
+                    });
+                });
+            }
+
+            setInputFilter(document.getElementById("mobile"), function(value) {
+                return /^-?\d*$/.test(value);
+            });
+
+
+            setInputFilter(document.getElementById("password"), function(value) {
+                return value;
+            });
+
+
+            ///////////////////////////////////////////////////////////////////////////////
+
+
+            function showPassword() {
+                var x = document.getElementById("password");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+        </script>
+
+    @endpush
+
 @section('Content')
     <section class="register">
         @if (\Session::has('success'))
@@ -18,32 +83,20 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('register') }}" >
+        <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <div class="form-group row">
-                <label for="name" class="col-md-12 col-form-label">@lang('messages.name')</label>
 
-                <div class="col-md-12">
-                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                        value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                    @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
 
             <div class="form-group row">
-                <label for="email" class="col-md-12 col-form-label ">@lang('messages.email')</label>
+                <label for="mobile" class="col-md-12 col-form-label ">@lang('messages.mobile')</label>
 
                 <div class="col-md-12">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                        value="{{ old('email') }}" required autocomplete="email">
+                    <input id="mobile" type="text" class="form-control ltr @error('mobile') is-invalid @enderror"
+                        name="mobile" value="{{ old('mobile') }}" required
+                        placeholder="{{ __('messages.example') }}:09331181877" autocomplete="mobile">
 
-                    @error('email')
+                    @error('mobile')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -56,24 +109,15 @@
 
                 <div class="col-md-12">
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                        name="password" required autocomplete="new-password">
+                        name="password" required autocomplete="password">
+                    <input type="checkbox" class="" id="show-password" onclick="showPassword()"> <label
+                        for="show-password">@lang('messages.Show Password')</label>
 
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="password-confirm"
-                    class="col-md-12 col-form-label ">@lang('messages.confirm') @lang('messages.password')</label>
-
-                <div class="col-md-12">
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required
-                        autocomplete="new-password">
-
                 </div>
             </div>
 

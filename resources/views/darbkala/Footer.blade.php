@@ -94,6 +94,8 @@
     </div>
 </section>
 
+@stack('scripts')
+
 @yield('footer')
 @yield('cropper')
 {{-- <script>

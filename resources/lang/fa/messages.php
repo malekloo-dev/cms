@@ -116,5 +116,8 @@ return [
     'user'=>'کاربر',
     'Greate! Company created successfully.'=>'کمپانی اضافه شد.',
     'Greate! Company edited successfully.'=>'کمپانی ویرایش شد.',
+    'number only'=>'لطفا اعداد انگلیسی وارد نمایید',
+    'Show Password'=>'نمایش پسورد',
+    'example'=>'مثال',
 
 ];
