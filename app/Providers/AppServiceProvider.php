@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Comment;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
+
         $lang = app()->setLocale(env('SITE_LANG'));
         $lang = app()->getLocale();
 
@@ -40,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
             return "<?php echo number_format($money); ?>";
         });
 
-        
+
 
 
         view()->composer('admin/*', function () {
