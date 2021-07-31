@@ -33,10 +33,14 @@
                                 value="{{ old('location', $company->location ?? '') }}">
                         </div>
                         <div class="col-md-4 col-sm-4 form-group text-center">
+
                             @php
                                 $attr_type = 'company';
+                                $cropperPreview = url($company->logo['large']??'');
                             @endphp
-
+                            <style>
+                                #cropperPreview,#cropperPreviewPng{border-radius: 50%; width: 40%}
+                            </style>
                             @include('admin.cropper')
 
                             <input type="file" style="display: none" name="images" id="images">
@@ -107,7 +111,7 @@
 
                         <div class="col-md-3  col-sm-3 form-group">@lang('messages.phone'):
                             <input id="phone" type="text" class="" name="phone"
-                                value="{{ old('phone', implode(',',$company->phone) ?? '') }}" />
+                                value="{{ old('phone', $company->phone ?? '') }}" />
                             <span class="text-danger">{{ $errors->first('phone') }}</span>
                         </div>
 
@@ -199,9 +203,6 @@
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
 
-    <style>
-        #cropperPreview{border-radius: 50%;}
-    </style>
 
     <script>
 $(document).ready(function() {

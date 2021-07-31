@@ -7,7 +7,7 @@
         "@type": "Product",
         "name": "{{ $content->title }}",
 
-        @if(isset($content->images['thumb']))
+        @if(isset($content->images['images']['small']))
         "image": [
             "{{ url('/').$content->images['images']['small'] }}",
             "{{ url('/').$content->images['images']['medium'] }}",

@@ -379,6 +379,7 @@ class CompanyController extends Controller
             'name' => 'required',
             'manager' => 'required',
             'mobile' => 'required',
+            'parent_id_hide' => 'required'
         ));
 
         $data = $request->all();
@@ -412,6 +413,11 @@ class CompanyController extends Controller
 
             $user->company()->save($company);
         }
+
+        if($user == null){
+            dd('User not exist!!');
+        }
+
         $user->assignRole('company');
 
         $company->categories()->attach($data['parent_id_hide']);

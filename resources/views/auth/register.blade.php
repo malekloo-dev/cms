@@ -46,21 +46,12 @@
 
 
             setInputFilter(document.getElementById("password"), function(value) {
-                return value;
+                return /$/.test(value);
             });
 
 
             ///////////////////////////////////////////////////////////////////////////////
 
-
-            function showPassword() {
-                var x = document.getElementById("password");
-                if (x.type === "password") {
-                    x.type = "text";
-                } else {
-                    x.type = "password";
-                }
-            }
         </script>
 
     @endpush
@@ -108,10 +99,8 @@
                 <label for="password" class="col-md-12 col-form-label ">@lang('messages.password')</label>
 
                 <div class="col-md-12">
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                    <input id="password" type="text" class="form-control @error('password') is-invalid @enderror"
                         name="password" required autocomplete="password">
-                    <input type="checkbox" class="" id="show-password" onclick="showPassword()"> <label
-                        for="show-password">@lang('messages.Show Password')</label>
 
                     @error('password')
                         <span class="invalid-feedback" role="alert">

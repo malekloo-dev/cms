@@ -4,7 +4,7 @@
         "@type": "Product",
         "name": "{{ $detail->title }}",
 
-        @if (isset($detail->images['thumb']))
+        @if (isset($detail->images['images']['small']))
             "image": [
                 "{{ url('/').$detail->images['images']['small'] }}",
                 "{{ url('/').$detail->images['images']['medium'] }}",
@@ -55,18 +55,19 @@
                 "name": "{{ env('TEMPLATE_NAME') }}"
             }
         }
-        @if(count($detail->comments))
-        ,"review":
-        [
-            @php $rateSum = $rateAvrage =  $jj = $j = 0;  @endphp
 
+        @if($detail->comments->count())
+            @php $rateSum = $rateAvrage =  $jj = $j = 0;  @endphp
             @foreach ($detail->comments as $comment)
                 @if($comment['name'] !='' && $comment['comment'] != '')
                     @php $jj++; @endphp
                 @endif
                 @php $rateSum = $rateSum + $comment['rate']; @endphp
             @endforeach
-
+        @endif
+        @if($detail->comments->where('name','<>','')->count())
+        ,"review":
+        [
             @foreach ($detail->comments as $comment)
                 @if($comment['name'] !='' && $comment['comment'] != '')
                     @php $j++; @endphp
@@ -87,8 +88,11 @@
                     @endif
                 @endif
             @endforeach
-        ],
-        "aggregateRating":
+        ]
+        @endif
+
+        @if($detail->comments->count())
+        ,"aggregateRating":
         {
             "@type": "AggregateRating",
             "ratingValue": "{{ intval($rateSum / count($detail->comments)) }}",
@@ -97,5 +101,5 @@
             "worstRating": "0"
         }
         @endif
-    }
+}
 </script>

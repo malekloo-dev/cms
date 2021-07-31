@@ -18,8 +18,13 @@
 <script src="{{ url('/adminAssets/js/cropper.js') }}"></script>
 
 <style type="text/css">
+    @if(!isset($cropperPreview) || $cropperPreview == url('/'))
+    label[for=jpeg]{
+        display: none
+    }
+    @endif
 
-    label[for=jpeg],label[for=png]{
+    label[for=png]{
         display: none
     }
 
