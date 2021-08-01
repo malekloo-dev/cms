@@ -110,7 +110,7 @@ class ContentController extends Controller
         }
 
         $contents = $contents->paginate(10);
-        // dd($contents);
+        // dd($contents->links());
 
         $data['contents'] = $contents;
         // dd($data);
