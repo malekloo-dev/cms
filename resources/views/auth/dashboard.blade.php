@@ -1,4 +1,5 @@
 @extends(@env('TEMPLATE_NAME').'.App')
+@section('meta-title', __('messages.Dashboard'))
 
 @section('Content')
 

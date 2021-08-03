@@ -1,10 +1,8 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 @section('meta-title', __('messages.login'))
-
-
     @push('scripts')
         {{-- recaptcha --}}
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        {{-- <meta name="csrf-token" content="{{ csrf_token() }}">
         <script type="text/javascript">
             function callbackThen(response) {
                 // read HTTP status
@@ -21,6 +19,18 @@
                 alert('صفحه را مجدد بارگذاری نمایید.')
             }
         </script>
+
+        {!! htmlScriptTagJsApi([
+    'callback_then' => 'callbackThen',
+    'callback_catch' => 'callbackCatch',
+]) !!} --}}
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+    function onSubmit(token) {
+      document.getElementById("forgot-password").submit();
+    }
+  </script>
 
 
 
@@ -65,82 +75,55 @@
             });
 
 
-            setInputFilter(document.getElementById("password"), function(value) {
-                return /$/.test(value);
-            });
 
 
             ///////////////////////////////////////////////////////////////////////////////
-
-
-            function showPassword() {
-                var x = document.getElementById("password");
-                if (x.type === "password") {
-                    x.type = "text";
-                } else {
-                    x.type = "password";
-                }
-            }
         </script>
     @endpush
 @section('Content')
+    <section class="reset">
 
-    <section class="login">
-        <form method="POST" action="{{ route('login') }}">
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
+        @error('mobile')
+            <span class="text-danger mb-2">
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            </span>
+        @enderror
+
+        <form method="POST" id="forgot-password" action="{{ route('password.email') }}">
             @csrf
 
             <div class="form-group">
-
                 <label for="mobile" class="control-label">@lang('messages.mobile')</label>
-
-                <input id="mobile" type="text" class="form-control ltr @error('mobile') is-invalid @enderror" name="mobile"
-                    value="{{ old('mobile') }}" required autocomplete="mobile"
-                    placeholder="{{ __('messages.example') }}:09331181877" autofocus>
-
-                @error('mobile')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="password" class="control-label">@lang('messages.password')</label>
-
-                <input id="password" type="password" class="form-control ltr @error('password') is-invalid @enderror"
-                    name="password" value="" required autocomplete="current-password">
-
-                <input type="checkbox" class="" id="show-password" onclick="showPassword()"> <label
-                    for="show-password">@lang('messages.Show Password')</label>
-
-                @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-
-
-
-            </div>
-            <div class="form-group">
-                <input type="checkbox" name="remember" id="remember">
-                <label for="remember">@lang('messages.remember')</label>
+                <input id="mobile" type="mobile" class="form-control @error('mobile') is-invalid @enderror" name="mobile"
+                    value="{{ old('mobile') }}" required autocomplete="mobile" autofocus>
 
             </div>
 
-            <div class="form-group">
-
-                <button type="submit" class="btn btn-info   btn-block">
-                    <i class="fa fa-lock"></i> @lang('messages.login')
-                </button>
-
-
+            <div class="form-group   mt-1 ">
+                <div class=" center flex">
+                    <button type="submit"
+                        class="btn btn-info  mat-btn radius-all  mat-elevation-z g-recaptcha mod_tm_ajax_contact_form_btn"
+                        data-sitekey="6LeL39QbAAAAACqzv2y_w-iW1t-EsrW7IJO1bB_v" data-callback='onSubmit' data-action='submit'>
+                        @lang('messages.Send Password')
+                    </button>
+                </div>
             </div>
         </form>
     </section>
     <section class="extra-link">
-        <a href="{{ route('register') }}">@lang('messages.register')</a>
+        <div class="m-0 p-0">
+            <a href="{{ route('login') }}">@lang('messages.login')</a>
+            /
+            <a href="{{ route('register') }}">@lang('messages.register')</a>
 
+        </div>
         <a href="{{ route('password.request') }}">@lang('messages.forgot')</a>
     </section>
 

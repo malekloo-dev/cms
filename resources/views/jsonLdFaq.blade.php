@@ -44,7 +44,7 @@ $jsonLd='';
 
 
         '.trim($jsonLd,','). '     ]
-     } </script>;';
+     } </script>';
 
          @endphp
 
