@@ -124,4 +124,8 @@ return [
     'your number not exist'=>'شماره موبایل شما درست نمی باشد.',
     'Send Password to your mobile'=>'پسورد به شماره شما ارسال شد.',
     'error'=>'مشکلی بوجود آمده',
+    'darbkala'=>'درب کالا',
+    'corepo'=>'کریپو',
+    'remotyadak'=>'ریموت یدک',
+    'tarhoweb'=>'طرح و وب',
 ];

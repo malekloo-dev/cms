@@ -41,26 +41,29 @@ class ResetPasswordController extends Controller
         $this->middleware('guest');
     }
 
-    public function reset(Request $request ){
+    public function reset(Request $request)
+    {
 
-        $user = User::where('mobile','=',$request->mobile)->first();
-        if($user){
+        $user = User::where('mobile', '=', $request->mobile)->first();
+        if ($user) {
 
-            $msg = 'رمز عبور:'.$user->pass." \n ". $request->getHttpHost();
+            // $msg = 'رمز عبور:'.$user->pass." \n ". env('TEMPLATE_NAME');
+            $msg = "رمز عبور شما : " . $user->pass . "\n" . Lang::get('messages.' . env('TEMPLATE_NAME'));
 
-            $res = sendSms(array($request->mobile),$msg);
+            // $msg = "رمز عبور شما : ".$user->pass."
+            // ".Lang::get('messages.' . env('TEMPLATE_NAME'));
+
+            $res = sendSms(array($request->mobile), $msg);
             // dd($res);
-            if($res == 0){
+            if ($res == 0) {
                 $message = Lang::get('messages.Send Password to your mobile');
-            }else{
-                $message = Lang::get('messages.error').$res;
+            } else {
+                $message = Lang::get('messages.error') . $res;
             }
             // dd(1);
-            return redirect()->back()->with('success',$message);
+            return redirect()->back()->with('success', $message);
         }
 
-        return redirect()->back()->with('error',Lang::get('messages.your number not exist'));
-
+        return redirect()->back()->with('error', Lang::get('messages.your number not exist'));
     }
-
 }
