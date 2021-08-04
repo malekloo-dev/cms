@@ -482,27 +482,32 @@ function idToMenuLabel($id)
     return '';
 }
 
-function sendSms($numbers=array("09120001234"),$message='')
+function sendSms($numbers = array("09331181877"), $message = '',$i=0)
 {
     ini_set("soap.wsdl_cache_enabled", "0");
     $sms_client = new SoapClient('http://payamak-service.ir/SendService.svc?wsdl', array('encoding' => 'UTF-8'));
+    $fromNumber = ['5000249','50005708631983','10002188','5000249','SimCard','210002100000021','30005920000015'];
 
     try {
         $parameters['userName'] = "mt.09331181877";
         $parameters['password'] = "45836";
-        $parameters['fromNumber'] = "50005708631983";
+        $parameters['fromNumber'] = $fromNumber[$i]; // 50005708631983 , 210002100000021 , 10002188 , 30005920000015 , 5000249 , SimCard , News
         $parameters['toNumbers'] = $numbers;
         $parameters['messageContent'] = $message;
         $parameters['isFlash'] = false;
-        $recId = array();
-        $status = array();
-        $parameters['recId'] = &$recId;
-        $parameters['status'] = &$status;
+        // $recId = array();
+        // $status = array();
+        // $parameters['recId'] = &$recId;
+        // $parameters['status'] = &$status;
 
+        $res = $sms_client->SendSMS($parameters)->SendSMSResult;
 
-        return $sms_client->SendSMS($parameters)->SendSMSResult;
+        if ($res == 0)
+            return $res;
 
+        $res = sendSms($numbers,$message,++$i);
+        return $res;
     } catch (Exception $e) {
-        return 'Caught exception: '.  $e->getMessage(). "\n";
+        return 'Caught exception: ' .  $e->getMessage() . "\n";
     }
 }

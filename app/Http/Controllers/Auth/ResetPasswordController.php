@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 
 class ResetPasswordController extends Controller
 {
@@ -37,6 +39,28 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function reset(Request $request ){
+
+        $user = User::where('mobile','=',$request->mobile)->first();
+        if($user){
+
+            $msg = 'رمز عبور:'.$user->pass." \n ". $request->getHttpHost();
+
+            $res = sendSms(array($request->mobile),$msg);
+            // dd($res);
+            if($res == 0){
+                $message = Lang::get('messages.Send Password to your mobile');
+            }else{
+                $message = Lang::get('messages.error').$res;
+            }
+            // dd(1);
+            return redirect()->back()->with('success',$message);
+        }
+
+        return redirect()->back()->with('error',Lang::get('messages.your number not exist'));
+
     }
 
 }

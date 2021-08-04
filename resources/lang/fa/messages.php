@@ -121,4 +121,7 @@ return [
     'Show Password'=>'نمایش پسورد',
     'example'=>'مثال',
     'remember'=>'مرا به خاطر نگه دار.',
+    'your number not exist'=>'شماره موبایل شما درست نمی باشد.',
+    'Send Password to your mobile'=>'پسورد به شماره شما ارسال شد.',
+    'error'=>'مشکلی بوجود آمده',
 ];

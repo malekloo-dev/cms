@@ -54,6 +54,8 @@
     {{-- <script src="https://www.p30rank.ir/google" async></script> --}}
     @yield('head')
 
+    @stack('head')
+
 </head>
 
 <body>
