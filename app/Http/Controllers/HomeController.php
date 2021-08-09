@@ -6,6 +6,8 @@ use App\Models\Content;
 use App\Models\Category;
 use App\Models\Widget;
 use App\Models\WebsiteSetting;
+use Carbon\Carbon;
+// use Contents;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -51,20 +53,32 @@ class HomeController extends Controller
                 unset($data[$var]['type']);
                 continue;
             }
-            if($config['type'] == 'post'){
+            if ($config['type'] == 'post') {
                 $category = Category::find($config['parent_id']);
                 $sort = explode(' ', $config['sort']);
 
-                $data[$var]['data'] = $category->posts($sort[0],$sort[1])->limit($config['count'])->get();
+                $data[$var]['data'] = $category->posts($sort[0], $sort[1])->limit($config['count'])->get();
                 continue;
             }
 
+            if ($config['type'] == 'product') {
 
-            if($config['type'] == 'product'){
+                if ($config['parent_id'] == 0){
+                    // dd(Carbon::now());
+                    $data[$var]['data'] = Content::where('publish_date','<=',Carbon::now())->where('status','=',1)->where('attr_type','=','product')->orderBy('publish_date','desc')->limit($config['count'])->get();
+                    // dd($data[$var]['data']);
+                    continue;
+                }
+                // $data[$var]['data'] = $category->products($sort[0], $sort[1])->limit($config['count'])->get();
+
+                $category = Category::find($config['parent_id']);
+
                 $category = Category::find($config['parent_id']);
                 $sort = explode(' ', $config['sort']);
 
-                $data[$var]['data'] = $category->products($sort[0],$sort[1])->limit($config['count'])->get();
+                // dd($config['parent_id']);
+                if ($category)
+                    $data[$var]['data'] = $category->products($sort[0], $sort[1])->limit($config['count'])->get();
                 continue;
             }
             $type = '';

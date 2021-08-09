@@ -1,12 +1,25 @@
 @extends(@env('TEMPLATE_NAME').'.App')
+
+
+@section('twitter:title', $detail->title)
+@section('twitter:description', clearHtml($detail->brief_description))
+
+@section('og:title', $detail->title)
+@section('og:description', clearHtml($detail->brief_description))
+
+@if (isset($detail->images['images']['medium']))
+@section('twitter:image', url($detail->images['images']['medium']))
+
+@section('og:image', url($detail->images['images']['medium']))
+@section('og:image:type', 'image/jpeg')
+@section('og:image:width', $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W'))
+@section('og:image:height', $detail->attr_type == 'article' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H'))
+@section('og:image:alt', $detail->title)
+
+@endif
+
+
 @section('head')
-    <meta property="og:image" content="{{ url($detail->images['images']['large'] ?? '') }}" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W') }}" />
-    <meta property="og:image:height"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H') }}" />
-    <meta property="og:image:alt" content="{{ $detail->title }}" />
 
     @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
         <link rel="prev" href="{{ json_decode($relatedProduct->toJson())->prev_page_url }}">
@@ -158,7 +171,7 @@
                                             @if(count($content->companies))
 
                                                 <div class="company-logo">
-                                                    @if (isset($content->companies->first()->logo['small']) || $content->companies->first()->logo['small'] == '' || !file_exists(public_path($content->companies->first()->logo['small'])))
+                                                    @if (isset($content->companies->first()->logo) && $content->companies->first()->logo['small'] != '' && file_exists(public_path($content->companies->first()->logo['small'])))
                                                         <img src="{{ url($content->companies->first()->logo['small']) }}" width="30" height="30" class="border-radius-50" alt="" />
                                                     @endif
                                                     {{ $content->companies->first()->name ?? '' }}
@@ -228,7 +241,7 @@
         </section>
 
 
-        {{-- post&label=relatedPost&var=relatedPost&count=5 --}}
+        {{--post&label=relatedPost&var=relatedPost&count=5 --}}
         @if (isset($relatedPost))
             <section class="articles bg-orange mb-0" id="articles">
                 <div class="flex one ">

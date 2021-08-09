@@ -1,8 +1,5 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
-@section('head')
-    {{-- <link rel="stylesheet" href="{{ asset('/home.css') }}"> --}}
-@endsection
 @section('footer')
     <script>
         var slideIndex = 1;

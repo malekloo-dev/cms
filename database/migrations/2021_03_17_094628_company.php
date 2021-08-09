@@ -31,8 +31,12 @@ class Company extends Migration
             $table->string('whatsapp')->nullable();
             $table->string('telegram')->nullable();
             $table->string('instagram')->nullable();
-            $table->string('logo')->nullable();
+            $table->string('logo',255)->nullable();
             $table->string('location')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_keywords')->default(NULL)->nullable();
+            $table->text('meta_description')->default(NULL)->nullable();
+
 
 
             $table->timestamps();

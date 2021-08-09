@@ -17,12 +17,12 @@
 
                 <div class="form-group">
 
-                    <label for="email" class="control-label">@lang('messages.email')</label>
+                    <label for="mobile" class="control-label">@lang('messages.mobile')</label>
 
-                    <input id="email" type="email" class="form-control ltr @error('email') is-invalid @enderror"
-                           name="email" value="{{ old('email') ? old('email') : 'm@m.m' }}" required autocomplete="email" autofocus>
+                    <input id="mobile" type="mobile" class="form-control ltr @error('mobile') is-invalid @enderror"
+                           name="mobile" value="{{ old('mobile') ? old('mobile') : '' }}" required autocomplete="mobile" autofocus>
 
-                    @error('email')
+                    @error('mobile')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>

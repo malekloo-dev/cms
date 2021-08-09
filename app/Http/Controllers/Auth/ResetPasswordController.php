@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Lang;
 
 class ResetPasswordController extends Controller
@@ -47,6 +48,9 @@ class ResetPasswordController extends Controller
         $user = User::where('mobile', '=', $request->mobile)->first();
         if ($user) {
 
+            $user->password = Hash::make($user->pass);
+            $user->save();
+
             // $msg = 'رمز عبور:'.$user->pass." \n ". env('TEMPLATE_NAME');
             $msg = "رمز عبور شما : " . $user->pass . "\n" . Lang::get('messages.' . env('TEMPLATE_NAME'));
 
@@ -61,7 +65,8 @@ class ResetPasswordController extends Controller
                 $message = Lang::get('messages.error') . $res;
             }
             // dd(1);
-            return redirect()->back()->with('success', $message);
+
+            return redirect(route('login'))->with('success', $message);
         }
 
         return redirect()->back()->with('error', Lang::get('messages.your number not exist'));

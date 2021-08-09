@@ -110,7 +110,8 @@
                                 <td class="width-100">
                                     <div class="row">
                                         <div class="col-xs-6">
-                                            <a href="{{ route('contents.edit', $content->id) }}"
+
+                                            <a href="{{ route('contents.edit', ['content'=>$content->id,'page'=> json_decode($contents->toJson())->current_page]) }}"
                                                 class="font-full-plus-half-em pull-left text-success btn-xs  no-border  "
                                                 title="edit">
                                                 <i class="fa fa-edit"></i>

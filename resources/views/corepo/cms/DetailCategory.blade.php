@@ -1,4 +1,25 @@
 @extends(@env('TEMPLATE_NAME').'.App')
+
+
+
+@section('twitter:title', $detail->title)
+@section('twitter:description', clearHtml($detail->brief_description))
+
+@section('og:title', $detail->title)
+@section('og:description', clearHtml($detail->brief_description))
+
+@if (isset($detail->images['images']['medium']))
+@section('twitter:image', url($detail->images['images']['medium']))
+
+@section('og:image', url($detail->images['images']['medium']))
+@section('og:image:type', 'image/jpeg')
+@section('og:image:width', $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W'))
+@section('og:image:height', $detail->attr_type == 'article' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H'))
+@section('og:image:alt', $detail->title)
+
+@endif
+
+
 @section('head')
     <link rel="stylesheet" href="{{ asset('/detail.category.css') }}">
 
@@ -13,7 +34,7 @@
 
 @section('footer')
 
-    
+
 
     <script src="{{ asset('/siema.min.js') }}"></script>
     <script>

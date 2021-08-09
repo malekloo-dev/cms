@@ -38,7 +38,7 @@ class CompanyController extends Controller
     public function profile()
     {
         $user = Auth::user();
-        return view('auth.profile', compact('user'));
+        return view('auth.companyProfile', compact('user'));
     }
     public function profileChangeLogo(Request $request)
     {
@@ -175,10 +175,15 @@ class CompanyController extends Controller
 
         $data = $request->all();
         $date = $data['publish_date'];
-        // $data['publish_date'] = convertJToG($date);
+        $data['publish_date'] = convertJToG($date);
 
+        $data['parent_id_hide'] = $request->parent_id;
+        $data['parent_id'] = $request->parent_id_hide;
+        if ($data['parent_id'] == '') {
+            $data['parent_id'] = $data['parent_id_hide'][0];
+        }
 
-        $data['parent_id'] = $request->parent_id[0];
+        // $data['parent_id'] = $request->parent_id[0];
         // $data['type'] = '2';
         $data['attr_type'] = 'product';
         $data['attr'] = ["brand" => $user->company->name, "price" => 0];
@@ -195,6 +200,10 @@ class CompanyController extends Controller
         $data['status'] = '1';
 
         $content->update($data);
+
+        $content->categories()->detach();
+        $content->categories()->attach($data['parent_id_hide']);
+
 
         // $content = Content::create($data);
         // dd(new CompanyContent(['company_id' => $user->id, 'content_id' => $content->id]));
@@ -277,22 +286,29 @@ class CompanyController extends Controller
     {
 
         $company = Company::find($id);
-
+        if($company == null){
+            return redirect('/',301);
+        }
         // $produsct = Content::where('publish_date', '<=', DB::raw('now()'));
         // $produsct = $produsct->where('company_id', '=', $company->id);
         // $produsct = $produsct->where('type', '=', '2');
         // $produsct = $produsct->where('attr_type', '=', 'product');
         // $produsct = $produsct->orderby('id', 'desc');
         // $produsct = $produsct->get();
-        $breadcrumb = $this->get_parent($company->category->parent_id);
+
+
+        $breadcrumb = $this->get_parent($company->category->parent_id??0);
         if (is_array($breadcrumb)) {
             krsort($breadcrumb);
         } else {
             $breadcrumb = array();
         }
-        $breadcrumb[1] = $company->category->toArray();
+        if($company->category)
+            $breadcrumb[1] = $company->category?->toArray();
+        $seo['meta_title'] = $company->name ?? 'Company';
+        $seo['meta_description'] = $company->description ?? '';
         // dd($breadcrumb);
-        return view('auth.profileShow', compact('company','breadcrumb'));
+        return view('auth.profileShow', compact('company','breadcrumb','seo'));
     }
 
 
@@ -360,9 +376,10 @@ class CompanyController extends Controller
     {
         $this->validate($request, array(
             'name' => 'required',
-            'manager' => 'required',
+            // 'manager' => 'required',
             'mobile' => 'required',
-            'email' => 'required|unique:users,email'
+            // 'email' => 'required|unique:users,email'
+            'parent_id_hide' => 'required'
         ));
         $data = $request->all();
         $data['password'] = Hash::make(123456);
@@ -377,9 +394,10 @@ class CompanyController extends Controller
     {
         $this->validate($request, array(
             'name' => 'required',
-            'manager' => 'required',
+            // 'manager' => 'required',
             'mobile' => 'required',
             'parent_id_hide' => 'required'
+
         ));
 
         $data = $request->all();

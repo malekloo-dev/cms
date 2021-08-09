@@ -38,13 +38,13 @@ class ContentController extends Controller
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
 
-        $fileName = str_replace(' ','-',$request->title) ?? $filenameOrg;
+        $fileName = str_replace(' ', '-', $request->title) ?? $filenameOrg;
         $fileType = ($image_type == 'jpeg') ? 'jpg' : $image_type;
         $fileNameAndType = $fileName . '.' . $fileType;
 
 
         // dd(public_path() . $imagePath . $fileNameAndType);
-        $file = $fileOrg->move(public_path($imagePath), $fileName.'-org.'.$fileType); // original
+        $file = $fileOrg->move(public_path($imagePath), $fileName . '-org.' . $fileType); // original
         // dd(public_path($imagePath));
         // $sizes = ["300", "600", "900"];
         file_put_contents(public_path() . $imagePath . $fileNameAndType, $image_base64); // croped
@@ -52,9 +52,9 @@ class ContentController extends Controller
         // dd($file->getRealPath());
         // $url['images'] = $this->resize($file->getRealPath(), $type, $imagePath, $filename);
 
-        $url['images'] = $this->resize( $imagePath . $fileNameAndType, $type, $imagePath, $fileNameAndType, $fileName, $fileType);
+        $url['images'] = $this->resize($imagePath . $fileNameAndType, $type, $imagePath, $fileNameAndType, $fileName, $fileType);
         $url['thumb'] = $url['images']['small'];
-        $url['images']['org'] = $imagePath . $fileName.'-org.'.$fileType;
+        $url['images']['org'] = $imagePath . $fileName . '-org.' . $fileType;
         // dd($url);
         return $url;
     }
@@ -90,24 +90,26 @@ class ContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$type='article')
+    public function index(Request $request, $type = 'article')
     {
 
         if (isset($request->type)) {
             $type = $request->type;
         }
-        $companyId=$request->companyId;
+        $companyId = $request->companyId;
 
         $data['type'] = $type;
 
         $contents = Content::where('type', '=', '2')->where('attr_type', '=', $type)->orderBy('id', 'desc');
 
-        if($companyId != ''){
-            $data['company']=Company::find($companyId);
-            $contents = $contents->whereHas('companies',function($q) use($companyId){
-                $q->where('company_id','=',$companyId);
+        if ($companyId != '') {
+            $data['company'] = Company::find($companyId);
+            $contents = $contents->whereHas('companies', function ($q) use ($companyId) {
+                $q->where('company_id', '=', $companyId);
             });
         }
+
+
 
         $contents = $contents->paginate(10);
         // dd($contents->links());
@@ -126,7 +128,7 @@ class ContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request,$type)
+    public function create(Request $request, $type)
     {
 
         $result = app('App\Http\Controllers\CategoryController')->tree_set();
@@ -159,7 +161,7 @@ class ContentController extends Controller
         //dd($request->file('images'));
         if ($request->file('images')) {
             // dd($request->attr_type);
-            $imagesUrl = $this->uploadImages($request,$request->attr_type);
+            $imagesUrl = $this->uploadImages($request, $request->attr_type);
         }
 
         $data = $request->all();
@@ -167,8 +169,8 @@ class ContentController extends Controller
         $data['publish_date'] = convertJToG($date);
         $data['parent_id_hide'] = $request->parent_id;
         $data['parent_id'] = $request->parent_id_hide;
-        if( $data['parent_id']==''){
-            $data['parent_id']=$data['parent_id_hide'][0];
+        if ($data['parent_id'] == '') {
+            $data['parent_id'] = $data['parent_id_hide'][0];
         }
 
         $data['type'] = '2';
@@ -293,15 +295,15 @@ class ContentController extends Controller
 
         $data['parent_id_hide'] = $request->parent_id;
         $data['parent_id'] = $request->parent_id_hide;
-        if( $data['parent_id']==''){
-            $data['parent_id']=$data['parent_id_hide'][0];
+        if ($data['parent_id'] == '') {
+            $data['parent_id'] = $data['parent_id_hide'][0];
         }
 
         $file = $request->file('images');
         //$inputs = $request->all();
         if ($file) {
 
-            $images = $crud->images['images']??'';
+            $images = $crud->images['images'] ?? '';
             if (is_array($images)) {
                 $images =  array_map(function ($item) {
                     return trim($item, '/');
@@ -310,10 +312,10 @@ class ContentController extends Controller
                 File::delete($images);
             }
 
-            $images = $this->uploadImages($request,$crud->attr_type);
+            $images = $this->uploadImages($request, $crud->attr_type);
         } elseif ($crud->images != '') {
             $images = $crud->images;
-            $images['thumb'] = $request->get('imagesThumb');
+            $images['images']['small'] = $request->get('small');
         } else {
             $images = '';
         }
@@ -363,7 +365,9 @@ class ContentController extends Controller
 
         $this->sitemap();
 
-        return redirect('admin/contents/' . $crud->attr_type);
+        return redirect('admin/contents/' . $crud->attr_type . '?page=' . $request->page)->with('success',Lang::get('messages.updated'));
+        // return redirect($request->input('url'))->with('success',Lang::get('messages.updated'));
+        // return back();
     }
 
     /**
@@ -377,14 +381,14 @@ class ContentController extends Controller
 
 
         $crud = Content::find($id);
-        $images = $crud->images['images']??'';
+        $images = $crud->images['images'] ?? '';
         $crud->delete();
         $crud->categories()->detach();
 
-        if(is_array($images)){
-            $images =  array_map( function ($item) {
-                return trim($item,'/');
-            },array_values($images) ) ;
+        if (is_array($images)) {
+            $images =  array_map(function ($item) {
+                return trim($item, '/');
+            }, array_values($images));
 
             File::delete($images);
         }

@@ -58,16 +58,7 @@
                         data-label="@lang('messages.mobile')">{{ $user->company->mobile ?? '' }}</span>
                 </div>
                 <div class="">@lang('messages.phone'):
-                    <span class="ltr">
-                        @isset($user->company->phone)
-                            @foreach ($user->company->phone as $item)
-                                {{ $item }}
-                                @if (!$loop->last)
-                                    -
-                                @endif
-                            @endforeach
-                        @endisset
-                    </span>
+                    <span class="" data-field="phone" style="display: inline-block">{{ $user->company->phone }}</span>
                 </div>
                 <div class="">@lang('messages.site'):
                     <span class="text-editor" data-field="site"

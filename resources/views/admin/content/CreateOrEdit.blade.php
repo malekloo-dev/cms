@@ -172,12 +172,11 @@
                 @endif
 
                 @if(Request()->is('*create*'))
-                    <form method="post" action=" {{ route('contents.store',['attr_type'=>$attr_type]) }}" enctype="multipart/form-data">
+                    <form method="post" action=" {{ route('contents.store',['attr_type'=>$attr_type,'page'=>app('request')->input('page')]) }}" enctype="multipart/form-data">
                 @else
-                    <form method="post" action="   {{ route('contents.update', ['attr_type'=>$attr_type,'content'=>$content_info->id]) }}" enctype="multipart/form-data">
+                    <form method="post" action="   {{ route('contents.update', ['attr_type'=>$attr_type,'content'=>$content_info->id,'page'=>app('request')->input('page')]) }}" enctype="multipart/form-data">
                     @method('PATCH')
                 @endif
-
 
                     @csrf
                     <div class="form-group row">
@@ -260,10 +259,10 @@
                             </select>
 
                         </div>
-
-
-
                     </div>
+
+
+
                     <div class="form-group row">
                         <div class="col-6 col-sm-6">
                             <label for="images" class="control-label">@lang('messages.image')

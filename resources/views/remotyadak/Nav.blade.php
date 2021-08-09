@@ -47,11 +47,11 @@
                         ->orderBy('sort')
                         ->get(); ?>
                         @if (count($subMenu))
-                            <li class="parent"><a href="{{ $menuItem['link'] }}">{{ $menuItem['label'] }}</a>
+                            <li class="parent"><a href="{{ url($menuItem['link']) }}">{{ $menuItem['label'] }}</a>
                                 <div><i class="arrow down"></i></div>
                                 <ul>
                                     @foreach ($subMenu as $subMenuItem)
-                                        <li><a href="{{ in_array($subMenuItem['type'], ['internal', 'external']) ? $subMenuItem['link'] : '/#'.$subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a></li>
+                                        <li><a href="{{ in_array($subMenuItem['type'], ['internal', 'external']) ? url($subMenuItem['link']) : '/#'.$subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a></li>
                                     @endforeach
                                 </ul>
                             </li>

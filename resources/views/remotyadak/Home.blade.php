@@ -1,11 +1,6 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
-@section('head')
 
-@endsection
-@section('footer')
-
-@endsection
 
 @section('Content')
 
