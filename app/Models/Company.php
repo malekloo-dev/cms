@@ -24,13 +24,17 @@ class Company extends Model
 
     public function category()
     {
-        return $this->hasOne(Category::class,'id','parent_id');
+        return $this->hasOne(Category::class,'parent_id','id');
     }
 
 
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'company_category', 'company_id', 'cat_id');
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
 }

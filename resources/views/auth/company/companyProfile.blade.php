@@ -4,7 +4,7 @@
 @section('Content')
 
     <section class="panel ">
-        @include('auth.nav')
+        @include('auth.company.nav')
 
         <div class="profile">
             <h1 class="full">@lang('messages.profile')</h1>
@@ -57,9 +57,11 @@
                     <span class="text-editor" data-field="mobile"
                         data-label="@lang('messages.mobile')">{{ $user->company->mobile ?? '' }}</span>
                 </div>
+
                 <div class="">@lang('messages.phone'):
-                    <span class="" data-field="phone" style="display: inline-block">{{ $user->company->phone }}</span>
+                    <span class="" data-field="phone" style="display: inline-block">{{ $user->company?->phone ?? '' }}</span>
                 </div>
+
                 <div class="">@lang('messages.site'):
                     <span class="text-editor" data-field="site"
                         data-label="@lang('messages.site')">{{ $user->company->site ?? '' }}</span>
@@ -102,7 +104,7 @@
 
 @section('cropper')
 
-    @include('auth.cropper')
+    @include('auth.company.cropper')
 
 @endsection
 

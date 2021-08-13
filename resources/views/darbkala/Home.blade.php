@@ -72,7 +72,7 @@
 
 
     {{--#anchor topViewProduct --}}
-    <section class="index-items home-top-view bg-gray2">
+    <section class="index-items home-top-view bg-gray">
         <div class="flex one">
             <div>
                 <div class="flex two two-500 three-700 six-900 center ">
@@ -146,22 +146,7 @@
         </div>
     </section>
 
-    {{--categoryDetail&label=categoryDetail&var=categoryDetail&count=1--}}
-    @isset($categoryDetail['data'])
-    <section class="my-0 py-5">
-        <div>
-            <div class="flex one three-600">
-                <div class="two-third-600 middle flex" style="order:2">
-                    <h2>{{ $categoryDetail['data']->title }}</h2>
-                    {!! $categoryDetail['data']->brief_description !!}
-                </div>
-                <div class="third-600" style="order:1">
-                    <img src="{{ $categoryDetail['data']->images['images']['large'] }}" alt="">
-                </div>
-            </div>
-        </div>
-    </section>
-    @endisset
+
 
 
     <section class="index-items articles bg-gray2 home-top-view mb-0">
@@ -190,6 +175,23 @@
             </div>
         </div>
     </section>
+
+    {{--categoryDetail&label=categoryDetail&var=categoryDetail&count=1--}}
+    @isset($categoryDetail['data'])
+    <section class="my-0 py-5 ">
+        <div>
+            <div class="flex one three-600">
+                <div class="two-third-600 middle flex" style="order:2">
+                    <h2>{{ $categoryDetail['data']->title }}</h2>
+                    {!! $categoryDetail['data']->brief_description !!}
+                </div>
+                <div class="third-600" style="order:1">
+                    <img src="{{ $categoryDetail['data']->images['images']['large'] }}" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    @endisset
 
 
     {{--#anchor footer --}}

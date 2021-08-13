@@ -21,6 +21,7 @@
         "webpack-livereload-plugin": "^3.0.1"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.4",
         "laravel-file-manager": "^2.5.3"
     }
 }

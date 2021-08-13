@@ -1672,6 +1672,7 @@ pre {
     background: #f5f5f5;
     border-radius: 0.2em;
 }
+// .block{display: block;}
 pre code {
     padding: 0;
 }
@@ -2898,6 +2899,7 @@ section.extra-link {
 }
 
 section.panel {
+    font-size: .9em;
     padding: 1em;
     display: flex;
     flex-direction: row;
@@ -2911,6 +2913,8 @@ section.panel {
             margin: 0 !important;
         }
     }
+
+    h1{text-align: inherit;}
 
     .map-area {
         #mapid {
@@ -2971,7 +2975,7 @@ section.panel {
             padding: 1em;
             border-radius: 50%;
         }
-        img {
+        .company-logo img {
             background-color: #fff;
             border-radius: 50%;
         }
@@ -3054,7 +3058,8 @@ section.panel {
                     margin-bottom: 2px;
                     flex-grow: 1;
                     justify-content: center;
-                    max-width: 115px;
+                    max-width: 214px;
+                    white-space: nowrap;
                     > * {
                         margin-right: 2px;
                     }
@@ -3156,9 +3161,9 @@ section.panel {
     font-family: IRANSans;
     font-style: normal;
     font-weight: 400;
-    src: url(/fonts/iran/IRANSansWeb.eot);
+    src: url(fonts/iran/IRANSansWeb.eot);
     src: url(fonts/iran/IRANSansWeb.eot?#iefix) format("embedded-opentype"),
-        url(fonts/iran/IRANSansWeb.woff2) format("woff2"), url(/fonts/iran/IRANSansWeb.woff) format("woff"),
+        url(fonts/iran/IRANSansWeb.woff2) format("woff2"), url(fonts/iran/IRANSansWeb.woff) format("woff"),
         url(fonts/iran/IRANSansWeb.ttf) format("truetype");
     font-display: swap;
 }

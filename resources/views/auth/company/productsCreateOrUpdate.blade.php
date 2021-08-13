@@ -8,7 +8,6 @@
     <script src="{{ url('/adminAssets/js/persian-datepicker.min.js') }}"></script>
     <link href="{{ url('/adminAssets/css/dependencies.css') }}" rel="stylesheet">
 
-    <link href="{{ url('/adminAssets/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ url('/adminAssets/css/persian-datepicker.min.css') }}" rel="stylesheet">
 
     <script>
@@ -127,7 +126,7 @@
 @section('Content')
 
     <section class="panel">
-        @include('auth.nav')
+        @include('auth.company.nav')
 
         <div class="list">
             <h1><a href="{{ route('company.products') }}">@lang('messages.products')</a> /

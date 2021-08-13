@@ -12,6 +12,9 @@
         </div>
     </div>
 </section>
+@stack('scripts')
+
+
 @yield('footer')
 @yield('cropper')
 

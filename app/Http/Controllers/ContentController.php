@@ -302,7 +302,7 @@ class ContentController extends Controller
         $file = $request->file('images');
         //$inputs = $request->all();
         if ($file) {
-
+            // dd($file);
             $images = $crud->images['images'] ?? '';
             if (is_array($images)) {
                 $images =  array_map(function ($item) {
@@ -315,7 +315,7 @@ class ContentController extends Controller
             $images = $this->uploadImages($request, $crud->attr_type);
         } elseif ($crud->images != '') {
             $images = $crud->images;
-            $images['images']['small'] = $request->get('small');
+            // dd($crud->images);
         } else {
             $images = '';
         }

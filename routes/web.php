@@ -33,8 +33,10 @@ App::setLocale(env('SITE_LANG'));
 
 
 
+// dd(1);
 
-
+Route::post('/returnBank', [CompanyController::class, 'returnBank'])->name('company.products.returnBank')->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);;
+// dd(app('request')->all());
 Route::prefix('/company')->middleware(['auth', 'role:super admin|company'])->group(function () {
     Route::get('/', [CompanyController::class, 'dashboard'])->name('company.dashboard');
 
@@ -48,6 +50,11 @@ Route::prefix('/company')->middleware(['auth', 'role:super admin|company'])->gro
     Route::get('products/edit/{content}', [CompanyController::class, 'productsUpdate'])->name('company.products.update');
     Route::patch('products/edit/{content}', [CompanyController::class, 'productsEdit'])->name('company.products.edit');
     Route::delete('products/{content}', [CompanyController::class, 'productsDestroy'])->name('company.products.destroy');
+    Route::get('products/powerUp/{content}', [CompanyController::class, 'productPowerUp'])->name('company.products.powerUp');
+    Route::post('products/powerUp/{content}', [CompanyController::class, 'sendToBand'])->name('company.products.sendToBand');
+
+    Route::get('transaction', [CompanyController::class, 'transaction'])->name('company.transaction');
+
 });
 
 
@@ -101,7 +108,6 @@ Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(functio
     Route::get('company/edit/{company}', [CompanyController::class, 'companyCreateOrUpdate'])->name('admin.company.update');
     Route::patch('company/edit/{company}', [CompanyController::class, 'companyEdit'])->name('admin.company.edit');
     Route::delete('company/{company}', [CompanyController::class, 'companyDestroy'])->name('admin.company.destroy');
-
 });
 Route::get('admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login.form');
 
@@ -116,13 +122,14 @@ Route::get('/spider/reload', [SpiderController::class, 'reload']);
 Route::post('/spider/addToCms', [SpiderController::class, 'reloadAdd']);
 
 
-Route::group(['middleware'=>'HtmlMinifier'], function(){
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/reload', [ContentController::class, 'reload']);
+Route::group(['middleware' => 'HtmlMinifier'], function () {
+    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/reload', [ContentController::class, 'reload']);
 
-Route::get('/profile/{id?}', [CompanyController::class, 'profileShow'])->name('profile.index');
-Route::get('/{slug?}/{b?}', [CmsController::class, 'request']);
+    Route::get('/profile/{id?}', [CompanyController::class, 'profileShow'])->name('profile.index');
+    Route::get('/{slug?}/{b?}', [CmsController::class, 'request']);
 
-Route::post('/comment', [CommentController::class, 'store'])->name('comment.client.store');
-Route::post('/contact', [CommentController::class, 'store'])->name('contact.client.store');
+    Route::post('/comment', [CommentController::class, 'store'])->name('comment.client.store');
+    Route::post('/contact', [CommentController::class, 'store'])->name('contact.client.store');
 });
+

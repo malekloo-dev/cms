@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="{{ mix('panel/panel.css',env('TEMPLATE_NAME')) }}" >
+
+
 <div class="company-nav">
     <div class="burger">
         <span></span>
@@ -23,7 +26,7 @@
             <img style="display: none">
 
         @else
-            <img src="{{ url(Auth::user()->company->logo['large']) }}?{{ uniqid() }}">
+            <img width="100" src="{{ url(Auth::user()->company->logo['large']) }}?{{ uniqid() }}">
             @endif
 
 
@@ -31,12 +34,19 @@
         <li>
             {{ Auth::user()->name }}
         </li>
+        <li class="price">
+
+            <i class="fa fa-wallet"></i>
+            @convertCurrency(200000) {{ __('messages.toman') }}</li>
         <li class="{{ Request::is('company') ? 'active' : '' }}"><a
                 href="{{ route('company.dashboard') }}">{{ __('messages.Dashboard') }}</a></li>
         <li class="{{ Request::is('company/profile') ? 'active' : '' }}"><a href="{{ route('company.profile') }}">
                 {{ __('messages.profile') }}</a></li>
         <li class="{{ (Request::is('company/products') || Request::is('company/products/create')) ? 'active' : '' }}"><a class="no-border"
                 href="{{ route('company.products') }}"> {{ __('messages.Products') }}</a></li>
+        <li class="{{ Request::is('company/transaction') ? 'active' : '' }}"><a class="no-border"
+                    href="{{ route('company.transaction') }}"> {{ __('messages.transaction') }}</a></li>
+
         <li>
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
@@ -45,6 +55,11 @@
         </li>
     </ul>
 </div>
+
+<style>
+    .price{color: #333; font-size: 1.3em; font-weight: normal}
+</style>
+
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"

@@ -29,5 +29,16 @@ mix.setPublicPath('public/' + template + '/')
             strictMath: true
         }
     })
+    .copy(
+        'resources/fonts',
+        'public/' + template + '/fonts'
+    )
+    .sass('resources/css/panel.scss', 'panel')
+
+    .copy(
+        'node_modules/@fortawesome/fontawesome-free/webfonts/',
+        'public/' + template + '/panel/webfonts/'
+    )
     // .minify('public/'+template + '/'+template + '.css')
     .version();
+

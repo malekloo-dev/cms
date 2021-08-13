@@ -17,9 +17,6 @@
     <link rel="apple-touch-icon" sizes="256x256" href="{{ asset('/img/logo-256-256.png') }}">
     <link rel="apple-touch-startup-image" href="{{ asset('/img/logo-512-512.png') }}">
 
-    <meta name="msapplication-TileImage" content="{{ asset('/img/logo-192-192.png') }}">
-    <meta name="msapplication-TileColor" content="#fff">
-    <meta name="msapplication-square100x100logo" content="{{ asset('/img/fav.png') }}">
 
     @yield('bootstrap')
 
@@ -28,14 +25,26 @@
     <link rel="icon" href="{{ asset('/img/fav.png') }}" type="image/x-icon">
     <link rel="stylesheet" media="bogus">
 
-    <meta property="og:locale" content="fa_IR">
-    <meta property="og:type" content="{{$seo['og:type'] ?? "" }}">
-    <meta property="og:title" content="{{$seo['meta_title'] ?? "" }}">
-    <meta property="og:description" content="{{$seo['meta_description']  ?? ""}}">
-    <meta property="og:url" content="{{ $seo['url'] ?? ""}}">
-    <meta property="og:image" content="{{ asset('/img/logo2x.png') }}">
 
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@yield('twitter:site',env('TEMPLATE_NAME'))">
+    <meta name="twitter:title" content="@yield('twitter:title',$seo['meta_title']??'')" />
+    <meta name="twitter:description" content="@yield('twitter:description',$seo['meta_description']??'')" />
+    <meta name="twitter:creator" content="@yield('twitter:creator',env('TEMPLATE_NAME'))">
+    <meta name="twitter:domain" content="@yield('twitter:domain',url('/'))">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="@yield('twitter:image', url(env('TEMPLATE_NAME') . '/img/logo-96-96.png') )">
+
+    <meta property="og:locale" content="fa_IR">
+    <meta property="og:type" content="@yield('og:type',$seo['og:type']??'') ">
+    <meta property="og:title" content="@yield('og:title',$seo['meta_title']??'')">
+    <meta property="og:description" content="@yield('og:description',$seo['meta_description']??'')">
+    <meta property="og:url" content="{{ Request::url() ?? $seo['url'] }}">
+    <meta property="og:image" content="@yield('og:image',url(env('TEMPLATE_NAME') . '/img/logo-96-96.png'))" />
+    <meta property="og:image:type" content="@yield('og:image:type','image/png')" />
+    <meta property="og:image:width" content="@yield('og:image:width','20')" />
+    <meta property="og:image:height" content="@yield('og:image:height','20')" />
+    <meta property="og:image:alt" content="@yield('og:image:alt',$seo['meta_title']??'')" />
 
 
     @yield('head')
