@@ -1,4 +1,3 @@
-# https
 
 
 <IfModule mod_rewrite.c>
@@ -12,6 +11,10 @@
 	RewriteBase /
 	RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 	RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+   # https
+    RewriteCond %{HTTPS} !on
+    RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 
     # Handle Authorization Header
