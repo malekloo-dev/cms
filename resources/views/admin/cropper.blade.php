@@ -1,15 +1,15 @@
-
-
-<label for="jpeg" >
+<label for="jpeg">
     jpeg
-    <input type="radio" checked id="jpeg" name="imageJson" value="{{ old('imageJson',($content_info->imageJson??($company->imageJson??''))) }}">
-    <img height="" src="{{ $cropperPreview ??''}}" id="cropperPreview" >
+    <input type="radio" checked id="jpeg" name="imageJson"
+        value="{{ old('imageJson', $content_info->imageJson ?? ($company->imageJson ?? '')) }}">
+    <img height="" src="{{ $cropperPreview ?? '' }}" id="cropperPreview">
 </label>
 
 <label for="png">
     png
-    <input type="radio" id="png" name="imageJson" value="{{ old('imageJson',($content_info->imageJson??($company->imageJson??''))) }}">
-    <img height="" src="{{ $cropperPreview ??''}}" id="cropperPreviewPng" >
+    <input type="radio" id="png" name="imageJson"
+        value="{{ old('imageJson', $content_info->imageJson ?? ($company->imageJson ?? '')) }}">
+    <img height="" src="{{ $cropperPreview ?? '' }}" id="cropperPreviewPng">
 </label>
 
 <meta name="_token" content="{{ csrf_token() }}">
@@ -18,13 +18,14 @@
 <script src="{{ url('/adminAssets/js/cropper.js') }}"></script>
 
 <style type="text/css">
-    @if(!isset($cropperPreview) || $cropperPreview == url('/'))
-    label[for=jpeg]{
+    @if (!isset($cropperPreview) || $cropperPreview == url('/'))
+
+    label[for=jpeg] {
         display: none
     }
-    @endif
 
-    label[for=png]{
+    @endif
+    label[for=png] {
         display: none
     }
 
@@ -43,37 +44,77 @@
     }
 
     .modal-lg {
-        max-width: 1000px !important;??
+        max-width: 1000px !important;
+        ??
     }
 
 </style>
-<div class="modal fade modal-cropper" style="direction: ltr;" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-    aria-hidden="true">
+<div class="modal fade modal-cropper" style="direction: ltr;" id="modal" tabindex="-1" role="dialog"
+    aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">Laravel Crop Image Before Upload using Cropper JS -
-                    NiceSnippets.com</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="img-container">
-                    <div class="row">
 
-                        <div class="col-lg-8 col-md-8 col-sm-8" style="max-width: 50%;float: inherit;">
-                            <img id="image" src="https://avatars0.githubusercontent.com/u/3456749">
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-md-8 col-xs-12" style="">
+                        <img id="image" src="https://avatars0.githubusercontent.com/u/3456749">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary" data-method="move" data-option="-10"
+                                data-second-option="0" title="Move Left">
+                                <span class="docs-tooltip" data-toggle="tooltip" title=""
+                                    data-original-title="cropper.move(-10, 0)">
+                                    <span class="fa fa-arrow-left"></span>
+                                </span>
+                            </button>
+                            <button type="button" class="btn btn-primary" data-method="move" data-option="10"
+                                data-second-option="0" title="Move Right">
+                                <span class="docs-tooltip" data-toggle="tooltip" title=""
+                                    data-original-title="cropper.move(10, 0)">
+                                    <span class="fa fa-arrow-right"></span>
+                                </span>
+                            </button>
+                            <button type="button" class="btn btn-primary" data-method="move" data-option="0"
+                                data-second-option="-10" title="Move Up">
+                                <span class="docs-tooltip" data-toggle="tooltip" title=""
+                                    data-original-title="cropper.move(0, -10)">
+                                    <span class="fa fa-arrow-up"></span>
+                                </span>
+                            </button>
+                            <button type="button" class="btn btn-primary" data-method="move" data-option="0"
+                                data-second-option="10" title="Move Down">
+                                <span class="docs-tooltip" data-toggle="tooltip" title=""
+                                    data-original-title="cropper.move(0, 10)">
+                                    <span class="fa fa-arrow-down"></span>
+                                </span>
+                            </button>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4" style="max-width: 50%;float: inherit;">
-                            <div class="preview"></div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1"
+                                title="Zoom In">
+                                <span class="docs-tooltip" data-toggle="tooltip" title=""
+                                    data-original-title="cropper.zoom(0.1)">
+                                    <span class="fa fa-search-plus"></span>
+                                </span>
+                            </button>
+                            <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1"
+                                title="Zoom Out">
+                                <span class="docs-tooltip" data-toggle="tooltip" title=""
+                                    data-original-title="cropper.zoom(-0.1)">
+                                    <span class="fa fa-search-minus"></span>
+                                </span>
+                            </button>
                         </div>
                     </div>
+                    <div class="col-md-4 col-xs-12 hidden-xs" style="">
+                        <div class="preview"></div>
+                    </div>
                 </div>
+
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="crop">Crop</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('messages.cancel')</button>
+                <button type="button" class="btn btn-primary" id="crop">@lang('messages.crop')</button>
             </div>
         </div>
     </div>
@@ -83,8 +124,8 @@
     var image = document.getElementById('image');
     var cropper;
 
-    if($('[name=imageJson]').val() != '')
-        $('#cropperPreview').attr('src',$('input[name=imageJson]').val())
+    if ($('[name=imageJson]').val() != '')
+        $('#cropperPreview').attr('src', $('input[name=imageJson]').val())
 
 
     $("body").on("change", "#images", function(e) {
@@ -175,10 +216,10 @@
                     reader.onloadend = function() {
                         var base64data = reader.result;
                         $('input[name=imageJson]#png').val(base64data)
-                        $('#cropperPreviewPng').attr('src',base64data)
+                        $('#cropperPreviewPng').attr('src', base64data)
                     };
                 });
-                $('#cropperPreview').attr('src',base64data)
+                $('#cropperPreview').attr('src', base64data)
                 $modal.modal('hide');
                 // $.ajax({
                 //     type: "POST",
@@ -196,6 +237,19 @@
                 //   });
             }
         }, 'image/png');
-    })
+    });
 
+
+    $('button[data-method]').click(function(e) {
+
+        var method = $(this).data('method');
+        var option = $(this).data('option');
+        if (method == 'move') {
+            var second = $(this).data('second-option');
+            cropper.move(option, second);
+        }
+        if(method == 'zoom'){
+            cropper.zoom(option);
+        }
+    });
 </script>

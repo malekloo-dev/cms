@@ -128,6 +128,7 @@
                 </ul>
             </div>
         @endif
+        <h1>@lang('messages.register')</h1>
 
         <form method="POST" action="">
             @csrf
@@ -143,22 +144,22 @@
                         placeholder="{{ __('messages.example') }}:09331181877" autocomplete="mobile">
 
                     @error('mobile')
-                        <span class="invalid-feedback" role="alert">
+                        <span class="red" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row mb-1">
                 <label for="password" class="col-md-12 col-form-label ">@lang('messages.password')</label>
 
                 <div class="col-md-12">
-                    <input id="password" type="text" class="form-control @error('password') is-invalid @enderror"
+                    <input id="password" type="text" autocomplete="off"  class="form-control @error('password') is-invalid @enderror"
                         name="password" required autocomplete="password">
 
                     @error('password')
-                        <span class="invalid-feedback" role="alert">
+                        <span class="red" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -168,7 +169,7 @@
             <div class="form-group row mb-0">
                 <div class="col-md-12 pull-right">
                     <div id="loading" ></div>
-                    <button type="submit" id="btn-loading" style="display: none" class="btn btn-success btn-block pull-right mat-btn ">
+                    <button type="submit" id="btn-loading" style="display: none" class="btn btn-inherit btn-block  ">
                         @lang('messages.register')
                     </button>
 
@@ -181,5 +182,7 @@
 
         <a href="{{ route('password.request') }}">@lang('messages.forgot')</a>
     </section>
+
+    <style>.red{color: red}</style>
 
 @endsection

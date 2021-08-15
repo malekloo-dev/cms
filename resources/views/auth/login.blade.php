@@ -56,6 +56,10 @@
         }
 
     </style>
+
+
+    <link rel="stylesheet" href="{{ mix('panel/panel.css', env('TEMPLATE_NAME')) }}">
+
 @endpush
 
 
@@ -124,11 +128,13 @@
 
 <section class="login">
 
+
     @if (session('success'))
         <div class="alert alert-success" role="alert">
             {{ session('success') }}
         </div>
     @endif
+    <h1>@lang('messages.login')</h1>
 
     <form method="POST" action="">
         @csrf
@@ -144,23 +150,25 @@
                 placeholder="{{ __('messages.example') }}:09331181877" autofocus>
 
             @error('mobile')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
+                <span class="red" role="alert">
+                    <strong>{{ $message }} </strong>
                 </span>
             @enderror
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="position: relative">
             <label for="password" class="control-label">@lang('messages.password')</label>
 
             <input id="password" type="password" class="form-control ltr @error('password') is-invalid @enderror"
                 name="password" value="" required autocomplete="current-password">
 
-            <input type="checkbox" class="" id="show-password" onclick="showPassword()"> <label
-                for="show-password">@lang('messages.Show Password')</label>
+            <input type="checkbox" style="visibility: hidden;" class="" id="show-password" onclick="showPassword()">
+
+            <label for="show-password" style="position: absolute;top:1.5em;font-size:1.3em"> <i
+                    class="fa fa-eye"></i></label>
 
             @error('password')
-                <span class="invalid-feedback" role="alert">
+                <span class="red" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
@@ -168,17 +176,17 @@
 
 
         </div>
-        <div class="form-group">
+        <div class="form-group mb-2">
             <input type="checkbox" name="remember" id="remember">
             <label for="remember">@lang('messages.remember')</label>
 
         </div>
 
-        <div class="form-group">
+        <div class="form-group ">
 
             <div id="loading" style="display:block"></div>
 
-            <button type="submit" style="display: none" id="btn-loading" class="btn btn-info   btn-block">
+            <button type="submit" style="display: none" id="btn-loading" class="btn btn-inherit  btn-block">
                 <i class="fa fa-lock"></i> @lang('messages.login')
             </button>
 
@@ -191,5 +199,11 @@
 
     <a href="{{ route('password.request') }}">@lang('messages.forgot')</a>
 </section>
+<style>
+    .red {
+        color: red
+    }
+
+</style>
 
 @endsection

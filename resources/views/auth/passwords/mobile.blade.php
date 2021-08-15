@@ -133,7 +133,7 @@
             </span>
         @enderror
 
-
+            <h1>@lang('messages.forgot')</h1>
         <form method="POST" id="forgot-password" action="">
             @csrf
 
@@ -148,7 +148,7 @@
                 <div class=" center ">
                     <div id="loading" style="display:block"></div>
 
-                    <button type="submit" style="display: none" id="btn-loading" class="btn btn-info  mat-btn radius-all  mat-elevation-z ">
+                    <button type="submit" style="display: none" id="btn-loading" class="btn btn-inherit btn-block">
                         @lang('messages.Send Password')
                     </button>
                 </div>

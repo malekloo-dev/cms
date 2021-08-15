@@ -1,5 +1,5 @@
 @extends(@env('TEMPLATE_NAME').'.App')
-@section('meta-title', __('messages.Products'))
+@section('meta-title', __('messages.'))
 
 @section('Content')
 {{-- <link href="{{ url('/adminAssets/css/font-awesome.min.css') }}" rel="stylesheet"> --}}
@@ -42,15 +42,4 @@
     </div>
 </section>
 
-
-<style>
-    .red {
-        color: red
-    }
-
-    .green {
-        color: green
-    }
-
-</style>
 @endsection

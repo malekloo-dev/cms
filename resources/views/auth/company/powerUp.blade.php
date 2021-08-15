@@ -6,7 +6,7 @@
     @include('auth.company.nav')
 
 
-    <div>
+    <div class="powerup text-center">
         <h1>{{ __('messages.upgrade power') }}</h1>
 
         @if (\Session::has('success'))
@@ -22,20 +22,21 @@
             </div>
         @endif
 
-        <form action="{{ route('company.products.sendToBand', $content->id) }}" method="POST">
-
+        <form action="{{ route('company.invoice.store', $content->id) }}" method="POST">
+            @method('PATCH')
             @csrf
-            <div class="row ">
-                <div class="col-3 col-md-3 col-xs-12">
+            <div class="flex one center ">
+                <div class="">
                     {{ __('messages.product') }}: {{ $content->title }}
                 </div>
-
-                <div class="col-3 col-md-3 col-xs-12">
-                    {{ __('messages.power price') }}: @convertCurrency(30000) {{ __('messages.toman') }}
-                </div>
-                <div class="col-3 col-md-3 col-xs-12">
+                <div class="">
                     {{ __('messages.date') }}: {{ convertGtoJ(Carbon\Carbon::now()) }}
                 </div>
+
+                <div class="bg-orange border-radius-5 mb-2 pt-1">
+                    {{ __('messages.power price') }}: @convertCurrency(30000) {{ __('messages.toman') }}
+                </div>
+
 
                 <script>
                     minus = (el) => {
@@ -57,15 +58,18 @@
                     }
                 </script>
 
-                <div class="col-2 col-md-2 col-xs-12">
+                <div class=" ">
                     <label for="name" class=""><i class="fa fa-bolt"></i> @lang('messages.power')</label>
-                    <div class="number-input">
+                    <br>
+                    <div class="number-input ">
                         <span onclick="minus(this)"></span>
                         <input id="count" type="number" class="form-control" name="count" min="1"
-                            value="{{ old('count', 1) }}" />
+                        value="{{ old('count', 1) }}" />
                         <span onclick="plus(this)" class="plus"></span>
                     </div>
+
                     <div id="total-price" >@convertCurrency(30000) @lang('messages.toman')</div>
+
                     <span class="text-danger">{{ $errors->first('title') }}</span>
                 </div>
 
@@ -106,7 +110,7 @@
         align-items: center;
         justify-content: center;
         width: 3rem;
-        height: 3rem;
+        height: 2rem;
         cursor: pointer;
         margin: 0;
         position: relative;
@@ -136,7 +140,7 @@
         border: solid #ddd;
         border-width: 0 2px;
         font-size: 2em;
-        height: 3rem;
+        height: 2rem;
         font-weight: bold;
         text-align: center;
     }

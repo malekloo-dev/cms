@@ -21,11 +21,12 @@ class CreateTransactionsTable extends Migration
             $table->unsignedBigInteger('user_id')->default(0);
 
             $table->string('title',255)->nullable();
-            $table->integer('price')->default(0);
+            $table->integer('price')->default(0)->unsigned();
+            $table->integer('count')->default(0)->unsigned();
             $table->text('description')->nullable();
             $table->string('discount_code',10)->nullable();
 
-            $table->morphs('transaction'); // Adds unsigned INTEGER transaction_id and STRING transaction_type
+            $table->morphs('transactionable'); // Adds unsigned INTEGER transaction_id and STRING transaction_type
 
             $table->integer('status')->default(0); // 0 disable, 1 send to bank ,2 pay successfully, -1 have a problem
             $table->string('message')->nullable();

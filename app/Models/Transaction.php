@@ -12,18 +12,19 @@ class Transaction extends Model
     protected $fillable = [
         'title',
         'price',
+        'count',
         'discount_code',
         'description',
         'status',
         'message',
-        'transaction_type',
-        'transaction_id',
+        'transactionable_type',
+        'transactionable_id',
     ];
 
     /**
      * Get the parent commentable model (post or video).
      */
-    public function transactionble()
+    public function transactionable()
     {
         return $this->morphTo();
     }

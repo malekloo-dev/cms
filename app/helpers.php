@@ -482,11 +482,11 @@ function idToMenuLabel($id)
     return '';
 }
 
-function sendSms($numbers = array("09331181877"), $message = '',$i=0)
+function sendSms($numbers = array("09331181877"), $message = '', $i = 0)
 {
     ini_set("soap.wsdl_cache_enabled", "0");
     $sms_client = new SoapClient('http://payamak-service.ir/SendService.svc?wsdl', array('encoding' => 'UTF-8'));
-    $fromNumber = ['10009611','5000249','SimCard','50005708631983','10002188','5000249','210002100000021','30005920000015'];
+    $fromNumber = ['10009611', '5000249', 'SimCard', '50005708631983', '10002188', '5000249', '210002100000021', '30005920000015'];
 
     try {
         $parameters['userName'] = "mt.09331181877";
@@ -505,9 +505,40 @@ function sendSms($numbers = array("09331181877"), $message = '',$i=0)
         if ($res == 0)
             return $res;
 
-        $res = sendSms($numbers,$message,++$i);
+        $res = sendSms($numbers, $message, ++$i);
         return $res;
     } catch (Exception $e) {
         return 'Caught exception: ' .  $e->getMessage() . "\n";
+    }
+}
+
+if (!function_exists('uniqueSlug')) {
+    function uniqueSlug($model, $slug,$i='')
+    {
+
+
+        // $slug = 'درب ضد سرقت';
+
+        $slug = preg_replace('/\s+/', '-', $slug);
+        $slug = str_replace('--', '-', $slug);
+        $slug = str_replace('--', '-', $slug);
+        $slug = str_replace('--', '-', $slug);
+
+        // echo $slug;
+        $obj = $model::whereSlug($slug.$i)->exists();
+
+
+        if ($obj) {
+            if($i == ''){
+                $i = 1;
+            }
+            // echo 'd';
+
+            return uniqueSlug($model, $slug,++$i);
+        }
+
+        // echo $slug.$i;
+
+        return $slug.$i;
     }
 }

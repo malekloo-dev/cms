@@ -136,7 +136,7 @@
                                     </span> |
                                     {{ $detail->viewCount }} بار دیده شده |
                                     تاریخ انتشار: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span> |
-
+                                    @lang('messages.power'):{{ $detail->power }}
                                 </div>
                             </div>
 

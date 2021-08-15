@@ -59,7 +59,8 @@ class CmsController extends Controller
                 ->paginate(20);
             $relatedProduct = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
         } else {
-            $relatedProduct = $detail->products()->paginate(20);
+            $relatedProduct = $detail->products('power','desc')->paginate(20);
+            // dd($detail->products()->orderBy('power','asc'));
         }
 
 

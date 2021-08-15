@@ -51,7 +51,13 @@ Route::prefix('/company')->middleware(['auth', 'role:super admin|company'])->gro
     Route::patch('products/edit/{content}', [CompanyController::class, 'productsEdit'])->name('company.products.edit');
     Route::delete('products/{content}', [CompanyController::class, 'productsDestroy'])->name('company.products.destroy');
     Route::get('products/powerUp/{content}', [CompanyController::class, 'productPowerUp'])->name('company.products.powerUp');
-    Route::post('products/powerUp/{content}', [CompanyController::class, 'sendToBand'])->name('company.products.sendToBand');
+
+
+    Route::get('invoice', [CompanyController::class, 'invoiceList'])->name('company.invoice.list');
+    Route::get('invoice/{transaction}', [CompanyController::class, 'invoice'])->name('company.invoice');
+    Route::patch('invoice/{content}', [CompanyController::class, 'invoiceStore'])->name('company.invoice.store');
+
+    Route::patch('sendToBand/{transaction}', [CompanyController::class, 'sendToBand'])->name('company.sendToBand');
 
     Route::get('transaction', [CompanyController::class, 'transaction'])->name('company.transaction');
 

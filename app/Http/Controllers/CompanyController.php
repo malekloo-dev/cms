@@ -120,16 +120,15 @@ class CompanyController extends Controller
         $data['images'] = $imagesUrl;
 
         if ($request->slug == '') {
-            $data['slug'] = $request->title;
+            $data['slug'] = uniqueSlug(Content::class, $request->title);
         } else {
-            $data['slug'] = $request->slug;
+            $data['slug'] = uniqueSlug(Content::class, $request->slug);
         }
-        $data['slug'] = preg_replace('/\s+/', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
+
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         // $data['status'] = '1';
+
+        // dd($uniqueSlug);
         $content = Content::create($data);
         // dd(new CompanyContent(['company_id' => $user->id, 'content_id' => $content->id]));
         // $content->companies()->create(new CompanyContent(['company_id' => $user->id, 'content_id' => $content->id]));
@@ -199,12 +198,10 @@ class CompanyController extends Controller
 
         $data['images'] = $imagesUrl;
 
-        $data['slug'] = $request->title;
+        // $data['slug'] = $request->title;
 
-        $data['slug'] = preg_replace('/\s+/', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
+        $data['slug'] = uniqueSlug(Content::class, $request->title);
+
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         $data['status'] = '1';
 
@@ -297,16 +294,56 @@ class CompanyController extends Controller
         return view('auth.company.powerUp', compact('user', 'content'));
     }
 
-    public function sendToBand(Request $request, Content $content)
+    public function invoiceList(){
+        $user = Auth::user();
+        $transactions = $user->transactions;
+
+        return view('auth.company.invoiceList', compact('transactions'));
+    }
+
+    public function invoice(Transaction $transaction)
+    {
+        // dd($transaction->transactionable);
+        $parentModel = $transaction->transactionable;
+
+        return view('auth.company.invoice', compact('transaction','parentModel'));
+    }
+    public function invoiceStore(Request $request, Content $content)
+    {
+        // dd($request->all());
+        $user = Auth::user();
+
+
+        $count = $request->count;
+        $price = 30000 * $count;
+
+        // dd(Lang::get('messages.power up for',['count'=>$count,'content'=>$content->title]));
+
+        $transaction = $user->transactions()->firstOrCreate([
+            'title' => $content->title,
+            'count' => $count,
+            'price' => $price,
+            'description' =>  Lang::get('messages.power up for', ['count' => $count, 'content' => $content->title]),
+            'transactionable_type' => Content::class,
+            'transactionable_id' => $content->id,
+            'message' => Lang::get('messages.invoice created'),
+            'status' => 0
+        ]);
+
+        // dd($transaction);
+
+        return redirect()->route('company.invoice', $transaction->id)->with('success', Lang::get('messages.invoice created'));
+    }
+
+
+    public function sendToBand(Request $request, Transaction $transaction)
     {
         $user = Auth::user();
 
 
-        $price = 30000 * $request->count;
 
         // dd($user->transaction());
 
-        $transaction = $user->transactions()->save(new Transaction(['title' => $content->title, 'price' => $price, 'description' => '', 'transaction_type' => 'App\Models\Content', 'transaction_id' => $content->id, 'status' => 0])) ;
 
         // dd($transaction);
 
@@ -316,7 +353,7 @@ class CompanyController extends Controller
             'Authorization' => 'bearer ' . env('PAYPING'),
         ])
             ->post('https://api.payping.ir/v2/pay', [
-                'amount' => $price,
+                'amount' => $transaction->price,
                 'returnUrl' => url('/') . '/returnBank',
                 'payerIdentity' => $user->mobile,
                 'payerName' => $user->name,
@@ -353,7 +390,7 @@ class CompanyController extends Controller
         $transaction = Transaction::find($transactionId);
         // dd($transaction);
 
-        $content = $transaction->transaction_type::find($transaction->transaction_id);
+        $content = $transaction->transactionable_type::find($transaction->transactionable_id);
         $company = $content->companies->first();
         $user = $company->user;
         // dd($company->user->id);
@@ -381,10 +418,10 @@ class CompanyController extends Controller
         }
 
 
-        $transaction->update(['status' => 2, 'message' => $response->body()]);
-        // $transaction->status = 2;
-        // $transaction->message = $response->body();
-        // $transaction->save();
+        $transaction->update(['status' => 2, 'message' => __('messages.pay success')]);
+
+        $content->power = $transaction->count;
+        $content->save();
 
 
         return redirect(route('company.products.powerUp', ['content' => $content->id]))->with('success', __('messages.pay success'));
@@ -452,7 +489,7 @@ class CompanyController extends Controller
 
         $transactions = $user->transactions()->paginate(10);
 
-        return view('auth.company.transactions', compact('user','transactions'));
+        return view('auth.company.transactions', compact('user', 'transactions'));
     }
 
 
