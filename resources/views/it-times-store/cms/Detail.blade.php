@@ -1,16 +1,25 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
-@push('head')
-    <meta property="og:image" content="{{ url($detail->images['images']['medium'] ?? '') }}" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W') }}" />
-    <meta property="og:image:height"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H') }}" />
-    <meta property="og:image:alt" content="{{ $detail->title }}" />
-@endpush
+@section('twitter:title', $detail->title)
+@section('twitter:description', clearHtml($detail->brief_description))
 
-@push('script')
+@section('og:title', $detail->title)
+@section('og:description', clearHtml($detail->brief_description))
+
+@if (isset($detail->images['images']['medium']))
+
+@section('twitter:image', url($detail->images['images']['medium']))
+
+@section('og:image', url($detail->images['images']['medium']))
+@section('og:image:type', 'image/jpeg')
+@section('og:image:width', $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W'))
+@section('og:image:height', $detail->attr_type == 'article' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H'))
+@section('og:image:alt', $detail->title)
+
+@endif
+
+
+@push('scripts')
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', () => {
 

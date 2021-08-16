@@ -205,15 +205,13 @@ class CategoryController extends Controller
         $data['parent_id'] = $request->parent_id;
         $data['type'] = '1';
         $data['images'] = $imagesUrl;
+
         if ($request->slug == '') {
-            $data['slug'] = $request->title;
+            $data['slug'] = uniqueSlug(Content::class, $request->title) ;
         } else {
-            $data['slug'] = $request->slug;
+            $data['slug'] = uniqueSlug(Content::class, $request->slug) ;
         }
-        $data['slug'] = preg_replace('/\s+/', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
+
 
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         Category::create($data);
@@ -239,15 +237,14 @@ class CategoryController extends Controller
         $data['publish_date'] = convertJToG($date);
         $data['type'] = 1;
         //$data['images']= $imagesUrl;
+
         if ($request->slug == '') {
-            $data['slug'] = $request->title;
+            $data['slug'] = uniqueSlug(Content::class, $request->title) ;
         } else {
-            $data['slug'] = $request->slug;
+            $data['slug'] = uniqueSlug(Content::class, $request->slug) ;
         }
-        $data['slug'] = preg_replace('/\s+/', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
+
+
 
         // Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
 
@@ -366,14 +363,10 @@ class CategoryController extends Controller
         $data['images'] = $images;
 
         if ($request->slug == '') {
-            $data['slug'] = $request->title;
+            $data['slug'] = uniqueSlug(Content::class, $request->title) ;
         } else {
-            $data['slug'] = $request->slug;
+            $data['slug'] = uniqueSlug(Content::class, $request->slug) ;
         }
-        $data['slug'] = preg_replace('/\s+/', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
 
         $crud->update($data);
 

@@ -27,7 +27,7 @@
             }
         </script>
         {!! htmlScriptTagJsApi([
-    'action' => `{{ route('password.email') }}`,
+    'action' => 'password/email' ,
     'callback_then' => 'callbackThen',
     'callback_catch' => 'callbackCatch',
 ]) !!}

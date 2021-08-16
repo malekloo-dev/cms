@@ -51,8 +51,10 @@
 
 
 
+@stack('scripts')
 
-@stack('script')
+@yield('footer')
+@yield('cropper')
 
 <script>
     var TEMPLATE_NAME = `{{ env('TEMPLATE_NAME') }}`;

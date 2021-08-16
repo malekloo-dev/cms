@@ -28,7 +28,7 @@
             }
         </script>
         {!! htmlScriptTagJsApi([
-    'action' => `{{ route('register') }}`,
+    'action' => 'register' ,
     'callback_then' => 'callbackThen',
     'callback_catch' => 'callbackCatch',
 ]) !!}

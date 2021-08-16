@@ -60,7 +60,6 @@ Route::prefix('/company')->middleware(['auth', 'role:super admin|company'])->gro
     Route::patch('sendToBand/{transaction}', [CompanyController::class, 'sendToBand'])->name('company.sendToBand');
 
     Route::get('transaction', [CompanyController::class, 'transaction'])->name('company.transaction');
-
 });
 
 
@@ -133,9 +132,15 @@ Route::group(['middleware' => 'HtmlMinifier'], function () {
     Route::get('/reload', [ContentController::class, 'reload']);
 
     Route::get('/profile/{id?}', [CompanyController::class, 'profileShow'])->name('profile.index');
+
+
+    // WebsiteSetting::where('variable','=',['product','article','category'])->get()->each(function ($prefix) {
+    //     Route::prefix($prefix->value)->get('/{slug?}/{b?}', [CmsController::class, 'request']);
+    // });
+
     Route::get('/{slug?}/{b?}', [CmsController::class, 'request']);
+
 
     Route::post('/comment', [CommentController::class, 'store'])->name('comment.client.store');
     Route::post('/contact', [CommentController::class, 'store'])->name('contact.client.store');
 });
-

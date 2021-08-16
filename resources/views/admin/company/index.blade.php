@@ -39,7 +39,7 @@
                             <th>@lang('messages.email')</th>
                             <th>@lang('messages.mobile')</th>
                             <th>@lang('messages.logo')</th>
-                            <th>@lang('messages.catrgory')</th>
+                            <th>@lang('messages.category')</th>
 
                             <th>@lang('messages.updated at')</th>
                             <th>@lang('messages.created at')</th>
@@ -60,8 +60,9 @@
                                 <td class="">{{ $item->mobile ?? '' }}</td>
                                 <td class=""><img src="{{ $item->logo['small'] ?? '' }}" alt=""></td>
                                 <td>
+
                                     @foreach ($item->categories as $it)
-                                        @if ($it->id == $item->category->id)
+                                        @if ($it->id == $item->category?->id)
                                             <i class="fa fa-check"></i>
                                         @endif
                                         {{ $it->title ?? '' }}

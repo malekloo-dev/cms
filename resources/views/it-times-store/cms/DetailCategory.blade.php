@@ -1,4 +1,23 @@
 @extends(@env('TEMPLATE_NAME').'.App')
+
+@section('twitter:title', $detail->title)
+@section('twitter:description', clearHtml($detail->brief_description))
+
+@section('og:title', $detail->title)
+@section('og:description', clearHtml($detail->brief_description))
+
+@if (isset($detail->images['images']['medium']))
+@section('twitter:image', url($detail->images['images']['medium']))
+
+@section('og:image', url($detail->images['images']['medium']))
+@section('og:image:type', 'image/jpeg')
+@section('og:image:width', $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W'))
+@section('og:image:height', $detail->attr_type == 'article' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H'))
+@section('og:image:alt', $detail->title)
+
+@endif
+
+
 @push('head')
     @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
         <link rel="prev" href="{{ json_decode($relatedProduct->toJson())->prev_page_url }}">
@@ -9,7 +28,7 @@
 @endpush
 
 
-@push('script')
+@push('scripts')
 
     <script src="{{ asset('/siema.min.js') }}"></script>
     <script>
@@ -145,7 +164,7 @@
                                         @endif
                                         <footer>
                                             <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
-                                            {!! $content->brief_description !!}
+                                            {{-- {!! $content->brief_description !!} --}}
                                         </footer>
                                     </article>
                                 </div>

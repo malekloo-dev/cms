@@ -1,6 +1,6 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
-@push('script')
+@push('scripts')
     <script src="{{ asset('/siema.min.js') }}"></script>
     <script>
         var w;
