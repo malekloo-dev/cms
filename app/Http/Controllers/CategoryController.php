@@ -357,7 +357,7 @@ class CategoryController extends Controller
         }
         $data['images'] = $images;
 
-        $data['slug'] = uniqueSlug(Category::class, $crud);
+        $data['slug'] = uniqueSlug(Category::class, $crud, ($data['slug'] != '') ? $data['slug'] : $data['title']);
 
         $crud->update($data);
 

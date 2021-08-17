@@ -198,7 +198,7 @@
                     <div class="col-5 col-md-5  col-xs-12">
                         <label for="slug" class=" col-form-label text-md-left">@lang('messages.url') :</label>
                         <input type="text" class="form-control" name="slug"
-                            value="{{ old('slug', $content_info->slug ?? '') }}" />
+                            value="{{ old('slug', $content_info->slug ?? '') }}" placeholder="@lang('messages.if slug empty')" />
                         <span class="text-danger">{{ $errors->first('slug') }}</span>
                     </div>
                     <div class="col-2 col-md-2 col-xs-12">

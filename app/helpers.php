@@ -540,19 +540,16 @@ if (!function_exists('uniqueSlug')) {
     {
 
 
+
         // update model
         if ($slugOrModel instanceof Model) {
-
-            if ($slugOrModel->getOriginal('slug') == $slugOrModel->getAttribute('slug')) {
+            if ($slugOrModel->getOriginal('slug') == $slug) {
                 return $slugOrModel->getOriginal('slug');
             }
-            $slug = $slugOrModel->getAttribute('slug');
         } else {
-
             //new model
             $slug = $slugOrModel;
         }
-
 
 
         $slug = preg_replace('/\s+/', '-', $slug);

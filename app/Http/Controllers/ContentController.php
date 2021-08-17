@@ -185,6 +185,10 @@ class ContentController extends Controller
             $imagesUrl = $this->uploadImages($request, $request->attr_type);
         }
 
+
+
+
+
         $data = $request->all();
         $date = $data['publish_date'];
         $data['publish_date'] = convertJToG($date);
@@ -203,6 +207,16 @@ class ContentController extends Controller
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         $object = Content::create($data);
         $object->categories()->attach($data['parent_id_hide']);
+        //gallery
+        if (isset($request->imageJsonGallery)) {
+            // dd($crud->gallery);
+            $imagesGallery = $this->uploadImages($request, $object->attr_type, false);
+            foreach ($imagesGallery as $galleryFile) {
+
+                $object->gallery()->save(new Gallery(['images' => $galleryFile, 'model_type' => Content::class, 'model_id' => $object->id]));
+            }
+            // dd($imagesGallery);
+        }
 
         return $object;
     }
@@ -350,8 +364,9 @@ class ContentController extends Controller
             // dd($imagesGallery);
         }
 
+        // dd($request->slug);
 
-        $data['slug'] = uniqueSlug(Content::class, $crud);
+        $data['slug'] = uniqueSlug(Content::class, $crud, ($request->slug != '') ? $request->slug : $request->title);
 
         $crud->update($data);
 
