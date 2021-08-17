@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\Content;
 use App\Models\export;
+use App\Models\Gallery;
 use App\Sitemap;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -22,40 +23,60 @@ use function PHPUnit\Framework\assertIsArray;
 
 class ContentController extends Controller
 {
-    protected function uploadImages($request, $type = 'article')
+    protected function uploadImages($request, $type = 'article', $mainImage = true)
     {
 
-        $file = $request->imageJson;
-        $fileOrg = $request->file('images');
         $year = Carbon::now()->year;
         $imagePath = "/upload/images/{$year}/";
-        $filenameOrg = $fileOrg->getClientOriginalName();
-        // dd($filenameOrg);
 
 
-        $image_parts = explode(";base64,", $file);
-        $image_type_aux = explode("image/", $image_parts[0]);
-        $image_type = $image_type_aux[1];
-        $image_base64 = base64_decode($image_parts[1]);
+        if ($mainImage) {
+            $file = $request->imageJson;
+            $fileOrg = $request->file('images');
+            $filenameOrg = $fileOrg->getClientOriginalName();
+            $fileName = str_replace(' ', '-', $request->title) ?? $filenameOrg;
 
-        $fileName = str_replace(' ', '-', $request->title) ?? $filenameOrg;
-        $fileType = ($image_type == 'jpeg') ? 'jpg' : $image_type;
-        $fileNameAndType = $fileName . '.' . $fileType;
+            $image_parts = explode(";base64,", $file);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+
+            $fileType = ($image_type == 'jpeg') ? 'jpg' : $image_type;
+            $fileNameAndType = $fileName . '.' . $fileType;
 
 
-        // dd(public_path() . $imagePath . $fileNameAndType);
-        $file = $fileOrg->move(public_path($imagePath), $fileName . '-org.' . $fileType); // original
-        // dd(public_path($imagePath));
-        // $sizes = ["300", "600", "900"];
-        file_put_contents(public_path() . $imagePath . $fileNameAndType, $image_base64); // croped
+            $file = $fileOrg->move(public_path($imagePath), $fileName . '-org.' . $fileType); // original
 
-        // dd($file->getRealPath());
-        // $url['images'] = $this->resize($file->getRealPath(), $type, $imagePath, $filename);
 
-        $url['images'] = $this->resize($imagePath . $fileNameAndType, $type, $imagePath, $fileNameAndType, $fileName, $fileType);
-        $url['thumb'] = $url['images']['small'];
-        $url['images']['org'] = $imagePath . $fileName . '-org.' . $fileType;
-        // dd($url);
+
+            file_put_contents(public_path() . $imagePath . $fileNameAndType, $image_base64); // croped
+
+
+            $url['images'] = $this->resize($imagePath . $fileNameAndType, $type, $imagePath, $fileNameAndType, $fileName, $fileType);
+            $url['thumb'] = $url['images']['small'];
+            $url['images']['org'] = $imagePath . $fileName . '-org.' . $fileType;
+        } else {
+            foreach ($request->imageJsonGallery as $ga) {
+                $file = $ga;
+                $fileName = uniqid();
+
+                $image_parts = explode(";base64,", $file);
+                $image_type_aux = explode("image/", $image_parts[0]);
+                $image_type = $image_type_aux[1];
+                $image_base64 = base64_decode($image_parts[1]);
+
+                $fileType = ($image_type == 'jpeg') ? 'jpg' : $image_type;
+                $fileNameAndType = $fileName . '.' . $fileType;
+
+
+                file_put_contents(public_path() . $imagePath . $fileNameAndType, $image_base64); // croped
+
+
+                $url[]['images'] = $this->resize($imagePath . $fileNameAndType, $type, $imagePath, $fileNameAndType, $fileName, $fileType);
+            }
+        }
+
+
         return $url;
     }
 
@@ -176,11 +197,8 @@ class ContentController extends Controller
         $data['type'] = '2';
         $data['images'] = $imagesUrl;
 
-        if ($request->slug == '') {
-            $data['slug'] = uniqueSlug(Content::class, $request->title) ;
-        } else {
-            $data['slug'] = uniqueSlug(Content::class, $request->slug) ;
-        }
+        $data['slug'] = uniqueSlug(Content::class, ($request->slug != '') ? $request->slug : $request->title);
+
 
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         $object = Content::create($data);
@@ -317,13 +335,23 @@ class ContentController extends Controller
         } else {
             $images = '';
         }
+
         $data['images'] = $images;
 
-        if ($request->slug == '') {
-            $data['slug'] = uniqueSlug(Content::class, $request->title) ;
-        } else {
-            $data['slug'] = uniqueSlug(Content::class, $request->slug) ;
+
+        //gallery
+        if (isset($request->imageJsonGallery)) {
+            // dd($crud->gallery);
+            $imagesGallery = $this->uploadImages($request, $crud->attr_type, false);
+            foreach ($imagesGallery as $galleryFile) {
+
+                $crud->gallery()->save(new Gallery(['images' => $galleryFile, 'model_type' => Content::class, 'model_id' => $crud->id]));
+            }
+            // dd($imagesGallery);
         }
+
+
+        $data['slug'] = uniqueSlug(Content::class, $crud);
 
         $crud->update($data);
 
@@ -359,10 +387,11 @@ class ContentController extends Controller
 
         $this->sitemap();
 
-        return redirect('admin/contents/' . $crud->attr_type . '?page=' . $request->page)->with('success',Lang::get('messages.updated'));
+        return redirect('admin/contents/' . $crud->attr_type . '?page=' . $request->page)->with('success', Lang::get('messages.updated'));
         // return redirect($request->input('url'))->with('success',Lang::get('messages.updated'));
         // return back();
     }
+
 
     /**
      * Remove the specified resource from storage.

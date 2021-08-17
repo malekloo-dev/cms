@@ -1,64 +1,49 @@
-<label for="jpeg">
-    jpeg
-    <input type="radio" checked id="jpeg" name="imageJson"
-        value="{{ old('imageJson', $content_info->imageJson ?? ($company->imageJson ?? '')) }}">
-    <img height="" src="{{ $cropperPreview ?? '' }}" id="cropperPreview">
-</label>
-
-<label for="png">
-    png
-    <input type="radio" id="png" name="imageJson"
-        value="{{ old('imageJson', $content_info->imageJson ?? ($company->imageJson ?? '')) }}">
-    <img height="" src="{{ $cropperPreview ?? '' }}" id="cropperPreviewPng">
-</label>
-
-<meta name="_token" content="{{ csrf_token() }}">
-
-<link href="{{ url('/adminAssets/css/cropper.css') }}" rel="stylesheet">
-<script src="{{ url('/adminAssets/js/cropper.js') }}"></script>
+{{-- <input type="" id="jpeg" name="imageJson"> --}}
 
 <style type="text/css">
-    @if (!isset($cropperPreview) || $cropperPreview == url('/'))
-
-    label[for=jpeg] {
-        display: none
-    }
-
-    @endif
-    label[for=png] {
-        display: none
-    }
-
     .modal-cropper img {
         display: block;
         max-width: 300px;
         max-height: 300px;
     }
 
-    .preview {
-        overflow: hidden;
-        width: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_W') }}px;
-        height: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_H') }}px;
-        margin: 10px;
-        border: 1px solid red;
-    }
-
     .modal-lg {
         max-width: 1000px !important;
-        ??
+    }
+
+    .gallery {
+        display: flex
+    }
+
+    .gallery>div {
+        position: relative;
+        display: flex;
+        cursor: pointer;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
+
+    .gallery>div::after {
+        content: 'X';
+        position: absolute;
+        color: red;
+        font-weight: bold;
+        font-size: 3em;
+
     }
 
 </style>
-<div class="modal fade modal-cropper" style="direction: ltr;" id="modal" tabindex="-1" role="dialog"
+<div class="modal fade modal-cropper" style="direction: ltr;" id="galleryModal" tabindex="-1" role="dialog"
     aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
 
             <div class="modal-body">
                 <div class="row">
 
                     <div class="col-md-8 col-xs-12" style="">
-                        <img id="image" src="">
+                        <img id="galleryImage" src="">
+
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary" data-method="move" data-option="-10"
                                 data-second-option="0" title="Move Left">
@@ -106,33 +91,31 @@
                             </button>
                         </div>
                     </div>
-                    <div class="col-md-4 col-xs-12 hidden-xs" style="">
-                        <div class="preview"></div>
-                    </div>
+
                 </div>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('messages.cancel')</button>
-                <button type="button" class="btn btn-primary" id="crop">@lang('messages.crop')</button>
+                <button type="button" class="btn btn-primary" id="galleryCrop">@lang('messages.crop')</button>
             </div>
         </div>
     </div>
 </div>
 <script>
-    var $modal = $('#modal');
-    var image = document.getElementById('image');
-    var cropper;
+    var $galleryModal = $('#galleryModal');
+    var galleryImage = document.getElementById('galleryImage');
+    var galleryCropper;
 
     if ($('[name=imageJson]').val() != '')
         $('#cropperPreview').attr('src', $('input[name=imageJson]').val())
 
 
-    $("body").on("change", "#images", function(e) {
+    $("body").on("change", "#galleryFile", function(e) {
         var files = e.target.files;
         var done = function(url) {
-            image.src = url;
-            $modal.modal('show');
+            galleryImage.src = url;
+            $galleryModal.modal('show');
         };
         var reader;
         var file;
@@ -153,77 +136,51 @@
         }
     });
 
-    $modal.on('shown.bs.modal', function() {
+    $galleryModal.on('shown.bs.modal', function() {
 
-        cropper = new Cropper(image, {
-            //   aspectRatio: 1,
-            //   viewMode: 3,
+        galleryCropper = new Cropper(galleryImage, {
             aspectRatio: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_SMALL_W') }} /
                 {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_SMALL_H') }},
-            viewMode: 0,
-            preview: '.preview'
+            viewMode: 0
         });
     }).on('hidden.bs.modal', function() {
-        cropper.destroy();
-        cropper = null;
+        galleryCropper.destroy();
+        galleryCropper = null;
     });
 
-    $("#crop").click(function() {
+    $("#galleryCrop").click(function() {
 
 
 
-        canvas = cropper.getCroppedCanvas({
+        canvas = galleryCropper.getCroppedCanvas({
             fillColor: '#ffffff',
             width: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_W') }},
             height: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_H') }},
             imageSmoothingEnabled: true,
             imageSmoothingQuality: 'high',
         });
-        canvasPng = cropper.getCroppedCanvas({
-            // fillColor: '#ffffff',
-            width: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_W') }},
-            height: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_H') }},
-            imageSmoothingEnabled: true,
-            imageSmoothingQuality: 'high',
-        });
-        // console.log(canvas.toDataURL('image/jpeg'));
+
 
         canvas.toBlob(function(blob) {
 
-            $('label[for=jpeg]').show();
-            $('label[for=png]').show();
-
-
-            // console.log(blob);
             url = URL.createObjectURL(blob);
-            // console.log(url);
             var reader = new FileReader();
-            //  console.log(reader);
             reader.readAsDataURL(blob);
 
-
-            // fileName = $("input[name=title]").val().replace(' ', '-');
-
-
             reader.onloadend = function() {
-                // console.log(reader);
+
                 var base64data = reader.result;
-                $('input[name=imageJson]#jpeg').val(base64data)
-                canvasPng.toBlob(function(blob) {
-                    url = URL.createObjectURL(blob);
-                    var reader = new FileReader();
-                    reader.readAsDataURL(blob);
-                    reader.onloadend = function() {
-                        var base64data = reader.result;
-                        $('input[name=imageJson]#png').val(base64data)
-                        $('#cropperPreviewPng').attr('src', base64data)
-                    };
-                });
-                $('#cropperPreview').attr('src', base64data)
-                $modal.modal('hide');
+
+                $('.gallery').append('<div><img src="' + base64data +
+                    '" height="100"><input id="jpeg" type="hidden" name="imageJsonGallery[]" value="' +
+                    base64data + '" ></div>');
+
+                $('#galleryFile').val('');
+
+                $galleryModal.modal('hide');
 
             }
-        }, 'image/png');
+        }, 'image/jpeg');
     });
 
 
@@ -235,10 +192,37 @@
         var option = $(this).data('option');
         if (method == 'move') {
             var second = $(this).data('second-option');
-            cropper.move(option, second);
+            galleryCropper.move(option, second);
         }
-        if(method == 'zoom'){
-            cropper.zoom(option);
+        if (method == 'zoom') {
+            galleryCropper.zoom(option);
         }
+    });
+
+    $('body').on('click', '.gallery div', function(e) {
+        var img = $(this).find('img');
+
+        if(img.data('id')){
+            var id = img.data("id");
+            var token = $("meta[name='csrf-token']").attr("content");
+
+            $.ajax(
+            {
+                url: "/admin/gallery/"+id,
+                type: 'DELETE',
+                data: {
+                    "id": id,
+                    "_token": token,
+                },
+                success: function (){
+                    console.log("it Works");
+
+                }
+            });
+
+        }
+
+        $(this).remove();
+
     });
 </script>

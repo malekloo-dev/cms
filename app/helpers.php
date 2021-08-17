@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
 use App\Models\Content;
 use App\Models\Menu;
+use Illuminate\Database\Eloquent\Model;
 use Morilog\Jalali\CalendarUtils;
 
 function h_encrypt($string)
@@ -381,6 +382,28 @@ if (!function_exists('tableOfImages')) {
         return $images;
     }
 }
+if (!function_exists('forceRedirect')) {
+
+
+    function forceRedirect()
+    {
+
+        if (env('FORCE_REDIRECT', false)) {
+
+            // $url = $_SERVER['REQUEST_URI'];
+            $url = app('request')->path();
+            // dd($url);
+            $urlexplod = explode('/', $url);
+
+            // dd(url(end($urlexplod)));
+            if (count($urlexplod) > 2 && !app('request')->is('admin/*')) {
+                header("HTTP/1.1 301 Moved Permanently");
+                header("Location: " . url(end($urlexplod)));
+                exit();
+            }
+        }
+    }
+}
 if (!function_exists('clearHtml')) {
 
 
@@ -513,32 +536,48 @@ function sendSms($numbers = array("09331181877"), $message = '', $i = 0)
 }
 
 if (!function_exists('uniqueSlug')) {
-    function uniqueSlug($model, $slug,$i='')
+    function uniqueSlug($model = Content::class, $slugOrModel = '', string $slug = '', string|int $i = '')
     {
 
 
-        // $slug = 'درب ضد سرقت';
+        // update model
+        if ($slugOrModel instanceof Model) {
+
+            if ($slugOrModel->getOriginal('slug') == $slugOrModel->getAttribute('slug')) {
+                return $slugOrModel->getOriginal('slug');
+            }
+            $slug = $slugOrModel->getAttribute('slug');
+        } else {
+
+            //new model
+            $slug = $slugOrModel;
+        }
+
+
 
         $slug = preg_replace('/\s+/', '-', $slug);
         $slug = str_replace('--', '-', $slug);
         $slug = str_replace('--', '-', $slug);
         $slug = str_replace('--', '-', $slug);
 
-        // echo $slug;
-        $obj = $model::whereSlug($slug.$i)->exists();
+        // $oldSlug = $ownModel->slug;
+
+
+
+
+        //check exist new slug
+        $obj = $model::whereSlug($slug . $i)->exists();
 
 
         if ($obj) {
-            if($i == ''){
+            if ($i == '') {
                 $i = 1;
             }
-            // echo 'd';
 
-            return uniqueSlug($model, $slug,++$i);
+            return uniqueSlug($model, $slugOrModel, $slug, ++$i);
         }
 
-        // echo $slug.$i;
 
-        return $slug.$i;
+        return $slug . $i;
     }
 }

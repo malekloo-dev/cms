@@ -3584,15 +3584,6 @@ picture > img {
   display: block;
 }
 
-div.gallery > div {
-  align-items: center;
-}
-
-div.gallery img {
-  max-width: 100%;
-  border-radius: 5px;
-}
-
 div.faq div div :first-child {
   font-weight: 700;
 }
@@ -3621,6 +3612,13 @@ div.attr > div > div > :nth-child(odd) {
 div.attr > div > div > :nth-child(even) {
   flex: 4;
   background-color: #f4f4f4;
+}
+
+.gallery {
+  overflow-x: scroll;
+  max-width: 100%;
+  height: inherit;
+  display: flex;
 }
 
 .comment {
@@ -5203,9 +5201,14 @@ nav.transparent .show:checked ~ .burger {
   color: transparent;
 }
 
+body {
+  font-size: 15px;
+}
+
 h2 {
   display: inline-block;
   border-bottom: 5px solid #00F438;
+  font-size: 1em;
 }
 
 .banner * {

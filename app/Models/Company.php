@@ -37,4 +37,13 @@ class Company extends Model
         return $this->belongsTo(User::class);
     }
 
+     /**
+     * Get all of the post's comments.
+     */
+    public function gallery()
+    {
+        return $this->morphMany(Gallery::class, 'model');
+    }
+
+
 }

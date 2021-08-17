@@ -147,9 +147,10 @@
             <div class="flex one ">
                 <div>
                     <div class="">
-                        <div class="flex one two-500 four-900 center ">
+                        <div class="flex one two-500 five-900 center ">
                             @foreach ($relatedProduct as $content)
                                 <div>
+                                    <a href="{{ $content->slug }}">
                                     <article>
                                         @if (isset($content->images['images']['small']))
                                             <figure class="image">
@@ -163,10 +164,11 @@
 
                                         @endif
                                         <footer>
-                                            <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
+                                            <h2> {{ $content->title }}</h2>
                                             {{-- {!! $content->brief_description !!} --}}
                                         </footer>
                                     </article>
+                                    </a>
                                 </div>
                             @endforeach
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Content;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -45,11 +46,11 @@ class CategoryController extends Controller
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
 
-        $fileName = str_replace(' ','-',$request->title) ?? $filenameOrg;
+        $fileName = str_replace(' ', '-', $request->title) ?? $filenameOrg;
         $fileType = ($image_type == 'jpeg') ? 'jpg' : $image_type;
         $fileNameAndType = $fileName . '.' . $fileType;
 
-        $file = $fileOrg->move(public_path($imagePath), $fileName.'-org.'.$fileType); // original
+        $file = $fileOrg->move(public_path($imagePath), $fileName . '-org.' . $fileType); // original
         file_put_contents(public_path() . $imagePath . $fileNameAndType, $image_base64); // croped
 
         // $file = $file->move(public_path($imagePath), $filename);
@@ -58,14 +59,14 @@ class CategoryController extends Controller
 
         // $url['thumb'] = $url['images']['small'];
 
-        $url['images'] = $this->resize( $imagePath . $fileNameAndType, $type, $imagePath, $fileNameAndType, $fileName, $fileType);
+        $url['images'] = $this->resize($imagePath . $fileNameAndType, $type, $imagePath, $fileNameAndType, $fileName, $fileType);
         $url['thumb'] = $url['images']['small'];
-        $url['images']['org'] = $imagePath . $fileName.'-org.'.$fileType;
+        $url['images']['org'] = $imagePath . $fileName . '-org.' . $fileType;
 
         return $url;
     }
 
-    private function resize($path, $type, $imagePath, $fileNameAndType,$fileName,$fileType)
+    private function resize($path, $type, $imagePath, $fileNameAndType, $fileName, $fileType)
     {
         $sizes = array(
             "small" => env(Str::upper($type) . '_SMALL_W'),
@@ -206,11 +207,8 @@ class CategoryController extends Controller
         $data['type'] = '1';
         $data['images'] = $imagesUrl;
 
-        if ($request->slug == '') {
-            $data['slug'] = uniqueSlug(Content::class, $request->title) ;
-        } else {
-            $data['slug'] = uniqueSlug(Content::class, $request->slug) ;
-        }
+        $data['slug'] = uniqueSlug(Content::class, ($data['slug'] != '') ? $data['slug'] : $data['title']);
+
 
 
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
@@ -238,11 +236,8 @@ class CategoryController extends Controller
         $data['type'] = 1;
         //$data['images']= $imagesUrl;
 
-        if ($request->slug == '') {
-            $data['slug'] = uniqueSlug(Content::class, $request->title) ;
-        } else {
-            $data['slug'] = uniqueSlug(Content::class, $request->slug) ;
-        }
+        $data['slug'] = uniqueSlug(Content::class, ($request->slug != '') ? $request->slug : $request->title);
+
 
 
 
@@ -346,7 +341,7 @@ class CategoryController extends Controller
         $crud = Category::find($id);
 
         $data = $request->all();
-        $data['attr_type']='category';
+        $data['attr_type'] = 'category';
         $date = $data['publish_date'];
         $data['publish_date'] = convertJToG($date);
         $file = $request->file('images');
@@ -362,11 +357,7 @@ class CategoryController extends Controller
         }
         $data['images'] = $images;
 
-        if ($request->slug == '') {
-            $data['slug'] = uniqueSlug(Content::class, $request->title) ;
-        } else {
-            $data['slug'] = uniqueSlug(Content::class, $request->slug) ;
-        }
+        $data['slug'] = uniqueSlug(Category::class, $crud);
 
         $crud->update($data);
 
@@ -383,7 +374,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $crud = Category::find($id);
-        $images = $crud->images['images']??'';
+        $images = $crud->images['images'] ?? '';
         $attr_type = $crud->attr_type;
         $crud->delete();
 

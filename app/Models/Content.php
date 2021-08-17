@@ -69,4 +69,12 @@ class Content extends Model
         return $this->morphMany(Transaction::class, 'transactionable');
     }
 
+    /**
+     * Get all of the post's comments.
+     */
+    public function gallery()
+    {
+        return $this->morphMany(Gallery::class, 'model');
+    }
+
 }

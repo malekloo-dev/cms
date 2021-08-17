@@ -15,10 +15,11 @@ $menu-shadow:0 1px 0px rgba(0, 0, 0, 0.1);
 @import "app.scss";
 @import "grid.scss";
 @import "nav.scss";
-
+body{font-size: 15px;}
 h2{
     display: inline-block;
     border-bottom: 5px solid $theme-color2;
+    font-size: 1em;
 }
 
 .banner {

@@ -6,6 +6,7 @@ use App\Http\Controllers\CmsController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageCropperController;
 // use App\Http\Controllers\IndexController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\ModuleBuilderController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SpiderController;
 use App\Http\Controllers\WebsiteSettingController;
+use App\Models\Content;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
@@ -30,10 +32,8 @@ App::setLocale(env('SITE_LANG'));
 //
 //});
 
+forceRedirect();
 
-
-
-// dd(1);
 
 Route::post('/returnBank', [CompanyController::class, 'returnBank'])->name('company.products.returnBank')->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);;
 // dd(app('request')->all());
@@ -72,8 +72,16 @@ Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(functio
     //Route::get('contents/{type}/{company?}/{companyId?}', [ContentController::class, 'index'])->name('contents.type.show');
     Route::get('contents/create/{type}', [ContentController::class, 'create'])->name('contents.create');
     Route::post('contents/upload-image/', [ContentController::class, 'uploadImageSubject'])->name('contents.upload');
-    Route::get('image-cropper', [ImageCropperController::class, 'index']);
-    Route::post('image-cropper/upload', [ImageCropperController::class, 'upload']);
+
+    Route::delete('gallery/{gallery}', [GalleryController::class,'destroy'])->name('gallery.destroy');
+
+
+    // Route::get('image-cropper', [ImageCropperController::class, 'index']);
+    // Route::post('image-cropper/upload', [ImageCropperController::class, 'upload']);
+
+
+
+
 
 
     Route::prefix('seo')->name('seo.')->group(function () {

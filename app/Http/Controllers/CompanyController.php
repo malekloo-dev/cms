@@ -119,16 +119,12 @@ class CompanyController extends Controller
 
         $data['images'] = $imagesUrl;
 
-        if ($request->slug == '') {
-            $data['slug'] = uniqueSlug(Content::class, $request->title);
-        } else {
-            $data['slug'] = uniqueSlug(Content::class, $request->slug);
-        }
+        $data['slug'] = uniqueSlug(Content::class, ($request->slug != '') ? $request->slug : $request->title);
+
 
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         // $data['status'] = '1';
 
-        // dd($uniqueSlug);
         $content = Content::create($data);
         // dd(new CompanyContent(['company_id' => $user->id, 'content_id' => $content->id]));
         // $content->companies()->create(new CompanyContent(['company_id' => $user->id, 'content_id' => $content->id]));
@@ -200,7 +196,7 @@ class CompanyController extends Controller
 
         // $data['slug'] = $request->title;
 
-        $data['slug'] = uniqueSlug(Content::class, $request->title);
+        $data['slug'] = uniqueSlug(Content::class, $content);
 
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         $data['status'] = '1';
@@ -294,7 +290,8 @@ class CompanyController extends Controller
         return view('auth.company.powerUp', compact('user', 'content'));
     }
 
-    public function invoiceList(){
+    public function invoiceList()
+    {
         $user = Auth::user();
         $transactions = $user->transactions;
 
@@ -306,7 +303,7 @@ class CompanyController extends Controller
         // dd($transaction->transactionable);
         $parentModel = $transaction->transactionable;
 
-        return view('auth.company.invoice', compact('transaction','parentModel'));
+        return view('auth.company.invoice', compact('transaction', 'parentModel'));
     }
     public function invoiceStore(Request $request, Content $content)
     {
