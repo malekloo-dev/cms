@@ -10,14 +10,12 @@
 @section('Content')
     <section class="index-item-top bg-green mt-0 mb-0">
         <div class="text-center">
-            <h1>آزمایشگاه محیط و صنعت ایمن پایش </h1>
+            <h1> محیط و صنعت ایمن پایش آزمایشگاه معتمد محیط زیست </h1>
         </div>
     </section>
 
     <section>
         <div>
-
-            <h1>آزمایشگاه معتمد محیط زیست</h1>
             <div class="flex one two-700">
                 <div><img src="{{ asset('img/آزمایشگاه-محیط-زیست.jpg') }}" alt=""></div>
                 <div>
