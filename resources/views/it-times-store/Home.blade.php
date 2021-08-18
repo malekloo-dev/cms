@@ -1,6 +1,6 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
-@push('script')
+@push('scripts')
     <script src="{{ asset('/siema.min.js') }}"></script>
     <script>
         var w;
@@ -64,7 +64,7 @@
 
 
 
-<section class=" shadowy-1 my-0 py-3  category-section" onresize="onResize()">
+<section class=" shadowy-1 my-0 py-2 brands category-section" onresize="onResize()">
     <div class="flex one  ">
         <div class="siema p-0">
             {{--category&label=cat&var=category&count=10 --}}
@@ -72,19 +72,18 @@
                 @foreach ($category['data'] as $content)
                     <a href="{{ $content->slug }}">
                         <div class="hover text-center">
-                            @if (isset($content->images['thumb']))
+                            @if (isset($content->images['images']['small']))
                                 <figure class="image">
-                                    <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
-                                        alt="{{ $content->title }}" width="40" height="40"
-                                        srcset="
-                                                                                                {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
-                                                                                                {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM_W') }}w">
+                                    <img src="{{ $content->images['images']['small']  }}"
+                                        alt="{{ $content->title }}" width="" height=""
+                                        srcset="{{ $content->images['images']['small']  }} {{ env('CATEGORY_SMALL_W') }}w,
+                                                {{ $content->images['images']['medium']  }} {{ env('CATEGORY_MEDIUM_W') }}w">
                                     <figcaption>
-                                        <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                                        <div class="p-0 m-0 text-center"> {{ $content->title }}</div>
                                     </figcaption>
                                 </figure>
                             @else
-                                <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                                <div class="p-0 m-0 text-center"> {{ $content->title }}</div>
                             @endif
 
                         </div>
@@ -116,7 +115,24 @@
 @endisset
 
 
-
+<section>
+    <div>
+        <div class="flex one five-500 center">
+            <a href="/سیم-ها" class="flex">
+                <img src="{{ url(env('TEMPLATE_NAME').'/img/سیم.jpg') }}" alt="سیم">
+            </a>
+            <a href="/کانکتور-و-تبدیل" class="flex">
+                <img src="{{ url(env('TEMPLATE_NAME').'/img/کانکتور.jpg') }}" alt="کانکتور">
+            </a>
+            <a href="/کابل" class="flex">
+                <img src="{{ url(env('TEMPLATE_NAME').'/img/کابل.jpg') }}" alt="کابل">
+            </a>
+            <a href="/تجهیزات-الکترونیک" class="flex">
+                <img src="{{ url(env('TEMPLATE_NAME').'/img/تجهیزات-الکتریکی.jpg') }}" alt="تجهیزات-الکتریکی">
+            </a>
+        </div>
+    </div>
+</section>
 
 <section class="bg-gray-dark my-0 products">
     <div >

@@ -1,4 +1,30 @@
 @extends('admin.layouts.app')
+
+@section('footer')
+<script src="/ckeditor4/ckeditor.js"></script>
+
+    <script>
+        $("#meta_keywords").select2({
+            tags: [],
+            maximumInputLength: 100
+        });
+
+        $(document).ready(function() {
+            CKEDITOR
+            .replace(document.querySelector('#description'), {
+                ckfinder: {
+                    uploadUrl: "{{ route('contents.upload', ['_token' => csrf_token()]) }}",
+                },
+
+                @if (!$ltr)
+                    language: 'fa'
+                @endif
+            })
+        });
+
+    </script>
+@endsection
+
 @section('content')
     <div class="content-control">
         <ul class="breadcrumb">
@@ -36,15 +62,21 @@
 
                             @php
                                 $attr_type = 'company';
-                                $cropperPreview = url($company->logo['large']??'');
+                                $cropperPreview = url($company->logo['large'] ?? '');
                             @endphp
                             <style>
-                                #cropperPreview,#cropperPreviewPng{border-radius: 50%; width: 40%}
+                                #cropperPreview,
+                                #cropperPreviewPng {
+                                    border-radius: 50%;
+                                    width: 40%
+                                }
+
                             </style>
                             @include('admin.cropper')
 
                             <input type="file" style="display: none" name="images" id="images">
-                            <div style="cursor: pointer;" class="btn btn-info" onclick="document.getElementById('images').click();">
+                            <div style="cursor: pointer;" class="btn btn-info"
+                                onclick="document.getElementById('images').click();">
                                 @lang('messages.add') / @lang('messages.edit') @lang('messages.image')
                             </div>
                         </div>
@@ -54,9 +86,9 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-6 form-group">
                             <label for="name">@lang('messages.category'):</label>
-                            <select id="parent_id" name="parent_id[]" multiple>
+                            <select id="parent_id" name="parent_id[]" multiple required>
                                 @foreach ($category as $Key => $fields)
-                                    <option value="{{ $fields['id'] }}" >{!! $fields['symbol'] . $fields['title'] !!}</option>
+                                    <option value="{{ $fields['id'] }}">{!! $fields['symbol'] . $fields['title'] !!}</option>
                                 @endforeach
                             </select>
 
@@ -68,8 +100,8 @@
 
                             <div id="parent_id_val" class="parent_id_val"></div>
 
-                            <select id="parent_id_hide" name="parent_id_hide">
-                                <option value="{!! ($company->parent_id ?? '') !!}"></option>
+                            <select id="parent_id_hide" name="parent_id_hide" required>
+                                <option value="{!! $company->parent_id ?? '' !!}"></option>
                             </select>
 
                         </div>
@@ -78,11 +110,16 @@
 
                     <div class="row">
 
+                        <div class="col-md-3  col-sm-3 form-group">@lang('messages.mobile'):
+                            <input class="form-control" name="mobile" type="text"
+                                value="{{ old('mobile', $company->mobile ?? '') }}" required>
+                            <span class="text-danger">{{ $errors->first('mobile') }}</span>
+                        </div>
 
                         <div class="col-md-3  col-sm-3 form-group">
                             @lang('messages.store name'):
                             <input class="form-control" name="name" type="text"
-                                value="{{ old('name', $company->name ?? '') }}">
+                                value="{{ old('name', $company->name ?? '') }}" required>
                             <span class="text-danger">{{ $errors->first('name') }}</span>
                         </div>
 
@@ -100,11 +137,7 @@
                             <span class="text-danger">{{ $errors->first('sale_manager') }}</span>
                         </div>
 
-                        <div class="col-md-3  col-sm-3 form-group">@lang('messages.mobile'):
-                            <input class="form-control" name="mobile" type="text"
-                                value="{{ old('mobile', $company->mobile ?? '') }}">
-                            <span class="text-danger">{{ $errors->first('mobile') }}</span>
-                        </div>
+
                     </div>
 
                     <div class="row">
@@ -167,9 +200,39 @@
                         </div>
                     </div>
 
+
+                    <div class="row">
+                        <div class="col-md-6 col-6">
+                            <label for="meta_title">Meta Title</label>
+                            <input type="text" class="form-control" name="meta_title"
+                                value="{{ old('meta_title', $company->meta_title ?? '') }}" />
+                            <span class="text-danger">{{ $errors->first('meta_title') }}</span>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <label for="name" class=" text-md-left">meta keywords</label>
+                            <input id="meta_keywords" type="text" name="meta_keywords"
+                                value="{{ old('meta_keywords', $company->meta_keywords ?? '') }}" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="meta_description" class=" col-form-label text-md-left">meta
+                                Description:</label>
+                            <textarea class="form-control" id="meta_description"
+                                name="meta_description">{{ old('meta_description', $company->meta_description ?? '') }}</textarea>
+                        </div>
+
+                    </div>
+
+
+
+
+
                     <div class="row">
                         <div class="col-md-12  col-sm-12 form-group">@lang('messages.description'):
-                            <textarea name="description" class="form-control" cols="30" rows="10">{{ old('description', $company->description ?? '') }}</textarea>
+                            <textarea id="description" name="description" class="form-control" cols="30"
+                                rows="10">{{ old('description', $company->description ?? '') }}</textarea>
 
                         </div>
                     </div>
@@ -179,7 +242,7 @@
 
                             <button type="submit" class="btn btn-success  @if (!$ltr) pull-right @endif mat-btn ">
 
-                                                                             @if (Request()->is('*create*'))
+                                                                                  @if (Request()->is('*create*'))
                                 @lang('messages.add')
                             @else
                                 @lang('messages.edit')
@@ -205,86 +268,85 @@
 
 
     <script>
-$(document).ready(function() {
-        var $input = $("#parent_id");
-        var $parent_id_hide = $("#parent_id_hide");
-        var $parent = $('#parent_id_hide').find(':selected').val();
+        $(document).ready(function() {
+            var $input = $("#parent_id");
+            var $parent_id_hide = $("#parent_id_hide");
+            var $parent = $('#parent_id_hide').find(':selected').val();
 
-        $input.on("selecting unselecting change", function() {
-            setOption($("#parent_id").parent().find("ul.select2-choices"));
+            $input.on("selecting unselecting change", function() {
+                setOption($("#parent_id").parent().find("ul.select2-choices"));
 
-        })
-        $parent_id_hide.on("selecting unselecting change", function() {
-            $parent = $('#parent_id_hide').find(':selected').val();
+            })
+            $parent_id_hide.on("selecting unselecting change", function() {
+                $parent = $('#parent_id_hide').find(':selected').val();
 
-        })
+            })
 
-        $("#parent_id").parent().find("ul.select2-choices").sortable({
-            containment: 'parent',
-            update: function() {
-                setOption(this)
-            },
-        });
-        $input.val([{!! $categoryImplode ?? '' !!}]);
-
-        $input.trigger('change'); // Notify any JS components that the value changed
-
-        function setOption($this) {
-            var $select = $("#parent_id");
-            //$(this).closest(".select2-container").next();
-            var options;
-            options = $select.find("option");
-            //$("#parent_id_hide").empty();
-            //var newoptions = '';
-            var newoptions = [];
-            // Clear option
-            $($this).find(".select2-search-choice").each(function(i, tag) {
-
-                var $exist = 0;
-                options.each(function(j, option) {
-                    var optionTag = '';
-                    if ($.trim($(tag).text()) == $.trim($(option).text())) {
-                        // console.log(option.val());
-                        //$("#par_idd").append(new Option($(tag).text(),  $(option).val()));
-                        optionTag = new Option($(tag).text(), $(option).val());
-                        if ($(option).val() == $parent) {
-                            $exist = 1;
-                        }
-                        $("#par_idd").append(new Option($(tag).text(), $(option).val()));
-                        //newoptions=newoptions+','+$(option).val();
-                        newoptions.push(optionTag);
-                        //$("#par_idd").append(option);
-                    }
-
-                });
+            $("#parent_id").parent().find("ul.select2-choices").sortable({
+                containment: 'parent',
+                update: function() {
+                    setOption(this)
+                },
             });
+            $input.val([{!! $categoryImplode ?? '' !!}]);
+
+            $input.trigger('change'); // Notify any JS components that the value changed
+
+            function setOption($this) {
+                var $select = $("#parent_id");
+                //$(this).closest(".select2-container").next();
+                var options;
+                options = $select.find("option");
+                //$("#parent_id_hide").empty();
+                //var newoptions = '';
+                var newoptions = [];
+                // Clear option
+                $($this).find(".select2-search-choice").each(function(i, tag) {
+
+                    var $exist = 0;
+                    options.each(function(j, option) {
+                        var optionTag = '';
+                        if ($.trim($(tag).text()) == $.trim($(option).text())) {
+                            // console.log(option.val());
+                            //$("#par_idd").append(new Option($(tag).text(),  $(option).val()));
+                            optionTag = new Option($(tag).text(), $(option).val());
+                            if ($(option).val() == $parent) {
+                                $exist = 1;
+                            }
+                            $("#par_idd").append(new Option($(tag).text(), $(option).val()));
+                            //newoptions=newoptions+','+$(option).val();
+                            newoptions.push(optionTag);
+                            //$("#par_idd").append(option);
+                        }
+
+                    });
+                });
 
 
-            //$parent = $('#parent_id_hide').find(':selected').val();
+                //$parent = $('#parent_id_hide').find(':selected').val();
 
-            $("#parent_id_hide").empty();
-            //$('#parent_id_hide option:selected').removeAttr('selected');
-            $('#parent_id_hide').select2('destroy');
-            $parent_id_hide.select2();
-            if (newoptions.length > 0) {
-                $("#parent_id_hide").append(newoptions);
-                $parent_id_hide.val($parent);
-            }
-            // $parent_id_hide.val($parent);
+                $("#parent_id_hide").empty();
+                //$('#parent_id_hide option:selected').removeAttr('selected');
+                $('#parent_id_hide').select2('destroy');
+                $parent_id_hide.select2();
+                if (newoptions.length > 0) {
+                    $("#parent_id_hide").append(newoptions);
+                    $parent_id_hide.val($parent);
+                }
+                // $parent_id_hide.val($parent);
 
-            //$('#parent_id_hide').select2('destroy');
+                //$('#parent_id_hide').select2('destroy');
 
-            //if ($exist != 0) {
-            // }
-            $parent_id_hide.trigger('change'); // Notify any JS components that the value changed
-
-
-            //getselector();
+                //if ($exist != 0) {
+                // }
+                $parent_id_hide.trigger('change'); // Notify any JS components that the value changed
 
 
-        };
-    });
+                //getselector();
 
+
+            };
+        });
     </script>
 
     <script>
@@ -294,7 +356,6 @@ $(document).ready(function() {
             tags: [],
             maximumInputLength: 100
         });
-
     </script>
 
 
@@ -384,7 +445,6 @@ $(document).ready(function() {
 
         });
         map.on('click', onMapClick);
-
     </script>
 
 

@@ -8,7 +8,8 @@
         </ul>
 
         @isset($company)
-            <a class=" btn btn-warning btn-icon btn-sm  mat-button " href="{{ route('contents.type.show',['type'=>$type]) }}">
+            <a class=" btn btn-warning btn-icon btn-sm  mat-button "
+                href="{{ route('contents.type.show', ['type' => $type]) }}">
                 <i class="fa fa-close"></i>{{ $company->name }}
             </a>
         @endisset
@@ -18,7 +19,8 @@
                 <i class="fa fa-plus"></i>@lang('messages.add')
             </a>
 
-            <a href="{{ route('contents.create', ['type' => $type,'template'=>'html']) }}" class=" btn btn-info btn-icon  mat-button ">
+            <a href="{{ route('contents.create', ['type' => $type, 'template' => 'html']) }}"
+                class=" btn btn-info btn-icon  mat-button ">
                 <i class="fa fa-plus"></i> @lang('messages.add') @lang('messages.static template')
             </a>
         </div>
@@ -49,7 +51,7 @@
                             <th>@lang('messages.title')</th>
                             <th>@lang('messages.brief')</th>
                             <th>@lang('messages.category')</th>
-                            <th  class="text-center">@lang('messages.status')</th>
+                            <th class="text-center">@lang('messages.status')</th>
                             <th>@lang('messages.publish date')</th>
                             <th>@lang('messages.company')</th>
                             <th>@lang('messages.image')</th>
@@ -65,7 +67,7 @@
                                 <td>{{ $content->title }}</td>
                                 <td>{!! readMore($content->brief_description) !!}</td>
                                 <td>
-                                    
+
 
                                     @foreach ($content->categories as $it)
                                         @if ($it->id == $content->category->id)
@@ -88,8 +90,9 @@
 
                                 </td>
                                 <td>
-                                    @if($content->companies->count())
-                                    <a href="{{ route('contents.type.show',['type'=>$type,'companyId'=>$content->companies->first()->id]) }}">{{ $content->companies->first()->name}}</a>
+                                    @if ($content->companies->count())
+                                        <a
+                                            href="{{ route('contents.type.show', ['type' => $type, 'companyId' => $content->companies->first()->id]) }}">{{ $content->companies->first()->name }}</a>
 
                                     @endif
 
@@ -107,7 +110,8 @@
                                 <td class="width-100">
                                     <div class="row">
                                         <div class="col-xs-6">
-                                            <a href="{{ route('contents.edit', $content->id) }}"
+
+                                            <a href="{{ route('contents.edit', ['content'=>$content->id,'page'=> json_decode($contents->toJson())->current_page]) }}"
                                                 class="font-full-plus-half-em pull-left text-success btn-xs  no-border  "
                                                 title="edit">
                                                 <i class="fa fa-edit"></i>
@@ -133,9 +137,9 @@
                         @endforeach
                     </tbody>
                 </table>
-                @lang('messages.total') {{ $contents->total() }} |
-                @lang('messages.page') {{ $contents->currentPage() }}
-                {{ $contents->appends(Request::except('page'))->links() }}
+
+
+                {!! $contents->appends(Request::except('page'))->onEachSide(5)->links() !!}
             </div>
         </div>
     </div>
@@ -149,4 +153,4 @@
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
-@endif--}}
+@endif --}}

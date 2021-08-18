@@ -1,14 +1,24 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
-@section('head')
-    <meta property="og:image" content="{{ url($detail->images['images']['medium'] ?? '') }}" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W') }}" />
-    <meta property="og:image:height"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H') }}" />
-    <meta property="og:image:alt" content="{{ $detail->title }}" />
-@endsection
+@section('twitter:title', $detail->title)
+@section('twitter:description', clearHtml($detail->brief_description))
+
+@section('og:title', $detail->title)
+@section('og:description', clearHtml($detail->brief_description))
+
+@if (isset($detail->images['images']['medium']))
+
+@section('twitter:image', url($detail->images['images']['medium']))
+
+@section('og:image', url($detail->images['images']['medium']))
+@section('og:image:type', 'image/jpeg')
+@section('og:image:width', $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W'))
+@section('og:image:height', $detail->attr_type == 'article' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H'))
+@section('og:image:alt', $detail->title)
+
+@endif
+
+
 
 @section('footer')
     <script type="text/javascript">
@@ -40,30 +50,6 @@
 
     </script>
 
-    {{-- recaptcha --}}
-    {{--
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script type="text/javascript">
-        function callbackThen(response) {
-            // read HTTP status
-            console.log(response.status);
-
-            // read Promise object
-            response.json().then(function(data) {
-                console.log(data);
-            });
-        }
-
-        function callbackCatch(error) {
-            console.error('Error:', error);
-            alert('صفحه را مجدد بارگذاری نمایید.')
-        }
-
-    </script>
-    {!! htmlScriptTagJsApi([
-    'callback_then' => 'callbackThen',
-    'callback_catch' => 'callbackCatch',
-    ]) !!} --}}
 @endsection
 
 @section('Content')
@@ -77,6 +63,13 @@
     @endif
     @include('jsonLdFaq')
 
+    @if ($detail->attr_type == 'article')
+        @include('jsonLdArticle')
+    @endif
+
+    @if (count($breadcrumb)>0)
+        @include('jsonLdBreadcrumb')
+    @endif
 
     <section class="breadcrumb">
         <div class="flex one  ">
@@ -113,8 +106,10 @@
                                     @if(count($detail->companies))
                                         <div class="company-logo">
                                             <a href="{{ url('/profile/'.$detail->companies->first()->id) }}">
-                                                @if (isset($detail->companies->first()->logo['small']) || $detail->companies->first()->logo['small'] == '' || !file_exists(public_path($detail->companies->first()->logo['small'])))
-                                                    <img src="{{ url($detail->companies->first()->logo['small']) }}" width="50" height="50" class="border-radius-50" alt="">
+
+                                                @if (isset($detail->companies->first()->logo) && $detail->companies->first()->logo['medium'] != '' && file_exists(public_path($detail->companies->first()->logo['medium'])))
+                                                {{-- @if (isset($detail->companies->first()->logo) && $detail->companies->first()->logo['medium'] == '' && !file_exists(public_path($detail->companies->first()->logo['medium']))) --}}
+                                                    <img src="{{ url($detail->companies->first()->logo['medium']) }}" width="50" height="50" class="border-radius-50" alt="">
                                                 @endif
                                                 {{ $detail->companies->first()->name ?? '' }}</a>
                                         </div>
@@ -144,7 +139,7 @@
                                     </span> |
                                     {{ $detail->viewCount }} بار دیده شده |
                                     تاریخ انتشار: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span> |
-
+                                    @lang('messages.power'):{{ $detail->power }}
                                 </div>
                             </div>
 

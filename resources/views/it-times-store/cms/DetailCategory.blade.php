@@ -1,4 +1,23 @@
 @extends(@env('TEMPLATE_NAME').'.App')
+
+@section('twitter:title', $detail->title)
+@section('twitter:description', clearHtml($detail->brief_description))
+
+@section('og:title', $detail->title)
+@section('og:description', clearHtml($detail->brief_description))
+
+@if (isset($detail->images['images']['medium']))
+@section('twitter:image', url($detail->images['images']['medium']))
+
+@section('og:image', url($detail->images['images']['medium']))
+@section('og:image:type', 'image/jpeg')
+@section('og:image:width', $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W'))
+@section('og:image:height', $detail->attr_type == 'article' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H'))
+@section('og:image:alt', $detail->title)
+
+@endif
+
+
 @push('head')
     @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
         <link rel="prev" href="{{ json_decode($relatedProduct->toJson())->prev_page_url }}">
@@ -9,7 +28,7 @@
 @endpush
 
 
-@push('script')
+@push('scripts')
 
     <script src="{{ asset('/siema.min.js') }}"></script>
     <script>
@@ -70,6 +89,13 @@
         @include('jsonLdRelatedProduct')
     @endif
 
+    @include('jsonLdFaq')
+
+
+    @if (count($breadcrumb)>0)
+        @include('jsonLdBreadcrumb')
+    @endif
+
     @if (count($breadcrumb))
         <section class="breadcrumb my-0">
             <div class="flex one  ">
@@ -98,15 +124,15 @@
                                             alt="{{ $content->title }}" width="{{ env('CATEGORY_SMALL_W') }}"
                                             height="{{ env('CATEGORY_SMALL_H') }}"
                                             srcset="
-                                                    {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
-                                                    {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
-                                                    {{ $content->images['images']['large'] ?? $content->images['thumb'] }} {{ env('CATEGORY_LARGE_W') }}w">
+                            {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
+                            {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
+                            {{ $content->images['images']['large'] ?? $content->images['thumb'] }} {{ env('CATEGORY_LARGE_W') }}w">
                                         <figcaption>
-                                            <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                                            <div class="p-0 m-0 text-center"> {{ $content->title }}</div>
                                         </figcaption>
                                     </figure>
                                 @else
-                                    <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                                    <div class="p-0 m-0 text-center"> {{ $content->title }}</div>
                                 @endif
 
                             </div>
@@ -122,13 +148,13 @@
             </div>
         </section>
     @endif
-
+    <hr>
     @if (count($relatedProduct))
         <section class="products mt-5" id="index-best-view">
             <div class="flex one ">
                 <div>
                     <div class="">
-                        <div class="flex one two-500 four-900 center ">
+                        <div class="flex one two-500 five-900 center ">
                             @foreach ($relatedProduct as $content)
                                 <div>
                                     <article>
@@ -136,16 +162,17 @@
                                             <figure class="image">
                                                 <img src="{{ $content->images['images']['small'] }}"
                                                     sizes="(max-width:{{ env('ARTICLE_SMALL_W') }}px) 100vw {{ env('ARTICLE_SMALL_W') }}px {{ ENV('ARTICLE_MEDIUM_W') }}px"
-                                                    alt="{{ $content->title }}" width="100" height="100"
-                                                    srcset="
-                                                                {{ $content->images['images']['small'] }} {{ env('ARTICLE_SMALL_W') }}w,
-                                                                {{ $content->images['images']['medium'] }} 2x">
+                                                    alt="{{ $content->title }}" width="100" height="100" srcset="
+                    {{ $content->images['images']['small'] }} {{ env('ARTICLE_SMALL_W') }}w,
+                    {{ $content->images['images']['medium'] }} 2x">
                                             </figure>
 
                                         @endif
                                         <footer>
-                                            <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
-                                            {!! $content->brief_description !!}
+                                            <div> {{ $content->title }}</div>
+                                            {{-- {!! $content->brief_description !!} --}}
+                                            <a class="btn btn-block bg-blue" href="{{ $content->slug }}">@lang('messages.more')</a>
+
                                         </footer>
                                     </article>
                                 </div>
@@ -170,8 +197,8 @@
                                     <article class="shadow2">
                                         @if (isset($content->images['images']['medium']))
                                             <figure class="image">
-                                                <img src="{{ $content->images['images']['medium'] }}"
-                                                    width="198" height="100" alt="{{ $content->title }}">
+                                                <img src="{{ $content->images['images']['medium'] }}" width="198"
+                                                    height="100" alt="{{ $content->title }}">
                                             </figure>
                                         @endif
 

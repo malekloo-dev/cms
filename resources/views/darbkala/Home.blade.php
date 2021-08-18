@@ -1,16 +1,7 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
-@section('head')
-
-@endsection
-@section('footer')
-
-@endsection
 
 @section('Content')
-
-
-
 
     <section class="index-item-top bg-orange mt-0 mb-0">
         <div class="text-center">
@@ -22,14 +13,14 @@
                 @foreach ($category['data'] as $content)
                     <a href="{{ $content->slug }}">
                         <div class="shadow hover">
-                            @if (isset($content->images['thumb']))
+                            @if (isset($content->images['images']['small']))
                                 <figure class="image">
-                                    <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
+                                    <img src="{{ $content->images['images']['small']  }}"
                                         sizes="(max-width:{{ env('CATEGORY_SMALL_W') }}px) 100vw {{ env('CATEGORY_SMALL_W') }}px {{ ENV('CATEGORY_MEDIUM_W') }}px {{ ENV('CATEGORY_LARGE_W') }}px"
                                         alt="{{ $content->title }}" width="200" height="200" srcset="
-                                                {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
-                                                {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
-                                                {{ $content->images['images']['large'] ?? $content->images['thumb'] }} 2x">
+                                                {{ $content->images['images']['small']  }} {{ env('CATEGORY_SMALL_W') }}w,
+                                                {{ $content->images['images']['medium'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
+                                                {{ $content->images['images']['large'] ?? $content->images['images']['small'] }} 2x">
                                     <figcaption>
                                         <h2 class="p-0 m-0 text-center"> {{ $content->title }}</h2>
                                     </figcaption>
@@ -81,7 +72,7 @@
 
 
     {{--#anchor topViewProduct --}}
-    <section class="index-items home-top-view">
+    <section class="index-items home-top-view bg-gray">
         <div class="flex one">
             <div>
                 <div class="flex two two-500 three-700 six-900 center ">
@@ -91,7 +82,7 @@
                             <div>
                                 <a class="hover shadow2" href="{{ $content->slug }}">
 
-                                    @if (isset($content->images['thumb']))
+                                    @if (isset($content->images['images']['small']))
                                         <div><img alt="{{ $content->title }}"
                                                 width="{{ env('PRODUCT_SMALL_W') }}" height="{{ env('PRODUCT_SMALL_H') }}"
                                                 src="{{ $content->images['images']['small'] }}" srcset="
@@ -156,6 +147,8 @@
     </section>
 
 
+
+
     <section class="index-items articles bg-gray2 home-top-view mb-0">
         <div class="flex one">
             <div>
@@ -182,6 +175,23 @@
             </div>
         </div>
     </section>
+
+    {{--categoryDetail&label=categoryDetail&var=categoryDetail&count=1--}}
+    @isset($categoryDetail['data'])
+    <section class="my-0 py-5 ">
+        <div>
+            <div class="flex one three-600">
+                <div class="two-third-600 middle flex" style="order:2">
+                    <h2>{{ $categoryDetail['data']->title }}</h2>
+                    {!! $categoryDetail['data']->brief_description !!}
+                </div>
+                <div class="third-600" style="order:1">
+                    <img src="{{ $categoryDetail['data']->images['images']['large'] }}" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    @endisset
 
 
     {{--#anchor footer --}}

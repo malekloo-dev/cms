@@ -18,7 +18,8 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('mobile')->unique();
-            $table->string('email',151)->unique()->nullable();
+            $table->string('email',151)->nullable();
+            $table->integer('balance')->default(0)->unsigned();
             $table->dateTime('email_verified_at')->nullable();
             $table->string('pass');
             $table->string('password');

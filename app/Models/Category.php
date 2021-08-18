@@ -78,8 +78,17 @@ class Category extends Model
     public function childs()
     {
 
-        return $this->hasMany('Category', 'parent_id', 'id');
+        return $this->hasMany(Category::class, 'parent_id', 'id');
 
     }
+
+     /**
+     * Get all of the post's comments.
+     */
+    public function gallery()
+    {
+        return $this->morphMany(Gallery::class, 'model');
+    }
+
 
 }

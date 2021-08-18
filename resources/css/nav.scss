@@ -85,7 +85,7 @@ nav {
                 display: none;
                 padding: 0;
                 position: absolute;
-                background-color: #fff;
+                background-color: $menu-bg-left;
                 border-top: 3px solid $theme-color3;
                 border-radius: 10px 10px 10px 10px;
                 box-shadow: 1px 0 20px rgba(0, 0, 0, 0.12);
@@ -159,6 +159,7 @@ nav .burger:after {
             max-width: none !important;
             li {
                 display: block;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
                 ul {
                     position: relative;
                     border-right: 3px solid $theme-color3;

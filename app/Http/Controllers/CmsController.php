@@ -59,7 +59,8 @@ class CmsController extends Controller
                 ->paginate(20);
             $relatedProduct = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
         } else {
-            $relatedProduct = $detail->products()->paginate(20);
+            $relatedProduct = $detail->products('power','desc')->paginate(20);
+            // dd($detail->products()->orderBy('power','asc'));
         }
 
 
@@ -119,6 +120,7 @@ class CmsController extends Controller
                 ->view(env('TEMPLATE_NAME') . '.NotFound', $data, 404);
         }
 
+        //breadcrumb
         $this->breadcrumb[] = $detail->getAttributes();
         $breadcrumb = $this->get_parent($detail->parent_id);
         if (is_array($breadcrumb)) {
@@ -126,6 +128,7 @@ class CmsController extends Controller
         } else {
             $breadcrumb = array();
         }
+
 
         $seo['meta_keywords'] = $detail->meta_keywords;
         $seo['meta_description'] = $detail->meta_description;
@@ -141,22 +144,16 @@ class CmsController extends Controller
         if (strlen($detail->description)) {
             $resultTableContent = $this->tableOfContent($detail->description);
             $detail->description = $resultTableContent['content'];
-            //echo '<pre/>';
-            //print_r($resultTableContent);
-            //die();
+
             //dd( $detail->description);
             $table_of_content = $resultTableContent['list'];
 
             $table_of_images = $this->tableOfImage($detail->description);
 
-
             //preg_match_all('/<img[^>]+>/i',$detail->description, $result);
             // preg_match_all('/(alt|title|src)=("[^"]*")/i',$img_tag, $img[$img_tag]);
 
             $a = $detail->description;
-
-
-            ///dd($result);
         }
 
 
@@ -170,7 +167,7 @@ class CmsController extends Controller
         if ($detail->type == 1) {
 
             return $this->showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule);
-
+            /*
             $relatedPost = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'article')
                 ->where('parent_id', '=', $detail->id)
@@ -219,7 +216,10 @@ class CmsController extends Controller
                 'seo' => $seo,
                 'editorModule' => $editorModule
             ]);
+            */
         } else {
+            $detail = Content::find($detail->id);
+            // dd($detail);
             $relatedPost = Content::where('type', '=', '2')
                 ->where('parent_id', '=', $detail->parent_id)
                 ->where('id', '<>', $detail->id)
@@ -242,6 +242,7 @@ class CmsController extends Controller
                 $widget = $this->getWidget($detail->attr['template_name']);
                 $template = env('TEMPLATE_NAME') . '.cms.' . $detail->attr['template_name'];
             }
+            // dd($detail->childs);
 
             //$detail->description=editorModule($detail->description);
 

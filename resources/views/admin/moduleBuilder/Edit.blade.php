@@ -433,6 +433,29 @@
             </div>
             <div class="col-12 col-md-12">
                 @lang('messages.category'):
+                <pre>&lbrace;&lbrace;--categoryDetail&label=categoryDetail&var=categoryDetail&count=1--&rbrace;&rbrace;    <button class="pull-right" onclick="copyToClipboard('&lbrace;&lbrace;--categoryDetail&label=categoryDetail&var=categoryDetail&count=1--&rbrace;&rbrace;')">Copy</button>
+                </pre>
+                <pre style="background-color: #fafafa">
+&#64;isset($categoryDetail['data'])
+    &lt;section class="my-0 py-5 bg-gray">
+        &lt;div>
+            &lt;div class="flex three">
+                &lt;div class="two-third middle flex">
+                    &lt;h2>فروشگاه عصر آی تی&lt;/h2>
+                    &lbrace;!! $categoryDetail['data']->brief_description !!}
+                &lt;/div>
+                &lt;div class="third">
+                    &lt;img src="&lbrace;&lbrace; $categoryDetail['data']->images['images']['large'] }}" alt="">
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    &lt;/section>
+&#64;endisset
+                </pre>
+            </div>
+
+            <div class="col-12 col-md-12">
+                @lang('messages.category'):
                 <pre>&lbrace;&lbrace;--category&label=category&var=category--&rbrace;&rbrace;    <button class="pull-right" onclick="copyToClipboard('&lbrace;&lbrace;--category&label=category&var=category--&rbrace;&rbrace;')">Copy</button>
                 </pre>
                 <pre style="background-color: #fafafa">

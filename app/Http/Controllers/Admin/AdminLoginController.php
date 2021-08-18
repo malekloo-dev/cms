@@ -13,11 +13,13 @@ class AdminLoginController extends Controller
 
     public function __construct()
     {
+        
         $this->middleware('guest')->except('logout');
     }
 
     public function showLoginForm()
     {
+
         if(Auth::check()){
             return redirect()->route('admin');
         }

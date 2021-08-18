@@ -531,3 +531,50 @@ to{opacity:0}
 .dashboard .title{font-size:1.1em}
 .dashboard .info{text-align:center;display:flex;justify-content:space-between;align-items:center}
 .dashboard .count{font-size:1.3em;font-weight:700}
+nav[role="navigation"]>div:not(.hidden) {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+nav[role="navigation"]>div.hidden {
+    display: block !important;
+    visibility: visible !important;
+    direction: ltr;
+    font-size: 20px;
+
+}
+
+nav[role="navigation"]>div.hidden .relative {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+nav[role="navigation"]>div.hidden a {
+    min-width: 20px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    padding: 1px;
+    margin: 1px;
+    max-height: 23px;
+    text-align: center;
+    color:#394264 !important;
+}
+
+nav[role="navigation"]>div.hidden span > span{
+    min-width: 20px;
+    border-radius: 3px;
+
+    color:#394264 !important;
+    padding: 1px;
+    margin: 1px;
+    font-weight: bold
+}
+
+nav[role="navigation"] svg {
+    width: 30px
+}
+

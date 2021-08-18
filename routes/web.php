@@ -6,6 +6,7 @@ use App\Http\Controllers\CmsController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageCropperController;
 // use App\Http\Controllers\IndexController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\ModuleBuilderController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SpiderController;
 use App\Http\Controllers\WebsiteSettingController;
+use App\Models\Content;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
@@ -30,11 +32,11 @@ App::setLocale(env('SITE_LANG'));
 //
 //});
 
+forceRedirect();
 
 
-
-
-
+Route::post('/returnBank', [CompanyController::class, 'returnBank'])->name('company.products.returnBank')->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);;
+// dd(app('request')->all());
 Route::prefix('/company')->middleware(['auth', 'role:super admin|company'])->group(function () {
     Route::get('/', [CompanyController::class, 'dashboard'])->name('company.dashboard');
 
@@ -48,6 +50,16 @@ Route::prefix('/company')->middleware(['auth', 'role:super admin|company'])->gro
     Route::get('products/edit/{content}', [CompanyController::class, 'productsUpdate'])->name('company.products.update');
     Route::patch('products/edit/{content}', [CompanyController::class, 'productsEdit'])->name('company.products.edit');
     Route::delete('products/{content}', [CompanyController::class, 'productsDestroy'])->name('company.products.destroy');
+    Route::get('products/powerUp/{content}', [CompanyController::class, 'productPowerUp'])->name('company.products.powerUp');
+
+
+    Route::get('invoice', [CompanyController::class, 'invoiceList'])->name('company.invoice.list');
+    Route::get('invoice/{transaction}', [CompanyController::class, 'invoice'])->name('company.invoice');
+    Route::patch('invoice/{content}', [CompanyController::class, 'invoiceStore'])->name('company.invoice.store');
+
+    Route::patch('sendToBand/{transaction}', [CompanyController::class, 'sendToBand'])->name('company.sendToBand');
+
+    Route::get('transaction', [CompanyController::class, 'transaction'])->name('company.transaction');
 });
 
 
@@ -60,8 +72,16 @@ Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(functio
     //Route::get('contents/{type}/{company?}/{companyId?}', [ContentController::class, 'index'])->name('contents.type.show');
     Route::get('contents/create/{type}', [ContentController::class, 'create'])->name('contents.create');
     Route::post('contents/upload-image/', [ContentController::class, 'uploadImageSubject'])->name('contents.upload');
-    Route::get('image-cropper', [ImageCropperController::class, 'index']);
-    Route::post('image-cropper/upload', [ImageCropperController::class, 'upload']);
+
+    Route::delete('gallery/{gallery}', [GalleryController::class,'destroy'])->name('gallery.destroy');
+
+
+    // Route::get('image-cropper', [ImageCropperController::class, 'index']);
+    // Route::post('image-cropper/upload', [ImageCropperController::class, 'upload']);
+
+
+
+
 
 
     Route::prefix('seo')->name('seo.')->group(function () {
@@ -101,7 +121,6 @@ Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(functio
     Route::get('company/edit/{company}', [CompanyController::class, 'companyCreateOrUpdate'])->name('admin.company.update');
     Route::patch('company/edit/{company}', [CompanyController::class, 'companyEdit'])->name('admin.company.edit');
     Route::delete('company/{company}', [CompanyController::class, 'companyDestroy'])->name('admin.company.destroy');
-
 });
 Route::get('admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login.form');
 
@@ -116,13 +135,20 @@ Route::get('/spider/reload', [SpiderController::class, 'reload']);
 Route::post('/spider/addToCms', [SpiderController::class, 'reloadAdd']);
 
 
-Route::group(['middleware'=>'HtmlMinifier'], function(){
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/reload', [ContentController::class, 'reload']);
+Route::group(['middleware' => 'HtmlMinifier'], function () {
+    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/reload', [ContentController::class, 'reload']);
 
-Route::get('/profile/{id?}', [CompanyController::class, 'profileShow'])->name('profile.index');
-Route::get('/{slug?}/{b?}', [CmsController::class, 'request']);
+    Route::get('/profile/{id?}', [CompanyController::class, 'profileShow'])->name('profile.index');
 
-Route::post('/comment', [CommentController::class, 'store'])->name('comment.client.store');
-Route::post('/contact', [CommentController::class, 'store'])->name('contact.client.store');
+
+    // WebsiteSetting::where('variable','=',['product','article','category'])->get()->each(function ($prefix) {
+    //     Route::prefix($prefix->value)->get('/{slug?}/{b?}', [CmsController::class, 'request']);
+    // });
+
+    Route::get('/{slug?}/{b?}', [CmsController::class, 'request']);
+
+
+    Route::post('/comment', [CommentController::class, 'store'])->name('comment.client.store');
+    Route::post('/contact', [CommentController::class, 'store'])->name('contact.client.store');
 });

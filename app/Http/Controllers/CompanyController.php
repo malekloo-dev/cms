@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\Content;
 use App\Models\CompanyContents;
+use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Lang;
 use Intervention\Image\Facades\Image;
 
@@ -21,24 +22,19 @@ class CompanyController extends Controller
 {
 
     public $breadcrumb;
-    // public function __construct(public array $breadcrumb){
 
-    // }
 
     public function dashboard()
     {
         $user = Auth::user();
 
-        return view('auth.dashboard', compact('user'));
+        return view('auth.company.dashboard', compact('user'));
     }
-
-
-
 
     public function profile()
     {
         $user = Auth::user();
-        return view('auth.profile', compact('user'));
+        return view('auth.company.companyProfile', compact('user'));
     }
     public function profileChangeLogo(Request $request)
     {
@@ -70,7 +66,7 @@ class CompanyController extends Controller
 
         // dd($user->company);
 
-        return view('auth.products', compact('user'));
+        return view('auth.company.products', compact('user'));
     }
 
     public function productsCreate()
@@ -85,7 +81,7 @@ class CompanyController extends Controller
 
         $attr_type = 'product';
 
-        return view('auth.productsCreateOrUpdate', compact('user', 'category','attr_type'));
+        return view('auth.company.productsCreateOrUpdate', compact('user', 'category', 'attr_type'));
     }
 
     public function productsStore(Request $request)
@@ -108,31 +104,39 @@ class CompanyController extends Controller
 
         $data = $request->all();
         $date = $data['publish_date'];
-        // $data['publish_date'] = convertJToG($date);
+        $data['publish_date'] = convertJToG($date);
 
+        $data['parent_id_hide'] = $request->parent_id;
+        $data['parent_id'] = $request->parent_id_hide;
+        if ($data['parent_id'] == '') {
+            $data['parent_id'] = $data['parent_id_hide'][0];
+        }
 
-        $data['parent_id'] = $request->parent_id[0];
+        // $data['parent_id'] = $request->parent_id[0];
         $data['type'] = '2';
         $data['attr_type'] = 'product';
-        $data['attr'] = ["brand" => $user->company->name, "price" => 0];
+        // $data['attr'] = ["brand" => $user->company->name, "price" => 0];
 
         $data['images'] = $imagesUrl;
-        if ($request->slug == '') {
-            $data['slug'] = $request->title;
-        } else {
-            $data['slug'] = $request->slug;
-        }
-        $data['slug'] = preg_replace('/\s+/', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
+
+        $data['slug'] = uniqueSlug(Content::class, ($request->slug != '') ? $request->slug : $request->title);
+
+
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         // $data['status'] = '1';
+
         $content = Content::create($data);
         // dd(new CompanyContent(['company_id' => $user->id, 'content_id' => $content->id]));
         // $content->companies()->create(new CompanyContent(['company_id' => $user->id, 'content_id' => $content->id]));
+
+        $content->categories()->attach($data['parent_id_hide']);
+
+
         CompanyContents::create(['company_id' => $user->company->id, 'content_id' => $content->id]);
+
         // dd($content->companies);
+
+
 
 
         return redirect()->route('company.products')->with('success', Lang::get('messages.Greate! Content created successfully.'));
@@ -152,7 +156,7 @@ class CompanyController extends Controller
         $category = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
 
 
-        return view('auth.productsCreateOrUpdate', compact('user', 'category', 'post'));
+        return view('auth.company.productsCreateOrUpdate', compact('user', 'category', 'post'));
     }
 
     public function productsEdit(Request $request, Content $content)
@@ -175,26 +179,33 @@ class CompanyController extends Controller
 
         $data = $request->all();
         $date = $data['publish_date'];
-        // $data['publish_date'] = convertJToG($date);
+        $data['publish_date'] = convertJToG($date);
 
+        $data['parent_id_hide'] = $request->parent_id;
+        $data['parent_id'] = $request->parent_id_hide;
+        if ($data['parent_id'] == '') {
+            $data['parent_id'] = $data['parent_id_hide'][0];
+        }
 
-        $data['parent_id'] = $request->parent_id[0];
+        // $data['parent_id'] = $request->parent_id[0];
         // $data['type'] = '2';
         $data['attr_type'] = 'product';
         $data['attr'] = ["brand" => $user->company->name, "price" => 0];
 
         $data['images'] = $imagesUrl;
 
-        $data['slug'] = $request->title;
+        // $data['slug'] = $request->title;
 
-        $data['slug'] = preg_replace('/\s+/', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
-        $data['slug'] = str_replace('--', '-', $data['slug']);
+        $data['slug'] = uniqueSlug(Content::class, $content, ($data['slug'] != '') ? $data['slug'] : $data['title']);
+
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         $data['status'] = '1';
 
         $content->update($data);
+
+        $content->categories()->detach();
+        $content->categories()->attach($data['parent_id_hide']);
+
 
         // $content = Content::create($data);
         // dd(new CompanyContent(['company_id' => $user->id, 'content_id' => $content->id]));
@@ -272,27 +283,174 @@ class CompanyController extends Controller
         return $images;
     }
 
+    public function productPowerUp(Request $request, Content $content)
+    {
+        $user = Auth::user();
+
+        return view('auth.company.powerUp', compact('user', 'content'));
+    }
+
+    public function invoiceList()
+    {
+        $user = Auth::user();
+        $transactions = $user->transactions;
+
+        return view('auth.company.invoiceList', compact('transactions'));
+    }
+
+    public function invoice(Transaction $transaction)
+    {
+        // dd($transaction->transactionable);
+        $parentModel = $transaction->transactionable;
+
+        return view('auth.company.invoice', compact('transaction', 'parentModel'));
+    }
+    public function invoiceStore(Request $request, Content $content)
+    {
+        // dd($request->all());
+        $user = Auth::user();
+
+
+        $count = $request->count;
+        $price = 30000 * $count;
+
+        // dd(Lang::get('messages.power up for',['count'=>$count,'content'=>$content->title]));
+
+        $transaction = $user->transactions()->firstOrCreate([
+            'title' => $content->title,
+            'count' => $count,
+            'price' => $price,
+            'description' =>  Lang::get('messages.power up for', ['count' => $count, 'content' => $content->title]),
+            'transactionable_type' => Content::class,
+            'transactionable_id' => $content->id,
+            'message' => Lang::get('messages.invoice created'),
+            'status' => 0
+        ]);
+
+        // dd($transaction);
+
+        return redirect()->route('company.invoice', $transaction->id)->with('success', Lang::get('messages.invoice created'));
+    }
+
+
+    public function sendToBand(Request $request, Transaction $transaction)
+    {
+        $user = Auth::user();
+
+
+
+        // dd($user->transaction());
+
+
+        // dd($transaction);
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+            'Authorization' => 'bearer ' . env('PAYPING'),
+        ])
+            ->post('https://api.payping.ir/v2/pay', [
+                'amount' => $transaction->price,
+                'returnUrl' => url('/') . '/returnBank',
+                'payerIdentity' => $user->mobile,
+                'payerName' => $user->name,
+                'description' => Lang::get('messages.buy') . $request->count . ' power',
+                'clientRefId' => json_encode(['transactionId' => $transaction->id]),
+            ]);
+
+
+
+        if ($response->status() != 200) {
+            if ($response->status() == 400) {
+                $transaction->update(['status' => -1, 'message' => $response->json()['Error']]);
+                return redirect()->back()->with('error', $response->json()['Error']);
+            }
+
+            $transaction->update(['status' => -1, 'message' => $response->body()]);
+            return redirect()->back()->with('error', $response->body());
+        }
+
+
+        $transaction->update(['status' => 1, 'message' => '']);
+        return redirect('https://api.payping.ir/v2/pay/gotoipg/' . $response->json()['code']);
+    }
+
+    public function returnBank(Request $request)
+    {
+
+        $clientrefid = json_decode($request->clientrefid);
+        // dd($clientrefid);
+        if (!isset($clientrefid->transactionId))
+            return redirect(route('company.products'))->with('error', 'Error:334');
+
+        $transactionId = $clientrefid->transactionId;
+        $transaction = Transaction::find($transactionId);
+        // dd($transaction);
+
+        $content = $transaction->transactionable_type::find($transaction->transactionable_id);
+        $company = $content->companies->first();
+        $user = $company->user;
+        // dd($company->user->id);
+        Auth::loginUsingId($user->id);
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+            'Authorization' => 'bearer ' . env('PAYPING'),
+        ])
+            ->post('https://api.payping.ir/v2/pay/verify', [
+                'amount' => $transaction->price,
+                'refId' => "$request->refid"
+            ]);
+
+        // dd($response->status());
+        if ($response->status() != 200) {
+            if ($response->status() == 400) {
+                $transaction->update(['status' => -1, 'message' => array_values($response->json())[0]]);
+                return redirect(route('company.products.powerUp', ['content' => $content->id]))->with('error', array_values($response->json())[0]);
+            }
+
+            $transaction->update(['status' => -1, 'message' => $response->body()]);
+            return redirect(route('company.products.powerUp', ['content' => $content->id]))->with('error', $response->body());
+        }
+
+
+        $transaction->update(['status' => 2, 'message' => __('messages.pay success')]);
+
+        $content->power = $transaction->count;
+        $content->save();
+
+
+        return redirect(route('company.products.powerUp', ['content' => $content->id]))->with('success', __('messages.pay success'));
+    }
 
     function profileShow(Request $request, $id)
     {
 
         $company = Company::find($id);
-
+        if ($company == null) {
+            return redirect('/', 301);
+        }
         // $produsct = Content::where('publish_date', '<=', DB::raw('now()'));
         // $produsct = $produsct->where('company_id', '=', $company->id);
         // $produsct = $produsct->where('type', '=', '2');
         // $produsct = $produsct->where('attr_type', '=', 'product');
         // $produsct = $produsct->orderby('id', 'desc');
         // $produsct = $produsct->get();
-        $breadcrumb = $this->get_parent($company->category->parent_id);
+
+
+        $breadcrumb = $this->get_parent($company->category->parent_id ?? 0);
         if (is_array($breadcrumb)) {
             krsort($breadcrumb);
         } else {
             $breadcrumb = array();
         }
-        $breadcrumb[1] = $company->category->toArray();
+        if ($company->category)
+            $breadcrumb[1] = $company->category?->toArray();
+        $seo['meta_title'] = $company->name ?? 'Company';
+        $seo['meta_description'] = $company->description ?? '';
         // dd($breadcrumb);
-        return view('auth.profileShow', compact('company','breadcrumb'));
+        return view('auth.profileShow', compact('company', 'breadcrumb', 'seo'));
     }
 
 
@@ -317,6 +475,18 @@ class CompanyController extends Controller
             $this->get_parent($tree_rs->parent_id);
         }
         return $this->breadcrumb;
+    }
+
+    public function transaction()
+    {
+        $user = Auth::user();
+
+        // dd($user->transactions);
+        // dd($user->company->contents()->where('attr_type','=','product')->paginate(10));
+
+        $transactions = $user->transactions()->paginate(10);
+
+        return view('auth.company.transactions', compact('user', 'transactions'));
     }
 
 
@@ -360,9 +530,10 @@ class CompanyController extends Controller
     {
         $this->validate($request, array(
             'name' => 'required',
-            'manager' => 'required',
+            // 'manager' => 'required',
             'mobile' => 'required',
-            'email' => 'required|unique:users,email'
+            // 'email' => 'required|unique:users,email'
+            'parent_id_hide' => 'required'
         ));
         $data = $request->all();
         $data['password'] = Hash::make(123456);
@@ -377,9 +548,10 @@ class CompanyController extends Controller
     {
         $this->validate($request, array(
             'name' => 'required',
-            'manager' => 'required',
+            // 'manager' => 'required',
             'mobile' => 'required',
             'parent_id_hide' => 'required'
+
         ));
 
         $data = $request->all();
@@ -397,8 +569,8 @@ class CompanyController extends Controller
         $parent_id_hide = $data['parent_id_hide'];
         $data['parent_id_hide'] = $data['parent_id'];
         $data['parent_id'] = $parent_id_hide;
-        if( $data['parent_id']==''){
-            $data['parent_id']=$data['parent_id_hide'][0];
+        if ($data['parent_id'] == '') {
+            $data['parent_id'] = $data['parent_id_hide'][0];
         }
 
         if ($company->exists) {
@@ -414,7 +586,7 @@ class CompanyController extends Controller
             $user->company()->save($company);
         }
 
-        if($user == null){
+        if ($user == null) {
             dd('User not exist!!');
         }
 
@@ -440,7 +612,5 @@ class CompanyController extends Controller
         // unllink
 
         return redirect()->route('admin.company.index')->with('success', Lang::get('messages.deleted'));
-
-
     }
 }

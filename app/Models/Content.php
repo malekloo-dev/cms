@@ -61,5 +61,20 @@ class Content extends Model
         return $this->belongsToMany(Category::class, 'contents_category', 'content_id', 'cat_id')/*->withTimestamps()*/ ;
     }
 
+    /**
+     * Get all of the post's comments.
+     */
+    public function transactions()
+    {
+        return $this->morphMany(Transaction::class, 'transactionable');
+    }
+
+    /**
+     * Get all of the post's comments.
+     */
+    public function gallery()
+    {
+        return $this->morphMany(Gallery::class, 'model');
+    }
 
 }

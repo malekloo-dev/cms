@@ -26,9 +26,10 @@
             <div class="">
                 <div>محصولات ما</div>
                 <ul>
-                    <li><a href="/رپورتاژ">رپورتاژ آگهی</a></li>
-                    <li><a href="/تعرفه">تعرفه تبلیغات</a></li>
-                    <li><a href="/اپلیکیشن">اپلیکیشن</a></li>
+                    <li><a href="/سیم-برق">سیم برق</a></li>
+                    <li><a href="/کابل">کابل ها</a></li>
+                    <li><a href="/کانکتور-و-تبدیل">کانکتور و تبدیل</a></li>
+                    <li><a href="/تجهیزات-الکترونیک">تجهیزات الکترونیک</a></li>
                 </ul>
 
             </div>
@@ -50,8 +51,10 @@
 
 
 
+@stack('scripts')
 
-@stack('script')
+@yield('footer')
+@yield('cropper')
 
 <script>
     var TEMPLATE_NAME = `{{ env('TEMPLATE_NAME') }}`;

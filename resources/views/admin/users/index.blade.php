@@ -35,16 +35,22 @@
                     <thead>
                         <tr>
                             <td>ID</td>
+                            <td>@lang('messages.mobile')</td>
+                            <td>@lang('messages.password')</td>
                             <td>@lang('messages.name')</td>
                             <td>@lang('messages.email')</td>
+                            <td>@lang('messages.company')</td>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
+                                <td>{{ $user->mobile }} </td>
+                                <td>{{ $user->pass }} </td>
                                 <td>{{ $user->name }} </td>
                                 <td>{{ $user->email }}</td>
+                                <td>{{ $user->company?->name }}</td>
                                 <td class="width-80">
                                     <div class="row">
                                         <div class="col-xs-6">

@@ -49,16 +49,12 @@ class User extends Authenticatable
 
     public function generateToken()
     {
-        //$token = str_random(50);
 
         $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $token= substr(str_shuffle(str_repeat($pool, 5)), 0, 50);
         $this->api_token = $token;
-        //print_r($this);
 
         $this->save();
-        //print_r($this);
-        //print_r($r);
 
         return $token;
     }
@@ -76,6 +72,11 @@ class User extends Authenticatable
     public function company()
     {
         return $this->hasOne(Company::class,'user_id');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
     }
 
 }

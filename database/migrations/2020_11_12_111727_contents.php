@@ -31,6 +31,7 @@ class Contents extends Migration
             $table->text('attr')->nullable();
             $table->date('publish_date')->nullable();
             $table->integer('status')->default(0);
+            $table->integer('power')->default(0);
             $table->timestamps();
         });
     }

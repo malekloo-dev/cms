@@ -39,6 +39,12 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function username()
+    {
+        return 'mobile';
+    }
+
     public function showLoginForm(Request $request)
     {
         switch (Request::segment(1)) {
