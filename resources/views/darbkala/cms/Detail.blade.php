@@ -67,6 +67,9 @@
         @include('jsonLdArticle')
     @endif
 
+    @if (count($breadcrumb)>0)
+        @include('jsonLdBreadcrumb')
+    @endif
 
     <section class="breadcrumb">
         <div class="flex one  ">

@@ -74,6 +74,16 @@
     @if ($detail->attr_type == 'product')
         @include('jsonLdProduct')
     @endif
+    @include('jsonLdFaq')
+
+    @if ($detail->attr_type == 'article')
+        @include('jsonLdArticle')
+    @endif
+
+    @if (count($breadcrumb)>0)
+        @include('jsonLdBreadcrumb')
+    @endif
+
     <section class="breadcrumb ">
         <div class="flex one  ">
             <div class="p-0">
@@ -86,9 +96,9 @@
             </div>
         </div>
     </section>
-    <section class="intro" id="detail">
-        <div class="flex one two-500  ">
-            <div class="">
+    <section class="intro my-0 py-0" id="detail">
+        <div class="flex one three-500  ">
+            <div class="order2-500">
                 @if (isset($detail->images['images']['large']))
                     <figure class="image">
                         <img id="main-image" src="{{ $detail->images['images']['large'] }}" alt="{{ $detail->title }}"
@@ -111,7 +121,7 @@
                 @endif
 
             </div>
-            <div class="">
+            <div class="order3-500">
                 <div>
                     <h1 class="site-name pt-0">{{ $detail->title }}</h1>
                     <div class="website"></div>
@@ -146,12 +156,7 @@
                 @endforeach
 
             </div>
-        </div>
-    </section>
-
-    <section class="content-detail bg-gray py-0 mb-0" id="">
-        <div class="flex one two-700">
-            <div class="fourth-500 bg-gray2">
+            <div class="fifth-500 bg-gray2 order1-500">
                 <div class="">
 
                     <div> دسته بندی ها</div>
@@ -172,7 +177,7 @@
                         <ul class="p-0">
                             @foreach ($sideLastPost['data'] as $content)
                                 <li class="flex ">
-                                    <a class="flex three" href="{{ url($content->slug) }}">
+                                    <a class="flex " href="{{ url($content->slug) }}">
                                         @if (isset($content->images['thumb']))
                                             <div class="third"><img style="width: 100%" alt="{{ $content->title }}"
                                                     src="{{ $content->images['thumb'] }}"></div>
@@ -188,7 +193,13 @@
                     @endisset
                 </div>
             </div>
-            <div class="three-fourth-500 ">
+        </div>
+    </section>
+
+    <section class="content-detail bg-gray py-0 my-0" id="">
+        <div class="flex one ">
+
+            <div class="">
                 <div>
                     <ul>
                         @foreach ($table_of_content as $key => $item)
@@ -215,11 +226,13 @@
                             @foreach ($relatedProduct as $content)
                                 <div>
                                     <article>
-                                        @if (isset($content->images['thumb']))
-                                            <div><img src="{{ $content->images['thumb'] }}"></div>
+                                        @if (isset($content->images['images']['small']))
+                                            <div><img  src="{{ $content->images['images']['small'] }}" width="{{ env(Str::upper($content->attr_type).'_SMALL_W') }}"
+                                                height="{{ env(Str::upper($content->attr_type).'_SMALL_H') }}"></div>
                                         @endif
                                         <footer>
-                                            <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
+                                            <div> {{ $content->title }}</div>
+                                            <a class="btn btn-block bg-blue" href="{{ $content->slug }}">@lang('messages.more')</a>
                                         </footer>
                                     </article>
                                 </div>

@@ -22,11 +22,15 @@
     $tableOfImages = tableOfImages($detail->description);
     $append = '';
     @endphp
+
     @if (count($relatedProduct))
         @include('jsonLdRelatedProduct')
     @endif
     @include('jsonLdFaq')
 
+    @if (count($breadcrumb)>0)
+        @include('jsonLdBreadcrumb')
+    @endif
 
 
     @if (count($breadcrumb))

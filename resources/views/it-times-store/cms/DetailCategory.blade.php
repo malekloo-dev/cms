@@ -89,6 +89,13 @@
         @include('jsonLdRelatedProduct')
     @endif
 
+    @include('jsonLdFaq')
+
+
+    @if (count($breadcrumb)>0)
+        @include('jsonLdBreadcrumb')
+    @endif
+
     @if (count($breadcrumb))
         <section class="breadcrumb my-0">
             <div class="flex one  ">
@@ -117,15 +124,15 @@
                                             alt="{{ $content->title }}" width="{{ env('CATEGORY_SMALL_W') }}"
                                             height="{{ env('CATEGORY_SMALL_H') }}"
                                             srcset="
-                                                    {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
-                                                    {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
-                                                    {{ $content->images['images']['large'] ?? $content->images['thumb'] }} {{ env('CATEGORY_LARGE_W') }}w">
+                            {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
+                            {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
+                            {{ $content->images['images']['large'] ?? $content->images['thumb'] }} {{ env('CATEGORY_LARGE_W') }}w">
                                         <figcaption>
-                                            <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                                            <div class="p-0 m-0 text-center"> {{ $content->title }}</div>
                                         </figcaption>
                                     </figure>
                                 @else
-                                    <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                                    <div class="p-0 m-0 text-center"> {{ $content->title }}</div>
                                 @endif
 
                             </div>
@@ -141,7 +148,7 @@
             </div>
         </section>
     @endif
-
+    <hr>
     @if (count($relatedProduct))
         <section class="products mt-5" id="index-best-view">
             <div class="flex one ">
@@ -150,25 +157,24 @@
                         <div class="flex one two-500 five-900 center ">
                             @foreach ($relatedProduct as $content)
                                 <div>
-                                    <a href="{{ $content->slug }}">
                                     <article>
                                         @if (isset($content->images['images']['small']))
                                             <figure class="image">
                                                 <img src="{{ $content->images['images']['small'] }}"
                                                     sizes="(max-width:{{ env('ARTICLE_SMALL_W') }}px) 100vw {{ env('ARTICLE_SMALL_W') }}px {{ ENV('ARTICLE_MEDIUM_W') }}px"
-                                                    alt="{{ $content->title }}" width="100" height="100"
-                                                    srcset="
-                                                                {{ $content->images['images']['small'] }} {{ env('ARTICLE_SMALL_W') }}w,
-                                                                {{ $content->images['images']['medium'] }} 2x">
+                                                    alt="{{ $content->title }}" width="100" height="100" srcset="
+                    {{ $content->images['images']['small'] }} {{ env('ARTICLE_SMALL_W') }}w,
+                    {{ $content->images['images']['medium'] }} 2x">
                                             </figure>
 
                                         @endif
                                         <footer>
-                                            <h2> {{ $content->title }}</h2>
+                                            <div> {{ $content->title }}</div>
                                             {{-- {!! $content->brief_description !!} --}}
+                                            <a class="btn btn-block bg-blue" href="{{ $content->slug }}">@lang('messages.more')</a>
+
                                         </footer>
                                     </article>
-                                    </a>
                                 </div>
                             @endforeach
 
@@ -191,8 +197,8 @@
                                     <article class="shadow2">
                                         @if (isset($content->images['images']['medium']))
                                             <figure class="image">
-                                                <img src="{{ $content->images['images']['medium'] }}"
-                                                    width="198" height="100" alt="{{ $content->title }}">
+                                                <img src="{{ $content->images['images']['medium'] }}" width="198"
+                                                    height="100" alt="{{ $content->title }}">
                                             </figure>
                                         @endif
 

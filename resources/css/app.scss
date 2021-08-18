@@ -37,6 +37,12 @@
 .middle{
     align-content: center;
 }
+.order1{order: 1;}
+.order2{order: 2;}
+.order3{order: 3;}
+.order4{order: 4;}
+.order5{order: 5;}
+
 .one > * {
     width: 100%;
 }
@@ -110,6 +116,12 @@
     .twelve-500 > * {
         width: 8.33333%;
     }
+
+    .order1-500{order: 1;}
+    .order2-500{order: 2;}
+    .order3-500{order: 3;}
+    .order4-500{order: 4;}
+    .order5-500{order: 5;}
 }
 @media all and (min-width: 600px) {
     .one-600 > * {

@@ -77,6 +77,13 @@
     @endif
     @include('jsonLdFaq')
 
+    @if ($detail->attr_type == 'article')
+        @include('jsonLdArticle')
+    @endif
+
+    @if (count($breadcrumb)>0)
+        @include('jsonLdBreadcrumb')
+    @endif
 
     <section class="breadcrumb mt-0">
         <div class="flex one  ">

@@ -40,7 +40,9 @@
     @endif
     @include('jsonLdFaq')
 
-
+    @if (count($breadcrumb)>0)
+        @include('jsonLdBreadcrumb')
+    @endif
 
     @if (count($breadcrumb))
         <section class="breadcrumb">
