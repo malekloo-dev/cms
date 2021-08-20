@@ -138,7 +138,7 @@
 
 
 
-<section class="index-item-top  mt-0 mb-0 pt-2 pb-2 bg-white category-section" onresize="onResize()">
+<section class="index-item-top  mt-0 mb-0 pt-2 pb-2 bg-white category-section " onresize="onResize()">
     <div class="flex one  ">
         <div class="siema p-0">
             {{--category&label=cat&var=category&count=10 --}}
@@ -146,13 +146,13 @@
                 @foreach ($category['data'] as $content)
                     <a href="{{ $content->slug }}">
                         <div class="hover text-center">
-                            @if (isset($content->images['thumb']))
+                            @if (isset($content->images['images']['small']))
                                 <figure class="image">
-                                    <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
+                                    <img src="{{ $content->images['images']['small']  }}"
                                         alt="{{ $content->title }}" width="40" height="40"
                                         srcset="
-                                            {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
-                                            {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM_W') }}w">
+                                            {{ $content->images['images']['small']  }} {{ env('CATEGORY_SMALL_W') }}w,
+                                            {{ $content->images['images']['medium'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_MEDIUM_W') }}w">
                                     <figcaption>
                                         <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
                                     </figcaption>
@@ -184,9 +184,9 @@
                         <div>
                             <a href="{{ $content->slug }}">
                                 <article class="shadow2">
-                                    @if (isset($content->images['thumb']))
+                                    @if (isset($content->images['images']['medium']))
                                         <figure class="image">
-                                            <img src="{{ $content->images['images']['medium'] ?? $content->images['thumb'] }}"
+                                            <img src="{{ $content->images['images']['medium'] }}"
                                                 width="{{ env('ARTICLE_SMALL_W') }}" height="{{ env('ARTICLE_SMALL_H') }}" alt="{{ $content->title }}">
                                         </figure>
                                     @endif
@@ -242,9 +242,9 @@
                                 <div>
                                     <a href="{{ $content->slug }}">
                                         <article class="shadow2">
-                                            @if (isset($content->images['thumb']))
+                                            @if (isset($content->images['images']['small']))
                                                 <figure class="image">
-                                                    <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
+                                                    <img src="{{ $content->images['images']['small'] }}"
                                                         alt="{{ $content->title }}" width="{{ env('ARTICLE_SMALL_W') }}" height="{{ env('ARTICLE_SMALL_H') }}">
                                                 </figure>
                                             @endif
@@ -307,9 +307,9 @@
                                         <article class="shadow2">
                                             <div class="title">{{ $content->title }}</div>
 
-                                            @if (isset($content->images['thumb']))
+                                            @if (isset($content->images['images']['small']))
                                                 <figure class="image">
-                                                    <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
+                                                    <img src="{{ $content->images['images']['small']  }}"
                                                         alt="{{ $content->title }}"
                                                         width="{{ env('ARTICLE_SMALL_W') }}"
                                                         height="{{ env('ARTICLE_SMALL_H') }}">

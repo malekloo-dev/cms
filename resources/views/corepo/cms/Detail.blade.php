@@ -95,12 +95,12 @@
     <section class="intro" id="detail">
         <div class="flex one two-500  ">
             <div class="fourth-500">
-                @if (isset($detail->images['thumb']))
+                @if (isset($detail->images['images']['small']))
                     <figure class="image">
-                        <img src="{{ $detail->images['images']['small'] ?? $detail->images['thumb'] }}"
+                        <img src="{{ $detail->images['images']['small']  }}"
                             alt="{{ $detail->title }}" width="189" height="100" srcset="
-                                    {{ $detail->images['images']['small'] ?? $detail->images['thumb'] }} 1x,
-                                    {{ $detail->images['images']['large'] ?? $detail->images['thumb'] }} 2x">
+                                    {{ $detail->images['images']['small']  }} 1x,
+                                    {{ $detail->images['images']['large'] ?? $detail->images['images']['small'] }} 2x">
 
                     </figure>
                 @endif
@@ -169,9 +169,9 @@
                             @foreach ($sideLastPost['data'] as $content)
                                 <li class="flex ">
                                     <a class="flex three" href="{{ url($content->slug) }}">
-                                        @if (isset($content->images['thumb']))
+                                        @if (isset($content->images['images']['small']))
                                             <div class="third"><img style="width: 100%" alt="{{ $content->title }}"
-                                                    src="{{ $content->images['thumb'] }}"></div>
+                                                    src="{{ $content->images['images']['small'] }}"></div>
                                         @endif
                                         <div class="two-third">
 
@@ -212,8 +212,8 @@
                         @foreach ($relatedProduct as $content)
                             <div>
                                 <article>
-                                    @if (isset($content->images['thumb']))
-                                        <div><img src="{{ $content->images['thumb'] }}"></div>
+                                    @if (isset($content->images['images']['small']))
+                                        <div><img src="{{ $content->images['images']['small'] }}"></div>
                                     @endif
                                     <footer>
                                         <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
@@ -242,8 +242,8 @@
                         @foreach ($relatedPost as $content)
                             <div>
                                 <article>
-                                    @if (isset($content->images['thumb']))
-                                        <div><img src="{{ $content->images['thumb'] }}"></div>
+                                    @if (isset($content->images['images']['small']))
+                                        <div><img src="{{ $content->images['images']['small'] }}"></div>
                                     @endif
                                     <footer>
                                         <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
