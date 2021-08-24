@@ -568,6 +568,8 @@ class CompanyController extends Controller
 
         $parent_id_hide = $data['parent_id_hide'];
         $data['parent_id_hide'] = $data['parent_id'];
+        $data['pass'] = 123456;
+        $data['password'] = Hash::make(123456);
         $data['parent_id'] = $parent_id_hide;
         if ($data['parent_id'] == '') {
             $data['parent_id'] = $data['parent_id_hide'][0];
