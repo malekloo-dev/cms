@@ -84,10 +84,10 @@
                                                         @foreach ($relatedPost as $content)
                                                             <div>
                                                                 <article class="flex one two-500">
-                                                                    @if (isset($content->images['thumb']))
+                                                                    @if (isset($content->images['images']['small']))
                                                                         <div class="third-500" >
                                                                             <img style="object-fit: cover; "
-                                                                                src="{{ $content->images['thumb'] }}">
+                                                                                src="{{ $content->images['images']['small'] }}">
                                                                         </div>
                                                                     @endif
                                                                     <footer class="two-third-500">
@@ -124,9 +124,9 @@
                                                 <div class="border hover-box p-1 full">
                                                     <a href="{{ $content->slug }}">
                                                         <div class="flex one three-700 height-100">
-                                                            @if (isset($content->images['thumb']))
+                                                            @if (isset($content->images['images']['small']))
                                                                 <div class="p-0"><img
-                                                                        src="{{ $content->images['thumb'] }}" /></div>
+                                                                        src="{{ $content->images['images']['small'] }}" /></div>
                                                             @endif
                                                             <div class="one two-third-700 pr-1">
                                                                 <h2 class="p-0"> {{ $content->title }}</h2>

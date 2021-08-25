@@ -70,9 +70,9 @@
                                                 <div class="border hover-box p-1 full">
                                                     <a href="{{ $content->slug }}">
                                                         <div class="flex one three-700 height-100">
-                                                            @if (isset($content->images['thumb']))
+                                                            @if (isset($content->images['images']['small']))
                                                                 <div class="p-0"><img
-                                                                        src="{{ $content->images['thumb'] }}" /></div>
+                                                                        src="{{ $content->images['images']['small'] }}" /></div>
                                                             @endif
                                                             <div class="one two-third-700 pr-1">
                                                                 <h2 class="p-0"> {{ $content->title }}</h2>
@@ -107,8 +107,8 @@
                                                 <div>
                                                     <a href="{{ $content->slug }}">
                                                     <article>
-                                                        @if (isset($content->images['thumb']))
-                                                            <div><img src="{{ $content->images['thumb'] }}"></div>
+                                                        @if (isset($content->images['images']['small']))
+                                                            <div><img src="{{ $content->images['images']['small'] }}"></div>
                                                         @endif
                                                         <footer>
                                                              {{ $content->title }}
@@ -133,7 +133,7 @@
                             <div>
 
 
-                           
+
 
                                 @if(count($table_of_content)>0)
                                 <ul>

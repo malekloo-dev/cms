@@ -53,7 +53,7 @@
                     <div id="wb_Card6" style="">
                         <div id="Card6-card-body">
                             <a href="{{ url($content->slug) }}">
-                                @if (isset($content->images['thumb']))
+                                @if (isset($content->images['images']['small']))
                                     <img id="Card6-card-item0" src="{{ $content->images['images']['small'] }}" alt="" title="">
                                 @endif
                             </a>

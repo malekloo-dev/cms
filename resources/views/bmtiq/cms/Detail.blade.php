@@ -81,8 +81,8 @@
                                                 <div>
                                                     <a href="{{ $content->slug }}">
                                                         <article>
-                                                            @if (isset($content->images['thumb']))
-                                                                <div><img src="{{ $content->images['thumb'] }}"
+                                                            @if (isset($content->images['images']['small']))
+                                                                <div><img src="{{ $content->images['images']['small'] }}"
                                                                         alt="{{ $content->title }}"></div>
                                                             @endif
                                                             <footer>

@@ -188,8 +188,8 @@ height="{{ env('PRODUCT_MEDIUM_W') }}">
 @foreach ($relatedPost as $content)
 <div>
 <article>
-    @if (isset($content->images['thumb']))
-        <div><img src="{{ $content->images['thumb'] }}  alt=" {{ $content->title }} "></div>
+    @if (isset($content->images['images']['small']))
+        <div><img src="{{ $content->images['images']['small'] }}  alt=" {{ $content->title }} "></div>
 @endif
             <footer>
                 <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>

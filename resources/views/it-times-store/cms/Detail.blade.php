@@ -178,9 +178,9 @@
                             @foreach ($sideLastPost['data'] as $content)
                                 <li class="flex ">
                                     <a class="flex " href="{{ url($content->slug) }}">
-                                        @if (isset($content->images['thumb']))
+                                        @if (isset($content->images['images']['small']))
                                             <div class="third"><img style="width: 100%" alt="{{ $content->title }}"
-                                                    src="{{ $content->images['thumb'] }}"></div>
+                                                    src="{{ $content->images['images']['small'] }}"></div>
                                         @endif
                                         <div class="two-third">
 
@@ -255,8 +255,8 @@
                             @foreach ($relatedPost as $content)
                                 <div>
                                     <article>
-                                        @if (isset($content->images['thumb']))
-                                            <div><img src="{{ $content->images['thumb'] }}"></div>
+                                        @if (isset($content->images['images']['small']))
+                                            <div><img src="{{ $content->images['images']['small'] }}"></div>
                                         @endif
                                         <footer>
                                             <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>

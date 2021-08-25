@@ -463,13 +463,13 @@
     &#64;foreach ($category['data'] as $content)
         &lt;a href="&lbrace;&lbrace; $content->slug }}">
             &lt;div class="hover text-center">
-                &#64;if (isset($content->images['thumb']))
+                &#64;if (isset($content->images['images']['small']))
                     &lt;figure class="image">
-                    &lt;img src="&lbrace;&lbrace; $content->images['images']['small'] ?? $content->images['thumb'] }}"
+                    &lt;img src="&lbrace;&lbrace; $content->images['images']['small']  }}"
                             alt="&lbrace;&lbrace; $content->title }}" width="40" height="40"
                             srcset="
-                            &lbrace;&lbrace; $content->images['images']['small'] ?? $content->images['thumb'] }} &lbrace;&lbrace; env('CATEGORY_SMALL_W') }}w,
-                            &lbrace;&lbrace; $content->images['images']['medium'] ?? $content->images['thumb'] }} &lbrace;&lbrace; env('CATEGORY_MEDIUM_W') }}w">
+                            &lbrace;&lbrace; $content->images['images']['small']  }} &lbrace;&lbrace; env('CATEGORY_SMALL_W') }}w,
+                            &lbrace;&lbrace; $content->images['images']['medium'] ?? $content->images['images']['small'] }} &lbrace;&lbrace; env('CATEGORY_MEDIUM_W') }}w">
                                 &lt;figcaption>
                         &lt;h3 class="p-0 m-0 text-center"> &lbrace;&lbrace; $content->title }}</h3>
                     &lt;/figcaption>
@@ -505,9 +505,9 @@
     &lt;div>
         &lt;a href="&lbrace;&lbrace; $content->slug }}">
             &lt;article class="shadow2">
-                &#64;if (isset($content->images['thumb']))
+                &#64;if (isset($content->images['images']['medium']))
                     &lt;figure class="image">
-                        &lt;img src="&lbrace;&lbrace; $content->images['images']['medium'] ?? $content->images['thumb'] }}"
+                        &lt;img src="&lbrace;&lbrace; $content->images['images']['medium'] }}"
                             width="198" height="100" alt="&lbrace;&lbrace; $content->title }}">
                     &lt;/figure>
                 &#64;endif

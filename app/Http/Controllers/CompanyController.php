@@ -251,7 +251,7 @@ class CompanyController extends Controller
         // dd($file->getRealPath());
         // $url['images'] = $this->resize($file->getRealPath(), $type, $imagePath, $filename);
         $url['images'] = $this->resize($imagePath . $fileNameAndType, $type, $imagePath, $fileNameAndType, $fileName, $fileType);
-        $url['thumb'] = $url['images']['small'];
+        // $url['thumb'] = $url['images']['small'];
         // $url = $imagePath . $fileNameAndType;
         // dd($url);
         return $url;

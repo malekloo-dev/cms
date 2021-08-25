@@ -238,7 +238,7 @@
                                     <label class="control-label">
                                         {{ $key }}
                                         <input type="radio" name="imagesThumb" value="{{ $image }}"
-                                            {{ $post->images['thumb'] == $image ? 'checked' : '' }} />
+                                            {{ $post->images['images']['small'] == $image ? 'checked' : '' }} />
                                         <a href="{{ $image }}" target="_blank"><img src="{{ $image }}"
                                                 width="100%"></a>
                                     </label>

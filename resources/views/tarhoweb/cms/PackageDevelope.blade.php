@@ -43,7 +43,7 @@
                 </div>
                 <div class="price">
                     <div class="font-2">
-                        ۵۰۰،۰۰۰ تومان
+                        ۳۰۰،۰۰۰ تومان
                     </div>
                 </div>
             </div>
@@ -133,7 +133,7 @@
                 </div>
                 <div class="price">
                     <div class="font-2">
-                        ۱،۵۰۰،۰۰۰ تومان
+                        ۳،۰۰۰،۰۰۰ تومان
                     </div>
                 </div>
             </div>
@@ -160,7 +160,7 @@
                 </div>
                 <div class="price">
                     <div class="font-2">
-                        ۳،۰۰۰،۰۰۰ تومان
+                        ۵،۰۰۰،۰۰۰ تومان
                     </div>
                 </div>
             </div>

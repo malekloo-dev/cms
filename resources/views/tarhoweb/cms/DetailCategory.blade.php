@@ -40,14 +40,14 @@
                         @foreach ($subCategory as $content)
                             <div>
                                 <article>
-                                    @if (isset($content->images['thumb']))
+                                    @if (isset($content->images['images']['small']))
                                         <figure class="image">
-                                            <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
+                                            <img src="{{ $content->images['images']['small']  }}"
                                                 sizes="(max-width:{{ env('CATEGORY_SMALL_W') }}px) 100vw {{ env('CATEGORY_SMALL_W') }}px {{ ENV('CATEGORY_MEDIUM_W') }}px"
                                                 alt="{{ $content->title }}" width="{{ ENV('CATEGORY_SMALL_W') }}"
                                                 height="{{ ENV('CATEGORY_SMALL_W') }}" srcset="
-                                            {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
-                                            {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} 2x">
+                                            {{ $content->images['images']['small']  }} {{ env('CATEGORY_SMALL_W') }}w,
+                                            {{ $content->images['images']['medium'] ?? $content->images['images']['small'] }} 2x">
                                         </figure>
 
                                     @endif
@@ -77,8 +77,8 @@
                             @foreach ($relatedProduct as $content)
                                 <div>
                                     <article>
-                                        @if (isset($content->images['thumb']))
-                                            <div><img src="{{ $content->images['thumb'] }}"></div>
+                                        @if (isset($content->images['images']['small']))
+                                            <div><img src="{{ $content->images['images']['small'] }}"></div>
                                         @endif
                                         <footer>
                                             <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
@@ -108,10 +108,10 @@
                             <div>
                                 <a href="{{ $content->slug }}">
                                     <article>
-                                        @if (isset($content->images['thumb']))
+                                        @if (isset($content->images['images']['small']))
                                             <div class="img-fit">
                                                 <img class="full rounded" alt="{{ $content->title }}"
-                                                    src="{{ $content->images['thumb'] }}">
+                                                    src="{{ $content->images['images']['small'] }}">
                                             </div>
                                         @endif
                                         <footer>
