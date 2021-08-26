@@ -121,7 +121,7 @@
                 @endif
 
             </div>
-            <div class="order3-500">
+            <div class="two-fifth-500 order3-500">
                 <div>
                     <h1 class="site-name pt-0">{{ $detail->title }}</h1>
                     <div class="website"></div>
