@@ -18,7 +18,6 @@
 
 @endif
 
-
 @section('head')
 
     @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
@@ -35,20 +34,20 @@
     $tableOfImages = tableOfImages($detail->description);
     $append = '';
     @endphp
-    @if (count($relatedProduct))
-        @include('jsonLdRelatedProduct')
-    @endif
-    @include('jsonLdFaq')
-
     @if (count($breadcrumb)>0)
         @include('jsonLdBreadcrumb')
     @endif
+    {{--@if (count($relatedProduct))
+        @include('jsonLdRelatedProduct')
+    @endif--}}
+    @include('jsonLdFaq')
+
 
     @if (count($breadcrumb))
         <section class="breadcrumb">
             <div class="flex one  ">
                 <div class="p-0">
-                    <a href="/">خانه </a>
+                    <a href="/">درب کالا</a>
                     @foreach ($breadcrumb as $key => $item)
                         <span>></span>
                         <a href="{{ $item['slug'] }}">{{ $item['title'] }}</a>
@@ -110,15 +109,17 @@
                 <div class="three-fourth-800 p-0">
                     <div class="">
 
-                        <div class="flex one   ">
+                        <div class="flex one">
 
                             {{-- $data['newPost'] --}}
                             @foreach ($relatedProduct as $content)
                                 <div>
-                                    <a href="{{ $content->slug }}">
+
                                     <article class="shadow">
                                         <div>
                                             @if (isset($content->images['images']['small']))
+
+                                                <a href="{{ $content->slug }}">
                                                 <picture>
                                                     <img loading="lazy"
                                                         src="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }}"
@@ -128,13 +129,14 @@
                                                         width="{{ env('PRODUCT_SMALL_W') }}"
                                                         height="{{ env('PRODUCT_SMALL_H') }}">
                                                 </picture>
+
+                                                </a>
                                             @endif
 
                                         </div>
                                         <div class="info">
-                                            <h2>{{ $content->title }}</h2>
 
-
+                                             <h5> <a href="{{ $content->slug }}"> {{ $content->title }}</a></h5>
                                             <div class="brief">
                                                 {!! readMore($content->brief_description, 250) !!}
                                             </div>
@@ -189,7 +191,7 @@
                                            </div>
                                         </footer>
                                     </article>
-                                    </a>
+
                                 </div>
                             @endforeach
                         </div>
@@ -265,7 +267,7 @@
                                                     ></div>
                                             @endif
                                             <footer>
-                                                <h2> {{ readmore($content->title, 80) }}</h2>
+                                                <h4> {{ readmore($content->title, 80) }}</h4>
                                                 {!! readmore($content->brief_description, 210) !!}
                                             </footer>
                                         </article>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\CmsController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CompanyController;
@@ -65,6 +66,7 @@ Route::prefix('/company')->middleware(['auth', 'role:super admin|company'])->gro
 
 
 
+
 Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(function () {
 
     Route::get('/', [AdminController::class, 'index'])->name('admin');
@@ -74,6 +76,8 @@ Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(functio
     Route::post('contents/upload-image/', [ContentController::class, 'uploadImageSubject'])->name('contents.upload');
 
     Route::delete('gallery/{gallery}', [GalleryController::class,'destroy'])->name('gallery.destroy');
+
+    Route::get('attribute/getFields/{id}', [AttributeController::class, 'getFields'])->name('attribute.getFields');
 
 
     // Route::get('image-cropper', [ImageCropperController::class, 'index']);

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="fa-IR">
-
+<html dir="rtl" lang="fa">
 <head>
     <title>{{ $seo['meta_title'] ?? ''}}@yield('meta-title')</title>
     <meta charset="utf-8">

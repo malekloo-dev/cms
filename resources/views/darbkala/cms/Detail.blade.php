@@ -171,7 +171,7 @@
             <div class="flex one ">
                 <div>
 
-                    <h2>محصولات مرتبط {{ $detail->title }}</h2>
+                    <h3>محصولات مرتبط {{ $detail->title }}</h3>
                     <div class="flex one two-500 five-900  center">
 
                         {{--$data['newPost']--}}
@@ -185,7 +185,7 @@
                                                     alt="{{ $content->title }}"></div>
                                         @endif
                                         <footer>
-                                            <h3> {{ $content->title }}</h3>
+                                            <h4> {{ $content->title }}</h4>
                                             {!! $content->brief_description !!}
                                         </footer>
                                     </article>
@@ -204,7 +204,7 @@
         <section class="articles bg-orange" id="index-best-view">
             <div class="flex one ">
                 <div>
-                    <h2>مقاله های مرتبط {{ $detail->title }}</h2>
+                    <h3>مقاله های مرتبط {{ $detail->title }}</h3>
                     <div class="flex one two-500 four-900 center ">
 
                         {{--$data['newPost']--}}
@@ -217,7 +217,7 @@
                                             </div>
                                         @endif
                                         <footer>
-                                            <h2> {{ $content->title }}</h2>
+                                            <h4> {{ $content->title }}</h4>
                                             {!! $content->brief_description !!}
                                         </footer>
                                     </article>
