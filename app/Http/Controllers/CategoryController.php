@@ -60,7 +60,7 @@ class CategoryController extends Controller
         // $url['thumb'] = $url['images']['small'];
 
         $url['images'] = $this->resize($imagePath . $fileNameAndType, $type, $imagePath, $fileNameAndType, $fileName, $fileType);
-        $url['thumb'] = $url['images']['small'];
+        // $url['thumb'] = $url['images']['small'];
         $url['images']['org'] = $imagePath . $fileName . '-org.' . $fileType;
 
         return $url;
@@ -351,9 +351,9 @@ class CategoryController extends Controller
             $images = $this->uploadImages($request, 'category');
         } else {
             $images = $crud->images;
-            if ($images != '') {
-                $images['thumb'] = $request->get('imagesThumb');
-            }
+            // if ($images != '') {
+            //     $images['thumb'] = $request->get('imagesThumb');
+            // }
         }
         $data['images'] = $images;
 

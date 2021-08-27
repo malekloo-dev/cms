@@ -244,10 +244,10 @@ width="{{ env('CATEGORY_MEDIUM_W') }}" height="{{ env('CATEGORY_MEDIUM_W') }}">
 <div>
 <a href="{{ $content->slug }}">
     <article>
-        @if (isset($content->images['thumb']))
+        @if (isset($content->images['images']['small']))
             <div><img width="{{ env('PRODUCT_SMALL_W') }}"
                     height="{{ env('PRODUCT_SMALL_H') }}" alt="{{ $content->title }}"
-                    src="{{ $content->images['thumb'] }}"></div>
+                    src="{{ $content->images['images']['small'] }}"></div>
         @endif
         <footer>
             <h2> {{ $content->title }}</h2>

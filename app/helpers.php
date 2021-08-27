@@ -390,15 +390,13 @@ if (!function_exists('forceRedirect')) {
 
         if (env('FORCE_REDIRECT', false)) {
 
-            // $url = $_SERVER['REQUEST_URI'];
-            $url = app('request')->path();
-            // dd($url);
-            $urlexplod = explode('/', $url);
+            $segments = app('request')->segments();
 
-            // dd(url(end($urlexplod)));
-            if (count($urlexplod) > 2 && !app('request')->is('admin/*')) {
+            if (count($segments) > 1 && !app('request')->is('admin/*') && !app('request')->is('company/*')) {
                 header("HTTP/1.1 301 Moved Permanently");
-                header("Location: " . url(end($urlexplod)));
+                // header("Location: " . url(end($urlexplod)));
+                $lastSegment = app('request')->segment(count(request()->segments()));
+                header("Location: " . url($lastSegment));
                 exit();
             }
         }

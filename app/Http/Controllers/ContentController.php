@@ -53,7 +53,7 @@ class ContentController extends Controller
 
 
             $url['images'] = $this->resize($imagePath . $fileNameAndType, $type, $imagePath, $fileNameAndType, $fileName, $fileType);
-            $url['thumb'] = $url['images']['small'];
+            // $url['thumb'] = $url['images']['small'];
             $url['images']['org'] = $imagePath . $fileName . '-org.' . $fileType;
         } else {
             foreach ($request->imageJsonGallery as $ga) {

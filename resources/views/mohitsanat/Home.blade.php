@@ -44,7 +44,7 @@
                             <div>
                                 <a class="hover shadow2 " href="{{ $content->slug }}">
 
-                                    @if (isset($content->images['thumb']))
+                                    @if (isset($content->images['images']['small']))
                                         <div><img alt="{{ $content->title }}"
                                                 width="{{ env('CATEGORY_SMALL_W') }}" height="{{ env('CATEGORY_SMALL_H') }}"
                                                 src="{{ $content->images['images']['small'] }}" srcset="
@@ -94,7 +94,7 @@
                             <div>
                                 <a class="hover shadow2" href="{{ $content->slug }}">
 
-                                    @if (isset($content->images['thumb']))
+                                    @if (isset($content->images['images']['small']))
                                         <div><img width="{{ env('ARTICLE_LARGE_W') }}" height="{{ env('ARTICLE_LARGE_H') }}" src="{{ $content->images['images']['large'] }}"></div>
                                     @endif
                                     <footer>
@@ -139,8 +139,8 @@
                             <div>
                                 <a class="hover shadow2" href="{{ $content->slug }}">
 
-                                    @if (isset($content->images['thumb']))
-                                        <div><img width="{{ env('ARTICLE_SMALL_W') }}" height="{{ env('ARTICLE_SMALL_H') }}" src="{{ $content->images['thumb'] }}"></div>
+                                    @if (isset($content->images['images']['small']))
+                                        <div><img width="{{ env('ARTICLE_SMALL_W') }}" height="{{ env('ARTICLE_SMALL_H') }}" src="{{ $content->images['images']['small'] }}"></div>
                                     @endif
                                     <footer>
                                         <h3> {{ $content->title }}</h3>

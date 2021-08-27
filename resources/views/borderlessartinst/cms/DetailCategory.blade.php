@@ -67,15 +67,15 @@
                         @foreach ($relatedPost as $detail2)
                             <div>
                                 <article>
-                                    @if (isset($detail2->images['thumb']))
+                                    @if (isset($detail2->images['images']['small']))
                                         <a href="{{ $detail2->slug }}">
-                                            <img src="{{ $detail2->images['images']['small'] ?? $detail2->images['thumb'] }}"
+                                            <img src="{{ $detail2->images['images']['small']  }}"
                                                 sizes="(max-width:{{ env('ARTICLE_SMALL_W') }}px) 100vw {{ env('ARTICLE_SMALL_W') }}px {{ ENV('ARTICLE_MEDIUM_W') }}px"
                                                 alt="{{ $detail2->title }}" width="332" height="463"
                                                 srcset="
-                                                                            {{ $detail2->images['images']['small'] ?? $detail2->images['thumb'] }} {{ env('ARTICLE_SMALL_W') }}w,
-                                                                            {{ $detail2->images['images']['medium'] ?? $detail2->images['thumb'] }} {{ env('ARTICLE_MEDIUM_W') }}w,
-                                                                            {{ $detail2->images['images']['large'] ?? $detail2->images['thumb'] }} {{ env('ARTICLE_LARGE_W') }}w">
+                                                                            {{ $detail2->images['images']['small']  }} {{ env('ARTICLE_SMALL_W') }}w,
+                                                                            {{ $detail2->images['images']['medium'] ?? $detail2->images['images']['small'] }} {{ env('ARTICLE_MEDIUM_W') }}w,
+                                                                            {{ $detail2->images['images']['large'] ?? $detail2->images['images']['small'] }} {{ env('ARTICLE_LARGE_W') }}w">
 
                                         </a>
                                     @endif

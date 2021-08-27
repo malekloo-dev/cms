@@ -480,7 +480,7 @@ class CmsController extends Controller
 
         $sizes = ["300", "600", "900"];
         $url['images'] = $this->resize($file->getRealPath(), $sizes, $imagePath, $filename);
-        $url['thumb'] = $url['images'][$sizes[0]];
+        // $url['thumb'] = $url['images'][$sizes[0]];
 
         return $url;
     }
@@ -660,7 +660,7 @@ class CmsController extends Controller
             $images = $this->uploadImages($request->file('images'));
         } else {
             $images = $crud->images;
-            $images['thumb'] = $request->get('imagesThumb');
+            // $images['thumb'] = $request->get('imagesThumb');
         }
         $crud->images = $images;
 

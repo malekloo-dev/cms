@@ -23,7 +23,7 @@ class AdminController extends Controller
 
         $sizes = ["300", "600", "900"];
         $url['images'] = $this->resize($file->getRealPath(), $sizes, $imagePath, $filename);
-        $url['thumb'] = $url['images'][$sizes[0]];
+        // $url['thumb'] = $url['images'][$sizes[0]];
 
         return $url;
     }
@@ -58,5 +58,5 @@ class AdminController extends Controller
         return view('admin.index', compact('data'));
     }
 
-    
+
 }

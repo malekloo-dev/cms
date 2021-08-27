@@ -163,9 +163,9 @@
                             <div>
 
                                 <article class="shadow1">
-                                    @if (isset($content->images['thumb']))
+                                    @if (isset($content->images['images']['small']))
                                         <a href="{{ $content->slug }}">
-                                            <div><img src="{{ $content->images['thumb'] }}"
+                                            <div><img src="{{ $content->images['images']['small'] }}"
                                                     alt="{{ $content->title }}">
                                             </div>
                                         </a>

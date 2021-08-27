@@ -118,15 +118,15 @@
                     @foreach ($subCategory as $content)
                         <a href="{{ $content->slug }}">
                             <div class="hover text-center">
-                                @if (isset($content->images['thumb']))
+                                @if (isset($content->images['images']['small']))
                                     <figure class="image">
-                                        <img src="{{ $content->images['images']['small'] ?? $content->images['thumb'] }}"
+                                        <img src="{{ $content->images['images']['small'] }}"
                                             alt="{{ $content->title }}" width="{{ env('CATEGORY_SMALL_W') }}"
                                             height="{{ env('CATEGORY_SMALL_H') }}"
                                             srcset="
-                            {{ $content->images['images']['small'] ?? $content->images['thumb'] }} {{ env('CATEGORY_SMALL_W') }}w,
-                            {{ $content->images['images']['medium'] ?? $content->images['thumb'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
-                            {{ $content->images['images']['large'] ?? $content->images['thumb'] }} {{ env('CATEGORY_LARGE_W') }}w">
+                            {{ $content->images['images']['small']  }} {{ env('CATEGORY_SMALL_W') }}w,
+                            {{ $content->images['images']['medium'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
+                            {{ $content->images['images']['large'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_LARGE_W') }}w">
                                         <figcaption>
                                             <div class="p-0 m-0 text-center"> {{ $content->title }}</div>
                                         </figcaption>

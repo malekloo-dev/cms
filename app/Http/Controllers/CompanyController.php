@@ -251,7 +251,7 @@ class CompanyController extends Controller
         // dd($file->getRealPath());
         // $url['images'] = $this->resize($file->getRealPath(), $type, $imagePath, $filename);
         $url['images'] = $this->resize($imagePath . $fileNameAndType, $type, $imagePath, $fileNameAndType, $fileName, $fileType);
-        $url['thumb'] = $url['images']['small'];
+        // $url['thumb'] = $url['images']['small'];
         // $url = $imagePath . $fileNameAndType;
         // dd($url);
         return $url;
@@ -568,6 +568,8 @@ class CompanyController extends Controller
 
         $parent_id_hide = $data['parent_id_hide'];
         $data['parent_id_hide'] = $data['parent_id'];
+        $data['pass'] = 123456;
+        $data['password'] = Hash::make(123456);
         $data['parent_id'] = $parent_id_hide;
         if ($data['parent_id'] == '') {
             $data['parent_id'] = $data['parent_id_hide'][0];
