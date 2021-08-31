@@ -10,7 +10,7 @@
                         "@id": "{{ url('/') }}",
                         "name": "{{ env('SITE_NAME','خانه')}}"
                     }
-                }
+                },
             @foreach ($breadcrumb as $index => $item)
 
                 {

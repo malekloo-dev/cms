@@ -39,7 +39,7 @@ class Content extends Model
 
     public function comments()
     {
-        $comments = $this->hasMany(Comment::class)->where('status', '=', '1');
+        $comments = $this->hasMany(Comment::class)->where('status', '=', '1')->orderBy('id','desc');
 
         return $comments;
     }

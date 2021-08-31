@@ -106,7 +106,7 @@
                 @endif
 
             </div>
-            <div class="">
+            <div class="three-fourth-500">
                 <div>
                     <h1 class="site-name pt-0">{{ $detail->title }}</h1>
                     <div class="website"></div>
@@ -126,8 +126,13 @@
                                     srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
                                     src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
                             @endfor
-                            <span class="font-08">({{ count($detail->comments) }} نفر)</span>
+                            <span class="font-08">({{ count($detail->comments) }} نفر)</span> |
                         @endif
+                        <span class="font-08">
+                            {{ $detail->viewCount }} بار دیده شده |
+                        </span>
+                        <span class="font-08"> تاریخ انتشار:</span>
+                                    <span class="ltr font-08">{{ convertGToJ($detail->publish_date) }} </span> |
                     </div>
                 </div>
                 {!! $detail->brief_description !!}
