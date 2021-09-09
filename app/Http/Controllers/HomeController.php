@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Content;
 use App\Models\Category;
+use App\Models\Company;
 use App\Models\Widget;
 use App\Models\WebsiteSetting;
 use Carbon\Carbon;
@@ -128,6 +129,10 @@ class HomeController extends Controller
                 $data[$var]['meta']['background'] = $config['background'];
             }
         }
+
+        // $data['companies'] = Company::limit(5)->orderBy('id','desc')->get();
+
+
         // $queries = DB::getQueryLog();
 
         // dd($queries);

@@ -38,12 +38,7 @@
                         <li><a href="/تعرفه">تعرفه تبلیغات</a></li>
                         <li><a href="/اپلیکیشن">اپلیکیشن</a></li>
                     </ul>
-                    <div>خانواده ما</div>
-                    <ul>
-                        <li><a target="_blanck" href="https://darbkala.com">درب کالا</a></li>
-                        <li><a target="_blanck" href="https://remotyadak.ir">ریموت یدک</a></li>
-                        <li><a target="_blanck" href="https://corepo.ir">کریپو</a></li>
-                    </ul>
+                   
                 </div>
             </div>
         </div>

@@ -52,18 +52,6 @@
                             @endif
                         @endforeach
 
-                        @auth
-                            <li>
-                                <a href="{{ route('company.dashboard') }}">پروفایل</a>
-                            </li>
-                        @else
-                            <li>
-                                <a href="{{ route('login') }}">ورود</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('register') }}">ثبت نام</a>
-                            </li>
-                        @endauth
 
                     </ul>
                 </div>

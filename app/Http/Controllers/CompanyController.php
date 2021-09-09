@@ -612,7 +612,7 @@ class CompanyController extends Controller
         // $companu->dettach();
         // $compnay->contents;
         // unllink
-
+        dd(1);
         return redirect()->route('admin.company.index')->with('success', Lang::get('messages.deleted'));
     }
 }

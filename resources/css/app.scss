@@ -2464,6 +2464,10 @@ $sizes: 5;
     background-color: #ff872c;
     color: #fff;
 }
+.bg-orange-light {
+    background-color: #ffd2af;
+    color: #333;
+}
 
 .bg-blue {
     background-color: #48abfb;
@@ -2495,6 +2499,8 @@ $sizes: 5;
     background-color: $theme-color1;
     color: $menu-color;
 }
+
+
 .color-inherit{color: $theme-color1;}
 
 .rounded {

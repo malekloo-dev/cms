@@ -212,33 +212,30 @@ nav[role="navigation"] span > svg {
 .index-items {
     text-align: center;
     margin-top: 0;
-}
-.index-items h3 {
-    color: #333;
-    font-size: 1em;
-}
-.index-items footer {
-    color: #333;
-}
-.index-items footer {
-    height: 8em;
+    h2{font-size: 1.1em; padding:1em 0}
+    h3 {
+        color: #333;
+        font-size: 1em;
+    }
+    footer {
+        color: #333;
+        height: 8em;
     display: flex;
     justify-content: space-between;
     flex-flow: column;
+    }
+    a {
+        display: block;
+        padding-bottom: 1em;
+        height: 100%;
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #fff;
+        color: #000;
+    }
 }
-.index-items img {
-    // width: 60%;
-    // height: 100%;
-    // object-fit: cover;
-}
-.index-items a {
-    display: block;
-    padding-bottom: 1em;
-    height: 100%;
-    border-radius: 5px;
-    overflow: hidden;
-    background-color: #fff;
-}
+
+
 .index-items.articles {
     a {
         padding: 0;
@@ -257,6 +254,7 @@ nav[role="navigation"] span > svg {
 
     h3 {
         font-size: 1em;
+        font-weight: normal;
     }
     footer {
         height: auto;

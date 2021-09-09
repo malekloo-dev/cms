@@ -83,9 +83,6 @@
                 {{ $detail->viewCount }} بار دیده شده |
             </div>
 
-            <div class="bg-orange-light  pt-1">
-                {!! clearHtml($detail->brief_description) !!}
-            </div>
 
         </div>
     </section>
@@ -283,10 +280,10 @@
                                                     height="{{ env('ARTICLE_MEDIUM_H') }}"
                                                     ></div>
                                             @endif
-                                            <div class="p-1">
+                                            <footer>
                                                 <h4> {{ readmore($content->title, 80) }}</h4>
                                                 {!! readmore($content->brief_description, 210) !!}
-                                            </div>
+                                            </footer>
                                         </article>
                                     </a>
                                 </div>
