@@ -126,7 +126,7 @@
                             <div class="hover text-center">
                                 @if (isset($content->images['images']['small']))
                                     <figure class="image">
-                                        <img src="{{ $content->images['images']['small']  }}"
+                                        <img  loading="lazy" src="{{ $content->images['images']['small']  }}"
                                             alt="{{ $content->title }}" width="{{ env('CATEGORY_SMALL_W') }}" height="{{ env('CATEGORY_SMALL_H') }}" srcset="
                                             {{ $content->images['images']['small']  }} {{ env('CATEGORY_SMALL_W') }}w,
                                             {{ $content->images['images']['medium'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
@@ -167,7 +167,7 @@
                                     <article>
                                         @if (isset($content->images['images']['small']))
                                             <figure class="image">
-                                                <img src="{{ $content->images['images']['small']  }}"
+                                                <img  loading="lazy" src="{{ $content->images['images']['small']  }}"
                                                     sizes="(max-width:{{ env('ARTICLE_SMALL_W') }}px) 100vw {{ env('ARTICLE_SMALL_W') }}px {{ ENV('ARTICLE_MEDIUM_W') }}px"
                                                     alt="{{ $content->title }}" width="100" height="100"
                                                     srcset="
@@ -203,7 +203,7 @@
                                     <article class="shadow2">
                                         @if (isset($content->images['images']['small']))
                                             <figure class="image">
-                                                <img src="{{ $content->images['images']['small']  }}"
+                                                <img  loading="lazy" src="{{ $content->images['images']['small']  }}"
                                                     width="198" height="100" alt="{{ $content->title }}">
                                             </figure>
                                         @endif

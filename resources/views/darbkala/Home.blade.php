@@ -364,7 +364,7 @@
                                 <a class="hover shadow2" href="{{ $content->slug }}">
 
                                     @if (isset($content->images['images']['medium']))
-                                        <div><img width="{{ env('ARTICLE_MEDIUM_W') }}"
+                                        <div><img loading="lazy" alt="{{ $content->title }}" width="{{ env('ARTICLE_MEDIUM_W') }}"
                                                 height="{{ env('ARTICLE_MEDIUM_H') }}"
                                                 src="{{ $content->images['images']['medium'] }}"></div>
                                     @endif
@@ -391,7 +391,7 @@
                         {!! $categoryDetail['data']->brief_description !!}
                     </div>
                     <div class="third-600" style="order:1">
-                        <img src="{{ $categoryDetail['data']->images['images']['large'] }}" alt="">
+                        <img  loading="lazy" src="{{ $categoryDetail['data']->images['images']['large'] }}"  alt="darbkala about us">
                     </div>
                 </div>
             </div>

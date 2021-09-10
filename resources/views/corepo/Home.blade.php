@@ -154,11 +154,11 @@
                                             {{ $content->images['images']['small']  }} {{ env('CATEGORY_SMALL_W') }}w,
                                             {{ $content->images['images']['medium'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_MEDIUM_W') }}w">
                                     <figcaption>
-                                        <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                                        <h2 class="p-0 m-0 text-center"> {{ $content->title }}</h2>
                                     </figcaption>
                                 </figure>
                             @else
-                                <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                                <h2 class="p-0 m-0 text-center"> {{ $content->title }}</h2>
                             @endif
 
                         </div>
@@ -244,7 +244,7 @@
                                         <article class="shadow2">
                                             @if (isset($content->images['images']['small']))
                                                 <figure class="image">
-                                                    <img src="{{ $content->images['images']['small'] }}"
+                                                    <img loading="lazy" src="{{ $content->images['images']['small'] }}"
                                                         alt="{{ $content->title }}" width="{{ env('ARTICLE_SMALL_W') }}" height="{{ env('ARTICLE_SMALL_H') }}">
                                                 </figure>
                                             @endif
@@ -309,7 +309,7 @@
 
                                             @if (isset($content->images['images']['small']))
                                                 <figure class="image">
-                                                    <img src="{{ $content->images['images']['small']  }}"
+                                                    <img loading="lazy" src="{{ $content->images['images']['small']  }}"
                                                         alt="{{ $content->title }}"
                                                         width="{{ env('ARTICLE_SMALL_W') }}"
                                                         height="{{ env('ARTICLE_SMALL_H') }}">
@@ -354,18 +354,8 @@
     </div>
 
 
-
-
-
-
-
 </section>
 
-
-
-<section class=" bg-gray2 mt-0 mb-0 ">
-
-</section>
 
 
 @endsection

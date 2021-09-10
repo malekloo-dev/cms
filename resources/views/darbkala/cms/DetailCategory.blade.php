@@ -107,7 +107,7 @@
                                                 <a href="{{ $content->slug }}">
                                                     <div class="flex one three-700 height-100">
                                                         @if (isset($content->images['images']['small']))
-                                                            <div class="p-0"><img src="{{ $content->images['images']['small'] }}" /></div>
+                                                            <div class="p-0"><img alt="{{ $content->title }}" src="{{ $content->images['images']['small'] }}" /></div>
                                                         @endif
                                                         <div class="one two-third-700 pr-1">
                                                             <h2 class="p-0 font-08"> {{ $content->title }}</h2>
@@ -277,6 +277,7 @@
                                         <article class="shadow1">
                                             @if (isset($content->images['images']['medium']))
                                                 <div><img loading="lazy"
+                                                    alt="{{ $content->title }}"
                                                     src="{{ $content->images['images']['medium'] }}"
 
                                                     width="{{ env('ARTICLE_MEDIUM_W') }}"
