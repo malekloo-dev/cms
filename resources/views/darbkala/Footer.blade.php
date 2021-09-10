@@ -87,12 +87,15 @@
             </a>
         </div>
         <div class="flex grow one text-center">
+            <a href="{{ url('sitemap.html') }}">نقشه سایت</a>
             <div> شرکت درب کالا، پلتفرم تبلیغاتی و مشاوره در زمینه <a target="_blank"
                     href="{{ url('/درب-ضد-سرقت') }}">درب ضد سرقت</a> .
                 ساخته شده توسط <a target="_blank" rel="noopener" href="https://tarhoweb.com">طرح و وب</a></div>
         </div>
     </div>
 </section>
+
+
 
 @stack('scripts')
 
