@@ -37,9 +37,13 @@
     @if (count($breadcrumb)>0)
         @include('jsonLdBreadcrumb')
     @endif
+    @if (count($relatedProduct))
+        @include('jsonLdRelatedProductItemlist')
+    @endif
     {{--@if (count($relatedProduct))
         @include('jsonLdRelatedProduct')
     @endif--}}
+
     @include('jsonLdFaq')
 
 
@@ -90,6 +94,49 @@
         </div>
     </section>
 
+    @if (!Request::get('page'))
+
+        <section class="" id="">
+            <div class="flex one ">
+                <div class="bg-white p-1 border-radius-5">
+
+                    <div class="flex one two-700">
+                        <div class="two-third-700">
+                            <ul>
+                                @foreach ($table_of_content as $key => $item)
+                                    <li class="toc1">
+                                        <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
+                                    </li>
+                                @endforeach
+
+                            </ul>
+
+                        </div>
+                        <div class="third-700">
+                            @if (isset($detail->images['images']))
+                                <picture>
+
+
+                                    <img loading="lazy" src="{{ $detail->images['images']['medium'] ?? '' }}"
+                                         alt="{{ $detail->title }}"
+
+                                         width="{{ env('CATEGORY_MEDIUM_W') }}"
+                                         height="{{ env('CATEGORY_MEDIUM_W') }}">
+                                </picture>
+                            @endif
+
+
+                        </div>
+
+                    </div>
+
+                    @include(@env('TEMPLATE_NAME').'.DescriptionModule')
+
+                </div>
+            </div>
+        </section>
+
+    @endif
 
 
     @if (count($relatedProduct))
@@ -138,7 +185,7 @@
 
                                                 <a href="{{ $content->slug }}">
                                                 <picture>
-                                                    <img loading="lazy"
+                                                    <img  loading="lazy"
                                                         src="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }}"
                                                         {{-- srcset="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }} ,
                                                         {{ str_replace(' ', '%20', $content->images['images']['medium']) ?? '' }} 2x"  --}}
@@ -200,12 +247,10 @@
                                             @endif
 
 
-
-
-                                            <div class="price text-green">
-                                                @convertCurrency($content->attr['price'])
-                                               تومان
-                                           </div>
+                                            <p class="price text-green">
+                                                <span itemprop="price" content="@convertCurrency($content->attr['price'])">  @convertCurrency($content->attr['price']) </span>
+                                                <span itemprop="priceCurrency" content="IRR" >تومان </span>
+                                           </p>
                                         </div>
                                     </article>
 
@@ -218,48 +263,6 @@
             </div>
         </section>
     @endif
-
-    @if (!Request::get('page'))
-
-        <section class="" id="">
-            <div class="flex one ">
-                <div class="bg-white p-1 border-radius-5">
-
-                    <div class="flex one two-700">
-                        <div class="two-third-700">
-                            <ul>
-                                @foreach ($table_of_content as $key => $item)
-                                    <li class="toc1">
-                                        <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
-                                    </li>
-                                @endforeach
-
-                            </ul>
-
-                        </div>
-                        <div class="third-700">
-                            @if (isset($detail->images['images']))
-                                <picture>
-
-
-                                    <img loading="lazy" src="{{ $detail->images['images']['medium'] ?? '' }}"
-                                        alt="{{ $detail->title }}"
-
-                                        width="{{ env('CATEGORY_MEDIUM_W') }}"
-                                        height="{{ env('CATEGORY_MEDIUM_W') }}">
-                                </picture>
-                            @endif
-
-
-                        </div>
-
-                    </div>
-
-                    @include(@env('TEMPLATE_NAME').'.DescriptionModule')
-
-                </div>
-            </div>
-        </section>
 
 
         {{--post&label=relatedPost&var=relatedPost&count=5 --}}
@@ -285,7 +288,7 @@
                                                     ></div>
                                             @endif
                                             <div class="p-1">
-                                                <h4> {{ readmore($content->title, 80) }}</h4>
+                                                <h3> {{ readmore($content->title, 80) }}</h3>
                                                 {!! readmore($content->brief_description, 210) !!}
                                             </div>
                                         </article>
@@ -302,6 +305,7 @@
 
 
 
+    @if (!Request::get('page'))
 
         <section class="comments bg-gray mt-0 mb-0">
             <div class="flex one">
