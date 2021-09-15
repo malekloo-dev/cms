@@ -3,11 +3,13 @@
             "@context": "http://schema.org",
             "@type": "ItemList",
             "itemListElement": [
-                @foreach($relatedProduct as $key => $content)
+             @php $i = 0;  @endphp
+            @foreach($relatedProduct as $key => $content)
                     {
+                         @php $i++;  @endphp
                         "@type": "ListItem",
                         "additionalType" :"product",
-                        "position": 1,
+                        "position": {{ $i }},
                         "name" : "{{ $content->title }}",
                         "url" : "{{ url('/').'/'.$content->slug }}",
                         @if(isset($content->images['images']['small']))
