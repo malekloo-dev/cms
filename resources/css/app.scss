@@ -2375,6 +2375,7 @@ $sizes: 5;
     }
 }
 @include margin-classes;
+.m-auto{margin: auto;}
 
 @mixin padding-classes {
     @for $i from 0 through $sizes {
