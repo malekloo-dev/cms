@@ -494,8 +494,14 @@ class ContentController extends Controller
      */
     public function sitemap()
     {
-        $postList = Content::where('publish_date', '<=', DB::raw('now()'))->get();
-
+        $category = Content::where('publish_date', '<=', DB::raw('now()'))
+           ->where('type','=','1')->get();
+        $post = Content::where('publish_date', '<=', DB::raw('now()'))
+            ->where('type','=','2')
+            ->where('attr_type','=','article')->get();
+        $product = Content::where('publish_date', '<=', DB::raw('now()'))
+            ->where('type','=','2')
+            ->where('attr_type','=','product')->get();
 
         // $sitemap = siteMap::createIndex()
         //     ->add()->setLoc('post.xml')
@@ -510,9 +516,15 @@ class ContentController extends Controller
             ->setChangefreq('weekly')
             ->setLocFieldName('slug')
             ->setLastModFieldName('updated_at')
+            ->setDefultPriority('1')
+            ->setDefultChangefreq('weekly')
+            ->addByCollection($category)
             ->setDefultPriority('0.9')
             ->setDefultChangefreq('weekly')
-            ->addByCollection($postList)
+            ->addByCollection($post)
+            ->setDefultPriority('0.6')
+            ->setDefultChangefreq('weekly')
+            ->addByCollection($product)
             ->writeToFile('sitemap.xml');
 
         /*  ->add(array(

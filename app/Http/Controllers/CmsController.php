@@ -448,7 +448,14 @@ class CmsController extends Controller
             $list['list'][$count]['label'] = $label;
             $list['list'][$count]['anchor'] = $anchor;
             $table_of_content = '';
-            $anchor = '<a name="' . str_replace(' ', '-', cleareText($val)) . '"></a>' . $winners[0][$key];
+            //dd($val);
+
+            $anchor = '<a id="'.str_replace(' ', '-', cleareText($val)).'" href="#' . str_replace(' ', '-', cleareText($val)) . '">'.cleareText($val).'</a>';
+
+            $anchor = str_replace($winners[1][$key], $anchor, $winners[0][$key]);
+            // echo ($anchor);die();
+            //<h2 id="meet-laravel"><a href="#meet-laravel">Meet Laravel</a></h2>
+            //"<h2 style="text-align:justify"><a name="آشنایی-با-درب-ضد-سرقت">آشنایی با درب ضد سرقت</a></h2>"
             $content = str_replace($winners[0][$key], $anchor, $content);
 
             $count++;
