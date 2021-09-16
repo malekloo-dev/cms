@@ -116,7 +116,7 @@
                                     @endif
 
                                     @isset($detail->attr['price'])
-                                        <span class="price text-green "> @convertCurrency($detail->attr['price']?? 0) تومان</span>
+                                        <span class="price text-green ">قیمت @convertCurrency($detail->attr['price']?? 0) تومان</span>
                                     @endisset
 
                                     <span class="rate mt-1">
@@ -140,6 +140,21 @@
                                     {{ $detail->viewCount }} بار دیده شده |
                                     تاریخ انتشار: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span> |
                                     @lang('messages.power'):{{ $detail->power }}
+                                        <span class="rate mt-1">
+                                            دسته بندی :
+
+
+                                            @php $countBread= count($breadcrumb)-1; $i=0; @endphp
+                                        @foreach ($breadcrumb as $key => $item)
+                                                <span>  &nbsp |  &nbsp</span>
+                                                <a href="{{ $item['slug'] }}"> {{ $item['title'] }} </a>
+                                                @php
+                                                    $i++;
+                                                    if($i>=$countBread){ break; }
+                                                @endphp
+                                            @endforeach
+                                        </span>
+
                                 </div>
                             </div>
 
