@@ -90,10 +90,10 @@
                 <div class="top-page">
 
                     <div>
-                        <h1 class="">{{ $detail->title }}</h1>
+                        <h1 id="product-name" class="">{{ $detail->title }}</h1>
                         <div>
                             <div class="flex four-500">
-                                <div class="one forth-500">
+                                <div id="product-image" class="one forth-500">
                                     @isset($detail->images['images']['large'])
                                         <picture>
                                             <img src="{{ $detail->images['images']['large'] ?? '' }}"
@@ -119,7 +119,7 @@
                                         <span class="price text-green ">قیمت @convertCurrency($detail->attr['price']?? 0) تومان</span>
                                     @endisset
 
-                                    <span class="rate mt-1">
+                                    <span id="product-rate" class="rate  mt-1">
                                         @if (count($detail->comments))
                                             @php
                                             $rateAvrage = $rateSum = 0;
@@ -140,7 +140,7 @@
                                     {{ $detail->viewCount }} بار دیده شده |
                                     تاریخ انتشار: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span> |
                                     @lang('messages.power'):{{ $detail->power }}
-                                        <span class="rate mt-1">
+                                        <div id="product-categories" class=" mt-1">
                                             دسته بندی :
 
 
@@ -153,7 +153,7 @@
                                                     if($i>=$countBread){ break; }
                                                 @endphp
                                             @endforeach
-                                        </span>
+                                        </div>
 
                                 </div>
                             </div>

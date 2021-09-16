@@ -25,5 +25,6 @@ storage/logs/*
 
 public/*.xml
 .DS_Store
-.vscode/settings.json
-.vscode/sftp.json
+# .vscode/settings.json
+# .vscode/sftp.json
+.vscode/*
