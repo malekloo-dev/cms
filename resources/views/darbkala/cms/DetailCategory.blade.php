@@ -26,6 +26,8 @@
     @if (json_decode($relatedProduct->toJson())->next_page_url != null)
         <link rel="next" href="{{ json_decode($relatedProduct->toJson())->next_page_url }}">
     @endif
+    <link href="{{$seo['url']}}" rel="canonical" />
+
 @endsection
 
 @section('Content')
