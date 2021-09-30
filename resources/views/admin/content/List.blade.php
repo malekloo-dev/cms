@@ -12,7 +12,15 @@
                 href="{{ route('contents.type.show', ['type' => $type]) }}">
                 <i class="fa fa-close"></i>{{ $company->name }}
             </a>
+
         @endisset
+
+            <form action="{{ route('contents.type.show',['type'=>$type]) }}" method="get">
+
+                <label for="qtitle"> @lang('messages.title')</label>
+                <input id="qtitle" name="qtitle" value="{{ old('qtitle',app('request')->qtitle) }}" type="text">
+                <button>فیلتر</button>
+            </form>
 
         <div>
             <a href="{{ route('contents.create', ['type' => $type]) }}" class=" btn btn-success btn-icon  mat-button ">
@@ -111,7 +119,7 @@
                                     <div class="row">
                                         <div class="col-xs-6">
 
-                                            <a href="{{ route('contents.edit', ['content'=>$content->id,'page'=> json_decode($contents->toJson())->current_page]) }}"
+                                            <a href="{{ route('contents.edit', ['content'=>$content->id,'page'=> json_decode($contents->toJson())->current_page,'qtitle'=>app('request')->qtitle]) }}"
                                                 class="font-full-plus-half-em pull-left text-success btn-xs  no-border  "
                                                 title="edit">
                                                 <i class="fa fa-edit"></i>
@@ -139,7 +147,7 @@
                 </table>
 
 
-                {!! $contents->appends(Request::except('page'))->onEachSide(5)->links() !!}
+                {!! $contents->appends(Request::except('page'))->appends(Request::except('qtitle'))->onEachSide(5)->links() !!}
             </div>
         </div>
     </div>

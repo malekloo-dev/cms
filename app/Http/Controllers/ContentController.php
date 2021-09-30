@@ -121,6 +121,8 @@ class ContentController extends Controller
 
         $data['type'] = $type;
 
+
+
         $contents = Content::where('type', '=', '2')->where('attr_type', '=', $type)->orderBy('id', 'desc');
 
         if ($companyId != '') {
@@ -130,6 +132,9 @@ class ContentController extends Controller
             });
         }
 
+        if(isset($request->qtitle)){
+            $contents->where('title','like','%'.$request->qtitle.'%');
+        }
 
 
         $contents = $contents->paginate(10);
@@ -402,7 +407,7 @@ class ContentController extends Controller
 
         $this->sitemap();
 
-        return redirect('admin/contents/' . $crud->attr_type . '?page=' . $request->page)->with('success', Lang::get('messages.updated'));
+        return redirect('admin/contents/' . $crud->attr_type . '?page=' . $request->page.'&qtitle=' . $request->qtitle)->with('success', Lang::get('messages.updated'));
         // return redirect($request->input('url'))->with('success',Lang::get('messages.updated'));
         // return back();
     }

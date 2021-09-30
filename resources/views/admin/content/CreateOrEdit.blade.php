@@ -175,11 +175,11 @@
 
                 @if (Request()->is('*create*'))
                     <form method="post"
-                        action=" {{ route('contents.store', ['attr_type' => $attr_type, 'page' => app('request')->input('page')]) }}"
+                        action=" {{ route('contents.store', ['attr_type' => $attr_type, 'page' => app('request')->input('page'), 'qtitle' => app('request')->qtitle]) }}"
                         enctype="multipart/form-data">
                     @else
                         <form method="post"
-                            action="   {{ route('contents.update', ['attr_type' => $attr_type, 'content' => $content_info->id, 'page' => app('request')->input('page')]) }}"
+                            action="   {{ route('contents.update', ['attr_type' => $attr_type, 'content' => $content_info->id, 'page' => app('request')->input('page'), 'qtitle' => app('request')->qtitle]) }}"
                             enctype="multipart/form-data">
                             @method('PATCH')
                 @endif
