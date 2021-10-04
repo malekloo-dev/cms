@@ -39,7 +39,7 @@
 
     <div class="content-body">
         <div class="panel panel-default pos-abs chat-panel bottom-0">
-            <div class="panel-body full-height">
+            <div class="panel-body ">
                 @if (\Session::has('success'))
                     <div class="alert alert-success">
                         <ul>

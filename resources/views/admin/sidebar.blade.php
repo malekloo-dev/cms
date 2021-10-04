@@ -1,5 +1,5 @@
-<aside class="side-left full-height pos-abs @if($ltr) left-0 @else right-0 @endif  bottom-0 disBlock padding-t-full">
-    <ul class="sidebar no-margin no-padding">
+<aside class="side-left  pos-abs @if($ltr) left-0 @else right-0 @endif   disBlock padding-t-full">
+    <ul class="sidebar no-margin no-padding" style="margin-bottom: 3em !important">
 
         <li class="no-margin">
             <a class="no-margin  @if(!$ltr) text-right @endif" href="/admin">
