@@ -136,6 +136,10 @@ class ContentController extends Controller
             $contents->where('title','like','%'.$request->qtitle.'%');
         }
 
+        if(isset($request->qslug)){
+            $contents->where('slug','like','%'.$request->qslug.'%');
+        }
+
 
         $contents = $contents->paginate(10);
         // dd($contents->links());
@@ -289,6 +293,7 @@ class ContentController extends Controller
     {
 
 
+
         // dd(convertGToJ($convertDate));
 
         //$convert = (new Jalalian($date))->toCarbon()->toDateTimeString();
@@ -372,9 +377,9 @@ class ContentController extends Controller
         // dd($request->slug);
 
         $data['slug'] = uniqueSlug(Content::class, $crud, ($request->slug != '') ? $request->slug : $request->title);
-
+        // dd($data);
         $crud->update($data);
-
+        // dd(1);
 
         //$crud->categories()->sync($request->parent_id_hide);
         $crud->categories()->detach();
@@ -407,7 +412,8 @@ class ContentController extends Controller
 
         $this->sitemap();
 
-        return redirect('admin/contents/' . $crud->attr_type . '?page=' . $request->page.'&qtitle=' . $request->qtitle)->with('success', Lang::get('messages.updated'));
+
+        return redirect('admin/contents/' . $crud->attr_type . '?page=' . $request->page.'&qtitle=' . rawurldecode($request->qtitle).'&qslug=' . rawurldecode($request->qslug))->with('success', Lang::get('messages.updated'));
         // return redirect($request->input('url'))->with('success',Lang::get('messages.updated'));
         // return back();
     }

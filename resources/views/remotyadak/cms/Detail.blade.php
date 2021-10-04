@@ -103,6 +103,9 @@ height="{{ env('PRODUCT_MEDIUM_W') }}">
         {{ $detail->companies->first()->name ?? '' }}</a>
 </div>
 @endif
+
+<div>{!! $detail->brief_description !!}</div>
+
 <span class="rate mt-1">
 @if (count($detail->comments))
     @php

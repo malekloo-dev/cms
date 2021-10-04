@@ -15,12 +15,15 @@
 
         @endisset
 
-            <form action="{{ route('contents.type.show',['type'=>$type]) }}" method="get">
+        <form action="{{ route('contents.type.show', ['type' => $type]) }}" method="get">
 
-                <label for="qtitle"> @lang('messages.title')</label>
-                <input id="qtitle" name="qtitle" value="{{ old('qtitle',app('request')->qtitle) }}" type="text">
-                <button>فیلتر</button>
-            </form>
+            <label for="qtitle"> @lang('messages.title')</label>
+            <input id="qtitle" name="qtitle" value="{{ old('qtitle', app('request')->qtitle) }}" type="text">
+
+            <label for="qslug"> @lang('messages.url')</label>
+            <input id="qslug" name="qslug" dir="ltr" value="{{ old('qslug', app('request')->qslug) }}" type="text">
+            <button>فیلتر</button>
+        </form>
 
         <div>
             <a href="{{ route('contents.create', ['type' => $type]) }}" class=" btn btn-success btn-icon  mat-button ">
@@ -117,15 +120,20 @@
                                 </td>
                                 <td class="width-100">
                                     <div class="row">
-                                        <div class="col-xs-6">
+                                        <div style="display:flex">
 
-                                            <a href="{{ route('contents.edit', ['content'=>$content->id,'page'=> json_decode($contents->toJson())->current_page,'qtitle'=>app('request')->qtitle]) }}"
-                                                class="font-full-plus-half-em pull-left text-success btn-xs  no-border  "
+                                            <a href="{{ route('contents.edit', ['content' => $content->id, 'page' => json_decode($contents->toJson())->current_page, 'qtitle' => app('request')->qtitle, 'qslug' => app('request')->qslug]) }}"
+                                                class="font-full-plus-half-em text-success btn-xs  no-border  "
                                                 title="edit">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                        </div>
-                                        <div class="col-xs-6 ">
+
+                                            <a href="{{ url($content->slug) }}"
+                                                class="font-full-plus-half-em  text-black btn-xs  no-border  " title="view"
+                                                target="__blank">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+
                                             <form class=" width-30 height-30 line-height-30"
                                                 action="{{ route('contents.destroy', $content->id) }}" method="post">
                                                 @csrf

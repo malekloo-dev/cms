@@ -562,7 +562,7 @@ if (!function_exists('uniqueSlug')) {
 
         //check exist new slug
         $obj = $model::whereSlug($slug . $i)->exists();
-
+        // dd($obj);
 
         if ($obj) {
             if ($i == '') {
