@@ -37,8 +37,10 @@ textarea:focus {
     border-radius: 15px;
     padding: 1em;
 }
+//////////
+// home //
+//////////
 
-// home
 .index-items {
     figure.image {
         max-width: 70%;
@@ -212,6 +214,10 @@ figure {
     }
 }
 
+//////////////
+// category //
+//////////////
+
 .category-section {
     position: relative;
     img {
@@ -246,11 +252,16 @@ figure {
 }
 
 
-
-//detail
+//////////////
+//  detail ///
+//////////////
 .intro {
     background: #fff;
     border-radius: 15px;
+    .rate label{
+        cursor: unset;
+        height: 31px;
+    }
     .third-500 {
         display: flex;
         align-items: flex-start;

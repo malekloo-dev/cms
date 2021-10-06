@@ -77,7 +77,7 @@
                 <a href="/">خانه </a>
                 @foreach ($breadcrumb as $key => $item)
                     <span>></span>
-                    <a href="{{ $item['slug'] }}">{{ $item['title'] }}</a>
+                    <a title="{{ $item['title'] }}" href="{{ $item['slug'] }}">{{ $item['title'] }}</a>
                 @endforeach
 
             </div>
@@ -130,9 +130,7 @@
                                                 @endphp
                                             @endforeach
                                             @for ($i = $rateSum / count($detail->comments); $i >= 1; $i--)
-                                                <img width="20" height="20"
-                                                    srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
-                                                    src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                                                <label></label>
                                             @endfor
                                             <span class="font-07">({{ count($detail->comments) }} نفر)   </span>
                                         @endif
@@ -319,9 +317,7 @@
                                 <div class="article">
                                     <div>
                                         @for ($i = $comment->rate; $i >= 1; $i--)
-                                            <img width="20" height="20"
-                                                srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
-                                                src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                                        <label></label>
                                         @endfor
                                     </div>
                                     <div class="text">{!! $comment['comment'] !!}</div>

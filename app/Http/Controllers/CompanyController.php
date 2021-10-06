@@ -440,6 +440,7 @@ class CompanyController extends Controller
 
 
         $breadcrumb = $this->get_parent($company->category->parent_id ?? 0);
+
         if (is_array($breadcrumb)) {
             krsort($breadcrumb);
         } else {
@@ -447,6 +448,7 @@ class CompanyController extends Controller
         }
         if ($company->category)
             $breadcrumb[1] = $company->category?->toArray();
+
         $seo['meta_title'] = $company->name ?? 'Company';
         $seo['meta_description'] = $company->description ?? '';
         // dd($breadcrumb);

@@ -86,7 +86,7 @@
                 <a href="/">خانه </a>
                 @foreach ($breadcrumb as $key => $item)
                     <span>></span>
-                    <a href="{{ $item['slug'] }}">{{ $item['title'] }}</a>
+                    <a title="{{ $item['title'] }}" href="{{ $item['slug'] }}">{{ $item['title'] }}</a>
                 @endforeach
 
             </div>
@@ -122,9 +122,8 @@
                                 @endphp
                             @endforeach
                             @for ($i = $rateSum / count($detail->comments); $i >= 1; $i--)
-                                <img width="20" height="20"
-                                    srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
-                                    src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                            <label></label>
+
                             @endfor
                             <span class="font-08">({{ count($detail->comments) }} نفر)</span> |
                         @endif
@@ -175,7 +174,7 @@
                                 <li class="flex ">
                                     <a class="flex three" href="{{ url($content->slug) }}">
                                         @if (isset($content->images['images']['small']))
-                                            <div class="third"><img style="width: 100%" alt="{{ $content->title }}"
+                                            <div class="third"><img loading="lazy" style="width: 100%" alt="{{ $content->title }}"
                                                     src="{{ $content->images['images']['small'] }}"></div>
                                         @endif
                                         <div class="two-third">
@@ -218,7 +217,7 @@
                             <div>
                                 <article>
                                     @if (isset($content->images['images']['small']))
-                                        <div><img src="{{ $content->images['images']['small'] }}"></div>
+                                        <div><img loading="lazy" src="{{ $content->images['images']['small'] }}"></div>
                                     @endif
                                     <footer>
                                         <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
@@ -248,7 +247,7 @@
                             <div>
                                 <article>
                                     @if (isset($content->images['images']['small']))
-                                        <div><img src="{{ $content->images['images']['small'] }}"></div>
+                                        <div><img loading="lazy" src="{{ $content->images['images']['small'] }}"></div>
                                     @endif
                                     <footer>
                                         <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
@@ -337,9 +336,8 @@
                                 <div class="article">
                                     <div>
                                         @for ($i = $comment->rate; $i >= 1; $i--)
-                                            <img width="20" height="20"
-                                                srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
-                                                src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                                        <label></label>
+
                                         @endfor
                                     </div>
                                     <div class="text">{!! $comment['comment'] !!}</div>

@@ -17,7 +17,7 @@ class Company extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->default(0);
             $table->string('name')->nullable();
-            $table->integer('parent_id')->default(0);
+            $table->unsignedBigInteger('parent_id')->default(0);
             $table->text('description')->nullable();
             $table->string('manager')->nullable();
             $table->string('sale_manager')->nullable();
@@ -42,6 +42,10 @@ class Company extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
+            $table->foreign('parent_id')->references('id')->on('contents')
             ->onDelete('cascade')
             ->onUpdate('cascade');
         });

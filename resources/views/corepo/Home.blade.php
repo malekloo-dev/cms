@@ -148,7 +148,7 @@
                         <div class="hover text-center">
                             @if (isset($content->images['images']['small']))
                                 <figure class="image">
-                                    <img src="{{ $content->images['images']['small']  }}"
+                                    <img  loading="lazy" src="{{ $content->images['images']['small']  }}"
                                         alt="{{ $content->title }}" width="40" height="40"
                                         srcset="
                                             {{ $content->images['images']['small']  }} {{ env('CATEGORY_SMALL_W') }}w,
@@ -186,7 +186,7 @@
                                 <article class="shadow2">
                                     @if (isset($content->images['images']['medium']))
                                         <figure class="image">
-                                            <img src="{{ $content->images['images']['medium'] }}"
+                                            <img  loading="lazy" src="{{ $content->images['images']['medium'] }}"
                                                 width="{{ env('ARTICLE_SMALL_W') }}" height="{{ env('ARTICLE_SMALL_H') }}" alt="{{ $content->title }}">
                                         </figure>
                                     @endif
@@ -206,10 +206,7 @@
                                                 @endphp
                                             @endforeach
                                             @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
-                                                <img width="20" height="20"
-                                                    srcset="{{ asset('/img/star1x.png') }} , {{ asset('/img/star2x.png') }} 2x"
-                                                    src="{{ asset('/img/star1x.png') }}"
-                                                    alt="{{ 'star for rating' }}">
+                                            <label></label>
                                             @endfor
                                         @endif
                                     </div>
@@ -261,9 +258,7 @@
                                                         @endphp
                                                     @endforeach
                                                     @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
-                                                        <img width="18" height="18"
-                                                            src="{{ asset('/img/star1x.png') }}"
-                                                            alt="{{ 'star for rating' }}">
+                                                    <label></label>
                                                     @endfor
                                                 </div>
                                                 @endif

@@ -33,6 +33,7 @@
                                 <span>></span>
                                 <a href="{{ url($item['slug']) }}">{{ $item['title'] }}</a>
                             @endforeach
+                            <span>></span> <a href="">{{ $company->name }}</a>
                         @endif
                     </div>
                 </div>
