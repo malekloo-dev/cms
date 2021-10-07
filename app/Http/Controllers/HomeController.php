@@ -37,7 +37,7 @@ class HomeController extends Controller
             $attr = array();
         }
         //DB::connection()->enableQueryLog();
-
+        // dd($attr);
         foreach ((array) $attr as $var => $config) {
 
 
@@ -55,24 +55,45 @@ class HomeController extends Controller
                 continue;
             }
             if ($config['type'] == 'post') {
+                if ($config['parent_id'] == 0) {
+
+                    $module = new Content();
+
+                    $module = $module->where('type', '=', '2');
+
+                    $sort = explode(' ', $config['sort']);
+
+                    $module = $module->orderby($sort[0], $sort[1]);
+
+                    $module = $module
+                        ->where('publish_date', '<=', DB::raw('now()'))
+                        ->limit($config['count']);
+
+                    $data[$var]['data'] = $module->get();
+
+
+                    continue;
+                }
+
                 $category = Category::find($config['parent_id']);
                 $sort = explode(' ', $config['sort']);
 
+                
                 $data[$var]['data'] = $category->posts($sort[0], $sort[1])->limit($config['count'])->get();
                 continue;
             }
 
             if ($config['type'] == 'product') {
 
-                if ($config['parent_id'] == 0){
+                if ($config['parent_id'] == 0) {
                     // dd(Carbon::now());
-                    $data[$var]['data'] = Content::where('publish_date','<=',Carbon::now())->where('status','=',1)->where('attr_type','=','product')->orderBy('publish_date','desc')->limit($config['count'])->get();
+                    $data[$var]['data'] = Content::where('publish_date', '<=', Carbon::now())->where('status', '=', 1)->where('attr_type', '=', 'product')->orderBy('publish_date', 'desc')->limit($config['count'])->get();
                     // dd($data[$var]['data']);
                     continue;
                 }
                 // $data[$var]['data'] = $category->products($sort[0], $sort[1])->limit($config['count'])->get();
 
-                $category = Category::find($config['parent_id']);
+                // $category = Category::find($config['parent_id']);
 
                 $category = Category::find($config['parent_id']);
                 $sort = explode(' ', $config['sort']);

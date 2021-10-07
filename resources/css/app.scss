@@ -28,6 +28,16 @@
 .flex[class*="two"] > * {
     flex-grow: 0;
 }
+
+.justify-content-between {
+    justify-content: space-between;
+}
+.justify-content-center {
+    justify-content: center;
+}
+.align-items-center {
+    align-items: center;
+}
 .flex.grow > * {
     flex-grow: 1;
 }
@@ -37,6 +47,7 @@
 .middle {
     align-content: center;
 }
+
 .order1 {
     order: 1;
 }
@@ -1754,6 +1765,7 @@ button {
     line-height: 1;
 }
 .button,
+.btn,
 .dropimage,
 [type="submit"],
 button {
@@ -1780,6 +1792,7 @@ button {
 .btn-warning {
     background-color: #ffca28;
 }
+
 .btn-danger {
     background-color: #ff7043;
 }
@@ -2551,11 +2564,47 @@ $sizes: 5;
     background-color: #5cca13;
     color: #fff;
 }
+.bg-wood {
+    background: rgb(233, 223, 196);
+
+    background: linear-gradient(
+        to right,
+        rgba(233, 223, 196, 1) 0%,
+        rgba(233, 223, 196, 1) 1%,
+        rgba(237, 227, 200, 1) 2%,
+        rgba(237, 227, 200, 1) 24%,
+        rgba(235, 221, 195, 1) 25%,
+        rgba(233, 223, 196, 1) 48%,
+        rgba(235, 221, 195, 1) 49%,
+        rgba(230, 216, 189, 1) 52%,
+        rgba(230, 216, 189, 1) 53%,
+        rgba(233, 219, 192, 1) 54%,
+        rgba(230, 216, 189, 1) 55%,
+        rgba(230, 216, 189, 1) 56%,
+        rgba(233, 219, 192, 1) 57%,
+        rgba(230, 216, 189, 1) 58%,
+        rgba(230, 216, 189, 1) 73%,
+        rgba(233, 219, 192, 1) 74%,
+        rgba(233, 219, 192, 1) 98%,
+        rgba(235, 221, 195, 1) 100%
+    );
+
+    background-size: 120px;
+    background-repeat: repeat;
+    color: rgb(73, 29, 12);
+
+}
+
 .bg-inherit {
     background-color: $theme-color1;
     color: $menu-color;
 }
-
+.color-white{
+    color: #fff !important;
+}
+.color-brown{
+    color: rgb(73, 29, 12) !important;
+}
 .color-inherit {
     color: $theme-color1;
 }
@@ -2716,12 +2765,13 @@ section.wide {
 .rating label:hover:before {
     color: #ffc107;
 }
-.rate , .comment{
+.rate,
+.comment {
     label {
         position: relative;
         float: right;
         color: #c8c8c8;
-        display:flex;
+        display: flex;
         align-items: center;
         height: 23px;
     }
@@ -2736,12 +2786,12 @@ section.wide {
         user-select: none;
     }
 }
-.index-items .rate{
+.index-items .rate {
     display: flex;
     justify-content: center;
 }
-.comment{
-    .article > div{
+.comment {
+    .article > div {
         display: flex;
     }
 }

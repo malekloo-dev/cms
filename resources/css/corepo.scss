@@ -10,6 +10,8 @@ $menu-bg-left: #fff;
 $menu-bg-right: #fff;
 $menu-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 
+$pink:#e81e6c;
+
 @import "app.scss";
 @import "grid.scss";
 @import "nav.scss";
@@ -146,18 +148,7 @@ figure {
 .prev:hover {
     background-color: rgba(255, 255, 255, 0.4);
 }
-// .text {
-//     color: #f2f2f2;
-//     background: rgba(0, 0, 0, 0.6);
-//     font-size: 15px;
-//     padding: 3px 12px 3px 5em;
-//     position: absolute;
-//     bottom: 15px;
-//     right: 0;
-//     text-align: center;
-//     background: rgba(0, 0, 0, 0.6);
-//     border-radius: 50px 0 0 50px;
-// }
+
 .active,
 .dot:hover {
     background-color: #717171;
@@ -201,16 +192,63 @@ figure {
         height: 100%;
     }
 }
+
+// category-box
+.category-box{
+    color: #333 ;
+    h2,h3{
+        a{
+            color: $pink;
+        }
+        // font-size: 1em;
+    }
+    a{
+        font-size: 1.1em;
+        color: $a-hover;
+        font-weight: bold;
+        &:hover{
+            color: $a;
+        }
+    }
+    img{
+        // max-height: 70px;
+        object-fit: contain;
+    }
+    .rate{
+        min-height: 10px;
+        // display: flex;
+        label{
+            cursor: default;
+            // height: 20px;
+            &:before{
+                font-size: 1.1em;
+            }
+        }
+    }
+    .full-height{
+        height: 100%;
+    }
+    .min-height{
+        // min-height: 120px;
+    }
+    .border-bottom{
+
+        border-bottom: 1px solid #ddd;
+    }
+}
+
 .application article {
     min-height: auto;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 
-    figure.image {
-        width: 70%;
+    figure img {
+        width: 100px;
+    }
+    :last-of-type{
+        margin-top: auto;
     }
 }
 
