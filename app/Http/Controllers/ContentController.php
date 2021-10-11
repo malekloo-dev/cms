@@ -79,20 +79,23 @@ class ContentController extends Controller
         if (isset($request->watermark)) {
             foreach ($url['images'] as $size => $image) {
 
-                if(in_array($size,['crop','org'])){$size='large';}
+                if(in_array($size,['crop'])){$size='large';}
 
                 $imgFile = Image::make(public_path($image));
 
-                $imgFile->text($request->watermark, env('ARTICLE_'.Str::upper($size).'_W')/2, env('ARTICLE_'.Str::upper($size).'_H')/2, function ($font) {
+                $imgFile->text($request->watermark, env(Str::upper($type).'_'.Str::upper($size).'_W')/2, env(Str::upper($type).'_'.Str::upper($size).'_H')/2,  function ($font) use ($size,$type) {
                     $font->file(public_path('/adminAssets/fonts/IRANSans/ttf/IRANSansWeb.ttf'));
-                    $font->size(50);
+                    $font->size(env(Str::upper($type).'_'.Str::upper($size).'_W')/8);
                     $font->color('rgba(0,0,0,0.2)');
                     $font->align('center');
                     $font->valign('bottom');
                     $font->angle(45);
                 })->save(public_path($image));
+
+                // echo "<img src='".url($image)."'>";
             }
         }
+        // dd(1);
         return $url;
     }
 
