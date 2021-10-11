@@ -76,7 +76,23 @@ class ContentController extends Controller
             }
         }
 
+        if (isset($request->watermark)) {
+            foreach ($url['images'] as $size => $image) {
 
+                if(in_array($size,['crop','org'])){$size='large';}
+
+                $imgFile = Image::make(public_path($image));
+
+                $imgFile->text($request->watermark, env('ARTICLE_'.Str::upper($size).'_W')/2, env('ARTICLE_'.Str::upper($size).'_H')/2, function ($font) {
+                    $font->file(public_path('/adminAssets/fonts/IRANSans/ttf/IRANSansWeb.ttf'));
+                    $font->size(50);
+                    $font->color('rgba(0,0,0,0.2)');
+                    $font->align('center');
+                    $font->valign('bottom');
+                    $font->angle(45);
+                })->save(public_path($image));
+            }
+        }
         return $url;
     }
 
@@ -132,12 +148,12 @@ class ContentController extends Controller
             });
         }
 
-        if(isset($request->qtitle)){
-            $contents->where('title','like','%'.$request->qtitle.'%');
+        if (isset($request->qtitle)) {
+            $contents->where('title', 'like', '%' . $request->qtitle . '%');
         }
 
-        if(isset($request->qslug)){
-            $contents->where('slug','like','%'.$request->qslug.'%');
+        if (isset($request->qslug)) {
+            $contents->where('slug', 'like', '%' . $request->qslug . '%');
         }
 
 
@@ -413,7 +429,7 @@ class ContentController extends Controller
         $this->sitemap();
 
 
-        return redirect('admin/contents/' . $crud->attr_type . '?page=' . $request->page.'&qtitle=' . rawurldecode($request->qtitle).'&qslug=' . rawurldecode($request->qslug))->with('success', Lang::get('messages.updated'));
+        return redirect('admin/contents/' . $crud->attr_type . '?page=' . $request->page . '&qtitle=' . rawurldecode($request->qtitle) . '&qslug=' . rawurldecode($request->qslug))->with('success', Lang::get('messages.updated'));
         // return redirect($request->input('url'))->with('success',Lang::get('messages.updated'));
         // return back();
     }
@@ -506,13 +522,13 @@ class ContentController extends Controller
     public function sitemap()
     {
         $category = Content::where('publish_date', '<=', DB::raw('now()'))
-           ->where('type','=','1')->get();
+            ->where('type', '=', '1')->get();
         $post = Content::where('publish_date', '<=', DB::raw('now()'))
-            ->where('type','=','2')
-            ->where('attr_type','=','article')->get();
+            ->where('type', '=', '2')
+            ->where('attr_type', '=', 'article')->get();
         $product = Content::where('publish_date', '<=', DB::raw('now()'))
-            ->where('type','=','2')
-            ->where('attr_type','=','product')->get();
+            ->where('type', '=', '2')
+            ->where('attr_type', '=', 'product')->get();
 
         // $sitemap = siteMap::createIndex()
         //     ->add()->setLoc('post.xml')

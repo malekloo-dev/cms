@@ -285,9 +285,14 @@
                             placeholder="@lang('messages.select image')" value="{{ old('imageUrl') }}">
 
 
+
                         @include('admin.cropper')
 
 
+                    </div>
+                    <div class="col-6 col-sm-6">
+                    <label for="watermark">@lang('messages.watermark') @lang('messages.image')</label>
+                        <input class="form-control" id="watermark" placeholder="@lang('messages.watermark placeholder')" type="text" name="watermark" >
                     </div>
 
                 </div>
