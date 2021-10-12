@@ -533,7 +533,7 @@ class CompanyController extends Controller
         $this->validate($request, array(
             'name' => 'required',
             // 'manager' => 'required',
-            'mobile' => 'required',
+            'mobile' => 'required|unique:users,mobile',
             // 'email' => 'required|unique:users,email'
             'parent_id_hide' => 'required'
         ));

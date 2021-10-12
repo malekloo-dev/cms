@@ -43,9 +43,10 @@ class Category extends Model
     }
 
 
-    public function companiesCategory()
+    public function companiesCategory($sortField='created_at',$sortValue='desc')
     {
-        return $this->belongsToMany(Company::class,'company_category','cat_id','company_id');
+        return $this->belongsToMany(Company::class,'company_category','cat_id','company_id')
+        ->orderBy($sortField,$sortValue);
     }
 
     public function content()
