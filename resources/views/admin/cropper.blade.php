@@ -90,17 +90,17 @@
                             </button>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1"
+                            <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.02"
                                 title="Zoom In">
                                 <span class="docs-tooltip" data-toggle="tooltip" title=""
-                                    data-original-title="cropper.zoom(0.1)">
+                                    data-original-title="cropper.zoom(0.02)">
                                     <span class="fa fa-search-plus"></span>
                                 </span>
                             </button>
-                            <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1"
+                            <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.02"
                                 title="Zoom Out">
                                 <span class="docs-tooltip" data-toggle="tooltip" title=""
-                                    data-original-title="cropper.zoom(-0.1)">
+                                    data-original-title="cropper.zoom(-0.02)">
                                     <span class="fa fa-search-minus"></span>
                                 </span>
                             </button>

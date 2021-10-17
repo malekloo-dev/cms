@@ -85,12 +85,14 @@ class ContentController extends Controller
 
                 $imgFile->text($request->watermark, env(Str::upper($type).'_'.Str::upper($size).'_W')/2, env(Str::upper($type).'_'.Str::upper($size).'_H')/2,  function ($font) use ($size,$type) {
                     $font->file(public_path('/adminAssets/fonts/IRANSans/ttf/IRANSansWeb.ttf'));
-                    $font->size(env(Str::upper($type).'_'.Str::upper($size).'_W')/8);
+                    $font->size(env(Str::upper($type).'_'.Str::upper($size).'_W')/10);
                     $font->color('rgba(0,0,0,0.2)');
                     $font->align('center');
                     $font->valign('bottom');
                     $font->angle(45);
-                })->save(public_path($image));
+                });
+
+                $imgFile->save(public_path($image), 60,'jpg');
 
                 // echo "<img src='".url($image)."'>";
             }
@@ -118,7 +120,10 @@ class ContentController extends Controller
             $img->resize($size, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $img->save(public_path($images[$name]), 80);
+            $img->save(public_path($images[$name]), 60,'jpg');
+
+            // echo "<img src='".url($images[$name])."'>";
+
         }
 
         // dd(1);
