@@ -502,7 +502,7 @@ class CompanyController extends Controller
 
     public function companyList()
     {
-        $companies = Company::all();
+        $companies = Company::orderBy('id','desc')->get();
 
         return view('admin.company.index', compact('companies'));
     }

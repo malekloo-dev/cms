@@ -35,6 +35,8 @@ ob_start();
  */
 require_once "./constants.php";
 
+error_reporting(0);
+
 // @ob_end_clean();
 // header("Content-Encoding: none");
 
@@ -67,7 +69,6 @@ function resolveUrl($baseUrl) {
     $fileSystem =& CKFinder_Connector_Core_Factory::getInstance("Utils_FileSystem");
     return $fileSystem->getDocumentRootPath() . $baseUrl;
 }
-
 $utilsSecurity =& CKFinder_Connector_Core_Factory::getInstance("Utils_Security");
 $utilsSecurity->getRidOfMagicQuotes();
 

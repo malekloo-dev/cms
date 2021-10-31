@@ -369,7 +369,7 @@ label{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-s
 .content-control>.breadcrumb a,.content-control>.breadcrumb li.active{color:#0393e8;line-height:50px!important}
 .content-control>.breadcrumb li.active{color:#333}
 .breadcrumb>li+li:after{color:#fff}
-.content>.content-body{position:relative;padding:15px;font-size:12px;color:#394264;min-height:calc(100vh - 110px)}
+.content>.content-body{position:relative;padding:15px;font-size:14px;color:#394264;min-height:calc(100vh - 110px)}
 .content-body>.page-header:first-child{margin-top:0}
 .content-body>.no-padding{margin-right:-15px;margin-left:-15px;border-right:none;border-left:none;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}
 a[rel=to-top]{position:absolute;bottom:0;right:20px;width:40px;height:40px;line-height:40px;background:#e0e0e0;color:#ff5722;text-align:center;text-decoration:none;z-index:1001;display:block;cursor:pointer;font-size:12px;-webkit-transition:all .3s ease;-moz-transition:all .3s ease;-o-transition:all .3s ease;transition:all .3s ease}
