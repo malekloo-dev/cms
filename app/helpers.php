@@ -511,7 +511,7 @@ function sendSms($numbers = array("09331181877"), $message = '', $i = 0)
 
     try {
         $parameters['userName'] = "mt.09331181877";
-        $parameters['password'] = "45836";
+        $parameters['password'] = "kxx#389";
         $parameters['fromNumber'] = $fromNumber[$i]; // 50005708631983 , 210002100000021 , 10002188 , 30005920000015 , 5000249 , SimCard , News
         $parameters['toNumbers'] = $numbers;
         $parameters['messageContent'] = $message;
