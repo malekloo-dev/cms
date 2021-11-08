@@ -1,6 +1,6 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
-
+@section('canonical', url($detail->slug))
 
 @section('twitter:title', $detail->title)
 @section('twitter:description', clearHtml($detail->brief_description))

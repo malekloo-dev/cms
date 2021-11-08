@@ -1,6 +1,6 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
-@section('footer')
+@section('scripts')
     <script>
         var slideIndex = 1;
         showSlides(slideIndex);

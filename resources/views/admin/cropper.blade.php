@@ -60,31 +60,31 @@
                     <div class="col-md-8 col-xs-12" style="">
                         <img id="image" src="">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-primary" data-method="move" data-option="-10"
+                            <button type="button" class="btn btn-primary" data-method="move" data-option="-1"
                                 data-second-option="0" title="Move Left">
                                 <span class="docs-tooltip" data-toggle="tooltip" title=""
-                                    data-original-title="cropper.move(-10, 0)">
+                                    data-original-title="cropper.move(-1, 0)">
                                     <span class="fa fa-arrow-left"></span>
                                 </span>
                             </button>
-                            <button type="button" class="btn btn-primary" data-method="move" data-option="10"
+                            <button type="button" class="btn btn-primary" data-method="move" data-option="1"
                                 data-second-option="0" title="Move Right">
                                 <span class="docs-tooltip" data-toggle="tooltip" title=""
-                                    data-original-title="cropper.move(10, 0)">
+                                    data-original-title="cropper.move(1, 0)">
                                     <span class="fa fa-arrow-right"></span>
                                 </span>
                             </button>
                             <button type="button" class="btn btn-primary" data-method="move" data-option="0"
-                                data-second-option="-10" title="Move Up">
+                                data-second-option="-1" title="Move Up">
                                 <span class="docs-tooltip" data-toggle="tooltip" title=""
-                                    data-original-title="cropper.move(0, -10)">
+                                    data-original-title="cropper.move(0, -1)">
                                     <span class="fa fa-arrow-up"></span>
                                 </span>
                             </button>
                             <button type="button" class="btn btn-primary" data-method="move" data-option="0"
-                                data-second-option="10" title="Move Down">
+                                data-second-option="1" title="Move Down">
                                 <span class="docs-tooltip" data-toggle="tooltip" title=""
-                                    data-original-title="cropper.move(0, 10)">
+                                    data-original-title="cropper.move(0, 1)">
                                     <span class="fa fa-arrow-down"></span>
                                 </span>
                             </button>

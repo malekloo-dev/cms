@@ -19,7 +19,7 @@ class WebsiteSettingSeeder extends Seeder
             ['variable'=>'meta_description','value'=>''],
             ['variable'=>'meta_keywords','value'=>''],
             ['variable'=>'url','value'=>''],
-            ['variable'=>'og:type','value'=>''],
+            ['variable'=>'og:type','value'=>'website'],
             ['variable'=>'phone','value'=>''],
         ]);
     }

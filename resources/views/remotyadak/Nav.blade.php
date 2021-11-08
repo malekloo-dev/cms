@@ -6,7 +6,7 @@
 
         <nav>
             <a href="/" class="brand">
-                <img height="64" width="143" alt="ریموت یدک لوگو"
+                <img height="64" width="143" alt="ریموت یدک لوگو"  loading="lazy" title="ریموت یدک لوگو"
                     srcset="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }} 1x, {{ url(env('TEMPLATE_NAME') . '/img/logo2x.png') }} 2x"
                     src="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }}" />
             </a>

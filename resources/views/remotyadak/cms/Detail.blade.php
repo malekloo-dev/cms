@@ -5,6 +5,7 @@
 
 @section('og:title', $detail->title)
 @section('og:description', clearHtml($detail->brief_description))
+@section('canonical', url($detail->slug))
 
 @if (isset($detail->images['images']['medium']))
 
@@ -49,7 +50,9 @@
         });
     });
 </script>
-
+@if ((Auth::user()->id) == 1)
+<div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/contents/'.$detail->id.'/edit/') }}')">ویرایش</div>
+@endif
 @endsection
 
 @section('Content')
@@ -80,19 +83,19 @@ $append = '';
 <div class="flex one ">
 <div>
 <div class="top-page">
-@if (isset($detail->images['images']['medium']))
-<picture>
-<source media="(min-width:{{ env('PRODUCT_MEDIUM_W') }}px)"
-srcset="{{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['large']) ?? '' }} 2x">
-<source media="(min-width:{{ env('PRODUCT_SMALL_W') }}px)"
-srcset="{{ str_replace(' ', '%20', $detail->images['images']['small']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} 2x">
-<img src="{{ $detail->images['images']['medium'] ?? '' }}"
-sizes="(max-width:{{ env('PRODUCT_MEDIUM_W') }}px) 100vw  {{ ENV('PRODUCT_MEDIUM_W') }}px {{ ENV('PRODUCT_LARGE_W') }}px"
-alt="{{ $detail->title }}" width="{{ env('PRODUCT_MEDIUM_W') }}"
-height="{{ env('PRODUCT_MEDIUM_W') }}">
-</picture>
+    @if (isset($detail->images['images']['large']))
+    <picture>
+        <source media="(min-width:{{ env('PRODUCT_MEDIUM_W') }}px)"
+            srcset="{{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['large']) ?? '' }} 2x">
+        <source media="(min-width:{{ env('PRODUCT_SMALL_W') }}px)"
+            srcset="{{ str_replace(' ', '%20', $detail->images['images']['small']) ?? '' }} , {{ str_replace(' ', '%20', $detail->images['images']['medium']) ?? '' }} 2x">
+        <img src="{{ $detail->images['images']['medium'] ?? '' }}"
+            sizes="(max-width:{{ env('PRODUCT_MEDIUM_W') }}px) 100vw  {{ ENV('PRODUCT_MEDIUM_W') }}px {{ ENV('PRODUCT_LARGE_W') }}px"
+            alt="{{ $detail->title }}" width="{{ env('PRODUCT_LARGE_W') }}"
+            height="{{ env('PRODUCT_LARGE_H') }}">
+    </picture>
 
-@endif
+    @endif
 <div>
 <h1 class="">{{ $detail->title }}</h1>
 <div>
