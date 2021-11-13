@@ -53,6 +53,11 @@ class CompanyController extends Controller
         $user = Auth::user();
         $name = $request->all()['data'][0]['name'];
         $value = $request->all()['data'][0]['value'];
+        if($user->company == null){
+            // $user->company = new Company();
+            return response(array('status' => false, 'data' => ['name' => $name, 'value' => $value],'msg'=>'Company not found'), 200);
+        }
+        // dd($user->company);
         $user->company->$name = $value;
         $user->company->save();
 

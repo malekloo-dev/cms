@@ -53,9 +53,11 @@
 @endsection
 
 @section('footer')
-    @if ((Auth::user()->id) == 1)
-        <div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/contents/'.$detail->id.'/edit/') }}')">ویرایش</div>
-    @endif
+    @auth
+        @if ((Auth::user()->id) == 1)
+            <div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/contents/'.$detail->id.'/edit/') }}')">ویرایش</div>
+        @endif
+    @endauth
 @endsection
 
 @section('Content')
@@ -98,12 +100,12 @@
                     <div>
                         <h1 id="product-name" class="">{{ $detail->title }}</h1>
                         <div>
-                            <div class="flex four-500">
-                                <div id="product-image" class="one forth-500">
+                            <div class="flex three-500">
+                                <div id="product-image" class="one thirth-500">
                                     @isset($detail->images['images']['large'])
                                         <picture>
                                             <img src="{{ $detail->images['images']['large'] ?? '' }}"
-
+                                                loading="lazy" width="{{ env('PRODUCT_LARGE_W') }}" height="{{ env('PRODUCT_LARGE_H') }}"
                                                 alt="{{ $detail->title }}">
                                         </picture>
                                     @endisset
@@ -115,7 +117,7 @@
 
                                                 @if (isset($detail->companies->first()->logo) && $detail->companies->first()->logo['medium'] != '' && file_exists(public_path($detail->companies->first()->logo['medium'])))
                                                 {{-- @if (isset($detail->companies->first()->logo) && $detail->companies->first()->logo['medium'] == '' && !file_exists(public_path($detail->companies->first()->logo['medium']))) --}}
-                                                    <img src="{{ url($detail->companies->first()->logo['medium']) }}" width="50" height="50" class="border-radius-50" alt="">
+                                                    <img loading="lazy" src="{{ url($detail->companies->first()->logo['medium']) }}" width="50" height="50" class="border-radius-50" alt="company profile">
                                                 @endif
                                                 {{ $detail->companies->first()->name ?? '' }}</a>
                                         </div>
@@ -199,7 +201,7 @@
             <div class="flex one ">
                 <div>
 
-                    <h3>محصولات مرتبط {{ $detail->title }}</h3>
+                    <h2>محصولات مرتبط {{ $detail->title }}</h2>
                     <div class="flex one two-500 five-900  center">
 
                         {{--$data['newPost']--}}
@@ -209,7 +211,7 @@
                                     <div class="shadow hover p-0 border-radius-5">
                                         @if (isset($content->images['images']['small']))
                                             <figure class="image">
-                                                <img src="{{ $content->images['images']['large'] }}"
+                                                <img loading="lazy" src="{{ $content->images['images']['large'] }}"
                                                     alt="{{ $content->title }}" title="{{ $content->title }}" width="300" height="300">
                                                 <figcaption>
                                                     <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
@@ -231,37 +233,6 @@
         </section>
     @endif
 
-    @if (count($relatedPost))
-        <section class="articles bg-orange" id="index-best-view">
-            <div class="flex one ">
-                <div>
-                    <h3>مقاله های مرتبط {{ $detail->title }}</h3>
-                    <div class="flex one two-500 four-900 center ">
-
-                        {{--$data['newPost']--}}
-                        @foreach ($relatedPost as $content)
-                            <div>
-                                <a href="{{ $content->slug }}">
-                                    <article class="shadow1">
-                                        @if (isset($content->images['images']['large']))
-                                            <div><img loading="lazy" height="{{ env('ARTICLE_MEDIUM_H') }}" src="{{ $content->images['images']['large'] }}" alt="{{ $content->title }}">
-                                            </div>
-                                        @endif
-                                        <footer>
-                                            <h4> {{ $content->title }}</h4>
-                                            {!! $content->brief_description !!}
-                                        </footer>
-                                    </article>
-                                </a>
-                            </div>
-                        @endforeach
-
-                    </div>
-
-                </div>
-            </div>
-        </section>
-    @endif
 
 
     <section class="comments bg-gray mt-0 mb-0">
