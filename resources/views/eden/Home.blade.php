@@ -53,10 +53,10 @@
 @section('Content')
 
 
-    <section class="banner">
+    <section class="banner my-0 py-0">
         <div class="flex one">
-            <img class="h-auto" src="{{ url('eden/img/banner1.jpg') }}" alt="طلای ایدن" title="طلای ایدن" width="1200" height="344">
-            <h1> گالری طلای ایدن - فروش طلا به قیمت بازار</h1>
+            <img class="h-auto p-0" src="{{ url('eden/img/banner1.jpg') }}" alt="طلای ایدن" title="طلای ایدن" width="1200" height="344">
+            {{-- <h1> گالری طلای ایدن - فروش طلا به قیمت بازار</h1> --}}
         </div>
     </section>
 
@@ -106,7 +106,7 @@
         </div>
 
         <div class="flex one four-500 center  ">
-            {{--post&label=products&var=products&count=6 --}}
+            {{--post&label=products&var=products&count=12 --}}
             @isset($products['data'])
                 @foreach ($products['data'] as $content)
                     <a href="{{ $content->slug }}">

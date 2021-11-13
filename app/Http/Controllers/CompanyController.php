@@ -34,6 +34,7 @@ class CompanyController extends Controller
     public function profile()
     {
         $user = Auth::user();
+
         return view('auth.company.companyProfile', compact('user'));
     }
     public function profileChangeLogo(Request $request)
@@ -436,6 +437,9 @@ class CompanyController extends Controller
         if ($company == null) {
             return redirect('/', 301);
         }
+        $company->increment('viewCount');
+        // dd($company  );
+
         // $produsct = Content::where('publish_date', '<=', DB::raw('now()'));
         // $produsct = $produsct->where('company_id', '=', $company->id);
         // $produsct = $produsct->where('type', '=', '2');

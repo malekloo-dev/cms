@@ -33,6 +33,7 @@ class Company extends Migration
             $table->string('instagram')->nullable();
             $table->string('logo',255)->nullable();
             $table->string('location')->nullable();
+            $table->integer('viewCount')->default('0');
             $table->string('meta_title')->nullable();
             $table->string('meta_keywords')->default(NULL)->nullable();
             $table->text('meta_description')->default(NULL)->nullable();
