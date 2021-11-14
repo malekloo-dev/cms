@@ -2524,6 +2524,8 @@ $sizes: 5;
     text-align: right;
 }
 
+.bg-theme-color{background-color: $theme-color1; color: $theme-color1-text;}
+
 .bg-gray {
     background-color: #f4f4f4;
 }
