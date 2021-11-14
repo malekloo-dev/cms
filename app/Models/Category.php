@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class Category extends Model
 {
@@ -89,6 +90,26 @@ class Category extends Model
     public function gallery()
     {
         return $this->morphMany(Gallery::class, 'model');
+    }
+
+    // this is a recommended way to declare event handlers
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($content) { // before delete() method call this
+            $images = $content->images['images'] ?? '';
+
+            if (is_array($images)) {
+                $images =  array_map(function ($item) {
+                    return trim($item, '/');
+                }, array_values($images));
+
+                File::delete($images);
+            }
+
+            // do the rest of the cleanup...
+        });
     }
 
 

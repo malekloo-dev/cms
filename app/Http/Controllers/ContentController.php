@@ -454,17 +454,18 @@ class ContentController extends Controller
 
 
         $crud = Content::find($id);
-        $images = $crud->images['images'] ?? '';
+        // $images = $crud->images['images'] ?? '';
         $crud->delete();
+
         $crud->categories()->detach();
 
-        if (is_array($images)) {
-            $images =  array_map(function ($item) {
-                return trim($item, '/');
-            }, array_values($images));
+        // if (is_array($images)) {
+        //     $images =  array_map(function ($item) {
+        //         return trim($item, '/');
+        //     }, array_values($images));
 
-            File::delete($images);
-        }
+        //     File::delete($images);
+        // }
 
 
         return redirect('admin/contents/' . $crud->attr_type);

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 
 class Content extends Model
 {
@@ -30,16 +31,16 @@ class Content extends Model
     ];
 
 
-//    public function category()
-//    {
-//        return $this->belongsToMany('App\Models\Category','contents_category','content_id','cat_id');
-//    }
+    //    public function category()
+    //    {
+    //        return $this->belongsToMany('App\Models\Category','contents_category','content_id','cat_id');
+    //    }
 
 
 
     public function comments()
     {
-        $comments = $this->hasMany(Comment::class)->where('status', '=', '1')->orderBy('id','desc');
+        $comments = $this->hasMany(Comment::class)->where('status', '=', '1')->orderBy('id', 'desc');
 
         return $comments;
     }
@@ -47,18 +48,18 @@ class Content extends Model
 
     public function companies()
     {
-        return $this->belongsToMany(Company::class,'company_contents','content_id','company_id');
+        return $this->belongsToMany(Company::class, 'company_contents', 'content_id', 'company_id');
     }
 
     public function category()
     {
-        return $this->hasOne(Category::class,'id','parent_id');
+        return $this->hasOne(Category::class, 'id', 'parent_id');
     }
 
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'contents_category', 'content_id', 'cat_id')/*->withTimestamps()*/ ;
+        return $this->belongsToMany(Category::class, 'contents_category', 'content_id', 'cat_id')/*->withTimestamps()*/;
     }
 
     /**
@@ -77,4 +78,29 @@ class Content extends Model
         return $this->morphMany(Gallery::class, 'model');
     }
 
+
+
+    // this is a recommended way to declare event handlers
+    public static function boot()
+    {
+
+        parent::boot();
+
+        static::deleting(function ($content) { // before delete() method call this
+            $images = $content->images['images'] ?? '';
+
+            if (is_array($images)) {
+                $images =  array_map(function ($item) {
+                    return trim($item, '/');
+                }, array_values($images));
+
+                File::delete($images);
+            }
+
+            $content->gallery()->delete();
+
+
+            // do the rest of the cleanup...
+        });
+    }
 }

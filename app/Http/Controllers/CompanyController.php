@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Lang;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
+
 
 
 
@@ -619,11 +621,15 @@ class CompanyController extends Controller
     }
     public function companyDestroy(Company $company)
     {
-        // $company->delete();
-        // $companu->dettach();
-        // $compnay->contents;
-        // unllink
-        dd(1);
+
+        $company->contents()->delete();
+
+        $company->categories()->detach();
+
+        $company->user()->delete();
+
+        $company->delete();
+
         return redirect()->route('admin.company.index')->with('success', Lang::get('messages.deleted'));
     }
 }

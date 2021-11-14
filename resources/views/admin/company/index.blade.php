@@ -77,7 +77,7 @@
                                 <td class="width-100">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <form class="pull-right" action="{{ route('comment.destroy', $item->id) }}"
+                                            <form class="pull-right" action="{{ route('admin.company.destroy', $item->id) }}"
                                                 method="post">
                                                 @csrf
                                                 @method('DELETE')
