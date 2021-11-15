@@ -1,17 +1,21 @@
-$template: remotyadak;
+$template: reportagahi;
 $body: #fff;
 $theme-color1: #a100ff;
 $theme-color2: #ed00ff;
 $theme-color3: #1e1e1e;
 $theme-color1-text:#fff;
 
-$a: #1e1e1e;
+$a: #a100ff;
 $a-hover: #18191d;
 $menu-color: #1e1e1e;
 $menu-bg-left:#fff;
 $menu-bg-right:#fff;
 $menu-shadow:0 3px 10px rgba(0, 0, 0, 0.2);
 $p: #1e1e1e;
+
+$search-border:1px solid #888;
+$search-bg:#888;
+$search-text:rgb(100, 100, 100);
 
 @import "app.scss";
 @import "grid.scss";

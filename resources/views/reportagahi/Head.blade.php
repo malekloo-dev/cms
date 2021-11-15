@@ -14,7 +14,7 @@
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#fa490e">
-    <meta name="apple-mobile-web-app-title" content="ریموت">
+    <meta name="apple-mobile-web-app-title" content="ریپورت آگهی">
     <link rel="apple-touch-icon" href="{{ url(env('TEMPLATE_NAME') . '/img/logo-96-96.png') }}">
     <link rel="apple-touch-icon" sizes="96x96" href="{{ url(env('TEMPLATE_NAME') . '/img/logo-152-152.png') }}">
     <link rel="apple-touch-icon" sizes="152x152" href="{{ url(env('TEMPLATE_NAME') . '/img/logo-152-152.png') }}">

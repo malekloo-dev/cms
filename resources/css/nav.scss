@@ -48,6 +48,7 @@ nav {
         z-index: 1;
         display: flex;
         align-items: center;
+        flex: 0 0 auto;
     }
     ul {
         list-style: none;
@@ -115,7 +116,7 @@ nav ul li:hover > ul {
 }
 nav .menu {
     text-align: left;
-    margin: auto;
+    margin: auto auto auto 0;
     position: relative;
     top: 1.5em;
     -webkit-transform: translateY(-50%);
@@ -200,6 +201,9 @@ nav .burger:after {
         display: inline-block;
         cursor: pointer;
         margin: 0;
+        margin-left: 0;
+        margin-right: auto !important;
+
     }
     nav .burger ~ .menu,
     nav .show:checked ~ .burger {

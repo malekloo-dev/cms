@@ -201,6 +201,39 @@
         </section>
     @endif
 
+    @if (count($relatedPost))
+        <section class="products" id="index-best-view">
+            <div class="flex one ">
+                <div>
+                    <h2>مقاله های زیر مجموعه {{ $detail->title }}</h2>
+                    <div class="flex one two-500 four-900 center ">
+
+                        @foreach ($relatedPost as $content)
+                            <div>
+                                <a href="{{ $content->slug }}">
+                                    <article>
+
+                                        @if (isset($content->images['images']['small']))
+                                            <div><img width="{{ env('PRODUCT_SMALL_W') }}"
+                                                    height="{{ env('PRODUCT_SMALL_H') }}"
+                                                    title="{{ $content->title }}" alt="{{ $content->title }}"
+                                                    loading="lazy" src="{{ $content->images['images']['small'] }}"></div>
+                                        @endif
+                                        <footer>
+                                            <h2> {{ $content->title }}</h2>
+                                            {!! $content->brief_description !!}
+                                        </footer>
+                                    </article>
+                                </a>
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
 
 
     <section class="category-content" id="">

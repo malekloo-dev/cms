@@ -55,7 +55,7 @@
 
     <section class="index-img bg-gray mt-0 mb-0 pb-2">
         <div class="text-center pb-1">
-            <h1>مرجع تخصصی تبلیغات</h1>
+            <h1>مرجع تخصصی تبلیغات ریپورت آگهی</h1>
         </div>
         <div class="flex two five-500  center ">
             {{--images&label=banner&var=banners&count=5--}}

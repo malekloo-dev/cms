@@ -38,6 +38,16 @@
             <div class="menu">
 
                 <ul>
+                    <li>
+                        <a class="flexbox">
+                            <div class="search1">
+                                <div>
+                                    <input alt="جستجو" type="text" placeholder="جستجو" required>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
                     @foreach (App\Models\Menu::where('parent', '=', '0')
                         ->orderBy('sort')
                         ->get()

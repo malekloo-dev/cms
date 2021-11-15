@@ -1,7 +1,7 @@
 @charset "UTF-8";
 .flex {
   display: flex;
-  width: calc(100%);
+  width: 100%;
   flex-wrap: wrap;
   transition: all 0.3s ease;
 }
@@ -2101,7 +2101,7 @@ li {
 }
 
 a {
-  color: #1e1e1e;
+  color: #a100ff;
   text-decoration: none;
   box-shadow: none;
   transition: all 0.3s;
@@ -3498,7 +3498,7 @@ section.wide {
 
 .search1 > h1,
 .search1 > h3 {
-  color: #fff;
+  color: #646464;
   margin-bottom: 15px;
 }
 
@@ -3509,7 +3509,7 @@ section.wide {
 
 .search1 > div:after {
   content: "";
-  background: #fff;
+  background: #888;
   width: 2px;
   height: 8px;
   position: absolute;
@@ -3519,34 +3519,34 @@ section.wide {
 }
 
 .search1 > div > input {
-  color: #fff;
+  color: #646464;
   font-size: 16px;
-  background: 0 0;
-  width: 5px;
-  height: 5px;
-  padding: 10px;
-  border: solid 2px #fff;
-  outline: 0;
-  border-radius: 35px;
-  transition: width 0.5s;
+  background: #888;
+  width: 5px !important;
+  height: 5px !important;
+  padding: 10px !important;
+  border: 1px solid #888 !important;
+  outline: 0 !important;
+  border-radius: 35px !important;
+  transition: width 0.5s !important;
 }
 
 .search1 > div > input::-moz-placeholder {
-  color: #efefef;
+  color: #646464;
   opacity: 0;
   -moz-transition: opacity 150ms ease-ou t;
   transition: opacity 150ms ease-ou t;
 }
 
 .search1 > div > input:-ms-input-placeholder {
-  color: #efefef;
+  color: #646464;
   opacity: 0;
   -ms-transition: opacity 150ms ease-ou t;
   transition: opacity 150ms ease-ou t;
 }
 
 .search1 > div > input::placeholder {
-  color: #efefef;
+  color: #646464;
   opacity: 0;
   transition: opacity 150ms ease-ou t;
 }
@@ -3564,16 +3564,16 @@ section.wide {
 }
 
 .search1 > div > input:not(:-moz-placeholder-shown) {
-  width: 240px;
+  width: 240px !important;
 }
 
 .search1 > div > input:not(:-ms-input-placeholder) {
-  width: 240px;
+  width: 240px !important;
 }
 
 .search1 > div > input:focus,
 .search1 > div > input:not(:placeholder-shown) {
-  width: 240px;
+  width: 240px !important;
 }
 
 .ltr {
@@ -3814,7 +3814,7 @@ nav[role=navigation] span > span > span {
   border: none;
   color: #ccc;
   margin-right: calc(-1px * var(--tw-space-x-reverse)) !important;
-  margin-left: calc(-1px * calc(1 - var(--tw-space-x-reverse))) !important;
+  margin-left: calc(-1px * (1 - var(--tw-space-x-reverse))) !important;
   display: inline-flex;
   padding-left: 1rem !important;
   padding-right: 1rem !important;
@@ -3827,7 +3827,7 @@ nav[role=navigation] span > span > span {
 }
 nav[role=navigation] span > * {
   margin-right: calc(-1px * var(--tw-space-x-reverse)) !important;
-  margin-left: calc(-1px * calc(1 - var(--tw-space-x-reverse))) !important;
+  margin-left: calc(-1px * (1 - var(--tw-space-x-reverse))) !important;
 }
 nav[role=navigation] span > svg {
   border: none;
@@ -3909,7 +3909,7 @@ nav[role=navigation] span > svg {
 }
 
 .social-network svg:hover {
-  fill: #1e1e1e;
+  fill: #a100ff;
 }
 
 .footer-copyright {
@@ -5079,6 +5079,7 @@ nav .brand {
   z-index: 1;
   display: flex;
   align-items: center;
+  flex: 0 0 auto;
 }
 nav ul {
   list-style: none;
@@ -5140,7 +5141,7 @@ nav ul li:hover > ul {
 
 nav .menu {
   text-align: left;
-  margin: auto;
+  margin: auto auto auto 0;
   position: relative;
   top: 1.5em;
   transform: translateY(-50%);
@@ -5229,6 +5230,8 @@ nav .burger:after {
     display: inline-block;
     cursor: pointer;
     margin: 0;
+    margin-left: 0;
+    margin-right: auto !important;
   }
 
   nav .burger ~ .menu,

@@ -2673,7 +2673,7 @@ section.wide {
 }
 .search1 > h1,
 .search1 > h3 {
-    color: #fff;
+    color: $search-text;
     margin-bottom: 15px;
 }
 .search1 > div {
@@ -2682,7 +2682,7 @@ section.wide {
 }
 .search1 > div:after {
     content: "";
-    background: #fff;
+    background: $search-bg;
     width: 2px;
     height: 8px;
     position: absolute;
@@ -2691,19 +2691,19 @@ section.wide {
     transform: rotate(135deg);
 }
 .search1 > div > input {
-    color: #fff;
+    color: $search-text;
     font-size: 16px;
-    background: 0 0;
-    width: 5px;
-    height: 5px;
-    padding: 10px;
-    border: solid 2px #fff;
-    outline: 0;
-    border-radius: 35px;
-    transition: width 0.5s;
+    background: $search-bg;
+    width: 5px !important;
+    height: 5px !important;
+    padding: 10px !important;
+    border: $search-border !important;
+    outline: 0 !important;
+    border-radius: 35px !important;
+    transition: width 0.5s !important;
 }
 .search1 > div > input::placeholder {
-    color: #efefef;
+    color: $search-text;
     opacity: 0;
     transition: opacity 150ms ease-ou t;
 }
@@ -2712,7 +2712,7 @@ section.wide {
 }
 .search1 > div > input:focus,
 .search1 > div > input:not(:placeholder-shown) {
-    width: 240px;
+    width: 240px !important;
 }
 
 .ltr {
