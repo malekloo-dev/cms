@@ -33,6 +33,26 @@
             <div>
                 <div class="gallery">
                     <div class="m-4">
+                        <img class="g1" src="{{ asset('img/resume/garm1.jpg') }}">
+                        {{-- <img class="g2" src="{{ asset('img/resume/darb2.jpg') }}">
+                        <img class="g3" src="{{ asset('img/resume/darb3.jpg') }}"> --}}
+                    </div>
+                </div>
+                <div>
+                    <h3>گرمگاه</h3>
+                    <table class="table full m-0 align-right">
+                        <tr>
+                            <td><a href="https://garmgah.com/" target="blank">پمپ سیرکولاتور خطی</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://garmgah.com/" target="blank">دیگ شوفاژ موتورخانه</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <div class="gallery">
+                    <div class="m-4">
                         <img class="g1" src="{{ asset('img/resume/darb1.jpg') }}">
                         <img class="g2" src="{{ asset('img/resume/darb2.jpg') }}">
                         <img class="g3" src="{{ asset('img/resume/darb3.jpg') }}">
@@ -62,11 +82,11 @@
                     <h3>محیط صنعت</h3>
                     <table class="table full m-0 align-right">
                         <tr>
-                            <td>صفحه سوم</td>
+                            <td>صفحه اول</td>
                             <td><a href="https://mohitsanat.ir" target="blank">آزمایشگاه معتمد</a></td>
                         </tr>
                         <tr>
-                            <td>صفحه سوم</td>
+                            <td>صفحه اول</td>
                             <td><a href="https://mohitsanat.ir/آزمایشگاه-محیط-زیست" target="blank">آزمایشگاه محیط زیست</a></td>
                         </tr>
                     </table>
@@ -88,7 +108,7 @@
                             <td><a href="https://corepo.ir" target="blank">رپورتاژ رایگان</a></td>
                         </tr>
                         <tr>
-                            <td>صفحه اول</td>
+                            <td>صفحه دوم</td>
                             <td><a href="https://corepo.ir" target="blank">سایت لست سکند</a></td>
                         </tr>
                     </table>

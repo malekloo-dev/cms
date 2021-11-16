@@ -2,34 +2,52 @@
 <html dir="rtl" lang="fa-IR">
 
 <head>
-    <title>{{ $seo['meta_title'] ?? ''}}@yield('meta-title')</title>
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PVTXH97');
+    </script>
+    <!-- End Google Tag Manager -->
+    <title>{{ $seo['meta_title'] ?? '' }}@yield('meta-title')</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="{{ $seo['meta_keywords'] ?? '' }}">
     <meta name="description" content="{{ $seo['meta_description'] ?? '' }}">
 
-    <link rel="manifest" href="{{ url(env('TEMPLATE_NAME').'/manifest.json') }}">
+    <link rel="manifest" href="{{ url(env('TEMPLATE_NAME') . '/manifest.json') }}">
     <meta name="theme-color" content="#fff" />
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#fa490e">
     <meta name="apple-mobile-web-app-title" content="corepo">
-    <link rel="apple-touch-icon" href="{{ url(env('TEMPLATE_NAME').'/img/logo-96-96.png') }}">
-    <link rel="apple-touch-icon" sizes="96x96" href="{{ url(env('TEMPLATE_NAME').'/img/logo-152-152.png') }}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{ url(env('TEMPLATE_NAME').'/img/logo-152-152.png') }}">
-    <link rel="apple-touch-icon" sizes="192x192" href="{{ url(env('TEMPLATE_NAME').'/img/logo-192-192.png') }}">
-    <link rel="apple-touch-icon" sizes="256x256" href="{{ url(env('TEMPLATE_NAME').'/img/logo-256-256.png') }}">
-    <link rel="apple-touch-startup-image" href="{{ url(env('TEMPLATE_NAME').'/img/logo-512-512.png') }}">
+    <link rel="apple-touch-icon" href="{{ url(env('TEMPLATE_NAME') . '/img/logo-96-96.png') }}">
+    <link rel="apple-touch-icon" sizes="96x96" href="{{ url(env('TEMPLATE_NAME') . '/img/logo-152-152.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ url(env('TEMPLATE_NAME') . '/img/logo-152-152.png') }}">
+    <link rel="apple-touch-icon" sizes="192x192" href="{{ url(env('TEMPLATE_NAME') . '/img/logo-192-192.png') }}">
+    <link rel="apple-touch-icon" sizes="256x256" href="{{ url(env('TEMPLATE_NAME') . '/img/logo-256-256.png') }}">
+    <link rel="apple-touch-startup-image" href="{{ url(env('TEMPLATE_NAME') . '/img/logo-512-512.png') }}">
 
-    <meta name="msapplication-TileImage" content="{{ url(env('TEMPLATE_NAME').'/img/logo-192-192.png') }}">
+    <meta name="msapplication-TileImage" content="{{ url(env('TEMPLATE_NAME') . '/img/logo-192-192.png') }}">
     <meta name="msapplication-TileColor" content="#fff">
-    <meta name="msapplication-square100x100logo" content="{{ url(env('TEMPLATE_NAME').'/img/fav.png') }}">
+    <meta name="msapplication-square100x100logo" content="{{ url(env('TEMPLATE_NAME') . '/img/fav.png') }}">
 
     @yield('bootstrap')
 
-    <link rel="stylesheet" href="{{ mix('/'.env('TEMPLATE_NAME').'.css',env('TEMPLATE_NAME')) }}">
-    <link rel="icon" href="{{ url(env('TEMPLATE_NAME').'/img/fav.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ mix('/' . env('TEMPLATE_NAME') . '.css', env('TEMPLATE_NAME')) }}">
+    <link rel="icon" href="{{ url(env('TEMPLATE_NAME') . '/img/fav.png') }}" type="image/png">
     <link rel="stylesheet" media="bogus">
     <link href="@yield('canonical',url('/'))" rel="canonical" />
 
@@ -65,3 +83,7 @@
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PVTXH97" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
