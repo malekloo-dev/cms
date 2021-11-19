@@ -1,4 +1,5 @@
-@foreach ($attribute->contentAattributeFields as $field)
+@if(isset($attribute))
+    @foreach ($attribute->contentAattributeFields as $field)
     <?php
     // echo ($field->field_name);
      //dd($attribute);
@@ -10,3 +11,4 @@
 
     </div>
 @endforeach
+@endif

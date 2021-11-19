@@ -191,7 +191,7 @@ class ContentController extends Controller
         $data['attr_type'] = $type;
         $data['attrId'] = $request->attr;
 
-        $data['attribute'] = Attribute::getFormFieldsByContentTypeId($request->attr);
+        //*$data['attribute'] = Attribute::getFormFieldsByContentTypeId($request->attr);
         /*if($request->type=='html')
         {
             return view('admin.content.CreateHtml',$data);
@@ -246,7 +246,7 @@ class ContentController extends Controller
         $content_type_id = 1;
 
         //call careate attr service
-        $attrObject = Attribute::create($data, $content_id, $content_type_id);
+        //*$attrObject = Attribute::create($data, $content_id, $content_type_id);
 
         $object = Content::create($data);
         $object->categories()->attach($data['parent_id_hide']);
@@ -307,7 +307,7 @@ class ContentController extends Controller
         $category = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
         //$attribute = Attribute::getFormFieldsByContentTypeId($request->attr);
 
-        $attribute=Attribute::getFormValue($id);
+       //* $attribute=Attribute::getFormValue($id);
         //dd($attribute->contentAattributeFields->load('val'));
 
         $template = 'admin.content.CreateOrEdit';
@@ -418,7 +418,7 @@ class ContentController extends Controller
         // dd($data);
         //dd($data);
         $content_type_id=1;
-        $attrObject = Attribute::upsert($data, $crud->id, $content_type_id);
+       //* $attrObject = Attribute::upsert($data, $crud->id, $content_type_id);
 
         $crud->update($data);
         // dd(1);
