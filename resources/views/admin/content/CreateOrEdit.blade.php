@@ -364,6 +364,8 @@
 
                 </div>
 
+                @include('admin.attribute.CreateOrEdit')
+
                 @if ($attr_type == 'product')
 
                     <div class="form-group row">

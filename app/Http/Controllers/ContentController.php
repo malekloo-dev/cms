@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\Content;
 use App\Models\export;
 use App\Models\Gallery;
+use App\Services\attribute\Attribute;
 use App\Sitemap;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -48,7 +49,6 @@ class ContentController extends Controller
             $file = $fileOrg->move(public_path($imagePath), $fileName . '-org.' . $fileType); // original
 
 
-
             file_put_contents(public_path() . $imagePath . $fileNameAndType, $image_base64); // croped
 
 
@@ -79,20 +79,22 @@ class ContentController extends Controller
         if (isset($request->watermark)) {
             foreach ($url['images'] as $size => $image) {
 
-                if(in_array($size,['crop'])){$size='large';}
+                if (in_array($size, ['crop'])) {
+                    $size = 'large';
+                }
 
                 $imgFile = Image::make(public_path($image));
 
-                $imgFile->text($request->watermark, env(Str::upper($type).'_'.Str::upper($size).'_W')/2, env(Str::upper($type).'_'.Str::upper($size).'_H')/2,  function ($font) use ($size,$type) {
+                $imgFile->text($request->watermark, env(Str::upper($type) . '_' . Str::upper($size) . '_W') / 2, env(Str::upper($type) . '_' . Str::upper($size) . '_H') / 2, function ($font) use ($size, $type) {
                     $font->file(public_path('/adminAssets/fonts/IRANSans/ttf/IRANSansWeb.ttf'));
-                    $font->size(env(Str::upper($type).'_'.Str::upper($size).'_W')/10);
+                    $font->size(env(Str::upper($type) . '_' . Str::upper($size) . '_W') / 10);
                     $font->color('rgba(0,0,0,0.2)');
                     $font->align('center');
                     $font->valign('bottom');
                     $font->angle(45);
                 });
 
-                $imgFile->save(public_path($image), 60,'jpg');
+                $imgFile->save(public_path($image), 60, 'jpg');
 
                 // echo "<img src='".url($image)."'>";
             }
@@ -112,7 +114,7 @@ class ContentController extends Controller
         // dd($sizes);
         $images['crop'] = $imagePath . $fileNameAndType;
         foreach ($sizes as $name => $size) {
-            $images[$name] = $imagePath  . $fileName . "-{$name}." . $fileType;
+            $images[$name] = $imagePath . $fileName . "-{$name}." . $fileType;
 
             // dd($path);
             $img = Image::make(public_path($path));
@@ -120,7 +122,7 @@ class ContentController extends Controller
             $img->resize($size, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $img->save(public_path($images[$name]), 60,'jpg');
+            $img->save(public_path($images[$name]), 60, 'jpg');
 
             // echo "<img src='".url($images[$name])."'>";
 
@@ -144,7 +146,6 @@ class ContentController extends Controller
         $companyId = $request->companyId;
 
         $data['type'] = $type;
-
 
 
         $contents = Content::where('type', '=', '2')->where('attr_type', '=', $type)->orderBy('id', 'desc');
@@ -188,10 +189,12 @@ class ContentController extends Controller
         $result = app('App\Http\Controllers\CategoryController')->tree_set();
         $data['category'] = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
         $data['attr_type'] = $type;
+        $data['attrId'] = $request->attr;
+
+        $data['attribute'] = Attribute::getFormFieldsByContentTypeId($request->attr);
         /*if($request->type=='html')
         {
             return view('admin.content.CreateHtml',$data);
-
         }else
         {*/
         return view('admin.content.CreateOrEdit', $data);
@@ -218,10 +221,6 @@ class ContentController extends Controller
             $imagesUrl = $this->uploadImages($request, $request->attr_type);
         }
 
-
-
-
-
         $data = $request->all();
         $date = $data['publish_date'];
         $data['publish_date'] = convertJToG($date);
@@ -238,7 +237,14 @@ class ContentController extends Controller
 
 
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
+        $content_id = 1;
+        $content_type_id = 1;
+
+        //call careate attr service
+        $attrObject = Attribute::create($data, $content_id, $content_type_id);
+
         $object = Content::create($data);
+
         $object->categories()->attach($data['parent_id_hide']);
         //gallery
         if (isset($request->imageJsonGallery)) {
@@ -257,7 +263,7 @@ class ContentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -273,7 +279,7 @@ class ContentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -284,10 +290,10 @@ class ContentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
 
         $where = array('id' => $id);
@@ -295,6 +301,10 @@ class ContentController extends Controller
 
         $result = app('App\Http\Controllers\CategoryController')->tree_set();
         $category = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
+        //$attribute = Attribute::getFormFieldsByContentTypeId($request->attr);
+
+        $attribute=Attribute::getFormValue($id);
+        //dd($attribute->contentAattributeFields->load('val'));
 
         $template = 'admin.content.CreateOrEdit';
 
@@ -303,19 +313,18 @@ class ContentController extends Controller
             $template='admin.content.EditHtml';
         }*/
 
-        return view($template, compact(['content_info', 'category']));
+        return view($template, compact(['content_info', 'category','attribute']));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-
 
 
         // dd(convertGToJ($convertDate));
@@ -369,7 +378,7 @@ class ContentController extends Controller
             // dd($file);
             $images = $crud->images['images'] ?? '';
             if (is_array($images)) {
-                $images =  array_map(function ($item) {
+                $images = array_map(function ($item) {
                     return trim($item, '/');
                 }, array_values($images));
 
@@ -402,6 +411,10 @@ class ContentController extends Controller
 
         $data['slug'] = uniqueSlug(Content::class, $crud, ($request->slug != '') ? $request->slug : $request->title);
         // dd($data);
+        //dd($data);
+        $content_type_id=1;
+        $attrObject = Attribute::upsert($data, $crud->id, $content_type_id);
+
         $crud->update($data);
         // dd(1);
 
@@ -446,7 +459,7 @@ class ContentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -459,7 +472,7 @@ class ContentController extends Controller
         $crud->categories()->detach();
 
         if (is_array($images)) {
-            $images =  array_map(function ($item) {
+            $images = array_map(function ($item) {
                 return trim($item, '/');
             }, array_values($images));
 
