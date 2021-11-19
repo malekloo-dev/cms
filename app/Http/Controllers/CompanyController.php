@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Lang;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
+
 
 
 
@@ -35,6 +37,7 @@ class CompanyController extends Controller
     public function profile()
     {
         $user = Auth::user();
+
         return view('auth.company.companyProfile', compact('user'));
     }
     public function profileChangeLogo(Request $request)
@@ -54,6 +57,11 @@ class CompanyController extends Controller
         $user = Auth::user();
         $name = $request->all()['data'][0]['name'];
         $value = $request->all()['data'][0]['value'];
+        if($user->company == null){
+            // $user->company = new Company();
+            return response(array('status' => false, 'data' => ['name' => $name, 'value' => $value],'msg'=>'Company not found'), 200);
+        }
+        // dd($user->company);
         $user->company->$name = $value;
         $user->company->save();
 
@@ -432,6 +440,9 @@ class CompanyController extends Controller
         if ($company == null) {
             return redirect('/', 301);
         }
+        $company->increment('viewCount');
+        // dd($company  );
+
         // $produsct = Content::where('publish_date', '<=', DB::raw('now()'));
         // $produsct = $produsct->where('company_id', '=', $company->id);
         // $produsct = $produsct->where('type', '=', '2');
@@ -611,11 +622,15 @@ class CompanyController extends Controller
     }
     public function companyDestroy(Company $company)
     {
-        // $company->delete();
-        // $companu->dettach();
-        // $compnay->contents;
-        // unllink
-        dd(1);
+
+        $company->contents()->delete();
+
+        $company->categories()->detach();
+
+        $company->user()->delete();
+
+        $company->delete();
+
         return redirect()->route('admin.company.index')->with('success', Lang::get('messages.deleted'));
     }
     public function wpGetproduct()

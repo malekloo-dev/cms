@@ -1,5 +1,7 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
+@section('canonical', url($detail->slug))
+
 @section('twitter:title', $detail->title)
 @section('twitter:description', clearHtml($detail->brief_description))
 
@@ -60,7 +62,13 @@
 
     </script>
 
+@if ((Auth::user()->id) == 1)
+<div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/contents/'.$detail->id.'/edit/') }}')">ویرایش</div>
+@endif
 @endsection
+
+
+
 @section('Content')
     @php
     $tableOfImages = tableOfImages($detail->description);

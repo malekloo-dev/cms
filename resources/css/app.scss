@@ -2271,6 +2271,15 @@ tr:nth-child(even) {
     -webkit-transform: translateX(-50%) translateY(-50%) scale(1, 1);
     transform: translateX(-50%) translateY(-50%) scale(1, 1);
 }
+
+.edit-button{
+    position: fixed;
+    right: 0;
+    top:10px;
+    z-index: 99999;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
 #callnowbutton {
     display: none;
 }
@@ -2290,6 +2299,7 @@ tr:nth-child(even) {
         transform: scale(1);
         bottom: 15px;
         left: 20px;
+        font-size: 0;
         background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNjAgNjAiPjxwYXRoIGQ9Ik03LjEwNCAxNC4wMzJsMTUuNTg2IDEuOTg0YzAgMC0wLjAxOSAwLjUgMCAwLjk1M2MwLjAyOSAwLjc1Ni0wLjI2IDEuNTM0LTAuODA5IDIuMSBsLTQuNzQgNC43NDJjMi4zNjEgMy4zIDE2LjUgMTcuNCAxOS44IDE5LjhsMTYuODEzIDEuMTQxYzAgMCAwIDAuNCAwIDEuMSBjLTAuMDAyIDAuNDc5LTAuMTc2IDAuOTUzLTAuNTQ5IDEuMzI3bC02LjUwNCA2LjUwNWMwIDAtMTEuMjYxIDAuOTg4LTI1LjkyNS0xMy42NzRDNi4xMTcgMjUuMyA3LjEgMTQgNy4xIDE0IiBmaWxsPSIjMDA5ZDAwIi8+PHBhdGggZD0iTTcuMTA0IDEzLjAzMmw2LjUwNC02LjUwNWMwLjg5Ni0wLjg5NSAyLjMzNC0wLjY3OCAzLjEgMC4zNWw1LjU2MyA3LjggYzAuNzM4IDEgMC41IDIuNTMxLTAuMzYgMy40MjZsLTQuNzQgNC43NDJjMi4zNjEgMy4zIDUuMyA2LjkgOS4xIDEwLjY5OWMzLjg0MiAzLjggNy40IDYuNyAxMC43IDkuMSBsNC43NC00Ljc0MmMwLjg5Ny0wLjg5NSAyLjQ3MS0xLjAyNiAzLjQ5OC0wLjI4OWw3LjY0NiA1LjQ1NWMxLjAyNSAwLjcgMS4zIDIuMiAwLjQgMy4xMDVsLTYuNTA0IDYuNSBjMCAwLTExLjI2MiAwLjk4OC0yNS45MjUtMTMuNjc0QzYuMTE3IDI0LjMgNy4xIDEzIDcuMSAxMyIgZmlsbD0iI2ZmZmZmZiIvPjwvc3ZnPg==)
             center/45px 45px no-repeat #00bb00;
         span {
@@ -2514,6 +2524,8 @@ $sizes: 5;
     text-align: right;
 }
 
+.bg-theme-color{background-color: $theme-color1; color: $theme-color1-text;}
+
 .bg-gray {
     background-color: #f4f4f4;
 }
@@ -2661,7 +2673,7 @@ section.wide {
 }
 .search1 > h1,
 .search1 > h3 {
-    color: #fff;
+    color: $search-text;
     margin-bottom: 15px;
 }
 .search1 > div {
@@ -2670,7 +2682,7 @@ section.wide {
 }
 .search1 > div:after {
     content: "";
-    background: #fff;
+    background: $search-bg;
     width: 2px;
     height: 8px;
     position: absolute;
@@ -2679,19 +2691,19 @@ section.wide {
     transform: rotate(135deg);
 }
 .search1 > div > input {
-    color: #fff;
+    color: $search-text;
     font-size: 16px;
-    background: 0 0;
-    width: 5px;
-    height: 5px;
-    padding: 10px;
-    border: solid 2px #fff;
-    outline: 0;
-    border-radius: 35px;
-    transition: width 0.5s;
+    background: $search-bg;
+    width: 5px !important;
+    height: 5px !important;
+    padding: 10px !important;
+    border: $search-border !important;
+    outline: 0 !important;
+    border-radius: 35px !important;
+    transition: width 0.5s !important;
 }
 .search1 > div > input::placeholder {
-    color: #efefef;
+    color: $search-text;
     opacity: 0;
     transition: opacity 150ms ease-ou t;
 }
@@ -2700,7 +2712,7 @@ section.wide {
 }
 .search1 > div > input:focus,
 .search1 > div > input:not(:placeholder-shown) {
-    width: 240px;
+    width: 240px !important;
 }
 
 .ltr {

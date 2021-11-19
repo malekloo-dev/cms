@@ -138,9 +138,7 @@
                                                         @endphp
                                                     @endforeach
                                                     @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
-                                                        <img width="20" height="20"
-                                                            srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
-                                                            src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
+                                                        <label></label>
                                                     @endfor
                                                 @endif
                                             </div>

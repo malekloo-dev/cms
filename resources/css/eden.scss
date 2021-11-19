@@ -1,0 +1,200 @@
+$template: darbkala;
+$body: #f8f8f8;
+$theme-color1: #928c81;
+$theme-color2: rgb(255, 216, 45);
+$theme-color3: #c99d4d;
+$a: #c99d4d;
+$a-hover: #1e2135;
+
+$menu-color: #333;
+$menu-bg-left:#fff;
+$menu-bg-right:#fff;
+$menu-shadow:0 1px 1px rgba(0, 0, 0, 0.2);
+
+
+@import "app.scss";
+@import "grid.scss";
+@import "nav.scss";
+
+.bg-gray-black{ background-color: #111; color: #fff;}
+.h-auto{height: auto;}
+
+////////////////////
+//     banner     //
+////////////////////
+.banner{
+    .flex{
+        align-items: flex-end;
+        justify-content: center;
+
+        h1{
+            position: absolute;
+            width: auto;
+        }
+    }
+}
+
+
+////////////////////
+// category siema //
+////////////////////
+
+.category-section {
+    position: relative;
+
+    h2,h3 {
+        font-size: 0.9em;
+    }
+    .next2,
+    .prev2 {
+        position: absolute;
+        width: auto;
+        background: rgba(0, 0, 0, 0.05);
+        padding: 0 0.5em;
+        color: #717171;
+        font-size: 23px;
+        font-weight: 700;
+        cursor: pointer;
+        top: 50%;
+        margin-top: -20px;
+        user-select: none;
+    }
+    .next2 {
+        left: 0;
+        border-radius: 0 5px 5px 0;
+    }
+    .prev2 {
+        right: 0;
+        border-radius: 5px 0 0 5px;
+    }
+}
+
+//////////////
+//pagination//
+//////////////
+nav[role="navigation"] {
+    display: flex;
+    direction: ltr;
+}
+nav[role="navigation"] > :not(.hidden) {
+    display: none;
+}
+nav[role="navigation"] p {
+    margin: 0;
+    padding: 0;
+}
+nav[role="navigation"] .hidden {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}
+nav[role="navigation"] .justify-between {
+    justify-content: space-between;
+    float: 1 1 0;
+}
+nav[role="navigation"] .w-5 {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+nav[role="navigation"] span {
+    display: inline-flex;
+}
+nav[role="navigation"] a {
+    --tw-space-x-reverse: 0;
+    display: inline-flex;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+nav[role="navigation"] span > span > span {
+    border: none;
+    color: #ccc;
+    margin-right: calc(-1px * var(--tw-space-x-reverse));
+    margin-left: calc(-1px * calc(1 - var(--tw-space-x-reverse)));
+    display: inline-flex;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+nav[role="navigation"] span > * {
+    margin-right: calc(-1px * var(--tw-space-x-reverse));
+    margin-left: calc(-1px * calc(1 - var(--tw-space-x-reverse)));
+}
+nav[role="navigation"] span > svg {
+    border: none;
+}
+
+
+.ltr {
+    direction: ltr;
+}
+.price {
+    color: #048312;
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+.height-100 {
+    height: 100%;
+}
+
+
+
+
+@media all and (max-width: 960px) {
+    nav {
+        height: 5em;
+        width: auto;
+        position: relative;
+    }
+    .intro {
+        margin: 1em auto 1em !important;
+        padding: 1em 0 0;
+    }
+    .hero {
+        background-attachment: scroll;
+    }
+    .pseudo.button:hover {
+        border: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .mt-1 {
+        margin: 0;
+    }
+
+    h1 {
+        font-size: 1.2em;
+        text-align: center;
+    }
+    .flex{
+        justify-content: center;
+    }
+    h2 {
+        font-size: 1.2em;
+    }
+}
+@media (max-width: 1100px) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+
+@media (min-width:640px){
+}
+@media (min-width:768px){
+}
+@media (min-width:1024px){
+}

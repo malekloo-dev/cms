@@ -3,8 +3,7 @@
 @section('ckeditor')
 
     <script>
-
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             var $parent = $(".parent");
             $parent.select2();
@@ -18,7 +17,6 @@
 
         var $anchor_link = $(".anchor_link");
         $anchor_link.select2();
-
     </script>
 
 @endsection
@@ -27,8 +25,8 @@
 
 <div class="content-control">
     <ul class="breadcrumb">
-        <li><a href="{{ route('menu.index')}}">@lang('messages.menu')</a></li>
-        <li class="active">@lang('messages.edit') {{ old('label)',$menu_info->label) }}</li>
+        <li><a href="{{ route('menu.index') }}">@lang('messages.menu')</a></li>
+        <li class="active">@lang('messages.edit') {{ old('label)', $menu_info->label) }}</li>
     </ul>
 </div>
 
@@ -46,40 +44,41 @@
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
-                                    <a class="btn btn-block" role="button" data-toggle="collapse" data-parent="#accordion"
-                                       href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        category
-                                    </a>
+                                <a class="btn btn-block" role="button" data-toggle="collapse" data-parent="#accordion"
+                                    href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    category
+                                </a>
 
                             </div>
 
                             <div id="collapseOne"
-                                 class="panel-collapse collapse {{ $menu_info->module == 'category' ? 'in' : '' }}"
-                                 role="tabpanel"
-                                 aria-labelledby="headingOne">
+                                class="panel-collapse collapse {{ $menu_info->module == 'category' ? 'in' : '' }}"
+                                role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
                                     <form action="{{ route('menu.update', $menu_info->id) }}" method="POST"
-                                          name="add_content"
-                                          enctype="multipart/form-data">
+                                        name="add_content" enctype="multipart/form-data">
                                         @csrf
                                         @method('PATCH')
 
                                         <div class="col-md-12">
                                             <div class="panel-title">
-                                                <label for="label" class="col-form-label">@lang('messages.menu') @lang('messages.name'):</label>
+                                                <label for="label" class="col-form-label">@lang('messages.menu')
+                                                    @lang('messages.name'):</label>
                                                 <input type="text" class="form-control" name="label"
-                                                       value="{{ old('label)',$menu_info->label) }}"/>
+                                                    value="{{ old('label)', $menu_info->label) }}" />
                                                 <span class="text-danger">{{ $errors->first('label') }}</span>
 
-                                                <label for="parent" class="col-form-label text-md-left">@lang('messages.parent')</label>
+                                                <label for="parent"
+                                                    class="col-form-label text-md-left">@lang('messages.parent')</label>
 
-                                                <select name="parent" id="parent"
-                                                        class="parent" {{--class="form-control"--}}>
-                                                    <option value="0" {{ $menu_info->parent == 0 ? 'selected' : '' }}>no
+                                                <select name="parent" id="parent" class="parent">
+                                                    <option value="0" {{ $menu_info->parent == 0 ? 'selected' : '' }}>
+                                                        no
                                                         parent
                                                     </option>
-                                                    @foreach($menu as $Key => $fields)
-                                                        <option value="{{$fields['id']}}" {{ $menu_info->parent == $fields['id'] ? 'selected' : '' }}>
+                                                    @foreach ($menu as $Key => $fields)
+                                                        <option value="{{ $fields['id'] }}"
+                                                            {{ $menu_info->parent == $fields['id'] ? 'selected' : '' }}>
                                                             {!! $fields['symbol'] . $fields['label'] !!}
                                                         </option>
                                                     @endforeach
@@ -87,13 +86,12 @@
 
                                                 <div id="parent_id_val" class="parent_id_val"></div>
 
-
                                                 <label for="module_id"
-                                                       class="col-form-label text-md-left">@lang('messages.category')</label>
-                                                <select name="module_id"
-                                                        id="module_id" class="module_id" {{--class="form-control"--}}>
+                                                    class="col-form-label text-md-left">@lang('messages.category')</label>
+                                                <select name="module_id" id="module_id" class="module_id">
                                                     @foreach ($category as $Key => $fields)
-                                                        <option value="{{ $fields['id'] }}">{!! $fields['title'] !!}
+                                                        <option value="{{ $fields['id'] }}" {{ $menu_info->module_id == $fields['id'] ? 'selected' : '' }}>{!! $fields['title'] !!}
+
                                                         </option>
                                                     @endforeach
 
@@ -102,15 +100,15 @@
 
                                                 <label for="sort" class="col-form-label">sort:</label>
                                                 <input type="text" class="form-control" name="sort"
-                                                       value="{{ old('sort',$menu_info->sort) }}"/>
+                                                    value="{{ old('sort', $menu_info->sort) }}" />
                                                 <span class="text-danger">{{ $errors->first('sort') }}</span>
 
                                             </div>
 
-                                            <br/>
-                                                <button type="submit"
-                                                        class="btn btn-success @if(!$ltr) pull-right @endif mat-btn ">@lang('messages.edit')
-                                                </button>
+                                            <br />
+                                            <button type="submit"
+                                                class="btn btn-success @if (!$ltr) pull-right @endif mat-btn ">@lang('messages.edit')
+                                            </button>
 
                                         </div>
                                         <input type="hidden" id="type" name="type" value="internal">
@@ -123,38 +121,40 @@
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingTwo">
-                                    <a class="collapsed btn btn-block" role="button" data-toggle="collapse"
-                                       data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
-                                       aria-controls="collapseTwo">
-                                        external
-                                    </a>
+                                <a class="collapsed btn btn-block" role="button" data-toggle="collapse"
+                                    data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+                                    aria-controls="collapseTwo">
+                                    external
+                                </a>
 
                             </div>
                             <div id="collapseTwo"
-                                 class="panel-collapse collapse {{ $menu_info->type == 'external' ? 'in' : '' }}"
-                                 role="tabpanel"
-                                 aria-labelledby="headingTwo">
+                                class="panel-collapse collapse {{ $menu_info->type == 'external' ? 'in' : '' }}"
+                                role="tabpanel" aria-labelledby="headingTwo">
                                 <div class="panel-body">
                                     <form action="{{ route('menu.update', $menu_info->id) }}" method="POST"
-                                          name="add_content"
-                                          enctype="multipart/form-data">
+                                        name="add_content" enctype="multipart/form-data">
                                         @csrf
                                         @method('PATCH')
                                         <div class="col-md-12">
                                             <div class="panel-title">
-                                                <label for="label" class="col-form-label">@lang('messages.menu') @lang('messages.name'):</label>
+                                                <label for="label" class="col-form-label">@lang('messages.menu')
+                                                    @lang('messages.name'):</label>
                                                 <input type="text" class="form-control" name="label"
-                                                       value="{{ old('label)',$menu_info->label) }}"/>
+                                                    value="{{ old('label)', $menu_info->label) }}" />
                                                 <span class="text-danger">{{ $errors->first('label') }}</span>
 
-                                                <label for="parent" class="col-form-label text-md-left">@lang('messages.parent')</label>
-                                                <select name="parent" id="parent"
-                                                        class="parent" {{--class="form-control"--}}>
-                                                    <option value="0" {{ $menu_info->parent == 0 ? 'selected' : '' }}>no
+                                                <label for="parent"
+                                                    class="col-form-label text-md-left">@lang('messages.parent')</label>
+                                                <select name="parent" id="parent" class="parent"
+                                                    {{-- class="form-control" --}}>
+                                                    <option value="0"
+                                                        {{ $menu_info->parent == 0 ? 'selected' : '' }}>no
                                                         parent
                                                     </option>
-                                                    @foreach($menu as $Key => $fields)
-                                                        <option value="{{$fields['id']}}" {{ $menu_info->parent == $fields['id'] ? 'selected' : '' }}>
+                                                    @foreach ($menu as $Key => $fields)
+                                                        <option value="{{ $fields['id'] }}"
+                                                            {{ $menu_info->parent == $fields['id'] ? 'selected' : '' }}>
                                                             {!! $fields['symbol'] . $fields['label'] !!}
                                                         </option>
                                                     @endforeach
@@ -164,21 +164,21 @@
 
                                                 <label for="link" class="col-form-label">@lang('messages.link'):</label>
                                                 <input type="text" class="form-control" name="link"
-                                                       value="{{ old('link',$menu_info->link) }}"/>
+                                                    value="{{ old('link', $menu_info->link) }}" />
                                                 <span class="text-danger">{{ $errors->first('link') }}</span>
 
                                                 <label for="sort" class="col-form-label">@lang('messages.sort'):</label>
                                                 <input type="text" class="form-control" name="sort"
-                                                       value="{{ old('sort',$menu_info->sort) }}"/>
+                                                    value="{{ old('sort', $menu_info->sort) }}" />
                                                 <span class="text-danger">{{ $errors->first('sort') }}</span>
 
 
                                             </div>
 
-                                            <br/>
-                                                <button type="submit"
-                                                        class="btn btn-success @if(!$ltr) pull-right @endif mat-btn ">@lang('messages.edit')
-                                                </button>
+                                            <br />
+                                            <button type="submit"
+                                                class="btn btn-success @if (!$ltr) pull-right @endif mat-btn ">@lang('messages.edit')
+                                            </button>
 
                                         </div>
                                         <input type="hidden" id="type" name="type" value="external">
@@ -192,42 +192,43 @@
                         @if (count($single_page))
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingThree">
-                                        <a class="collapsed btn btn-block" role="button" data-toggle="collapse"
-                                           data-parent="#accordion" href="#collapseThree" aria-expanded="false"
-                                           aria-controls="collapseThree">
-                                            Single Page
-                                        </a>
+                                    <a class="collapsed btn btn-block" role="button" data-toggle="collapse"
+                                        data-parent="#accordion" href="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        Single Page
+                                    </a>
 
                                 </div>
 
                                 <div id="collapseThree"
-                                     class="panel-collapse collapse {{ $menu_info->type == 'single_page' ? 'in' : '' }}"
-                                     role="tabpanel"
-                                     aria-labelledby="headingThree">
+                                    class="panel-collapse collapse {{ $menu_info->type == 'single_page' ? 'in' : '' }}"
+                                    role="tabpanel" aria-labelledby="headingThree">
                                     <div class="panel-body">
                                         <form action="{{ route('menu.update', $menu_info->id) }}" method="POST"
-                                              name="add_content"
-                                              enctype="multipart/form-data">
+                                            name="add_content" enctype="multipart/form-data">
                                             @csrf
                                             @method('PATCH')
 
                                             <div class="col-md-12">
                                                 <div class="panel-title">
-                                                    <label for="label" class="col-form-label">@lang('messages.menu') @lang('messages.name'):</label>
+                                                    <label for="label" class="col-form-label">@lang('messages.menu')
+                                                        @lang('messages.name'):</label>
                                                     <input type="text" class="form-control" name="label"
-                                                           value="{{ old('label)',$menu_info->label) }}"/>
+                                                        value="{{ old('label)', $menu_info->label) }}" />
                                                     <span class="text-danger">{{ $errors->first('label') }}</span>
 
                                                     <label for="parent"
-                                                           class="col-form-label text-md-left">@lang('messages.parent')</label>
+                                                        class="col-form-label text-md-left">@lang('messages.parent')</label>
 
-                                                    <select name="parent" id="parent"
-                                                            class="parent" {{--class="form-control"--}}>
-                                                        <option value="0" {{ $menu_info->parent == 0 ? 'selected' : '' }}>
+                                                    <select name="parent" id="parent" class="parent"
+                                                        {{-- class="form-control" --}}>
+                                                        <option value="0"
+                                                            {{ $menu_info->parent == 0 ? 'selected' : '' }}>
                                                             no parent
                                                         </option>
-                                                        @foreach($menu as $Key => $fields)
-                                                            <option value="{{$fields['id']}}" {{ $menu_info->parent == $fields['id'] ? 'selected' : '' }}>
+                                                        @foreach ($menu as $Key => $fields)
+                                                            <option value="{{ $fields['id'] }}"
+                                                                {{ $menu_info->parent == $fields['id'] ? 'selected' : '' }}>
                                                                 {!! $fields['symbol'] . $fields['label'] !!}
                                                             </option>
                                                         @endforeach
@@ -237,12 +238,12 @@
 
 
                                                     <label for="anchor_link"
-                                                           class="col-form-label text-md-left">@lang('messages.link'):</label>
-                                                    <select name="link"
-                                                            id="anchor_link"
-                                                            class="anchor_link" {{--class="form-control"--}}>
+                                                        class="col-form-label text-md-left">@lang('messages.link'):</label>
+                                                    <select name="link" id="anchor_link" class="anchor_link"
+                                                        {{-- class="form-control" --}}>
                                                         @foreach ($single_page as $Key => $anchor)
-                                                            <option value="{{ $anchor }}"{{ $menu_info->link == $anchor ? 'selected' : '' }}>
+                                                            <option value="{{ $anchor }}"
+                                                                {{ $menu_info->link == $anchor ? 'selected' : '' }}>
                                                                 {!! $anchor !!}#
                                                             </option>
                                                         @endforeach
@@ -252,15 +253,15 @@
 
                                                     <label for="sort" class="col-form-label">sort:</label>
                                                     <input type="text" class="form-control" name="sort"
-                                                           value="{{ old('sort',$menu_info->sort) }}"/>
+                                                        value="{{ old('sort', $menu_info->sort) }}" />
                                                     <span class="text-danger">{{ $errors->first('sort') }}</span>
 
                                                 </div>
 
-                                                <br/>
+                                                <br />
                                                 <div class="col-md-12">
                                                     <button type="submit"
-                                                            class="btn btn-success @if(!$ltr) pull-right @endif mat-btn">@lang('messages.edit')
+                                                        class="btn btn-success @if (!$ltr) pull-right @endif mat-btn">@lang('messages.edit')
                                                     </button>
                                                 </div>
                                             </div>
