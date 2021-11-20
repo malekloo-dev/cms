@@ -2690,7 +2690,7 @@ section.wide {
     right: 1px;
     transform: rotate(135deg);
 }
-.search1 > div > input {
+.search1 > div form > input {
     color: $search-text;
     font-size: 16px;
     background: $search-bg;
@@ -2702,16 +2702,16 @@ section.wide {
     border-radius: 35px !important;
     transition: width 0.5s !important;
 }
-.search1 > div > input::placeholder {
+.search1 > div form > input::placeholder {
     color: $search-text;
     opacity: 0;
     transition: opacity 150ms ease-ou t;
 }
-.search1 > div > input:focus::placeholder {
+.search1 > div form > input:focus::placeholder {
     opacity: 1;
 }
-.search1 > div > input:focus,
-.search1 > div > input:not(:placeholder-shown) {
+.search1 > div form > input:focus,
+.search1 > div form > input:not(:placeholder-shown) {
     width: 240px !important;
 }
 

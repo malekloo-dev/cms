@@ -3518,7 +3518,7 @@ section.wide {
   transform: rotate(135deg);
 }
 
-.search1 > div > input {
+.search1 > div form > input {
   color: #646464;
   font-size: 16px;
   background: #888;
@@ -3531,48 +3531,48 @@ section.wide {
   transition: width 0.5s !important;
 }
 
-.search1 > div > input::-moz-placeholder {
+.search1 > div form > input::-moz-placeholder {
   color: #646464;
   opacity: 0;
   -moz-transition: opacity 150ms ease-ou t;
   transition: opacity 150ms ease-ou t;
 }
 
-.search1 > div > input:-ms-input-placeholder {
+.search1 > div form > input:-ms-input-placeholder {
   color: #646464;
   opacity: 0;
   -ms-transition: opacity 150ms ease-ou t;
   transition: opacity 150ms ease-ou t;
 }
 
-.search1 > div > input::placeholder {
+.search1 > div form > input::placeholder {
   color: #646464;
   opacity: 0;
   transition: opacity 150ms ease-ou t;
 }
 
-.search1 > div > input:focus::-moz-placeholder {
+.search1 > div form > input:focus::-moz-placeholder {
   opacity: 1;
 }
 
-.search1 > div > input:focus:-ms-input-placeholder {
+.search1 > div form > input:focus:-ms-input-placeholder {
   opacity: 1;
 }
 
-.search1 > div > input:focus::placeholder {
+.search1 > div form > input:focus::placeholder {
   opacity: 1;
 }
 
-.search1 > div > input:not(:-moz-placeholder-shown) {
+.search1 > div form > input:not(:-moz-placeholder-shown) {
   width: 240px !important;
 }
 
-.search1 > div > input:not(:-ms-input-placeholder) {
+.search1 > div form > input:not(:-ms-input-placeholder) {
   width: 240px !important;
 }
 
-.search1 > div > input:focus,
-.search1 > div > input:not(:placeholder-shown) {
+.search1 > div form > input:focus,
+.search1 > div form > input:not(:placeholder-shown) {
   width: 240px !important;
 }
 

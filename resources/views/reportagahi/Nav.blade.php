@@ -42,7 +42,9 @@
                         <a class="flexbox">
                             <div class="search1">
                                 <div>
-                                    <input alt="جستجو" type="text" placeholder="جستجو" required>
+                                    <form action="{{ route('search') }}">
+                                        <input alt="جستجو" type="text" placeholder="جستجو" required>
+                                    </form>
                                 </div>
                             </div>
                         </a>
