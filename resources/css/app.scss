@@ -2272,10 +2272,10 @@ tr:nth-child(even) {
     transform: translateX(-50%) translateY(-50%) scale(1, 1);
 }
 
-.edit-button{
+.edit-button {
     position: fixed;
     right: 0;
-    top:10px;
+    top: 10px;
     z-index: 99999;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -2524,7 +2524,10 @@ $sizes: 5;
     text-align: right;
 }
 
-.bg-theme-color{background-color: $theme-color1; color: $theme-color1-text;}
+.bg-theme-color {
+    background-color: $theme-color1;
+    color: $theme-color1-text;
+}
 
 .bg-gray {
     background-color: #f4f4f4;
@@ -2604,17 +2607,16 @@ $sizes: 5;
     background-size: 120px;
     background-repeat: repeat;
     color: rgb(73, 29, 12);
-
 }
 
 .bg-inherit {
     background-color: $theme-color1;
     color: $menu-color;
 }
-.color-white{
+.color-white {
     color: #fff !important;
 }
-.color-brown{
+.color-brown {
     color: rgb(73, 29, 12) !important;
 }
 .color-inherit {
@@ -2713,6 +2715,52 @@ section.wide {
 .search1 > div form > input:focus,
 .search1 > div form > input:not(:placeholder-shown) {
     width: 240px !important;
+}
+
+.search {
+    form {
+        display: flex;
+    }
+    input {
+        width: auto !important;
+        flex: 1 0 auto;
+        border-radius: 0 3px 3px 0 !important;
+        border: $search-border !important;
+        border-left: 0 !important  ;
+    }
+    button {
+        width: auto;
+        padding: 0 5px;
+        margin: 0;
+        border-radius: 3px 0 0 3px;
+        display: flex;
+        align-items: center;
+        background-color: $search-bg;
+        svg {
+            fill: $menu-color !important;
+        }
+    }
+}
+.search-items {
+    a {
+        color: #333;
+    }
+    .search-item {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        svg{
+            margin-left: 5px;
+        }
+        .rate {
+            label {
+                &::before {
+                    font-size: 1.5em;
+                    height: 1.5em;
+                }
+            }
+        }
+    }
 }
 
 .ltr {

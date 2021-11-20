@@ -43,7 +43,7 @@
                             <div class="search1">
                                 <div>
                                     <form action="{{ route('search') }}">
-                                        <input alt="جستجو" type="text" placeholder="جستجو" required>
+                                        <input name="q" alt="جستجو" type="text" placeholder="جستجو" required>
                                     </form>
                                 </div>
                             </div>

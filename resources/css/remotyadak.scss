@@ -3,6 +3,8 @@ $body: #fff;
 $theme-color1: #061229;
 $theme-color2: #1b405e;
 $theme-color3: #ea1c44;
+$theme-color1-text:#fff;
+
 $a: #d13501;
 $a-hover: #18191d;
 $menu-color: #fff;
@@ -10,6 +12,10 @@ $menu-bg-left:#1e2135;
 $menu-bg-right:#1e2135;
 $menu-shadow:0 3px 10px rgba(0, 0, 0, 0.2);
 $p: #1e2135;
+
+$search-bg:$theme-color1;
+$search-border:1px solid $search-bg;
+$search-text:#fff;
 
 @import "app.scss";
 @import "grid.scss";

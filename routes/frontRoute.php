@@ -6,6 +6,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SpiderController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/search', [InventoryController::class, 'index'])->name('inventory.show');
@@ -21,6 +22,8 @@ Route::post('/spider/addToCms', [SpiderController::class, 'reloadAdd']);
 
 
 Route::group(['middleware' => 'HtmlMinifier'], function () {
+
+    Route::get('search', [SearchController::class,'index'])->name('search');
 
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/reload', [ContentController::class, 'reload']);
@@ -39,5 +42,5 @@ Route::group(['middleware' => 'HtmlMinifier'], function () {
     Route::post('/comment', [CommentController::class, 'store'])->name('comment.client.store');
     Route::post('/contact', [CommentController::class, 'store'])->name('contact.client.store');
 
-    Route::get('search/{q?}', [SearchController::class,'index'])->name('search');
+
 });

@@ -38,6 +38,18 @@
             <div class="menu">
 
                 <ul>
+                    {{-- <li>
+                        <a class="flexbox">
+                            <div class="search1">
+                                <div>
+                                    <form action="{{ route('search') }}">
+                                        <input name="q" alt="جستجو" type="text" placeholder="جستجو" required>
+                                    </form>
+                                </div>
+                            </div>
+                        </a>
+                    </li> --}}
+
                     @foreach (App\Models\Menu::where('parent', '=', '0')
                         ->orderBy('sort')
                         ->get()
