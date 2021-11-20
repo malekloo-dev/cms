@@ -7,6 +7,7 @@ use App\Models\Content;
 use App\Models\CompanyContents;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Services\wpService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -632,4 +633,16 @@ class CompanyController extends Controller
 
         return redirect()->route('admin.company.index')->with('success', Lang::get('messages.deleted'));
     }
+    public function wpGetproduct()
+    {
+        $wp=new wpService();
+        $wp->getproduct();
+        // $company->delete();
+        // $companu->dettach();
+        // $compnay->contents;
+        // unllink
+        dd(1);
+        return redirect()->route('admin.company.index')->with('success', Lang::get('messages.deleted'));
+    }
+
 }

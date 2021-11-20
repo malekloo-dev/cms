@@ -1,4 +1,55 @@
 <?php
+function get_web_page( $url )
+{
+    $options = array(
+        CURLOPT_RETURNTRANSFER => true,     // return web page
+        CURLOPT_HEADER         => false,    // don't return headers
+        CURLOPT_FOLLOWLOCATION => true,     // follow redirects
+        CURLOPT_ENCODING       => "",       // handle all encodings
+        CURLOPT_USERAGENT      => "spider", // who am i
+        CURLOPT_AUTOREFERER    => true,     // set referer on redirect
+        CURLOPT_CONNECTTIMEOUT => 120,      // timeout on connect
+        CURLOPT_TIMEOUT        => 120,      // timeout on response
+        CURLOPT_MAXREDIRS      => 10,       // stop after 10 redirects
+        CURLOPT_SSL_VERIFYPEER => false     // Disabled SSL Cert checks
+    );
+
+    $ch      = curl_init( $url );
+    curl_setopt_array( $ch, $options );
+    $content = curl_exec( $ch );
+    $err     = curl_errno( $ch );
+    $errmsg  = curl_error( $ch );
+    $header  = curl_getinfo( $ch );
+    curl_close( $ch );
+
+    $header['errno']   = $err;
+    $header['errmsg']  = $errmsg;
+    $header['content'] = $content;
+    return $header;
+}
+
+function file_get_contents_curl( $url ) {
+
+$ch = curl_init();
+
+  curl_setopt( $ch, CURLOPT_AUTOREFERER, TRUE );
+  curl_setopt( $ch, CURLOPT_HEADER, 0 );
+  curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+  curl_setopt( $ch, CURLOPT_URL, $url );
+  curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER,FALSE);
+  curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, TRUE );
+
+  $data = curl_exec( $ch );
+  print_r($data);
+  die();
+  curl_close( $ch );
+
+  return $data;
+
+}
+//$a=get_web_page('https://emalls.ir/%D9%84%DB%8C%D8%B3%D8%AA-%D9%82%DB%8C%D9%85%D8%AA_%D8%AF%D8%B1%D8%A8-%D8%B6%D8%AF-%D8%B3%D8%B1%D9%82%D8%AA-~Category~25236');
+//echo '<pre/>';
+//print_r($a);
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminLoginController;
@@ -67,7 +118,7 @@ Route::prefix('/company')->middleware(['auth', 'role:super admin|company'])->gro
 
 
 
-Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(function () {
+Route::prefix('/admin')->group(function () {
 
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::get('contents/{type}', [ContentController::class, 'index'])->name('contents.type.show');
@@ -145,6 +196,7 @@ Route::group(['middleware' => 'HtmlMinifier'], function () {
 
     Route::get('/profile/{id?}', [CompanyController::class, 'profileShow'])->name('profile.index');
 
+    Route::get('/wp/getProduct', [CompanyController::class, 'wpGetproduct'])->name('wp.product');
 
     // WebsiteSetting::where('variable','=',['product','article','category'])->get()->each(function ($prefix) {
     //     Route::prefix($prefix->value)->get('/{slug?}/{b?}', [CmsController::class, 'request']);
