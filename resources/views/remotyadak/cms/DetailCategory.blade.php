@@ -20,20 +20,22 @@
 
 
 @section('head')
-    @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
+    {{-- @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
         <link rel="prev" href="{{ json_decode($relatedProduct->toJson())->prev_page_url }}">
     @endif
     @if (json_decode($relatedProduct->toJson())->next_page_url != null)
         <link rel="next" href="{{ json_decode($relatedProduct->toJson())->next_page_url }}">
-    @endif
+    @endif --}}
 
 
-    @if (json_decode($relatedCompany->toJson())->prev_page_url != null)
+    {{-- @if (json_decode($relatedCompany->toJson())->prev_page_url != null)
         <link rel="prev" href="{{ json_decode($relatedCompany->toJson())->prev_page_url }}">
     @endif
     @if (json_decode($relatedCompany->toJson())->next_page_url != null)
         <link rel="next" href="{{ json_decode($relatedCompany->toJson())->next_page_url }}">
-    @endif
+    @endif --}}
+
+
 @endsection
 @section('footer')
     @auth
@@ -50,9 +52,12 @@
     $append = '';
     @endphp
     @if (count($relatedProduct))
-        @include('jsonLdRelatedProduct')
+    @include('jsonLdRelatedProductItemlist')
     @endif
 
+    @include('jsonLdBreadcrumb')
+
+    
 
     @if (count($breadcrumb))
         <section class="breadcrumb my-0">

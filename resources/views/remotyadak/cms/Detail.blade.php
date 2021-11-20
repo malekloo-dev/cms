@@ -70,6 +70,12 @@
         @include('jsonLdProduct')
     @endif
 
+    @if ($detail->attr_type == 'article')
+        @include('jsonLdArticle')
+    @endif
+    @include('jsonLdWebsite')
+
+    @include('jsonLdBreadcrumb')
 
     <section class="breadcrumb">
         <div class="flex one  ">

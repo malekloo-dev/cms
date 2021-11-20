@@ -77,6 +77,9 @@
         @include('jsonLdBreadcrumb')
     @endif
 
+    @include('jsonLdWebsite')
+
+
     <section class="breadcrumb">
         <div class="flex one  ">
             <div class="p-0">

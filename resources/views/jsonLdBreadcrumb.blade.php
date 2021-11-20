@@ -7,6 +7,7 @@
                     "@type": "ListItem",
                     "position": 1,
                     "item": {
+                        "@type":"WebPage",
                         "@id": "{{ url('/') }}",
                         "name": "{{ env('SITE_NAME','خانه')}}"
                     }
@@ -17,6 +18,7 @@
                     "@type": "ListItem",
                     "position": {{ count($breadcrumb) - ($index-1) }},
                     "item": {
+                        "@type":"WebPage",
                         "@id": "{{ url($item['slug']) }}",
                         "name": "{{ $item['title'] }}"
                     }

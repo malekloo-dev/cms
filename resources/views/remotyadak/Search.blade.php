@@ -25,21 +25,10 @@
 @endif
 
 
-@section('head')
-
-@endsection
-
-
-@push('scripts')
-
-@endpush
-
-@section('footer')
-
-@endsection
 
 @section('Content')
 
+    @include('jsonLdWebsite')
 
 
 
