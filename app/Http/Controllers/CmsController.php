@@ -70,7 +70,7 @@ class CmsController extends Controller
             ->where('publish_date', '<=', DB::raw('now()'))
             ->get();
 
-        $relatedCompany = $detail->companiesCategory()->paginate(20);
+        $relatedCompany = $detail->companiesCategory()->paginate(20,['*'],'companyPage');
 
         $template = env('TEMPLATE_NAME') . '.cms.DetailCategory';
         //Widget

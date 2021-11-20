@@ -26,11 +26,20 @@
     @if (json_decode($relatedProduct->toJson())->next_page_url != null)
         <link rel="next" href="{{ json_decode($relatedProduct->toJson())->next_page_url }}">
     @endif
+
+
+    @if (json_decode($relatedCompany->toJson())->prev_page_url != null)
+        <link rel="prev" href="{{ json_decode($relatedCompany->toJson())->prev_page_url }}">
+    @endif
+    @if (json_decode($relatedCompany->toJson())->next_page_url != null)
+        <link rel="next" href="{{ json_decode($relatedCompany->toJson())->next_page_url }}">
+    @endif
 @endsection
 @section('footer')
     @auth
-        @if ((Auth::user()->id) == 1)
-            <div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/category/'.$detail->id.'/edit/') }}')">ویرایش</div>
+        @if (Auth::user()->id == 1)
+            <div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/category/' . $detail->id . '/edit/') }}')">
+                ویرایش</div>
         @endif
     @endauth
 @endsection
@@ -80,9 +89,10 @@
                                         <div class="flex one three-700 height-100">
                                             @if (isset($content->images['images']['small']))
                                                 <div class="p-0">
-                                                    <img title="{{ $content->title }}" alt="{{ $content->title }}" width="{{ env('CATEGORY_MEDIUM_W') }}"
-                                                        height="{{ env('CATEGORY_MEDIUM_H') }}"
-                                                        loading="lazy" src="{{ $content->images['images']['small'] }}" />
+                                                    <img title="{{ $content->title }}" alt="{{ $content->title }}"
+                                                        width="{{ env('CATEGORY_MEDIUM_W') }}"
+                                                        height="{{ env('CATEGORY_MEDIUM_H') }}" loading="lazy"
+                                                        src="{{ $content->images['images']['small'] }}" />
                                                 </div>
                                             @endif
                                             <div class="one two-third-700 pr-1">
@@ -132,17 +142,19 @@
                                             </div>
                                             <footer>
                                                 <h2>{{ $content->name }}</h2>
-                                                <div class="company-phones"> {{ $content->mobile }} - {{ $content->phone }}</div>
-                                                <div><svg class="p-0 m-0" width="12" height="12" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
-                                                        fill="currentColor" />
-                                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                                        d="M12 3C6.40848 3 1.71018 6.82432 0.378052 12C1.71018 17.1757 6.40848 21 12 21C17.5915 21 22.2898 17.1757 23.6219 12C22.2898 6.82432 17.5915 3 12 3ZM16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
-                                                        fill="currentColor" />
-                                                </svg>
-                                                <span class="p-0 ml-1">{{ $content->viewCount }} </span> </div>
+                                                <div class="company-phones"> {{ $content->mobile }} -
+                                                    {{ $content->phone }}</div>
+                                                <div><svg class="p-0 m-0" width="12" height="12" viewBox="0 0 24 24"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
+                                                            fill="currentColor" />
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M12 3C6.40848 3 1.71018 6.82432 0.378052 12C1.71018 17.1757 6.40848 21 12 21C17.5915 21 22.2898 17.1757 23.6219 12C22.2898 6.82432 17.5915 3 12 3ZM16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
+                                                            fill="currentColor" />
+                                                    </svg>
+                                                    <span class="p-0 ml-1">{{ $content->viewCount }} </span>
+                                                </div>
                                                 <div>{{ $content->address }}</div>
 
                                             </footer>
@@ -151,7 +163,9 @@
                                 </div>
                             @endforeach
 
+
                         </div>
+                        {{ $relatedCompany->links() }}
                     </div>
                 </div>
             </div>
