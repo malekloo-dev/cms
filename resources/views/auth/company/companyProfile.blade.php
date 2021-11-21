@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="">@lang('messages.phone'):
-                    <span class="" data-field="phone" style="display: inline-block">{{ $user->company?->phone ?? '' }}</span>
+                    <span class="text-editor" data-field="phone" data-label="شماره تلفن را با , از هم جدا کنید" style="display: inline-block">{{ $user->company?->phone ?? '' }}</span>
                 </div>
 
                 <div class="">@lang('messages.site'):
@@ -282,13 +282,13 @@
                 <div class="modal-body">
                     <div class="img-container">
                         <div class="row">
-                            <h2>@lang('messages.edit')</h2>
+                            <h3>@lang('messages.edit')</h3>
                             <form>
                                 <div class="col-xs-12 py-1 ">
-                                    <div class="col-md-3 col-xs-12">
+                                    <div class="col-md-12 col-xs-12">
                                         <label for=""></label>
                                     </div>
-                                    <div class="col-md-8 col-xs-12">
+                                    <div class="col-md-12 col-xs-12">
                                         <input type="text" name="">
                                     </div>
                                 </div>

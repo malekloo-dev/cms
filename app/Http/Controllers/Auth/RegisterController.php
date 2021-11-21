@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Company;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -45,7 +46,15 @@ class RegisterController extends Controller
         $this->middleware('guest')->except('logout');
 
     }
+    public function showRegistrationForm()
+    {
+        $result = app('App\Http\Controllers\CategoryController')->tree_set();
+        $category = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
 
+
+        return view('auth.register',compact('category'));
+
+    }
     /**
      * Get a validator for an incoming registration request.
      *
@@ -72,7 +81,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        
+
         return User::create([
             'mobile' => $data['mobile'],
             'pass' => $data['password'],
@@ -82,12 +91,19 @@ class RegisterController extends Controller
 
     protected function registered($request, $user)
     {
-        Company::create([
+
+        $company = Company::create([
             'user_id'=> $user->id,
-            'mobile' => $user->mobile
+            'mobile' => $user->mobile,
+            'parent_id' => $request->parent_id
         ]);
 
+
+
         $user->assignRole('company');
+
+        $company->categories()->attach($request->parent_id);
+
     }
     protected function redirectTo()
     {

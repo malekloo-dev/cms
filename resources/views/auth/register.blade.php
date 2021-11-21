@@ -166,7 +166,30 @@
                 </div>
             </div>
 
-            <div class="form-group row mb-0">
+
+            <div class="form-group row">
+                <label for="parent_id" class="col-md-12 col-form-label ">@lang('messages.job')</label>
+
+                <div class="col-md-12">
+                    <select id="parent_id" name="parent_id"  required>
+                        @foreach ($category as $Key => $fields)
+                            <option value="{{ $fields['id'] }}" {{ (old('parent_id') == $fields['id'])?'selected':''; }}>{!! $fields['symbol'] . $fields['title'] !!}</option>
+                        @endforeach
+                    </select>
+                    {{-- <input id="mobile" type="text" class="form-control ltr @error('mobile') is-invalid @enderror"
+                        name="mobile" value="{{ old('mobile') }}" required
+                        placeholder="{{ __('messages.example') }}:09331181877" autocomplete="mobile"> --}}
+
+                    @error('parent_id')
+                        <span class="red" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+
+            <div class="form-group row mb-0 mt-1">
                 <div class="col-md-12 pull-right">
                     <div id="loading" ></div>
                     <button type="submit" id="btn-loading" style="display: none" class="btn btn-inherit btn-block  ">

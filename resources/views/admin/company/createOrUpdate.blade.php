@@ -82,13 +82,12 @@
                         </div>
                     </div>
 
-
                     <div class="row">
                         <div class="col-md-6 col-sm-6 form-group">
                             <label for="name">@lang('messages.category'):</label>
                             <select id="parent_id" name="parent_id[]" multiple required>
                                 @foreach ($category as $Key => $fields)
-                                    <option value="{{ $fields['id'] }}">{!! $fields['symbol'] . $fields['title'] !!}</option>
+                                    <option value="{{ $fields['id'] }}" {{ ( $fields['id'] == $company->parent_id)?'selected':''; }}>{!! $fields['symbol'] . $fields['title'] !!}</option>
                                 @endforeach
                             </select>
 
@@ -288,6 +287,13 @@
                     setOption(this)
                 },
             });
+            @isset($company)
+                @php
+                $categoryImplode = "'" . implode("','", $company->categories->pluck('id')->toArray()) . "'";
+
+                @endphp
+            @endisset
+            
             $input.val([{!! $categoryImplode ?? '' !!}]);
 
             $input.trigger('change'); // Notify any JS components that the value changed
