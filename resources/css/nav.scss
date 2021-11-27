@@ -1,4 +1,3 @@
-
 //////////
 // nav  //
 //////////
@@ -12,21 +11,22 @@
     width: 100%;
     position: relative;
     z-index: 9;
+    // padding: 0 1em;
     .container {
         padding: 0;
         margin: 0 auto;
     }
 }
-nav {
+nav.top {
     width: 100%;
     margin: auto;
-    z-index: 10000;
+    // z-index: 10000;
     transition: all 0.3s;
     transform-style: preserve-3d;
-    position: relative;
+    // position: relative;
     display: flex;
     align-items: center;
-
+    // z-index: 2;
     .burger {
         float: left;
         position: relative;
@@ -64,7 +64,7 @@ nav {
             li {
                 display: block;
                 a {
-                    color: $menu-color!important;
+                    color: $menu-color !important;
                     width: 100%;
                     padding: 1em 2em !important;
                     white-space: nowrap;
@@ -79,7 +79,6 @@ nav {
                         transform: scale(1.05);
                     }
                 }
-
             }
 
             ul {
@@ -97,24 +96,22 @@ nav {
                 }
             }
         }
-
     }
-
 }
 .brand {
     flex: 1;
 }
-// nav ul li.parent > div {
-    // display: none;
+// nav.top ul li.parent > div {
+// display: none;
 // }
-nav li ul ul {
+nav.top li ul ul {
     right: 100%;
     top: 0;
 }
-nav ul li:hover > ul {
+nav.top ul li:hover > ul {
     display: block;
 }
-nav .menu {
+nav.top .menu {
     text-align: left;
     margin: auto auto auto 0;
     position: relative;
@@ -123,27 +120,27 @@ nav .menu {
     transform: translateY(-50%);
     display: block;
 }
-nav .menu a {
+nav.top .menu a {
     color: $menu-color;
 }
 
-nav .logo {
+nav.top .logo {
     height: 2em;
     margin-right: 0.3em;
 }
-nav .select::after {
+nav.top .select::after {
     height: calc(100% - 1px);
     padding: 0;
     line-height: 2.4em;
 }
-nav .menu > * {
+nav.top .menu > * {
     margin-right: 0.6em;
 }
-nav .burger {
+nav.top .burger {
     display: none;
     position: relative;
 }
-nav .burger:after {
+nav.top .burger:after {
     position: absolute;
     background: url(/img/icons/th-menu.svg) no-repeat;
     height: 1.2em;
@@ -152,15 +149,16 @@ nav .burger:after {
     top: 0;
     right: 0;
 }
+
 @media all and (max-width: 60em) {
-    nav {
+    nav.top {
         ul {
             padding: 0;
             margin: 0 !important;
             max-width: none !important;
             li {
                 display: block;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                 ul {
                     position: relative;
                     border-right: 3px solid $theme-color3;
@@ -185,10 +183,10 @@ nav .burger:after {
         }
     }
 
-    nav ul > li.parent a::after {
+    nav.top ul > li.parent a::after {
         display: none;
     }
-    nav ul li.parent > div {
+    nav.top ul li.parent > div {
         display: block;
         background: 0 0;
         position: absolute;
@@ -197,16 +195,15 @@ nav .burger:after {
         outline: 0;
         z-index: 999999;
     }
-    nav .burger {
+    nav.top .burger {
         display: inline-block;
         cursor: pointer;
         margin: 0;
         margin-left: 0;
         margin-right: auto !important;
-
     }
-    nav .burger ~ .menu,
-    nav .show:checked ~ .burger {
+    nav.top .burger ~ .menu,
+    nav.top .show:checked ~ .burger {
         position: fixed;
         min-height: 100%;
         top: 0;
@@ -218,59 +215,67 @@ nav .burger:after {
         background: linear-gradient(90deg, $menu-bg-left 0, $menu-bg-right 100%);
         z-index: 1;
     }
-    nav .show:checked ~ .burger {
+    nav.top .show:checked ~ .burger {
         color: transparent;
         width: 100%;
         border-radius: 0;
         background: rgba(0, 0, 0, 0.2);
         transition: all 0.5s ease;
     }
-    nav .show ~ .menu {
+    nav.top .show ~ .menu {
         width: 80%;
         max-width: 300px;
         transform-origin: center right;
         transition: all 0.25s ease;
         transform: scaleX(0);
     }
-    nav .show ~ .menu > * {
+    nav.top .show ~ .menu > * {
         transform: translateX(100%);
         transition: all 0s ease 0.5s;
     }
-    nav .show:checked ~ .menu > :nth-child(1) {
+    nav.top .show:checked ~ .menu > :nth-child(1) {
         transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
     }
-    nav .show:checked ~ .menu > :nth-child(2) {
+    nav.top .show:checked ~ .menu > :nth-child(2) {
         transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.1s;
     }
-    nav .show:checked ~ .menu > :nth-child(3) {
+    nav.top .show:checked ~ .menu > :nth-child(3) {
         transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
     }
-    nav .show:checked ~ .menu > :nth-child(4) {
+    nav.top .show:checked ~ .menu > :nth-child(4) {
         transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.3s;
     }
-    nav .show:checked ~ .menu > :nth-child(5) {
+    nav.top .show:checked ~ .menu > :nth-child(5) {
         transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.4s;
     }
-    nav .show:checked ~ .menu > :nth-child(6) {
+    nav.top .show:checked ~ .menu > :nth-child(6) {
         transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.5s;
     }
-    nav .show:checked ~ .menu {
+    nav.top .show:checked ~ .menu {
         transform: scaleX(1);
     }
-    nav .show:checked ~ .menu > * {
+    nav.top .show:checked ~ .menu > * {
         transform: translateX(0);
         transition: all 0.5s ease-in-out 0.6s;
     }
-    nav .burger ~ .menu > * {
+    nav.top .burger ~ .menu > * {
         display: block;
         margin: 0.3em;
         text-align: right;
         max-width: calc(100% - 0.6em);
     }
-    nav .burger ~ .menu > a {
+    nav.top .burger ~ .menu > a {
         padding: 0.3em 0.9em;
     }
 }
+
+@media (max-width: 1200px) {
+    .brand,
+    .category-nav {
+        padding: 0 1em;
+    }
+}
+
 nav.transparent {
     box-shadow: none;
     background: 0 0;
