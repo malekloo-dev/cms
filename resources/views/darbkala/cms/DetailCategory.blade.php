@@ -103,50 +103,8 @@
 
         </div>
     </section>
-    @include(@env('TEMPLATE_NAME').'.cms.filter')
-    @if (!Request::get('page'))
-
-        <section class="" id="">
-            <div class="flex one ">
-                <div class="bg-white p-1 border-radius-5">
-
-                    <div class="flex one two-700">
-                        <div class="two-third-700">
-                            <ul>
-                                @foreach ($table_of_content as $key => $item)
-                                    <li class="toc1">
-                                        <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
-                                    </li>
-                                @endforeach
-
-                            </ul>
-
-                        </div>
-                        <div class="third-700">
-                            @if (isset($detail->images['images']))
-                                <picture>
 
 
-                                    <img loading="lazy" src="{{ $detail->images['images']['medium'] ?? '' }}"
-                                         alt="{{ $detail->title }}"
-
-                                         width="{{ env('CATEGORY_MEDIUM_W') }}"
-                                         height="{{ env('CATEGORY_MEDIUM_W') }}">
-                                </picture>
-                            @endif
-
-
-                        </div>
-
-                    </div>
-
-                    @include(@env('TEMPLATE_NAME').'.DescriptionModule')
-
-                </div>
-            </div>
-        </section>
-
-    @endif
 
 
     @if (count($relatedProduct))
@@ -155,7 +113,7 @@
                 <div class="one-fourth-800 p-0 filter">
                     @if (count($subCategory))
                     <section class="category-list m-0 p-0" id="index-best-view">
-                        <div class="flex one ">
+                        <div class="flex two one-500 ">
 
                                     @foreach ($subCategory as $content)
                                         <div class="">
@@ -271,7 +229,49 @@
             </div>
         </section>
     @endif
+    @if (!Request::get('page'))
 
+    <section class="" id="">
+        <div class="flex one ">
+            <div class="bg-white p-1 border-radius-5">
+
+                <div class="flex one two-700">
+                    <div class="two-third-700">
+                        <ul>
+                            @foreach ($table_of_content as $key => $item)
+                                <li class="toc1">
+                                    <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
+                                </li>
+                            @endforeach
+
+                        </ul>
+
+                    </div>
+                    <div class="third-700">
+                        @if (isset($detail->images['images']))
+                            <picture>
+
+
+                                <img loading="lazy" src="{{ $detail->images['images']['medium'] ?? '' }}"
+                                     alt="{{ $detail->title }}"
+
+                                     width="{{ env('CATEGORY_MEDIUM_W') }}"
+                                     height="{{ env('CATEGORY_MEDIUM_W') }}">
+                            </picture>
+                        @endif
+
+
+                    </div>
+
+                </div>
+
+                @include(@env('TEMPLATE_NAME').'.DescriptionModule')
+
+            </div>
+        </div>
+    </section>
+
+@endif
 
         {{--post&label=relatedPost&var=relatedPost&count=5 --}}
         @if (isset($relatedPost) && count($relatedPost))

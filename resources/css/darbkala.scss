@@ -3,24 +3,28 @@ $body: #f4f4f4;
 $theme-color1: #fa490e;
 $theme-color2: rgba(255, 136, 45, 1);
 $theme-color3: #ea1c44;
-$theme-color1-text:#fff;
+$theme-color1-text: #fff;
 
 $a: #d13501;
 $a-hover: #1e2135;
 
 $menu-color: #fff;
-$menu-bg-left:rgba(255, 136, 45, 1);
-$menu-bg-right:#fa490e;
-$menu-shadow:0 3px 10px rgba(0, 0, 0, 0.2);
+$menu-bg-left: rgba(255, 136, 45, 1);
+$menu-bg-right: #fa490e;
+$menu-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 $p: #1e1e1e;
 
-$search-border:1px solid #888;
-$search-bg:#888;
-$search-text:rgb(100, 100, 100);
+$search-border: 1px solid #888;
+$search-bg: #888;
+$search-text: rgb(100, 100, 100);
 
 @import "app.scss";
 @import "grid.scss";
 @import "nav.scss";
+
+@import "nav-mega-menu.scss";
+
+
 
 //////////////
 //pagination//
@@ -88,7 +92,7 @@ nav[role="navigation"] span > svg {
 }
 
 @media all and (max-width: 960px) {
-    nav {
+    nav.top {
         height: 5em;
         width: auto;
         position: relative;
@@ -135,7 +139,8 @@ nav[role="navigation"] span > svg {
     background-color: #fff;
     overflow: hidden;
     height: 100%;
-    h2,h3 {
+    h2,
+    h3 {
         font-weight: 700;
         font-size: 0.9em;
         min-height: 5em;
@@ -220,7 +225,10 @@ nav[role="navigation"] span > svg {
 .index-items {
     text-align: center;
     margin-top: 0;
-    h2{font-size: 1.1em; padding:1em 0}
+    h2 {
+        font-size: 1.1em;
+        padding: 1em 0;
+    }
     h3 {
         color: #333;
         font-size: 1em;
@@ -228,9 +236,9 @@ nav[role="navigation"] span > svg {
     footer {
         color: #333;
         height: 8em;
-    display: flex;
-    justify-content: space-between;
-    flex-flow: column;
+        display: flex;
+        justify-content: space-between;
+        flex-flow: column;
     }
     a {
         display: block;
@@ -242,7 +250,6 @@ nav[role="navigation"] span > svg {
         color: #000;
     }
 }
-
 
 .index-items.articles {
     a {
@@ -288,12 +295,14 @@ nav[role="navigation"] span > svg {
 }
 @media (max-width: 600px) {
     .home-top-view .rate {
-        position: relative;
         left: auto;
         top: auto;
     }
     .home-top-view .rate {
         width: 100%;
+    }
+    .rate label{
+        position: unset;
     }
 }
 
@@ -336,15 +345,15 @@ nav[role="navigation"] span > svg {
         color: #000;
     }
     article {
-        position: relative;
+        // position: relative;
         display: flex;
         border: 1px solid #f4f4f4;
         height: 100%;
         flex-direction: row;
-        justify-content:center;
-        padding: .5em;
+        justify-content: center;
+        padding: 0.5em;
 
-        .info{
+        .info {
             flex: 2;
             padding: 0 1em;
         }
@@ -352,7 +361,6 @@ nav[role="navigation"] span > svg {
         picture img {
             border-radius: 3px;
             object-fit: contain;
-
         }
         h2 {
             font-size: 1em;
@@ -364,7 +372,7 @@ nav[role="navigation"] span > svg {
             background-color: #eee;
             padding: 5px 10px;
             border-radius: 50px;
-            font-size: .8em;
+            font-size: 0.8em;
 
             > * {
                 margin-left: 1em;
@@ -399,15 +407,14 @@ nav[role="navigation"] span > svg {
             padding: 0;
             align-items: center;
         }
-        .price{
+        .price {
             margin-top: 1em;
         }
     }
 }
 
-
 .product-detail {
-    picture img{
+    picture img {
         object-fit: contain;
         // height: 100%;
     }
@@ -421,7 +428,7 @@ nav[role="navigation"] span > svg {
     .rate {
         display: flex;
         margin: auto;
-        img{
+        img {
             width: 20px;
         }
     }
@@ -436,7 +443,7 @@ nav[role="navigation"] span > svg {
     }
     .category-products .rate,
     .category-products .view-count {
-        position: relative;
+        // position: relative;
         left: auto;
         top: auto;
     }
@@ -449,7 +456,6 @@ nav[role="navigation"] span > svg {
 
     .product-detail .rate,
     .product-detail .view-count {
-        position: relative;
         left: auto;
         top: auto;
     }
@@ -461,7 +467,7 @@ nav[role="navigation"] span > svg {
         font-size: 1.2em;
         text-align: center;
     }
-    .flex{
+    .flex {
         justify-content: center;
     }
     h2 {
