@@ -50,7 +50,7 @@ class CmsController extends Controller
         //            ->where('publish_date', '<=', DB::raw('now()'))
         //            ->paginate(20);
         //        // ->get();
-
+        $filterList=array();
         if (env('All_CONTENT_SUB_CATEGORY') == 1) {
             $relatedProduct = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'product')
@@ -59,6 +59,9 @@ class CmsController extends Controller
                 ->paginate(15);
             $relatedProduct = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
         } else {
+            $filterList= $detail->filterAttr($_GET);
+            //dd($filterList);
+            // $detail->id;
             $relatedProduct = $detail->products('power','desc')->paginate(15);
             // dd($detail->products()->orderBy('power','asc'));
         }
@@ -93,7 +96,8 @@ class CmsController extends Controller
             'subCategory' => $subCategory,
             'images' => $images,
             'seo' => $seo,
-            'editorModule' => $editorModule
+            'editorModule' => $editorModule,
+            'filterList' => $filterList
         ]);
     }
 

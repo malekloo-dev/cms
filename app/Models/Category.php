@@ -63,8 +63,77 @@ class Category extends Model
             ->where('attr_type', '=', 'product')
             ->where('publish_date', '<=', DB::raw('now()'))
             ->orderBy($sortField,$sortValue);
-
     }
+
+    public function filterAttr($data)
+    {
+        //dd($data);
+        //DB::enableQueryLog();
+
+        $filter = ContentsCategory::select(
+            "content_attribute_value.id",
+            "content_attribute_value.content_id",
+            "content_attribute_value.content_type_id",
+            "content_attribute_value.content_attribute_id",
+            "content_attribute_value.company_id",
+            "content_attribute_value.field_name",
+            "content_attribute_value.label",
+            "content_attribute_value.type",
+            "content_attribute_value.value",
+            "content_attribute_value.json"
+       )
+            ->join("content_attribute_value", "contents_category.content_id", "=", "content_attribute_value.content_id")
+            ->where('contents_category.cat_id', '=', $this->id)
+            ->where('content_attribute_value.type', '=', 'combo')
+            ->groupBy('content_attribute_value.content_attribute_id')
+            ->get();
+        foreach ($filter as $key => $filterItem)
+        {
+
+            $attribute_id = $filterItem->content_attribute_id;
+            //$filterItem->filterItemDetails=collect();
+            $filterItem->filterItemDetails=collect(json_decode($filterItem['json'], true));
+
+            $remove=collect();
+
+            foreach ($filterItem->filterItemDetails as $k=>$filterOption)
+            {
+                $filterOption['check']='';
+
+                //$filterItem->filterItemDetails[$k]+=$filterOption;
+                //dd($filterItem->filterItemDetails[$k]);
+                $filterOption['url']=addFilterUrlGenerator($data,$attribute_id,$filterOption['value']);
+                //dd($filterItem->filterItemDetails[$k]);
+
+                if(isset($data['attribute'][$attribute_id]))
+                {
+                    if(isset($data['attribute'][$attribute_id][$filterOption['value']])){
+                        $filterOption['check']='checked';
+                        $removeUrl=removeFilterUrlGenerator($data,$attribute_id,$filterOption['value']);
+                        $filterOption['url']=$removeUrl;
+                        $remove[]=$filterOption;
+                        $filterOption['url']='';
+                    }
+                }
+                $filterItem->filterItemDetails[$k]+=$filterOption;
+
+            }
+
+            //echo '<pre>';
+            //print_r($filter);
+           // dd($filter);
+
+        }
+
+        $result['filter']=$filter;
+        $result['removeFilter']=$remove;
+        //dd($result);
+
+        return $result;
+        //dd($filter);
+       //dd(DB::getQueryLog());
+    }
+
     public function posts($sortField='publish_date',$sortValue='desc')
     {
 

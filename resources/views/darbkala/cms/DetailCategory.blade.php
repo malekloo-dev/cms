@@ -103,7 +103,7 @@
 
         </div>
     </section>
-
+    @include(@env('TEMPLATE_NAME').'.cms.filter')
     @if (!Request::get('page'))
 
         <section class="" id="">
