@@ -50,16 +50,17 @@ nav {
     z-index: 1;
     font-size: .9em;
     &[aria-haspopup="true"] {
-        padding-right: 40px;
+        // padding-right: 40px;
         &:after {
             content: "";
-            background-image: url("arrowRight.svg#accent");
+            // background-image: url("arrowRight.svg#accent");
+            background-image: url("img/arrowLeft.svg");
             background-size: 14px;
             width: 14px;
             height: 14px;
             font-size: 12px;
             position: absolute;
-            right: 10px;
+            left: 10px;
             top: 50%;
             transform: translateY(-50%);
         }
@@ -67,8 +68,8 @@ nav {
 }
 
 .mega-menu-header {
-    font-size: 1.2em;
-    text-transform: uppercase;
+    // font-size: 1.1em;
+    // text-transform: uppercase;
     font-weight: bold;
     color: darken($color-accent, 5%);
 }
@@ -89,14 +90,14 @@ $breakpointPlus: $breakpoint + 1px;
     // Desktop only
     //-----------------------------------------//
 
-    .nav-mega {
-        margin-top: 50px;
-        background: $color-light;
-        > nav {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-    }
+    // .nav-mega {
+    //     // margin-top: 50px;
+    //     // background: $color-light;
+    //     > nav {
+    //         max-width: 900px;
+    //         margin: 0 auto;
+    //     }
+    // }
 
     .menu {
         [aria-haspopup="true"] {
@@ -112,12 +113,13 @@ $breakpointPlus: $breakpoint + 1px;
             > [aria-haspopup="true"] {
                 // STYLING: Down arrow on desktop
                 &:after {
-                    // background-image: url("arrowBottom.svg#accent");
-                    background-image: url("img/arrow-down.png");
+                    background-image: url("img/arrowBottom.svg");
+                    // background-image: url("img/arrow-down.png");
                 }
                 &:hover {
                     &:after {
-                        background-image: url("arrowBottom.svg#light");
+                        // fill: '#fff';
+                        background-image: url("img/arrowTop.svg#light");
                     }
                 }
 
@@ -127,10 +129,12 @@ $breakpointPlus: $breakpoint + 1px;
                         display: flex;
                         transform-origin: top;
                         animation: dropdown 0.2s ease-out;
+
                     }
                 }
                 // FUNCTIONALITY: Keep mega menu open
                 ~ ul {
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
                     &:hover {
                         display: flex;
                     }
@@ -153,8 +157,8 @@ $breakpointPlus: $breakpoint + 1px;
                 background: $color-accent;
                 color: $color-light;
                 &:after {
-                    background-image: url("img/arrow-top.png");
-                    background-image: url("arrowTop.svg#light");
+                    // background-image: url("img/arrow-top.png");
+                    background-image: url("img/arrowTop.svg#light");
                 }
             }
         }
@@ -253,19 +257,22 @@ $breakpointPlus: $breakpoint + 1px;
     // Hide mobile specific elements
     .mobile-menu-trigger,
     .mobile-menu-header,
-    .mobile-menu-back-item {
+    .mobile-menu-back-item,
+    [hidden-desktop="true"] {
         display: none;
     }
+
+
 }
 //----------------------------------------------//
 //     mobile
 //----------------------------------------------//
 @media all and (max-width: $breakpoint) {
-    .nav-mega {
-        padding: 20px;
-        // position: relative;
-        // z-index: 1;
-    }
+    // .nav-mega {
+    //     // padding: 20px;
+    //     // position: relative;
+    //     // z-index: 1;
+    // }
 
     .mobile-menu-trigger,
     .mobile-menu-header,
@@ -279,9 +286,29 @@ $breakpointPlus: $breakpoint + 1px;
         border: 0;
         padding: 10px;
         font-size: 1.2em;
-        border-radius: 4px;
-        & ~ ul{
-            z-index: 3;
+        display: flex;
+        align-items: center;
+        // border-radius: 4px;
+
+        // &:focus ~ .menu-bg{
+        //     background-color: rgba(0, 0, 0, 0.5 );
+        //     position: fixed;
+        //     top: 0;
+        //     right: 0;
+        //     bottom: 0;
+        //     left: 0;
+        // }
+        .hamburger {
+            padding: 0 0 0 0.6em;
+            display: inline-block;
+            span {
+                background: $menu-color;
+                width: 20px;
+                height: 2px;
+                display: block;
+                border-radius: 4px;
+                margin-bottom: 4px;
+            }
         }
     }
 
@@ -292,7 +319,9 @@ $breakpointPlus: $breakpoint + 1px;
             padding: $menu-link-padding;
             color: $color-light;
             visibility: visible;
+
         }
+
     }
 
     .menu-bar {
@@ -309,6 +338,7 @@ $breakpointPlus: $breakpoint + 1px;
         box-shadow: 1px 0px 2px 0px rgba(0, 0, 0, 0.25);
         > li {
             > [aria-haspopup="true"] {
+                border-bottom: 1px dashed #bbb;
                 ~ ul {
                     display: flex;
                     flex-direction: column;
@@ -322,9 +352,11 @@ $breakpointPlus: $breakpoint + 1px;
                     // Second level
                     > li {
                         > [aria-haspopup="true"] {
+
                             font-size: 1.2em;
                             ~ ul {
                                 a {
+
                                     padding-left: 40px;
                                 }
                                 // Third level
@@ -332,12 +364,16 @@ $breakpointPlus: $breakpoint + 1px;
                                     > [aria-haspopup="true"] {
                                         ~ ul {
                                             a {
+                                                border-bottom: 1px dashed #bbb;
                                                 padding-left: 80px;
                                             }
                                         }
                                     }
                                 }
                             }
+                        }
+                         a{
+                            border-bottom: 1px dashed #bbb;
                         }
                     }
                     [aria-haspopup="true"] {
@@ -364,6 +400,7 @@ $breakpointPlus: $breakpoint + 1px;
 
     .mega-menu-content {
         padding: $menu-link-padding;
+        background: $color-light;
     }
 
     .mobile-menu-back-item {
@@ -374,16 +411,19 @@ $breakpointPlus: $breakpoint + 1px;
             max-height: $mobile-menu-back-height;
             margin-top: $mobile-menu-back-offset;
             pointer-events: none;
+            padding-right: 1em;
             &:before {
                 content: "";
                 width: 14px;
                 height: 12px;
-                background-image: url("arrowLeft.svg#default");
+                background-image: url("img/arrowRight.svg#default");
                 background-size: 14px;
                 margin-right: 10px;
                 display: inline-block;
             }
         }
+
+
     }
 
     //---------------------------------------------------//

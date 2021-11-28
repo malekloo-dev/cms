@@ -295,12 +295,14 @@ nav[role="navigation"] span > svg {
 }
 @media (max-width: 600px) {
     .home-top-view .rate {
-        position: relative;
         left: auto;
         top: auto;
     }
     .home-top-view .rate {
         width: 100%;
+    }
+    .rate label{
+        position: unset;
     }
 }
 
@@ -343,7 +345,7 @@ nav[role="navigation"] span > svg {
         color: #000;
     }
     article {
-        position: relative;
+        // position: relative;
         display: flex;
         border: 1px solid #f4f4f4;
         height: 100%;
@@ -441,7 +443,7 @@ nav[role="navigation"] span > svg {
     }
     .category-products .rate,
     .category-products .view-count {
-        position: relative;
+        // position: relative;
         left: auto;
         top: auto;
     }
@@ -454,7 +456,6 @@ nav[role="navigation"] span > svg {
 
     .product-detail .rate,
     .product-detail .view-count {
-        position: relative;
         left: auto;
         top: auto;
     }

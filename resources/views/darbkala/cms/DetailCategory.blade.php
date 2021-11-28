@@ -113,7 +113,7 @@
                 <div class="one-fourth-800 p-0 filter">
                     @if (count($subCategory))
                     <section class="category-list m-0 p-0" id="index-best-view">
-                        <div class="flex one ">
+                        <div class="flex two one-500 ">
 
                                     @foreach ($subCategory as $content)
                                         <div class="">
