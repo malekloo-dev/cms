@@ -207,14 +207,15 @@
                                 <li>
                                     <a href="/درب-لابی-شیشه-ای" class="menu-link menu-list-link">درب لابی شیشه ای</a>
                                 </li>
-                                <li>
-                                    <a href="/درب-لابی-آهنی" class="menu-link menu-list-link">درب لابی آهنی</a>
-                                </li>
+
                             </ul>
 
                         </li>
                         <li>
                             <ul class="menu menu-list">
+                                <li>
+                                    <a href="/درب-لابی-آهنی" class="menu-link menu-list-link">درب لابی آهنی</a>
+                                </li>
                                 <li>
                                     <a href="/درب-لابی-پارکینگی" class="menu-link menu-list-link">درب لابی پارکینگی</a>
                                 </li>
@@ -256,9 +257,7 @@
                                 <li>
                                     <a href="/درب-ورودی-ریلی" class="menu-link menu-list-link">درب ریلی</a>
                                 </li>
-                                <li>
-                                    <a href="/درب-ورودی-ساختمان" class="menu-link menu-list-link">درب ساختمان</a>
-                                </li>
+
                                 <li>
                                     <a href="/درب-ورودی-ویلا" class="menu-link menu-list-link">درب ویلا</a>
                                 </li>
@@ -266,7 +265,9 @@
                         </li>
                         <li>
                             <ul class="menu menu-list">
-
+                                <li>
+                                    <a href="/درب-ورودی-ساختمان" class="menu-link menu-list-link">درب ساختمان</a>
+                                </li>
                                 <li>
                                     <a href="/درب-ورودی-بانکی-و-امنیتی" class="menu-link menu-list-link">درب بانکی و
                                         امنیتی</a>
@@ -437,20 +438,38 @@
 
                         </li>
                         <li>
-                            <a href="/درب-کشویی" class="menu-link mega-menu-link">درب
-                                کشویی</a>
+                            <a href="javascript:void(0);" data-link="/درب-داخلی" class="menu-link mega-menu-link"
+                                aria-haspopup="true">درب داخلی</a>
+                            <ul class="menu menu-list">
+                                <li>
+                                    <a href="/درب-داخلی" class="menu-link mega-menu-link" hidden-desktop="true">همه
+                                        موارد
+                                        درب
+                                        داخلی</a>
+                                </li>
+                                <li>
+                                    <a href="/درب-داخلی-MDF" class="menu-link menu-list-link">MDF</a>
+                                </li>
+                                <li>
+                                    <a href="/درب-داخلی-HDF" class="menu-link menu-list-link">HDF</a>
+                                </li>
+                            </ul>
 
                         </li>
                         <li>
-                            <a href="/درب-آکاردئونی" class="menu-link mega-menu-link">درب
-                                آکاردئونی</a>
-
+                            <a href="/درب-کشویی" class="menu-link mega-menu-link">درب کشویی</a>
+                        </li>
+                        <li>
+                            <a href="/درب-آکاردئونی" class="menu-link mega-menu-link">درب آکاردئونی</a>
                         </li>
                         <li>
                             <a href="/درب-UPVC" class="menu-link mega-menu-link">درب UPVC</a>
                         </li>
                         <li>
                             <a href="/درب-دوجداره" class="menu-link mega-menu-link">درب دوجداره</a>
+                        </li>
+                        <li>
+                            <a href="/درب-اسطبلی" class="menu-link mega-menu-link">درب اسطبلی</a>
                         </li>
                         <li class="mobile-menu-back-item">
                             <a href="javascript:void(0);" class="menu-link mobile-menu-back-link">بازگشت</a>
@@ -475,7 +494,6 @@
 
 @push('scripts')
     <script>
-
         if (window.screen.width > 900) {
 
             var items = document.querySelectorAll('[aria-haspopup="true"]');
