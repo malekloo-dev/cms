@@ -34,46 +34,44 @@ class Category extends Model
     ];
     public function comments()
     {
-        $comments = $this->hasMany(Comment::class,'content_id')->where('status', '=', '1');
+        $comments = $this->hasMany(Comment::class, 'content_id')->where('status', '=', '1');
 
         return $comments;
     }
     public function companies()
     {
-        return $this->belongsToMany(Company::class,'company_contents','content_id','company_id');
+        return $this->belongsToMany(Company::class, 'company_contents', 'content_id', 'company_id');
     }
 
 
-    public function companiesCategory($sortField='created_at',$sortValue='desc')
+    public function companiesCategory($sortField = 'created_at', $sortValue = 'desc')
     {
-        return $this->belongsToMany(Company::class,'company_category','cat_id','company_id')
-        ->orderBy($sortField,$sortValue);
+        return $this->belongsToMany(Company::class, 'company_category', 'cat_id', 'company_id')
+            ->orderBy($sortField, $sortValue);
     }
 
     public function content()
     {
-        return $this->belongsToMany(Content::class,'contents_category','cat_id','content_id');
+        return $this->belongsToMany(Content::class, 'contents_category', 'cat_id', 'content_id');
     }
 
-    public function products($sortField='publish_date',$sortValue='desc')
+    public function products($sortField = 'publish_date', $sortValue = 'desc')
     {
 
-        return $this->belongsToMany(Content::class,'contents_category','cat_id','content_id')
+        return $this->belongsToMany(Content::class, 'contents_category', 'cat_id', 'content_id')
             ->where('type', '=', '2')
             ->where('attr_type', '=', 'product')
             ->where('publish_date', '<=', DB::raw('now()'))
-            ->orderBy($sortField,$sortValue);
-
+            ->orderBy($sortField, $sortValue);
     }
-    public function posts($sortField='publish_date',$sortValue='desc')
+    public function posts($sortField = 'publish_date', $sortValue = 'desc')
     {
 
-        return $this->belongsToMany(Content::class,'contents_category','cat_id','content_id')
+        return $this->belongsToMany(Content::class, 'contents_category', 'cat_id', 'content_id')
             ->where('type', '=', '2')
             ->where('attr_type', '=', 'article  ')
             ->where('publish_date', '<=', DB::raw('now()'))
-            ->orderBy($sortField,$sortValue);
-
+            ->orderBy($sortField, $sortValue);
     }
 
 
@@ -81,10 +79,9 @@ class Category extends Model
     {
 
         return $this->hasMany(Category::class, 'parent_id', 'id');
-
     }
 
-     /**
+    /**
      * Get all of the post's comments.
      */
     public function gallery()
@@ -111,6 +108,4 @@ class Category extends Model
             // do the rest of the cleanup...
         });
     }
-
-
 }

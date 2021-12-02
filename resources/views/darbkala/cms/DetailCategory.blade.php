@@ -18,6 +18,7 @@
 
 @endif
 
+
 @section('head')
 
     @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
@@ -97,10 +98,11 @@
                 {{ $detail->viewCount }} بار دیده شده |
             </div>
 
-            <div class="bg-orange-light  pt-1">
-                {!! clearHtml($detail->brief_description) !!}
-            </div>
-
+            @if($detail->brief_description !='')
+                <div class="bg-orange-light  pt-1">
+                    {!! clearHtml($detail->brief_description) !!}
+                </div>
+            @endif
         </div>
     </section>
 
@@ -113,18 +115,18 @@
                 <div class="one-fourth-800 p-0 filter">
                     @if (count($subCategory))
                     <section class="category-list m-0 p-0" id="index-best-view">
-                        <div class="flex two one-500 ">
+                        <div class="flex two three-500 one-800 mobile-horizantal">
 
                                     @foreach ($subCategory as $content)
-                                        <div class="">
+                                        <div class="item flex">
 
-                                            <div class="border hover-box shadow p-1 full">
+                                            <div class="border hover-box shadow p-0 full">
                                                 <a href="{{ $content->slug }}">
-                                                    <div class="flex one three-700 height-100">
+                                                    <div class="flex one three-700 height-100 ">
                                                         @if (isset($content->images['images']['small']))
-                                                            <div class="p-0"><img alt="{{ $content->title }}" src="{{ $content->images['images']['small'] }}" /></div>
+                                                            <div class="p-0"><img width="{{ env('CATEGORY_SMALL_W') }}" height="{{ env('CATEGORY_SMALL_H') }}" alt="{{ $content->title }}" src="{{ $content->images['images']['small'] }}" /></div>
                                                         @endif
-                                                        <div class="one two-third-700 pr-1">
+                                                        <div class="one two-third-700 p-1">
                                                             <h2 class="p-0 font-08"> {{ $content->title }}</h2>
                                                         </div>
 
@@ -229,7 +231,58 @@
             </div>
         </section>
     @endif
+
+
+
+
+
     @if (!Request::get('page'))
+
+
+    @if(isset($relatedCompany) && $relatedCompany->count())
+    <section class="index-items  bg-gray-dark mb-0">
+        <h2>کمپانی ها</h2>
+        <div class="flex one">
+            <div>
+                <div class="flex two three-500  five-900 center ">
+                    @foreach ($relatedCompany as $content)
+                        <div>
+                            <a class="hover shadow2" href="{{ url('profile/' . $content->id) }}">
+
+                                @if (isset($content->logo) && isset($content->logo))
+                                    <img alt="{{ $content->name ?? '' }}" class="img-contain border-radius-50 mt-1"
+                                        width="{{ env('COMPANY_MEDIUM_W') }}" height="{{ env('COMPANY_MEDIUM_H') }}"
+                                        src="{{ $content->logo['medium'] ?? '' }}">
+                                @endif
+
+                                <div class="flex ">
+                                    <div class="p-0 ">
+                                        {{ $content->name }}
+                                    </div>
+                                    <div class="p-0 ">
+                                        <svg class="p-0" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                            d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
+                                            fill="currentColor" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M12 3C6.40848 3 1.71018 6.82432 0.378052 12C1.71018 17.1757 6.40848 21 12 21C17.5915 21 22.2898 17.1757 23.6219 12C22.2898 6.82432 17.5915 3 12 3ZM16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
+                                            fill="currentColor" />
+                                        </svg>
+                                        <span class="p-0">{{ $content->viewCount }}</span>
+                                    </div>
+
+                                </div>
+
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+@endif
+
 
     <section class="" id="">
         <div class="flex one ">

@@ -477,7 +477,57 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="/نصاب-درب" class="menu-link menu-bar-link">نصاب ها</a>
+                    <a href="javascript:void(0);" data-link="/نصاب-درب" class="menu-link menu-bar-link"
+                        aria-haspopup="true">نصاب درب</a>
+                    <ul class="mega-menu mega-menu--flat">
+                        <li>
+                            <a href="/نصاب-درب" class="menu-link mega-menu-link mega-menu-header"
+                                hidden-desktop="true">همه
+                                ی موارد نصاب درب</a>
+                            <ul class="menu menu-list">
+                                <li>
+                                    <a href="/نصاب-درب-ضد-سرقت" class="menu-link menu-list-link">نصاب درب ضد سرقت</a>
+                                </li>
+                                <li>
+                                    <a href="/نصاب-درب-اتوماتیک" class="menu-link menu-list-link">نصاب درب اتوماتیک</a>
+                                </li>
+                                <li>
+                                    <a href="/نصاب-درب-ضدحریق" class="menu-link menu-list-link">نصاب درب ضدحرق</a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+
+
+                        <li class="mobile-menu-back-item">
+                            <a href="javascript:void(0);" class="menu-link mobile-menu-back-link">بازگشت</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0);" data-link="/یراق-آلات" class="menu-link menu-bar-link"
+                        aria-haspopup="true">یراق آلات</a>
+                    <ul class="mega-menu mega-menu--flat">
+                        <li>
+                            <a href="/یراق-آلات" class="menu-link mega-menu-link mega-menu-header"
+                                hidden-desktop="true">همه
+                                ی موارد درب لابی</a>
+                            <ul class="menu menu-list">
+                                <li>
+                                    <a href="/یراق-آلات-درب-اتوماتیک" class="menu-link menu-list-link">یراق آلات درب اتوماتیک</a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+
+
+                        <li class="mobile-menu-back-item">
+                            <a href="javascript:void(0);" class="menu-link mobile-menu-back-link">بازگشت</a>
+                        </li>
+                    </ul>
                 </li>
 
                 {{-- mobile --}}

@@ -2485,6 +2485,9 @@ $sizes: 5;
 }
 @include padding-classes;
 
+
+.h-auto{height: auto;}
+
 .font-07 {
     font-size: 0.7em;
 }
@@ -2889,6 +2892,7 @@ figure.image {
 }
 
 .img-contain{ object-fit: contain;}
+.img-cover{ object-fit: cover;}
 
 picture {
     // display: table;
