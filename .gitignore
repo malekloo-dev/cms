@@ -28,3 +28,4 @@ public/*.xml
 # .vscode/settings.json
 # .vscode/sftp.json
 .vscode/*
+# public/upload/images/

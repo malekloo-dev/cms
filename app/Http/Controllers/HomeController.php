@@ -78,7 +78,7 @@ class HomeController extends Controller
                 $category = Category::find($config['parent_id']);
                 $sort = explode(' ', $config['sort']);
 
-                
+
                 $data[$var]['data'] = $category->posts($sort[0], $sort[1])->limit($config['count'])->get();
                 continue;
             }
@@ -151,7 +151,7 @@ class HomeController extends Controller
             }
         }
 
-        // $data['companies'] = Company::limit(5)->orderBy('id','desc')->get();
+        $data['companies'] = Company::limit(5)->orderBy('id','desc')->get();
 
 
         // $queries = DB::getQueryLog();

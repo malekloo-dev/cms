@@ -355,21 +355,24 @@
         </div>
     </section>
 
-{{--
+
     @isset($companies )
-        <section class="index-items home-top-view bg-gray">
+        <section class="index-items  bg-gray-dark mb-0">
+            <h2>کمپانی ها</h2>
             <div class="flex one">
                 <div>
-                    <div class="flex two two-500 three-700 six-900 center ">
+                    <div class="flex two two-500 three-700 five-900 center ">
                         @foreach ($companies as $content)
                             <div>
                                 <a class="hover shadow2" href="{{ url('profile/'.$content->id) }}">
 
                                     @if (isset($content->logo) && isset($content->logo))
-                                        <div><img alt="{{ $content->name ?? ''}}" width="{{ env('COMPANY_SMALL_W') }}"
-                                                height="{{ env('COMPANY_SMALL_H') }}"
-                                                src="{{ $content->logo['small'] ?? '' }}"
-                                                        ></div>
+                                        <img alt="{{ $content->name ?? ''}}"
+                                        class="img-contain"
+                                            width="{{ env('COMPANY_LARGE_W') }}"
+                                                height="{{ env('COMPANY_LARGE_H') }}"
+                                                src="{{ $content->logo['large'] ?? '' }}"
+                                                        >
                                     @endif
 
                                     <div>{{ $content->name }}</div>
@@ -381,7 +384,7 @@
                 </div>
             </div>
         </section>
-    @endisset --}}
+    @endisset
 
 
 

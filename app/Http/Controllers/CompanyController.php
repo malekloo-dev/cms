@@ -204,8 +204,8 @@ class CompanyController extends Controller
         $data['images'] = $imagesUrl;
 
         // $data['slug'] = $request->title;
-
-        $data['slug'] = uniqueSlug(Content::class, $content, ($data['slug'] != '') ? $data['slug'] : $data['title']);
+        
+        $data['slug'] = uniqueSlug(Content::class, $content, (isset($data['slug']) && $data['slug'] != '') ? $data['slug'] : $data['title']);
 
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         $data['status'] = '1';
