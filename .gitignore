@@ -1,8 +1,12 @@
 /node_modules
 /public/hot
-/public/upload/images/*
-!/public/upload/images/company/
+# /public/upload/images/*
+# !/public/upload/images/company/
 /public/upload/images/company/*
+public/upload/images/2020/*
+public/upload/images/2021/*
+public/upload/images/modules/*
+
 
 /public/upload/_thumbs/*
 /storage/*.key
