@@ -107,6 +107,31 @@
     </section>
 
 
+    @if (count($relatedProduct) == 0 and count($subCategory))
+        <section class="category-list m-0 p-0" id="index-best-view">
+            <div class="flex two three-500 five-900 mobile-horizantal">
+                @foreach ($subCategory as $content)
+                    <div class="item flex">
+
+                        <div class="border hover-box shadow p-0 full">
+                            <a href="{{ $content->slug }}">
+                                @if (isset($content->images['images']['small']))
+                                <div class="flex one three-700 height-100 ">
+                                        <div class="p-0"><img width="{{ env('CATEGORY_SMALL_W') }}" height="{{ env('CATEGORY_SMALL_H') }}" alt="{{ $content->title }}" src="{{ $content->images['images']['small'] }}" /></div>
+                                        <div class="one two-third-700 p-1">
+                                            <h2 class="p-0 font-08"> {{ $content->title }}</h2>
+                                        </div>
+                                        </div>
+                                    @else
+                                        <h2 class="p-1 font-08"> {{ $content->title }}</h2>
+                                    @endif
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </section>
+    @endif
 
 
     @if (count($relatedProduct))
@@ -114,31 +139,31 @@
             <div class="flex one four-800 ">
                 <div class="one-fourth-800 p-0 filter">
                     @if (count($subCategory))
-                    <section class="category-list m-0 p-0" id="index-best-view">
-                        <div class="flex two three-500 one-800 mobile-horizantal">
+                        <section class="category-list m-0 p-0" id="index-best-view">
+                            <div class="flex two three-500 one-800 mobile-horizantal">
 
-                                    @foreach ($subCategory as $content)
-                                        <div class="item flex">
+                                        @foreach ($subCategory as $content)
+                                            <div class="item flex">
 
-                                            <div class="border hover-box shadow p-0 full">
-                                                <a href="{{ $content->slug }}">
-                                                    <div class="flex one three-700 height-100 ">
-                                                        @if (isset($content->images['images']['small']))
-                                                            <div class="p-0"><img width="{{ env('CATEGORY_SMALL_W') }}" height="{{ env('CATEGORY_SMALL_H') }}" alt="{{ $content->title }}" src="{{ $content->images['images']['small'] }}" /></div>
-                                                        @endif
-                                                        <div class="one two-third-700 p-1">
-                                                            <h2 class="p-0 font-08"> {{ $content->title }}</h2>
+                                                <div class="border hover-box shadow p-0 full">
+                                                    <a href="{{ $content->slug }}">
+                                                        <div class="flex one three-700 height-100 ">
+                                                            @if (isset($content->images['images']['small']))
+                                                                <div class="p-0"><img width="{{ env('CATEGORY_SMALL_W') }}" height="{{ env('CATEGORY_SMALL_H') }}" alt="{{ $content->title }}" src="{{ $content->images['images']['small'] }}" /></div>
+                                                            @endif
+                                                            <div class="one two-third-700 p-1">
+                                                                <h2 class="p-0 font-08"> {{ $content->title }}</h2>
+                                                            </div>
+
                                                         </div>
-
-                                                    </div>
-                                                </a>
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
 
-                        </div>
-                    </section>
-                @endif
+                            </div>
+                        </section>
+                    @endif
                 </div>
                 <div class="three-fourth-800 p-0">
                     <div class="">

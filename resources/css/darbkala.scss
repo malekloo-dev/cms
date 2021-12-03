@@ -506,8 +506,11 @@ nav[role="navigation"] span > svg {
         -webkit-overflow-scrolling: touch;
         -ms-overflow-style: -ms-autohiding-scrollbar;
         justify-content: flex-start !important;
+        z-index: 1;
+        position: relative;
         .item {
             flex: 0 0 auto;
+            width: calc(40vw);
         }
     }
 }

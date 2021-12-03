@@ -4,7 +4,7 @@
 <head>
 
     @if (url('/') == 'https://darbkala.com')
-    <!-- Google Tag Manager -->
+        <!-- Google Tag Manager -->
         <script>
             (function(w, d, s, l, i) {
                 w[l] = w[l] || [];
@@ -21,7 +21,7 @@
                 f.parentNode.insertBefore(j, f);
             })(window, document, 'script', 'dataLayer', 'GTM-N7K7MGC');
         </script>
-    <!-- End Google Tag Manager -->
+        <!-- End Google Tag Manager -->
     @endif
 
     <title>{{ $seo['meta_title'] ?? '' }}@yield('meta-title')</title>
@@ -81,6 +81,28 @@
     @yield('head')
 
     @stack('head')
+
+    @if (url('/') == 'https://darbkala.com')
+
+    <script type="text/javascript">
+        ! function() {
+            function t() {
+                var t = document.createElement("script");
+                t.type = "text/javascript", t.async = !0, localStorage.getItem("rayToken") ? t.src =
+                    "https://app.raychat.io/scripts/js/" + o + "?rid=" + localStorage.getItem("rayToken") + "&href=" +
+                    window.location.href : t.src = "https://app.raychat.io/scripts/js/" + o + "?href=" + window.location
+                    .href;
+                var e = document.getElementsByTagName("script")[0];
+                e.parentNode.insertBefore(t, e)
+            }
+            var e = document,
+                a = window,
+                o = "b289c114-f70c-418b-bda3-fb5bee99316f";
+            "complete" == e.readyState ? t() : a.attachEvent ? a.attachEvent("onload", t) : a.addEventListener("load", t, !
+                1)
+        }();
+    </script>
+    @endif
 
 </head>
 

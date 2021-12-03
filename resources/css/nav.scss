@@ -9,8 +9,8 @@
     box-shadow: $menu-shadow;
     display: block;
     width: 100%;
-    // position: relative;
-    // z-index: 9;
+    position: relative;
+    z-index: 2;
     // padding: 0 1em;
     .container {
         padding: 0;
@@ -213,7 +213,7 @@ nav.top .burger:after {
         transition: all 0.5s ease;
         transform: none;
         background: linear-gradient(90deg, $menu-bg-left 0, $menu-bg-right 100%);
-        z-index: 1;
+        z-index: 9999;
     }
     nav.top .show:checked ~ .burger {
         color: transparent;

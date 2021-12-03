@@ -131,7 +131,7 @@
                     <span></span>
                 </span>
                 دسته بندی ها</a>
-            <div class="menu-bg"></div>
+
             <ul class="menu menu-bar">
                 <li>
                     <a href="javascript:void(0);" data-link="/درب-ضد-سرقت" class="menu-link menu-bar-link"
@@ -492,7 +492,7 @@
                                     <a href="/نصاب-درب-اتوماتیک" class="menu-link menu-list-link">نصاب درب اتوماتیک</a>
                                 </li>
                                 <li>
-                                    <a href="/نصاب-درب-ضدحریق" class="menu-link menu-list-link">نصاب درب ضدحرق</a>
+                                    <a href="/نصاب-درب-ضد-حریق" class="menu-link menu-list-link">نصاب درب ضد حریق</a>
                                 </li>
 
                             </ul>
@@ -516,6 +516,12 @@
                                 ی موارد درب لابی</a>
                             <ul class="menu menu-list">
                                 <li>
+                                    <a href="/یراق-آلات-درب-ضد-سرقت" class="menu-link menu-list-link">یراق آلات درب ضد سرقت</a>
+                                </li>
+                                <li>
+                                    <a href="/یراق-آلات-درب-ضد-حریق" class="menu-link menu-list-link">یراق آلات درب ضد حریق</a>
+                                </li>
+                                <li>
                                     <a href="/یراق-آلات-درب-اتوماتیک" class="menu-link menu-list-link">یراق آلات درب اتوماتیک</a>
                                 </li>
 
@@ -537,6 +543,7 @@
                     </a>
                 </li>
             </ul>
+            <div class="menu-bg"></div>
         </nav>
     </div>
 </section>
