@@ -104,8 +104,7 @@
         </div>
     </section>
 
-
-
+    @include(@env('TEMPLATE_NAME').'.cms.filter')
 
     @if (count($relatedProduct))
         <section class="category-products mt-1" id="products">

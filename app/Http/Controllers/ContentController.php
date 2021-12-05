@@ -190,8 +190,10 @@ class ContentController extends Controller
         $data['category'] = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
         $data['attr_type'] = $type;
         $data['attrId'] = $request->attr;
+        if(isset($request->attr)){
+            $data['attribute'] = Attribute::getFormFieldsByContentTypeId($request->attr);
+        }
 
-        $data['attribute'] = Attribute::getFormFieldsByContentTypeId($request->attr);
         /*if($request->type=='html')
         {
             return view('admin.content.CreateHtml',$data);
@@ -223,9 +225,6 @@ class ContentController extends Controller
         }
 
 
-
-
-
         $data = $request->all();
         $date = $data['publish_date'];
         $data['publish_date'] = convertJToG($date);
@@ -242,13 +241,16 @@ class ContentController extends Controller
 
 
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
-        $content_id = 1;
+
         $content_type_id = 1;
 
         //call careate attr service
-        $attrObject = Attribute::create($data, $content_id, $content_type_id);
+        //$data->$data
+
 
         $object = Content::create($data);
+        $attrObject = Attribute::upsert($data,$object->id , $data['content_type_id']);
+
         $object->categories()->attach($data['parent_id_hide']);
         //gallery
         if (isset($request->imageJsonGallery)) {
@@ -329,9 +331,6 @@ class ContentController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
-
         // dd(convertGToJ($convertDate));
 
         //$convert = (new Jalalian($date))->toCarbon()->toDateTimeString();
@@ -417,8 +416,9 @@ class ContentController extends Controller
         $data['slug'] = uniqueSlug(Content::class, $crud, ($request->slug != '') ? $request->slug : $request->title);
         // dd($data);
         //dd($data);
-        $content_type_id=1;
-        $attrObject = Attribute::upsert($data, $crud->id, $content_type_id);
+
+        $content_type_id=0;
+        $attrObject = Attribute::upsert($data, $crud->id,$content_type_id);
 
         $crud->update($data);
         // dd(1);

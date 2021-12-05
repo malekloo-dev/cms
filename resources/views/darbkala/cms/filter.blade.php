@@ -1,15 +1,18 @@
 @if(count($filterList['removeFilter']))
+    <div class="flex one four-500 ">
+
     @foreach ($filterList['removeFilter'] as $key => $filterItem)
         حذف فیلنر
         -
         <a href="{{$filterItem['url']}}">{{ $filterItem['name'] }}</a>
-        <br/>
+
     @endforeach
+    </div>
 @endif
-<br/>
 لیست فیلتر ها
 
 @if(count($filterList['filter']))
+    <div class="flex one four-800 ">
     @foreach ($filterList['filter'] as $key => $filterItem)
         <li class="toc1">
             <a href="#{{ $filterItem['label'] }}">{{ $filterItem['label'] }}</a>
@@ -27,4 +30,5 @@
             </ul>
         </li>
     @endforeach
+    </div>
 @endif
