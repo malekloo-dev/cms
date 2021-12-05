@@ -24,8 +24,6 @@ $search-text: rgb(100, 100, 100);
 
 @import "nav-mega-menu.scss";
 
-
-
 //////////////
 //pagination//
 //////////////
@@ -153,9 +151,7 @@ nav[role="navigation"] span > svg {
     margin-top: 0;
     min-height: 8em;
 }
-.articles article > div {
-    // height: 150px;
-}
+
 .articles article:hover {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
@@ -197,6 +193,7 @@ nav[role="navigation"] span > svg {
     width: 40%;
     margin: auto;
 }
+
 .index-h1 {
     height: 400px;
     text-align: center;
@@ -301,7 +298,7 @@ nav[role="navigation"] span > svg {
     .home-top-view .rate {
         width: 100%;
     }
-    .rate label{
+    .rate label {
         position: unset;
     }
 }
@@ -337,9 +334,11 @@ nav[role="navigation"] span > svg {
 .category-list .price {
     font-weight: 700;
 }
+
 .height-100 {
     height: 100%;
 }
+
 .category-products {
     a {
         color: #000;
@@ -497,6 +496,23 @@ nav[role="navigation"] span > svg {
 }
 .mobile-menu {
     display: none;
+}
+
+@media (max-width: 799px) {
+    .mobile-horizantal {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        justify-content: flex-start !important;
+        z-index: 1;
+        position: relative;
+        .item {
+            flex: 0 0 auto;
+            width: calc(40vw);
+        }
+    }
 }
 
 @media (max-width: 1100px) {

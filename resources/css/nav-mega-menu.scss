@@ -1,7 +1,7 @@
 $color-accent: #444;
 $color-light: #ffffff;
 $color-dark: #2a2a2a;
-$color-gray:#ccc;
+$color-gray: #ccc;
 $menu-link-padding: 20px 25px;
 $breakpoint: 950px;
 $mega-menu-multiLevel-colWidth: 100/3 + 0%;
@@ -48,7 +48,7 @@ nav {
     transition: background 0.2s, color 0.2s;
     position: relative;
     z-index: 1;
-    font-size: .9em;
+    font-size: 0.9em;
     &[aria-haspopup="true"] {
         // padding-right: 40px;
         &:after {
@@ -129,7 +129,6 @@ $breakpointPlus: $breakpoint + 1px;
                         display: flex;
                         transform-origin: top;
                         animation: dropdown 0.2s ease-out;
-
                     }
                 }
                 // FUNCTIONALITY: Keep mega menu open
@@ -261,8 +260,6 @@ $breakpointPlus: $breakpoint + 1px;
     [hidden-desktop="true"] {
         display: none;
     }
-
-
 }
 //----------------------------------------------//
 //     mobile
@@ -280,6 +277,22 @@ $breakpointPlus: $breakpoint + 1px;
         display: block;
     }
 
+    .menu-bar,
+    .mobile-menu-trigger:focus-within,
+    .mobile-menu-trigger:focus {
+        // FUNCTIONALITY: Keep menu open
+        &:focus-within,&:focus {
+            ~ .menu-bg {
+                background-color: rgba(0, 0, 0, 0.5);
+                position: fixed;
+                z-index: 4;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+        }
+    }
     .mobile-menu-trigger {
         background: $color-accent;
         color: $color-light;
@@ -293,6 +306,7 @@ $breakpointPlus: $breakpoint + 1px;
         // &:focus ~ .menu-bg{
         //     background-color: rgba(0, 0, 0, 0.5 );
         //     position: fixed;
+        //     z-index: 4;
         //     top: 0;
         //     right: 0;
         //     bottom: 0;
@@ -319,14 +333,13 @@ $breakpointPlus: $breakpoint + 1px;
             padding: $menu-link-padding;
             color: $color-light;
             visibility: visible;
-
         }
-
     }
 
     .menu-bar {
         flex-direction: column;
         position: fixed;
+        z-index: 99999;
         top: 0;
         left: -100%;
         height: 100vh;
@@ -349,14 +362,13 @@ $breakpointPlus: $breakpoint + 1px;
                     max-height: 100vh;
                     width: 100%;
                     transition: left 0.3s;
+                    height: 100%;
                     // Second level
                     > li {
                         > [aria-haspopup="true"] {
-
                             font-size: 1.2em;
                             ~ ul {
                                 a {
-
                                     padding-left: 40px;
                                 }
                                 // Third level
@@ -372,7 +384,7 @@ $breakpointPlus: $breakpoint + 1px;
                                 }
                             }
                         }
-                         a{
+                        a {
                             border-bottom: 1px dashed #bbb;
                         }
                     }
@@ -422,8 +434,6 @@ $breakpointPlus: $breakpoint + 1px;
                 display: inline-block;
             }
         }
-
-
     }
 
     //---------------------------------------------------//
@@ -436,7 +446,6 @@ $breakpointPlus: $breakpoint + 1px;
             ~ ul {
                 left: 0;
             }
-
         }
     }
 

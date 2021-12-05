@@ -60,6 +60,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-6">
                         <h3>@lang('messages.setting')</h3>
                         <div class="form-group row">

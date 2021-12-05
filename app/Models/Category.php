@@ -32,14 +32,12 @@ class Category extends Model
 
 
     ];
-
     public function comments()
     {
         $comments = $this->hasMany(Comment::class, 'content_id')->where('status', '=', '1');
 
         return $comments;
     }
-
     public function companies()
     {
         return $this->belongsToMany(Company::class, 'company_contents', 'content_id', 'company_id');
@@ -191,7 +189,6 @@ class Category extends Model
             ->where('attr_type', '=', 'article  ')
             ->where('publish_date', '<=', DB::raw('now()'))
             ->orderBy($sortField, $sortValue);
-
     }
 
 
@@ -199,7 +196,6 @@ class Category extends Model
     {
 
         return $this->hasMany(Category::class, 'parent_id', 'id');
-
     }
 
     /**
@@ -219,7 +215,7 @@ class Category extends Model
             $images = $content->images['images'] ?? '';
 
             if (is_array($images)) {
-                $images = array_map(function ($item) {
+                $images =  array_map(function ($item) {
                     return trim($item, '/');
                 }, array_values($images));
 
@@ -229,6 +225,4 @@ class Category extends Model
             // do the rest of the cleanup...
         });
     }
-
-
 }

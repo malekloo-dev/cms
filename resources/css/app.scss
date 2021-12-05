@@ -2485,6 +2485,9 @@ $sizes: 5;
 }
 @include padding-classes;
 
+
+.h-auto{height: auto;}
+
 .font-07 {
     font-size: 0.7em;
 }
@@ -2805,7 +2808,6 @@ section.wide {
         opacity: 0;
     }
     label {
-        position: relative;
         float: right;
         color: #c8c8c8;
     }
@@ -2887,6 +2889,9 @@ figure.image {
         height: auto;
     }
 }
+
+.img-contain{ object-fit: contain;}
+.img-cover{ object-fit: cover;}
 
 picture {
     // display: table;

@@ -64,9 +64,9 @@
                                         sizes="(max-width:{{ env('CATEGORY_SMALL_W') }}px) 100vw {{ env('CATEGORY_SMALL_W') }}px {{ ENV('CATEGORY_MEDIUM_W') }}px {{ ENV('CATEGORY_LARGE_W') }}px"
                                         alt="{{ $content->title }}" width="200" height="200"
                                         srcset="
-                                                        {{ $content->images['images']['small'] }} {{ env('CATEGORY_SMALL_W') }}w,
-                                                        {{ $content->images['images']['medium'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
-                                                        {{ $content->images['images']['large'] ?? $content->images['images']['small'] }} 2x">
+                                                                {{ $content->images['images']['small'] }} {{ env('CATEGORY_SMALL_W') }}w,
+                                                                {{ $content->images['images']['medium'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
+                                                                {{ $content->images['images']['large'] ?? $content->images['images']['small'] }} 2x">
                                     <figcaption>
                                         <h2 class="p-0 m-0 text-center"> {{ $content->title }}</h2>
                                     </figcaption>
@@ -92,9 +92,9 @@
                                     <img src="{{ $content->images['images']['small'] }}"
                                         sizes="(max-width:{{ env('CATEGORY_SMALL_W') }}px) 100vw {{ env('CATEGORY_SMALL_W') }}px {{ ENV('CATEGORY_MEDIUM_W') }}px {{ ENV('CATEGORY_LARGE_W') }}px"
                                         alt="{{ $content->title }}" width="200" height="200" srcset="
-                                                        {{ $content->images['images']['small'] }} {{ env('CATEGORY_SMALL_W') }}w,
-                                                        {{ $content->images['images']['medium'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
-                                                        {{ $content->images['images']['large'] }} 2x">
+                                                                {{ $content->images['images']['small'] }} {{ env('CATEGORY_SMALL_W') }}w,
+                                                                {{ $content->images['images']['medium'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
+                                                                {{ $content->images['images']['large'] }} 2x">
                                     <figcaption>
                                         <h2 class="p-0 m-0 text-center"> {{ $content->title }}</h2>
                                     </figcaption>
@@ -117,7 +117,7 @@
     <section class="index-items home-top-view bg-gray mb-0 pb-0">
         <div class="flex one">
             <div class="p-0">
-                <h2><a  class="pt-1" href="{{ url('درب-ضد-سرقت') }}"> درب ضد سرقت</a></h2>
+                <h2><a class="pt-1" href="{{ url('درب-ضد-سرقت') }}"> درب ضد سرقت</a></h2>
                 <div class="flex two two-500 three-700 six-900 center ">
                     {{--product&label=topViewPost1&var=topViewPost1&count=6 --}}
                     @isset($topViewPost1['data'])
@@ -129,14 +129,14 @@
                                         <div><img alt="{{ $content->title }}" width="{{ env('PRODUCT_SMALL_W') }}"
                                                 height="{{ env('PRODUCT_SMALL_H') }}"
                                                 src="{{ $content->images['images']['small'] }}" srcset="
-                                                        {{ $content->images['images']['small'] }} 850w,
-                                                        {{ $content->images['images']['medium'] }} 1536w,
-                                                        {{ $content->images['images']['large'] }} 2880w
-                                                            " sizes="
-                                                            (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
-                                                            (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
-                                                            (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
-                                                            "></div>
+                                                                {{ $content->images['images']['small'] }} 850w,
+                                                                {{ $content->images['images']['medium'] }} 1536w,
+                                                                {{ $content->images['images']['large'] }} 2880w
+                                                                    " sizes="
+                                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
+                                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
+                                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
+                                                                    "></div>
                                     @endif
                                     <div>
                                         <h4> {{ $content->title }}</h4>
@@ -152,7 +152,7 @@
                                                         @endphp
                                                     @endforeach
                                                     @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
-                                                       <label></label>
+                                                        <label></label>
                                                     @endfor
                                                 @endif
                                             </div>
@@ -178,7 +178,7 @@
     <section class="index-items home-top-view bg-gray my-0 py-0">
         <div class="flex one">
             <div class="p-0">
-                <h2><a  class="pt-1" href="{{ url('درب-لابی') }}"> درب لابی</a></h2>
+                <h2><a class="pt-1" href="{{ url('درب-لابی') }}"> درب لابی</a></h2>
                 <div class="flex two two-500 three-700 six-900 center ">
                     {{--product&label=topViewPost2&var=topViewPost2&count=6 --}}
                     @isset($topViewPost2['data'])
@@ -190,14 +190,14 @@
                                         <div><img alt="{{ $content->title }}" width="{{ env('PRODUCT_SMALL_W') }}"
                                                 height="{{ env('PRODUCT_SMALL_H') }}"
                                                 src="{{ $content->images['images']['small'] }}" srcset="
-                                                        {{ $content->images['images']['small'] }} 850w,
-                                                        {{ $content->images['images']['medium'] }} 1536w,
-                                                        {{ $content->images['images']['large'] }} 2880w
-                                                            " sizes="
-                                                            (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
-                                                            (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
-                                                            (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
-                                                            "></div>
+                                                                {{ $content->images['images']['small'] }} 850w,
+                                                                {{ $content->images['images']['medium'] }} 1536w,
+                                                                {{ $content->images['images']['large'] }} 2880w
+                                                                    " sizes="
+                                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
+                                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
+                                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
+                                                                    "></div>
                                     @endif
                                     <div>
                                         <h4> {{ $content->title }}</h4>
@@ -213,7 +213,7 @@
                                                         @endphp
                                                     @endforeach
                                                     @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
-                                                        <label ></label>
+                                                        <label></label>
                                                     @endfor
                                                 @endif
                                             </div>
@@ -239,7 +239,7 @@
     <section class="index-items home-top-view bg-gray my-0 py-0">
         <div class="flex one">
             <div class="p-0">
-                <h2><a  class="pt-1" href="{{ url('درب-ضد-حریق') }}">درب ضد حریق</a></h2>
+                <h2><a class="pt-1" href="{{ url('درب-ضد-حریق') }}">درب ضد حریق</a></h2>
                 <div class="flex two two-500 three-700 six-900 center ">
                     {{--product&label=topViewPost3&var=topViewPost3&count=6 --}}
                     @isset($topViewPost3['data'])
@@ -251,14 +251,14 @@
                                         <div><img alt="{{ $content->title }}" width="{{ env('PRODUCT_SMALL_W') }}"
                                                 height="{{ env('PRODUCT_SMALL_H') }}"
                                                 src="{{ $content->images['images']['small'] }}" srcset="
-                                                        {{ $content->images['images']['small'] }} 850w,
-                                                        {{ $content->images['images']['medium'] }} 1536w,
-                                                        {{ $content->images['images']['large'] }} 2880w
-                                                            " sizes="
-                                                            (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
-                                                            (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
-                                                            (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
-                                                            "></div>
+                                                                {{ $content->images['images']['small'] }} 850w,
+                                                                {{ $content->images['images']['medium'] }} 1536w,
+                                                                {{ $content->images['images']['large'] }} 2880w
+                                                                    " sizes="
+                                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
+                                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
+                                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
+                                                                    "></div>
                                     @endif
                                     <div>
                                         <h4> {{ $content->title }}</h4>
@@ -300,7 +300,8 @@
     <section class="index-items home-top-view bg-gray my-0 py-0">
         <div class="flex one">
             <div class="p-0">
-                <h2 class="font-08 "><a class="pt-1" href="{{ url('درب-اتوماتیک') }}">درب اتوماتیک</a></h2>
+                <h2 class="font-08 "><a class="pt-1" href="{{ url('درب-اتوماتیک') }}">درب اتوماتیک</a>
+                </h2>
                 <div class="flex two two-500 three-700 six-900 center ">
                     {{--product&label=topViewPost4&var=topViewPost4&count=6 --}}
                     @isset($topViewPost4['data'])
@@ -312,14 +313,14 @@
                                         <div><img alt="{{ $content->title }}" width="{{ env('PRODUCT_SMALL_W') }}"
                                                 height="{{ env('PRODUCT_SMALL_H') }}"
                                                 src="{{ $content->images['images']['small'] }}" srcset="
-                                                        {{ $content->images['images']['small'] }} 850w,
-                                                        {{ $content->images['images']['medium'] }} 1536w,
-                                                        {{ $content->images['images']['large'] }} 2880w
-                                                            " sizes="
-                                                            (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
-                                                            (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
-                                                            (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
-                                                            "></div>
+                                                                {{ $content->images['images']['small'] }} 850w,
+                                                                {{ $content->images['images']['medium'] }} 1536w,
+                                                                {{ $content->images['images']['large'] }} 2880w
+                                                                    " sizes="
+                                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
+                                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
+                                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
+                                                                    "></div>
                                     @endif
                                     <div>
                                         <h4> {{ $content->title }}</h4>
@@ -355,24 +356,41 @@
         </div>
     </section>
 
-{{--
-    @isset($companies )
-        <section class="index-items home-top-view bg-gray">
+
+    @isset($companies)
+        <section class="index-items  bg-gray-dark mb-0">
+            <h2>کمپانی ها</h2>
             <div class="flex one">
                 <div>
-                    <div class="flex two two-500 three-700 six-900 center ">
+                    <div class="flex two two-500 three-700 five-900 center ">
                         @foreach ($companies as $content)
                             <div>
-                                <a class="hover shadow2" href="{{ url('profile/'.$content->id) }}">
+                                <a class="hover shadow2 pb-0" href="{{ url('profile/' . $content->id) }}">
 
                                     @if (isset($content->logo) && isset($content->logo))
-                                        <div><img alt="{{ $content->name ?? ''}}" width="{{ env('COMPANY_SMALL_W') }}"
-                                                height="{{ env('COMPANY_SMALL_H') }}"
-                                                src="{{ $content->logo['small'] ?? '' }}"
-                                                        ></div>
+                                        <img alt="{{ $content->name ?? '' }}" class="h-auto img-contain border-radius-50 mt-1"
+                                            width="{{ env('COMPANY_LARGE_W') }}" height="{{ env('COMPANY_LARGE_H') }}"
+                                            src="{{ $content->logo['large'] ?? '' }}">
                                     @endif
 
-                                    <div>{{ $content->name }}</div>
+                                    <div class="flex ">
+                                        <div class="p-0 ">
+                                            {{ $content->name }}
+                                        </div>
+                                        <div class="p-0 ">
+                                            <svg class="p-0" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
+                                                fill="currentColor" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M12 3C6.40848 3 1.71018 6.82432 0.378052 12C1.71018 17.1757 6.40848 21 12 21C17.5915 21 22.2898 17.1757 23.6219 12C22.2898 6.82432 17.5915 3 12 3ZM16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
+                                                fill="currentColor" />
+                                            </svg>
+                                            <span class="p-0">{{ $content->viewCount }}</span>
+                                        </div>
+
+                                    </div>
 
                                 </a>
                             </div>
@@ -381,7 +399,7 @@
                 </div>
             </div>
         </section>
-    @endisset --}}
+    @endisset
 
 
 
@@ -397,12 +415,15 @@
                                 <a class="hover shadow2" href="{{ $content->slug }}">
 
                                     @if (isset($content->images['images']['medium']))
-                                        <div><img loading="lazy" alt="{{ $content->title }}" width="{{ env('ARTICLE_MEDIUM_W') }}"
+                                        <div><img loading="lazy" alt="{{ $content->title }}"
+                                                width="{{ env('ARTICLE_MEDIUM_W') }}"
                                                 height="{{ env('ARTICLE_MEDIUM_H') }}"
                                                 src="{{ $content->images['images']['medium'] }}"></div>
                                     @endif
                                     <div>
                                         <h3 class="p-1">{{ $content->title }}</h3>
+
+
                                     </div>
 
                                 </a>
@@ -424,7 +445,8 @@
                         {!! $categoryDetail['data']->brief_description !!}
                     </div>
                     <div class="third-600" style="order:1">
-                        <img  loading="lazy" src="{{ $categoryDetail['data']->images['images']['large'] }}"  alt="darbkala about us">
+                        <img loading="lazy" src="{{ $categoryDetail['data']->images['images']['large'] }}"
+                            alt="darbkala about us">
                     </div>
                 </div>
             </div>
