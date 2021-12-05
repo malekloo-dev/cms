@@ -186,13 +186,14 @@
                     {{ $item->label }} = </a>
                     @if ($item->type=='combo')
                         @php
-                           $json= json_decode($item->json);
-                           echo $json[$item->value]->name
+                            $json= collect(json_decode($item->json))->where('value','=',$item->value)->first();
+                            echo $json->name
                         @endphp
                     @else
-                    {{ $item->value }}
+                        {{ $item->value }}
                     @endif
-                    @endforeach
+                @endforeach
+
 
             </div>
         </div>
