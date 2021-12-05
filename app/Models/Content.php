@@ -78,7 +78,10 @@ class Content extends Model
         return $this->morphMany(Gallery::class, 'model');
     }
 
-
+    public function attributeValue()
+    {
+        return $this->hasMany(ContentAttributeValue::class);
+    }
 
     // this is a recommended way to declare event handlers
     public static function boot()

@@ -181,8 +181,18 @@
                     </div>
                 </div>
 
-
-
+                @foreach ($detail->attributeValue as $key => $item)
+                    <span>  &nbsp |  &nbsp</span>
+                    {{ $item->label }} = </a>
+                    @if ($item->type=='combo')
+                        @php
+                           $json= json_decode($item->json);
+                           echo $json[$item->value]->name
+                        @endphp
+                    @else
+                    {{ $item->value }}
+                    @endif
+                    @endforeach
 
             </div>
         </div>
