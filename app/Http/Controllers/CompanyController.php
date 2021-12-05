@@ -7,6 +7,7 @@ use App\Models\Content;
 use App\Models\CompanyContents;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Services\attribute\Attribute;
 use App\Services\wpService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -78,7 +79,7 @@ class CompanyController extends Controller
         return view('auth.company.products', compact('user'));
     }
 
-    public function productsCreate()
+    public function productsCreate(Request $request)
     {
         $user = Auth::user();
 
@@ -89,8 +90,11 @@ class CompanyController extends Controller
 
 
         $attr_type = 'product';
-
-        return view('auth.company.productsCreateOrUpdate', compact('user', 'category', 'attr_type'));
+        $attribute=array();
+        if(isset($request->attr)){
+            $attribute = Attribute::getFormFieldsByContentTypeId($request->attr);
+        }
+        return view('auth.company.productsCreateOrUpdate', compact('user', 'category', 'attr_type','attribute'));
     }
 
     public function productsStore(Request $request)
@@ -135,6 +139,10 @@ class CompanyController extends Controller
         // $data['status'] = '1';
 
         $content = Content::create($data);
+        if(isset($data['content_type_id'])) {
+            $attrObject = Attribute::upsert($data, $content->id, $data['content_type_id']);
+        }
+
         // dd(new CompanyContent(['company_id' => $user->id, 'content_id' => $content->id]));
         // $content->companies()->create(new CompanyContent(['company_id' => $user->id, 'content_id' => $content->id]));
 
@@ -163,9 +171,10 @@ class CompanyController extends Controller
 
         $result = app('App\Http\Controllers\CategoryController')->tree_set();
         $category = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
+        $attribute=Attribute::getFormValue($post->id);
 
 
-        return view('auth.company.productsCreateOrUpdate', compact('user', 'category', 'post'));
+        return view('auth.company.productsCreateOrUpdate', compact('user', 'category', 'post','attribute'));
     }
 
     public function productsEdit(Request $request, Content $content)
@@ -204,14 +213,15 @@ class CompanyController extends Controller
         $data['images'] = $imagesUrl;
 
         // $data['slug'] = $request->title;
-        
+
         $data['slug'] = uniqueSlug(Content::class, $content, (isset($data['slug']) && $data['slug'] != '') ? $data['slug'] : $data['title']);
 
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         $data['status'] = '1';
 
         $content->update($data);
-
+        $content_type_id=0;
+        $attrObject = Attribute::upsert($data, $content->id,$content_type_id);
         $content->categories()->detach();
         $content->categories()->attach($data['parent_id_hide']);
 

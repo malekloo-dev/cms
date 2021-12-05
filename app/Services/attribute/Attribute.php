@@ -27,8 +27,11 @@ class Attribute
     public static function getFormValue($contentId)
     {
         //dd($contentId);
-
         $attributeValue = ContentAttributeValue::where('content_id', '=', $contentId)->first();
+        if(!is_object($attributeValue))
+        {
+            return ;
+        }
         //todo check exist object
         $content_type_id = $attributeValue->content_type_id;
         $content = ContentType::find($content_type_id);

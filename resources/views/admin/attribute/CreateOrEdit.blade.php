@@ -1,4 +1,4 @@
-@if(isset($attribute))
+@if(isset($attribute) and is_object($attribute))
     @foreach ($attribute->contentAattributeFields as $field)
      <input type="hidden" name="content_type_id" value="{{$attribute->id}}">
     <?php
