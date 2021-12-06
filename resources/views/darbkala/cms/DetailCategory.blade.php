@@ -105,12 +105,16 @@
             @endif
         </div>
     </section>
-    @include(@env('TEMPLATE_NAME').'.cms.filter')
+
+
+
 
 
     @if (count($relatedProduct) == 0 and count($subCategory))
         <section class="category-list m-0 p-0" id="index-best-view">
-            <div class="flex two three-500 five-900 mobile-horizantal">
+            @include(@env('TEMPLATE_NAME').'.cms.filter')
+
+            <div class="flex two three-500 five-900 mobile-horizantal mt-1">
                 @foreach ($subCategory as $content)
                     <div class="item flex">
 
@@ -137,10 +141,18 @@
 
     @if (count($relatedProduct))
         <section class="category-products mt-1" id="products">
+
             <div class="flex one four-800 ">
+
                 <div class="one-fourth-800 p-0 filter">
+
+
+                    @include(@env('TEMPLATE_NAME').'.cms.filter')
+
+
+
                     @if (count($subCategory))
-                        <section class="category-list m-0 p-0" id="index-best-view">
+                        <section class="category-list m-0 p-0 mt-1" id="index-best-view">
                             <div class="flex two three-500 one-800 mobile-horizantal">
 
                                         @foreach ($subCategory as $content)

@@ -1948,7 +1948,7 @@ select {
         url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyIiBoZWlnaHQ9IjMiPjxwYXRoIGQ9Im0gMCwxIDEsMiAxLC0yIHoiLz48L3N2Zz4=)
         no-repeat scroll 95% center/10px 15px;
 
-    background-position: 10px calc(100% - 11px) ;
+    background-position: 10px calc(100% - 11px);
     border: 1px solid #ccc;
     border-radius: 0.2em;
     cursor: pointer;
@@ -2485,8 +2485,9 @@ $sizes: 5;
 }
 @include padding-classes;
 
-
-.h-auto{height: auto;}
+.h-auto {
+    height: auto;
+}
 
 .font-07 {
     font-size: 0.7em;
@@ -2902,8 +2903,12 @@ figure.image {
     }
 }
 
-.img-contain{ object-fit: contain;}
-.img-cover{ object-fit: cover;}
+.img-contain {
+    object-fit: contain;
+}
+.img-cover {
+    object-fit: cover;
+}
 
 picture {
     // display: table;
@@ -3169,17 +3174,56 @@ section.extra-link {
 //        company
 //////////////////////////
 //////////////////////////
-.company-categories{
-    >*{
-        font-size: .9em;
-        border:1px solid $theme-color1;
-        border-radius:5px;
-        margin:1px;
+.company-categories {
+    > * {
+        font-size: 0.9em;
+        border: 1px solid $theme-color1;
+        border-radius: 5px;
+        margin: 1px;
         padding-right: 3px;
         padding-left: 3px;
-        &:hover{
+        &:hover {
             color: $a-hover;
         }
+    }
+}
+
+///////////////////////////////////////
+///////////////////////////////////////
+//            filter
+///////////////////////////////////////
+///////////////////////////////////////
+.filter-remote-link {
+    display: flex;
+    overflow-x: scroll;
+    a {
+        border-radius: 50px;
+        flex: 1 0 auto;
+        margin: 3px;
+        padding: 0 1em 0 30px;
+        display: block;
+        border: 1px solid red;
+        color: $a;
+        position: relative;
+        &:after {
+            position: absolute;
+            left: 0;
+            content: "X";
+            background: red;
+            border-radius: 50px 0 0 50px;
+            padding: 0 0.6em;
+            color: white;
+            font-weight: bold;
+        }
+    }
+}
+.filter-items {
+    .filter-header {
+        background-color: #e5e5e5;
+        display: block;
+        padding: 0 1em;
+        color: #333;
+        font-weight: bold;
     }
 }
 

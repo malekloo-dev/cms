@@ -1,34 +1,34 @@
-@if(count($filterList['removeFilter']))
-    <div class="flex one four-500 ">
+<div>
+    لیست فیلتر ها
+</div>
 
-    @foreach ($filterList['removeFilter'] as $key => $filterItem)
-        حذف فیلنر
-        -
-        <a href="{{$filterItem['url']}}">{{ $filterItem['name'] }}</a>
-
-    @endforeach
+@if (count($filterList['removeFilter']))
+    <div class="  shadow filter-remote-link">
+        @foreach ($filterList['removeFilter'] as $key => $filterItem)
+            <a class="" href="{{ $filterItem['url'] }}">{{ $filterItem['name'] }} </a>
+        @endforeach
     </div>
 @endif
-لیست فیلتر ها
 
-@if(count($filterList['filter']))
-    <div class="flex one four-800 ">
-    @foreach ($filterList['filter'] as $key => $filterItem)
-        <li class="toc1">
-            <a href="#{{ $filterItem['label'] }}">{{ $filterItem['label'] }}</a>
-            @php
 
-                @endphp
-            <ul>
+
+
+@if (count($filterList['filter']))
+    <div class="flex one filter-items">
+        @foreach ($filterList['filter'] as $key => $filterItem)
+            <div class="toc1 shadow mt-1 ">
+                <a class="filter-header" href="#{{ $filterItem['label'] }}">{{ $filterItem['label'] }}</a>
                 @foreach ($filterItem->filterItemDetails as $key2 => $filterOption)
-                    <li class="toc1">
-                        <!-- <label for="vehicle2"> I have a car</label><br>-->
-                        <input type="checkbox" name="vehicle3" value="Boat" {{ $filterOption['check'] }}>
-                        <a href="{{$filterOption['url']}}">{{ $filterOption['name'] }}</a>
-                    </li>
+                    <div class="toc1">
+                        @if ($filterOption['check'] == 'checked')
+                        ✔ {{ $filterOption['name'] }}
+                        @else
+                            <a href="{{ $filterOption['url'] }}">{{ $filterOption['name'] }}</a>
+                        @endif
+                        {{-- <input type="checkbox" name="vehicle3" value="Boat" {{ $filterOption['check'] }}> --}}
+                    </div>
                 @endforeach
-            </ul>
-        </li>
-    @endforeach
+            </div>
+        @endforeach
     </div>
 @endif
