@@ -230,13 +230,20 @@
                                             <div class="brand">برند: {{ $content->attr['brand'] }}</div>
 
                                             @if(count($content->companies))
-
+                                                @php
+                                                    $company = $content->companies->first();
+                                                @endphp
                                                 <div class="company-logo">
-                                                    @if (isset($content->companies->first()->logo) && $content->companies->first()->logo['small'] != '' && file_exists(public_path($content->companies->first()->logo['small'])))
-                                                        <img src="{{ url($content->companies->first()->logo['small']) }}" width="30" height="30" class="border-radius-50" alt="" />
+                                                    @if (isset($company->logo) && $company->logo['small'] != '' && file_exists(public_path($company->logo['small'])))
+                                                        <img src="{{ url($company->logo['small']) }}" width="30" height="30" class="border-radius-50" alt="" />
                                                     @endif
-                                                    {{ $content->companies->first()->name ?? '' }}
+                                                    {{ $company->name ?? '' }}
                                                 </div>
+                                                @if($company->phone != '')
+                                                    <a class="company-phone " href="tel:{{ Str::replace('-','',explode(',',$company->phone)[0]) }}">
+                                                        {{ Str::replace('-','',explode(',',$company->phone)[0]) }}
+                                                    </a>
+                                                @endif
                                             @endif
 
 

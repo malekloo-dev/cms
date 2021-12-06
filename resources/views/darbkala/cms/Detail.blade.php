@@ -122,6 +122,15 @@
                                                 @endif
                                                 {{ $detail->companies->first()->name ?? '' }}</a>
                                         </div>
+                                        @if($detail->companies->first()->phone != '')
+                                                    <div class="flex one two-500 three-700 four-900 five-1200">
+                                                        @foreach (explode(',',$detail->companies->first()->phone) as $phone)
+                                                            <div class="p-0">
+                                                                <a class="company-phone " href="tel:{{ Str::replace('-','',$phone) }}">{{ Str::replace('-','',$phone) }}</a>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                @endif
                                     @endif
 
                                     @isset($detail->attr['price'])

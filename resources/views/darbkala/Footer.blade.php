@@ -105,7 +105,7 @@
     var TEMPLATE_NAME = `{{ env('TEMPLATE_NAME') }}`;
 </script>
 <script src="{{ url('/main.js') }}"></script> --}}
-@if (WebsiteSetting::where('variable', '=', 'phone')->first())
+@if (WebsiteSetting::where('variable', '=', 'phone')->first()?->value != '' )
     <a href="tel:{{ WebsiteSetting::where('variable', '=', 'phone')->first()->value }}" id="callnowbutton"></a>
 @endif
 </body>

@@ -2674,6 +2674,12 @@ section.wide {
     border-radius: 50%;
 }
 
+////////////////////////////////
+////////////////////////////////
+//         search             //
+////////////////////////////////
+////////////////////////////////
+
 .search1 > h3 {
     font-weight: 400;
 }
@@ -2776,7 +2782,9 @@ section.wide {
     margin-bottom: 1em;
 }
 ////////////
+////////////
 //  bread //
+////////////
 ////////////
 
 .breadcrumb {
@@ -2791,7 +2799,9 @@ section.wide {
     }
 }
 ////////////
+////////////
 // rating //
+////////////
 ////////////
 .rating {
     display: flex;
@@ -2862,7 +2872,9 @@ section.wide {
 }
 
 /////////////
+/////////////
 //  image  //
+/////////////
 /////////////
 .image-style-align-center {
     text-align: center;
@@ -2907,7 +2919,9 @@ picture > img {
 }
 
 //////////////////////
+//////////////////////
 //  faq attr //
+//////////////////////
 //////////////////////
 // div.gallery > div {
 //     align-items: center;
@@ -2942,7 +2956,9 @@ div.attr > div > div > :nth-child(even) {
 }
 
 /////////////
+/////////////
 // gallery //
+/////////////
 /////////////
 .gallery {
     overflow-x: scroll;
@@ -2952,7 +2968,9 @@ div.attr > div > div > :nth-child(even) {
 }
 
 //////////////
+//////////////
 //  comment  //
+//////////////
 //////////////
 .comment {
     background-color: #fff;
@@ -2976,7 +2994,9 @@ div.attr > div > div > :nth-child(even) {
 }
 
 ////////////////
+////////////////
 // pagination //
+////////////////
 ////////////////
 nav[role="navigation"] {
     display: flex;
@@ -3046,7 +3066,9 @@ nav[role="navigation"] {
 }
 
 //////////////
+//////////////
 //  footer  //
+//////////////
 //////////////
 #footer {
     background: #ececec;
@@ -3119,7 +3141,9 @@ nav[role="navigation"] {
 }
 
 /////////////////////
+/////////////////////
 //  login register //
+/////////////////////
 /////////////////////
 section.register,
 section.reset,
@@ -3138,6 +3162,25 @@ section.extra-link {
     align-items: center;
     max-width: 500px;
     margin: 1em auto 5em;
+}
+
+//////////////////////////
+//////////////////////////
+//        company
+//////////////////////////
+//////////////////////////
+.company-categories{
+    >*{
+        font-size: .9em;
+        border:1px solid $theme-color1;
+        border-radius:5px;
+        margin:1px;
+        padding-right: 3px;
+        padding-left: 3px;
+        &:hover{
+            color: $a-hover;
+        }
+    }
 }
 
 @media (max-width: 960px) {

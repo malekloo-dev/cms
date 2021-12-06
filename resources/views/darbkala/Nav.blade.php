@@ -149,13 +149,13 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/درب-ضد-سرقت-چینی" class="menu-link menu-list-link">
+                                    <a href="/درب-ضد-سرقت-ایرانی" class="menu-link menu-list-link">
                                         درب ضد سرقت ایرانی
                                         {{-- <br /><small>Short decription of link</small> --}}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/درب-ضد-سرقت-ایرانی" class="menu-link menu-list-link">
+                                    <a href="/درب-ضد-سرقت-چینی" class="menu-link menu-list-link">
                                         درب ضد سرقت چینی
                                         {{-- <br /><small>Short decription of link</small> --}}
                                     </a>

@@ -45,7 +45,7 @@
                     <div class="map-area" style="display: block; width: 100%;z-index:1">
                         <div id="mapid" style="width: 100%; height: 200px;"></div>
                     </div>
-                    <div class="flex one five-700  ">
+                    <div class="flex one five-700 p-0  ">
                         <div class="one">
                             @if (!isset($company->logo['large']) || $company->logo['large'] == '' || !file_exists(public_path($company->logo['large'])))
                                 <svg id="bold" enable-background="new 0 0 24 24" height="100" viewBox="0 0 24 24" width="100"
@@ -65,7 +65,7 @@
                                 <img class="border-radius-50" src="{{ url($company->logo['large']) }}">
                             @endif
                         </div>
-                        <div class="flex one two-700 three-1100 four-fifth infobox vcard">
+                        <div class="flex one two-700 three-1100 four-fifth-500 infobox vcard">
 
                             @if ($company->manager != '')
                                 <div class="">
@@ -80,20 +80,20 @@
                                         data-label="@lang('messages.sale manager')">{{ $company->sale_manager ?? '' }}</span>
                                 </div>
                             @endif
-                            @if ($company->mobile != '')
-                                <div class="">
-                                    <span class="item-spec-attribute">
-                                        @lang('messages.mobile'):
-                                    </span>
-                                    <span style="display: inline-block" class="text-editor item-spec-value mobile" data-field="mobile"
-                                        data-label="@lang('messages.mobile')">{{ $company->mobile ?? '' }}</span>
-                                </div>
-                            @endif
+
+
                             @if ($company->phone != '')
+
                                 <div class="">@lang('messages.phone'):
-                                    <span class="ltr" style="display: inline-block">
-                                        {{ str_replace(',', ' , ', $company->phone ?? '') }}
-                                    </span>
+
+                                    <div class="flex one two-500 ">
+                                        @foreach (explode(',',$company->phone) as $phone)
+                                            <div class="p-0">
+                                                <a class="company-phone" href="tel:{{ Str::replace('-','',$phone) }}">{{ Str::replace('-','',$phone) }}</a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+
                                 </div>
                             @endif
                             @if ($company->site != '')
@@ -119,7 +119,14 @@
 
                             <div class="full company-address">@lang('messages.address'): <span class="text-editor"
                                     data-field="address"
-                                    data-label="@lang('messages.address')">{{ $company->city ?? '' }}{{ $company->address ?? '' }}</span>
+                                    data-label="@lang('messages.address')">{{ $company->city ?? '' }} {{ $company->address ?? '' }}</span>
+                            </div>
+
+                            <div class="full company-categories">
+                                @lang('messages.category'):
+                                @foreach ($company->categories as $item)
+                                    <a href="{{ url($item->slug) }}">{{ $item->title }}</a>
+                                @endforeach
                             </div>
 
                             @if ($company->whatsapp != '')
