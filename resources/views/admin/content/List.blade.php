@@ -26,7 +26,7 @@
         </form>
 
         <div>
-            <a href="{{ route('contents.create', ['type' => $type]) }}" class=" btn btn-success btn-icon  mat-button ">
+            <a href="#" class=" btn btn-success btn-icon  mat-button " data-toggle="modal" data-target="#chooseAttribute">
                 <i class="fa fa-plus"></i>@lang('messages.add')
             </a>
 
@@ -34,6 +34,40 @@
                 class=" btn btn-info btn-icon  mat-button ">
                 <i class="fa fa-plus"></i> @lang('messages.add') @lang('messages.static template')
             </a>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="chooseAttribute" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">برای ساخت محصول یکی از ویژگی های زیر را انتخاب
+                                نمایید</h5>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('contents.create', ['type' => $type]) }}">
+                                <select class="form-control" name="attr" id="">
+                                    <option value="">بدون ویژگی</option>
+                                    @foreach ($attributes as $item)
+
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+
+                                </select>
+                                <br>    
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
+                                <button type="submit" class="btn btn-primary">انتقال به فرم افزودن </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

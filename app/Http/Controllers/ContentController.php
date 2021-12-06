@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Content;
+use App\Models\ContentType;
 use App\Models\export;
 use App\Models\Gallery;
 use App\Services\attribute\Attribute;
@@ -176,6 +177,14 @@ class ContentController extends Controller
 
         $data['category'] = Content::where('type', '=', '1')->orderBy('id', 'desc')->get()->keyBy('id');
         //dd($data);
+
+
+        /* ///////////////////
+        attribute
+        /////////////////////*/
+        $data['attributes'] = ContentType::all();
+        // dd($data['attribute']);
+
 
         return view('admin.content.List', $data);
     }

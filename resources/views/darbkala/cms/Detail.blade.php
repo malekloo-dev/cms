@@ -198,7 +198,7 @@
                         <div >
                             {{ $item->label }}
                         </div>
-                        <div >
+                        <div>
                             @if ($item->type=='combo')
                                 @php
                                     $json= collect(json_decode($item->json))->where('value','=',$item->value)->first();
