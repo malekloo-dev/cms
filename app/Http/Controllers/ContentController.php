@@ -35,7 +35,9 @@ class ContentController extends Controller
             $file = $request->imageJson;
             $fileOrg = $request->file('images');
             $filenameOrg = $fileOrg->getClientOriginalName();
-            $fileName = str_replace(' ', '-', $request->title) ?? $filenameOrg;
+            $slug = uniqueSlug(Content::class, ($request->slug != '') ? $request->slug : $request->title);
+            $fileName = str_replace(' ', '-', $slug) ?? $filenameOrg;
+
 
             $image_parts = explode(";base64,", $file);
             $image_type_aux = explode("image/", $image_parts[0]);
@@ -239,7 +241,6 @@ class ContentController extends Controller
 
         $data['slug'] = uniqueSlug(Content::class, ($request->slug != '') ? $request->slug : $request->title);
 
-
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
 
         $content_type_id = 1;
@@ -249,7 +250,14 @@ class ContentController extends Controller
 
 
         $object = Content::create($data);
-        $attrObject = Attribute::upsert($data,$object->id , $data['content_type_id']);
+
+        /************
+        /   attribute
+        /*************/
+        if(isset($data['content_type_id'])){
+            $attrObject = Attribute::upsert($data,$object->id , $data['content_type_id']);
+        }
+
 
         $object->categories()->attach($data['parent_id_hide']);
         //gallery
@@ -417,9 +425,11 @@ class ContentController extends Controller
         // dd($data);
         //dd($data);
 
-        $content_type_id=0;
-        $attrObject = Attribute::upsert($data, $crud->id,$content_type_id);
 
+        if(isset($data['content_type_id'])){
+            $content_type_id=0;
+            $attrObject = Attribute::upsert($data, $crud->id,$content_type_id);
+        }
         $crud->update($data);
         // dd(1);
 

@@ -17,7 +17,7 @@
     <div class="flex one filter-items">
         @foreach ($filterList['filter'] as $key => $filterItem)
             <div class="toc1 shadow mt-1 ">
-                <a class="filter-header" href="#{{ $filterItem['label'] }}">{{ $filterItem['label'] }}</a>
+                <a class="filter-header border-radius-15" href="#{{ $filterItem['label'] }}">{{ $filterItem['label'] }}</a>
                 @foreach ($filterItem->filterItemDetails as $key2 => $filterOption)
                     <div class="toc1">
                         @if ($filterOption['check'] == 'checked')

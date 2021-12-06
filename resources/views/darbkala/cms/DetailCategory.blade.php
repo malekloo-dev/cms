@@ -99,7 +99,7 @@
             </div>
 
             @if($detail->brief_description !='')
-                <div class="bg-orange-light  pt-1">
+                <div class="bg-orange-light  pt-1 border-radius-5">
                     {!! clearHtml($detail->brief_description) !!}
                 </div>
             @endif
@@ -114,7 +114,9 @@
         <section class="category-list m-0 p-0" id="index-best-view">
             @include(@env('TEMPLATE_NAME').'.cms.filter')
 
+            <div class="mt-1">دسته بندی</div>
             <div class="flex two three-500 five-900 mobile-horizantal mt-1">
+
                 @foreach ($subCategory as $content)
                     <div class="item flex">
 

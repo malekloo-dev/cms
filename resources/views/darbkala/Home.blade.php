@@ -357,12 +357,13 @@
     </section>
 
 
+    {{-- companies --}}
     @isset($companies)
         <section class="index-items  bg-gray-dark mb-0">
             <h2>کمپانی ها</h2>
             <div class="flex one">
                 <div>
-                    <div class="flex two two-500 three-700 five-900 center ">
+                    <div class="flex two two-500 three-700 six-900 center ">
                         @foreach ($companies as $content)
                             <div>
                                 <a class="hover shadow2 pb-0" href="{{ url('profile/' . $content->id) }}">

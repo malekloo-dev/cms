@@ -151,7 +151,7 @@ class HomeController extends Controller
             }
         }
 
-        $data['companies'] = Company::limit(5)->orderBy('id','desc')->get();
+        $data['companies'] = Company::limit(6)->orderBy('id','desc')->get();
 
 
         // $queries = DB::getQueryLog();
