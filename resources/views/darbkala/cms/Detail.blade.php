@@ -190,7 +190,18 @@
                     </div>
                 </div>
 
-
+                @foreach ($detail->attributeValue as $key => $item)
+                    <span>  &nbsp |  &nbsp</span>
+                    {{ $item->label }} = </a>
+                    @if ($item->type=='combo')
+                        @php
+                            $json= collect(json_decode($item->json))->where('value','=',$item->value)->first();
+                            echo $json->name
+                        @endphp
+                    @else
+                        {{ $item->value }}
+                    @endif
+                @endforeach
 
 
             </div>

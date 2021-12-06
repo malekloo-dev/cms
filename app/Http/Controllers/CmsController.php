@@ -24,10 +24,8 @@ class CmsController extends Controller
     {
     }
 
-    public function showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule)
+    public function showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule,$request)
     {
-
-
 
         if (env('All_CONTENT_SUB_CATEGORY') == 1) {
             $relatedPost = Content::where('type', '=', '2')
@@ -50,7 +48,7 @@ class CmsController extends Controller
         //            ->where('publish_date', '<=', DB::raw('now()'))
         //            ->paginate(20);
         //        // ->get();
-
+        $filterList=array();
         if (env('All_CONTENT_SUB_CATEGORY') == 1) {
             $relatedProduct = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'product')
@@ -59,7 +57,14 @@ class CmsController extends Controller
                 ->paginate(15);
             $relatedProduct = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
         } else {
-            $relatedProduct = $detail->products('power','desc')->paginate(15);
+            $filterList= $detail->filterAttr($request);
+            //dd($filterList);
+            // $detail->id;
+           // DB::connection()->enableQueryLog();
+
+            $relatedProduct = $detail->products('power','desc',$request)->paginate(15);
+           // $queries = DB::getQueryLog();
+           // dd($queries);
             // dd($detail->products()->orderBy('power','asc'));
         }
 
@@ -71,6 +76,7 @@ class CmsController extends Controller
             ->get();
 
         $relatedCompany = $detail->companiesCategory()->paginate(20,['*'],'companyPage');
+
 
         $template = env('TEMPLATE_NAME') . '.cms.DetailCategory';
         //Widget
@@ -93,13 +99,14 @@ class CmsController extends Controller
             'subCategory' => $subCategory,
             'images' => $images,
             'seo' => $seo,
-            'editorModule' => $editorModule
+            'editorModule' => $editorModule,
+            'filterList' => $filterList
         ]);
     }
 
-    public function request($slug)
+    public function request(Request $request,$slug)
     {
-
+        $request=$request->all();
         // redirect url
         $spesifiedUrl = RedirectUrl::where('url', 'like', '/' . $slug);
         if ($spesifiedUrl->exists()) {
@@ -166,7 +173,7 @@ class CmsController extends Controller
 
         if ($detail->type == 1) {
 
-            return $this->showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule);
+            return $this->showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule,$request);
             /*
             $relatedPost = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'article')

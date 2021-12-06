@@ -488,6 +488,39 @@ function idToSlug($id)
     return '';
 }
 
+function filterUrl($filterItem,$filterOption)
+{
+    $url=url()->full();
+    $url = urldecode($url);
+
+    if(count($_GET))
+    {
+        /*foreach ($_GET as $key =>$val)
+        {
+             $val;
+        }*/
+        $url=$url.'&';
+    }else{
+        $url=$url.'?';
+    }
+    return $url."attribute[".$filterItem['content_attribute_id']."][".$filterOption['value']."]=".$filterOption['value'];
+
+}
+function addFilterUrlGenerator($data,$attrId,$valueId){
+    $url=url()->current().'?';
+
+    $data['attribute'][$attrId][$valueId]=$valueId;
+    return urldecode($url.http_build_query($data));
+}
+function removeFilterUrlGenerator($data,$attrId,$valueId){
+
+    unset($data['attribute'][$attrId][$valueId]);
+    //dd($data);
+    $url=url()->current().'?';
+
+    return urldecode($url.http_build_query($data));
+}
+
 
 function idToMenuLabel($id)
 {

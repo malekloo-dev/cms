@@ -105,6 +105,7 @@
             @endif
         </div>
     </section>
+    @include(@env('TEMPLATE_NAME').'.cms.filter')
 
 
     @if (count($relatedProduct) == 0 and count($subCategory))

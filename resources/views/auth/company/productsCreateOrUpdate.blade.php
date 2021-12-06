@@ -264,7 +264,7 @@
                             value="{{ old('attr[price]', $post->attr['price']??'') }}" />
                     </div>
                 </div>
-
+                @include('admin.attribute.CreateOrEdit')
                 <div class="form-group row">
                     <div class="col-md-12">
                         <label for="offer_price" class=" col-form-label text-md-left">@lang('messages.discount')
