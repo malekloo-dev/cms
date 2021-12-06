@@ -32,6 +32,13 @@
                 <span class="sidebar-text @if (!$ltr) text-right @endif">@lang('messages.category')</span>
             </a>
         </li>
+
+        <li class="no-margin">
+            <a href="{{ route('category.index') }}" class="no-margin @if (!$ltr) text-right @endif">
+                <i class="sidebar-icon @if (!$ltr) pull-right @endif fa fa-bars"></i>
+                <span class="sidebar-text @if (!$ltr) text-right @endif">@lang('messages.attribute')</span>
+            </a>
+        </li>
         <li class="divider"></li>
 
 

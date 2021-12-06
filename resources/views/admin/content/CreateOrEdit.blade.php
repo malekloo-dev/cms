@@ -317,7 +317,7 @@
 
 
 
-                <div style="background: #ccc; padding:1em" class="form-group row">
+                <div style="background: #ddd; padding:1em;border-radius:5px;" class="form-group row">
                     <div class="col-md-12">
                         <label for="meta_title">@lang('messages.gallery')</label>
 
@@ -339,6 +339,12 @@
 
                     </div>
                 </div>
+
+
+                <div class="row" style="background: #ddd; border-radius:5px; padding:1em; margin-bottom:1em; display:block">
+                    @include('admin.attribute.CreateOrEdit')
+                </div>
+
 
                 <div class="form-group row">
                     <div class="col-md-6 col-6">
@@ -364,38 +370,33 @@
 
                 </div>
 
-                @include('admin.attribute.CreateOrEdit')
+
 
                 @if ($attr_type == 'product')
 
                     <div class="form-group row">
-                        <div class="col-md-12">
-                            <label for="brand" class=" col-form-label text-md-left">@lang('messages.brand'):</label>
-                            <input type="text" class="form-control" name="attr[brand]"
-                                value="{{ old('attr[brand]', $content_info->attr['brand'] ?? '') }}" />
-                        </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            <label for="price" class=" col-form-label text-md-left">@lang('messages.price'):</label>
+                        <div class="col-6 col-md-6">
+                            <label for="price" class=" col-form-label text-md-left">@lang('messages.price'):@lang('messages.toman')</label>
                             <input type="text" class="form-control" name="attr[price]"
                                 value="{{ old('attr[price]', $content_info->attr['price'] ?? '') }}" />
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            <label for="offer_price" class=" col-form-label text-md-left">@lang('messages.discount')
-                                :</label>
+                        <div class="col-6 col-md-6">
+                            <label for="offer_price" class=" col-form-label text-md-left">@lang('messages.discount'):</label>
 
                             <input type="text" class="form-control" name="attr[offer_price]"
                                 value="{{ old('attr[offer_price]', $content_info->attr['offer_price'] ?? '') }}" />
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-12">
+                        <div class="col-6 col-md-6">
+                            <label for="brand" class=" col-form-label text-md-left">@lang('messages.brand'):</label>
+                            <input type="text" class="form-control" name="attr[brand]"
+                                value="{{ old('attr[brand]', $content_info->attr['brand'] ?? '') }}" />
+                        </div>
+
+
+                        <div class="col-6 col-md-6 ">
                             <label for="alternate_name" class=" col-form-label text-md-left">@lang('messages.alternative')
                                 @lang('messages.name')
                                 :</label>

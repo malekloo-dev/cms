@@ -166,4 +166,5 @@ return [
     'watermark placeholder' => 'در صورت پر کردن فیلد روی تصویر نوشته می شود',
     'watermark' => 'کپی رایت',
     'job' => 'زمینه فعالیت',
+    'attribute' => 'ویژگی ها',
 ];

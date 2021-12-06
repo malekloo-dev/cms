@@ -152,7 +152,9 @@
 
 
                     @if (count($subCategory))
-                        <section class="category-list m-0 p-0 mt-1" id="index-best-view">
+
+                    <section class="category-list m-0 p-0 mt-1" id="index-best-view">
+                            دسته بندی
                             <div class="flex two three-500 one-800 mobile-horizantal">
 
                                         @foreach ($subCategory as $content)

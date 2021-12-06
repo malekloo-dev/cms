@@ -7,7 +7,7 @@ if(isset($field->value))
     }
 ?>
 <label for="attr_{{ $field->id }}_{{ $field->field_name }}" class=" col-form-label">{{ $field->label }}:</label>
-<select name="attr_{{ $field->id }}_{{ $field->field_name }}" id="attr_{{ $field->id }}_{{ $field->field_name }}">
+<select class="form-control" name="attr_{{ $field->id }}_{{ $field->field_name }}" id="attr_{{ $field->id }}_{{ $field->field_name }}">
 @foreach ($field->ComboFields as $option)
     <option value="{{ $option->value }}"
         {{ ($option->value ?? '') == $val? 'selected' : '' }}>
