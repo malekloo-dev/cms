@@ -20,4 +20,12 @@ class ContentType extends Model
     }
 
 
+    public function attributes()
+    {
+        return $this->belongsToMany(ContentAttribute::class,'content_attribute_content_type','content_type_id','content_attribute_id');
+    }
+
+
+
+
 }
