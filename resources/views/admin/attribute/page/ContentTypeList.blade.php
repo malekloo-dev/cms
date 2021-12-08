@@ -10,7 +10,7 @@
 
     <div class="content-body">
         <div class="panel panel-default pos-abs chat-panel bottom-0">
-            <div class="panel-body full-height">
+            <div class="panel-body ">
 
                 {{--  --}}
                 {{-- content type --}}
@@ -304,6 +304,7 @@
                             <th>field_name</th>
                             <th>ویژگی</th>
                             <th>element_type</th>
+                            <th></th>
                             <th>element_input_type</th>
                             <th>required</th>
                             <th>filter</th>
@@ -315,8 +316,68 @@
                             <tr>
                                 <td>{{ $content->id }}</td>
                                 <td>{{ $content->field_name }}</td>
-                                <td>{!! $content->label !!}</td>
+                                <td>{{ $content->label }}</td>
                                 <td>{{ $content->element_type }}</td>
+                                <td>
+                                    @if ($content->element_type == 'combo')
+                                        @foreach ($content->ComboFields as $item)
+                                            <div
+                                                style="border:1px solid #999; padding:0; margin-left:1px;display:inline-block;border-radius:3px;color:black">
+                                                {{ $item->value }}-{{ $item->name }}
+                                                <form action="" style="display: inline-block">
+                                                    @csrf
+                                                    <button
+                                                        style="border: 0; background:red;color:white;margin:0;">X</button>
+                                                </form>
+                                            </div>
+                                        @endforeach
+                                        @if ($content->ComboFields->count() == 0)
+                                            <span><i title="می بایست مقادیر combo  انتخاب شود" style="color:red"
+                                                    class="fa fa-warning"></i></span>
+                                        @endif
+                                        {{--  --}}
+                                        {{-- combo --}}
+                                        {{--  --}}
+                                        <a class="mat-button"
+                                            style="border: 1px solid green; border-radius:3px;padding:0" href="#"
+                                            data-toggle="modal" data-target="#addCombo{{ $content->id }}">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="addCombo{{ $content->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">ویژگی
+                                                            {{ $content->label }}</h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form id="addCombo-form{{ $content->id }}"
+                                                            action="{{ route('admin.attribute.combo.add', $content) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <input type="hidden" name="contentTypeId"
+                                                                value="{{ $content->id }}">
+                                                            <div>
+                                                                <label for="">آیتم</label>
+                                                                <input type="text" class="form-control" name="name"
+                                                                    value="{{ $content->name }}">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">انصراف</button>
+                                                        <button type="submit" form="addCombo-form{{ $content->id }}"
+                                                            class="btn btn-primary">ذخیره</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    @endif
+                                </td>
                                 <td>{{ $content->element_input_type }}</td>
                                 <td>{{ $content->required }}</td>
                                 <td>{{ $content->filter }}</td>

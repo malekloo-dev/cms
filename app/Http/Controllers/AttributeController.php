@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Content;
 use App\Models\ContentAttribute;
+use App\Models\ContentAttributeCombo;
 use App\Models\ContentAttributeContentType;
 use App\Models\ContentType;
 use App\Services\attribute\Attribute;
@@ -23,7 +24,7 @@ class AttributeController extends Controller
         $contents = Content::all();
 
 
-        return view('admin.attribute.page.ContentTypeList', compact('contentType', 'attributes','contents'));
+        return view('admin.attribute.page.ContentTypeList', compact('contentType', 'attributes', 'contents'));
     }
 
     /*
@@ -94,20 +95,34 @@ class AttributeController extends Controller
     /*
     detach attribute
     */
-    public function contentTypeDeleteAttribute(ContentType $contentType,$attributeId)
+    public function contentTypeDeleteAttribute(ContentType $contentType, $attributeId)
     {
         $contentType->attributes()->detach($attributeId);
 
         return redirect()->back()->with('success', 'Detached');
     }
 
+    /*
+    add combo to attribute
+    */
+    public function attributeAddCombo(Request $request, ContentAttribute $attribute)
+    {
+
+
+        ContentAttributeCombo::firstOrCreate([
+            'content_attribute_id' => $attribute->id,
+            'name' => $request->name,
+            'value' => (int) ContentAttributeCombo::where('content_attribute_id', '=', $attribute->id)->max('value') + 1 ?? 1
+        ]);
+
+        return redirect()->back()->with('success','Add combo');
+    }
 
 
     /*
     sync attribute by contents
     */
-    public function contentTypeAddToContents(Request $request ,ContentType $contentType)
+    public function contentTypeAddToContents(Request $request, ContentType $contentType)
     {
-
     }
 }

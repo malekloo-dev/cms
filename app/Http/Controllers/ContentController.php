@@ -325,8 +325,9 @@ class ContentController extends Controller
         //$attribute = Attribute::getFormFieldsByContentTypeId($request->attr);
 
         $attribute=Attribute::getFormValue($content->id);
+        // dd($attribute);
         if($attribute == null){
-            dd($content->parent_id);
+            // dd($content->parent_id);
             $attribute=Attribute::getFormValue($content->parent_id);
 
         }
