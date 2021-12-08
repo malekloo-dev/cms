@@ -27,9 +27,9 @@
 
             });
 
-            @isset($content_info)
+            @isset($content)
                 @php
-                $categoryImplode = "'" . implode("','", $content_info->categories->pluck('id')->toArray()) . "'";
+                $categoryImplode = "'" . implode("','", $content->categories->pluck('id')->toArray()) . "'";
 
                 @endphp
             @endisset
@@ -140,11 +140,11 @@
                     $template = Request()->get('template');
                 }
 
-                if (isset($content_info->attr_type)) {
-                    $attr_type = $content_info->attr_type;
+                if (isset($content->attr_type)) {
+                    $attr_type = $content->attr_type;
                 }
-                if (isset($content_info->attr['template_name'])) {
-                    $template = $content_info->attr['template_name'];
+                if (isset($content->attr['template_name'])) {
+                    $template = $content->attr['template_name'];
                 }
 
             @endphp
@@ -155,7 +155,7 @@
                 @if (Request()->is('*create*'))
                     @lang('messages.add')
                 @else
-                    @lang('messages.edit') {{ old('title', $content_info->title) }}
+                    @lang('messages.edit') {{ old('title', $content->title) }}
 
                 @endif
 
@@ -179,7 +179,7 @@
                         enctype="multipart/form-data">
                     @else
                         <form method="post"
-                            action="   {{ route('contents.update', ['attr_type' => $attr_type, 'content' => $content_info->id, 'page' => app('request')->input('page'), 'qtitle' => app('request')->qtitle, 'qslug' => app('request')->qslug]) }}"
+                            action="   {{ route('contents.update', ['attr_type' => $attr_type, 'content' => $content->id, 'page' => app('request')->input('page'), 'qtitle' => app('request')->qtitle, 'qslug' => app('request')->qslug]) }}"
                             enctype="multipart/form-data">
                             @method('PATCH')
                 @endif
@@ -192,19 +192,19 @@
                     <div class="col-5 col-md-5 col-xs-12">
                         <label for="title" class=" col-form-label text-md-left">@lang('messages.title'):</label>
                         <input type="text" class="form-control" name="title"
-                            value="{{ old('title', $content_info->title ?? '') }}" />
+                            value="{{ old('title', $content->title ?? '') }}" />
                         <span class="text-danger">{{ $errors->first('title') }}</span>
                     </div>
                     <div class="col-5 col-md-5  col-xs-12">
                         <label for="slug" class=" col-form-label text-md-left">@lang('messages.url') :</label>
                         <input type="text" class="form-control" name="slug"
-                            value="{{ old('slug', $content_info->slug ?? '') }}" placeholder="@lang('messages.if slug empty')" />
+                            value="{{ old('slug', $content->slug ?? '') }}" placeholder="@lang('messages.if slug empty')" />
                         <span class="text-danger">{{ $errors->first('slug') }}</span>
                     </div>
                     <div class="col-2 col-md-2 col-xs-12">
                         <label for="name">@lang('messages.publish date') :</label>
                         <input type="{{ $ltr ? 'date' : '' }}" class="form-control @if (!$ltr) datepicker @endif" name="publish_date"
-                            value="{{ old('publish_date', $content_info->publish_date ?? '') }}" />
+                            value="{{ old('publish_date', $content->publish_date ?? '') }}" />
                     </div>
                 </div>
                 @if (isset($template) && $template != '')
@@ -215,7 +215,7 @@
                                 @lang('messages.name')
                                 :</label>
                             <input type="text" class="form-control" name="attr[template_name]"
-                                value="{{ old('attr[template_name]', $content_info->attr['template_name'] ?? '') }}" />
+                                value="{{ old('attr[template_name]', $content->attr['template_name'] ?? '') }}" />
 
                         </div>
                     </div>
@@ -226,7 +226,7 @@
                         <label for="name" class=" col-form-label text-md-left">@lang('messages.brief'):</label>
 
                         <textarea class="form-control" id="brief_description" name="brief_description" rows="10"
-                            placeholder="Enter your Content">{{ old('brief_description', $content_info->brief_description ?? '') }}</textarea>
+                            placeholder="Enter your Content">{{ old('brief_description', $content->brief_description ?? '') }}</textarea>
                         <div id="word-count1"></div>
                         <span class="text-danger">{{ $errors->first('brief_description') }}</span>
                     </div>
@@ -264,7 +264,7 @@
 
                         <div id="parent_id_val" class="parent_id_val"></div>
                         <select id="parent_id_hide" name="parent_id_hide">
-                            <option value="{!! $content_info->parent_id ?? '' !!}"></option>
+                            <option value="{!! $content->parent_id ?? '' !!}"></option>
                         </select>
 
                     </div>
@@ -299,8 +299,8 @@
 
                 <div class="form-group row ">
                     <div class="col-sm-12" style="display: flex">
-                        @if (is_array($content_info->images ?? ''))
-                            @foreach ($content_info->images['images'] as $key => $image)
+                        @if (is_array($content->images ?? ''))
+                            @foreach ($content->images['images'] as $key => $image)
                                 <div class="col-sm-2">
                                     <label class="control-label">
                                         {{ $key }}
@@ -322,7 +322,7 @@
                         <label for="meta_title">@lang('messages.gallery')</label>
 
                         <div class="gallery">
-                            @foreach ($content_info->gallery ?? [] as $item)
+                            @foreach ($content->gallery ?? [] as $item)
                             <div>
                                 <img src="{{ $item->images['images']['small'] }}" data-id="{{ $item->id }}" height="100" alt="">
                             </div>
@@ -350,13 +350,13 @@
                     <div class="col-md-6 col-6">
                         <label for="meta_title">Meta Title</label>
                         <input type="text" class="form-control" name="meta_title"
-                            value="{{ old('meta_title', $content_info->meta_title ?? '') }}" />
+                            value="{{ old('meta_title', $content->meta_title ?? '') }}" />
                         <span class="text-danger">{{ $errors->first('meta_title') }}</span>
                     </div>
                     <div class="col-md-6 col-6">
                         <label for="name" class=" text-md-left">meta keywords</label>
                         <input id="meta_keywords" type="text" name="meta_keywords"
-                            value="{{ old('meta_keywords', $content_info->meta_keywords ?? '') }}" />
+                            value="{{ old('meta_keywords', $content->meta_keywords ?? '') }}" />
                     </div>
                 </div>
 
@@ -365,7 +365,7 @@
                         <label for="meta_description" class=" col-form-label text-md-left">meta
                             Description:</label>
                         <textarea class="form-control" id="meta_description"
-                            name="meta_description">{{ old('meta_description', $content_info->meta_description ?? '') }}</textarea>
+                            name="meta_description">{{ old('meta_description', $content->meta_description ?? '') }}</textarea>
                     </div>
 
                 </div>
@@ -379,20 +379,20 @@
                         <div class="col-6 col-md-6">
                             <label for="price" class=" col-form-label text-md-left">@lang('messages.price'):@lang('messages.toman')</label>
                             <input type="text" class="form-control" name="attr[price]"
-                                value="{{ old('attr[price]', $content_info->attr['price'] ?? '') }}" />
+                                value="{{ old('attr[price]', $content->attr['price'] ?? '') }}" />
                         </div>
 
                         <div class="col-6 col-md-6">
                             <label for="offer_price" class=" col-form-label text-md-left">@lang('messages.discount'):</label>
 
                             <input type="text" class="form-control" name="attr[offer_price]"
-                                value="{{ old('attr[offer_price]', $content_info->attr['offer_price'] ?? '') }}" />
+                                value="{{ old('attr[offer_price]', $content->attr['offer_price'] ?? '') }}" />
                         </div>
 
                         <div class="col-6 col-md-6">
                             <label for="brand" class=" col-form-label text-md-left">@lang('messages.brand'):</label>
                             <input type="text" class="form-control" name="attr[brand]"
-                                value="{{ old('attr[brand]', $content_info->attr['brand'] ?? '') }}" />
+                                value="{{ old('attr[brand]', $content->attr['brand'] ?? '') }}" />
                         </div>
 
 
@@ -402,7 +402,7 @@
                                 :</label>
 
                             <input type="text" class="form-control" name="attr[alternate_name]"
-                                value="{{ old('attr[alternate_name]', $content_info->attr['alternate_name'] ?? '') }}" />
+                                value="{{ old('attr[alternate_name]', $content->attr['alternate_name'] ?? '') }}" />
                         </div>
                     </div>
 
@@ -412,15 +412,15 @@
                         <label for="rate" class="col-form-label text-md-left">@lang('messages.rate'):</label>
 
                         <input type="text" class="form-control" name="attr[rate]"
-                            value="{{ old('attr[rate]', $content_info->attr['rate'] ?? '') }}" />
+                            value="{{ old('attr[rate]', $content->attr['rate'] ?? '') }}" />
                     </div>
                     <div class="col-md-4">
                         <label for="name" class="col-form-label text-md-left">@lang('messages.status'):</label>
 
                         <select class="form-control" name="status">
-                            <option value="1" {{ ($content_info->status ?? '1') == '1' ? 'selected' : '' }}>
+                            <option value="1" {{ ($content->status ?? '1') == '1' ? 'selected' : '' }}>
                                 @lang('messages.Active')</option>
-                            <option value="0" {{ ($content_info->status ?? '') == '0' ? 'selected' : '' }}>
+                            <option value="0" {{ ($content->status ?? '') == '0' ? 'selected' : '' }}>
                                 @lang('messages.Disactive')</option>
                         </select>
                     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\Content;
 use App\Models\CompanyContents;
+use App\Models\ContentType;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Services\attribute\Attribute;
@@ -74,9 +75,10 @@ class CompanyController extends Controller
     {
         $user = Auth::user();
 
+        $attributes = ContentType::all();
         // dd($user->company);
 
-        return view('auth.company.products', compact('user'));
+        return view('auth.company.products', compact('user','attributes'));
     }
 
     public function productsCreate(Request $request)

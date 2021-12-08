@@ -1,14 +1,14 @@
 <label for="jpeg">
     jpeg
     <input type="radio" checked id="jpeg" name="imageJson"
-        value="{{ old('imageJson', $content_info->imageJson ?? ($company->imageJson ?? '')) }}">
+        value="{{ old('imageJson', $content->imageJson ?? ($company->imageJson ?? '')) }}">
     <img height="" src="{{ $cropperPreview ?? '' }}" id="cropperPreview">
 </label>
 
 <label for="png">
     png
     <input type="radio" id="png" name="imageJson"
-        value="{{ old('imageJson', $content_info->imageJson ?? ($company->imageJson ?? '')) }}">
+        value="{{ old('imageJson', $content->imageJson ?? ($company->imageJson ?? '')) }}">
     <img height="" src="{{ $cropperPreview ?? '' }}" id="cropperPreviewPng">
 </label>
 
@@ -37,8 +37,8 @@
 
     .preview {
         overflow: hidden;
-        width: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_W') }}px;
-        height: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_H') }}px;
+        width: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_LARGE_W') }}px;
+        height: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_LARGE_H') }}px;
         margin: 10px;
         border: 1px solid red;
     }
@@ -158,8 +158,8 @@
         cropper = new Cropper(image, {
             //   aspectRatio: 1,
             //   viewMode: 3,
-            aspectRatio: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_SMALL_W') }} /
-                {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_SMALL_H') }},
+            aspectRatio: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_SMALL_W') }} /
+                {{ env(Str::upper($content->attr_type ?? $attr_type) . '_SMALL_H') }},
             viewMode: 0,
             preview: '.preview'
         });
@@ -174,15 +174,15 @@
 
         canvas = cropper.getCroppedCanvas({
             fillColor: '#ffffff',
-            width: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_W') }},
-            height: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_H') }},
+            width: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_LARGE_W') }},
+            height: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_LARGE_H') }},
             imageSmoothingEnabled: true,
             imageSmoothingQuality: 'high',
         });
         canvasPng = cropper.getCroppedCanvas({
             // fillColor: '#ffffff',
-            width: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_W') }},
-            height: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_H') }},
+            width: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_LARGE_W') }},
+            height: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_LARGE_H') }},
             imageSmoothingEnabled: true,
             imageSmoothingQuality: 'high',
         });

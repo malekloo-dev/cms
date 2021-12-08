@@ -72,17 +72,17 @@
 
 
 
-                        <li class="parent">
-                            <a href="">خانه</a>
+                        <li class="">
+                            <a href="{{ url('/') }}">خانه</a>
                         </li>
 
-                        <li class="parent">
-                            <a href="">درباره ما</a>
+                        <li class="">
+                            <a href="{{ url('درباره-ما') }}">درباره ما</a>
                         </li>
 
 
-                        <li class="parent">
-                            <a href="">تماس با ما</a>
+                        <li class="">
+                            <a href="{{ url('تماس-با-ما') }}">تماس با ما</a>
                         </li>
 
 
@@ -189,7 +189,7 @@
                                     <a href="/درب-لابی-یک-لنگه" class="menu-link menu-list-link">درب لابی یک لنگه</a>
                                 </li>
                                 <li>
-                                    <a href="/درب-لابی-دولنگه" class="menu-link menu-list-link">درب لابی دولنگه</a>
+                                    <a href="/درب-لابی-دو-لنگه" class="menu-link menu-list-link">درب لابی دو لنگه</a>
                                 </li>
                                 <li>
                                     <a href="/درب-لابی-شیشه-خور" class="menu-link menu-list-link">درب لابی شیشه خور</a>

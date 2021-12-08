@@ -24,7 +24,6 @@
         <i class="fa fa-clock-o font-full-em-2 text-light-gray" data-toggle="tooltip" @if(!$ltr) data-placement='right' @else data-placement='left' @endif'   title="{{ convertGToJ('now') }}"></i>
 
 
-
     </div><!-- header-profile -->
 
     <!-- header brand -->

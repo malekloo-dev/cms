@@ -50,10 +50,9 @@
 
     </script>
     @auth
-
-    @if ((Auth::user()->id) == 1)
-    <div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/contents/'.$detail->id.'/edit/') }}')">ویرایش</div>
-    @endif
+        @if ((Auth::user()->id) == 1)
+            <div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/contents/'.$detail->id.'/edit/') }}')">ویرایش</div>
+        @endif
     @endauth
 
 @endsection

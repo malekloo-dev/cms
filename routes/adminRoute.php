@@ -11,7 +11,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\WebsiteSettingController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('/admin')->group(function () {
+Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(function () {
 
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::get('contents/{type}', [ContentController::class, 'index'])->name('contents.type.show');

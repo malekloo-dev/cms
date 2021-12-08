@@ -316,27 +316,23 @@ class ContentController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Content $content)
     {
 
-        $where = array('id' => $id);
-        $content_info = Content::where($where)->first();
 
         $result = app('App\Http\Controllers\CategoryController')->tree_set();
         $category = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
         //$attribute = Attribute::getFormFieldsByContentTypeId($request->attr);
 
-        $attribute=Attribute::getFormValue($id);
-        //dd($attribute);
+        $attribute=Attribute::getFormValue($content->id);
+        if($attribute == null){
 
-        $template = 'admin.content.CreateOrEdit';
+            $attribute=Attribute::getFormValue($content->parent_id);
 
-        /*if($content_info->attr_type=='html')
-        {
-            $template='admin.content.EditHtml';
-        }*/
+        }
 
-        return view($template, compact(['content_info', 'category','attribute']));
+
+        return view('admin.content.CreateOrEdit', compact(['content', 'category','attribute']));
     }
 
     /**

@@ -139,8 +139,8 @@
     $galleryModal.on('shown.bs.modal', function() {
 
         galleryCropper = new Cropper(galleryImage, {
-            aspectRatio: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_SMALL_W') }} /
-                {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_SMALL_H') }},
+            aspectRatio: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_SMALL_W') }} /
+                {{ env(Str::upper($content->attr_type ?? $attr_type) . '_SMALL_H') }},
             viewMode: 0
         });
     }).on('hidden.bs.modal', function() {
@@ -154,8 +154,8 @@
 
         canvas = galleryCropper.getCroppedCanvas({
             fillColor: '#ffffff',
-            width: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_W') }},
-            height: {{ env(Str::upper($content_info->attr_type ?? $attr_type) . '_LARGE_H') }},
+            width: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_LARGE_W') }},
+            height: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_LARGE_H') }},
             imageSmoothingEnabled: true,
             imageSmoothingQuality: 'high',
         });
