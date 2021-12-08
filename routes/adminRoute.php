@@ -72,8 +72,24 @@ Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(functio
     Route::delete('company/{company}', [CompanyController::class, 'companyDestroy'])->name('admin.company.destroy');
 
 
+    /* content type */
+    Route::get('contentType',[AttributeController::class,'contentTypeList'])->name('admin.content.type.index');
+    Route::post('contentType/create',[AttributeController::class,'contentTypeStore'])->name('admin.content.type.store');
+    Route::patch('contentType/edit/{contentType}',[AttributeController::class,'contentTypeUpdate'])->name('admin.content.type.update');
+    Route::delete('contentType/{contentType}', [AttributeController::class, 'contentTypeDestroy'])->name('admin.content.type.destroy');
 
-    Route::get('attribute',[AttributeController::class,'contentTypeList'])->name('admin.content.type.index');
-    Route::get('attribute/{contentType}',[AttributeController::class,'contentTypeShow'])->name('admin.content.type.show');
+    /* content type attribute */
+    Route::get('contentType/{contentType}',[AttributeController::class,'contentTypeShow'])->name('admin.content.type.show');
+    Route::post('contentType/{contentType}/attribute/add',[AttributeController::class,'contentTypeAddAttribute'])->name('admin.content.type.add.attribute');
+    Route::delete('contentType/{contentType}/attribute/{attribute}',[AttributeController::class,'contentTypedeleteAttribute'])->name('admin.content.type.delete.attribute');
+
+    /* attribute */
+    Route::post('attribute/create',[AttributeController::class,'attributeStore'])->name('admin.attribute.store');
+    Route::patch('attribute/edit/{attribute}',[AttributeController::class,'attributeUpdate'])->name('admin.attribute.update');
+    Route::delete('attribute/{attribute}',[AttributeController::class,'attributeUpdate'])->name('admin.attribute.update');
+
+    /* content typ asign to contents */
+    Route::post('contentType/{contentType}/contents/add',[AttributeController::class,'contentTypeAddToContents'])->name('admin.content.type.add.contents');
+
 });
 Route::get('admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login.form');
