@@ -1,7 +1,6 @@
 <?php
 $val='';
-//dd($contentType);
-if(isset($field->value->value)){
+if (!Request()->is('*create*')){
     $val=$field->value->value;
 }
 ?>
