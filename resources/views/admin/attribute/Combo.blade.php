@@ -1,7 +1,8 @@
 <?php
-$val = '';
-if (isset($field->value)) {
-    $val = $field->value->value;
+$val='';
+//var_dump($field->checkValueRelation());
+if (!Request()->is('*create*')){
+    $val=$field->value->value;
 }
 ?>
 <label for="attr_{{ $field->id }}_{{ $field->field_name }}" class=" col-form-label">{{ $field->label }}:</label>
@@ -14,4 +15,5 @@ if (isset($field->value)) {
             {{ $option->name }}</option>
     @endforeach
 </select>
+
 

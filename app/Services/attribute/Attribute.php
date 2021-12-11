@@ -20,8 +20,12 @@ class Attribute
      */
     public static function getFormFieldsByContentTypeId($contentTypeId)
     {
-
-        return ContentType::find($contentTypeId)->load('contentAattributeFields');
+        $content = ContentType::find($contentTypeId);
+        $content->load('contentAattributeFields');
+        /*$content->contentAattributeFields->load(['value' => function ($query) {
+                $query->where('content_id', '=', 0);
+            }]);*/
+        return $content;
     }
 
     public static function getFormValue($contentId)
