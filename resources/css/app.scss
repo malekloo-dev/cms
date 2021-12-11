@@ -3225,6 +3225,10 @@ section.extra-link {
         color: #333;
         font-weight: bold;
     }
+    .filter-items-list{
+        max-height: 150px;
+        overflow-y: auto;
+    }
 }
 
 @media (max-width: 960px) {

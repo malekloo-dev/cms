@@ -1,10 +1,13 @@
+@use 'sass:math';
+
+
 $color-accent: #444;
 $color-light: #ffffff;
 $color-dark: #2a2a2a;
 $color-gray: #ccc;
 $menu-link-padding: 20px 25px;
 $breakpoint: 950px;
-$mega-menu-multiLevel-colWidth: 100/3 + 0%;
+$mega-menu-multiLevel-colWidth: math.div(100,3)  + 0%;
 $mobile-menu-back-height: calc(1.9em + 40px);
 $mobile-menu-back-offset: calc(0px - (1.9em + 40px));
 $menu-mobile-width: 350px;

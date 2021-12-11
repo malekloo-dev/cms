@@ -202,9 +202,12 @@ class ContentController extends Controller
         $data['category'] = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
         $data['attr_type'] = $type;
         $data['attrId'] = $request->attr;
+
         if(isset($request->attr)){
             $data['attribute'] = Attribute::getFormFieldsByContentTypeId($request->attr);
         }
+
+        $data['attributes'] = ContentType::all();
 
         /*if($request->type=='html')
         {
@@ -212,6 +215,8 @@ class ContentController extends Controller
 
         }else
         {*/
+
+            // dd($data['attribute']->contentAattributeFields);
         return view('admin.content.CreateOrEdit', $data);
 
         //}

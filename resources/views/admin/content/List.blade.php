@@ -15,13 +15,19 @@
 
         @endisset
 
-        <form action="{{ route('contents.type.show', ['type' => $type]) }}" method="get">
+        <form  style="margin-bottom:1em; display:inline-flex;flex-wrap:wrap " action="{{ route('contents.type.show', ['type' => $type]) }}" method="get">
 
-            <label for="qtitle"> @lang('messages.title')</label>
-            <input id="qtitle" name="qtitle" value="{{ old('qtitle', app('request')->qtitle) }}" type="text">
+            <div>
 
-            <label for="qslug"> @lang('messages.url')</label>
-            <input id="qslug" name="qslug" dir="ltr" value="{{ old('qslug', app('request')->qslug) }}" type="text">
+                <label for="qtitle"> @lang('messages.title')</label>
+                <input id="qtitle" name="qtitle" value="{{ old('qtitle', app('request')->qtitle) }}" type="text">
+            </div>
+
+            <div>
+
+                <label for="qslug"> @lang('messages.url')</label>
+                <input id="qslug" name="qslug" dir="ltr" value="{{ old('qslug', app('request')->qslug) }}" type="text">
+            </div>
             <button>فیلتر</button>
         </form>
 
@@ -59,7 +65,7 @@
                                     @endforeach
 
                                 </select>
-                                <br>    
+                                <br>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
                                 <button type="submit" class="btn btn-primary">انتقال به فرم افزودن </button>
                             </form>
@@ -73,7 +79,7 @@
 
     <div class="content-body">
         <div class="panel panel-default pos-abs chat-panel bottom-0">
-            <div class="panel-body ">
+            <div class="panel-body "style="overflow: auto; ">
                 @if (\Session::has('success'))
                     <div class="alert alert-success">
                         <ul>
@@ -89,7 +95,7 @@
                         </ul>
                     </div>
                 @endif
-                <table class="table table-striped">
+                <table class="table table-striped " >
                     <thead>
                         <tr>
                             <th></th>

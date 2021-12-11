@@ -4,11 +4,8 @@
         <?php
         // echo ($field->field_name);
         ?>
-        {{-- <div class="form-group row"> --}}
         <div class="col-6 col-md-6">
             @include('admin.attribute.'.ucfirst($field->element_type))
         </div>
-
-        {{-- </div> --}}
     @endforeach
 @endif

@@ -198,10 +198,10 @@
                             {{ $item->label }}
                         </div>
                         <div>
-                            @if ($item->type=='combo')
+                            @if ($item->type=='combo' && $item->json != '')
                                 @php
                                     $json= collect(json_decode($item->json))->where('value','=',$item->value)->first();
-                                    echo $json->name
+                                    echo $json->name ?? ''
                                 @endphp
                             @else
                                 {{ $item->value }}

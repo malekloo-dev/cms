@@ -3,6 +3,7 @@
     <script>
         $(document).ready(function() {
 
+            $('.selcet2').select2();
 
             var $input = $("#parent_id");
             var $parent_id_hide = $("#parent_id_hide");

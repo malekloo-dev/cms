@@ -18,6 +18,8 @@
         @foreach ($filterList['filter'] as $key => $filterItem)
             <div class="toc1 shadow mt-1 ">
                 <a class="filter-header border-radius-15" href="#{{ $filterItem['label'] }}">{{ $filterItem['label'] }}</a>
+                <div class="filter-items-list">
+
                 @foreach ($filterItem->filterItemDetails as $key2 => $filterOption)
                     <div class="toc1">
                         @if ($filterOption['check'] == 'checked')
@@ -29,6 +31,7 @@
                     </div>
                 @endforeach
             </div>
+        </div>
         @endforeach
     </div>
 @endif

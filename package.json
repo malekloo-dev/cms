@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.4",
+        "fortawesome": "^0.0.1-security",
         "laravel-file-manager": "^2.5.3"
     }
 }

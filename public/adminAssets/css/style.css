@@ -357,7 +357,7 @@ label{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-s
 .sidebar-child li a:hover,.sidebar-child li.active a,.sidebar-child li.active a:hover{background:rgba(0,0,0,.04)!important;color:#ff5722}
 .sidebar li.divider{background-color:#555;height:1px;width:100%}
 .content{position:relative;display:block;margin-right:200px;padding-bottom:0;height:100%;-webkit-transition:all .3s ease;-moz-transition:all .3s ease;-ms-transition:all .3s ease;-o-transition:all .3s ease;transition:all .3s ease}
-.content-control{position:relative;height:50px;padding:0 15px;display:flex;align-items:center;justify-content:space-between}
+.content-control{position:relative;padding:0 15px;display:flex;flex-wrap:wrap; align-items:center;justify-content:space-between}
 .content-control,.content-control>.control-nav,.content-control>.control-nav>li,.online-offline-container li{margin:0;padding:0;list-style:none}
 .content-control>.control-nav>li{position:relative;margin:0;padding:0 10px;float:left;line-height:40px}
 .content-control>.control-nav>li.active{background-color:#fff}
