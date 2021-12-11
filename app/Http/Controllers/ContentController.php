@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Content;
+use App\Models\ContentAttributeValue;
 use App\Models\ContentType;
 use App\Models\export;
 use App\Models\Gallery;
@@ -316,7 +317,7 @@ class ContentController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Content $content)
+    public function edit(Request $request, content $content)
     {
 
 
@@ -324,16 +325,27 @@ class ContentController extends Controller
         $category = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
         //$attribute = Attribute::getFormFieldsByContentTypeId($request->attr);
 
-        $attribute=Attribute::getFormValue($content->id);
-        // dd($attribute);
-        if($attribute == null){
-            // dd($content->parent_id);
-            $attribute=Attribute::getFormValue($content->parent_id);
 
+        if(isset($request->attr)){
+            $attribute = Attribute::getFormFieldsByContentTypeId($request->attr);
+        }else{
+            $attribute=Attribute::getFormValue($content->id);
         }
 
+        $attributes = ContentType::all();
 
-        return view('admin.content.CreateOrEdit', compact(['content', 'category','attribute']));
+        // $content->contentType = ContentAttributeValue::;
+
+        // dd($content);
+        // dd($attribute);
+        // if($attribute == null){
+        //     // dd($content->parent_id);
+        //     $attribute=Attribute::getFormValue($content->parent_id);
+
+        // }
+
+
+        return view('admin.content.CreateOrEdit', compact(['content', 'category','attribute','attributes']));
     }
 
     /**
@@ -433,7 +445,7 @@ class ContentController extends Controller
 
 
         if(isset($data['content_type_id'])){
-            $content_type_id=0;
+            $content_type_id=$data['content_type_id'];
             $attrObject = Attribute::upsert($data, $crud->id,$content_type_id);
         }
         $crud->update($data);

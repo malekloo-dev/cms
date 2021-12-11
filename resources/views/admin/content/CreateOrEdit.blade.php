@@ -169,6 +169,35 @@
         <div class="panel panel-default  pos-abs chat-panel bottom-0">
 
             <div class="panel-body ">
+
+
+                <div
+                    style="background: rgb(255, 255, 111);padding:5px;margin-bottom:1em; border-radius:5px;box-shadow:0 1px 3px rgba(0,0,0,0.2)">
+                    <label for="" style="float: right; line-height: 2em">ویژگی محصول</label>
+
+                    <form action="" method="get">
+                        <input type="hidden" name="qtitle" value="{{ app('request')->qtitle }}">
+                        <input type="hidden" name="qslug" value="{{ app('request')->qslug }}">
+                        <input type="hidden" name="page" value="{{ app('request')->page }}">
+                        <div class="col-3 col-md-3">
+
+                            <select name="attr" id="" class="form-control">
+                                <option value="">بدون ویژگی</option>
+                                @foreach ($attributes as $item)
+                                    <option value="{{ $item->id }}"
+                                        {{ app('request')->attr == $item->id ? 'selected': (($attribute->id ??'') == $item->id?'selected':'')}}
+                                        >{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button class="btn btn-danger">تغییر</button>
+                    </form>
+                </div>
+
+
+
+
+
                 @if ($errors->any())
                     {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
                 @endif
@@ -188,6 +217,7 @@
 
 
 
+
                 <div class="form-group row">
                     <div class="col-5 col-md-5 col-xs-12">
                         <label for="title" class=" col-form-label text-md-left">@lang('messages.title'):</label>
@@ -198,13 +228,14 @@
                     <div class="col-5 col-md-5  col-xs-12">
                         <label for="slug" class=" col-form-label text-md-left">@lang('messages.url') :</label>
                         <input type="text" class="form-control" name="slug"
-                            value="{{ old('slug', $content->slug ?? '') }}" placeholder="@lang('messages.if slug empty')" />
+                            value="{{ old('slug', $content->slug ?? '') }}"
+                            placeholder="@lang('messages.if slug empty')" />
                         <span class="text-danger">{{ $errors->first('slug') }}</span>
                     </div>
                     <div class="col-2 col-md-2 col-xs-12">
                         <label for="name">@lang('messages.publish date') :</label>
-                        <input type="{{ $ltr ? 'date' : '' }}" class="form-control @if (!$ltr) datepicker @endif" name="publish_date"
-                            value="{{ old('publish_date', $content->publish_date ?? '') }}" />
+                        <input type="{{ $ltr ? 'date' : '' }}" class="form-control @if (!$ltr) datepicker @endif"
+                            name="publish_date" value="{{ old('publish_date', $content->publish_date ?? '') }}" />
                     </div>
                 </div>
                 @if (isset($template) && $template != '')
@@ -291,8 +322,9 @@
 
                     </div>
                     <div class="col-6 col-sm-6">
-                    <label for="watermark">@lang('messages.watermark') @lang('messages.image')</label>
-                        <input class="form-control" id="watermark" placeholder="@lang('messages.watermark placeholder')" type="text" name="watermark" >
+                        <label for="watermark">@lang('messages.watermark') @lang('messages.image')</label>
+                        <input class="form-control" id="watermark" placeholder="@lang('messages.watermark placeholder')"
+                            type="text" name="watermark">
                     </div>
 
                 </div>
@@ -323,15 +355,16 @@
 
                         <div class="gallery">
                             @foreach ($content->gallery ?? [] as $item)
-                            <div>
-                                <img src="{{ $item->images['images']['small'] }}" data-id="{{ $item->id }}" height="100" alt="">
-                            </div>
+                                <div>
+                                    <img src="{{ $item->images['images']['small'] }}" data-id="{{ $item->id }}"
+                                        height="100" alt="">
+                                </div>
                             @endforeach
 
                         </div>
 
                         <div class="col-4 col-md-4">
-                        <input type="file" class="form-control" name="galleryFile" id="galleryFile">
+                            <input type="file" class="form-control" name="galleryFile" id="galleryFile">
                         </div>
 
                         @include('admin.cropperGallery')
@@ -341,7 +374,8 @@
                 </div>
 
 
-                <div class="row" style="background: #ddd; border-radius:5px; padding:1em; margin-bottom:1em; display:block">
+                <div class="row"
+                    style="background: #ddd; border-radius:5px; padding:1em; margin-bottom:1em; display:block">
                     @include('admin.attribute.CreateOrEdit')
                 </div>
 
@@ -377,13 +411,15 @@
                     <div class="form-group row">
 
                         <div class="col-6 col-md-6">
-                            <label for="price" class=" col-form-label text-md-left">@lang('messages.price'):@lang('messages.toman')</label>
+                            <label for="price"
+                                class=" col-form-label text-md-left">@lang('messages.price'):@lang('messages.toman')</label>
                             <input type="text" class="form-control" name="attr[price]"
                                 value="{{ old('attr[price]', $content->attr['price'] ?? '') }}" />
                         </div>
 
                         <div class="col-6 col-md-6">
-                            <label for="offer_price" class=" col-form-label text-md-left">@lang('messages.discount'):</label>
+                            <label for="offer_price"
+                                class=" col-form-label text-md-left">@lang('messages.discount'):</label>
 
                             <input type="text" class="form-control" name="attr[offer_price]"
                                 value="{{ old('attr[offer_price]', $content->attr['offer_price'] ?? '') }}" />
@@ -428,10 +464,10 @@
 
 
                 <button type="submit" class="btn btn-success  @if (!$ltr) pull-right @endif mat-btn ">
-                                                                     @if (Request()->is('*create*'))
-                    @lang('messages.add')
-                @else
-                    @lang('messages.edit')
+                    @if (Request()->is('*create*'))
+                        @lang('messages.add')
+                    @else
+                        @lang('messages.edit')
                     @endif
                 </button>
                 </form>

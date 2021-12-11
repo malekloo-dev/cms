@@ -85,9 +85,10 @@ Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(functio
 
     /* attribute */
     Route::post('attribute/create',[AttributeController::class,'attributeStore'])->name('admin.attribute.store');
-    Route::patch('attribute/edit/{attribute}',[AttributeController::class,'attributeUpdate'])->name('admin.attribute.update');
-    Route::delete('attribute/{attribute}',[AttributeController::class,'attributeUpdate'])->name('admin.attribute.update');
+    // Route::patch('attribute/edit/{attribute}',[AttributeController::class,'attributeUpdate'])->name('admin.attribute.update');
+    // Route::delete('attribute/{attribute}',[AttributeController::class,'attributeUpdate'])->name('admin.attribute.update');
     Route::post('attribute/{attribute}/combo/add/',[AttributeController::class,'attributeAddCombo'])->name('admin.attribute.combo.add');
+    Route::delete('attribute/combo/{combo}',[AttributeController::class,'attributeDeleteCombo'])->name('admin.attribute.combo.delete');
 
     /* content typ asign to contents */
     Route::post('contentType/{contentType}/contents/add',[AttributeController::class,'contentTypeAddToContents'])->name('admin.content.type.add.contents');

@@ -83,6 +83,7 @@ class Content extends Model
         return $this->hasMany(ContentAttributeValue::class);
     }
 
+
     // this is a recommended way to declare event handlers
     public static function boot()
     {

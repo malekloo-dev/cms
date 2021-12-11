@@ -102,6 +102,18 @@ class AttributeController extends Controller
         return redirect()->back()->with('success', 'Detached');
     }
 
+
+    /*
+    attribute store
+    */
+    public function attributeStore(Request $request)
+    {
+        ContentAttribute::create($request->all());
+
+        return redirect()->back()->with('success','add attribute');
+    }
+
+
     /*
     add combo to attribute
     */
@@ -116,6 +128,17 @@ class AttributeController extends Controller
         ]);
 
         return redirect()->back()->with('success','Add combo');
+    }
+
+    /*
+    delete combo from attr
+    */
+    public function attributeDeleteCombo(Request $request ,ContentAttributeCombo $combo)
+    {
+        $combo->delete();
+
+
+        return redirect()->back()->with('success', 'Detached');
     }
 
 
