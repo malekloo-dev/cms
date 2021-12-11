@@ -75,9 +75,9 @@
     @endif
 
     <section class="p-0 ">
-        <div class="flex one">
-            <h1 class="p-0">{{ $detail->title }}</h1>
-            <div class="font-08">
+        <div class="flex justify-content-between align-items-center">
+            <h1 class="p-0" style="display: inline-block">{{ $detail->title }}</h1>
+            <div class="font-08 p-0 white-space-nowrap m-auto">
                 <span class="rate mt-1">
                     @if (count($detail->comments))
                         @php
@@ -95,6 +95,7 @@
                         <span class="font-07">({{ count($detail->comments) }} نفر)   </span>
                     @endif
                 </span> |
+
                 {{ $detail->viewCount }} بار دیده شده |
             </div>
 

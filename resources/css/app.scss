@@ -30,14 +30,15 @@
 }
 
 .justify-content-between {
-    justify-content: space-between;
+    justify-content: space-between !important;
 }
 .justify-content-center {
-    justify-content: center;
+    justify-content: center !important;
 }
 .align-items-center {
-    align-items: center;
+    align-items: center !important;
 }
+
 .flex.grow > * {
     flex-grow: 1;
 }
@@ -2528,6 +2529,9 @@ $sizes: 5;
 .text-right {
     text-align: right;
 }
+.white-space-nowrap {
+    white-space: nowrap;
+}
 
 .bg-theme-color {
     background-color: $theme-color1;
@@ -3193,6 +3197,11 @@ section.extra-link {
 //            filter
 ///////////////////////////////////////
 ///////////////////////////////////////
+.filter-menu {
+    span {
+        display: none;
+    }
+}
 .filter-remote-link {
     display: flex;
     overflow-x: scroll;
@@ -3225,13 +3234,16 @@ section.extra-link {
         color: #333;
         font-weight: bold;
     }
-    .filter-items-list{
+    .filter-items-list {
         max-height: 150px;
         overflow-y: auto;
     }
 }
 
 @media (max-width: 960px) {
+    ////////////////////////////////
+    //          pagination
+    ////////////////////////////////
     nav[role="navigation"] {
         .flex {
             margin: 0;
@@ -3260,6 +3272,53 @@ section.extra-link {
                 width: 30px;
             }
         }
+    }
+
+    ////////////////////////////////
+    //          filter
+    ////////////////////////////////
+    .filter-items {
+        position: fixed;
+        top: 0;
+        z-index: 99999999;
+        background: #fff;
+        right: -100%;
+        left: 0;
+        overflow: auto;
+        height: 100%;
+        transition: all 0.2s;
+        margin: 0 !important ;
+        width: 80%;
+    }
+    .filter-menu {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        > span{
+            margin-left: 10px;
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: space-between;
+            > span {
+                background: #333;
+                width: 20px;
+                height: 2px;
+                display: block;
+                border-radius: 4px;
+                margin-bottom: 4px;
+            }
+        }
+
+        &:focus,
+        &:focus-within{
+            ~ .filter-items {
+                right: 0;
+            }
+        }
+    }
+    .filter-items-list {
+        max-height: none !important;
     }
 }
 

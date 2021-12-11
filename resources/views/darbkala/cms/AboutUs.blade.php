@@ -28,6 +28,8 @@
     @endif
 @endsection
 
+
+
 @section('Content')
 
     @php
@@ -58,10 +60,10 @@
         </section>
     @endif
 
-    <section class="p-0 ">
-        <div class="flex one">
+    <section class="py-0 ">
+        <div class="flex align-items-center justify-content-between">
             <h1 class="p-0">{{ $detail->title }}</h1>
-            <div class="font-08">
+            <div class="font-08 p-0">
                 <span class="rate mt-1">
                     @if (count($detail->comments))
                         @php
@@ -77,10 +79,12 @@
                                 srcset="{{ asset('/img/star2x.png') }} 2x , {{ asset('/img/star1x.png') }} 1x"
                                 src="{{ asset('/img/star1x.png') }}" alt="{{ 'star for rating' }}">
                         @endfor
-                        <span class="font-07">({{ count($detail->comments) }} نفر)   </span>
+                        <span class="font-07">({{ count($detail->comments) }} نفر)   </span> |
                     @endif
-                </span> |
-                {{ $detail->viewCount }} بار دیده شده |
+                </span>
+                <span>
+                    {{ $detail->viewCount }} بار دیده شده
+                </span>
             </div>
 
 

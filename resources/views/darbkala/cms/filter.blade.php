@@ -1,7 +1,14 @@
-<div>
-    لیست فیلتر ها
-</div>
 
+@if (count($filterList['filter']))
+    <a href="javascript:void(0);" rel="nofollow" class="filter-menu">
+        <span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        لیست فیلتر ها
+    </a>
+@endif
 @if (count($filterList['removeFilter']))
     <div class="  shadow filter-remote-link">
         @foreach ($filterList['removeFilter'] as $key => $filterItem)
