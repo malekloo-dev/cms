@@ -3277,60 +3277,68 @@ section.extra-link {
     ////////////////////////////////
     //          filter
     ////////////////////////////////
-    .filter-items {
-        position: fixed;
-        top: 0;
-        z-index: 99999999;
-        background: #fff;
-        right: -100%;
-        left: 0;
-        overflow: auto;
-        height: 100%;
-        transition: all 0.2s;
-        margin: 0 !important ;
-        width: 80%;
-    }
-    .filter-menu {
-        position: relative;
-        display: flex;
-        align-items: center;
+    // .filter-items {
+    //     position: fixed;
+    //     top: 0;
+    //     z-index: 99999999;
+    //     background: #fff;
+    //     right: -100%;
+    //     left: 0;
+    //     overflow: auto;
+    //     height: 100%;
+    //     transition: all 0.2s;
+    //     margin: 0 !important ;
+    //     width: 80%;
+    // }
 
-        > span{
-            margin-left: 10px;
-            display: inline-flex;
-            flex-direction: column;
-            justify-content: space-between;
-            > span {
-                background: #333;
-                width: 20px;
-                height: 2px;
-                display: block;
-                border-radius: 4px;
-                margin-bottom: 4px;
-            }
-        }
+    // .filter-menu {
+    //     position: relative;
+    //     display: flex;
+    //     align-items: center;
 
-        &:focus,
-        &:focus-within{
-            ~ .filter-items {
-                right: 0;
-            }
-        }
-    }
-    .filter-items-list {
-        max-height: none !important;
-    }
+    //     > span{
+    //         margin-left: 10px;
+    //         display: inline-flex;
+    //         flex-direction: column;
+    //         justify-content: space-between;
+    //         > span {
+    //             background: #333;
+    //             width: 20px;
+    //             height: 2px;
+    //             display: block;
+    //             border-radius: 4px;
+    //             margin-bottom: 4px;
+    //         }
+    //     }
+
+
+    // }
+    // @media (hover: none) {
+    //     .filter-menu {
+    //         &:focus,
+    //         &:focus-within{
+    //             ~ .filter-items,ul {
+    //                 right: 0;
+    //             }
+    //         }
+    //     }
+    // }
+
+    // .filter-items-list {
+    //     max-height: none !important;
+    // }
 }
 
-@font-face {
-    font-family: vazir;
-    font-display: swap;
-    src: url(/fonts/vazir/Vazir-Light.eot);
-    src: url(/fonts/vazir/Vazir-Light.eot) format("embedded-opentype"),
-        url(/fonts/vazir/Vazir-Light.woff) format("woff"), url(/fonts/vazir/Vazir-Light.ttf) format("truetype");
-    font-weight: 400;
-    font-style: normal;
-}
+
+// @font-face {
+//     font-family: vazir;
+//     font-display: swap;
+//     src: url(/fonts/vazir/Vazir-Light.eot);
+//     src: url(/fonts/vazir/Vazir-Light.eot) format("embedded-opentype"),
+//         url(/fonts/vazir/Vazir-Light.woff) format("woff"), url(/fonts/vazir/Vazir-Light.ttf) format("truetype");
+//     font-weight: 400;
+//     font-style: normal;
+// }
 @font-face {
     font-family: IRANSans;
     font-style: normal;
