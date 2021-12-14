@@ -42,6 +42,7 @@
                     <td>{{ __('messages.product code') }}</td>
                     <td>{{ __('messages.product') }}</td>
                     <td>@lang('messages.count')</td>
+                    <td>@lang('messages.expire data')</td>
                     <td>@lang('messages.price one')</td>
                     <td>@lang('messages.total price')</td>
                     <td>@lang('messages.describe')</td>
@@ -52,6 +53,7 @@
                     <td>{{ $parentModel->id }}</td>
                     <td>{{ $parentModel->title }}</td>
                     <td>{{ $transaction->count }}</td>
+                    <td>@lang('messages.duration',['month'=>3])</td>
                     <td>@convertCurrency(30000) @lang('messages.toman')</td>
                     <td class="bold">@convertCurrency($transaction->price) @lang('messages.toman')</td>
                     <td>{{ $transaction->description }}</td>

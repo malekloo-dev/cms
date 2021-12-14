@@ -372,11 +372,12 @@
                                         <img alt="{{ $content->name ?? '' }}" class="h-auto img-contain border-radius-50 mt-1"
                                             width="{{ env('COMPANY_LARGE_W') }}" height="{{ env('COMPANY_LARGE_H') }}"
                                             src="{{ $content->logo['large'] ?? '' }}">
+
                                     @endif
 
                                     <div class="flex ">
                                         <div class="p-0 ">
-                                            {{ $content->name }}
+                                            {{ $content->name ?? 'کاربر جدید'}}
                                         </div>
                                         <div class="p-0 ">
                                             <svg class="p-0" width="13" height="13" viewBox="0 0 24 24" fill="none"

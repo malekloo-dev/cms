@@ -10,6 +10,7 @@ use App\Models\Content;
 use App\Models\Menu;
 use Illuminate\Database\Eloquent\Model;
 use Morilog\Jalali\CalendarUtils;
+use Morilog\Jalali\Jalalian;
 
 function h_encrypt($string)
 {
@@ -461,7 +462,8 @@ function convertGToJ($date)
     if (env('SITE_LANG') != 'fa') return date('Y-m-d', strtotime($date));
 
     $jalali = CalendarUtils::strftime('Y-m-d', strtotime($date)); // 1395-02-19
-    return CalendarUtils::convertNumbers($jalali); // ۱۳۹۵-۰۲-۱۹
+    $convert = CalendarUtils::convertNumbers($jalali); // ۱۳۹۵-۰۲-۱۹
+    return Jalalian::forge($date)->format('%A, %d %B %Y'); // پنجشنبه, 07 اسفند 1399
 }
 
 

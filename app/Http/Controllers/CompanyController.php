@@ -130,6 +130,9 @@ class CompanyController extends Controller
         // $data['parent_id'] = $request->parent_id[0];
         $data['type'] = '2';
         $data['attr_type'] = 'product';
+        $data['meta_title'] = $data['title'];
+        $data['meta_description'] = $data['brief_description'];
+        $data['meta_keywords'] = $data['title'];
         // $data['attr'] = ["brand" => $user->company->name, "price" => 0];
 
         $data['images'] = $imagesUrl;

@@ -103,21 +103,15 @@
     <script src="/ckeditor4/ckeditor.js"></script>
 
     <script>
-        CKEDITOR
-            .replace(document.querySelector('#brief_description'), {
-                ckfinder: {
-                    uploadUrl: "{{ route('contents.upload', ['_token' => csrf_token()]) }}",
-                },
-                language: 'fa'
-            })
 
-            CKEDITOR
-            .replace(document.querySelector('#description'), {
-                ckfinder: {
-                    uploadUrl: "{{ route('contents.upload', ['_token' => csrf_token()]) }}",
-                },
-                language: 'fa'
-            })
+
+            // CKEDITOR
+            // .replace(document.querySelector('#description'), {
+            //     ckfinder: {
+            //         uploadUrl: "{{ route('contents.upload', ['_token' => csrf_token()]) }}",
+            //     },
+            //     language: 'fa'
+            // })
     </script>
 
 
@@ -178,9 +172,6 @@
                         <div id="word-count2"></div>
                     </div>
 
-                    <div class="col-md-12">
-                        {{-- @include('admin.gridMaker') --}}
-                    </div>
 
                 </div>
 
@@ -250,7 +241,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-md-12">
+                    <div class="col-md-6 col-xs-12">
                         <label for="brand" class=" col-form-label text-md-left">@lang('messages.brand'):</label>
                         <input type="text" class="form-control" name="attr[brand]"
                             value="{{ old('attr[brand]', $post->attr['brand']??'') }}" />
@@ -258,15 +249,13 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-md-12">
+                    <div class="col-md-6 col-xs-12">
                         <label for="price" class=" col-form-label text-md-left">@lang('messages.price'):</label>
                         <input type="text" class="form-control" name="attr[price]"
                             value="{{ old('attr[price]', $post->attr['price']??'') }}" />
                     </div>
-                </div>
-                @include('admin.attribute.CreateOrEdit')
-                <div class="form-group row">
-                    <div class="col-md-12">
+
+                    <div class="col-md-6 col-xs-12">
                         <label for="offer_price" class=" col-form-label text-md-left">@lang('messages.discount')
                             :</label>
 
@@ -275,39 +264,15 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <div class="col-md-12">
-                        <label for="alternate_name"
-                            class=" col-form-label text-md-left">@lang('messages.alternative')
-                            @lang('messages.name')
-                            :</label>
-
-                        <input type="text" class="form-control" name="attr[alternate_name]"
-                            value="{{ old('attr[alternate_name]', $post->attr['alternate_name'] ?? '') }}" />
-                    </div>
+                <div class="row bg-gray py-2 my-1" >
+                    <div>ویژگی های محصول</div>
+                    @include('admin.attribute.CreateOrEdit')
                 </div>
 
 
-                <div class="form-group row">
-                    <div class="col-md-6">
-                        <label for="name">Meta Title</label>
-                        <input type="text" class="form-control" name="meta_title"
-                            value="{{ old('meta_title', $post->meta_title ?? '') }}" />
-                        <span class="text-danger">{{ $errors->first('meta_title') }}</span>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="name">meta keywords</label>
-                        <input id="meta_keywords" type="text" class="" name="meta_keywords"
-                            value="{{ old('meta_keywords', $post->meta_keywords ?? '') }}" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="meta_description" class="col-md-12 col-form-label text-md-left">meta Description:</label>
-                    <div class="col-md-12">
-                        <textarea class="form-control" id="meta_description"
-                            name="meta_description">{{ old('meta_description', $post->meta_description ?? '') }}</textarea>
-                    </div>
-                </div>
+
+
+
                 <button type="submit" class="btn btn-success ">@lang('messages.confirm')
                 </button>
             </form>

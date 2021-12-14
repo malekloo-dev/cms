@@ -167,4 +167,8 @@ return [
     'watermark' => 'کپی رایت',
     'job' => 'زمینه فعالیت',
     'attribute' => 'ویژگی ها',
+    'expire data' => 'تاریخ انقضا',
+    'duration' => 'دوره :month ماهه',
+    'ad' => 'آگهی',
+    'ads' => 'آگهی ها',
 ];

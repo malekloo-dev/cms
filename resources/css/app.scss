@@ -1716,7 +1716,7 @@ pre {
     background: #f5f5f5;
     border-radius: 0.2em;
 }
-// .block{display: block;}
+.block{display: block;}
 pre code {
     padding: 0;
 }
@@ -2488,6 +2488,9 @@ $sizes: 5;
 
 .h-auto {
     height: auto;
+}
+.h-full{
+    height: 100%;
 }
 
 .font-07 {

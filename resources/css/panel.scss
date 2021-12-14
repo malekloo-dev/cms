@@ -1,17 +1,16 @@
-$fa-font-path:         "webfonts" !default;
+$fa-font-path: "webfonts" !default;
 
-
-@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/regular";
-@import "~@fortawesome/fontawesome-free/scss/solid";
 @import "~@fortawesome/fontawesome-free/scss/brands";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
 
-
-.login h1{text-align: center;}
-
+.login h1 {
+    text-align: center;
+}
 
 section.panel {
-    font-size: .9em;
+    font-size: 0.9em;
     padding: 1em;
     display: flex;
     flex-direction: row;
@@ -27,13 +26,22 @@ section.panel {
         }
     }
 
-
-
-    h1{text-align: inherit;}
-    .total-price{color: green; font-weight: bold;}
-    .bold{font-weight: bold;}
-    .red {color: red}
-    .green {color: green}
+    h1 {
+        text-align: inherit;
+    }
+    .total-price {
+        color: green;
+        font-weight: bold;
+    }
+    .bold {
+        font-weight: bold;
+    }
+    .red {
+        color: red;
+    }
+    .green {
+        color: green;
+    }
 
     .map-area {
         #mapid {
@@ -57,7 +65,8 @@ section.panel {
                 border-radius: 0 0 3px 3px;
             }
             #mapid {
-                height: 300px;
+                // height: 300px;
+                height: 70vh;
                 border-radius: 3px 3px 0 0;
             }
             a.cancel {
@@ -154,7 +163,6 @@ section.panel {
         }
     }
 
-
     .list {
         .item {
             display: flex;
@@ -171,7 +179,7 @@ section.panel {
                 &.info {
                     display: flex;
                     flex-flow: row wrap;
-                    >div{
+                    > div {
                         flex-grow: 1;
                         &:last-child {
                             flex-grow: 1;
@@ -186,48 +194,54 @@ section.panel {
                             }
                         }
                     }
-
                 }
-
-
             }
         }
     }
-    .widget{
-        h2{
+    .widget {
+        color: white;
+        a {
+            color: white;
+            &:hover {
+                color: white;
+                h2 {
+                    color: white;
+                }
+            }
+        }
+        h2 {
             font-size: 1em;
+
         }
-        &:hover{
-            color: #fff;
-            transform: scale(1.03);
-        }
+
     }
 
-    .powerup{
+    .powerup {
         max-width: 400px;
         margin: auto !important;
     }
 
-    .invoice{
+    .invoice {
         max-width: 900px;
         margin: auto !important;
-        h1{
+        h1 {
             text-align: center;
         }
-        .billing-info{
+        .billing-info {
             display: flex;
-            justify-content:space-between;
+            justify-content: space-between;
             margin-bottom: 1em;
         }
-        table td{
+        table td {
             text-align: right;
-            border-width:1px;
-            border-color:#999;
+            border-width: 1px;
+            border-color: #999;
         }
-        .text-left{text-align: left !important;}
+        .text-left {
+            text-align: left !important;
+        }
     }
 }
-
 
 @media (max-width: 960px) {
     section.panel {
@@ -265,9 +279,8 @@ section.panel {
                 width: 100%;
             }
         }
-        .powerup{
+        .powerup {
             text-align: center;
         }
     }
-
 }

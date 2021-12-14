@@ -4,7 +4,7 @@
         <?php
         // echo ($field->field_name);
         ?>
-        <div class="col-6 col-md-6">
+        <div class="col-6 col-md-6 col-xs-12">
             @include('admin.attribute.'.ucfirst($field->element_type))
         </div>
     @endforeach

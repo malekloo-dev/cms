@@ -267,7 +267,7 @@ class CategoryController extends Controller
     {
         $attr_type = 'CATEGORY';
         $where = array('id' => $id);
-        $content_info = Category::where($where)->first();
+        $content = Category::where($where)->first();
 
 
         /*$searchmap = [
@@ -294,7 +294,7 @@ class CategoryController extends Controller
 
         //print_r($content_info);
         //die();
-        return view('admin.category.CreateOrEdit', compact(['content_info', 'category', 'attr_type']));
+        return view('admin.category.CreateOrEdit', compact(['content', 'category', 'attr_type']));
     }
 
     /**

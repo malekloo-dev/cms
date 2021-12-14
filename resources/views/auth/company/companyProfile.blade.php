@@ -8,21 +8,49 @@
 
         <div class="profile">
             <h1 class="full">@lang('messages.profile')</h1>
-            <div class="map-area">
-                <div id="mapid"></div>
+
+            <div class="flex six-500 center" style="gap:0 4em">
+                <div class=" one">
+                    <div class="text-center company-logo">
+
+                        @if (!isset(Auth::user()->company->logo['large']) || Auth::user()->company->logo['large'] == '' ||   !file_exists(public_path(Auth::user()->company->logo['large'] )))
+                            <i class="far fa-user logo" style="font-size:4em"></i>
+                            <img src="" width="100" height="100" class="border-radius-50 p-0" alt="">
+                        @else
+                            <img width="100" height="100" class="border-radius-50 p-0"  src="{{ url(Auth::user()->company->logo['large']) }}?{{ uniqid() }}">
+                        @endif
+                    </div>
+                    <div style="cursor: pointer" class="btn btn-warning" onclick="document.getElementById('images').click();">
+
+
+                        @lang('messages.edit') @lang('messages.image')
+
+                        <input type="file" style="display:none" name="images" id="images">
+
+                        <i class="far fa-edit color-inherit "></i>
+                    </div>
+                </div>
+                <div class="full two-third-500">
+                    <div class="map-area">
+                        <div id="mapid"></div>
+                    </div>
+                    <div style="cursor: pointer" class="location-editor btn btn-warning block">
+                        @lang('messages.edit') @lang('messages.my location')
+                        <i class="far fa-edit color-inherit"></i>
+                    </div>
+                </div>
             </div>
+
             <div class="flex one two-700 three-1100 mt-2">
-                <div style="cursor: pointer" class="" onclick="document.getElementById('images').click();">
-                    @lang('messages.edit') @lang('messages.image')
-                    <input type="file" style="display:none" name="images" id="images">
-                    <i class="fa fa-image"></i>
-                    <i class="far fa-edit color-inherit"></i>
+
+
+                <div class="bg-orange-light full py-1 mb-1 border-radius-5">
+                    برای ویرایش هر آیتم روی علامت <i class="fa-edit far fa-edit color-inherit"></i> بزنید.
                 </div>
 
-                <div style="cursor: pointer" class="location-editor">
-                    @lang('messages.edit') @lang('messages.my location')
-                    <i class="far fa-edit color-inherit"></i>
-                </div>
+
+
+
 
                 <div class="">
                     @lang('messages.store name'):
@@ -172,7 +200,7 @@
 
     <script>
         var map = L.map('mapid')
-            .setView([{{ Auth::user()->company->location ?? '31.5,51.2' }}], 16);
+            .setView([{{ Auth::user()->company->location ?? '35.7,51.4' }}], 12);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://tarhoweb.com">Tarhoweb</a> contributors',
@@ -183,7 +211,7 @@
 
 
         //marker
-        var marker = L.marker([{{ Auth::user()->company->location ?? '31.5,51.2' }}])
+        var marker = L.marker([{{ Auth::user()->company->location ?? '35.7,51.4' }}])
             .addTo(map)
             .bindPopup(`@lang('messages.my location')`)
             .openPopup();

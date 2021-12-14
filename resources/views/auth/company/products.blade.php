@@ -10,7 +10,7 @@
 
         <div class="list">
             <h1 class="">@lang('messages.Products')
-                <a class="btn btn-success btn-sm pull-left" id="myBtn" href="#">@lang('messages.add')</a>
+                <a class="btn btn-success  " id="myBtn" href="#">@lang('messages.add') @lang('messages.product') (@lang('messages.ad'))</a>
             </h1>
 
             <!-- The Modal -->
@@ -169,18 +169,20 @@
                             <div class="info  one text-center shadow ">
                                 @if (isset($content->images['images']))
                                     <div class="">
-                                        <img height="100" alt="{{ $content->title }}"
+                                        <a target="_blank" class="bold" href="{{ url($content->slug) }}">
+                                            <img height="100" alt="{{ $content->title }}"
                                             src="{{ $content->images['images']['small'] }}">
+                                        </a>
                                     </div>
                                 @endif
                                 <div>
-                                    <a target="_blank" href="{{ url($content->slug) }}">
-                                        {{ $content->title }}
+                                    <a target="_blank" class="bold" href="{{ url($content->slug) }}">
+                                        {{ $content->title }} <i class="fa fa-external-link-alt"></i>
                                     </a>
                                 </div>
-                                <div>
+                                <div class="font-09">دسته بندی:
                                     <a target="_blank"
-                                        href="{{ url($content->category->slug) }}">{{ $content->category->title }}</a>
+                                        href="{{ url($content->category->slug) }}">{{ $content->category->title }} <i class="fa fa-external-link-alt"></i></a>
                                 </div>
                                 <div>
                                     @lang('messages.view'): {{ $content->viewCount }}
@@ -195,8 +197,7 @@
 
                                 <div class="">
                                     <a href="{{ route('company.products.powerUp', $content->id) }}"
-                                        class="btn btn-info btn-sm"><i class="fa fa-bolt"></i> @lang('messages.upgrade
-                                        power')</a>
+                                        class="btn btn-info btn-sm"><i class="fa fa-bolt"></i> @lang('messages.upgrade power')</a>
 
 
                                     <a href="{{ route('company.products.update', $content->id) }}"

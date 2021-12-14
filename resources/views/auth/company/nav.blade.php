@@ -26,10 +26,14 @@
             @convertCurrency(0) {{ __('messages.toman') }}</li>
         <li class="{{ Request::is('company') ? 'active' : '' }}"><a
                 href="{{ route('company.dashboard') }}">{{ __('messages.Dashboard') }}</a></li>
-        <li class="{{ Request::is('company/profile') ? 'active' : '' }}"><a href="{{ route('company.profile') }}">
-                {{ __('messages.profile') }}</a></li>
+
+
         <li class="{{ (Request::is('company/products') || Request::is('company/products/create')) ? 'active' : '' }}"><a class="no-border"
-                href="{{ route('company.products') }}"> {{ __('messages.Products') }}</a></li>
+                href="{{ route('company.products') }}"> {{ __('messages.Products') }} (@lang('messages.ads'))</a></li>
+
+        <li class="{{ Request::is('company/profile') ? 'active' : '' }}"><a href="{{ route('company.profile') }}">
+            {{ __('messages.profile') }}</a></li>
+
         <li class="{{ Request::is('company/transaction') ? 'active' : '' }}"><a class="no-border"
                     href="{{ route('company.transaction') }}"> {{ __('messages.transaction') }}</a></li>
 
