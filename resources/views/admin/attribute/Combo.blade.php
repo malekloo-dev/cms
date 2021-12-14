@@ -1,7 +1,7 @@
 <?php
 $val='';
 //var_dump($field->checkValueRelation());
-if (!Request()->is('*create*')){
+if (!Request()->is('*create*') and (isset($field->value) and ($field->value!=null)) ){
     $val=$field->value->value;
 }
 ?>
