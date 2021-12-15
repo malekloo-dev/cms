@@ -89,12 +89,15 @@
 @yield('footer')
 @yield('cropper')
 
+@stack('scripts')
+
+
 <script>
     var TEMPLATE_NAME = `{{ env('TEMPLATE_NAME') }}`;
 </script>
 <script src="{{ url('/main.js') }}"></script>
-@if (WebsiteSetting::where('variable','=','phone')->first())
-    <a href="tel:{{  WebsiteSetting::where('variable','=','phone')->first() }}" id="callnowbutton"></a>
+@if (WebsiteSetting::where('variable', '=', 'phone')->first()?->value != '' )
+    <a href="tel:{{ WebsiteSetting::where('variable', '=', 'phone')->first()->value }}" id="callnowbutton"></a>
 @endif
 </body>
 

@@ -2,6 +2,7 @@
 <html dir="rtl" lang="fa-IR">
 
 <head>
+    @if (url('/') == 'https://corepo.ir')
     <!-- Google Tag Manager -->
     <script>
         (function(w, d, s, l, i) {
@@ -20,10 +21,13 @@
         })(window, document, 'script', 'dataLayer', 'GTM-PVTXH97');
     </script>
     <!-- End Google Tag Manager -->
-    <title>{{ $seo['meta_title'] ?? '' }}@yield('meta-title')</title>
+    @endif
 
+    <title>{{ $seo['meta_title'] ?? '' }}@yield('meta-title')</title>
     <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <meta name="keywords" content="{{ $seo['meta_keywords'] ?? '' }}">
     <meta name="description" content="{{ $seo['meta_description'] ?? '' }}">
 
@@ -42,15 +46,14 @@
 
     <meta name="msapplication-TileImage" content="{{ url(env('TEMPLATE_NAME') . '/img/logo-192-192.png') }}">
     <meta name="msapplication-TileColor" content="#fff">
-    <meta name="msapplication-square100x100logo" content="{{ url(env('TEMPLATE_NAME') . '/img/fav.png') }}">
+    <meta name="msapplication-square96x96logo" content="{{ url(env('TEMPLATE_NAME') . '/img/logo-96-96.png') }}">
+    <meta name="msapplication-square152x152logo" content="{{ url(env('TEMPLATE_NAME') . '/img/logo-152-152.png') }}">
 
     @yield('bootstrap')
 
     <link rel="stylesheet" href="{{ mix('/' . env('TEMPLATE_NAME') . '.css', env('TEMPLATE_NAME')) }}">
     <link rel="icon" href="{{ url(env('TEMPLATE_NAME') . '/img/fav.png') }}" type="image/png">
     <link rel="stylesheet" media="bogus">
-    <link href="@yield('canonical',url('/'))" rel="canonical" />
-
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@yield('twitter:site',env('TEMPLATE_NAME'))">
@@ -73,17 +76,16 @@
     <meta property="og:image:alt" content="@yield('og:image:alt',$seo['meta_title']??'')" />
 
 
-    {{-- <script src="https://www.p30rank.ir/google"></script> --}}
-
-    {{-- @yield('map') --}}
-
     @yield('head')
 
     @stack('head')
 </head>
 
 <body>
+    @if (url('/') == 'https://corepo.ir')
+
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PVTXH97" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    @endif

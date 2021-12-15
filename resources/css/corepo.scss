@@ -3,14 +3,22 @@ $body: #f4f4f4;
 $theme-color1: #fff;
 $theme-color2: #fff;
 $theme-color3: #9b0909;
+$theme-color1-text: #fff;
+
 $a: #9b0909;
 $a-hover: #1e2135;
+
 $menu-color: #1e2135;
 $menu-bg-left: #fff;
 $menu-bg-right: #fff;
 $menu-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+$p: #1e1e1e;
 
-$pink:#e81e6c;
+$search-border: 1px solid #888;
+$search-bg: #888;
+$search-text: rgb(100, 100, 100);
+
+$pink: #e81e6c;
 
 @import "app.scss";
 @import "grid.scss";
@@ -40,7 +48,9 @@ textarea:focus {
     padding: 1em;
 }
 //////////
+//////////
 // home //
+//////////
 //////////
 
 .index-items {
@@ -193,46 +203,50 @@ figure {
     }
 }
 
+////////////////
+////////////////
 // category-box
-.category-box{
-    color: #333 ;
-    h2,h3{
-        a{
+////////////////
+////////////////
+.category-box {
+    color: #333;
+    h2,
+    h3 {
+        a {
             color: $pink;
         }
         // font-size: 1em;
     }
-    a{
+    a {
         font-size: 1.1em;
         color: $a-hover;
         font-weight: bold;
-        &:hover{
+        &:hover {
             color: $a;
         }
     }
-    img{
+    img {
         // max-height: 70px;
         object-fit: contain;
     }
-    .rate{
+    .rate {
         min-height: 10px;
         // display: flex;
-        label{
+        label {
             cursor: default;
             // height: 20px;
-            &:before{
+            &:before {
                 font-size: 1.1em;
             }
         }
     }
-    .full-height{
+    .full-height {
         height: 100%;
     }
-    .min-height{
+    .min-height {
         // min-height: 120px;
     }
-    .border-bottom{
-
+    .border-bottom {
         border-bottom: 1px solid #ddd;
     }
 }
@@ -247,13 +261,15 @@ figure {
     figure img {
         width: 100px;
     }
-    :last-of-type{
+    :last-of-type {
         margin-top: auto;
     }
 }
 
 //////////////
+//////////////
 // category //
+//////////////
 //////////////
 
 .category-section {
@@ -262,7 +278,8 @@ figure {
         height: 40px !important;
         width: 40px;
     }
-    h2,h3 {
+    h2,
+    h3 {
         font-size: 0.9em;
     }
     .next2,
@@ -289,14 +306,15 @@ figure {
     }
 }
 
-
+//////////////
 //////////////
 //  detail ///
+//////////////
 //////////////
 .intro {
     background: #fff;
     border-radius: 15px;
-    .rate label{
+    .rate label {
         cursor: unset;
         height: 31px;
     }

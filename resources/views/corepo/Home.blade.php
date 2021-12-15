@@ -1,6 +1,6 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
-@section('scripts')
+@push('scripts')
     <script>
         var slideIndex = 1;
         showSlides(slideIndex);
@@ -80,7 +80,7 @@
         document.querySelector('.prev2').addEventListener('click', () => mySiema.prev());
         document.querySelector('.next2').addEventListener('click', () => mySiema.next());
     </script>
-@endsection
+@endpush
 
 @section('Content')
 

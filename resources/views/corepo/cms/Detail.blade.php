@@ -1,6 +1,5 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
-@section('canonical', url($detail->slug))
 
 @section('twitter:title', $detail->title)
 @section('twitter:description', clearHtml($detail->brief_description))
@@ -20,15 +19,10 @@
 
 @endif
 
-
 @section('head')
-    {{-- <meta property="og:image" content="{{ url($detail->images['images']['medium'] ?? '') }}" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W') }}" />
-    <meta property="og:image:height"
-        content="{{ $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H') }}" />
-    <meta property="og:image:alt" content="{{ $detail->title }}" /> --}}
+
+    <link href="{{url($detail->slug)}}" rel="canonical" />
+
 
     <link rel="stylesheet" href="{{ asset('/detail.css') }}">
 @endsection
@@ -62,9 +56,11 @@
 
     </script>
 
-@if ((Auth::user()->id) == 1)
-<div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/contents/'.$detail->id.'/edit/') }}')">ویرایش</div>
-@endif
+    @auth
+        @if ((Auth::user()->id) == 1)
+            <div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/contents/'.$detail->id.'/edit/') }}')">ویرایش</div>
+        @endif
+    @endauth
 @endsection
 
 

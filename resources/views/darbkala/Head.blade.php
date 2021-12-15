@@ -34,6 +34,7 @@
 
     <link rel="manifest" href="{{ url(env('TEMPLATE_NAME') . '/manifest.json') }}">
     <meta name="theme-color" content="#fa490e" />
+
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#fa490e">
     <meta name="apple-mobile-web-app-title" content="درب کالا">
@@ -48,8 +49,6 @@
     <meta name="msapplication-TileColor" content="#fa490e">
     <meta name="msapplication-square96x96logo" content="{{ url(env('TEMPLATE_NAME') . '/img/logo-96-96.png') }}">
     <meta name="msapplication-square152x152logo" content="{{ url(env('TEMPLATE_NAME') . '/img/logo-152-152.png') }}">
-
-
 
     @yield('bootstrap')
 

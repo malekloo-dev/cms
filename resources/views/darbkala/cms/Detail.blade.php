@@ -18,7 +18,9 @@
 
 @endif
 
-
+@section('head')
+    <link href="{{url($detail->slug)}}" rel="canonical" />
+@endsection
 
 @section('footer')
     <script type="text/javascript">
