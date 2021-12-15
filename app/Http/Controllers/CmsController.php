@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Content;
+use App\Models\ContentAttribute;
+use App\Services\attribute\Attribute;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -57,7 +60,8 @@ class CmsController extends Controller
                 ->paginate(15);
             $relatedProduct = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
         } else {
-            $filterList= $detail->filterAttr($request);
+            $contentTypeIdList= $detail->getContentTypeid($request)->pluck('content_type_id');
+            $filterList=Attribute::generatefilterList($request,$contentTypeIdList);
             //dd($filterList);
             // $detail->id;
            // DB::connection()->enableQueryLog();

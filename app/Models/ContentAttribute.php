@@ -24,7 +24,11 @@ class ContentAttribute extends Model
     {
         return $this->belongsToMany(ContentType::class);
     }
+    public function contentpivot()
+    {
+        return $this->hasMany(ContentAttributeContentType::class);
 
+    }
     public function ComboFields()
     {
         return $this->hasMany(ContentAttributeCombo::class);
