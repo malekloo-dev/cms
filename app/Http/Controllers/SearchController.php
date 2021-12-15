@@ -101,7 +101,7 @@ class SearchController extends Controller
     public function suggest(Request $request)
     {
 
-        list($products, $posts, $companies) = $this->searchService($request, 2);
+        list($products, $posts, $companies) = $this->searchService($request, 5);
 
         $searchResult = array();
 

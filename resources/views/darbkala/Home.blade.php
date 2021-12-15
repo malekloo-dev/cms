@@ -15,7 +15,7 @@
 
             //setup before functions
             var typingTimer; //timer identifier
-            var doneTypingInterval = 700; //time in ms, 5 second for example
+            var doneTypingInterval = 800; //time in ms, 5 second for example
             var $input = $('#q');
             var $searchSuggest = $('.search-suggest');
 
@@ -32,7 +32,7 @@
             });
 
             //focus out
-            $input.focusout(function(){
+            $('body').click(function() {
                 $searchSuggest.html('');
             });
 
@@ -58,20 +58,29 @@
                         // console.log(data);
 
                         var ulPersian = {
-                            'products':'در محصولات',
-                            'posts':'در محتوا',
-                            'companies':'در کمپانی ها',
+                            'products': 'در محصولات',
+                            'posts': 'در محتوا',
+                            'companies': 'در کمپانی ها',
                         };
 
-                        $.each(data, function(ulName, ulItem) {
+                        $.each(data, function(key, ulItem) {
 
                             var ul = $('<ul/>');
+                            var ulName = key;
                             $('<li/>').text(ulPersian[ulName]).appendTo(ul);
 
 
                             $.each(ulItem, function(i, liItem) {
 
-                                $('<li/>').append($('<a/>').text(liItem.title??liItem.name))
+
+                                var href = (ulName == 'companies') ? '/profile/' + liItem.id : '/' + liItem.slug  ;
+
+                                $('<li/>').append(
+
+                                        $('<a/>').text(liItem.title ?? liItem.name)
+                                        .attr('href', href)
+                                    )
+
                                     .appendTo(ul);
 
                             })
@@ -133,7 +142,8 @@
 
                 <form action="{{ route('search') }}" class="p-0">
 
-                    <input name="q" autocomplete="off" id="q" alt="جستجو" type="text" placeholder="جستجوی محصول / محتوا / کمپانی" required>
+                    <input name="q" autocomplete="off" id="q" alt="جستجو" type="text"
+                        placeholder="جستجوی محصول / محتوا / کمپانی" required>
 
                     <button class=""><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24"
                             height="24" viewBox="0 0 32 32" style=" fill:#000000;">
@@ -165,9 +175,9 @@
                                         sizes="(max-width:{{ env('CATEGORY_SMALL_W') }}px) 100vw {{ env('CATEGORY_SMALL_W') }}px {{ ENV('CATEGORY_MEDIUM_W') }}px {{ ENV('CATEGORY_LARGE_W') }}px"
                                         alt="{{ $content->title }}" width="200" height="200"
                                         srcset="
-                                                                                        {{ $content->images['images']['small'] }} {{ env('CATEGORY_SMALL_W') }}w,
-                                                                                        {{ $content->images['images']['medium'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
-                                                                                        {{ $content->images['images']['large'] ?? $content->images['images']['small'] }} 2x">
+                                                                                                                {{ $content->images['images']['small'] }} {{ env('CATEGORY_SMALL_W') }}w,
+                                                                                                                {{ $content->images['images']['medium'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
+                                                                                                                {{ $content->images['images']['large'] ?? $content->images['images']['small'] }} 2x">
                                     <figcaption>
                                         <h2 class="p-0 m-0 text-center"> {{ $content->title }}</h2>
                                     </figcaption>
@@ -194,9 +204,9 @@
                                         sizes="(max-width:{{ env('CATEGORY_SMALL_W') }}px) 100vw {{ env('CATEGORY_SMALL_W') }}px {{ ENV('CATEGORY_MEDIUM_W') }}px {{ ENV('CATEGORY_LARGE_W') }}px"
                                         alt="{{ $content->title }}" width="200" height="200"
                                         srcset="
-                                                                                        {{ $content->images['images']['small'] }} {{ env('CATEGORY_SMALL_W') }}w,
-                                                                                        {{ $content->images['images']['medium'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
-                                                                                        {{ $content->images['images']['large'] }} 2x">
+                                                                                                                {{ $content->images['images']['small'] }} {{ env('CATEGORY_SMALL_W') }}w,
+                                                                                                                {{ $content->images['images']['medium'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
+                                                                                                                {{ $content->images['images']['large'] }} 2x">
                                     <figcaption>
                                         <h2 class="p-0 m-0 text-center"> {{ $content->title }}</h2>
                                     </figcaption>
@@ -231,14 +241,14 @@
                                         <div><img alt="{{ $content->title }}" width="{{ env('PRODUCT_SMALL_W') }}"
                                                 height="{{ env('PRODUCT_SMALL_H') }}"
                                                 src="{{ $content->images['images']['small'] }}" srcset="
-                                                                                        {{ $content->images['images']['small'] }} 850w,
-                                                                                        {{ $content->images['images']['medium'] }} 1536w,
-                                                                                        {{ $content->images['images']['large'] }} 2880w
-                                                                                            " sizes="
-                                                                                            (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
-                                                                                            (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
-                                                                                            (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
-                                                                                            "></div>
+                                                                                                                {{ $content->images['images']['small'] }} 850w,
+                                                                                                                {{ $content->images['images']['medium'] }} 1536w,
+                                                                                                                {{ $content->images['images']['large'] }} 2880w
+                                                                                                                    " sizes="
+                                                                                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
+                                                                                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
+                                                                                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
+                                                                                                                    "></div>
                                     @endif
                                     <div>
                                         <h4> {{ $content->title }}</h4>
@@ -292,14 +302,14 @@
                                         <div><img alt="{{ $content->title }}" width="{{ env('PRODUCT_SMALL_W') }}"
                                                 height="{{ env('PRODUCT_SMALL_H') }}"
                                                 src="{{ $content->images['images']['small'] }}" srcset="
-                                                                                        {{ $content->images['images']['small'] }} 850w,
-                                                                                        {{ $content->images['images']['medium'] }} 1536w,
-                                                                                        {{ $content->images['images']['large'] }} 2880w
-                                                                                            " sizes="
-                                                                                            (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
-                                                                                            (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
-                                                                                            (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
-                                                                                            "></div>
+                                                                                                                {{ $content->images['images']['small'] }} 850w,
+                                                                                                                {{ $content->images['images']['medium'] }} 1536w,
+                                                                                                                {{ $content->images['images']['large'] }} 2880w
+                                                                                                                    " sizes="
+                                                                                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
+                                                                                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
+                                                                                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
+                                                                                                                    "></div>
                                     @endif
                                     <div>
                                         <h4> {{ $content->title }}</h4>
@@ -353,14 +363,14 @@
                                         <div><img alt="{{ $content->title }}" width="{{ env('PRODUCT_SMALL_W') }}"
                                                 height="{{ env('PRODUCT_SMALL_H') }}"
                                                 src="{{ $content->images['images']['small'] }}" srcset="
-                                                                                        {{ $content->images['images']['small'] }} 850w,
-                                                                                        {{ $content->images['images']['medium'] }} 1536w,
-                                                                                        {{ $content->images['images']['large'] }} 2880w
-                                                                                            " sizes="
-                                                                                            (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
-                                                                                            (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
-                                                                                            (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
-                                                                                            "></div>
+                                                                                                                {{ $content->images['images']['small'] }} 850w,
+                                                                                                                {{ $content->images['images']['medium'] }} 1536w,
+                                                                                                                {{ $content->images['images']['large'] }} 2880w
+                                                                                                                    " sizes="
+                                                                                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
+                                                                                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
+                                                                                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
+                                                                                                                    "></div>
                                     @endif
                                     <div>
                                         <h4> {{ $content->title }}</h4>
@@ -415,14 +425,14 @@
                                         <div><img alt="{{ $content->title }}" width="{{ env('PRODUCT_SMALL_W') }}"
                                                 height="{{ env('PRODUCT_SMALL_H') }}"
                                                 src="{{ $content->images['images']['small'] }}" srcset="
-                                                                                        {{ $content->images['images']['small'] }} 850w,
-                                                                                        {{ $content->images['images']['medium'] }} 1536w,
-                                                                                        {{ $content->images['images']['large'] }} 2880w
-                                                                                            " sizes="
-                                                                                            (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
-                                                                                            (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
-                                                                                            (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
-                                                                                            "></div>
+                                                                                                                {{ $content->images['images']['small'] }} 850w,
+                                                                                                                {{ $content->images['images']['medium'] }} 1536w,
+                                                                                                                {{ $content->images['images']['large'] }} 2880w
+                                                                                                                    " sizes="
+                                                                                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
+                                                                                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
+                                                                                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
+                                                                                                                    "></div>
                                     @endif
                                     <div>
                                         <h4> {{ $content->title }}</h4>
