@@ -24,6 +24,7 @@ Route::post('/spider/addToCms', [SpiderController::class, 'reloadAdd']);
 Route::group(['middleware' => 'HtmlMinifier'], function () {
 
     Route::get('search', [SearchController::class,'index'])->name('search');
+    Route::post('search/suggest', [SearchController::class,'suggest'])->name('search.suggest');
 
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/reload', [ContentController::class, 'reload']);

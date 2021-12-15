@@ -192,7 +192,10 @@
                                     <a href="/درب-لابی-دو-لنگه" class="menu-link menu-list-link">درب لابی دو لنگه</a>
                                 </li>
                                 <li>
-                                    <a href="/درب-لابی-شیشه-خور" class="menu-link menu-list-link">درب لابی شیشه خور</a>
+                                    <a href="/درب-لابی-شیشه-ای" class="menu-link menu-list-link">درب لابی شیشه خور</a>
+                                </li>
+                                <li>
+                                    <a href="/درب-لابی-استیل" class="menu-link menu-list-link">درب لابی  استیل</a>
                                 </li>
                             </ul>
                         </li>
@@ -206,6 +209,10 @@
                                 </li>
                                 <li>
                                     <a href="/درب-لابی-شیشه-ای" class="menu-link menu-list-link">درب لابی شیشه ای</a>
+                                </li>
+
+                                <li>
+                                    <a href="/درب-لابی-ورودی" class="menu-link menu-list-link">درب لابی ورودی</a>
                                 </li>
 
                             </ul>

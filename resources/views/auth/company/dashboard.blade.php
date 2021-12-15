@@ -10,26 +10,26 @@
             <h1>@lang('messages.Dashboard')</h1>
             <div class="flex one four-500">
 
+                @isset($user->company)
+                    @if ($user?->company?->name == '' || $user?->company?->logo == '')
+                        <div class="one thirdth-500 ">
 
-                @if ($user->company->name == '' || $user->company->logo == '')
-                    <div class="one thirdth-500 ">
+                            <a href="{{ route('company.profile') }}"
+                                class="widget shadow border-radius-10 p-1   bg-gray-dark flex h-full">
+                                <h2>گام اول: موارد زیر را تکمیل نمایید <i class="fa fa-external-link-alt"></i></h2>
+                                <div class="full">
+                                    @if ($user->company->name == '')
+                                        <span class=" ">  نام شرکت یا مغازه </span>
+                                    @endif
+                                    @if ($user->company->logo == '')
+                                        <span class=" ">تصویر </span>
+                                    @endif
+                                </div>
 
-                        <a href="{{ route('company.profile') }}"
-                            class="widget shadow border-radius-10 p-1   bg-gray-dark flex h-full">
-                            <h2>گام اول: موارد زیر را تکمیل نمایید <i class="fa fa-external-link-alt"></i></h2>
-                            <div class="full">
-                                @if ($user->company->name == '')
-                                    <span class=" ">  نام شرکت یا مغازه </span>
-                                @endif
-                                @if ($user->company->logo == '')
-                                    <span class=" ">تصویر </span>
-                                @endif
-                            </div>
-
-                        </a>
-                    </div>
-                @endif
-
+                            </a>
+                        </div>
+                    @endif
+                @endisset
 
                 @isset($user->company->contents)
                     <div class="one fourth-500 ">
