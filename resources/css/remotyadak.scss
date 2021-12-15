@@ -7,6 +7,7 @@ $theme-color1-text:#fff;
 
 $a: #d13501;
 $a-hover: #18191d;
+
 $menu-color: #fff;
 $menu-bg-left:#1e2135;
 $menu-bg-right:#1e2135;
@@ -15,7 +16,7 @@ $p: #1e2135;
 
 $search-bg:$theme-color1;
 $search-border:1px solid $search-bg;
-$search-text:#fff;
+$search-text:#333;
 
 @import "app.scss";
 @import "grid.scss";
