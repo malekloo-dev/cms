@@ -73,7 +73,8 @@
                             $.each(ulItem, function(i, liItem) {
 
 
-                                var href = (ulName == 'companies') ? '/profile/' + liItem.id : '/' + liItem.slug  ;
+                                var href = (ulName == 'companies') ? '/profile/' +
+                                    liItem.id : '/' + liItem.slug;
 
                                 $('<li/>').append(
 
@@ -175,9 +176,9 @@
                                         sizes="(max-width:{{ env('CATEGORY_SMALL_W') }}px) 100vw {{ env('CATEGORY_SMALL_W') }}px {{ ENV('CATEGORY_MEDIUM_W') }}px {{ ENV('CATEGORY_LARGE_W') }}px"
                                         alt="{{ $content->title }}" width="200" height="200"
                                         srcset="
-                                                                                                                {{ $content->images['images']['small'] }} {{ env('CATEGORY_SMALL_W') }}w,
-                                                                                                                {{ $content->images['images']['medium'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
-                                                                                                                {{ $content->images['images']['large'] ?? $content->images['images']['small'] }} 2x">
+                                                                                                                                                {{ $content->images['images']['small'] }} {{ env('CATEGORY_SMALL_W') }}w,
+                                                                                                                                                {{ $content->images['images']['medium'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
+                                                                                                                                                {{ $content->images['images']['large'] ?? $content->images['images']['small'] }} 2x">
                                     <figcaption>
                                         <h2 class="p-0 m-0 text-center"> {{ $content->title }}</h2>
                                     </figcaption>
@@ -204,9 +205,9 @@
                                         sizes="(max-width:{{ env('CATEGORY_SMALL_W') }}px) 100vw {{ env('CATEGORY_SMALL_W') }}px {{ ENV('CATEGORY_MEDIUM_W') }}px {{ ENV('CATEGORY_LARGE_W') }}px"
                                         alt="{{ $content->title }}" width="200" height="200"
                                         srcset="
-                                                                                                                {{ $content->images['images']['small'] }} {{ env('CATEGORY_SMALL_W') }}w,
-                                                                                                                {{ $content->images['images']['medium'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
-                                                                                                                {{ $content->images['images']['large'] }} 2x">
+                                                                                                                                                {{ $content->images['images']['small'] }} {{ env('CATEGORY_SMALL_W') }}w,
+                                                                                                                                                {{ $content->images['images']['medium'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
+                                                                                                                                                {{ $content->images['images']['large'] }} 2x">
                                     <figcaption>
                                         <h2 class="p-0 m-0 text-center"> {{ $content->title }}</h2>
                                     </figcaption>
@@ -240,15 +241,18 @@
                                     @if (isset($content->images['images']['small']))
                                         <div><img alt="{{ $content->title }}" width="{{ env('PRODUCT_SMALL_W') }}"
                                                 height="{{ env('PRODUCT_SMALL_H') }}"
-                                                src="{{ $content->images['images']['small'] }}" srcset="
-                                                                                                                {{ $content->images['images']['small'] }} 850w,
-                                                                                                                {{ $content->images['images']['medium'] }} 1536w,
-                                                                                                                {{ $content->images['images']['large'] }} 2880w
-                                                                                                                    " sizes="
-                                                                                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
-                                                                                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
-                                                                                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
-                                                                                                                    "></div>
+                                                src="{{ $content->images['images']['small'] }}"
+                                                srcset="
+                                                                                                                                                {{ $content->images['images']['small'] }} 850w,
+                                                                                                                                                {{ $content->images['images']['medium'] }} 1536w,
+                                                                                                                                                {{ $content->images['images']['large'] }} 2880w
+                                                                                                                                                    "
+                                                sizes="
+                                                                                                                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
+                                                                                                                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
+                                                                                                                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
+                                                                                                                                                    ">
+                                        </div>
                                     @endif
                                     <div>
                                         <h4> {{ $content->title }}</h4>
@@ -268,9 +272,22 @@
                                                     @endfor
                                                 @endif
                                             </div>
-                                            @if (isset($content->attr['price']))
-                                                @convertCurrency($content->attr['price']??0) تومان
+
+                                            @if (isset($content->attr['price']) && !in_array($content->attr['price'], [null, 0]))
+                                                <div>@convertCurrency($content->attr['price']??0) تومان</div>
                                             @endif
+                                            <div>
+                                                <svg class="p-0" width="13" height="13" viewBox="0 0 24 24"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
+                                                        fill="currentColor" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M12 3C6.40848 3 1.71018 6.82432 0.378052 12C1.71018 17.1757 6.40848 21 12 21C17.5915 21 22.2898 17.1757 23.6219 12C22.2898 6.82432 17.5915 3 12 3ZM16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
+                                                        fill="currentColor" />
+                                                </svg>
+                                                {{ $content->viewCount }}
+                                            </div>
                                         </div>
                                     </div>
 
@@ -301,15 +318,18 @@
                                     @if (isset($content->images['images']['small']))
                                         <div><img alt="{{ $content->title }}" width="{{ env('PRODUCT_SMALL_W') }}"
                                                 height="{{ env('PRODUCT_SMALL_H') }}"
-                                                src="{{ $content->images['images']['small'] }}" srcset="
-                                                                                                                {{ $content->images['images']['small'] }} 850w,
-                                                                                                                {{ $content->images['images']['medium'] }} 1536w,
-                                                                                                                {{ $content->images['images']['large'] }} 2880w
-                                                                                                                    " sizes="
-                                                                                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
-                                                                                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
-                                                                                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
-                                                                                                                    "></div>
+                                                src="{{ $content->images['images']['small'] }}"
+                                                srcset="
+                                                                                                                                                {{ $content->images['images']['small'] }} 850w,
+                                                                                                                                                {{ $content->images['images']['medium'] }} 1536w,
+                                                                                                                                                {{ $content->images['images']['large'] }} 2880w
+                                                                                                                                                    "
+                                                sizes="
+                                                                                                                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
+                                                                                                                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
+                                                                                                                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
+                                                                                                                                                    ">
+                                        </div>
                                     @endif
                                     <div>
                                         <h4> {{ $content->title }}</h4>
@@ -329,9 +349,21 @@
                                                     @endfor
                                                 @endif
                                             </div>
-                                            @if (isset($content->attr['price']))
-                                                @convertCurrency($content->attr['price']??0) تومان
+                                            @if (isset($content->attr['price']) && !in_array($content->attr['price'], [null, 0]))
+                                                <div>@convertCurrency($content->attr['price']??0) تومان</div>
                                             @endif
+                                            <div>
+                                                <svg class="p-0" width="13" height="13" viewBox="0 0 24 24"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
+                                                        fill="currentColor" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M12 3C6.40848 3 1.71018 6.82432 0.378052 12C1.71018 17.1757 6.40848 21 12 21C17.5915 21 22.2898 17.1757 23.6219 12C22.2898 6.82432 17.5915 3 12 3ZM16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
+                                                        fill="currentColor" />
+                                                </svg>
+                                                {{ $content->viewCount }}
+                                            </div>
                                         </div>
                                     </div>
 
@@ -362,15 +394,18 @@
                                     @if (isset($content->images['images']['small']))
                                         <div><img alt="{{ $content->title }}" width="{{ env('PRODUCT_SMALL_W') }}"
                                                 height="{{ env('PRODUCT_SMALL_H') }}"
-                                                src="{{ $content->images['images']['small'] }}" srcset="
-                                                                                                                {{ $content->images['images']['small'] }} 850w,
-                                                                                                                {{ $content->images['images']['medium'] }} 1536w,
-                                                                                                                {{ $content->images['images']['large'] }} 2880w
-                                                                                                                    " sizes="
-                                                                                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
-                                                                                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
-                                                                                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
-                                                                                                                    "></div>
+                                                src="{{ $content->images['images']['small'] }}"
+                                                srcset="
+                                                                                                                                                {{ $content->images['images']['small'] }} 850w,
+                                                                                                                                                {{ $content->images['images']['medium'] }} 1536w,
+                                                                                                                                                {{ $content->images['images']['large'] }} 2880w
+                                                                                                                                                    "
+                                                sizes="
+                                                                                                                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
+                                                                                                                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
+                                                                                                                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
+                                                                                                                                                    ">
+                                        </div>
                                     @endif
                                     <div>
                                         <h4> {{ $content->title }}</h4>
@@ -390,9 +425,21 @@
                                                     @endfor
                                                 @endif
                                             </div>
-                                            @if (isset($content->attr['price']))
-                                                @convertCurrency($content->attr['price']??0) تومان
+                                            @if (isset($content->attr['price']) && !in_array($content->attr['price'], [null, 0]))
+                                                <div>@convertCurrency($content->attr['price']??0) تومان</div>
                                             @endif
+                                            <div>
+                                                <svg class="p-0" width="13" height="13" viewBox="0 0 24 24"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
+                                                        fill="currentColor" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M12 3C6.40848 3 1.71018 6.82432 0.378052 12C1.71018 17.1757 6.40848 21 12 21C17.5915 21 22.2898 17.1757 23.6219 12C22.2898 6.82432 17.5915 3 12 3ZM16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
+                                                        fill="currentColor" />
+                                                </svg>
+                                                {{ $content->viewCount }}
+                                            </div>
                                         </div>
                                     </div>
 
@@ -424,15 +471,18 @@
                                     @if (isset($content->images['images']['small']))
                                         <div><img alt="{{ $content->title }}" width="{{ env('PRODUCT_SMALL_W') }}"
                                                 height="{{ env('PRODUCT_SMALL_H') }}"
-                                                src="{{ $content->images['images']['small'] }}" srcset="
-                                                                                                                {{ $content->images['images']['small'] }} 850w,
-                                                                                                                {{ $content->images['images']['medium'] }} 1536w,
-                                                                                                                {{ $content->images['images']['large'] }} 2880w
-                                                                                                                    " sizes="
-                                                                                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
-                                                                                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
-                                                                                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
-                                                                                                                    "></div>
+                                                src="{{ $content->images['images']['small'] }}"
+                                                srcset="
+                                                                                                                                                {{ $content->images['images']['small'] }} 850w,
+                                                                                                                                                {{ $content->images['images']['medium'] }} 1536w,
+                                                                                                                                                {{ $content->images['images']['large'] }} 2880w
+                                                                                                                                                    "
+                                                sizes="
+                                                                                                                                                    (min-width:1366px) {{ env('PRODUCT_SMALL_W') }}px,
+                                                                                                                                                    (min-width:1536px) {{ env('PRODUCT_MEDIUM_W') }}px,
+                                                                                                                                                    (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
+                                                                                                                                                    ">
+                                        </div>
                                     @endif
                                     <div>
                                         <h4> {{ $content->title }}</h4>
@@ -452,9 +502,21 @@
                                                     @endfor
                                                 @endif
                                             </div>
-                                            @if (isset($content->attr['price']))
-                                                @convertCurrency($content->attr['price']??0) تومان
+                                            @if (isset($content->attr['price']) && !in_array($content->attr['price'], [null, 0]))
+                                                <div>@convertCurrency($content->attr['price']??0) تومان</div>
                                             @endif
+                                            <div>
+                                                <svg class="p-0" width="13" height="13" viewBox="0 0 24 24"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
+                                                        fill="currentColor" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M12 3C6.40848 3 1.71018 6.82432 0.378052 12C1.71018 17.1757 6.40848 21 12 21C17.5915 21 22.2898 17.1757 23.6219 12C22.2898 6.82432 17.5915 3 12 3ZM16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
+                                                        fill="currentColor" />
+                                                </svg>
+                                                {{ $content->viewCount }}
+                                            </div>
                                         </div>
                                     </div>
 

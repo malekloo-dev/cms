@@ -3,13 +3,14 @@
     <script>
         $(document).ready(function() {
 
-            $('.selcet2').select2();
+
 
             var $input = $("#parent_id");
             var $parent_id_hide = $("#parent_id_hide");
             var $parent = $('#parent_id_hide').find(':selected').val();
 
             $parent_id_hide.select2();
+
             $input.select2();
             $input.on("selecting unselecting change", function() {
                 setOption($("#parent_id").parent().find("ul.select2-choices"));
@@ -72,7 +73,9 @@
                 $("#parent_id_hide").empty();
                 //$('#parent_id_hide option:selected').removeAttr('selected');
                 $('#parent_id_hide').select2('destroy');
+
                 $parent_id_hide.select2();
+
                 if (newoptions.length > 0) {
                     $("#parent_id_hide").append(newoptions);
                     $parent_id_hide.val($parent);
@@ -90,7 +93,12 @@
 
 
             }
+
+
         });
+
+        // $('.select2').select2();
+
         $("#meta_keywords").select2({
             tags: [],
             maximumInputLength: 100
@@ -186,8 +194,8 @@
                                 <option value="">بدون ویژگی</option>
                                 @foreach ($attributes as $item)
                                     <option value="{{ $item->id }}"
-                                        {{ app('request')->attr == $item->id ? 'selected': (($attribute->id ??'') == $item->id?'selected':'')}}
-                                        >{{ $item->name }}</option>
+                                        {{ app('request')->attr == $item->id ? 'selected' : (($attribute->id ?? '') == $item->id ? 'selected' : '') }}>
+                                        {{ $item->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -295,9 +303,13 @@
                         <label for="name">@lang('messages.main category'):</label>
 
                         <div id="parent_id_val" class="parent_id_val"></div>
+
+
                         <select id="parent_id_hide" name="parent_id_hide">
                             <option value="{!! $content->parent_id ?? '' !!}"></option>
                         </select>
+
+
 
                     </div>
                 </div>
@@ -445,13 +457,8 @@
 
                 @endif
                 <div class="form-group row">
-                    <div class="col-md-1">
-                        <label for="rate" class="col-form-label text-md-left">@lang('messages.rate'):</label>
 
-                        <input type="text" class="form-control" name="attr[rate]"
-                            value="{{ old('attr[rate]', $content->attr['rate'] ?? '') }}" />
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-6 col-md-6">
                         <label for="name" class="col-form-label text-md-left">@lang('messages.status'):</label>
 
                         <select class="form-control" name="status">
@@ -459,6 +466,22 @@
                                 @lang('messages.Active')</option>
                             <option value="0" {{ ($content->status ?? '') == '0' ? 'selected' : '' }}>
                                 @lang('messages.Disactive')</option>
+                        </select>
+                    </div>
+
+                    <div class="col-6 col-md-6">
+                        <label for="name" class="col-form-label text-md-left">@lang('messages.company'):</label>
+
+                        <select class="select2" name="company">
+                            <option value="0">کمپانی ندارد</option>
+                            @foreach ($companies as $comp)
+                                <option value="{{ $comp->id }}"
+                                    {{ isset($content) && $content->companies?->first()?->id == $comp->id ? 'selected' : '' }}
+                                    {{ old('company') == $comp->id ? 'selected' : '' }}>
+                                    {{ $comp->name }}</option>
+                            @endforeach
+
+
                         </select>
                     </div>
                 </div>

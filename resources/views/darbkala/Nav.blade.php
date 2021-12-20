@@ -347,22 +347,23 @@
                                     <a href="/درب-اتوماتیک-پارکینگ" class="menu-link menu-list-link">درب اتوماتیک
                                         پارکینگ</a>
                                 </li>
+                                <li>
+                                    <a href="/درب-اتوماتیک-سکشنال" class="menu-link menu-list-link">درب اتوماتیک
+                                        سکشنال</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
                             <ul class="menu menu-list">
                                 <li>
-                                    <a href="/درب-اتوماتیک-کرکره-ای" class="menu-link menu-list-link">درب اتوماتیک کرکره
-                                        ای</a>
+                                    <a href="/درب-اتوماتیک-کرکره-برقی" class="menu-link menu-list-link">درب اتوماتیک کرکره
+                                        برقی</a>
                                 </li>
                                 <li>
                                     <a href="/درب-اتوماتیک-جک-برقی" class="menu-link menu-list-link">درب اتوماتیک جک
                                         برقی</a>
                                 </li>
-                                <li>
-                                    <a href="/درب-اتوماتیک-سکشنال" class="menu-link menu-list-link">درب اتوماتیک
-                                        سکشنال</a>
-                                </li>
+
                             </ul>
                         </li>
                         <li>
@@ -382,7 +383,7 @@
                             <ul class="menu menu-list">
 
                                 <li>
-                                    <a href="/جک-درب-اتوماتیک" class="menu-link menu-list-link">جک روب اتوماتیک </a>
+                                    <a href="/جک-درب-اتوماتیک" class="menu-link menu-list-link">جک درب اتوماتیک </a>
                                 </li>
                                 <li>
                                     <a href="/موتور-درب-ریلی" class="menu-link menu-list-link">موتور درب ریلی</a>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\CompanyContents;
 use App\Models\Content;
 use App\Models\ContentAttributeValue;
 use App\Models\ContentType;
@@ -84,20 +85,22 @@ class ContentController extends Controller
         if (isset($request->watermark)) {
             foreach ($url['images'] as $size => $image) {
 
-                if(in_array($size,['crop'])){$size='large';}
+                if (in_array($size, ['crop'])) {
+                    $size = 'large';
+                }
 
                 $imgFile = Image::make(public_path($image));
 
-                $imgFile->text($request->watermark, env(Str::upper($type).'_'.Str::upper($size).'_W')/2, env(Str::upper($type).'_'.Str::upper($size).'_H')/2,  function ($font) use ($size,$type) {
+                $imgFile->text($request->watermark, env(Str::upper($type) . '_' . Str::upper($size) . '_W') / 2, env(Str::upper($type) . '_' . Str::upper($size) . '_H') / 2,  function ($font) use ($size, $type) {
                     $font->file(public_path('/adminAssets/fonts/IRANSans/ttf/IRANSansWeb.ttf'));
-                    $font->size(env(Str::upper($type).'_'.Str::upper($size).'_W')/10);
+                    $font->size(env(Str::upper($type) . '_' . Str::upper($size) . '_W') / 10);
                     $font->color('rgba(0,0,0,0.2)');
                     $font->align('center');
                     $font->valign('bottom');
                     $font->angle(45);
                 });
 
-                $imgFile->save(public_path($image), 60,'jpg');
+                $imgFile->save(public_path($image), 60, 'jpg');
 
                 // echo "<img src='".url($image)."'>";
             }
@@ -125,7 +128,7 @@ class ContentController extends Controller
             $img->resize($size, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $img->save(public_path($images[$name]), 60,'jpg');
+            $img->save(public_path($images[$name]), 60, 'jpg');
 
             // echo "<img src='".url($images[$name])."'>";
 
@@ -203,7 +206,7 @@ class ContentController extends Controller
         $data['attr_type'] = $type;
         $data['attrId'] = $request->attr;
 
-        if(isset($request->attr)){
+        if (isset($request->attr)) {
             $data['attribute'] = Attribute::getFormFieldsByContentTypeId($request->attr);
         }
 
@@ -216,7 +219,10 @@ class ContentController extends Controller
         }else
         {*/
 
-            // dd($data['attribute']->contentAattributeFields);
+        // dd($data['attribute']->contentAattributeFields);
+
+        $data['companies'] = Company::all();
+
         return view('admin.content.CreateOrEdit', $data);
 
         //}
@@ -269,8 +275,8 @@ class ContentController extends Controller
         /************
         /   attribute
         /*************/
-        if(isset($data['content_type_id'])){
-            $attrObject = Attribute::upsert($data,$object->id , $data['content_type_id']);
+        if (isset($data['content_type_id'])) {
+            $attrObject = Attribute::upsert($data, $object->id, $data['content_type_id']);
         }
 
 
@@ -286,6 +292,13 @@ class ContentController extends Controller
             // dd($imagesGallery);
         }
 
+        /************
+         //company
+         /************/
+        if ($request->company != '') {
+            $company = ($request->company) ? $request->company : [];
+            $object->companies()->sync($company);
+        }
         return $object;
     }
 
@@ -331,10 +344,10 @@ class ContentController extends Controller
         //$attribute = Attribute::getFormFieldsByContentTypeId($request->attr);
 
 
-        if(isset($request->attr)){
+        if (isset($request->attr)) {
             $attribute = Attribute::getFormFieldsByContentTypeId($request->attr);
-        }else{
-            $attribute=Attribute::getFormValue($content->id);
+        } else {
+            $attribute = Attribute::getFormValue($content->id);
         }
 
         $attributes = ContentType::all();
@@ -349,8 +362,9 @@ class ContentController extends Controller
 
         // }
 
+        $companies = Company::all();
 
-        return view('admin.content.CreateOrEdit', compact(['content', 'category','attribute','attributes']));
+        return view('admin.content.CreateOrEdit', compact(['content', 'category', 'attribute', 'attributes', 'companies']));
     }
 
     /**
@@ -449,12 +463,14 @@ class ContentController extends Controller
         //dd($data);
 
 
-        if(isset($data['content_type_id'])){
-            $content_type_id=$data['content_type_id'];
-            $attrObject = Attribute::upsert($data, $crud->id,$content_type_id);
+        if (isset($data['content_type_id'])) {
+            $content_type_id = $data['content_type_id'];
+            $attrObject = Attribute::upsert($data, $crud->id, $content_type_id);
         }
         $crud->update($data);
         // dd(1);
+
+
 
         //$crud->categories()->sync($request->parent_id_hide);
         $crud->categories()->detach();
@@ -484,6 +500,13 @@ class ContentController extends Controller
         //        //return redirect(route('articles.index'));
         //
         //        $crud->save();
+
+
+        //company
+        if ($request->company != '') {
+            $company = ($request->company) ? $request->company : [];
+            $crud->companies()->sync($company);
+        }
 
         $this->sitemap();
 
