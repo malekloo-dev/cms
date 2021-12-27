@@ -19,54 +19,12 @@
                     </span>
 
                 </label>
-                {{-- <script>
-                function myFunction() {
-                    var element = document.getElementById("bmenu1");
-                    element.classList.add("burger");
-                    element.classList.add("toggle");
-                    element.classList.add("pseudo");
-                    element.classList.add("button");
-                }
 
-                myFunction();
-                }
-
-                </script> --}}
                 <div class="menu">
 
                     <ul>
-                        {{-- <li>
-                        <a class="flexbox">
-                            <div class="search1">
-                                <div>
-                                    <input alt="جستجو" type="text" placeholder="جستجو" required>
-                                </div>
-                            </div>
-                        </a>
-                    </li> --}}
-                        {{-- @foreach (App\Models\Menu::where('parent', '=', '0')->orderBy('sort')->get()
-    as $menuItem)
-                            @php $subMenu = App\Models\Menu::where('menu', '=', '1')
-                            ->where('parent', '=', $menuItem['id'])
-                            ->orderBy('sort')
-                            ->get(); @endphp
-                            @if (count($subMenu))
-                                <li class="parent"><a href="{{ $menuItem['link'] }}">{{ $menuItem['label'] }}</a>
-                                    <div><i class="arrow down"></i></div>
-                                    <ul>
-                                        @foreach ($subMenu as $subMenuItem)
-                                            <li><a
-                                                    href="{{ in_array($subMenuItem['type'], ['internal', 'external']) ? url($subMenuItem['link']) : '/#' . $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @else
-                                <li><a
-                                        href="{{ in_array($menuItem['type'], ['internal', 'external']) ? url($menuItem['link']) : '/#' . $menuItem['link'] }}">{{ $menuItem['label'] }}</a>
-                                </li>
-                            @endif
-                        @endforeach --}}
+
+
 
 
 

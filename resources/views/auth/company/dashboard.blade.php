@@ -49,7 +49,7 @@
                         <div class="widget shadow border-radius-10 p-1   bg-orange block h-full">
                             <h2><span class="font-13 bold">{{ $user->company->viewCount ?? 0 }}</span> بار کمپانی شما دیده شده است </h2>
 
-                            <a href="">دیدن پروفابل <i class="fa fa-external-link-alt"></i></a>
+                            <a href="{{ route('company.profile') }}">دیدن پروفابل <i class="fa fa-external-link-alt"></i></a>
                         </div>
                     </div>
                 @endisset

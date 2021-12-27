@@ -390,13 +390,7 @@
         </section>
 
 
-        <div class="mobile-menu">
-            <ul>
-                <li><a href="#products">محصولات</a></li>
-                <li><a href="#articles">مقالات</a></li>
-            </ul>
-        </div>
-
+       
     @endif
 
 @endsection
