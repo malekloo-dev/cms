@@ -43,12 +43,9 @@
     aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-body " style="padding:2px ">
                 <div class="img-container">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-6  col-xs-12" style="float: inherit;">
-                            <div class="preview"></div>
-                        </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="float: inherit;">
                             <img id="image" src="">
                         </div>
@@ -67,6 +64,9 @@
     var $modal = $('#modal');
     var image = document.getElementById('image');
     var cropper;
+    $('button[data-dismiss="modal"]').click(function(){	$(this).parents().modal('hide'); }) ;
+
+
     $("body").on("click", "#images", function(e) {
         $(this).val('');
     });
@@ -104,8 +104,14 @@
             //   aspectRatio: 1,
             //   viewMode: 3,
             aspectRatio: 1,
-            viewMode: 0,
-            preview: '.preview'
+            viewMode: 2,
+            minCropBoxWidth:50,
+            // maxContainerWidth  : 300,
+            maxCanvasWidth :300,
+            minContainerHeight  : 400,
+            // autoCropArea: 1,
+            // dragMode            : 'move',
+            // preview: '.preview'
         });
     }).on('hidden.bs.modal', function() {
         cropper.destroy();
@@ -152,7 +158,10 @@
                         $modal.modal('hide');
                         $('.company-logo svg').hide();
                         $('.company-logo img').show();
-                        $('.company-logo img').attr('src', data.url.images.large);
+                        $('i').remove();
+                        $('.company-logo img').attr('src', data.url.images.large+'?'+Math.random());
+                        $('.company-logo img').attr('width', 100);
+                        $('.company-logo img').attr('height', 100);
 
                         // alert("success upload image");
                     }

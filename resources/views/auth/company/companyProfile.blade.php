@@ -13,9 +13,9 @@
                 <div class=" one">
                     <div class="text-center company-logo">
 
-                        @if (!isset(Auth::user()->company->logo['large']) || Auth::user()->company->logo['large'] == '' ||   !file_exists(public_path(Auth::user()->company->logo['large'] )))
+                        @if (!isset(Auth::user()->company->logo['large']) || Auth::user()->company->logo['large'] == '' || !file_exists(public_path(Auth::user()->company->logo['large'] )))
                             <i class="far fa-user logo" style="font-size:4em"></i>
-                            <img src="" width="100" height="100" class="border-radius-50 p-0" alt="">
+                            <img src="" width="0" height="0" class="border-radius-50 p-0" alt="">
                         @else
                             <img width="100" height="100" class="border-radius-50 p-0"  src="{{ url(Auth::user()->company->logo['large']) }}?{{ uniqid() }}">
                         @endif

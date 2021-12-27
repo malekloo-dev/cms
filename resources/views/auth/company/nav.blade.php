@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="{{ mix('panel/panel.css',env('TEMPLATE_NAME')) }}" >
 
 
-<div class="company-nav">
+<div class="company-nav" style="position: relative">
+    <div class="company-menu" style="position: absolute; right:60px; top:10px; font-weight: bold ">منوی پروفایل</div>
     <div class="burger">
         <span></span>
         <span></span>
@@ -52,6 +53,9 @@
 
 <style>
     .price{color: #333; font-size: 1.3em; font-weight: normal}
+    @media (min-width:960px){
+        .company-menu{display: none}
+    }
 </style>
 
 

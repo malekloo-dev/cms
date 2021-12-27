@@ -76,7 +76,7 @@
 
 
 </div>
-
+@if(!app('request')->is('company*'))
 <section class="bg-white p-0 m-0">
     <div class="nav-mega">
         <nav>
@@ -511,6 +511,7 @@
         </nav>
     </div>
 </section>
+@endif
 
 
 @push('scripts')

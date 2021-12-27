@@ -146,24 +146,9 @@
                     </div>
 
 
-                    <div class=" col-2 col-md-2 col-xs-12">
-                        <label for="name"> @lang('messages.publish date'):</label>
-                        <input type="{{ $ltr ? 'date' : '' }}"
-                            class="form-control {{ !$ltr ? 'datepicker' : 'date' }}  " name="publish_date"
-                            value="{{ old('publish_date', Carbon\Carbon::now()->format('Y-m-d')) }}" />
-                    </div>
+                   
                 </div>
-                <div class="form-group row">
-                    <div class="col-md-12">
-                        <label for="name">@lang('messages.brief'):</label>
 
-                        <textarea class="form-control" id="brief_description"
-                            name="brief_description">{{ old('brief_description', $post->brief_description ?? '') }}</textarea>
-                        <div id="word-count1"></div>
-
-                    </div>
-
-                </div>
                 <div class="form-group row">
                     <div class="col-md-12">
                         <label for="name">@lang('messages.description'):</label>
@@ -216,7 +201,7 @@
                         @php
                             $attr_type = 'product';
                         @endphp
-                        @include('admin.cropper')
+                        @include('auth.company.cropperProduct')
 
                     </div>
 

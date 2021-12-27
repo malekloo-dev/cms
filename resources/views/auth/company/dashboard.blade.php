@@ -18,12 +18,14 @@
                                 class="widget shadow border-radius-10 p-1   bg-gray-dark flex h-full">
                                 <h2>گام اول: موارد زیر را تکمیل نمایید <i class="fa fa-external-link-alt"></i></h2>
                                 <div class="full">
+                                (
                                     @if ($user->company->name == '')
-                                        <span class=" ">  نام شرکت یا مغازه </span>
+                                        <span class=" ">  نام شرکت یا مغازه </span> {{ ($user->company->logo == '')?',':'' }}
                                     @endif
                                     @if ($user->company->logo == '')
                                         <span class=" ">تصویر </span>
                                     @endif
+                                    )
                                 </div>
 
                             </a>
@@ -36,7 +38,7 @@
                         <div class="widget shadow border-radius-10 p-1   bg-purple h-full" >
                             <h2> شما <span class="font-13 bold">{{ $user->company->contents->count() ?? 0 }}</span> محصول دارید </h2>
                             <a href="{{ route('company.products') }}" class="">
-                                    <span class="font-08 bold">(دیدن لیست محصولات)</span>
+                                    <span class="">دیدن لیست محصولات <i class="fa fa-external-link-alt"></i></span>
 
                             </a>
 

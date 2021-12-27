@@ -110,7 +110,9 @@
     if ($('[name=imageJson]').val() != '')
         $('#cropperPreview').attr('src', $('input[name=imageJson]').val())
 
-
+    $("body").on("click", "#galleryFile", function(e) {
+        $(this).val('');
+    });
     $("body").on("change", "#galleryFile", function(e) {
         var files = e.target.files;
         var done = function(url) {

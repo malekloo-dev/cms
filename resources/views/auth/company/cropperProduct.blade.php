@@ -1,16 +1,10 @@
 <label for="jpeg">
-    jpeg
     <input type="radio" checked id="jpeg" name="imageJson"
         value="{{ old('imageJson', $content->imageJson ?? ($company->imageJson ?? '')) }}">
     <img height="" src="{{ $cropperPreview ?? '' }}" id="cropperPreview">
 </label>
 
-<label for="png">
-    png
-    <input type="radio" id="png" name="imageJson"
-        value="{{ old('imageJson', $content->imageJson ?? ($company->imageJson ?? '')) }}">
-    <img height="" src="{{ $cropperPreview ?? '' }}" id="cropperPreviewPng">
-</label>
+
 
 <meta name="_token" content="{{ csrf_token() }}">
 
@@ -18,14 +12,8 @@
 <script src="{{ url('/adminAssets/js/cropper.js') }}"></script>
 
 <style type="text/css">
-    @if (!isset($cropperPreview) || $cropperPreview == url('/'))
 
     label[for=jpeg] {
-        display: none
-    }
-
-    @endif
-    label[for=png] {
         display: none
     }
 
@@ -50,7 +38,7 @@
 
 </style>
 <div class="modal fade modal-cropper" style="direction: ltr;" id="modal" tabindex="-1" role="dialog"
-    aria-labelledby="modalLabel" aria-hidden="true">
+    aria-labelledby="modalLabel" aria-hidden="false">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
 
@@ -113,7 +101,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('messages.cancel')</button>
+
+                <button type="button" class="close btn btn-secondary" data-dismiss="modal">@lang('messages.cancel')</button>
                 <button type="button" class="btn btn-primary" id="crop">@lang('messages.crop')</button>
             </div>
         </div>
@@ -124,15 +113,19 @@
     var image = document.getElementById('image');
     var cropper;
 
-    $("body").on("click", "#images", function(e) {
-        $(this).val('');
-    });
+
+
+    $('button[data-dismiss="modal"]').click(function(){	$(this).parents().modal('hide'); }) ;
 
     if ($('[name=imageJson]').val() != '')
         $('#cropperPreview').attr('src', $('input[name=imageJson]').val())
 
+    $("body").on("click", "#images", function(e) {
+        $(this).val('');
+    });
 
     $("body").on("change", "#images", function(e) {
+        console.log(1);
         var files = e.target.files;
         var done = function(url) {
             image.src = url;
