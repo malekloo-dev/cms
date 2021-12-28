@@ -40,7 +40,7 @@
 
 </style>
 <div class="modal fade cropper" style="direction: ltr;" id="modal" tabindex="-1" role="dialog"
-    aria-labelledby="modalLabel" aria-hidden="true">
+    aria-labelledby="modalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-body " style="padding:2px ">
@@ -77,6 +77,11 @@
         var files = e.target.files;
         var done = function(url) {
             image.src = url;
+            console.log(1);
+            $modal.modal({
+                backdrop: 'static',
+                keyboard: false
+            });
             $modal.modal('show');
         };
         var reader;

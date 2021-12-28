@@ -2525,7 +2525,9 @@ $sizes: 5;
 .font-normal {
     font-weight: normal;
 }
-
+.gray {
+    color: #666;
+}
 .align-left,
 .text-left {
     text-align: left;
@@ -3314,6 +3316,73 @@ section.extra-link {
 }
 
 @media (max-width: 799px) {
+    $sizes: 5;
+
+    @mixin margin-classes {
+        @for $i from 0 through $sizes {
+            $margin: $i * 1em !important;
+            /* margin #{$margin} */
+            .sm\:m-#{$i} {
+                margin: $margin;
+            }
+            .sm\:ml-#{$i} {
+                margin-left: $margin;
+            }
+            .sm\:mr-#{$i} {
+                margin-right: $margin;
+            }
+            .sm\:mt-#{$i} {
+                margin-top: $margin;
+            }
+            .sm\:mb-#{$i} {
+                margin-bottom: $margin;
+            }
+            .sm\:mx-#{$i} {
+                margin-left: $margin;
+                margin-right: $margin;
+            }
+            .sm\:my-#{$i} {
+                margin-top: $margin;
+                margin-bottom: $margin;
+            }
+        }
+    }
+    @include margin-classes;
+    .m-auto {
+        margin: auto;
+    }
+
+    @mixin padding-classes {
+        @for $i from 0 through $sizes {
+            $padding: $i * 1em !important;
+            /* padding #{$padding} */
+            .sm\:p-#{$i} {
+                padding: $padding;
+            }
+            .sm\:pl-#{$i} {
+                padding-left: $padding;
+            }
+            .sm\:pr-#{$i} {
+                padding-right: $padding;
+            }
+            .sm\:pt-#{$i} {
+                padding-top: $padding;
+            }
+            .sm\:pb-#{$i} {
+                padding-bottom: $padding;
+            }
+            .sm\:px-#{$i} {
+                padding-left: $padding;
+                padding-right: $padding;
+            }
+            .sm\:py-#{$i} {
+                padding-top: $padding;
+                padding-bottom: $padding;
+            }
+        }
+    }
+    @include padding-classes;
+
     ////////////////////////////////
     //          filter
     ////////////////////////////////

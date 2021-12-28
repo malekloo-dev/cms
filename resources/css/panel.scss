@@ -8,6 +8,9 @@ $fa-font-path: "webfonts" !default;
 .login h1 {
     text-align: center;
 }
+::placeholder {
+    color: #aaa !important;
+}
 
 section.panel {
     font-size: 0.9em;
@@ -211,9 +214,7 @@ section.panel {
         }
         h2 {
             font-size: 1em;
-
         }
-
     }
 
     .powerup {

@@ -137,22 +137,22 @@
                 {{ Request::is('company/products/edit/*') ? method_field('PATCH') : '' }}
 
                 @csrf
-                <div class="form-group row">
+                <div class="form-group row sm:mb-2">
                     <div class="col-5 col-md-5 col-xs-12">
-                        <label for="name" class="">@lang('messages.title'):</label>
-                        <input type="text" class="form-control" name="title"
+                        <label for="name" class="bold">@lang('messages.title'):</label>
+                        <input type="text" class="form-control" name="title" placeholder="مثال: درب ضد سرقت ترک مدل A9"
                             value="{{ old('title', $post->title ?? '') }}" />
                         <span class="text-danger">{{ $errors->first('title') }}</span>
                     </div>
 
 
-                   
+
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row sm:mb-3">
                     <div class="col-md-12">
-                        <label for="name">@lang('messages.description'):</label>
-                        <textarea class="form-control" id="description"
+                        <label class="bold" for="description">@lang('messages.description'):</label>
+                        <textarea class="form-control" rows="5" placeholder="توضیحات را بنویسید" id="description"
                             name="description">{{ old('description', $post->description ?? '') }}</textarea>
                         <div id="word-count2"></div>
                     </div>
@@ -162,9 +162,11 @@
 
 
 
-                <div class="form-group row">
-                    <div class="col-6 col-md-6">
-                        <label for="name">@lang('messages.category'):</label>
+                <div class="form-group row sm:mb-3">
+                    <div class="col-6 col-md-6 col-xs-12">
+                        <label for="category" class="bold">@lang('messages.category'): </label>
+
+                        <div class="font-08 gray">هر چه تعداد دسته بندی های مرتبط بیشتر باشد تبلیغ شما بیشتر دیده میشود</div>
                         <select id="parent_id" class="js-example-basic-multiple" name="parent_id[]" multiple="multiple">
 
                             @foreach ($category as $Key => $fields)
@@ -173,12 +175,12 @@
                                 </option>
                             @endforeach
                         </select>
-
                         <span class="text-danger">{{ $errors->first('parent_id') }}</span>
                     </div>
-                    <div class="col-6 col-md-6">
+                    <div class="col-6 col-md-6 col-xs-12">
 
-                        <label for="name">@lang('messages.main category'):</label>
+                        <label for="parent_id_hide" class="bold">@lang('messages.main category'):</label>
+                        <div class="font-08 gray">دسته بندی اصلی محصول را بعد از انتخاب موارد بالا انتخاب نمایید</div>
 
                         <div id="parent_id_val" class="parent_id_val"></div>
                         <select id="parent_id_hide" name="parent_id_hide">
@@ -190,11 +192,10 @@
 
 
 
-                <div class="form-group row">
+                <div class="form-group row sm:mb-4">
                     <div class="col-6 col-sm-6 col-xs-12">
-                        <label for="images" class="control-label">@lang('messages.content') @lang('messages.image')
-                            (@lang('messages.content') {{ env('ARTICLE_LARGE') }}px)
-                            (@lang('messages.product') {{ env('PRODUCT_LARGE') }}px)</label>
+                        <label for="content" class="control-label bold"> @lang('messages.image')</label>
+                        <div class="font-09 gray">عرض:{{ env('PRODUCT_LARGE_W') }}px ارتفاع:{{ env('PRODUCT_LARGE_H') }}px</div>
                         <input type="file" class="form-control" name="images" id="images"
                             placeholder="@lang('messages.select image')" value="{{ old('imageUrl') }}">
                         <input type="hidden" name="imageJson">
@@ -225,32 +226,25 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <div class="col-md-6 col-xs-12">
-                        <label for="brand" class=" col-form-label text-md-left">@lang('messages.brand'):</label>
-                        <input type="text" class="form-control" name="attr[brand]"
-                            value="{{ old('attr[brand]', $post->attr['brand']??'') }}" />
-                    </div>
-                </div>
 
-                <div class="form-group row">
-                    <div class="col-md-6 col-xs-12">
-                        <label for="price" class=" col-form-label text-md-left">@lang('messages.price'):</label>
+                <div class="form-group row sm:mb-3">
+                    <div class="col-md-6 col-xs-12 sm:mb-1">
+                        <label for="price" class="bold col-form-label text-md-left">@lang('messages.price') (تومان):</label>
                         <input type="text" class="form-control" name="attr[price]"
                             value="{{ old('attr[price]', $post->attr['price']??'') }}" />
                     </div>
 
                     <div class="col-md-6 col-xs-12">
-                        <label for="offer_price" class=" col-form-label text-md-left">@lang('messages.discount')
+                        <label for="offer_price" class="bold ">@lang('messages.discount')
                             :</label>
-
-                        <input type="text" class="form-control" name="attr[offer_price]"
+                            <div class="font-08 gray">در صورت عدم تخفیف این فیلد را خالی بگذارید</div>
+                        <input type="text" class="form-control" placeholder="مبلغ بعد از تخفیف به تومان" name="attr[offer_price]"
                             value="{{ old('attr[offer_price]', $post->attr['offer_price']??'') }}" />
                     </div>
                 </div>
 
                 <div class="row bg-gray py-2 my-1" >
-                    <div>ویژگی های محصول</div>
+                    <div class="">ویژگی های محصول</div>
                     @include('admin.attribute.CreateOrEdit')
                 </div>
 
