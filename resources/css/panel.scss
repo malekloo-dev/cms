@@ -161,7 +161,7 @@ section.panel {
             box-shadow: 0px 1px 1px rgb(0 0 0 / 40%) inset;
             padding: 0 1em;
             border-radius: 4px !important;
-            margin-top: 2em;
+            // margin-top: 2em;
             text-decoration: none;
         }
     }
@@ -223,15 +223,19 @@ section.panel {
     }
 
     .invoice {
-        max-width: 900px;
+        max-width: 500px;
         margin: auto !important;
         h1 {
             text-align: center;
         }
         .billing-info {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             margin-bottom: 1em;
+        }
+        .invoice-items {
+
         }
         table td {
             text-align: right;
@@ -245,6 +249,9 @@ section.panel {
 }
 
 @media (max-width: 960px) {
+    table{
+        width: 100%;
+    }
     section.panel {
         flex-direction: column;
         margin: 0 !important;

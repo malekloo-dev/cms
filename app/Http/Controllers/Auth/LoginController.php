@@ -66,14 +66,13 @@ class LoginController extends Controller
     //     return redirect()->guest('login');
     // }
 
-    // protected function authenticated(Request $request, $user)
+    // protected function authenticated( $user)
     // {
     //     die(2);
     //     if ($user->isAdmin()) { // do your magic here
     //         return redirect()->route('admin');
     //     }
     //     return redirect('/company');
-
     // }
     // public function authenticate(Request $request){
     //     // Retrive Input

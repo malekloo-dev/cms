@@ -162,7 +162,9 @@
             aspectRatio: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_SMALL_W') }} /
                 {{ env(Str::upper($content->attr_type ?? $attr_type) . '_SMALL_H') }},
             viewMode: 0,
-            preview: '.preview'
+            // preview: '.preview',
+            // maxCanvasWidth :300,
+            minCropBoxWidth:50,
         });
     }).on('hidden.bs.modal', function() {
         cropper.destroy();

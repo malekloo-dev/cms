@@ -9,7 +9,7 @@
     @include('auth.company.nav')
 
     <div class="list">
-        <h1 class="">@lang('messages.Products') </h1>
+        <h1 class="">@lang('messages.invoices') </h1>
 
         <div class="flex one">
 
@@ -27,8 +27,7 @@
                         <div>{{ convertGtoJ($content->created_at) }}</div>
                         <div>@convertCurrency($content->price) @lang('messages.toman')</div>
                         <div>
-                            <i class="fa fa-bolt"></i> {{ $content->transactionable->power - $content->count }} ->
-                            {{ $content->transactionable->power ?? 0 }}
+                            <i class="fa fa-bolt"></i> {{ $content->transactionable->power }} + {{ $content->count }} -> {{ $content->transactionable->power+$content->count }}
                         </div>
                         <div>
                             {{ $content->description }}

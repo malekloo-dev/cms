@@ -119,6 +119,7 @@ class CategoryController extends Controller
             $_input = $listCat[0];
         }
         foreach ($_input as $key => $val) {
+            if(in_array($val->slug,['تماس-با-ما','درباره-ما']) ) continue;
             $newStart = str_repeat($befor, $level) . $start;
             $val->level = $level;
             $val->symbol = $newStart;

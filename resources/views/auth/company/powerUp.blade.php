@@ -1,5 +1,5 @@
 @extends(@env('TEMPLATE_NAME').'.App')
-@section('meta-title', __('messages.power up'))
+@section('meta-title', 'افزایش توان')
 
 @section('Content')
 <section class="panel">
@@ -110,7 +110,7 @@
         align-items: center;
         justify-content: center;
         width: 3rem;
-        height: 2rem;
+        height: 3rem;
         cursor: pointer;
         margin: 0;
         position: relative;
@@ -140,7 +140,7 @@
         border: solid #ddd;
         border-width: 0 2px;
         font-size: 2em;
-        height: 2rem;
+        height: 3rem;
         font-weight: bold;
         text-align: center;
     }

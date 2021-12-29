@@ -19,12 +19,13 @@
                 <!-- Modal content -->
                 <div class="modal-content">
                     <form action="{{ route('company.products.create') }}">
-                        <select name="attr" id="">
+                        <label class="text-align-right bold sm:mb-2" for="">نوع آگهی را انتخاب کنید</label>
+                        <select name="attr" class="sm:mb-2" id="">
                             @foreach ($attributes as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
-                        <button class="btn-success">انتقال به فرم افزودن محصول</button>
+                        <button class="btn-success">مرحله بعد</button>
                         <button class="close" type="button">انصراف</button>
                     </form>
                 </div>
@@ -163,7 +164,7 @@
 
                 <div class="flex one two-500 three-700">
 
-                    @foreach ($user->company->contents()->paginate(10) as $content)
+                    @foreach ($user->company->contents()->orderBy('id','desc')->paginate(9) as $content)
 
                         <div class="item  ">
                             <div class="info  one text-center shadow ">

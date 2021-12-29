@@ -1,5 +1,5 @@
 @extends(@env('TEMPLATE_NAME').'.App')
-@section('meta-title', __('messages.'))
+@section('meta-title', 'پرداختی ها')
 
 @section('Content')
 {{-- <link href="{{ url('/adminAssets/css/font-awesome.min.css') }}" rel="stylesheet"> --}}

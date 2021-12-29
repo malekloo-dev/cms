@@ -145,7 +145,7 @@
 
             <label for="mobile" class="control-label">@lang('messages.mobile')</label>
 
-            <input id="mobile" type="text" class="form-control ltr @error('mobile') is-invalid @enderror" name="mobile"
+            <input id="mobile" type="tel" class="form-control ltr @error('mobile') is-invalid @enderror" name="mobile"
                 value="{{ old('mobile') }}" required autocomplete="mobile"
                 placeholder="{{ __('messages.example') }}:09331181877" autofocus>
 

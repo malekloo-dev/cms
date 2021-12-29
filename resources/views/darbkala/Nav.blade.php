@@ -3,10 +3,14 @@
         <div class="">
             <nav class="top">
                 <a href="/" class="brand">
-                    <img height="60" width="" alt=" درب کالا لوگو"
+                    <img height="50" width="" alt=" درب کالا لوگو"
                         srcset="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }} 1x, {{ url(env('TEMPLATE_NAME') . '/img/logo2x.png') }} 2x"
                         src="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }}" />
                 </a>
+
+
+                <a class="bg-purple px-1 ml-0 m-auto font-08 border-radius-15" id="addProductCTA"  href="{{ route('company.products') }}">درج آگهی</a>
+                
 
 
                 <input id="bmenu" name="bmenu" type="checkbox" class="show" aria-label="menu">
@@ -19,7 +23,6 @@
                     </span>
 
                 </label>
-
                 <div class="menu">
 
                     <ul>

@@ -107,10 +107,12 @@ class RegisterController extends Controller
     }
     protected function redirectTo()
     {
-        if (Auth::user()->getRoleName == 'company') {
-            return redirect()->intended('/company');
-        }
-        return '/';
+
+         // Check user role
+         if (Auth::user()->hasRole('company'))
+             return '/company';
+         else
+             return '/';
     }
 
     // protected function showRegistrationForm()

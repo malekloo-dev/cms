@@ -139,7 +139,7 @@
                 <label for="mobile" class="col-md-12 col-form-label ">@lang('messages.mobile')</label>
 
                 <div class="col-md-12">
-                    <input id="mobile" type="text" class="form-control ltr @error('mobile') is-invalid @enderror"
+                    <input id="mobile" type="tel" class="form-control ltr @error('mobile') is-invalid @enderror"
                         name="mobile" value="{{ old('mobile') }}" required
                         placeholder="{{ __('messages.example') }}:09331181877" autocomplete="mobile">
 

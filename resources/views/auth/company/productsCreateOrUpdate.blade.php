@@ -1,7 +1,9 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 @section('meta-title', __('messages.product'))
 
+
 @push('scripts')
+
     <!-- Scripts -->
 
     <script src="{{ url('/adminAssets/js/select2.min.js') }}"></script>
@@ -10,6 +12,8 @@
     <link href="{{ url('/adminAssets/css/dependencies.css') }}" rel="stylesheet">
 
     <link href="{{ url('/adminAssets/css/persian-datepicker.min.css') }}" rel="stylesheet">
+
+
 
     <script>
         $(document).ready(function() {
@@ -120,6 +124,7 @@
 
 @section('Content')
 
+
     <section class="panel">
         @include('auth.company.nav')
 
@@ -140,7 +145,10 @@
                 <div class="form-group row sm:mb-2">
                     <div class="col-5 col-md-5 col-xs-12">
                         <label for="name" class="bold">@lang('messages.title'):</label>
-                        <input type="text" class="form-control" name="title" placeholder="مثال: درب ضد سرقت ترک مدل A9"
+                        <input type="text" class="form-control"  name="title" placeholder="مثال: درب ضد سرقت ترک مدل A9"
+                        required
+                        oninput="this.setCustomValidity('')"
+                        oninvalid="this.setCustomValidity('عنوان را وارد نمایید')"
                             value="{{ old('title', $post->title ?? '') }}" />
                         <span class="text-danger">{{ $errors->first('title') }}</span>
                     </div>
@@ -167,7 +175,8 @@
                         <label for="category" class="bold">@lang('messages.category'): </label>
 
                         <div class="font-08 gray">هر چه تعداد دسته بندی های مرتبط بیشتر باشد تبلیغ شما بیشتر دیده میشود</div>
-                        <select id="parent_id" class="js-example-basic-multiple" name="parent_id[]" multiple="multiple">
+                        <select id="parent_id"  class="js-example-basic-multiple" name="parent_id[]" multiple="multiple"
+                        >
 
                             @foreach ($category as $Key => $fields)
                                 <option value="{{ $fields['id'] }}" @if (isset($post->parent_id) && $fields['id'] == $post->parent_id) selected @endif>
@@ -226,12 +235,11 @@
                     </div>
                 </div>
 
-
                 <div class="form-group row sm:mb-3">
                     <div class="col-md-6 col-xs-12 sm:mb-1">
                         <label for="price" class="bold col-form-label text-md-left">@lang('messages.price') (تومان):</label>
                         <input type="text" class="form-control" name="attr[price]"
-                            value="{{ old('attr[price]', $post->attr['price']??'') }}" />
+                            value="{{ old("attr.price", $post->attr['price']??'') }}" />
                     </div>
 
                     <div class="col-md-6 col-xs-12">
@@ -239,7 +247,7 @@
                             :</label>
                             <div class="font-08 gray">در صورت عدم تخفیف این فیلد را خالی بگذارید</div>
                         <input type="text" class="form-control" placeholder="مبلغ بعد از تخفیف به تومان" name="attr[offer_price]"
-                            value="{{ old('attr[offer_price]', $post->attr['offer_price']??'') }}" />
+                            value="{{ old('attr.offer_price', $post->attr['offer_price']??'') }}" />
                     </div>
                 </div>
 

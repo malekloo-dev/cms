@@ -2860,7 +2860,6 @@ section.wide {
     background: #f5f5f5;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: scroll;
     margin: 0;
     a {
         color: #333;
@@ -3316,6 +3315,9 @@ section.extra-link {
 }
 
 @media (max-width: 799px) {
+
+
+
     $sizes: 5;
 
     @mixin margin-classes {
@@ -3560,6 +3562,7 @@ section.extra-link {
     ///////////////////////////
     .breadcrumb {
         padding: 0 1em;
+        overflow-x: scroll;
     }
 
     ///////////////////////////////

@@ -109,7 +109,7 @@ class CompanyController extends Controller
             'title' => 'required',
             //'body' => 'required',
             //'images' => 'required|mimes:jpeg,png,bmp',
-        ));
+        ),array('parent_id.required'=>'دسته بندی را انتخاب نمایید'));
 
         $imagesUrl = '';
 
@@ -118,8 +118,11 @@ class CompanyController extends Controller
         }
 
         $data = $request->all();
-        $date = $data['publish_date'];
-        $data['publish_date'] = convertJToG($date);
+        // $date = $data['publish_date'];
+        $date = date("Y-m-d");
+        // $data['publish_date'] = convertJToG($date);
+        $data['publish_date'] = ($date);
+        // dd($data['publish_date']);
 
         $data['parent_id_hide'] = $request->parent_id;
         $data['parent_id'] = $request->parent_id_hide;
@@ -131,7 +134,8 @@ class CompanyController extends Controller
         $data['type'] = '2';
         $data['attr_type'] = 'product';
         $data['meta_title'] = $data['title'];
-        $data['meta_description'] = $data['brief_description'];
+        $data['brief_description'] = $data['title'];
+        $data['meta_description'] = $data['title'];
         $data['meta_keywords'] = $data['title'];
         // $data['attr'] = ["brand" => $user->company->name, "price" => 0];
 
@@ -192,7 +196,7 @@ class CompanyController extends Controller
             //'description' => 'required',
             //'body' => 'required',
             //'images' => 'required|mimes:jpeg,png,bmp',
-        ));
+        ),array('parent_id.required'=>'دسته بندی را انتخاب نمایید'));
 
         $imagesUrl = '';
         // dd($request->images);
@@ -201,10 +205,13 @@ class CompanyController extends Controller
         }
 
         $data = $request->all();
-        $date = $data['publish_date'];
-        $data['publish_date'] = convertJToG($date);
+        $date = date("Y-m-d");
+        // $date = $data['publish_date'];
+        // $data['publish_date'] = convertJToG($date);
+        $data['publish_date'] = ($date);
 
         $data['parent_id_hide'] = $request->parent_id;
+        $data['brief_description'] = $data['title'];
         $data['parent_id'] = $request->parent_id_hide;
         if ($data['parent_id'] == '') {
             $data['parent_id'] = $data['parent_id_hide'][0];
@@ -339,6 +346,8 @@ class CompanyController extends Controller
         $price = 30000 * $count;
 
         // dd(Lang::get('messages.power up for',['count'=>$count,'content'=>$content->title]));
+
+        $user->transactions()->where('transactionable_id','=',$content->id)->where('transactionable_type','=',Content::class)->delete();
 
         $transaction = $user->transactions()->firstOrCreate([
             'title' => $content->title,

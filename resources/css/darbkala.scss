@@ -88,12 +88,18 @@ nav[role="navigation"] span > * {
 nav[role="navigation"] span > svg {
     border: none;
 }
+nav.top{
+    .menu{
+        margin: auto 0 auto 0;
+    }
+}
 
 @media all and (max-width: 960px) {
     nav.top {
         // height: 5em;
         width: auto;
         position: relative;
+
     }
     .intro {
         margin: 1em auto 1em !important;
