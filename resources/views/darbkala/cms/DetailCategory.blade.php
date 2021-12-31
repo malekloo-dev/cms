@@ -321,7 +321,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        {{ $relatedProduct->links() }}
+                        {{ $relatedProduct->links('vendor.pagination.default') }}
                     </div>
                 </div>
             </div>

@@ -147,6 +147,8 @@
 
             <input id="mobile" type="tel" class="form-control ltr @error('mobile') is-invalid @enderror" name="mobile"
                 value="{{ old('mobile') }}" required autocomplete="mobile"
+                oninput="this.setCustomValidity('')"
+                oninvalid="this.setCustomValidity('شماره را وارد نمایید')"
                 placeholder="{{ __('messages.example') }}:09331181877" autofocus>
 
             @error('mobile')
@@ -160,7 +162,10 @@
             <label for="password" class="control-label">@lang('messages.password')</label>
 
             <input id="password" type="password" class="form-control ltr @error('password') is-invalid @enderror"
-                name="password" value="" required autocomplete="current-password">
+                name="password" value="" required
+                oninput="this.setCustomValidity('')"
+                oninvalid="this.setCustomValidity('رمز را وارد نمایید')"
+                 autocomplete="current-password">
 
             <input type="checkbox" style="visibility: hidden;" class="" id="show-password" onclick="showPassword()">
 

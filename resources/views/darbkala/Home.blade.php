@@ -138,7 +138,7 @@
     <section class="search bg-gray-dark pt-2 my-0 pb-4">
         <div>
 
-            <h1 class="text-center">مرجع تخصصی اطلاعات درب </h1>
+            <h1 class="text-center font-14">مرجع آگهی و نیازمندی های درب </h1>
             <div class="flex one two-500 two-800 center ">
 
                 <form action="{{ route('search') }}" class="p-0">
@@ -301,6 +301,13 @@
         </div>
     </section>
 
+
+    <section class="bg-theme-color sm:text-center ">
+        <div class="flex justify-content-between sm:justify-content-center  py-1">
+            <h2 class="inline-block p-0">آیا محصولات خودتان را در درب کالا ثبت کردید؟</h2>
+            <a class="inline-block btn btn-primary bg-purple border-radius-5 " href="{{ route('company.products') }}">برای درج محصول کلیک نمایید</a>
+        </div>
+    </section>
 
 
 
@@ -572,7 +579,9 @@
                                 </a>
                             </div>
                         @endforeach
+                        <a class="inline-block p-0 bg-orange" href="{{ route('register') }}">ثبت نام کمپانی جدید</a>
                     </div>
+
                 </div>
             </div>
         </section>

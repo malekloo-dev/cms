@@ -101,7 +101,7 @@ class Category extends Model
 
 
            // ->groupBy('contents_category.content_id')
-           $object ->orderBy($sortField, $sortValue);
+           $object ->orderBy($sortField, $sortValue)->orderBy('publish_date','desc');
         return $object;
     }
 
