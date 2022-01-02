@@ -177,7 +177,7 @@ if (!function_exists('editorModule')) {
 
 
         preg_match_all("/({gallery(.*){\/gallery})|({attr}(.*){\/attr})|({faq}(.*){\/faq})/U", $content, $pat_array);
-
+        // dd($pat_array);
 
         //{gallery&size=10&template=1}
         //parse_str($_SERVER['QUERY_STRING'], $outputArray);

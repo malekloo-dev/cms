@@ -10,7 +10,7 @@
 
 
                 <a class="bg-purple px-1 ml-0 m-auto font-08 border-radius-15" id="addProductCTA"  href="{{ route('company.products') }}">درج آگهی</a>
-                
+
 
 
                 <input id="bmenu" name="bmenu" type="checkbox" class="show" aria-label="menu">
@@ -33,6 +33,10 @@
 
                         <li class="">
                             <a href="{{ url('/') }}">خانه</a>
+                        </li>
+
+                        <li class="">
+                            <a href="{{ url('وبلاگ') }}">وبلاگ</a>
                         </li>
 
                         <li class="">
