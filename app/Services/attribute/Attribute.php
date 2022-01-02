@@ -106,8 +106,8 @@ class Attribute
        // DB::enableQueryLog();
 
         $deleteObject = ContentAttributeValue::where('content_id', '=', $content_id)
-            ->where('content_type_id', '<>', $content_type_id)->
-            orWhereNotIn('content_attribute_id', $fieldsId)->delete();
+           // ->where('content_type_id', '<>', $content_type_id)
+        ->WhereNotIn('content_attribute_id', $fieldsId)->delete();
         //dd(DB::getQueryLog());
 
         return 1;
