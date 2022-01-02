@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="fa-IR">
 <head>
-    <title>{{$seo['meta_title'] ?? "" }}</title>
+    <title>{{ $seo['meta_title'] ?? '' }}@yield('meta-title')</title>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="{{$seo['meta_keywords'] ?? "" }}">

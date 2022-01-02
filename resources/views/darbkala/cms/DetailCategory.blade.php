@@ -419,6 +419,7 @@
 
                     </div>
 
+
                     @include(@env('TEMPLATE_NAME').'.DescriptionModule')
 
                 </div>

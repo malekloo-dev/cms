@@ -37,7 +37,7 @@
         "brand":
         {
             "@type": "Brand",
-            "name": "{{ $detail->attr['brand'] }}"
+            "name": "{{ $detail->attr['brand'] ?? 'darbkala' }}"
         },
 
         "offers":

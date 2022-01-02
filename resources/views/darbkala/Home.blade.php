@@ -230,7 +230,7 @@
     <section class="index-items home-top-view bg-gray mb-0 pb-0">
         <div class="flex one">
             <div class="p-0">
-                <h2><a class="pt-1" href="{{ url('درب-ضد-سرقت') }}"> درب ضد سرقت</a></h2>
+                <h2><a class="pt-1" href="{{ url('درب-ضد-سرقت') }}"> جدیدترین آگهی درب ضد سرقت</a></h2>
                 <div class="flex two two-500 three-700 six-900 center ">
                     {{-- product&label=topViewPost1&var=topViewPost1&count=6 --}}
                     @isset($topViewPost1['data'])
@@ -314,7 +314,7 @@
     <section class="index-items home-top-view bg-gray my-0 py-0">
         <div class="flex one">
             <div class="p-0">
-                <h2><a class="pt-1" href="{{ url('درب-لابی') }}"> درب لابی</a></h2>
+                <h2><a class="pt-1" href="{{ url('درب-لابی') }}">  جدیدترین آگهی درب لابی</a></h2>
                 <div class="flex two two-500 three-700 six-900 center ">
                     {{-- product&label=topViewPost2&var=topViewPost2&count=6 --}}
                     @isset($topViewPost2['data'])
@@ -387,10 +387,61 @@
 
 
 
+    {{-- companies --}}
+    @isset($companies)
+        <section class="index-items  bg-gray-dark mb-0">
+            <h2>کمپانی های جدید</h2>
+            <div class="flex one">
+                <div>
+                    <div class="flex two two-500 three-700 six-900 center ">
+                        @foreach ($companies as $content)
+                            <div>
+                                <a class="hover shadow2 pb-0" href="{{ url('profile/' . $content->id) }}">
+
+                                    @if (isset($content->logo) && isset($content->logo))
+                                        <img alt="{{ $content->name ?? '' }}"
+                                            class="h-auto img-contain border-radius-50 mt-1"
+                                            width="{{ env('COMPANY_LARGE_W') }}" height="{{ env('COMPANY_LARGE_H') }}"
+                                            src="{{ $content->logo['large'] ?? '' }}">
+
+                                    @endif
+
+                                    <div class="flex ">
+                                        <div class="p-0 ">
+                                            {{ $content->name ?? 'کاربر جدید' }}
+                                        </div>
+                                        <div class="p-0 ">
+                                            <svg class="p-0" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
+                                                    fill="currentColor" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M12 3C6.40848 3 1.71018 6.82432 0.378052 12C1.71018 17.1757 6.40848 21 12 21C17.5915 21 22.2898 17.1757 23.6219 12C22.2898 6.82432 17.5915 3 12 3ZM16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
+                                                    fill="currentColor" />
+                                            </svg>
+                                            <span class="p-0">{{ $content->viewCount }}</span>
+                                        </div>
+
+                                    </div>
+
+                                </a>
+                            </div>
+                        @endforeach
+                        <a class="inline-block p-0 bg-orange" href="{{ route('register') }}">ثبت نام کمپانی جدید</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    @endisset
+
+
+
     <section class="index-items home-top-view bg-gray my-0 py-0">
         <div class="flex one">
             <div class="p-0">
-                <h2><a class="pt-1" href="{{ url('درب-ضد-حریق') }}">درب ضد حریق</a></h2>
+                <h2><a class="pt-1" href="{{ url('درب-ضد-حریق') }}"> جدیدترین آگهی درب ضد حریق</a></h2>
                 <div class="flex two two-500 three-700 six-900 center ">
                     {{-- product&label=topViewPost3&var=topViewPost3&count=6 --}}
                     @isset($topViewPost3['data'])
@@ -466,7 +517,7 @@
     <section class="index-items home-top-view bg-gray my-0 py-0">
         <div class="flex one">
             <div class="p-0">
-                <h2 class="font-08 "><a class="pt-1" href="{{ url('درب-اتوماتیک') }}">درب اتوماتیک</a>
+                <h2 class="font-08 "><a class="pt-1" href="{{ url('درب-اتوماتیک') }}"> جدیدترین آگهی درب اتوماتیک</a>
                 </h2>
                 <div class="flex two two-500 three-700 six-900 center ">
                     {{-- product&label=topViewPost4&var=topViewPost4&count=6 --}}
@@ -538,54 +589,6 @@
     </section>
 
 
-    {{-- companies --}}
-    @isset($companies)
-        <section class="index-items  bg-gray-dark mb-0">
-            <h2>کمپانی ها</h2>
-            <div class="flex one">
-                <div>
-                    <div class="flex two two-500 three-700 six-900 center ">
-                        @foreach ($companies as $content)
-                            <div>
-                                <a class="hover shadow2 pb-0" href="{{ url('profile/' . $content->id) }}">
-
-                                    @if (isset($content->logo) && isset($content->logo))
-                                        <img alt="{{ $content->name ?? '' }}"
-                                            class="h-auto img-contain border-radius-50 mt-1"
-                                            width="{{ env('COMPANY_LARGE_W') }}" height="{{ env('COMPANY_LARGE_H') }}"
-                                            src="{{ $content->logo['large'] ?? '' }}">
-
-                                    @endif
-
-                                    <div class="flex ">
-                                        <div class="p-0 ">
-                                            {{ $content->name ?? 'کاربر جدید' }}
-                                        </div>
-                                        <div class="p-0 ">
-                                            <svg class="p-0" width="13" height="13" viewBox="0 0 24 24" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
-                                                    fill="currentColor" />
-                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                    d="M12 3C6.40848 3 1.71018 6.82432 0.378052 12C1.71018 17.1757 6.40848 21 12 21C17.5915 21 22.2898 17.1757 23.6219 12C22.2898 6.82432 17.5915 3 12 3ZM16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
-                                                    fill="currentColor" />
-                                            </svg>
-                                            <span class="p-0">{{ $content->viewCount }}</span>
-                                        </div>
-
-                                    </div>
-
-                                </a>
-                            </div>
-                        @endforeach
-                        <a class="inline-block p-0 bg-orange" href="{{ route('register') }}">ثبت نام کمپانی جدید</a>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-    @endisset
 
 
 
