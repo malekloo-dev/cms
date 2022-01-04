@@ -11,9 +11,9 @@
                         "additionalType" :"product",
                         "position": {{ $i }},
                         "name" : "{{ $content->title }}",
-                        "url" : "{{ url('/').'/'.$content->slug }}",
+                        "url" : "{{ url('/').'/'.$content->slug }}"
                         @if(isset($content->images['images']['small']))
-                        "image": [
+                        ,"image": [
                             "{{ url('/').$content->images['images']['small'] }}",
                             "{{ url('/').$content->images['images']['medium'] }}",
                             "{{ url('/').$content->images['images']['large'] }}"

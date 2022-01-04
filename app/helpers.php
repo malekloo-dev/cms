@@ -459,10 +459,12 @@ function convertJToG($date)
 function convertGToJ($date)
 {
 
+    if($date == '') return '';
     if (env('SITE_LANG') != 'fa') return date('Y-m-d', strtotime($date));
 
-    $jalali = CalendarUtils::strftime('Y-m-d', strtotime($date)); // 1395-02-19
-    $convert = CalendarUtils::convertNumbers($jalali); // ۱۳۹۵-۰۲-۱۹
+    // $jalali = CalendarUtils::strftime('Y-m-d', strtotime($date)); // 1395-02-19
+    // $convert = CalendarUtils::convertNumbers($jalali); // ۱۳۹۵-۰۲-۱۹
+
     return Jalalian::forge($date)->format('%A, %d %B %Y'); // پنجشنبه, 07 اسفند 1399
 }
 
