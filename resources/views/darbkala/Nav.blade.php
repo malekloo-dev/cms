@@ -2,14 +2,16 @@
     <section class="p-0 m-0">
         <div class="">
             <nav class="top">
+
                 <a href="/" class="brand">
-                    <img height="50" width="" alt=" درب کالا لوگو"
+                    <img height="40" width="" alt=" درب کالا لوگو"
                         srcset="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }} 1x, {{ url(env('TEMPLATE_NAME') . '/img/logo2x.png') }} 2x"
                         src="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }}" />
+                        <div class="white font-06"> مرجع آگهی و نیازمندی انواع درب</div>
                 </a>
 
 
-                <a class="bg-purple px-1 ml-0 m-auto font-08 border-radius-15" id="addProductCTA"  href="{{ route('company.products') }}">درج آگهی</a>
+                <a class="bg-purple white-space-nowrap px-1 ml-0 m-auto font-08 border-radius-15" id="addProductCTA"  href="{{ route('company.products') }}">درج آگهی</a>
 
 
 
