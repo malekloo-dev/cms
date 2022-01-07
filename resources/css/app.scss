@@ -2537,6 +2537,9 @@ $sizes: 5;
 .gray {
     color: #666;
 }
+.theme-color {
+    color: $theme-color1 !important;
+}
 .align-left,
 .text-left {
     text-align: left;

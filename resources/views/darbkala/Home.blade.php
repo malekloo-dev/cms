@@ -231,11 +231,11 @@
         <div class="flex one">
             <div class="p-0">
                 <h2><a class="pt-1" href="{{ url('درب-ضد-سرقت') }}"> جدیدترین آگهی درب ضد سرقت</a></h2>
-                <div class="flex two two-500 three-700 six-900 center ">
+                <div class="flex two two-500 three-700 six-900 center mobile-horizantal">
                     {{-- product&label=topViewPost1&var=topViewPost1&count=6 --}}
                     @isset($topViewPost1['data'])
                         @foreach ($topViewPost1['data'] as $content)
-                            <div>
+                            <div class="item">
                                 <a class="hover shadow2" href="{{ $content->slug }}">
 
                                     @if (isset($content->images['images']['small']))
@@ -315,11 +315,11 @@
         <div class="flex one">
             <div class="p-0">
                 <h2><a class="pt-1" href="{{ url('درب-لابی') }}">  جدیدترین آگهی درب لابی</a></h2>
-                <div class="flex two two-500 three-700 six-900 center ">
+                <div class="flex two two-500 three-700 six-900 center mobile-horizantal ">
                     {{-- product&label=topViewPost2&var=topViewPost2&count=6 --}}
                     @isset($topViewPost2['data'])
                         @foreach ($topViewPost2['data'] as $content)
-                            <div>
+                            <div class="item">
                                 <a class="hover shadow2" href="{{ $content->slug }}">
 
                                     @if (isset($content->images['images']['small']))
@@ -403,6 +403,8 @@
                                             class="h-auto img-contain border-radius-50 mt-1"
                                             width="{{ env('COMPANY_LARGE_W') }}" height="{{ env('COMPANY_LARGE_H') }}"
                                             src="{{ $content->logo['large'] ?? '' }}">
+                                    @else
+                                    <img class=" h-auto img-contain  mt-1 " width="{{ env('COMPANY_LARGE_W') }}" height="{{ env('COMPANY_LARGE_H') }}" src="https://img.icons8.com/ios/{{ env('COMPANY_LARGE_W') }}/cccccc/no-image.png" alt="company-no-image"/>
 
                                     @endif
 
@@ -442,11 +444,11 @@
         <div class="flex one">
             <div class="p-0">
                 <h2><a class="pt-1" href="{{ url('درب-ضد-حریق') }}"> جدیدترین آگهی درب ضد حریق</a></h2>
-                <div class="flex two two-500 three-700 six-900 center ">
+                <div class="flex two two-500 three-700 six-900 center mobile-horizantal">
                     {{-- product&label=topViewPost3&var=topViewPost3&count=6 --}}
                     @isset($topViewPost3['data'])
                         @foreach ($topViewPost3['data'] as $content)
-                            <div>
+                            <div class="item">
                                 <a class="hover shadow2" href="{{ $content->slug }}">
 
                                     @if (isset($content->images['images']['small']))
@@ -519,11 +521,11 @@
             <div class="p-0">
                 <h2 class="font-08 "><a class="pt-1" href="{{ url('درب-اتوماتیک') }}"> جدیدترین آگهی درب اتوماتیک</a>
                 </h2>
-                <div class="flex two two-500 three-700 six-900 center ">
+                <div class="flex two two-500 three-700 six-900 center mobile-horizantal">
                     {{-- product&label=topViewPost4&var=topViewPost4&count=6 --}}
                     @isset($topViewPost4['data'])
                         @foreach ($topViewPost4['data'] as $content)
-                            <div>
+                            <div class="item">
                                 <a class="hover shadow2" href="{{ $content->slug }}">
 
                                     @if (isset($content->images['images']['small']))
@@ -596,11 +598,11 @@
         <div class="flex one">
             <div>
                 <h2>مقالات درب کالا</h2>
-                <div class="flex one two-500  three-800 center ">
+                <div class="flex one two-500  three-800 center mobile-horizantal">
                     {{-- post&label=articles&var=articles&count=9 --}}
                     @isset($articles['data'])
                         @foreach ($articles['data'] as $content)
-                            <div>
+                            <div class="item">
                                 <a class="hover shadow2" href="{{ $content->slug }}">
 
                                     @if (isset($content->images['images']['medium']))
@@ -610,7 +612,7 @@
                                                 src="{{ $content->images['images']['medium'] }}"></div>
                                     @endif
                                     <div>
-                                        <h3 class="p-1">{{ $content->title }}</h3>
+                                        <h3 class="px-1 py-0">{{ $content->title }}</h3>
 
 
                                     </div>

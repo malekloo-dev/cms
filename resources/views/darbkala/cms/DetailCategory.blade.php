@@ -253,11 +253,14 @@
                                                     </picture>
 
                                                 </a>
+                                            @else
+                                                <img class=" h-auto img-contain  mt-1 " width="{{ env('PRODUCT_SMALL_W') }}" height="{{ env('PRODUCT_SMALL_H') }}" src="https://img.icons8.com/ios/{{ env('PRODUCT_SMALL_W') }}/cccccc/no-image.png" alt="company-no-image"/>
+
                                             @endif
                                         </div>
 
                                         <div class="info">
-                                            <h5> <a href="{{ $content->slug }}"> {{ $content->title }}</a></h5>
+                                            <h5> <a class="theme-color" href="{{ $content->slug }}"> {{ $content->title }}</a></h5>
                                             <div class="brief">
                                                 {!! readMore($content->brief_description, 250) !!}
                                             </div>
@@ -351,11 +354,13 @@
                                                 width="{{ env('COMPANY_MEDIUM_W') }}"
                                                 height="{{ env('COMPANY_MEDIUM_H') }}"
                                                 src="{{ $content->logo['medium'] ?? '' }}">
+                                                @else
+                                                <img class="img-contain  mt-1 " width="100" height="100" src="https://img.icons8.com/ios/100/cccccc/no-image.png" alt="company-no-image"/>
                                         @endif
 
                                         <div class="flex ">
                                             <div class="p-0 ">
-                                                {{ $content->name }}
+                                                {{ $content->name ?? 'کاربر جدید' }}
                                             </div>
                                             <div class="p-0 ">
                                                 <svg class="p-0" width="13" height="13" viewBox="0 0 24 24"

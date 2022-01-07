@@ -1,5 +1,6 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
+@section('meta-title', $detail->title.' | درب کالا')
 @section('twitter:title', $detail->title)
 @section('twitter:description', clearHtml($detail->brief_description))
 
@@ -110,7 +111,11 @@
 
                                                 alt="{{ $detail->title }}">
                                         </picture>
+                                    @else
+                                        <img class=" h-auto img-contain  mt-1 " width="200" height="200" src="https://img.icons8.com/ios/200/cccccc/no-image.png" alt="company-no-image"/>
+
                                     @endisset
+
                                 </div>
                                 <div class="two-third-500">
                                     @if(count($detail->companies))
