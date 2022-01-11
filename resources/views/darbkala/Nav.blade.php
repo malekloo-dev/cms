@@ -314,10 +314,7 @@
                                     <a href="/درب-اتوماتیک-پارکینگ" class="menu-link menu-list-link">درب اتوماتیک
                                         پارکینگ</a>
                                 </li>
-                                <li>
-                                    <a href="/درب-اتوماتیک-سکشنال" class="menu-link menu-list-link">درب اتوماتیک
-                                        سکشنال</a>
-                                </li>
+
                             </ul>
                         </li>
                         <li>
@@ -326,11 +323,11 @@
                                     <a href="/درب-اتوماتیک-کرکره-برقی" class="menu-link menu-list-link">درب اتوماتیک کرکره
                                         برقی</a>
                                 </li>
-                                <li>
-                                    <a href="/درب-اتوماتیک-جک-برقی" class="menu-link menu-list-link">درب اتوماتیک جک
-                                        برقی</a>
-                                </li>
 
+                                <li>
+                                    <a href="/درب-اتوماتیک-سکشنال" class="menu-link menu-list-link">درب اتوماتیک
+                                        سکشنال</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -341,8 +338,7 @@
                                         بیمارستانی</a>
                                 </li>
                                 <li>
-                                    <a href="/درب-اتوماتیک-راهبند-برقی" class="menu-link menu-list-link">درب اتوماتیک
-                                        راهبند برقی</a>
+                                    <a href="/درب-اتوماتیک-راهبند-برقی" class="menu-link menu-list-link">راهبند اتوماتیک برقی</a>
                                 </li>
                             </ul>
                         </li>

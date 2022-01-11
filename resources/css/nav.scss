@@ -51,6 +51,12 @@ nav.top {
         align-items: center;
         flex: 0 0 auto;
         margin-top: 2px;
+        img{
+            height: 60px;
+        }
+        .font-06{
+            font-size: 1em;
+        }
     }
     ul {
         list-style: none;
@@ -274,6 +280,14 @@ nav.top .burger:after {
     .brand,
     .category-nav {
         padding: 0 1em;
+    }
+    .brand{
+        img{
+            height: 40px !important;
+        }
+        .font-06{
+            font-size: .6em !important;
+        }
     }
 }
 
