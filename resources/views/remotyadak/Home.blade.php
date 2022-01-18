@@ -1,5 +1,9 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
+@push('head')
+    <link rel="stylesheet" type="text/css" href="{{ asset('glider.min.css') }}">
+@endpush
+
 @push('scripts')
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -102,6 +106,56 @@
 
         })
     </script>
+
+
+    <script src="{{ asset('glider.min.js') }}"></script>
+    <script>
+        new Glider(document.querySelector('.glider'), {
+        // Mobile-first defaults
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        scrollLock: true,
+        dots: '.dots',
+        // arrows: {
+        //     prev: '.glider-prev',
+        //     next: '.glider-next'
+        // },
+        responsive: [
+            {
+                // screens greater than >= 600px
+                breakpoint: 500,
+                settings: {
+                    // Set to `auto` and provide item width to adjust to viewport
+                    slidesToShow: 2,
+                    slidesToScroll: 'auto',
+                    duration: 0.25
+                }
+            },
+            {
+                // screens greater than >= 775px
+                breakpoint: 650,
+                settings: {
+                    // Set to `auto` and provide item width to adjust to viewport
+                    slidesToShow: '3',
+                    slidesToScroll: 'auto',
+                    duration: 0.25
+                }
+            },
+            {
+                // screens greater than >= 1024px
+                breakpoint: 1024,
+                settings: {
+                    scrollLock:false,
+                    slidesToShow: 5,
+                    slidesToScroll: 1,
+                    // itemWidth: 150,
+                    duration: 1
+                }
+            }
+        ]
+        });
+    </script>
+
 @endpush
 
 @section('Content')
@@ -141,7 +195,7 @@
                 <form action="{{ route('search') }}" class="p-0">
 
                     <input name="q" autocomplete="off" id="q" alt="جستجو" type="text"
-                        placeholder="جستجوی محصول / محتوا / کمپانی" required>
+                        placeholder="جستجوی محصول / محتوا / کمپانی" required oninvalid="this.setCustomValidity('کلمه ای برای جستجو تایپ کنید')"  onchange="this.setCustomValidity('')">
 
                     <button class=""><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24"
                             height="24" viewBox="0 0 32 32" style=" fill:#000000;">
@@ -158,9 +212,9 @@
     </section>
 
     <section class="index-img bg-gray mt-0 mb-0 pb-2">
-       
+
         <div class="flex two five-500  center ">
-            {{-- images&label=banner&var=banners&count=5 --}}
+            {{--images&label=banner&var=banners&count=5 --}}
             @if (isset($banners) && isset($banners['images']))
                 @foreach ($banners['images'] as $k => $content)
                     <a href="{{ $banners['url'][$k] }}" @if (!isset($banners['follow'][$k])) rel="nofollow" @endif target="blank">
@@ -179,40 +233,49 @@
 </section>
 
 
-{{-- #anchor top --}}
+{{--#anchor top --}}
 <section class="index-item-top bg-blue2 mt-0 mb-0">
     <div class="text-center pb-1">
         <h2>خدمات سوئیچ و ریموت</h2>
     </div>
-    <div class="flex two five-500 center  ">
-        {{-- category&label=category&var=category&count=15 --}}
+    <div class="flex one two-500 three-700 four-900 center  ">
+        {{--category&label=category&var=category&count=15 --}}
         @isset($category['data'])
+            <div class="glider-contain ltr">
 
-            @foreach ($category['data'] as $content)
-                <a href="{{ $content->slug }}">
-                    <div class="shadow hover h-100">
+                <div class="glider">
 
-                        @if (isset($content->images['images']))
+                    @foreach ($category['data'] as $content)
+                    <a class="m-1" href="{{ $content->slug }}">
+                        <div class="shadow  hover h-100">
+
+                            @if (isset($content->images['images']))
                             <picture>
 
                                 <source media="(min-width:{{ env('CATEGORY_MEDIUM_W') }}px)"
-                                    srcset="{{ $content->images['images']['medium'] ?? '' }}">
+                                srcset="{{ $content->images['images']['medium'] ?? '' }}">
 
                                 <source media="(min-width:{{ env('CATEGORY_SMALL_W') }}px)"
-                                    srcset="{{ $content->images['images']['small'] ?? '' }}">
+                                srcset="{{ $content->images['images']['small'] ?? '' }}">
 
                                 <img src="{{ $content->images['images']['medium'] ?? '' }}" alt="{{ $content->title }}"
-                                    width="{{ env('CATEGORY_MEDIUM_W') }}" height="{{ env('CATEGORY_MEDIUM_W') }}">
+                                width="{{ env('CATEGORY_MEDIUM_W') }}" height="{{ env('CATEGORY_MEDIUM_W') }}">
                             </picture>
-                        @endif
+                            @endif
 
 
-                        <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                            <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
 
 
-                    </div>
-                </a>
-            @endforeach
+                        </div>
+                    </a>
+                    @endforeach
+                </div>
+
+                <div role="tablist" class="dots"></div>
+            </div>
+
+            <a class="bg-theme4 btn border-radius-5 white-space-nowrap text-center" href="{{ url('/سوئیچ-و-ریموت-خودرو') }}">مشاهده بیشتر سوئیچ و ریموت</a>
         @endisset
     </div>
 </section>
@@ -223,8 +286,8 @@
     <div class="text-center pb-1">
         <h2>تعمیرگاه های تخصصی</h2>
     </div>
-    <div class="flex two five-500 center  ">
-        {{-- category&label=category2&var=category2&count=15 --}}
+    <div class="flex two three-500 seven-1000 center  ">
+        {{--category&label=category2&var=category2&count=15 --}}
         @isset($category2['data'])
 
             @foreach ($category2['data'] as $content)
@@ -263,15 +326,14 @@
     <div class="flex one">
         <h2>محصولات</h2>
         <div>
-            <div class="flex one three-500  center  ">
+            <div class="flex  three-500  center  ">
 
-                {{-- product&label=topProducts&var=products&count=12 --}}
+                {{--product&label=topProducts&var=products&count=6 --}}
                 @isset($products['data'])
 
-
                     @foreach ($products['data'] as $content)
-                        <div>
-                            <a class="hover" href="{{ $content->slug }}">
+                        <div class="">
+                            <a class="hover " href="{{ $content->slug }}">
 
                                 @if (isset($content->images['images']['small']))
                                     <div class=""><img width="{{ env('PRODUCT_SMALL_W') }}"
@@ -311,5 +373,94 @@
     </div>
 </section>
 
-{{-- #anchor down --}}
+
+
+<section class="index-item-top bg-gray2 mt-0 mb-0">
+    <div class="text-center pb-1">
+        <h2>نمایشگاه خودرو</h2>
+    </div>
+    <div class="flex two three-500 six-1000 center  ">
+
+
+        @php
+            $auto = \App\Models\Category::find(215)->companiesCategory()->limit(6)->get();
+        @endphp
+
+        @isset($auto)
+
+            @foreach ($auto as $content)
+                <a href="/profile/{{ $content->id }}">
+                    <div class="shadow hover h-100">
+
+                        @if (isset($content->logo))
+                            <picture>
+
+                                <source media="(min-width:{{ env('COMPANY_MEDIUM_W') }}px)"
+                                    srcset="{{ $content->logo['large'] ?? '' }}">
+
+                                <source media="(min-width:{{ env('COMPANY_SMALL_W') }}px)"
+                                    srcset="{{ $content->logo['medium'] ?? '' }}">
+
+                                <img src="{{ $content->logo['medium'] ?? '' }}"
+                                    alt="{{ $content->title }}" width="{{ env('COMPANY_MEDIUM_W') }}"
+                                    height="{{ env('COMPANY_MEDIUM_W') }}">
+                            </picture>
+                        @endif
+
+
+                        <h3 class="p-0 m-0 text-center"> {{ $content->name }}</h3>
+
+
+                    </div>
+                </a>
+            @endforeach
+        @endisset
+    </div>
+</section>
+
+
+
+<section class="index-item-top bg-gray mt-0 mb-0">
+    <div class="text-center pb-1">
+        <h2>لوازم خودرو</h2>
+    </div>
+    <div class="flex two three-500 six-1000 center  ">
+
+
+        @php
+            $auto = \App\Models\Category::find(216)->companiesCategory()->limit(6)->get();
+        @endphp
+
+        @isset($auto)
+
+            @foreach ($auto as $content)
+                <a href="/profile/{{ $content->id }}">
+                    <div class="shadow hover h-100">
+
+                        @if (isset($content->logo))
+                            <picture>
+
+                                <source media="(min-width:{{ env('COMPANY_MEDIUM_W') }}px)"
+                                    srcset="{{ $content->logo['large'] ?? '' }}">
+
+                                <source media="(min-width:{{ env('COMPANY_SMALL_W') }}px)"
+                                    srcset="{{ $content->logo['medium'] ?? '' }}">
+
+                                <img src="{{ $content->logo['medium'] ?? '' }}"
+                                    alt="{{ $content->title }}" width="{{ env('COMPANY_MEDIUM_W') }}"
+                                    height="{{ env('COMPANY_MEDIUM_W') }}">
+                            </picture>
+                        @endif
+
+
+                        <h3 class="p-0 m-0 text-center"> {{ $content->name }}</h3>
+
+
+                    </div>
+                </a>
+            @endforeach
+        @endisset
+    </div>
+</section>
+
 @endsection

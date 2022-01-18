@@ -49,13 +49,14 @@
         </section>
     @endif
 
-    <section class="search">
-        <div class="flex one two-500 three-800 center">
+    <section class="search bg-gray-dark mt-0 pt-2">
+        <h1 class="text-center">جستجوگر ریموت یدک </h1>
+        <div class="flex one two-500  center">
 
             <form action="{{ route('search') }}" class="">
 
                 <input name="q" alt="جستجو" type="text" value="{{ app('request')->q }}"
-                    placeholder="جستجوی محصول / محتوا / کمپانی" required>
+                    placeholder="جستجوی محصول / محتوا / کمپانی" required oninvalid="this.setCustomValidity('کلمه ای برای جستجو تایپ کنید')"  onchange="this.setCustomValidity('')">
 
                 <button class=""><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
                         viewBox="0 0 32 32" style=" fill:#000000;">

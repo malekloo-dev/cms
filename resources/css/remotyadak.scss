@@ -3,6 +3,7 @@ $body: #fff;
 $theme-color1: #061229;
 $theme-color2: #1b405e;
 $theme-color3: #ea1c44;
+$theme-color4: #78e42b;
 $theme-color1-text:#fff;
 
 $a: #d13501;
@@ -22,8 +23,20 @@ $search-text:#333;
 @import "grid.scss";
 @import "nav.scss";
 
+@import "nav-mega-menu.scss";
+
+nav.top{
+    .menu{
+        margin: auto 0 auto 0;
+    }
+}
+
 .h-100 {
     height: 100%;
+}
+.bg-theme4{
+    color: $theme-color1;
+    background-color: $theme-color4;
 }
 .cover {
     object-fit: cover !important;
@@ -225,6 +238,11 @@ $search-text:#333;
     }
     .home-top-view .rate {
         width: 100%;
+    }
+    #footer{
+        .text-left{
+            text-align: center;
+        }
     }
 }
 

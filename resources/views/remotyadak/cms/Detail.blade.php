@@ -169,6 +169,30 @@
                 </script>
                 <div id="pos-article-text-card-65103"></div> --}}
 
+                {{-- attribute --}}
+                <div class="attr">
+                    <div class="">
+                        @foreach ($detail->attributeValue as $key => $item)
+                            <div class="">
+                                <div >
+                                    {{ $item->label }}
+                                </div>
+                                <div>
+                                    @if ($item->type=='combo' && $item->json != '')
+                                        @php
+                                            $json= collect(json_decode($item->json))->where('value','=',$item->value)->first();
+                                            echo $json->name ?? ''
+                                        @endphp
+                                    @else
+                                        {{ $item->value }}
+                                    @endif
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                {{-- end attribute --}}
+
 
             </div>
         </div>

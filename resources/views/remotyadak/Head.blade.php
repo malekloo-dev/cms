@@ -29,11 +29,11 @@
     <meta name="description" content="@yield('meta_description',$seo['meta_description']??'')">
 
     <link rel="manifest" href="{{ url(env('TEMPLATE_NAME') . '/manifest.json') }}">
-    <meta name="theme-color" content="#fa490e" />
+    <meta name="theme-color" content="#061229" />
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#fa490e">
-    <meta name="apple-mobile-web-app-title" content="ریموت">
+    <meta name="apple-mobile-web-app-title" content="Remotyadak">
     <link rel="apple-touch-icon" href="{{ url(env('TEMPLATE_NAME') . '/img/logo-96-96.png') }}">
     <link rel="apple-touch-icon" sizes="96x96" href="{{ url(env('TEMPLATE_NAME') . '/img/logo-152-152.png') }}">
     <link rel="apple-touch-icon" sizes="152x152" href="{{ url(env('TEMPLATE_NAME') . '/img/logo-152-152.png') }}">

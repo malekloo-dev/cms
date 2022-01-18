@@ -11,6 +11,7 @@
                     src="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }}" />
             </a>
 
+            <a class="bg-theme4 white-space-nowrap px-1 ml-0 m-auto font-08 border-radius-15" id="addProductCTA" href="/company/products">درج آگهی</a>
 
             <input id="bmenu" name="bmenu" type="checkbox" class="show" aria-label="menu">
 
@@ -61,7 +62,7 @@
                         @if (count($subMenu))
                             <li class="parent"><a href="{{ url($menuItem['link']) }}">{{ $menuItem['label'] }}</a>
                                 <div><i class="arrow down"></i></div>
-                                <ul>
+                                <ul class="mega">
                                     @foreach ($subMenu as $subMenuItem)
                                         <li><a href="{{ in_array($subMenuItem['type'], ['internal', 'external']) ? url($subMenuItem['link']) : '/#'.$subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a></li>
                                     @endforeach
