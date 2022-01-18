@@ -112,14 +112,13 @@
     <script>
         new Glider(document.querySelector('.glider'), {
         // Mobile-first defaults
-        slidesToShow: 1,
-        slidesToScroll: 1,
+        slidesToShow: 'auto',
+        slidesToScroll: 'auto',
         scrollLock: true,
         dots: '.dots',
-        // arrows: {
-        //     prev: '.glider-prev',
-        //     next: '.glider-next'
-        // },
+        itemWidth: 80,
+        duration: 0.25,
+
         responsive: [
             {
                 // screens greater than >= 600px
