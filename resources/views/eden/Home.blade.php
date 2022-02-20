@@ -120,13 +120,20 @@
                                     </figcaption>
                                 </figure>
                             @else
+                                <figure class="image">
+                                    <img class="m-auto p-4" width="300" height="300" src="https://img.icons8.com/ios/100/cccccc/no-image.png" alt="company-no-image"/>
+                                </figure>
                                 <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
                             @endif
 
                         </div>
                     </a>
                 @endforeach
-            @endisset
+
+                @endisset
+        </div>
+        <div class="text-center my-1">
+            <a class="btn bg-theme-color text-center border-radius-5" href="/محصولات">دیدن تمامی محصولات</a>
         </div>
 
     </section>

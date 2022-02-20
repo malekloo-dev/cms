@@ -168,6 +168,7 @@ return [
         /*
          * Package Service Providers...
          */
+        // App\Services\SpiderService::class,
 
         /*
          * Application Service Providers...

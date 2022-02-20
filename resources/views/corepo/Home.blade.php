@@ -764,7 +764,7 @@
 <section class="index-items bg-pink mt-0 mb-0">
     <div class="flex one">
         <div>
-            <h2>اپلیکیشن ها</h2>
+            <h2>بازی و اپلیکیشن </h2>
             <div class="flex one two-500 three-600 six-1000 application ">
                 {{--post&label=application&var=application&count=5 --}}
                 @isset($application['data'])
@@ -801,7 +801,7 @@
                         </div>
                     @endforeach
                     <div>
-                        <a href="/اپلیکیشن">
+                        <a href="/بازی-و-اپلیکیشن">
                             <article class="shadow2 py-3">
                                 <svg height="70px" width="70px" id="Layer_1" style="enable-background:new 0 0 32 32;"
                                     version="1.1" viewBox="0 0 32 32" xml:space="preserve"

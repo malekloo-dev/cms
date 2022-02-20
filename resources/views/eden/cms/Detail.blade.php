@@ -102,13 +102,17 @@
                         <div>
                             <div class="flex three-500">
                                 <div id="product-image" class="one thirth-500">
-                                    @isset($detail->images['images']['large'])
+                                    @if(isset($detail->images['images']['large']))
                                         <picture>
                                             <img src="{{ $detail->images['images']['large'] ?? '' }}"
                                                 loading="lazy" width="{{ env('PRODUCT_LARGE_W') }}" height="{{ env('PRODUCT_LARGE_H') }}"
                                                 alt="{{ $detail->title }}">
                                         </picture>
-                                    @endisset
+                                    @else
+                                    <picture>
+                                            <img class="m-auto p-4" width="" height="" src="https://img.icons8.com/ios/100/cccccc/no-image.png" alt="company-no-image"/>
+                                    </picture>
+                                    @endif
                                 </div>
                                 <div class="two-third-500">
                                     @if(count($detail->companies))

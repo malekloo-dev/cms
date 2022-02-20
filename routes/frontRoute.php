@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('spider', [SpiderController::class, 'spider']);
 Route::get('/spider/reload', [SpiderController::class, 'reload']);
 Route::post('/spider/addToCms', [SpiderController::class, 'reloadAdd']);
+Route::get('spider/instagram/{id}/{count}', [SpiderController::class, 'instagram']);
+
 
 
 

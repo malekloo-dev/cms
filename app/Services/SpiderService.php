@@ -139,7 +139,7 @@ class SpiderService
 
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-type: multipart/form-data"));
-            curl_setopt($ch, CURLOPT_URL, 'https://'.request()->getHost() . '/api/spider/addToCms');
+            curl_setopt($ch, CURLOPT_URL, 'https://' . request()->getHost() . '/api/spider/addToCms');
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 50);
@@ -235,10 +235,12 @@ class SpiderService
         @$doc = new DOMDocument();
         $doc->preserveWhiteSpace = false;
         @$doc->loadHTML($page);
+        // dd($doc);
         $selector = new DOMXPath($doc);
 
         $tags = $selector->query($productClass);
 
+        $list = array();
         //echo '<pre/>';
         foreach ($tags as $id => $div) {
             $list[] = $div->getAttribute("href");
@@ -324,6 +326,8 @@ class SpiderService
 
 
     }
+
+
 
     public static function dorsam()
     {

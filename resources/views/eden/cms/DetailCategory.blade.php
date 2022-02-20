@@ -172,14 +172,14 @@
                 <div>
                     <div class="">
 
-                        <div class="flex one two-500 four-900 center ">
+                        <div class="flex one two-500 five-900 center ">
 
                             {{-- $data['newPost'] --}}
                             @foreach ($relatedProduct as $content)
                                 <a href="{{ $content->slug }}">
                                     <div class="shadow hover p-0 border-radius-5">
                                         @if (isset($content->images['images']['small']))
-                                            <figure class="image">
+                                            <figure class="image ">
                                                 <img src="{{ $content->images['images']['large'] }}"
                                                     alt="{{ $content->title }}" title="{{ $content->title }}" width="300" height="300">
                                                 <figcaption>
@@ -195,6 +195,8 @@
                             @endforeach
 
                         </div>
+                        {{ $relatedProduct->links('vendor.pagination.default') }}
+
                     </div>
                 </div>
             </div>

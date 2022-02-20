@@ -3,6 +3,8 @@ $body: #f8f8f8;
 $theme-color1: #928c81;
 $theme-color2: rgb(255, 216, 45);
 $theme-color3: #c99d4d;
+$theme-color1-text: #fff;
+
 $a: #c99d4d;
 $a-hover: #1e2135;
 
@@ -10,11 +12,21 @@ $menu-color: #333;
 $menu-bg-left:#fff;
 $menu-bg-right:#fff;
 $menu-shadow:0 1px 1px rgba(0, 0, 0, 0.2);
+$p: #1e1e1e;
+
+$search-border: 1px solid #888;
+$search-bg: #888;
+$search-text: rgb(100, 100, 100);
+
+$pink: #e81e6c;
 
 
 @import "app.scss";
 @import "grid.scss";
 @import "nav.scss";
+
+@import "nav-mega-menu.scss";
+
 
 .bg-gray-black{ background-color: #111; color: #fff;}
 .h-auto{height: auto;}
@@ -40,7 +52,7 @@ $menu-shadow:0 1px 1px rgba(0, 0, 0, 0.2);
 ////////////////////
 
 .category-section {
-    position: relative;
+    // position: relative;
 
     h2,h3 {
         font-size: 0.9em;
@@ -72,67 +84,67 @@ $menu-shadow:0 1px 1px rgba(0, 0, 0, 0.2);
 //////////////
 //pagination//
 //////////////
-nav[role="navigation"] {
-    display: flex;
-    direction: ltr;
-}
-nav[role="navigation"] > :not(.hidden) {
-    display: none;
-}
-nav[role="navigation"] p {
-    margin: 0;
-    padding: 0;
-}
-nav[role="navigation"] .hidden {
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-}
-nav[role="navigation"] .justify-between {
-    justify-content: space-between;
-    float: 1 1 0;
-}
-nav[role="navigation"] .w-5 {
-    width: 1.25rem;
-    height: 1.25rem;
-}
-nav[role="navigation"] span {
-    display: inline-flex;
-}
-nav[role="navigation"] a {
-    --tw-space-x-reverse: 0;
-    display: inline-flex;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    border-width: 1px;
-    border-color: rgba(255, 255, 255, var(--tw-bg-opacity));
-}
-nav[role="navigation"] span > span > span {
-    border: none;
-    color: #ccc;
-    margin-right: calc(-1px * var(--tw-space-x-reverse));
-    margin-left: calc(-1px * calc(1 - var(--tw-space-x-reverse)));
-    display: inline-flex;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    border-width: 1px;
-    border-color: rgba(255, 255, 255, var(--tw-bg-opacity));
-}
-nav[role="navigation"] span > * {
-    margin-right: calc(-1px * var(--tw-space-x-reverse));
-    margin-left: calc(-1px * calc(1 - var(--tw-space-x-reverse)));
-}
-nav[role="navigation"] span > svg {
-    border: none;
-}
+// nav[role="navigation"] {
+//     display: flex;
+//     direction: ltr;
+// }
+// nav[role="navigation"] > :not(.hidden) {
+//     display: none;
+// }
+// nav[role="navigation"] p {
+//     margin: 0;
+//     padding: 0;
+// }
+// nav[role="navigation"] .hidden {
+//     justify-content: space-between;
+//     display: flex;
+//     align-items: center;
+// }
+// nav[role="navigation"] .justify-between {
+//     justify-content: space-between;
+//     float: 1 1 0;
+// }
+// nav[role="navigation"] .w-5 {
+//     width: 1.25rem;
+//     height: 1.25rem;
+// }
+// nav[role="navigation"] span {
+//     display: inline-flex;
+// }
+// nav[role="navigation"] a {
+//     --tw-space-x-reverse: 0;
+//     display: inline-flex;
+//     padding-left: 1rem;
+//     padding-right: 1rem;
+//     padding-top: 0.5rem;
+//     padding-bottom: 0.5rem;
+//     font-size: 0.875rem;
+//     line-height: 1.25rem;
+//     border-width: 1px;
+//     border-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+// }
+// nav[role="navigation"] span > span > span {
+//     border: none;
+//     color: #ccc;
+//     margin-right: calc(-1px * var(--tw-space-x-reverse));
+//     margin-left: calc(-1px * calc(1 - var(--tw-space-x-reverse)));
+//     display: inline-flex;
+//     padding-left: 1rem;
+//     padding-right: 1rem;
+//     padding-top: 0.5rem;
+//     padding-bottom: 0.5rem;
+//     font-size: 0.875rem;
+//     line-height: 1.25rem;
+//     border-width: 1px;
+//     border-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+// }
+// nav[role="navigation"] span > * {
+//     margin-right: calc(-1px * var(--tw-space-x-reverse));
+//     margin-left: calc(-1px * calc(1 - var(--tw-space-x-reverse)));
+// }
+// nav[role="navigation"] span > svg {
+//     border: none;
+// }
 
 
 .ltr {
