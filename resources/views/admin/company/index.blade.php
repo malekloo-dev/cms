@@ -51,10 +51,12 @@
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td class="">
-                                    <a href="{{ route('profile.index', $item->id) }}" target="__blank"><i
+                                    <a href="{{ route('profile.index', $item->id) }}" target="__blank"> <i
                                             class="fa fa-external-link"></i></a>
-                                    {{ $item->name ?? '' }} <a
-                                        href="{{ route('contents.type.show', ['type' => 'product', 'companyId' => $item->id]) }}">@lang('messages.products')</a>
+                                    {{ $item->name ?? '' }}
+                                    <br>
+                                    <a
+                                        href="{{ route('contents.type.show', ['type' => 'product', 'companyId' => $item->id]) }}">@lang('messages.products') ({{ $item->contents()->where('type','=',2)->count() }})</a>
 
                                         <div>
                                             <svg class="p-0" width="13" height="13" viewBox="0 0 24 24" fill="none"
