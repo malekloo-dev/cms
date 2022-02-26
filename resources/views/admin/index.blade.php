@@ -10,6 +10,12 @@
     <div class="content-body">
         <div class="dashboard">
             <div class="">
+                <div class="title">@lang('messages.companies')</div>
+                <div class="info">
+                    <a class="count" href="{{ route('admin.company.index') }}">{{ $data['companiesCount'] }}</a>
+                </div>
+            </div>
+            <div class="">
                 <div class="title">@lang('messages.Products')</div>
                 <div class="info">
                     <a class="count"
@@ -37,6 +43,7 @@
                     <a class="count" href="{{ route('comment.index') }}">{{ $data['commentsCount'] }}</a>
                 </div>
             </div>
+
 
         </div>
     </div>

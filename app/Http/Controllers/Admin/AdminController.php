@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Company;
 use App\Models\Content;
 use Intervention\Image\Facades\Image;
 
@@ -54,6 +55,10 @@ class AdminController extends Controller
             ->count();
 
         $data['commentsCount'] = Comment::count();
+
+        $data['companiesCount'] = Company::count();
+
+        // dd($data);
 
         return view('admin.index', compact('data'));
     }
