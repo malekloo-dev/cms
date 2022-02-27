@@ -1,6 +1,7 @@
 @extends(@env('TEMPLATE_NAME').'.App')
 
-@section('meta-title', __('messages.register'))
+@section('meta-title', __('messages.register').' | درب کالا')
+@section('meta-description','فرم ثبت نام ')
 
 
     @push('head')

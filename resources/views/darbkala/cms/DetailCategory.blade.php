@@ -128,7 +128,7 @@
                     @endif
                 </span> |
 
-                {{ $detail->viewCount }} بار دیده شده |
+                {{ number_format($detail->viewCount,0) }} بار دیده شده |
             </div>
 
 
