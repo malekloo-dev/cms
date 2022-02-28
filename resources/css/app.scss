@@ -2995,6 +2995,12 @@ figure.image {
 .img-cover {
     object-fit: cover;
 }
+.relative{
+    position: relative;
+}
+.absolute{
+    position: absolute;
+}
 
 picture {
     // display: table;
