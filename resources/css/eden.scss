@@ -21,6 +21,8 @@ $search-text: rgb(100, 100, 100);
 $pink: #e81e6c;
 
 
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
+
 @import "app.scss";
 @import "grid.scss";
 @import "nav.scss";
@@ -30,6 +32,7 @@ $pink: #e81e6c;
 
 .bg-gray-black{ background-color: #111; color: #fff;}
 .h-auto{height: auto;}
+// figure.image img{height: 300px; object-fit: cover;}
 
 ////////////////////
 //     banner     //

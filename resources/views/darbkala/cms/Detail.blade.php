@@ -141,6 +141,15 @@
 
                                     @isset($detail->attr['price'])
                                         <span class="price text-green ">قیمت @convertCurrency($detail->attr['price']?? 0) تومان</span>
+                                        @if(isset($detail->attr['offer_price']) && $detail->attr['offer_price'] != '')
+                                            <br><span class="price text-green ">
+                                                @if (is_numeric($detail->attr['offer_price']))
+                                                    قیمت @convertCurrency($detail->attr['offer_price']?? 0) تومان
+                                                @else
+                                                    {{ $detail->attr['offer_price'] }}
+                                                @endif
+                                            </span>
+                                        @endif
                                     @endisset
 
                                     <span id="product-rate" class="rate  mt-1">

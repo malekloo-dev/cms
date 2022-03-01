@@ -1,4 +1,4 @@
-<section id="footer" >
+<section id="footer">
 
 
     <section class="footer-links">
@@ -8,12 +8,12 @@
                     <div>وبسایت ها</div>
                     <ul class="flex one two-700">
                         <?php $subMenu = App\Models\Menu::where('menu', '=', '1')
-                        ->where('parent', '=', 7)
-                        ->orderBy('sort')
-                        ->get(); ?>
+                            ->where('parent', '=', 7)
+                            ->orderBy('sort')
+                            ->get(); ?>
                         @foreach ($subMenu as $subMenuItem)
                             <li><a
-                                    href="{{ $subMenuItem['type'] == 'internal' || $subMenuItem['type'] == 'external' ? $subMenuItem['link'] : '/#' . $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a>
+                                    href="{{ $subMenuItem['type'] == 'internal' || $subMenuItem['type'] == 'external'? $subMenuItem['link']: '/#' . $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -22,12 +22,12 @@
                     <div>مقاله ها</div>
                     <ul class="flex one ">
                         <?php $subMenu = App\Models\Menu::where('menu', '=', '1')
-                        ->where('parent', '=', 34)
-                        ->orderBy('sort')
-                        ->get(); ?>
+                            ->where('parent', '=', 34)
+                            ->orderBy('sort')
+                            ->get(); ?>
                         @foreach ($subMenu as $subMenuItem)
                             <li><a
-                                    href="{{ $subMenuItem['type'] == 'internal' || $subMenuItem['type'] == 'external' ? $subMenuItem['link'] : '/#' . $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a>
+                                    href="{{ $subMenuItem['type'] == 'internal' || $subMenuItem['type'] == 'external'? $subMenuItem['link']: '/#' . $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -96,9 +96,11 @@
     var TEMPLATE_NAME = `{{ env('TEMPLATE_NAME') }}`;
 </script>
 <script src="{{ url('/main.js') }}"></script>
-@if (WebsiteSetting::where('variable', '=', 'phone')->first()?->value != '' )
+@if (WebsiteSetting::where('variable', '=', 'phone')->first()?->value != '')
     <a href="tel:{{ WebsiteSetting::where('variable', '=', 'phone')->first()->value }}" id="callnowbutton"></a>
 @endif
+
+
 </body>
 
 </html>

@@ -48,7 +48,7 @@
                     <div class="flex one five-700 p-0  ">
                         <div class="one">
                             @if (!isset($company->logo['large']) || $company->logo['large'] == '' || !file_exists(public_path($company->logo['large'])))
-                               
+
                                 <img class=" h-auto img-contain  mt-1 " width="100" height="100" src="https://img.icons8.com/ios/100/cccccc/no-image.png" alt="company-no-image"/>
 
                             @else
@@ -177,7 +177,7 @@
                             @endif
 
                             <div class="">@lang('messages.register date'):
-                                <span>{{ convertGToJ($company->date ?? '') }}</span>
+                                <span>{{ convertGToJ($company->created_at ?? '') }}</span>
                             </div>
                             @if ($company->description != '')
                                 <div class="full">@lang('messages.description'): <span class="text-editor"

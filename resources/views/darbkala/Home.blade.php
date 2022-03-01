@@ -253,6 +253,9 @@
                                                                                                                                                     (min-width:850px) {{ env('PRODUCT_LARGE_W') }}px
                                                                                                                                                     ">
                                         </div>
+                                    @else
+                                        <img class=" h-auto img-contain  mt-1 " width="{{ env('PRODUCT_SMALL_W') }}" height="{{ env('PRODUCT_SMALL_H') }}" src="https://img.icons8.com/ios/{{ env('PRODUCT_SMALL_W') }}/cccccc/no-image.png" alt="company-no-image"/>
+
                                     @endif
                                     <div>
                                         <h4> {{ $content->title }}</h4>

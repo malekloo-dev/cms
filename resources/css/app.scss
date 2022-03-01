@@ -2287,7 +2287,8 @@ tr:nth-child(even) {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
-#callnowbutton {
+#callnowbutton,
+.whatsappbutton {
     display: none;
 }
 @media (max-width: 60em) {
@@ -2311,6 +2312,25 @@ tr:nth-child(even) {
             center/45px 45px no-repeat #00bb00;
         span {
             display: none;
+        }
+    }
+
+    .whatsappbutton {
+        display: block;
+        position: fixed;
+        width: 65px;
+        height: 65px;
+        bottom: 15px;
+        right: 20px;
+        background-color: #25d366;
+        color: #fff;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 35px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 100;
+        .my-float{
+            margin-top:16px;
         }
     }
 }
@@ -2995,10 +3015,10 @@ figure.image {
 .img-cover {
     object-fit: cover;
 }
-.relative{
+.relative {
     position: relative;
 }
-.absolute{
+.absolute {
     position: absolute;
 }
 
@@ -3099,30 +3119,29 @@ nav[role="navigation"] {
     display: flex;
     direction: ltr;
     margin: auto;
-    ul{
+    ul {
         justify-content: center;
-        gap:0 2px;
-        li{
+        gap: 0 2px;
+        li {
             width: 30px;
             flex: 0 0 auto;
             padding: 0;
-            a{
+            a {
                 text-align: center;
                 border: 1px solid $theme-color1;
                 border-radius: 3px;
             }
-            &:not(.active){
-                a{
-                    border-color:#ccc;
+            &:not(.active) {
+                a {
+                    border-color: #ccc;
                     background-color: #fff;
                 }
             }
-            &.disabled{
+            &.disabled {
                 text-align: center;
             }
         }
     }
-
 }
 
 //////////////
@@ -3296,9 +3315,6 @@ section.extra-link {
 }
 
 @media (max-width: 799px) {
-
-
-
     $sizes: 5;
 
     @mixin margin-classes {
@@ -3366,12 +3382,11 @@ section.extra-link {
     }
     @include padding-classes;
 
-
-    .sm\:justify-content-center{
-        justify-content : center !important;
+    .sm\:justify-content-center {
+        justify-content: center !important;
     }
 
-    .sm\:text-center{
+    .sm\:text-center {
         text-align: center;
     }
 

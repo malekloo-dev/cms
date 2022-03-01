@@ -1,5 +1,7 @@
 @extends(@env('TEMPLATE_NAME').'.App')
-@section('meta-title', __('messages.login'))
+@section('meta-title', __('messages.login').' | درب کالا')
+
+@section('meta-description','فرم ورود  ')
 
 
 @push('head')

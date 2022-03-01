@@ -237,8 +237,10 @@
 
                 <div class="form-group row sm:mb-3">
                     <div class="col-md-6 col-xs-12 sm:mb-1">
-                        <label for="price" class="bold col-form-label text-md-left">@lang('messages.price') (تومان):</label>
-                        <input type="text" class="form-control" name="attr[price]"
+                        <label for="price" class="bold col-form-label text-md-left">@lang('messages.price') (تومان): </label>
+
+                        <div class="font-08 gray"> اعداد انگلیسی بدون کاراکتر وارد شود</div>
+                        <input type="number" class="form-control" name="attr[price]"
                             value="{{ old("attr.price", $post->attr['price']??'') }}" />
                     </div>
 

@@ -52,6 +52,13 @@
 @if (WebsiteSetting::where('variable', '=', 'phone')->first())
     <a  href="tel:{{ WebsiteSetting::where('variable', '=', 'phone')->first()->value }}" id="callnowbutton">phone</a>
 @endif
+
+
+
+
+<a href="https://api.whatsapp.com/send?phone=989374599840&text=سلام.%20میخواستم%20سفارش%20ثبت%20کنم" class="whatsappbutton" target="_blank">
+    <i class="fa fa-whatsapp my-float"></i>
+</a>
 </body>
 
 </html>

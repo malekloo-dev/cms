@@ -426,7 +426,7 @@
                         <div class="col-6 col-md-6">
                             <label for="price"
                                 class=" col-form-label text-md-left">@lang('messages.price'):@lang('messages.toman')</label>
-                            <input type="text" class="form-control" name="attr[price]"
+                            <input type="number" class="form-control" name="attr[price]"
                                 value="{{ old('attr[price]', $content->attr['price'] ?? '') }}" />
                         </div>
 

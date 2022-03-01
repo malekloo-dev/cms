@@ -105,12 +105,12 @@
             <h2>محصولات جدید</h2>
         </div>
 
-        <div class="flex one four-500 center  ">
-            {{--post&label=products&var=products&count=12 --}}
+        <div class="flex one five-500 center  ">
+            {{--post&label=products&var=products&count=10 --}}
             @isset($products['data'])
                 @foreach ($products['data'] as $content)
                     <a href="{{ $content->slug }}">
-                        <div class="shadow hover p-0 border-radius-5">
+                        <div class="shadow hover p-0 border-radius-5 h-full">
                             @if (isset($content->images['images']['small']))
                                 <figure class="image">
                                     <img src="{{ $content->images['images']['large'] }}"
