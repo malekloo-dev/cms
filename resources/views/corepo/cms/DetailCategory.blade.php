@@ -119,8 +119,8 @@
     @endif
 
     @if (count($subCategory))
-        <section class=" category-section" id="index-best-view">
-            <div class="flex one ">
+        <section class=" category-section "  id="index-best-view">
+            <div class="flex one relative">
                 <div class="siema p-0">
                     @foreach ($subCategory as $content)
                         <a href="{{ $content->slug }}">
@@ -235,7 +235,7 @@
                             </div>
                         @endforeach
                     </div>
-                    {{ $relatedPost->links() }}
+                    {{ $relatedPost->links('pagination::default') }}
                 @endisset
             </div>
         </div>

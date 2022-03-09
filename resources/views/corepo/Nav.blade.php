@@ -8,6 +8,9 @@
                         src="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }}" />
                 </a>
 
+                <span class="bg-purple white-space-nowrap px-1 ml-0 m-auto font-08 border-radius-15" id="addProductCTA"  ></span>
+
+
                 <input id="bmenu" type="checkbox" class="show" aria-label="menu">
                 <label for="bmenu" class="burger toggle pseudo button">
                     <span class="hamburger">

@@ -77,7 +77,7 @@
                                         <i class="fa fa-external-link"></i>
                                     </a>
                                 </td>
-                                <td class="">{{ $item->created_at }}</td>
+                                <td class="">{{ convertGToJ($item->created_at,true) }}</td>
 
                                 <td class="width-100">
                                     <div class="row">
