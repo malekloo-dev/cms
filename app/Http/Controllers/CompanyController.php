@@ -465,6 +465,8 @@ class CompanyController extends Controller
             return redirect('/', 301);
         }
         $company->increment('viewCount');
+
+        $company->instagram = $this->clearInstagramUrl($company->instagram);
         // dd($company  );
 
         // $produsct = Content::where('publish_date', '<=', DB::raw('now()'));
@@ -490,7 +492,21 @@ class CompanyController extends Controller
         // dd($breadcrumb);
         return view('auth.profileShow', compact('company', 'breadcrumb', 'seo'));
     }
+    public function clearInstagramUrl(String $var = null)
+    {
+        // $var = 'https://instagram.com/ads/f#adsf@instagram';
+        if(str_contains($var,'instagram.com')){
+            // ['https://instagram.com','https://www.instagram.com','instagram.com','instagram']
+            $arr = explode('/',$var);
+            $var = end($arr);
+        }
 
+        $var = trim($var);
+        $var = str_replace('@','',$var);
+
+        return $var;
+
+    }
 
     public function productsDestroy(Content $content)
     {

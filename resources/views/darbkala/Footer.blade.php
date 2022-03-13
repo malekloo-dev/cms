@@ -126,7 +126,7 @@
 
 @if (url('/') == 'https://darbkala.com')
 
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         if(screen && screen.width > 768){
             ! function() {
                 function t() {
@@ -145,7 +145,7 @@
                     1)
             }();
         }
-    </script>
+    </script> --}}
 @endif
 </body>
 
