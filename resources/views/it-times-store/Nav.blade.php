@@ -1,12 +1,13 @@
 <div class="top-menu">
     <section class="p-0 m-0">
         <div class="">
-            <nav>
+            <nav class="top">
                 <a href="/" class="brand">
                     <img height="64" width="64" alt=" کریپو لوگو"
                         srcset="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }} 1x, {{ url(env('TEMPLATE_NAME') . '/img/logo2x.png') }} 2x"
                         src="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }}" />
                 </a>
+                <span  class="white-space-nowrap px-1 ml-0 m-auto font-08 "></span>
 
                 <input id="bmenu" type="checkbox" class="show">
                 <label for="bmenu" class="burger toggle pseudo button">

@@ -7,14 +7,13 @@
 @section('og:description', clearHtml($detail->brief_description))
 
 @if (isset($detail->images['images']['medium']))
-@section('twitter:image', url($detail->images['images']['medium']))
+    @section('twitter:image', url($detail->images['images']['medium']))
 
-@section('og:image', url($detail->images['images']['medium']))
-@section('og:image:type', 'image/jpeg')
-@section('og:image:width', $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W'))
-@section('og:image:height', $detail->attr_type == 'article' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H'))
-@section('og:image:alt', $detail->title)
-
+    @section('og:image', url($detail->images['images']['medium']))
+    @section('og:image:type', 'image/jpeg')
+    @section('og:image:width', $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W'))
+    @section('og:image:height', $detail->attr_type == 'article' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H'))
+    @section('og:image:alt', $detail->title)
 @endif
 
 
@@ -29,7 +28,6 @@
 
 
 @push('scripts')
-
     <script src="{{ asset('/siema.min.js') }}"></script>
     <script>
         var w;
@@ -44,7 +42,7 @@
             } else if (w <= 1024) {
                 perPageNumber = 5;
             } else {
-                perPageNumber = 7;
+                perPageNumber = 6;
             }
         }
 
@@ -78,6 +76,17 @@
     </script>
 @endpush
 
+@section('footer')
+    @auth
+
+        @if (Auth::user()->id == 1)
+            <div class="btn btn-info edit-button"
+                onclick="window.open('{{ url('/admin/category/' . $detail->id . '/edit/') }}')">
+                ویرایش</div>
+        @endif
+    @endauth
+@endsection
+
 @section('Content')
 
     @php
@@ -92,7 +101,7 @@
     @include('jsonLdFaq')
 
 
-    @if (count($breadcrumb)>0)
+    @if (count($breadcrumb) > 0)
         @include('jsonLdBreadcrumb')
     @endif
 
@@ -113,20 +122,19 @@
 
     @if (count($subCategory))
         <section class="category-list category-section" id="index-best-view">
-            <div class="flex one ">
+            <div class="flex one relative">
                 <div class="siema p-0">
                     @foreach ($subCategory as $content)
                         <a href="{{ $content->slug }}">
                             <div class="hover text-center">
                                 @if (isset($content->images['images']['small']))
                                     <figure class="image">
-                                        <img src="{{ $content->images['images']['small'] }}"
-                                            alt="{{ $content->title }}" width="{{ env('CATEGORY_SMALL_W') }}"
-                                            height="{{ env('CATEGORY_SMALL_H') }}"
+                                        <img src="{{ $content->images['images']['small'] }}" alt="{{ $content->title }}"
+                                            width="{{ env('CATEGORY_SMALL_W') }}" height="{{ env('CATEGORY_SMALL_H') }}"
                                             srcset="
-                            {{ $content->images['images']['small']  }} {{ env('CATEGORY_SMALL_W') }}w,
-                            {{ $content->images['images']['medium'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
-                            {{ $content->images['images']['large'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_LARGE_W') }}w">
+                                {{ $content->images['images']['small'] }} {{ env('CATEGORY_SMALL_W') }}w,
+                                {{ $content->images['images']['medium'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
+                                {{ $content->images['images']['large'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_LARGE_W') }}w">
                                         <figcaption>
                                             <div class="p-0 m-0 text-center"> {{ $content->title }}</div>
                                         </figcaption>
@@ -163,15 +171,15 @@
                                                 <img src="{{ $content->images['images']['small'] }}"
                                                     sizes="(max-width:{{ env('ARTICLE_SMALL_W') }}px) 100vw {{ env('ARTICLE_SMALL_W') }}px {{ ENV('ARTICLE_MEDIUM_W') }}px"
                                                     alt="{{ $content->title }}" width="100" height="100" srcset="
-                    {{ $content->images['images']['small'] }} {{ env('ARTICLE_SMALL_W') }}w,
-                    {{ $content->images['images']['medium'] }} 2x">
+                        {{ $content->images['images']['small'] }} {{ env('ARTICLE_SMALL_W') }}w,
+                        {{ $content->images['images']['medium'] }} 2x">
                                             </figure>
-
                                         @endif
                                         <footer>
                                             <div> {{ $content->title }}</div>
                                             {{-- {!! $content->brief_description !!} --}}
-                                            <a class="btn btn-block bg-blue" href="{{ $content->slug }}">@lang('messages.more')</a>
+                                            <a class="btn btn-block bg-blue"
+                                                href="{{ $content->slug }}">@lang('messages.more')</a>
 
                                         </footer>
                                     </article>
@@ -180,6 +188,9 @@
 
                         </div>
                     </div>
+
+                    {{ $relatedProduct->links('vendor.pagination.default') }}
+
                 </div>
             </div>
         </section>
@@ -230,7 +241,6 @@
                             </div>
                         @endforeach
                     </div>
-                    {{ $relatedPost->links() }}
                 @endisset
             </div>
         </div>
@@ -240,7 +250,7 @@
 
     <section class="category-content p-0 m-0" id="">
         <div class="flex one ">
-            <div class="p-0">
+            <div class="p-1">
                 @if (count($table_of_content))
                     <ul>
                         @foreach ($table_of_content as $key => $item)
@@ -252,7 +262,7 @@
                     </ul>
                 @endif
 
-                @include(@env('TEMPLATE_NAME').'.DescriptionModule')
+                @include(@env('TEMPLATE_NAME') . '.DescriptionModule')
             </div>
         </div>
     </section>

@@ -8,15 +8,13 @@
 @section('og:description', clearHtml($detail->brief_description))
 
 @if (isset($detail->images['images']['medium']))
+    @section('twitter:image', url($detail->images['images']['medium']))
 
-@section('twitter:image', url($detail->images['images']['medium']))
-
-@section('og:image', url($detail->images['images']['medium']))
-@section('og:image:type', 'image/jpeg')
-@section('og:image:width', $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W'))
-@section('og:image:height', $detail->attr_type == 'article' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H'))
-@section('og:image:alt', $detail->title)
-
+    @section('og:image', url($detail->images['images']['medium']))
+    @section('og:image:type', 'image/jpeg')
+    @section('og:image:width', $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W'))
+    @section('og:image:height', $detail->attr_type == 'article' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H'))
+    @section('og:image:alt', $detail->title)
 @endif
 
 @push('scripts')
@@ -60,8 +58,16 @@
             expandImg.parentElement.style.display = "block";
         }
     </script>
-
 @endpush
+
+@section('footer')
+    @auth
+        @if (Auth::user()->id == 1)
+            <div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/contents/' . $detail->id . '/edit/') }}')">
+                ویرایش</div>
+        @endif
+    @endauth
+@endsection
 
 
 
@@ -80,7 +86,7 @@
         @include('jsonLdArticle')
     @endif
 
-    @if (count($breadcrumb)>0)
+    @if (count($breadcrumb) > 0)
         @include('jsonLdBreadcrumb')
     @endif
 
@@ -109,11 +115,13 @@
 
                     @if ($detail->gallery->count())
                         <div class="gallery">
-                            <img onclick="myFunction(this);" class="m-1"  data-large="{{ $detail->images['images']['large'] }}" src="{{ $detail->images['images']['small'] }}"
-                            height="100">
+                            <img onclick="myFunction(this);" class="m-1"
+                                data-large="{{ $detail->images['images']['large'] }}"
+                                src="{{ $detail->images['images']['small'] }}" height="100">
                             @foreach ($detail->gallery as $item)
-                            <img onclick="myFunction(this);" class="m-1" data-large="{{ $item->images['images']['large'] }}" src="{{ $item->images['images']['small'] }}"
-                            height="100">
+                                <img onclick="myFunction(this);" class="m-1"
+                                    data-large="{{ $item->images['images']['large'] }}"
+                                    src="{{ $item->images['images']['small'] }}" height="100">
                             @endforeach
                         </div>
                     @endif
@@ -143,6 +151,18 @@
                             @endfor
                             <span class="font-08">({{ count($detail->comments) }} نفر)</span>
                         @endif
+                    </div>
+                    <div class="p-0 ">
+                        <svg class="p-0" width="13" height="13" viewBox="0 0 24 24"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
+                                fill="currentColor" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12 3C6.40848 3 1.71018 6.82432 0.378052 12C1.71018 17.1757 6.40848 21 12 21C17.5915 21 22.2898 17.1757 23.6219 12C22.2898 6.82432 17.5915 3 12 3ZM16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
+                                fill="currentColor" />
+                        </svg>
+                        <span class="p-0">{{ $detail->viewCount }}</span>
                     </div>
                 </div>
                 {!! $detail->brief_description !!}
@@ -209,7 +229,7 @@
                         @endforeach
 
                     </ul>
-                    @include(@env('TEMPLATE_NAME').'.DescriptionModule')
+                    @include(@env('TEMPLATE_NAME') . '.DescriptionModule')
                 </div>
             </div>
         </div>
@@ -227,12 +247,14 @@
                                 <div>
                                     <article>
                                         @if (isset($content->images['images']['small']))
-                                            <div><img  src="{{ $content->images['images']['small'] }}" width="{{ env(Str::upper($content->attr_type).'_SMALL_W') }}"
-                                                height="{{ env(Str::upper($content->attr_type).'_SMALL_H') }}"></div>
+                                            <div><img src="{{ $content->images['images']['small'] }}"
+                                                    width="{{ env(Str::upper($content->attr_type) . '_SMALL_W') }}"
+                                                    height="{{ env(Str::upper($content->attr_type) . '_SMALL_H') }}"></div>
                                         @endif
                                         <footer>
                                             <div> {{ $content->title }}</div>
-                                            <a class="btn btn-block bg-blue" href="{{ $content->slug }}">@lang('messages.more')</a>
+                                            <a class="btn btn-block bg-blue"
+                                                href="{{ $content->slug }}">@lang('messages.more')</a>
                                         </footer>
                                     </article>
                                 </div>

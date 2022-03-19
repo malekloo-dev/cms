@@ -673,9 +673,9 @@
     <div class="flex one ">
         <div class="text-center pb-0 pt-1">
             <div class="flex one two-500 ">
-                <a class="" href=""><img height="" class=" border-radius-10 "
-                        src="{{ asset('/img/banner-70.jpg') }}" alt=""></a>
-                <a class="" href=""><img height="" class=" border-radius-10 "
+                <a class="" href="https://garmgah.com/" target="__blank"><img height="" class=" border-radius-10 "
+                        src="{{ asset('/img/garmgah-70.jpg') }}" alt=""></a>
+                <a class="" href="#"><img height="" class=" border-radius-10 "
                         src="{{ asset('/img/banner-70.jpg') }}" alt=""></a>
             </div>
         </div>

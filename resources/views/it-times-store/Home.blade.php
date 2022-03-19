@@ -15,7 +15,7 @@
             } else if (w <= 1024) {
                 perPageNumber = 5;
             } else {
-                perPageNumber = 7;
+                perPageNumber = 6;
             }
         }
 
@@ -65,7 +65,7 @@
 
 
 <section class=" shadowy-1 my-0 py-2 brands category-section" onresize="onResize()">
-    <div class="flex one  ">
+    <div class="flex one  relative">
         <div class="siema p-0">
             {{--category&label=cat&var=category&count=10 --}}
             @isset($category['data'])

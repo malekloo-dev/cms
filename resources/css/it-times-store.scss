@@ -3,6 +3,7 @@ $body: #fff;
 $theme-color1:#f46900 ;
 $theme-color2: #00F438;
 $theme-color3: #fff;
+$theme-color1-text: #f46900;
 
 $a: #f46900;
 $a-hover: #1e2135;
@@ -11,10 +12,19 @@ $menu-color: #f46900;
 $menu-bg-left:#fff;
 $menu-bg-right:#fff;
 $menu-shadow:0 1px 0px rgba(0, 0, 0, 0.1);
+$p: #1e1e1e;
+
+$search-border: 1px solid #888;
+$search-bg: #888;
+$search-text: rgb(100, 100, 100);
 
 @import "app.scss";
 @import "grid.scss";
 @import "nav.scss";
+
+@import "nav-mega-menu.scss";
+
+
 body{font-size: 15px;}
 h2{
     display: inline-block;
@@ -51,7 +61,7 @@ article {
 
 
 .category-section {
-    position: relative;
+    // position: relative;
     a{
         color: #333;
     }
@@ -74,16 +84,16 @@ article {
         font-size: 23px;
         font-weight: 700;
         cursor: pointer;
-        top: 0;
+        top: 20%;
         user-select: none;
     }
     .next2 {
         left: 0;
-        border-radius: 0 5px 5px 0;
+        border-radius: 5px ;
     }
     .prev2 {
         right: 0;
-        border-radius: 5px 0 0 5px;
+        border-radius: 5px ;
     }
 }
 
@@ -91,7 +101,7 @@ article {
 
     .next2,
     .prev2{
-        top: 3em;
+        top: 20%;
     }
 }
 
