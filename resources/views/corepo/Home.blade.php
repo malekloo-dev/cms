@@ -184,7 +184,7 @@
             <div class="flex one ">
                 <div class="text-center ">
                     <div class="flex one two-500 ">
-                        <a class="pb-0" href="https://edengoldgallery.ir" target="__blunk"><img height="" class="full border-radius-10 "
+                        <a class="pb-0" href="https://edengoldgallery.ir/?ref=corepo" target="__blunk"><img height="" class="full border-radius-10 "
                                 src="{{ asset('/img/eden-70.jpg') }}" alt=""></a>
                         <a class="pb-0" href="https://aryahesar.com/" target="__blunk"><img height="" class="full border-radius-10 "
                                 src="{{ asset('/img/sim-70.jpg') }}" alt=""></a>
@@ -673,7 +673,7 @@
     <div class="flex one ">
         <div class="text-center pb-0 pt-1">
             <div class="flex one two-500 ">
-                <a class="" href="https://garmgah.com/" target="__blank"><img height="" class=" border-radius-10 "
+                <a class="" href="https://garmgah.com/?ref=corepo" target="__blank"><img height="" class=" border-radius-10 "
                         src="{{ asset('/img/garmgah-70.jpg') }}" alt=""></a>
                 <a class="" href="#"><img height="" class=" border-radius-10 "
                         src="{{ asset('/img/banner-70.jpg') }}" alt=""></a>

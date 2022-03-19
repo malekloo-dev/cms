@@ -247,6 +247,7 @@
                                                 <a href="{{ $content->slug }}">
                                                     <picture>
                                                         <img loading="lazy"
+                                                            alt="{{ $content->title }}"
                                                             src="{{ str_replace(' ', '%20', $content->images['images']['small']) ?? '' }}"
                                                             width="{{ env('PRODUCT_SMALL_W') }}"
                                                             height="{{ env('PRODUCT_SMALL_H') }}">
