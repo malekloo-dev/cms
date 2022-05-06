@@ -40,6 +40,7 @@ class ContentController extends Controller
             $filenameOrg = $fileOrg->getClientOriginalName();
             $slug = uniqueSlug(Content::class, ($request->slug != '') ? $request->slug : $request->title);
             $fileName = str_replace(' ', '-', $slug) ?? $filenameOrg;
+            $fileName = str_replace('/', '-', $fileName);
 
 
             $image_parts = explode(";base64,", $file);
@@ -242,10 +243,7 @@ class ContentController extends Controller
 
         $imagesUrl = '';
         //dd($request->file('images'));
-        if ($request->file('images')) {
-            // dd($request->attr_type);
-            $imagesUrl = $this->uploadImages($request, $request->attr_type);
-        }
+
 
 
         $data = $request->all();
@@ -271,6 +269,14 @@ class ContentController extends Controller
 
 
         $object = Content::create($data);
+
+
+        if ($request->file('images')) {
+            // dd($request->attr_type);
+            $imagesUrl = $this->uploadImages($request, $request->attr_type);
+            $object->images = $imagesUrl;
+            $object->save();
+        }
 
         /************
         /   attribute
@@ -420,6 +426,9 @@ class ContentController extends Controller
         if ($data['parent_id'] == '') {
             $data['parent_id'] = $data['parent_id_hide'][0];
         }
+
+        $crud->update($data);
+
 
         $file = $request->file('images');
         //$inputs = $request->all();

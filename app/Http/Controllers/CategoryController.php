@@ -47,6 +47,7 @@ class CategoryController extends Controller
         $image_base64 = base64_decode($image_parts[1]);
 
         $fileName = str_replace(' ', '-', $request->title) ?? $filenameOrg;
+        $fileName = str_replace('/', '-', $fileName);
         $fileType = ($image_type == 'jpeg') ? 'jpg' : $image_type;
         $fileNameAndType = $fileName . '.' . $fileType;
 
@@ -196,9 +197,6 @@ class CategoryController extends Controller
         ));
 
         $imagesUrl = '';
-        if ($request->file('images')) {
-            $imagesUrl = $this->uploadImages($request, 'category');
-        }
 
         $data = $request->all();
         $date['attr_type'] = 'category';
@@ -213,7 +211,13 @@ class CategoryController extends Controller
 
 
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
-        Category::create($data);
+        $cat = Category::create($data);
+
+        if ($request->file('images')) {
+            $imagesUrl = $this->uploadImages($request, 'category');
+            $cat->images = $imagesUrl;
+            $cat->save();
+        }
         return redirect('admin/category')->with('success', 'Greate! Content created successfully.');
     }
 

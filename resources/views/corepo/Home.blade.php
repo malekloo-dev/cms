@@ -186,8 +186,8 @@
                     <div class="flex one two-500 ">
                         <a class="pb-0" href="https://edengoldgallery.ir/?ref=corepo" target="__blunk"><img height="" class="full border-radius-10 "
                                 src="{{ asset('/img/eden-70.jpg') }}" alt=""></a>
-                        <a class="pb-0" href="https://aryahesar.com/" target="__blunk"><img height="" class="full border-radius-10 "
-                                src="{{ asset('/img/sim-70.jpg') }}" alt=""></a>
+                        <a class="pb-0" href="https://it-times-store.com/?ref=corepo" target="__blunk"><img height="" class="full border-radius-10 "
+                                src="{{ asset('/img/it-70.jpg') }}" alt=""></a>
                     </div>
                 </div>
             </div>

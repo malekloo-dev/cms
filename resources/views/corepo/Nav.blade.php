@@ -3,7 +3,7 @@
         <div class="">
             <nav  class="top">
                 <a href="/" class="brand">
-                    <img height="41" width="115" alt=" کریپو لوگو"
+                    <img height="60" width="115" alt=" کریپو لوگو"
                         srcset="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }} 1x, {{ url(env('TEMPLATE_NAME') . '/img/logo2x.png') }} 2x"
                         src="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }}" />
                 </a>

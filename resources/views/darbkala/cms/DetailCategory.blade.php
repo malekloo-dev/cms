@@ -221,9 +221,11 @@
                                     </div>
                                 @endforeach
 
+
                             </div>
                         </section>
                     @endif
+
 
                     @include(@env('TEMPLATE_NAME').'.cms.filter')
                 </div>
