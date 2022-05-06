@@ -53,7 +53,7 @@ class SearchController extends Controller
         // all data fetch
         $productsObj = $this->getProducts()->limit($limit);
         $postsObj = $this->getPosts()->limit($limit);
-        $companiesObj = $this->getCompanies()->limit($limit);
+        $companiesObj = $this->getCompanies()->limit($limit)->orderBy('viewCount','desc');
         $query = '';
 
 
@@ -63,7 +63,13 @@ class SearchController extends Controller
 
             $productsObj->where('title', 'like', '%' . $query . '%');
             $postsObj->where('title', 'like', '%' . $query . '%');
-            $companiesObj->where('name', 'like', '%' . $query . '%');
+            $companiesObj->where('name', 'like', '%' . $query . '%')->orWhere('description','like','%' . $query . '%');
+
+            $words = explode(' ',$query);
+
+            foreach($words as $word){
+                $companiesObj->orWhere('description','like','%' . $word . '%');
+            }
         }
 
 

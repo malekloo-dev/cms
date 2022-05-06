@@ -57,7 +57,7 @@
 
     @include('jsonLdBreadcrumb')
 
-    
+
 
     @if (count($breadcrumb))
         <section class="breadcrumb my-0">
@@ -170,7 +170,7 @@
 
 
                         </div>
-                        {{ $relatedCompany->links() }}
+                        {{ $relatedCompany->links('vendor.pagination.default') }}
                     </div>
                 </div>
             </div>

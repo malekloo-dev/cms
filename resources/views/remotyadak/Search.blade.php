@@ -49,14 +49,13 @@
         </section>
     @endif
 
-    <section class="search bg-gray-dark mt-0 pt-2">
-        <h1 class="text-center">جستجوگر ریموت یدک </h1>
-        <div class="flex one two-500  center">
+    <section class="search">
+        <div class="flex one two-500 three-800 center">
 
             <form action="{{ route('search') }}" class="">
 
                 <input name="q" alt="جستجو" type="text" value="{{ app('request')->q }}"
-                    placeholder="جستجوی محصول / محتوا / کمپانی" required oninvalid="this.setCustomValidity('کلمه ای برای جستجو تایپ کنید')"  onchange="this.setCustomValidity('')">
+                    placeholder="جستجوی محصول / محتوا / کمپانی" required>
 
                 <button class=""><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
                         viewBox="0 0 32 32" style=" fill:#000000;">
@@ -227,10 +226,13 @@
                                 <div class="shadow hover p-0 border-radius-5 search-item ">
 
 
-                                    @if (isset($content->logo['small']) && file_exists(public_path($content->logo['small'])))
-                                        <div><img width="70" height="70" title="{{ $content->title }}"
-                                                alt="{{ $content->title }}" loading="lazy"
-                                                src="{{ $content->logo['small'] }}"></div>
+                                    @if (isset($content->logo['large']) && file_exists(public_path($content->logo['large'])))
+                                        <figure class="image m-0" style="width: 70px">
+                                            <img src="{{ $content->logo['large'] }}"
+                                                alt="{{ $content->title }}" title="{{ $content->title }}" width="70"
+                                                height="70">
+
+                                        </figure>
                                     @endif
 
                                     <div class="py-0 px-1 m-0 ">
