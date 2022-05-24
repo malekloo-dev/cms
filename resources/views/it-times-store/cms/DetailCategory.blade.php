@@ -167,13 +167,16 @@
                                 <div>
                                     <article>
                                         @if (isset($content->images['images']['small']))
-                                            <figure class="image">
-                                                <img src="{{ $content->images['images']['small'] }}"
+                                            <a href="{{ $content->slug }}">
+
+                                                <figure class="image">
+                                                    <img src="{{ $content->images['images']['small'] }}"
                                                     sizes="(max-width:{{ env('ARTICLE_SMALL_W') }}px) 100vw {{ env('ARTICLE_SMALL_W') }}px {{ ENV('ARTICLE_MEDIUM_W') }}px"
                                                     alt="{{ $content->title }}" width="100" height="100" srcset="
-                        {{ $content->images['images']['small'] }} {{ env('ARTICLE_SMALL_W') }}w,
-                        {{ $content->images['images']['medium'] }} 2x">
-                                            </figure>
+                                                    {{ $content->images['images']['small'] }} {{ env('ARTICLE_SMALL_W') }}w,
+                                                    {{ $content->images['images']['medium'] }} 2x">
+                                                </figure>
+                                            </a>
                                         @endif
                                         <footer>
                                             <div> {{ $content->title }}</div>
@@ -265,6 +268,57 @@
                 @include(@env('TEMPLATE_NAME') . '.DescriptionModule')
             </div>
         </div>
+    </section>
+
+
+
+
+
+    <section class=" bg-gray mb-0 pt-1">
+        <div>
+            <h2>مقالات</h2>
+            <div class="flex five center">
+                @foreach (\App\Models\Content::where('parent_id','=',80)->get() as $content)
+                <div>
+                    <a href="{{ $content->slug }}">
+                        <article class="shadow2">
+                            @if (isset($content->images['images']['medium']))
+                            <figure class="image">
+                                <img src="{{ $content->images['images']['medium'] }}"
+                                width="198" height="100" alt="{{ $content->title }}">
+                            </figure>
+                            @endif
+
+                            <div class="title">{{ $content->title }}</div>
+                            <div class="info">
+                                {!! readMore($content->brief_description, 250) !!}
+                            </div>
+                            <div class="rate mt-1">
+                                @if (count($content->comments))
+                                @php
+                                        $rateAvrage = $rateSum = 0;
+                                        @endphp
+                                    @foreach ($content->comments as $comment)
+                                    @php
+                                            $rateSum = $rateSum + $comment['rate'];
+                                            @endphp
+                                    @endforeach
+                                    @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
+                                    <img width="20" height="20"
+                                    srcset="{{ asset('/img/star1x.png') }} , {{ asset('/img/star2x.png') }} 2x"
+                                    src="{{ asset('/img/star1x.png') }}"
+                                    alt="{{ 'star for rating' }}">
+                                    @endfor
+                                    @endif
+                                </div>
+
+                            </article>
+                        </a>
+                    </div>
+                    @endforeach
+
+                </div>
+            </div>
     </section>
 
 

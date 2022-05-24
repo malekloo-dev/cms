@@ -243,4 +243,54 @@
 
 
 
+    <section class=" bg-gray mb-0 pt-1">
+        {{--post&label=articles&var=articles&count=3--}}
+        <div>
+            <h2>مقالات</h2>
+            <div class="flex five center">
+                @isset($articles['data'])
+                @foreach ($articles['data'] as $content)
+                <div>
+                    <a href="{{ $content->slug }}">
+                        <article class="shadow2">
+                            @if (isset($content->images['images']['medium']))
+                            <figure class="image">
+                                <img src="{{ $content->images['images']['medium'] }}"
+                                width="198" height="100" alt="{{ $content->title }}">
+                            </figure>
+                            @endif
+
+                            <div class="title">{{ $content->title }}</div>
+                            <div class="info">
+                                {!! readMore($content->brief_description, 250) !!}
+                            </div>
+                            <div class="rate mt-1">
+                                @if (count($content->comments))
+                                @php
+                                        $rateAvrage = $rateSum = 0;
+                                        @endphp
+                                    @foreach ($content->comments as $comment)
+                                    @php
+                                            $rateSum = $rateSum + $comment['rate'];
+                                            @endphp
+                                    @endforeach
+                                    @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
+                                    <img width="20" height="20"
+                                    srcset="{{ asset('/img/star1x.png') }} , {{ asset('/img/star2x.png') }} 2x"
+                                    src="{{ asset('/img/star1x.png') }}"
+                                    alt="{{ 'star for rating' }}">
+                                    @endfor
+                                    @endif
+                                </div>
+
+                            </article>
+                        </a>
+                    </div>
+                    @endforeach
+                    @endisset
+                </div>
+            </div>
+    </section>
+
+
 @endsection
