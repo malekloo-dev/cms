@@ -2686,6 +2686,7 @@ $sizes: 5;
     background-color: $theme-color1;
     color: $menu-color;
 }
+
 .color-white {
     color: #fff !important;
 }
@@ -3183,7 +3184,7 @@ nav[role="navigation"] {
     }
 }
 #footer > div {
-    max-width: 1200px;
+    max-width: $site-witdth;
     margin: auto !important;
 }
 #footer .social-network input::placeholder {

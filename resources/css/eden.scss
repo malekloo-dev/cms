@@ -11,7 +11,7 @@ $a-hover: #1e2135;
 $menu-color: #333;
 $menu-bg-left: #fff;
 $menu-bg-right: #fff;
-$menu-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+$menu-shadow: none;
 $p: #1e1e1e;
 
 $search-border: 1px solid #888;
@@ -45,7 +45,9 @@ $button-bg-color: yellow;
 .h-auto {
     height: auto;
 }
-// figure.image img{height: 300px; object-fit: cover;}
+.color-gray {
+    color: #333 !important;
+}
 
 ////////////////////
 //     banner     //
@@ -65,7 +67,7 @@ $button-bg-color: yellow;
 ////////////////////
 //     HOME     //
 ////////////////////
-.cat1-home{ background-size: cover; background-position: center;  }
+.cat1-home{ background-size: cover; background-position: center; flex-grow:1 !important; }
 .cat1-home div{ background-color: rgba(0, 0, 0, 0.0); min-height: 200px; display: flex; align-items: flex-end;  }
 .cat1-home div h2{ font-size: 2em; color: #000; margin: 0 1em; }
 .home-items{flex-wrap: nowrap;}
@@ -91,7 +93,7 @@ $button-bg-color: yellow;
         background: rgba(0, 0, 0, 0.05);
         padding: 0 0.5em;
         color: #717171;
-        font-size: 23px;
+        font-size: 15px;
         font-weight: 700;
         cursor: pointer;
         top: 50%;
@@ -124,7 +126,8 @@ $button-bg-color: yellow;
 
 @media all and (max-width: 960px) {
     nav {
-        height: 5em;
+        border-top: 1px solid #f1f1f1;
+        height: 3em;
         width: auto;
         position: relative;
     }
@@ -138,6 +141,7 @@ $button-bg-color: yellow;
     .pseudo.button:hover {
         border: none;
     }
+
 }
 
 @media (max-width: 600px) {
@@ -155,7 +159,8 @@ $button-bg-color: yellow;
     h2 {
         font-size: 1.2em;
     }
-
+    .cat1-home{width: 100%;}
+    picture>img{height: auto;}
 }
 @media (max-width: 1100px) {
     html {

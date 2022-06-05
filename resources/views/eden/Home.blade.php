@@ -4,18 +4,23 @@
     <script src="{{ asset('/siema.min.js') }}"></script>
     <script>
         var w;
-        var perPageNumber;
+        var perPageNumber,perPageNumberProducts;
 
         function perPage() {
             w = window.innerWidth;
+            console.log(w);
             if (w <= 500) {
-                perPageNumber = 1;
+                perPageNumber = 3;
+                perPageNumberProducts = 2;
             } else if (w <= 768) {
                 perPageNumber = 5;
+                perPageNumberProducts = 4;
             } else if (w <= 1024) {
                 perPageNumber = 5;
+                perPageNumberProducts = 4;
             } else {
                 perPageNumber = 5;
+                perPageNumberProducts = 4;
             }
         }
 
@@ -51,20 +56,9 @@
 
 
         // new product
-        var perPageNumberProducts;
 
-        function perPage() {
-            w = window.innerWidth;
-            if (w <= 500) {
-                perPageNumberProducts = 1;
-            } else if (w <= 768) {
-                perPageNumberProducts = 4;
-            } else if (w <= 1024) {
-                perPageNumberProducts = 4;
-            } else {
-                perPageNumberProducts = 4;
-            }
-        }
+
+
 
         var products = new Siema({
             selector: '.siema-products',
@@ -103,9 +97,9 @@
 
 
     <section class="index-item-top  mt-0 mb-0 pt-2 pb-2 bg-white category-section " onresize="onResize()">
-        <div class="flex one  relative">
+        <div class="   relative p-2 ">
             <div class="siema p-0">
-                {{-- category&label=cat&var=category&count=10 --}}
+                {{--category&label=cat&var=category&count=10 --}}
                 @isset($category['data'])
                     @foreach ($category['data'] as $content)
                         <a href="{{ $content->slug }}">
@@ -139,14 +133,14 @@
 
 
     <section class="category-section mt-0 mb-0 ">
-        <div class="relative px-3 ">
+        <div class="relative px-2 ">
 
             <div class="text-center">
                 <h2>محصولات جدید</h2>
             </div>
 
             <div class="siema-products  ">
-                {{-- post&label=products&var=products&count=12 --}}
+                {{--post&label=products&var=products&count=12 --}}
                 @isset($products['data'])
                     @foreach ($products['data'] as $content)
                         <a href="{{ $content->slug }}">
@@ -217,15 +211,15 @@
 
 
 
-            <div class="flex one five-500 p-0 ">
-                <a class="two-fifth-500 p-0 bg-gray-dark cat1-home" href=""
-                    style="background-image:url({{ url('eden/img/دسته-بندی-انگشتر-طلا.jpg') }}) ">
+            <div class="flex two six-500 p-0 ">
+                <a class="  p-0 bg-gray-dark cat1-home" href=""
+                    style=" background-image:url({{ url('eden/img/دسته-بندی-انگشتر-طلا.jpg') }}) ">
                     <div class="h-full">
                         <h2 class="p-0">انگشتر</h2>
                     </div>
                 </a>
 
-                {{-- product&label=procat1&var=procat1&count=3 --}}
+                {{--product&label=procat1&var=procat1&count=4 --}}
                 @isset($procat1['data'])
                     @foreach ($procat1['data'] as $content)
                         <a class="p-0" href="{{ $content->slug }}">

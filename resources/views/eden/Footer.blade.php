@@ -1,5 +1,15 @@
 <footer class="wide" id="footer">
+    <div>
+        <div class="flex  three four-500 six-900 font-09 text-center pt-1 center">
+            <a class="color-gray" href="/محصولات">تمامی محصولات</a>
+            <a class="color-gray" href="/درباره-ما">درباره ما</a>
+            <a class="color-gray" href="/تماس-با-ما">تماس با ما</a>
+        </div>
+    </div>
     <div class="container">
+
+
+
         <div class="social-network m-auto">
 
             <a href="https://www.instagram.com/eden.gold.gallery/" target="_blank" rel="noopener">

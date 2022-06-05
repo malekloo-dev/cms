@@ -46,7 +46,7 @@
         function perPage() {
             w = window.innerWidth;
             if (w <= 500) {
-                perPageNumber = 1;
+                perPageNumber = 3;
             } else if (w <= 768) {
                 perPageNumber = 5;
             } else if (w <= 1024) {
@@ -116,7 +116,7 @@
 
     @if (count($subCategory))
         <section class=" category-section bg-white mt-0" id="index-best-view">
-            <div class="flex one relative">
+            <div class="p-2 relative">
                 <div class="siema p-0">
                     @foreach ($subCategory as $content)
                         <a href="{{ $content->slug }}">
@@ -243,7 +243,7 @@
         </div>
     </section>
 
-    
+
 
 
 @endsection

@@ -21,7 +21,7 @@
 
 
 
-@section('scripts')
+@push('scripts')
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', () => {
 
@@ -49,8 +49,17 @@
             });
         });
 
+
+        function myFunction(imgs) {
+            var expandImg = document.getElementById("main-image");
+            // var imgText = document.getElementById("imgtext");
+            // console.log(expandImg.dataset.columns);
+            expandImg.src = imgs.dataset.large;
+            // imgText.innerHTML = imgs.alt;
+            expandImg.parentElement.style.display = "block";
+        }
     </script>
-@endsection
+@endpush
 
 @section('footer')
     @auth
@@ -103,11 +112,31 @@
                             <div class="flex three-500">
                                 <div id="product-image" class="one thirth-500">
                                     @if(isset($detail->images['images']['large']))
-                                        <picture>
+                                        {{-- <picture>
                                             <img src="{{ $detail->images['images']['large'] ?? '' }}"
                                                 loading="lazy" width="{{ env('PRODUCT_LARGE_W') }}" height="{{ env('PRODUCT_LARGE_H') }}"
                                                 alt="{{ $detail->title }}">
-                                        </picture>
+                                        </picture> --}}
+
+                                        <figure class="image">
+                                            <img id="main-image" loading="lazy" src="{{ $detail->images['images']['large'] }}" alt="{{ $detail->title }}"
+                                                width="{{ env(Str::upper($detail->attr_type) . '_LARGE_W') }}"
+                                                height="{{ env(Str::upper($detail->attr_type) . '_LARGE_H') }}">
+                                        </figure>
+
+
+                                        @if ($detail->gallery->count())
+                                            <div class="gallery">
+                                                <img onclick="myFunction(this);" class="m-1"
+                                                    data-large="{{ $detail->images['images']['large'] }}"
+                                                    src="{{ $detail->images['images']['small'] }}" height="100">
+                                                @foreach ($detail->gallery as $item)
+                                                    <img onclick="myFunction(this);" class="m-1"
+                                                        data-large="{{ $item->images['images']['large'] }}"
+                                                        src="{{ $item->images['images']['small'] }}" height="100">
+                                                @endforeach
+                                            </div>
+                                        @endif
                                     @else
                                     <picture>
                                             <img class="m-auto p-4" width="" height="" src="https://img.icons8.com/ios/100/cccccc/no-image.png" alt="company-no-image"/>
@@ -147,7 +176,7 @@
                                             <span class="font-07">({{ count($detail->comments) }} نفر)   </span>
                                         @endif
                                     </span>
-                                    <div>
+                                    <div class="font-08">
 
                                         {{ $detail->viewCount }} بار دیده شده |
                                         تاریخ انتشار: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span>
@@ -203,12 +232,12 @@
     </section>
 
     @if (count($relatedProduct))
-        <section class="products bg-gray-black   m-0 pt-1 pb-1" id="index-best-view">
+        <section class="products    m-0 pt-1 pb-1" id="index-best-view">
             <div class="flex one ">
                 <div>
 
                     <h2>محصولات مرتبط {{ $detail->title }}</h2>
-                    <div class="flex one two-500 five-900  center">
+                    <div class="flex two  five-900  center">
 
                         {{--$data['newPost']--}}
                         @foreach ($relatedProduct as $content)
