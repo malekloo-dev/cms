@@ -116,7 +116,7 @@
 
     @if (count($subCategory))
         <section class=" category-section bg-white mt-0" id="index-best-view">
-            <div class="flex one ">
+            <div class="flex one relative">
                 <div class="siema p-0">
                     @foreach ($subCategory as $content)
                         <a href="{{ $content->slug }}">
@@ -167,7 +167,7 @@
 @endif
 
     @if (count($relatedProduct))
-        <section class="bg-gray-black " id="index-best-view">
+        <section class=" " id="index-best-view">
             <div class="flex one ">
                 <div>
                     <div class="">
@@ -177,17 +177,17 @@
                             {{-- $data['newPost'] --}}
                             @foreach ($relatedProduct as $content)
                                 <a href="{{ $content->slug }}">
-                                    <div class="shadow hover p-0 border-radius-5">
+                                    <div class="shadow hover p-0 ">
                                         @if (isset($content->images['images']['small']))
                                             <figure class="image ">
                                                 <img src="{{ $content->images['images']['large'] }}"
                                                     alt="{{ $content->title }}" title="{{ $content->title }}" width="300" height="300">
                                                 <figcaption>
-                                                    <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                                                    <h3 class="px-0 m-0 text-center"> {{ $content->title }}</h3>
                                                 </figcaption>
                                             </figure>
                                         @else
-                                            <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                                            <h3 class="px-0 m-0 text-center"> {{ $content->title }}</h3>
                                         @endif
 
                                     </div>
@@ -243,90 +243,7 @@
         </div>
     </section>
 
-    <section class="comments bg-gray mt-0 mb-0">
-        <div class="flex one">
-            <div>
-                <div>نظرات شما درباره {{ $detail->title }}</div>
-                <div>
-                    <div class="comment-form">
-                        @if (\Session::has('success'))
-                            <div class="alert alert-success">
-                                {!! \Session::get('success') !!}
-                            </div>
-                        @endif
-
-                        @if (\Session::has('error'))
-                            <div class="alert alert-danger">
-                                {!! \Session::get('error') !!}
-                            </div>
-                        @endif
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                {!! implode('', $errors->all('<div>:message</div>')) !!}
-                            </div>
-                        @endif
-                        <form action="{{ route('comment.client.store') }}#comment" id="comment" method="post">
-                            <input type="hidden" name="content_id" value="{{ $detail->id }}">
-
-                            @csrf
-                            <div>
-                                <div class="rating">
-                                    <span>امتیاز: </span>
-                                    <input name="rate" type="radio" id="st5" {{ old('rate') == '5' ? 'checked' : '' }}
-                                        value="5" />
-                                    <label for="st5" title="عالی"></label>
-                                    <input name="rate" type="radio" id="st4" {{ old('rate') == '4' ? 'checked' : '' }}
-                                        value="4" />
-                                    <label for="st4" title="خوب"></label>
-                                    <input name="rate" type="radio" id="st3" {{ old('rate') == '3' ? 'checked' : '' }}
-                                        value="3" />
-                                    <label for="st3" title="معمولی"></label>
-                                    <input name="rate" type="radio" id="st2" {{ old('rate') == '2' ? 'checked' : '' }}
-                                        value="2" />
-                                    <label for="st2" title="ضعیف"></label>
-                                    <input name="rate" type="radio" id="st1" {{ old('rate') == '1' ? 'checked' : '' }}
-                                        value="1" />
-                                    <label for="st1" title="بد"></label>
-                                    <span id="rating-hover-label"></span>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="comment_name">نام:</label>
-                                <input id="comment_name" type="text" name="name" value="{{ old('name') }}">
-                            </div>
-                            <div>
-                                <label for="comment-text">پیام:</label>
-                                <textarea id="comment-text" name="comment">{{ old('comment') }}</textarea>
-                            </div>
-                            <button class="button button-blue g-recaptcha" data-sitekey="reCAPTCHA_site_key"
-                                data-callback='onSubmit' data-action='submit'>ارسال نظر</button>
-                        </form>
-                    </div>
-
-                    @foreach ($detail->comments as $comment)
-                        @if ($comment['name'] != '' && $comment['comment'] != '')
-                            <div class="comment">
-                                <div class="aside">
-                                    <div class="name">{{ $comment['name'] }}</div>
-                                    <div class="date">{{ convertGToJ($comment['created_at']) }}</div>
-                                </div>
-                                <div class="article">
-                                    <div>
-                                        @for ($i = $comment->rate; $i >= 1; $i--)
-                                        <label></label>
-
-                                        @endfor
-                                    </div>
-                                    <div class="text">{!! $comment['comment'] !!}</div>
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
 
 @endsection

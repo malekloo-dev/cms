@@ -8,6 +8,8 @@ use App\Models\Company;
 use App\Models\Widget;
 use App\Models\WebsiteSetting;
 use Carbon\Carbon;
+use DOMDocument;
+use DOMXPath;
 // use Contents;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -24,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
 
         $data['seo'] = WebsiteSetting::all()->keyBy('variable')->map(function ($name) {
             return strtoupper($name['value']);

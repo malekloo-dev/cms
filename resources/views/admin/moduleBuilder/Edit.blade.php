@@ -482,10 +482,10 @@
             </div>
             <div class="col-6 col-md-6">
                 @lang('messages.products') & @lang('messages.child'):
-                <pre>&lbrace;&lbrace;--post&label=products&var=products&count=6--&rbrace;&rbrace;
+                <pre>&lbrace;&lbrace;--product&label=products&var=products&count=6--&rbrace;&rbrace;
                     <button class="pull-right" onclick="copyToClipboard('&lbrace;&lbrace;--post&label=products&var=products&count=6--&rbrace;&rbrace;')">Copy</button>
                 </pre>
-                <pre>&lbrace;&lbrace;--post&label=products&var=products&count=6&child=true--&rbrace;&rbrace;
+                <pre>&lbrace;&lbrace;--product&label=products&var=products&count=6&child=true--&rbrace;&rbrace;
                     <button class="pull-right" onclick="copyToClipboard('&lbrace;&lbrace;--post&label=products&var=products&count=6&child=true--&rbrace;&rbrace;')">Copy</button>
                 </pre>
             </div>

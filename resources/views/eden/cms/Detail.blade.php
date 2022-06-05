@@ -150,10 +150,10 @@
                                     <div>
 
                                         {{ $detail->viewCount }} بار دیده شده |
-                                        تاریخ انتشار: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span> |
+                                        تاریخ انتشار: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span>
 
 
-                                    @lang('messages.power'):{{ $detail->power }}
+
                                 </div>
                                         <div id="product-categories" class=" mt-1">
                                             دسته بندی :
@@ -172,7 +172,9 @@
                                         <div>
                                             {!! $detail->brief_description !!}
 
+
                                         </div>
+
 
                                 </div>
                             </div>

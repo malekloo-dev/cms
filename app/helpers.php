@@ -456,16 +456,16 @@ function convertJToG($date)
     $convertDate = CalendarUtils::createCarbonFromFormat('Y/m/d', $convertFaToEn)->format('Y-m-d'); //2016-05-8
     return $convertDate;
 }
-function convertGToJ($date,$time=false)
+function convertGToJ($date, $time = false)
 {
 
-    if($date == '') return '';
+    if ($date == '') return '';
     if (env('SITE_LANG') != 'fa') return date('Y-m-d', strtotime($date));
 
     // $jalali = CalendarUtils::strftime('Y-m-d', strtotime($date)); // 1395-02-19
     // $convert = CalendarUtils::convertNumbers($jalali); // ۱۳۹۵-۰۲-۱۹
 
-    return Jalalian::forge($date)->format('%A, %d %B %Y') .' '. (($time == true)?Jalalian::forge($date)->format('H:i:s'):''); // پنجشنبه, 07 اسفند 1399
+    return Jalalian::forge($date)->format('%A, %d %B %Y') . ' ' . (($time == true) ? Jalalian::forge($date)->format('H:i:s') : ''); // پنجشنبه, 07 اسفند 1399
 }
 
 
@@ -492,37 +492,37 @@ function idToSlug($id)
     return '';
 }
 
-function filterUrl($filterItem,$filterOption)
+function filterUrl($filterItem, $filterOption)
 {
-    $url=url()->full();
+    $url = url()->full();
     $url = urldecode($url);
 
-    if(count($_GET))
-    {
+    if (count($_GET)) {
         /*foreach ($_GET as $key =>$val)
         {
              $val;
         }*/
-        $url=$url.'&';
-    }else{
-        $url=$url.'?';
+        $url = $url . '&';
+    } else {
+        $url = $url . '?';
     }
-    return $url."attribute[".$filterItem['content_attribute_id']."][".$filterOption['value']."]=".$filterOption['value'];
-
+    return $url . "attribute[" . $filterItem['content_attribute_id'] . "][" . $filterOption['value'] . "]=" . $filterOption['value'];
 }
-function addFilterUrlGenerator($data,$attrId,$valueId){
-    $url=url()->current().'?';
+function addFilterUrlGenerator($data, $attrId, $valueId)
+{
+    $url = url()->current() . '?';
 
-    $data['attribute'][$attrId][$valueId]=$valueId;
-    return urldecode($url.http_build_query($data));
+    $data['attribute'][$attrId][$valueId] = $valueId;
+    return urldecode($url . http_build_query($data));
 }
-function removeFilterUrlGenerator($data,$attrId,$valueId){
+function removeFilterUrlGenerator($data, $attrId, $valueId)
+{
 
     unset($data['attribute'][$attrId][$valueId]);
     //dd($data);
-    $url=url()->current().'?';
+    $url = url()->current() . '?';
 
-    return urldecode($url.http_build_query($data));
+    return urldecode($url . http_build_query($data));
 }
 
 
@@ -612,4 +612,26 @@ if (!function_exists('uniqueSlug')) {
 
         return $slug . $i;
     }
+}
+
+
+function getGoldPrice()
+{
+    $pageAddress = 'https://www.tgju.org/profile/geram18';
+    $page = file_get_contents($pageAddress);
+
+    @$doc = new DOMDocument();
+    $doc->preserveWhiteSpace = false;
+    @$doc->loadHTML($page);
+    // dd($doc);
+    $selector = new DOMXPath($doc);
+
+    $price = $selector->query("//*[@data-col='info.last_trade.PDrCotVal']")->item(0);
+    // $changePercent = $selector->query("//*[@data-col='info.last_trade.last_change_percentage']")->item(0);
+
+    if (!is_null($price)) {
+        return ['price'=>$price->nodeValue];
+    }
+
+    return 0;
 }

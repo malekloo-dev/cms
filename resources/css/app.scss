@@ -1,3 +1,21 @@
+$site-witdth: 1200px !default;
+$h1-font-size: inherit !default;
+$h1-color: inherit !default;
+$h2-font-size: inherit !default;
+$h2-color: inherit !default;
+$h3-font-size: 16px !default;
+$h3-color: inherit !default;
+$button-color: $theme-color1-text !default;
+$button-bg-color: $theme-color1 !default;
+$bg-theme-color2: $theme-color2 !default;
+
+h1{font-size: $h1-font-size ; color: $h1-color; }
+h2{font-size: $h2-font-size ; color: $h2-color; }
+h3{font-size: $h3-font-size ; color: $h3-color; }
+.flex-column{flex-direction: column;}
+
+.gapx-1{gap:0 1em}
+
 .flex {
     display: -ms-flexbox;
     display: flex;
@@ -2577,8 +2595,11 @@ $sizes: 5;
 }
 
 .bg-theme-color {
-    background-color: $theme-color1;
-    color: $theme-color1-text;
+    background-color: $button-bg-color;
+    color: $button-color;
+}
+.bg-theme-color2{
+    background-color: $bg-theme-color2;
 }
 
 .bg-gray {
@@ -2699,7 +2720,7 @@ section {
     padding: 10px;
 }
 section > div {
-    max-width: 1200px;
+    max-width: $site-witdth;
     margin: auto !important;
 }
 section.wide div {
@@ -2708,6 +2729,9 @@ section.wide div {
 }
 section.wide {
     max-width: none;
+}
+.border-radius-3 {
+    border-radius: 3px;
 }
 .border-radius-5 {
     border-radius: 5px;

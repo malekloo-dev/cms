@@ -180,7 +180,7 @@
             fillColor: '#ffffff',
             width: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_LARGE_W') }},
             height: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_LARGE_H') }},
-            imageSmoothingEnabled: true,
+            // imageSmoothingEnabled: true,
             imageSmoothingQuality: 'high',
         });
         canvasPng = cropper.getCroppedCanvas({
