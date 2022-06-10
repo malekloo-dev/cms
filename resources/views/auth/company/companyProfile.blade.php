@@ -106,6 +106,8 @@
 
                 <div class="">@lang('messages.register date'): <span>{{ convertGToJ($user->date) }}</span></div>
 
+                <div class="">@lang('messages.status'): <span>{{ ($user->company->status == 0)?'غیر فعال':'فعال' }}</span></div>
+
             </div>
 
 

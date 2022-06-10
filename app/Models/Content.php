@@ -48,7 +48,7 @@ class Content extends Model
 
     public function companies()
     {
-        return $this->belongsToMany(Company::class, 'company_contents', 'content_id', 'company_id');
+        return $this->belongsToMany(Company::class, 'company_contents', 'content_id', 'company_id')->where('companies.status','=',1);
     }
 
     public function category()

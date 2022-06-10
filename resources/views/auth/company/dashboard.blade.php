@@ -1,4 +1,4 @@
-@extends(@env('TEMPLATE_NAME').'.App')
+@extends(@env('TEMPLATE_NAME') . '.App')
 @section('meta-title', __('messages.Dashboard'))
 
 @section('Content')
@@ -10,6 +10,31 @@
             <h1>@lang('messages.Dashboard')</h1>
             <div class="flex one four-500">
 
+
+                @isset($user->company)
+                    @if ($user?->company?->status == 0)
+                        <div class="one thirdth-500 ">
+
+                            <a href="{{ route('company.profile') }}"
+                                class="widget shadow border-radius-10 p-1   bg-theme-color flex h-full">
+                                <h2>وضعیت کمپانی </h2>
+                                <div class="full">
+                                    (
+                                    @if ($user->company->status == 0)
+                                        <span class=" "> غیر فعال یا در حال بررسی می باشد</span>
+                                    @endif
+                                    @if ($user->company->status == 1)
+                                        <span class=" ">فعال </span>
+                                    @endif
+                                    )
+                                </div>
+
+                            </a>
+                        </div>
+                    @endif
+                @endisset
+
+
                 @isset($user->company)
                     @if ($user?->company?->name == '' || $user?->company?->logo == '')
                         <div class="one thirdth-500 ">
@@ -18,9 +43,10 @@
                                 class="widget shadow border-radius-10 p-1   bg-gray-dark flex h-full">
                                 <h2>گام اول: موارد زیر را تکمیل نمایید <i class="fa fa-external-link-alt"></i></h2>
                                 <div class="full">
-                                (
+                                    (
                                     @if ($user->company->name == '')
-                                        <span class=" ">  نام شرکت یا مغازه </span> {{ ($user->company->logo == '')?',':'' }}
+                                        <span class=" "> نام شرکت یا مغازه </span>
+                                        {{ $user->company->logo == '' ? ',' : '' }}
                                     @endif
                                     @if ($user->company->logo == '')
                                         <span class=" ">تصویر </span>
@@ -35,10 +61,11 @@
 
                 @isset($user->company->contents)
                     <div class="one fourth-500 ">
-                        <div class="widget shadow border-radius-10 p-1   bg-purple h-full" >
-                            <h2> شما <span class="font-13 bold">{{ $user->company->contents->count() ?? 0 }}</span> محصول دارید </h2>
+                        <div class="widget shadow border-radius-10 p-1   bg-purple h-full">
+                            <h2> شما <span class="font-13 bold">{{ $user->company->contents->count() ?? 0 }}</span> محصول
+                                دارید </h2>
                             <a href="{{ route('company.products') }}" class="">
-                                    <span class="">دیدن لیست محصولات <i class="fa fa-external-link-alt"></i></span>
+                                <span class="">دیدن لیست محصولات <i class="fa fa-external-link-alt"></i></span>
 
                             </a>
 
@@ -49,7 +76,8 @@
                 @isset($user->company->viewCount)
                     <div class="one fourth-500">
                         <div class="widget shadow border-radius-10 p-1   bg-orange block h-full">
-                            <h2><span class="font-13 bold">{{ $user->company->viewCount ?? 0 }}</span> بار کمپانی شما دیده شده است </h2>
+                            <h2><span class="font-13 bold">{{ $user->company->viewCount ?? 0 }}</span> بار کمپانی شما دیده
+                                شده است </h2>
 
                             <a href="{{ route('company.profile') }}">دیدن پروفابل <i class="fa fa-external-link-alt"></i></a>
                         </div>

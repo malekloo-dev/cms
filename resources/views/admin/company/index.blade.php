@@ -40,6 +40,7 @@
                             <th>@lang('messages.mobile')</th>
                             <th>@lang('messages.logo')</th>
                             <th>@lang('messages.category')</th>
+                            <th>@lang('messages.status')</th>
 
                             <th>@lang('messages.updated at')</th>
                             <th>@lang('messages.created at')</th>
@@ -85,6 +86,8 @@
                                     @endforeach
 
                                 </td>
+
+                                <td>{!! ($item->status==1)?'<i class="fa fa-check"></i>':'' !!}</td>
 
                                 <td class="">{{ convertGToJ($item->updated_at,$time=true) }}
 

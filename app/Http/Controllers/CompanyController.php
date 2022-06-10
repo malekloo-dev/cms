@@ -40,6 +40,7 @@ class CompanyController extends Controller
     {
         $user = Auth::user();
 
+
         return view('auth.company.companyProfile', compact('user'));
     }
     public function profileChangeLogo(Request $request)
@@ -461,7 +462,8 @@ class CompanyController extends Controller
     {
 
         $company = Company::find($id);
-        if ($company == null) {
+
+        if ($company == null || $company->status == 0) {
             return redirect('/', 301);
         }
         $company->increment('viewCount');
@@ -601,7 +603,7 @@ class CompanyController extends Controller
     public function companyEdit(Request $request, Company $company)
     {
         $this->validate($request, array(
-            'name' => 'required',
+            // 'name' => 'required',
             // 'manager' => 'required',
             'mobile' => 'required',
             'parent_id_hide' => 'required'

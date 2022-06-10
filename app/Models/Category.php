@@ -40,13 +40,14 @@ class Category extends Model
     }
     public function companies()
     {
-        return $this->belongsToMany(Company::class, 'company_contents', 'content_id', 'company_id');
+        return $this->belongsToMany(Company::class, 'company_contents', 'content_id', 'company_id')->where('companies.status', '=', 1);
     }
 
 
     public function companiesCategory($sortField = 'created_at', $sortValue = 'desc')
     {
         return $this->belongsToMany(Company::class, 'company_category', 'cat_id', 'company_id')
+            ->where('companies.status', '=', 1)
             ->orderBy($sortField, $sortValue);
     }
 
@@ -64,44 +65,43 @@ class Category extends Model
             ->where('contents.publish_date', '<=', DB::raw('now()'));
         //dd($filter);
         if (isset($filter['attribute'])) {
-           /* $object->where(function ($query) use ($filter) {
+            /* $object->where(function ($query) use ($filter) {
                 foreach ($filter['attribute'] as $attr_id => $values) {
                     $query->Orwhere('content_attribute_value.content_attribute_id', '=', $attr_id);
 
                 }
             });*/
-            $count=0;
+            $count = 0;
             foreach ($filter['attribute'] as $attr_id => $values) {
-                if($count==0){
-                   // $object->where('content_attribute_value.content_attribute_id', '=', $attr_id);
-                   // $count++;
-                }else{
-                   // $object->Orwhere('content_attribute_value.content_attribute_id', '=', $attr_id);
+                if ($count == 0) {
+                    // $object->where('content_attribute_value.content_attribute_id', '=', $attr_id);
+                    // $count++;
+                } else {
+                    // $object->Orwhere('content_attribute_value.content_attribute_id', '=', $attr_id);
                 }
-
             }
 
             foreach ($filter['attribute'] as $attr_id => $values) {
                 $count++;
-                $table_name='content_attribute_value_'.$count;
+                $table_name = 'content_attribute_value_' . $count;
 
-                $object->where(function ($query) use ($attr_id, $values,$table_name) {
-                        foreach ($values as $key => $value) {
-                            $query->Orwhere(function ($query) use ($attr_id, $value,$table_name) {
-                                $query->where($table_name.'.content_attribute_id', '=', $attr_id)
-                                    ->where($table_name.'.value', '=', $value);
-                            });
-                        }
-                    });
+                $object->where(function ($query) use ($attr_id, $values, $table_name) {
+                    foreach ($values as $key => $value) {
+                        $query->Orwhere(function ($query) use ($attr_id, $value, $table_name) {
+                            $query->where($table_name . '.content_attribute_id', '=', $attr_id)
+                                ->where($table_name . '.value', '=', $value);
+                        });
+                    }
+                });
                 $object->leftJoin("content_attribute_value as $table_name", "contents_category.content_id", "=", "$table_name.content_id");
             }
 
-           // dd($object->toSql());
+            // dd($object->toSql());
         }
 
 
-           // ->groupBy('contents_category.content_id')
-           $object ->orderBy($sortField, $sortValue)->orderBy('publish_date','desc');
+        // ->groupBy('contents_category.content_id')
+        $object->orderBy($sortField, $sortValue)->orderBy('publish_date', 'desc');
         return $object;
     }
 
@@ -118,7 +118,7 @@ class Category extends Model
             ->where('content_attribute_value.type', '=', 'combo')
             ->groupBy('content_attribute_value.content_type_id')
             ->get();
-       // dd(DB::getQueryLog());
+        // dd(DB::getQueryLog());
 
         return $list;
     }

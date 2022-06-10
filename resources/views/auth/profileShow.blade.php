@@ -288,7 +288,7 @@
                 //marker
                 var marker = L.marker([{{ $company->location ?? '31.5,51.2' }}])
                     .addTo(map)
-                    .bindPopup(`@lang('messages.my location')`)
+                    .bindPopup(`{{ $company->name }}`)
                     .openPopup();
 
 

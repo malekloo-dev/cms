@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('footer')
-<script src="/ckeditor4/ckeditor.js"></script>
+    <script src="/ckeditor4/ckeditor.js"></script>
 
     <script>
         $("#meta_keywords").select2({
@@ -11,17 +11,16 @@
 
         $(document).ready(function() {
             CKEDITOR
-            .replace(document.querySelector('#description'), {
-                ckfinder: {
-                    uploadUrl: "{{ route('contents.upload', ['_token' => csrf_token()]) }}",
-                },
+                .replace(document.querySelector('#description'), {
+                    ckfinder: {
+                        uploadUrl: "{{ route('contents.upload', ['_token' => csrf_token()]) }}",
+                    },
 
-                @if (!$ltr)
-                    language: 'fa'
-                @endif
-            })
+                    @if (!$ltr)
+                        language: 'fa'
+                    @endif
+                })
         });
-
     </script>
 @endsection
 
@@ -70,7 +69,6 @@
                                     border-radius: 50%;
                                     width: 40%
                                 }
-
                             </style>
                             @include('admin.cropper')
 
@@ -87,7 +85,9 @@
                             <label for="name">@lang('messages.category'):</label>
                             <select id="parent_id" name="parent_id[]" multiple required>
                                 @foreach ($category as $Key => $fields)
-                                    <option value="{{ $fields['id'] }}" {{ ( $fields['id'] == $company->parent_id)?'selected':''; }}>{!! $fields['symbol'] . $fields['title'] !!}</option>
+                                    <option value="{{ $fields['id'] }}"
+                                        {{ $fields['id'] == $company->parent_id ? 'selected' : '' }}>
+                                        {!! $fields['symbol'] . $fields['title'] !!}</option>
                                 @endforeach
                             </select>
 
@@ -118,7 +118,7 @@
                         <div class="col-md-3  col-sm-3 form-group">
                             @lang('messages.store name'):
                             <input class="form-control" name="name" type="text"
-                                value="{{ old('name', $company->name ?? '') }}" required>
+                                value="{{ old('name', $company->name ?? '') }}" >
                             <span class="text-danger">{{ $errors->first('name') }}</span>
                         </div>
 
@@ -218,8 +218,22 @@
                         <div class="col-md-12">
                             <label for="meta_description" class=" col-form-label text-md-left">meta
                                 Description:</label>
-                            <textarea class="form-control" id="meta_description"
-                                name="meta_description">{{ old('meta_description', $company->meta_description ?? '') }}</textarea>
+                            <textarea class="form-control" id="meta_description" name="meta_description">{{ old('meta_description', $company->meta_description ?? '') }}</textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-6 col-md-6">
+                            <label for="name" class="col-form-label text-md-left">@lang('messages.status'):</label>
+
+                            <select class="form-control" name="status">
+                                <option value="1" {{ ($company->status ?? '1') == '1' ? 'selected' : '' }}>
+                                    @lang('messages.Active')</option>
+                                <option value="0" {{ ($company->status ?? '') == '0' ? 'selected' : '' }}>
+                                    @lang('messages.Disactive')</option>
+                            </select>
                         </div>
 
                     </div>
@@ -227,11 +241,9 @@
 
 
 
-
                     <div class="row">
                         <div class="col-md-12  col-sm-12 form-group">@lang('messages.description'):
-                            <textarea id="description" name="description" class="form-control" cols="30"
-                                rows="10">{{ old('description', $company->description ?? '') }}</textarea>
+                            <textarea id="description" name="description" class="form-control" cols="30" rows="10">{{ old('description', $company->description ?? '') }}</textarea>
 
                         </div>
                     </div>
@@ -239,12 +251,13 @@
                     <div class="row">
                         <div class="col-md-12">
 
-                            <button type="submit" class="btn btn-success  @if (!$ltr) pull-right @endif mat-btn ">
+                            <button type="submit"
+                                class="btn btn-success  @if (!$ltr) pull-right @endif mat-btn ">
 
-                                                                                  @if (Request()->is('*create*'))
-                                @lang('messages.add')
-                            @else
-                                @lang('messages.edit')
+                                @if (Request()->is('*create*'))
+                                    @lang('messages.add')
+                                @else
+                                    @lang('messages.edit')
                                 @endif
                             </button>
                         </div>
@@ -289,11 +302,11 @@
             });
             @isset($company)
                 @php
-                $categoryImplode = "'" . implode("','", $company->categories->pluck('id')->toArray()) . "'";
+                    $categoryImplode = "'" . implode("','", $company->categories->pluck('id')->toArray()) . "'";
 
                 @endphp
             @endisset
-            
+
             $input.val([{!! $categoryImplode ?? '' !!}]);
 
             $input.trigger('change'); // Notify any JS components that the value changed
@@ -452,6 +465,4 @@
         });
         map.on('click', onMapClick);
     </script>
-
-
 @endsection

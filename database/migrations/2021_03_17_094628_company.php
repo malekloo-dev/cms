@@ -37,7 +37,7 @@ class Company extends Migration
             $table->string('meta_title')->nullable();
             $table->string('meta_keywords')->default(NULL)->nullable();
             $table->text('meta_description')->default(NULL)->nullable();
-
+            $table->integer('status')->default(0);
 
 
             $table->timestamps();

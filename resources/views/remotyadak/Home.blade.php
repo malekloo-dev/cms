@@ -449,10 +449,17 @@
                                     alt="{{ $content->title }}" width="{{ env('COMPANY_MEDIUM_W') }}"
                                     height="{{ env('COMPANY_MEDIUM_W') }}">
                             </picture>
+                        @else
+                            <figure class="image">
+                                <img class="m-auto p-3" width="300" height="300"
+                                    src="https://img.icons8.com/ios/100/cccccc/no-image.png" alt="company-no-image" />
+                            </figure>
+                            <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
                         @endif
 
 
-                        <h3 class="p-0 m-0 text-center"> {{ $content->name }}</h3>
+
+                        <h3 class="p-0 m-0 text-center"> {{ $content->name ?? 'کمپانی جدید' }}</h3>
 
 
                     </div>
