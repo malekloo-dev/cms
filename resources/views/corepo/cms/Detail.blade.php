@@ -145,10 +145,23 @@
 
     <section class="content-detail" id="">
         <div class="flex one two-700">
+            <div class="three-fourth-500 ">
+                <div>
+                    <ul>
+                        @foreach ($table_of_content as $key => $item)
+                            <li class="toc1">
+                                <a id="test" href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
+                            </li>
+                        @endforeach
+
+                    </ul>
+                    @include(@env('TEMPLATE_NAME').'.DescriptionModule')
+                </div>
+            </div>
             <div class="fourth-500">
                 <div>
                     <div class="mb-1">محل تبلیغ شما</div>
-                    {{-- images&label=adv&var=adv&count=3 --}}
+                    {{--images&label=adv&var=adv&count=3 --}}
                     @if (isset($adv) && isset($adv['images']))
                         <div class="text-center">
                             @foreach ($adv['images'] as $k => $content)
@@ -159,7 +172,7 @@
                         </div>
                     @endisset
                     <div>وبسایت ها</div>
-                    {{-- category&label=sideCategory&var=sideCategory&count=6 --}}
+                    {{--category&label=sideCategory&var=sideCategory&count=6 --}}
                     @isset($sideCategory['data'])
                         <ul>
                             @foreach ($sideCategory['data'] as $item)
@@ -170,41 +183,10 @@
                         </ul>
                     @endisset
 
-                    <div>آخرین مقالات</div>
-                    {{-- post&label=sideLastPost&var=sideLastPost&count=6&child=true --}}
-                    @isset($sideLastPost['data'])
-                        <ul class="p-0">
-                            @foreach ($sideLastPost['data'] as $content)
-                                <li class="flex ">
-                                    <a class="flex three" href="{{ url($content->slug) }}">
-                                        @if (isset($content->images['images']['small']))
-                                            <div class="third"><img loading="lazy" style="width: 100%" alt="{{ $content->title }}"
-                                                    src="{{ $content->images['images']['small'] }}"></div>
-                                        @endif
-                                        <div class="two-third">
 
-                                            {{ $content->title }}
-                                        </div>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    @endisset
+                </div>
             </div>
-        </div>
-        <div class="three-fourth-500 ">
-            <div>
-                <ul>
-                    @foreach ($table_of_content as $key => $item)
-                        <li class="toc1">
-                            <a id="test" href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
-                        </li>
-                    @endforeach
 
-                </ul>
-                @include(@env('TEMPLATE_NAME').'.DescriptionModule')
-            </div>
-        </div>
     </div>
 </section>
 

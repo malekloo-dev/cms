@@ -89,14 +89,14 @@
     <section class="index-item-top banner pb-0">
         <div class="flex two">
             <div class="full two-third-500 slideshow-container ltr ">
-                {{-- images&label=banner&var=banners&count=3 --}}
+                {{--images&label=banner&var=banners&count=3 --}}
                 @if (isset($banners) && isset($banners['images']))
                     @foreach ($banners['images'] as $content)
                         <div class="mySlides fade ">
                             <figure class="image">
                                 <img src="{{ $content }}" alt="" width="792" height="370">
                             </figure>
-                            {{-- <div class="text">{{ $content->title }}</div> --}}
+                            {{--<div class="text">{{ $content->title }}</div> --}}
                         </div>
                     @endforeach
                 @endisset
@@ -104,7 +104,7 @@
                     <figure class="image">
                         <img src="{{ asset('img/banner-300.jpg') }}" alt="" width="792" height="370">
                     </figure>
-                    {{-- <div class="text">{{ $content->title }}</div> --}}
+                    {{--<div class="text">{{ $content->title }}</div> --}}
                 </div>
 
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -113,7 +113,7 @@
         <div class="full third-500 banner-left flex one">
 
             <div>
-                {{-- images&label=bannerTop&var=bannerTop&count=1 --}}
+                {{--images&label=bannerTop&var=bannerTop&count=1 --}}
                 @isset($bannerTop['images'])
 
                     <figure class="image">
@@ -123,7 +123,7 @@
                 @endisset
             </div>
             <div class="pb-0">
-                {{-- images&label=bannerBot&var=bannerBot&count=1 --}}
+                {{--images&label=bannerBot&var=bannerBot&count=1 --}}
                 @isset($bannerBot['images'])
 
                     <figure class="image">
@@ -145,7 +145,7 @@
 <section class="index-item-top  mt-0 mb-0 pt-2 pb-2 bg-white category-section " onresize="onResize()">
     <div class="flex one  relative">
         <div class="siema p-0">
-            {{-- category&label=cat&var=category&count=10 --}}
+            {{--category&label=cat&var=category&count=10 --}}
             @isset($category['data'])
                 @foreach ($category['data'] as $content)
                     <a href="{{ $content->slug }}">
@@ -193,7 +193,7 @@
             </div>
 
             <div class="flex one three-500 five-900   ">
-                {{-- post&label=topView&var=topViewPost&count=5 --}}
+                {{--post&label=topView&var=topViewPost&count=5 --}}
                 @isset($topViewPost['data'])
                     @foreach ($topViewPost['data'] as $content)
                         <div>
@@ -276,7 +276,7 @@
             <div class="shadow full-height border-radius-10 pt-0">
                 <h2 class=" pb-0"><a href="{{ url('فروشگاه-اینترنتی') }}">فروشگاه اینترنتی</a></h2>
                 <div class="flex one">
-                    {{-- post&label=shop&var=shop&count=2 --}}
+                    {{--post&label=shop&var=shop&count=2 --}}
                     @isset($shop['data'])
                         @foreach ($shop['data'] as $content)
                             <div class="flex three align-items-center p-0 pt-1 min-height ">
@@ -340,7 +340,7 @@
             <div class="shadow full-height border-radius-10 pt-0">
                 <h2><a href="{{ url('خودرو') }}">خودرو</a></h2>
                 <div class="flex one">
-                    {{-- post&label=car&var=car&count=2 --}}
+                    {{--post&label=car&var=car&count=2 --}}
                     @isset($car['data'])
                         @foreach ($car['data'] as $content)
                             <div class="flex three align-items-center p-0 pt-1 min-height ">
@@ -404,7 +404,7 @@
             <div class=" shadow full-height border-radius-10 pt-0">
                 <h2><a href="{{ url('تور-و-گردشگری') }}">تور و گردشگری</a></h2>
                 <div class="flex one">
-                    {{-- post&label=tour&var=tour&count=2 --}}
+                    {{--post&label=tour&var=tour&count=2 --}}
                     @isset($tour['data'])
                         @foreach ($tour['data'] as $content)
                             <div class="flex three align-items-center p-0 pt-1 min-height ">
@@ -468,7 +468,7 @@
             <div class=" shadow full-height border-radius-10 pt-0">
                 <h2><a href="{{ url('صنایع-غذایی') }}">غذا و رستوران</a></h2>
                 <div class="flex one">
-                    {{-- post&label=restaurant&var=restaurant&count=2 --}}
+                    {{--post&label=restaurant&var=restaurant&count=2 --}}
                     @isset($restaurant['data'])
                         @foreach ($restaurant['data'] as $content)
                             <div class="flex three align-items-center p-0 pt-1 min-height ">
@@ -542,7 +542,7 @@
             <div class="shadow full-height bg-wood border-radius-10 pt-0">
                 <h2><a class="color-brown" href="{{ url('دکوراسیون-و-معماری') }}">دکوراسیون</a></h2>
                 <div class="flex  one two-700 ">
-                    {{-- post&label=deco&var=deco&count=2 --}}
+                    {{--post&label=deco&var=deco&count=2 --}}
                     @isset($deco['data'])
                         @foreach ($deco['data'] as $content)
                             <div class="py-0">
@@ -608,7 +608,7 @@
             <div class="shadow full-height border-radius-10 pt-0">
                 <h2><a href="{{ url('آموزشگاه') }}">آموزشگاه</a></h2>
                 <div class="flex one two-700">
-                    {{-- post&label=uni&var=uni&count=2 --}}
+                    {{--post&label=uni&var=uni&count=2 --}}
                     @isset($uni['data'])
                         @foreach ($uni['data'] as $content)
                             <div class="flex  align-items-center p-0">
@@ -687,7 +687,7 @@
         <div class=" third-800">
             <div class="shadow border-radius-10 pt-0 full-height">
                 <h2><a href="{{ url('خدماتی') }}">خدماتی</a></h2>
-                {{-- post&label=service&var=service&count=2 --}}
+                {{--post&label=service&var=service&count=2 --}}
                 @isset($service['data'])
                     @foreach ($service['data'] as $content)
                         <div
@@ -748,7 +748,7 @@
             <div class="shadow border-radius-10 pt-0 mb-1">
                 <h2><a href="{{ url('استخدام-و-کاریابی') }}">استخدام</a></h2>
                 <div class="flex one three-500">
-                    {{-- post&label=job&var=job&count=3 --}}
+                    {{--post&label=job&var=job&count=3 --}}
                     @isset($job['data'])
                         @foreach ($job['data'] as $content)
                             <div class="flex  one-500 align-items-center p-0">
@@ -767,7 +767,7 @@
             <div class="shadow border-radius-10 pt-0">
                 <h2><a href="{{ url('پزشکی') }}">پزشکی</a></h2>
                 <div class="flex one three-500">
-                    {{-- post&label=medical&var=medical&count=3 --}}
+                    {{--post&label=medical&var=medical&count=3 --}}
                     @isset($medical['data'])
                         @foreach ($medical['data'] as $content)
                             <div class="flex one-500 align-items-center p-0">
@@ -798,7 +798,7 @@
         <div>
             <h2>بازی و اپلیکیشن </h2>
             <div class="flex one two-500 three-600 six-1000 application ">
-                {{-- post&label=application&var=application&count=5 --}}
+                {{--post&label=application&var=application&count=5 --}}
                 @isset($application['data'])
                     @foreach ($application['data'] as $content)
                         <div>
@@ -874,7 +874,7 @@
         <div class=" one-fourth-800">
             <div class="shadow full-height border-radius-10">
                 <h3><a href="{{ url('سلامت-و-سبک-زندگی') }}">سلامت و سبک زندگی</a></h3>
-                {{-- post&label=salamat&var=salamat&count=2 --}}
+                {{--post&label=salamat&var=salamat&count=2 --}}
                 @isset($salamat['data'])
                     @foreach ($salamat['data'] as $content)
                         <div
@@ -938,7 +938,7 @@
                     <div class="shadow full-height border-radius-10">
                         <h3><a href="{{ url('آشپزی-و-تغذیه') }}">آشپزی و تغذیه</a></h3>
                         <div class="flex one">
-                            {{-- post&label=articleChef&var=articleChef&count=2 --}}
+                            {{--post&label=articleChef&var=articleChef&count=2 --}}
                             @isset($articleChef['data'])
                                 @foreach ($articleChef['data'] as $content)
                                     <div class="flex three align-items-center p-0 pt-1 min-height ">
@@ -1009,7 +1009,7 @@
                     <div class="shadow full-height border-radius-10">
                         <h3><a href="{{ url('کسب-و-کار') }}">کسب و کار</a></h3>
                         <div class="flex one">
-                            {{-- post&label=articleJob&var=articleJob&count=2 --}}
+                            {{--post&label=articleJob&var=articleJob&count=2 --}}
                             @isset($articleJob['data'])
                                 @foreach ($articleJob['data'] as $content)
                                     <div class="flex three align-items-center p-0 pt-1 min-height ">
@@ -1080,7 +1080,7 @@
                     <div class="shadow full-height border-radius-10">
                         <h3><a href="{{ url('سفر-و-گردش') }}">سفر و گردش</a></h3>
                         <div class="flex one">
-                            {{-- post&label=articleTour&var=articleTour&count=2 --}}
+                            {{--post&label=articleTour&var=articleTour&count=2 --}}
                             @isset($articleTour['data'])
                                 @foreach ($articleTour['data'] as $content)
                                     <div class="flex three align-items-center p-0 pt-1 min-height ">
@@ -1150,7 +1150,7 @@
                     <div class="shadow full-height border-radius-10">
                         <h3><a href="{{ url('طراحی-دکوراسیون') }}">طراحی دکوراسیون</a></h3>
                         <div class="flex one">
-                            {{-- post&label=articleDeco&var=articleDeco&count=2 --}}
+                            {{--post&label=articleDeco&var=articleDeco&count=2 --}}
                             @isset($articleDeco['data'])
                                 @foreach ($articleDeco['data'] as $content)
                                     <div class="flex three align-items-center p-0 pt-1 min-height ">
@@ -1226,7 +1226,7 @@
                 <div class="shadow full-height border-radius-10 pt-0">
                     <h3><a href="{{ url('علمی-و-آموزشی') }}">علمی و آموزشی</a></h3>
                     <div class="flex one two-700">
-                        {{-- post&label=articleUni&var=articleUni&count=2 --}}
+                        {{--post&label=articleUni&var=articleUni&count=2 --}}
                         @isset($articleUni['data'])
                             @foreach ($articleUni['data'] as $content)
                                 <div class="flex  align-items-center p-0">
@@ -1287,7 +1287,7 @@
                 <div class="shadow full-height border-radius-10 pt-0">
                     <h3><a href="{{ url('مقالات-خودرو') }}">مقالات خودرو</a></h3>
                     <div class="flex one two-700">
-                        {{-- post&label=articleCar&var=articleCar&count=2 --}}
+                        {{--post&label=articleCar&var=articleCar&count=2 --}}
                         @isset($articleCar['data'])
                             @foreach ($articleCar['data'] as $content)
                                 <div class="flex  align-items-center p-0">
