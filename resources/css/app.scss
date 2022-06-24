@@ -13,7 +13,7 @@ h1{font-size: $h1-font-size ; color: $h1-color; }
 h2{font-size: $h2-font-size ; color: $h2-color; }
 h3{font-size: $h3-font-size ; color: $h3-color; }
 .flex-column{flex-direction: column;}
-
+.no-wrap,.flex-no-wrap{flex-wrap: nowrap !important;}
 .gapx-1{gap:0 1em}
 
 .flex {

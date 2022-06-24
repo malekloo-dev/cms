@@ -456,7 +456,7 @@ function convertJToG($date)
     $convertDate = CalendarUtils::createCarbonFromFormat('Y/m/d', $convertFaToEn)->format('Y-m-d'); //2016-05-8
     return $convertDate;
 }
-function convertGToJ($date, $time = false)
+function convertGToJ($date, $time = false, $format = '%A, %d %B %Y')
 {
 
     if ($date == '') return '';
@@ -465,7 +465,7 @@ function convertGToJ($date, $time = false)
     // $jalali = CalendarUtils::strftime('Y-m-d', strtotime($date)); // 1395-02-19
     // $convert = CalendarUtils::convertNumbers($jalali); // ۱۳۹۵-۰۲-۱۹
 
-    return Jalalian::forge($date)->format('%A, %d %B %Y') . ' ' . (($time == true) ? Jalalian::forge($date)->format('H:i:s') : ''); // پنجشنبه, 07 اسفند 1399
+    return Jalalian::forge($date)->format($format) . ' ' . (($time == true) ? Jalalian::forge($date)->format('H:i:s') : ''); // پنجشنبه, 07 اسفند 1399
 }
 
 
