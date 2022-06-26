@@ -574,8 +574,23 @@ if (!function_exists('uniqueSlug')) {
     function uniqueSlug($model = Content::class, $slugOrModel = '', string $slug = '', string|int $i = '')
     {
 
+        // echo '<pre>';
+
+        // $slug = 'کابل-رشته-ای شیلددار-22AWG';
+        // echo $slug;
+        // $slug = preg_replace('/\s+/', '-', $slug);
+        $slug = str_replace(' ', '-', $slug);
+        // $slug = str_replace(' ', '-', $slug);
+        // $slug = str_replace(' ', '-', $slug);
+        // echo $slug;
+        $slug = str_replace('--', '-', $slug);
+        $slug = str_replace('--', '-', $slug);
+        $slug = str_replace('--', '-', $slug);
+        $slug = trim($slug,' ');
+        $slug = trim($slug,'-');
 
 
+        // dd($slug);
         // update model
         if ($slugOrModel instanceof Model) {
             if ($slugOrModel->getOriginal('slug') == $slug) {
@@ -591,9 +606,9 @@ if (!function_exists('uniqueSlug')) {
         $slug = str_replace('--', '-', $slug);
         $slug = str_replace('--', '-', $slug);
         $slug = str_replace('--', '-', $slug);
+        $slug = trim($slug,' ');
 
         // $oldSlug = $ownModel->slug;
-
 
 
 
