@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 
     //for access to notification in web
-    Notification.requestPermission(function (status) {
-        console.log('Notification permission status:', status);
-    });
+    // Notification.requestPermission(function (status) {
+    //     console.log('Notification permission status:', status);
+    // });
 
 
     // function displayNotification() {

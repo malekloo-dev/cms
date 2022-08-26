@@ -200,36 +200,46 @@
                     @foreach ($topViewPost['data'] as $content)
                         <div>
                             <a href="{{ $content->slug }}">
-                                <article class="shadow2">
+                                <article class="shadow2 flex flex-row two one-500">
+
+
+                                    <div class="flex full p-0 two-500">
+
+
+
                                     @if (isset($content->images['images']['medium']))
-                                        <figure class="image">
+                                        <figure class="image m-0 p-0 third full-500">
                                             <img loading="lazy" src="{{ $content->images['images']['medium'] }}"
                                                 width="{{ env('ARTICLE_SMALL_W') }}"
                                                 height="{{ env('ARTICLE_SMALL_H') }}" alt="{{ $content->title }}">
                                         </figure>
                                     @endif
 
-                                    <div class="title">{{ $content->title }}</div>
-                                    <div class="info">
-                                        {!! readMore($content->brief_description, 250) !!}
-                                    </div>
-                                    <div class="rate mt-1">
-                                        @if (count($content->comments))
-                                            @php
-                                                $rateAvrage = $rateSum = 0;
-                                            @endphp
-                                            @foreach ($content->comments as $comment)
+                                    <div class="pb-0 two-third full-500 flex">
+
+                                        <div class="title align-right p-0">{{ $content->title }}</div>
+                                        <div class="rate mt-0 p-0 font-08 full">
+                                            @if (count($content->comments))
                                                 @php
-                                                    $rateSum = $rateSum + $comment['rate'];
+                                                    $rateAvrage = $rateSum = 0;
                                                 @endphp
-                                            @endforeach
-                                            @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
-                                                <label></label>
-                                            @endfor
-                                        @endif
-                                    </div>
-                                    <span class="p-0 m-0 flex  align-items-center no-wrap ">
-                                        <svg class="p-0 m-0" width="12" height="12" viewBox="0 0 24 24"
+                                                @foreach ($content->comments as $comment)
+                                                    @php
+                                                        $rateSum = $rateSum + $comment['rate'];
+                                                    @endphp
+                                                @endforeach
+                                                @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
+                                                    <label></label>
+                                                @endfor
+                                            @endif
+                                        </div>
+
+                                        <div class="p-0  font-08">
+
+                                        <span
+                                            class="p-0">{{ convertGToJ($content->publish_date, false, '%d %B') }}</span>
+
+                                            <svg class="p-0 m-0" width="12" height="12" viewBox="0 0 24 24"
                                             fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
@@ -239,21 +249,15 @@
                                                 fill="currentColor" />
                                         </svg>
                                         <span class="p-0 ml-1">{{ $content->viewCount }} </span>
+                                        </div>
+                                    </div>
 
-                                        <svg class="p-0 mr-1" width="18" height="18" viewBox="0 0 24 24"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M15 17C16.1046 17 17 16.1046 17 15C17 13.8954 16.1046 13 15 13C13.8954 13 13 13.8954 13 15C13 16.1046 13.8954 17 15 17Z"
-                                                fill="currentColor" />
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M6 3C4.34315 3 3 4.34315 3 6V18C3 19.6569 4.34315 21 6 21H18C19.6569 21 21 19.6569 21 18V6C21 4.34315 19.6569 3 18 3H6ZM5 18V7H19V18C19 18.5523 18.5523 19 18 19H6C5.44772 19 5 18.5523 5 18Z"
-                                                fill="currentColor" />
-                                        </svg>
-                                        <span
-                                            class="p-0 ">{{ convertGToJ($content->publish_date, false, '%d %B') }}</span>
-                                    </span>
+                                    </div>
 
 
+                                    <div class="info full p-0 font-09">
+                                        {!! readMore($content->brief_description, 110) !!}
+                                    </div>
                                 </article>
                             </a>
                         </div>

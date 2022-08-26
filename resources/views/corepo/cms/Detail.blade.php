@@ -1,4 +1,4 @@
-@extends(@env('TEMPLATE_NAME').'.App')
+@extends(@env('TEMPLATE_NAME') . '.App')
 
 
 @section('twitter:title', $detail->title)
@@ -9,19 +9,19 @@
 
 @if (isset($detail->images['images']['medium']))
 
-@section('twitter:image', url($detail->images['images']['medium']))
+    @section('twitter:image', url($detail->images['images']['medium']))
 
-@section('og:image', url($detail->images['images']['medium']))
-@section('og:image:type', 'image/jpeg')
-@section('og:image:width', $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W'))
-@section('og:image:height', $detail->attr_type == 'article' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H'))
-@section('og:image:alt', $detail->title)
+    @section('og:image', url($detail->images['images']['medium']))
+    @section('og:image:type', 'image/jpeg')
+    @section('og:image:width', $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W'))
+    @section('og:image:height', $detail->attr_type == 'article' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H'))
+    @section('og:image:alt', $detail->title)
 
 @endif
 
 @section('head')
 
-    <link href="{{url($detail->slug)}}" rel="canonical" />
+    <link href="{{ url($detail->slug) }}" rel="canonical" />
 
 
     <link rel="stylesheet" href="{{ asset('/detail.css') }}">
@@ -53,12 +53,12 @@
                 el.addEventListener('mouseleave', mouseleave);
             });
         });
-
     </script>
 
     @auth
-        @if ((Auth::user()->id) == 1)
-            <div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/contents/'.$detail->id.'/edit/') }}')">ویرایش</div>
+        @if (Auth::user()->id == 1)
+            <div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/contents/' . $detail->id . '/edit/') }}')">
+                ویرایش</div>
         @endif
     @endauth
 @endsection
@@ -80,7 +80,7 @@
         @include('jsonLdArticle')
     @endif
 
-    @if (count($breadcrumb)>0)
+    @if (count($breadcrumb) > 0)
         @include('jsonLdBreadcrumb')
     @endif
 
@@ -97,47 +97,50 @@
         </div>
     </section>
     <section class="intro" id="detail">
-        <div class="flex one two-500  ">
-            <div class="fourth-500">
+        <div class="flex three five-1000 ">
+            <div class="third sixth-1000 pb-0">
                 @if (isset($detail->images['images']['small']))
                     <figure class="image">
-                        <img src="{{ $detail->images['images']['small']  }}"
-                            alt="{{ $detail->title }}" width="189" height="100" srcset="
-                                    {{ $detail->images['images']['small']  }} 1x,
+                        <img src="{{ $detail->images['images']['small'] }}" alt="{{ $detail->title }}"
+                            width="100"
+                            height="100"
+                            srcset="
+                                    {{ $detail->images['images']['small'] }} 1x,
                                     {{ $detail->images['images']['large'] ?? $detail->images['images']['small'] }} 2x">
 
                     </figure>
                 @endif
 
             </div>
-            <div class="three-fourth-500">
-                <div>
-                    <h1 class="site-name pt-0">{{ $detail->title }}</h1>
-                    <div class="website"></div>
-                    <div class="rate">
+            <div class="two-third two-third-1000 pb-0">
 
-                        @if (isset($detail->comments) && count($detail->comments))
+                <h1 class="site-name py-0 align-right">{{ $detail->title }}</h1>
+                <div class="website"></div>
+                <div class="rate font-08">
+                    @if (isset($detail->comments) && count($detail->comments))
+                        @php
+                            $rateAvrage = $rateSum = 0;
+                        @endphp
+                        @foreach ($detail->comments as $comment)
                             @php
-                                $rateAvrage = $rateSum = 0;
+                                $rateSum = $rateSum + $comment['rate'];
                             @endphp
-                            @foreach ($detail->comments as $comment)
-                                @php
-                                    $rateSum = $rateSum + $comment['rate'];
-                                @endphp
-                            @endforeach
-                            @for ($i = $rateSum / count($detail->comments); $i >= 1; $i--)
+                        @endforeach
+                        @for ($i = $rateSum / count($detail->comments); $i >= 1; $i--)
                             <label></label>
+                        @endfor
+                        <span class="font-08">({{ count($detail->comments) }} نفر) | {{ $detail->viewCount }} بازدید</span>
+                    @endif
+                    <br>
 
-                            @endfor
-                            <span class="font-08">({{ count($detail->comments) }} نفر)</span> |
-                        @endif
-                        <span class="font-08">
-                            {{ $detail->viewCount }} بار دیده شده |
-                        </span>
-                        <span class="font-08"> تاریخ انتشار:</span>
-                                    <span class="ltr font-08">{{ convertGToJ($detail->publish_date) }} </span> |
-                    </div>
+
+                    <span class="font-08"> تاریخ انتشار:</span> |
+                        <span class="ltr font-08">{{ convertGToJ($detail->publish_date) }} </span>
                 </div>
+
+
+            </div>
+            <div class="full pb-0">
                 {!! $detail->brief_description !!}
             </div>
         </div>
@@ -155,24 +158,25 @@
                         @endforeach
 
                     </ul>
-                    @include(@env('TEMPLATE_NAME').'.DescriptionModule')
+                    @include(@env('TEMPLATE_NAME') . '.DescriptionModule')
                 </div>
             </div>
             <div class="fourth-500">
                 <div>
                     <div class="mb-1">محل تبلیغ شما</div>
-                    {{--images&label=adv&var=adv&count=3 --}}
+                    {{-- images&label=adv&var=adv&count=3 --}}
                     @if (isset($adv) && isset($adv['images']))
                         <div class="text-center">
                             @foreach ($adv['images'] as $k => $content)
-                                <a target="_blanck" href="{{ $adv['url'][$k] }}" @if (!isset($adv['follow'][$k])) rel="nofollow" @endif>
+                                <a target="_blanck" href="{{ $adv['url'][$k] }}"
+                                    @if (!isset($adv['follow'][$k])) rel="nofollow" @endif>
                                     <img width="200px" height="200px" src="{{ $content }}" alt="محل تبلیغ کریپو">
                                 </a>
                             @endforeach
                         </div>
                     @endisset
                     <div>وبسایت ها</div>
-                    {{--category&label=sideCategory&var=sideCategory&count=6 --}}
+                    {{-- category&label=sideCategory&var=sideCategory&count=6 --}}
                     @isset($sideCategory['data'])
                         <ul>
                             @foreach ($sideCategory['data'] as $item)
@@ -184,8 +188,8 @@
                     @endisset
 
 
-                </div>
             </div>
+        </div>
 
     </div>
 </section>
@@ -281,20 +285,20 @@
                         <div>
                             <div class="rating">
                                 <span>امتیاز: </span>
-                                <input name="rate" type="radio" id="st5" {{ old('rate') == '5' ? 'checked' : '' }}
-                                    value="5" />
+                                <input name="rate" type="radio" id="st5"
+                                    {{ old('rate') == '5' ? 'checked' : '' }} value="5" />
                                 <label for="st5" title="عالی"></label>
-                                <input name="rate" type="radio" id="st4" {{ old('rate') == '4' ? 'checked' : '' }}
-                                    value="4" />
+                                <input name="rate" type="radio" id="st4"
+                                    {{ old('rate') == '4' ? 'checked' : '' }} value="4" />
                                 <label for="st4" title="خوب"></label>
-                                <input name="rate" type="radio" id="st3" {{ old('rate') == '3' ? 'checked' : '' }}
-                                    value="3" />
+                                <input name="rate" type="radio" id="st3"
+                                    {{ old('rate') == '3' ? 'checked' : '' }} value="3" />
                                 <label for="st3" title="معمولی"></label>
-                                <input name="rate" type="radio" id="st2" {{ old('rate') == '2' ? 'checked' : '' }}
-                                    value="2" />
+                                <input name="rate" type="radio" id="st2"
+                                    {{ old('rate') == '2' ? 'checked' : '' }} value="2" />
                                 <label for="st2" title="ضعیف"></label>
-                                <input name="rate" type="radio" id="st1" {{ old('rate') == '1' ? 'checked' : '' }}
-                                    value="1" />
+                                <input name="rate" type="radio" id="st1"
+                                    {{ old('rate') == '1' ? 'checked' : '' }} value="1" />
                                 <label for="st1" title="بد"></label>
                                 <span id="rating-hover-label"></span>
                             </div>
@@ -322,8 +326,7 @@
                                 <div class="article">
                                     <div>
                                         @for ($i = $comment->rate; $i >= 1; $i--)
-                                        <label></label>
-
+                                            <label></label>
                                         @endfor
                                     </div>
                                     <div class="text">{!! $comment['comment'] !!}</div>

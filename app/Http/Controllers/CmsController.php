@@ -257,7 +257,7 @@ class CmsController extends Controller
             // dd($detail->childs);
 
             //$detail->description=editorModule($detail->description);
-
+            $showcallnowbutton = false;
             return view($template, $widget, compact([
                 'detail',
                 'breadcrumb',
@@ -266,7 +266,8 @@ class CmsController extends Controller
                 'relatedProduct',
                 'table_of_images',
                 'seo',
-                'editorModule'
+                'editorModule',
+                'showcallnowbutton'
             ]));
         }
     }
