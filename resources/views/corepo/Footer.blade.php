@@ -89,6 +89,23 @@
 @yield('footer')
 @yield('cropper')
 
+
+
+<script>
+    if(screen && screen.width <= 768){
+        document.write('<script type="text/javascript" src="{{ url("/corepo/pullToRefresh.umd.min.js") }}"><\/script>');
+
+        setTimeout(() => {
+            PullToRefresh.init({
+                    mainElement: 'body',
+                    onRefresh: function() { location.reload(); }
+                });
+        }, 500);
+
+
+    }
+</script>
+
 @stack('scripts')
 
 

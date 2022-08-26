@@ -8,6 +8,7 @@ $h3-color: inherit !default;
 $button-color: $theme-color1-text !default;
 $button-bg-color: $theme-color1 !default;
 $bg-theme-color2: $theme-color2 !default;
+$body-font-size: 1rem !default;
 
 h1{font-size: $h1-font-size ; color: $h1-color; }
 h2{font-size: $h2-font-size ; color: $h2-color; }
@@ -1555,7 +1556,7 @@ body {
     font-family: IRANSans, sans-serif;
     margin: 0;
     padding: 0;
-    font-size: 1rem;
+    font-size: $body-font-size;
     line-height: 2;
     color: #111;
     background: $body;

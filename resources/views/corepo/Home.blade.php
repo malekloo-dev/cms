@@ -891,7 +891,7 @@
     <div class="flex one">
         <div>
             <h2>بازی و اپلیکیشن </h2>
-            <div class="flex one two-500 three-600 six-1000 application ">
+            <div class="flex two  three-600 six-1000 application ">
                 {{--post&label=application&var=application&count=5 --}}
                 @isset($application['data'])
                     @foreach ($application['data'] as $content)

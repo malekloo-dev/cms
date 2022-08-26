@@ -1,5 +1,6 @@
 $template: corepo;
 $body: #f4f4f4;
+$body-font-size: 14px;
 $theme-color1: #fff;
 $theme-color2: #fff;
 $theme-color3: #9b0909;
@@ -343,6 +344,26 @@ figure {
     }
     .third-500 > div:last-child {
         flex: 2;
+    }
+}
+
+
+
+//////////////
+//////////////
+//  footer ///
+//////////////
+//////////////
+.footer-links{
+    ul{
+        list-style: none;
+        padding: 0;
+        li{
+            padding: 0;
+            a{
+                font-size: .8em;
+            }
+        }
     }
 }
 
