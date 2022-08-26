@@ -59,12 +59,25 @@ class SpiderController extends Controller
         // $r = $this->getCategories("***مسابقه شرکت کنید دستبند برنده بشید*** شرایط شرکت تو مسابقه این هست که شما پست ما رو لایک و سیو کنید و ۵ نفر از دوستانتون رو زیر این پست تگ کنید. *یادتون باشه هر تگ در یک کامنت باشه. *زمان مسابقه از امروز تا اخر شب فردا هست. یعنی ساعت ۱۲ شب روز ولنتاین *جایزه این مسابقه یک دستبند طلا هست. قرعه کشی انجام میشه و نتیجه مسابقه اول اسفند تو پیج گذاشته میشه. #مسابقه #مسابقه_اینستاگرامی #مسابقه_اینستاگرام دستبند  گزدنبند گوشواره طلا #مسابقه_لایک #گالری_طلا #گالری_طلا_ایدن #طلا #طلاسازی");
         // dd($r->first()->id);
 
+
+        // $instagram = Instagram::withCredentials(new \GuzzleHttp\Client(), 'marjani.mahdi', '66008190', new Psr16Adapter('Files'));
+        // $instagram->login();
+
+        // $account = $instagram->getAccountById(3);
+        // echo $account->getUsername();
+        // dd(1);
+
+        // $instagram = new \InstagramScraper\Instagram(new \GuzzleHttp\Client());
+        // $nonPrivateAccountMedias = $instagram->getMedias('eden.gold.gallery');
+        // echo $nonPrivateAccountMedias[0]->getLink();
+        // dd(1);
+
         $instagram  = Instagram::withCredentials(new \GuzzleHttp\Client(), 'marjani.mahdi', '66008190', new Psr16Adapter('Files'));
         $instagram->login();
         $instagram->saveSession();
+        // dd($instagram->getAccountById(3));
         $medias = $instagram->getMedias($id, $count);
         // $medias = $instagram->getMediasByTag('دستبند', $count);
-
         $i = 0;
         foreach ($medias as $k => $post) {
 

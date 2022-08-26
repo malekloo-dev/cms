@@ -54,7 +54,9 @@
                                 </li>
                             @endif
                         @endforeach
-
+                        <li><a
+                            href="{{ route('search') }}">جستجوگر</a>
+                        </li>
 
                     </ul>
                 </div>
