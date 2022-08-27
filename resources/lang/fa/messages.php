@@ -171,4 +171,6 @@ return [
     'duration' => 'دوره :month ماهه',
     'ad' => 'آگهی',
     'ads' => 'آگهی ها',
+    'weight' => 'وزن',
+    'additionalprice' => 'مبلغ اضافی',
 ];

@@ -45,7 +45,7 @@
             "@type": "Offer",
             "url": "{{ url('/').'/'. $detail->slug }}",
             "priceCurrency": "IRR",
-            "price": "{{ $detail->attr['price'] ?? 0}}",
+            "price": "@isset($price){{$price['totalPrice']}}@else{{($detail->attr['price'] ?? 0)}}@endisset",
             "priceValidUntil": "2021-08-09",
             "itemCondition": "https://schema.org/UsedCondition",
             "availability": "https://schema.org/InStock",

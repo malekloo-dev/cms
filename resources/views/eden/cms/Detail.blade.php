@@ -73,6 +73,7 @@
     @php
     $tableOfImages=tableOfImages($detail->description);
     $append='';
+    $price = calcuteGoldPrice($detail->attr['weight']?? 0,$detail->attr['additionalprice']?? 0);
     @endphp
 
     @if ($detail->attr_type == 'product')
@@ -156,8 +157,13 @@
                                         </div>
                                     @endif
 
-                                    @isset($detail->attr['price'])
-                                        <span class="price text-green ">قیمت @convertCurrency($detail->attr['price']?? 0) تومان</span>
+                                    @isset($detail->attr['weight'])
+
+                                        <div class="flex one">
+                                            <span>وزن: {{ $detail->attr['weight']?? 0 }} گرم</span>
+                                            <span class="price text-green ">قیمت @convertCurrency($price['totalPrice']) تومان</span>
+                                            <span class="font-08">(قیمت روز طلا:@convertCurrency($price['goldprice']) تومان)</span>
+                                        </div>
                                     @endisset
 
                                     <span id="product-rate" class="rate  mt-1">

@@ -129,7 +129,7 @@ class ContentController extends Controller
             $img->resize($size, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $img->save(public_path($images[$name]), 80, 'jpg');
+            $img->save(public_path($images[$name]), 90, 'jpg');
 
             // echo "<img src='".url($images[$name])."'>";
 

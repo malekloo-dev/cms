@@ -8,9 +8,6 @@
                     src="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }}" />
             </a>
             <nav class="top">
-
-
-
                 <input id="bmenu" name="bmenu" type="checkbox" class="show" aria-label="menu">
 
                 <label for="bmenu" id="bmenu1" class="burger toggle pseudo button">
@@ -21,29 +18,15 @@
                     </span>
 
                 </label>
-                {{-- <script>
-                function myFunction() {
-                    var element = document.getElementById("bmenu1");
-                    element.classList.add("burger");
-                    element.classList.add("toggle");
-                    element.classList.add("pseudo");
-                    element.classList.add("button");
-                }
-
-                myFunction();
-                }
-
-            </script> --}}
                 <div class="menu " style="margin: 0 auto">
 
                     <ul class="p-0 m-0 ">
 
-                        @foreach (App\Models\Menu::where('parent', '=', '0')->orderBy('sort')->get()
-    as $menuItem)
+                        @foreach (App\Models\Menu::where('parent', '=', '0')->orderBy('sort')->get() as $menuItem)
                             <?php $subMenu = App\Models\Menu::where('menu', '=', '1')
-                            ->where('parent', '=', $menuItem['id'])
-                            ->orderBy('sort')
-                            ->get(); ?>
+                                ->where('parent', '=', $menuItem['id'])
+                                ->orderBy('sort')
+                                ->get(); ?>
                             @if (count($subMenu))
                                 <li class="parent"><a href="{{ $menuItem['link'] }}">{{ $menuItem['label'] }}</a>
                                     <div><i class="arrow down"></i></div>
@@ -61,7 +44,9 @@
                                 </li>
                             @endif
                         @endforeach
-
+                        <li><a
+                            href="{{ route('search') }}">جستجوگر</a>
+                        </li>
 
                     </ul>
                 </div>

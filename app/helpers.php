@@ -586,8 +586,8 @@ if (!function_exists('uniqueSlug')) {
         $slug = str_replace('--', '-', $slug);
         $slug = str_replace('--', '-', $slug);
         $slug = str_replace('--', '-', $slug);
-        $slug = trim($slug,' ');
-        $slug = trim($slug,'-');
+        $slug = trim($slug, ' ');
+        $slug = trim($slug, '-');
 
 
         // dd($slug);
@@ -606,7 +606,7 @@ if (!function_exists('uniqueSlug')) {
         $slug = str_replace('--', '-', $slug);
         $slug = str_replace('--', '-', $slug);
         $slug = str_replace('--', '-', $slug);
-        $slug = trim($slug,' ');
+        $slug = trim($slug, ' ');
 
         // $oldSlug = $ownModel->slug;
 
@@ -629,7 +629,7 @@ if (!function_exists('uniqueSlug')) {
     }
 }
 
-
+/// eden
 function getGoldPrice()
 {
     $pageAddress = 'https://www.tgju.org/profile/geram18';
@@ -644,9 +644,27 @@ function getGoldPrice()
     $price = $selector->query("//*[@data-col='info.last_trade.PDrCotVal']")->item(0);
     // $changePercent = $selector->query("//*[@data-col='info.last_trade.last_change_percentage']")->item(0);
 
+
+
     if (!is_null($price)) {
-        return ['price'=>$price->nodeValue];
+        return [
+            'price' => $price->nodeValue,
+            'priceToman' => ((int) str_replace(',', '', $price->nodeValue)) / 10
+        ];
     }
 
     return 0;
+}
+function calcuteGoldPrice($weight = 0, $additionalPrice = 0, $goldPrice = 0)
+{
+    $str = (is_numeric($goldPrice) && $goldPrice > 0) ? $goldPrice : getGoldPrice();
+    $weight = (float) $weight;
+    $additionalPrice = (int) $additionalPrice;
+
+    $goldPrice = (isset($str['priceToman'])) ? $str['priceToman'] : 0;
+
+    return [
+        'totalPrice' => (int) (($goldPrice * $weight) + ($goldPrice * $weight * 0.25) + $additionalPrice),
+        'goldprice' => $goldPrice
+    ];
 }

@@ -422,11 +422,24 @@
                 @if ($attr_type == 'product')
 
                     <div class="form-group row">
+                        <div class="col-4 col-md-4">
+                            <label for="weight"
+                                class=" col-form-label  text-left">@lang('messages.weight'):</label>
+                            <input  class="form-control ltr" name="attr[weight]"
+                                value="{{ old('attr[weight]', $content->attr['weight'] ?? '') }}" />
+                        </div>
 
-                        <div class="col-6 col-md-6">
+                        <div class="col-4 col-md-4">
+                            <label for="additionalprice"
+                                class=" col-form-label text-left">@lang('messages.additionalprice'):@lang('messages.toman')</label>
+                            <input type="number" class="form-control ltr" name="attr[additionalprice]"
+                                value="{{ old('attr[additionalprice]', $content->attr['additionalprice'] ?? '') }}" />
+                        </div>
+
+                        <div class="col-4 col-md-4">
                             <label for="price"
                                 class=" col-form-label text-md-left">@lang('messages.price'):@lang('messages.toman')</label>
-                            <input type="number" class="form-control" name="attr[price]"
+                            <input type="number" class="form-control ltr" name="attr[price]"
                                 value="{{ old('attr[price]', $content->attr['price'] ?? '') }}" />
                         </div>
 
