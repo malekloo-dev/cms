@@ -88,7 +88,7 @@
         <div class="flex one">
             <img class="h-auto p-0" src="{{ url('eden/img/banner1.jpg') }}" alt="طلای ایدن" title="طلای ایدن"
                 width="1200" height="344">
-            {{-- <h1> گالری طلای ایدن - فروش طلا به قیمت بازار</h1> --}}
+
         </div>
     </section>
 
@@ -140,7 +140,7 @@
             </div>
 
             <div class="siema-products  ">
-                {{--post&label=products&var=products&count=12 --}}
+                {{--product&label=products&var=products&count=12 --}}
                 @isset($products['data'])
                     @foreach ($products['data'] as $content)
                         <a href="{{ $content->slug }}">
@@ -268,8 +268,7 @@
             <div class="two-third-900">
 
                 <div class="flex h-full justify-content-center flex-column ">
-                    <h2 class="p-0">گارگاه طلاسازی ایدن</h2>
-                    <div>چرا گالری طلا ایدن را انتخاب نماییم؟</div>
+                    <h1> خرید آنلاین طلا از فروشگاه اینترنتی ایدن</h1>
                     <div>کارگاه طلاسازی ایدن از سال ۱۴۰۰ فعالیت خود را در زمینه طراحی و تولید زیورآلات طلا آغاز کرد </div>
                 </div>
             </div>

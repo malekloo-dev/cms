@@ -664,7 +664,7 @@ function calcuteGoldPrice($weight = 0, $additionalPrice = 0, $goldPrice = 0)
     $goldPrice = (isset($str['priceToman'])) ? $str['priceToman'] : 0;
 
     return [
-        'totalPrice' => (int) (($goldPrice * $weight) + ($goldPrice * $weight * 0.25) + $additionalPrice),
+        'totalPrice' => (int) (($goldPrice * $weight) + ($goldPrice * $weight * 0.28) + $additionalPrice),
         'goldprice' => $goldPrice
     ];
 }

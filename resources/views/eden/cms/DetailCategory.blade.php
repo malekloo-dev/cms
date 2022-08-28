@@ -214,6 +214,54 @@
         </section>
     @endif
 
+    @if (count($relatedPost))
+        @php
+            $goldPrice = getGoldPrice();
+        @endphp
+        <section class=" " id="index-best-view">
+            <div class="flex one ">
+                <div>
+                    <div class="">
+
+                        <div class="flex one two-500 five-900 center ">
+
+                            {{-- $data['newPost'] --}}
+                            @foreach ($relatedPost as $content)
+                                <a href="{{ $content->slug }}">
+                                    <div class="shadow hover p-0 ">
+                                        @if (isset($content->images['images']['small']))
+                                            <figure class="image ">
+                                                <img src="{{ $content->images['images']['large'] }}"
+                                                    alt="{{ $content->title }}" title="{{ $content->title }}" width="300" height="300">
+                                                <figcaption>
+                                                    <h3 class="px-0 m-0 text-center"> {{ $content->title }}</h3>
+                                                    @isset($content->attr['weight'])
+                                                        @php
+                                                            $p = calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0,$goldPrice);
+                                                        @endphp
+                                                        <div class=" text-green font-09 "> @convertCurrency($p['totalPrice']) تومان</div>
+                                                    @else
+                                                        <div class="font-09"> تماس بگیرید</div>
+                                                    @endisset
+                                                </figcaption>
+                                            </figure>
+                                        @else
+                                            <h3 class="px-0 m-0 text-center"> {{ $content->title }}</h3>
+                                        @endif
+
+                                    </div>
+                                </a>
+                            @endforeach
+
+                        </div>
+                        {{ $relatedPost->links('vendor.pagination.default') }}
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
 
 
     <section class="category-content" id="">
