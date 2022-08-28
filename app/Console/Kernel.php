@@ -25,6 +25,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+
+        //eden
+        if(env('TEMPLATE_NAME') == 'eden'){
+            $schedule->call(function () {
+                getGoldPrice('online');
+            })->hourly();
+        }
     }
 
     /**

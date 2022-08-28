@@ -65,11 +65,13 @@ use App\Http\Controllers\CompanyController;
 // use App\Http\Controllers\RoleController;
 // use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SpiderController;
+use Illuminate\Console\Command;
 // use App\Http\Controllers\WebsiteSettingController;
 // use App\Models\Content;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Artisan;
 
 use function Composer\Autoload\includeFile;
 
@@ -90,6 +92,9 @@ forceRedirect();
 // bank
 Route::post('/returnBank', [CompanyController::class, 'returnBank'])->name('company.products.returnBank')->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);;
 
+Route::get('/runcronjob',function () {
+    Artisan::call('schedule:run');
+});
 
 // 1
 include_once('companyRoute.php');
@@ -102,3 +107,6 @@ Auth::routes();
 
 // 4
 include_once('frontRoute.php');
+
+
+

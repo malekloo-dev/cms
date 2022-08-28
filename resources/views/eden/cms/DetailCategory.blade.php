@@ -215,9 +215,7 @@
     @endif
 
     @if (count($relatedPost))
-        @php
-            $goldPrice = getGoldPrice();
-        @endphp
+
         <section class=" " id="index-best-view">
             <div class="flex one ">
                 <div>
@@ -235,14 +233,6 @@
                                                     alt="{{ $content->title }}" title="{{ $content->title }}" width="300" height="300">
                                                 <figcaption>
                                                     <h3 class="px-0 m-0 text-center"> {{ $content->title }}</h3>
-                                                    @isset($content->attr['weight'])
-                                                        @php
-                                                            $p = calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0,$goldPrice);
-                                                        @endphp
-                                                        <div class=" text-green font-09 "> @convertCurrency($p['totalPrice']) تومان</div>
-                                                    @else
-                                                        <div class="font-09"> تماس بگیرید</div>
-                                                    @endisset
                                                 </figcaption>
                                             </figure>
                                         @else
@@ -264,6 +254,7 @@
 
 
 
+    @if (!Request::get('page'))
     <section class="category-content" id="">
         <div class="flex one ">
             <div class="font-08">
@@ -301,7 +292,7 @@
             </div>
         </div>
     </section>
-
+    @endif
 
 
 

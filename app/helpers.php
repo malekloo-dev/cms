@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
 use App\Models\Content;
 use App\Models\Menu;
+use App\Models\WebsiteSetting;
 use Illuminate\Database\Eloquent\Model;
 use Morilog\Jalali\CalendarUtils;
 use Morilog\Jalali\Jalalian;
@@ -630,33 +631,76 @@ if (!function_exists('uniqueSlug')) {
 }
 
 /// eden
-function getGoldPrice()
+
+
+function getGoldPrice($offline = 'offline')
 {
-    $pageAddress = 'https://www.tgju.org/profile/geram18';
-    $page = file_get_contents($pageAddress);
+    if ($offline == 'offline') {
 
-    @$doc = new DOMDocument();
-    $doc->preserveWhiteSpace = false;
-    @$doc->loadHTML($page);
-    // dd($doc);
-    $selector = new DOMXPath($doc);
+        $goldPriceOld = WebsiteSetting::where('variable', '=', 'goldPrice')->first();
+        if($goldPriceOld){
+            $goldPriceOld = $goldPriceOld->value;
+            
+            $goldPriceOld = json_decode($goldPriceOld);
+            return [
+                'price' => $goldPriceOld->price,
+                'priceToman' => ((int) str_replace(',', '', $goldPriceOld->priceToman)) / 10
+            ];
+        }
+        else{
+            return [
+                'price' => 0,
+                'priceToman' => 0
+            ];
+        }
 
-    $price = $selector->query("//*[@data-col='info.last_trade.PDrCotVal']")->item(0);
-    // $changePercent = $selector->query("//*[@data-col='info.last_trade.last_change_percentage']")->item(0);
+
+    } else {
+
+        try {
+            $pageAddress = 'https://www.tgju.org/profile/geram18';
+            $page = file_get_contents($pageAddress);
+
+            @$doc = new DOMDocument();
+            $doc->preserveWhiteSpace = false;
+            @$doc->loadHTML($page);
+            // dd($doc);
+            $selector = new DOMXPath($doc);
+
+            $price = $selector->query("//*[@data-col='info.last_trade.PDrCotVal']")->item(0);
+            // $changePercent = $selector->query("//*[@data-col='info.last_trade.last_change_percentage']")->item(0);
 
 
 
-    if (!is_null($price)) {
-        return [
-            'price' => $price->nodeValue,
-            'priceToman' => ((int) str_replace(',', '', $price->nodeValue)) / 10
-        ];
+            if (!is_null($price)) {
+                WebsiteSetting::updateOrCreate(['variable' => 'goldPrice'], ['variable' => 'goldPrice', 'value' => json_encode([
+                    'price' => $price->nodeValue,
+                    'priceToman' => ((int) str_replace(',', '', $price->nodeValue)) / 10
+                ])]);
+
+                return [
+                    'price' => $price->nodeValue,
+                    'priceToman' => ((int) str_replace(',', '', $price->nodeValue)) / 10
+                ];
+            }
+
+            return [
+                'price' => 0,
+                'priceToman' => 0
+            ];
+        } catch (ErrorException $e) {
+
+            return [
+                'price' => 0,
+                'priceToman' => 0
+            ];
+        }
     }
-
-    return 0;
 }
+
 function calcuteGoldPrice($weight = 0, $additionalPrice = 0, $goldPrice = 0)
 {
+
     $str = (is_numeric($goldPrice) && $goldPrice > 0) ? $goldPrice : getGoldPrice();
     $weight = (float) $weight;
     $additionalPrice = (int) $additionalPrice;
