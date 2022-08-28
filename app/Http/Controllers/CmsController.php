@@ -417,6 +417,8 @@ class CmsController extends Controller
     public function tableOfContent($content)
     {
 
+
+
         //preg_match_all( '|<h[^>]+>(.*)</h[^>]+>|iU',$detail->description, $matches );
         //echo '<pre/>';
         //print_r($matches);
@@ -424,12 +426,15 @@ class CmsController extends Controller
         // dd($matches);
         $depth = 3;
         // $pattern = '/<h[2-' . $depth . ']*[^>]*>.*?<\/h[2-' . $depth . ']>/';
-        $pattern = '|<h[^>]+>(.*)</h[^>]+>|iU';
-        $pattern = '|<h2[^>]+>(.*)</h[^>]+>|iU';
-        //dd($pattern);
+        // $pattern = '|<h[^>]+>(.*)</h[^>]+>|iU';
+        // $pattern = '|<h2[^>]+>(.*)</h[^>]+>|iU';
+        $pattern = '|<h2[^>]+>(.*)</h2>|iU';
+        $pattern = '|<h2[^>]*>(.*?)</h2>|';
+        $content = str_replace('&nbsp;', ' ', $content);
 
         $whocares = preg_match_all($pattern, $content, $winners);
 
+        // dd($winners[0],$winners[1]);
         //dd(Request::url());
         //dd(url()->current());
 
