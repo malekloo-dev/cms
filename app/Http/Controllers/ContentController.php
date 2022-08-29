@@ -101,7 +101,7 @@ class ContentController extends Controller
                     $font->angle(45);
                 });
 
-                $imgFile->save(public_path($image), 60, 'jpg');
+                $imgFile->save(public_path($image), 80, 'jpg');
 
                 // echo "<img src='".url($image)."'>";
             }

@@ -167,9 +167,7 @@
 @endif
 
     @if (count($relatedProduct))
-        @php
-            $goldPrice = getGoldPrice();
-        @endphp
+
         <section class=" " id="index-best-view">
             <div class="flex one ">
                 <div>
@@ -189,7 +187,7 @@
                                                     <h3 class="px-0 m-0 text-center"> {{ $content->title }}</h3>
                                                     @isset($content->attr['weight'])
                                                         @php
-                                                            $p = calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0,$goldPrice);
+                                                            $p = calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0);
                                                         @endphp
                                                         <div class=" text-green font-09 "> @convertCurrency($p['totalPrice']) تومان</div>
                                                     @else

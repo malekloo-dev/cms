@@ -143,14 +143,15 @@
                 {{--product&label=products&var=products&count=12 --}}
                 @isset($products['data'])
                     @foreach ($products['data'] as $content)
-                        <a href="{{ $content->slug }}">
+                        <a href="{{ $content->slug }}" >
                             <div class="shadow hover p-0   h-full">
                                 @if (isset($content->images['images']['small']))
                                     <figure class="image">
                                         <img src="{{ $content->images['images']['large'] }}" alt="{{ $content->title }}"
                                             title="{{ $content->title }}" width="" height="300">
                                         <figcaption>
-                                            <h3 class="px-0 m-0 text-center"> {{ $content->title }}</h3>
+                                            <h3 class="px-1 py-0 m-0 text-center " style="white-space: nowrap;text-overflow: ellipsis; overflow: hidden;"> {{ $content->title }}</h3>
+                                            <div class="text-green">@convertCurrency(calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0)['totalPrice']) تومان</div>
                                         </figcaption>
                                     </figure>
                                 @else
@@ -159,6 +160,7 @@
                                             src="https://img.icons8.com/ios/100/cccccc/no-image.png" alt="company-no-image" />
                                     </figure>
                                     <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+
                                 @endif
 
                             </div>
@@ -230,6 +232,8 @@
                                             title="{{ $content->title }}" width="" height="300">
                                         <figcaption>
                                             <h3 class="px-0 m-0 text-center"> {{ $content->title }}</h3>
+                                            <div class="text-green">@convertCurrency(calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0)['totalPrice']) تومان</div>
+
                                         </figcaption>
                                     </figure>
                                 @else
