@@ -93,7 +93,8 @@ forceRedirect();
 Route::post('/returnBank', [CompanyController::class, 'returnBank'])->name('company.products.returnBank')->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);;
 
 Route::get('/runcronjob',function () {
-    Artisan::call('schedule:run');
+    echo Artisan::call('schedule:run');
+    echo Artisan::call('schedule:list');
 });
 
 // 1

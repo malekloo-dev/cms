@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
         if(env('TEMPLATE_NAME') == 'eden'){
             $schedule->call(function () {
                 getGoldPrice('online');
-            })->hourly();
+            })->everyMinute();
         }
     }
 
