@@ -86,7 +86,11 @@
 
     <section class="banner my-0 py-0">
         <div class="flex one">
-            <img class="h-auto p-0" src="{{ url('eden/img/banner1.jpg') }}" alt="طلای ایدن" title="طلای ایدن"
+            <img class="h-auto p-0"
+            srcset="{{ url('eden/img/banner1-mobile.jpg') }} 700w, {{ url('eden/img/banner1.jpg') }} 1200w"
+
+            src="{{ url('eden/img/banner1.jpg') }}"
+            alt="طلای ایدن" title="طلای ایدن"
                 width="1200" height="344">
 
         </div>
