@@ -58,7 +58,7 @@
 
 <script>
     if(screen && screen.width <= 768){
-        document.write('<script type="text/javascript" src="{{ url("/corepo/pullToRefresh.umd.min.js") }}"><\/script>');
+        document.write('<script type="text/javascript" src="{{ url("/eden/pullToRefresh.umd.min.js") }}"><\/script>');
 
         setTimeout(() => {
             PullToRefresh.init({

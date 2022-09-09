@@ -3,10 +3,10 @@
 
 
 @section('twitter:title', $detail->title)
-@section('twitter:description', clearHtml($detail->brief_description))
+@section('twitter:description', clearHtml($detail->meta_description))
 
 @section('og:title', $detail->title)
-@section('og:description', clearHtml($detail->brief_description))
+@section('og:description', clearHtml($detail->meta_description))
 @section('canonical', url($detail->slug))
 
 
@@ -182,7 +182,7 @@
                                         @if (isset($content->images['images']['small']))
                                             <figure class="image ">
                                                 <img src="{{ $content->images['images']['large'] }}"
-                                                    alt="{{ $content->title }}" title="{{ $content->title }}" width="300" height="300">
+                                                    alt="{{ $content->title }}" title="{{ $content->title }}" loading="lazy" width="300" height="300">
                                                 <figcaption>
                                                     <h3 class="px-0 m-0 text-center"> {{ $content->title }}</h3>
                                                     @isset($content->attr['weight'])

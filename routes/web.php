@@ -96,6 +96,10 @@ Route::get('/runcronjob',function () {
     echo Artisan::call('schedule:run');
     echo Artisan::call('schedule:list');
 });
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    // return what you want
+});
 
 // 1
 include_once('companyRoute.php');
