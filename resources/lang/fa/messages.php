@@ -173,4 +173,5 @@ return [
     'ads' => 'آگهی ها',
     'weight' => 'وزن',
     'additionalprice' => 'مبلغ اضافی',
+    'in-stock' => 'موجود',
 ];

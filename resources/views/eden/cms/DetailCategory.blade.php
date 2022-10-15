@@ -181,6 +181,9 @@
                                     <div class="shadow hover p-0 ">
                                         @if (isset($content->images['images']['small']))
                                             <figure class="image ">
+                                                @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
+                                                    <div class="not-in-stock">نا موجود</div>
+                                                @endif
                                                 <img src="{{ $content->images['images']['large'] }}"
                                                     alt="{{ $content->title }}" title="{{ $content->title }}" loading="lazy" width="300" height="300">
                                                 <figcaption>

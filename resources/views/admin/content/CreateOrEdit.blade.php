@@ -423,6 +423,16 @@
 
                     <div class="form-group row">
                         <div class="col-4 col-md-4">
+                            <label for="in-stock"
+                                class=" col-form-label  text-left">@lang('messages.in-stock'):</label>
+                            <select class="form-control" name="attr[in-stock]" id="attr[in-stock]">
+                                <option value="1">موجود</option>
+                                <option value="0" @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0) selected @endif>نا موجود</option>
+                            </select>
+
+                        </div>
+
+                        <div class="col-4 col-md-4">
                             <label for="weight"
                                 class=" col-form-label  text-left">@lang('messages.weight'):</label>
                             <input  class="form-control ltr" name="attr[weight]"
