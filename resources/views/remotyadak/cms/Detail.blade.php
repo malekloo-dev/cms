@@ -111,6 +111,7 @@
                     <div>
                         <h1 class="">{{ $detail->title }}</h1>
                         <div>
+                            @isset($detail->attr['price'])<div class="price">قیمت: @convertCurrency($detail->attr['price']) تومان </div>@endisset
                             @if (count($detail->companies))
                                 <div class="company-logo">
                                     فروشگاه / تعمیرگاه

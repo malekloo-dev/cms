@@ -20,7 +20,8 @@
                     style="enable-background:new 0 0 512 512;" xml:space="preserve">
                     <g>
                         <g>
-                            <path d="M363.273,0H148.728C66.719,0,0,66.719,0,148.728v214.544C0,445.281,66.719,512,148.728,512h214.544
+                            <path
+                                d="M363.273,0H148.728C66.719,0,0,66.719,0,148.728v214.544C0,445.281,66.719,512,148.728,512h214.544
    C445.281,512,512,445.281,512,363.273V148.728C512,66.719,445.281,0,363.273,0z M472,363.272C472,423.225,423.225,472,363.273,472
    H148.728C88.775,472,40,423.225,40,363.273V148.728C40,88.775,88.775,40,148.728,40h214.544C423.225,40,472,88.775,472,148.728
    V363.272z" />
@@ -28,7 +29,8 @@
                     </g>
                     <g>
                         <g>
-                            <path d="M256,118c-76.094,0-138,61.906-138,138s61.906,138,138,138s138-61.906,138-138S332.094,118,256,118z M256,354
+                            <path
+                                d="M256,118c-76.094,0-138,61.906-138,138s61.906,138,138,138s138-61.906,138-138S332.094,118,256,118z M256,354
    c-54.037,0-98-43.963-98-98s43.963-98,98-98s98,43.963,98,98S310.037,354,256,354z" />
                         </g>
                     </g>
@@ -57,14 +59,16 @@
 @yield('cropper')
 
 <script>
-    if(screen && screen.width <= 768){
-        document.write('<script type="text/javascript" src="{{ url("/eden/pullToRefresh.umd.min.js") }}"><\/script>');
+    if (screen && screen.width <= 768) {
+        document.write('<script type="text/javascript" src="{{ url('/eden/pullToRefresh.umd.min.js') }}"><\/script>');
 
         setTimeout(() => {
             PullToRefresh.init({
-                    mainElement: 'body',
-                    onRefresh: function() { location.reload(); }
-                });
+                mainElement: 'body',
+                onRefresh: function() {
+                    location.reload();
+                }
+            });
         }, 500);
 
 
@@ -76,15 +80,30 @@
 </script>
 <script src="{{ url('/main.js') }}"></script> --}}
 @if (WebsiteSetting::where('variable', '=', 'phone')->first())
-    <a  href="tel:{{ WebsiteSetting::where('variable', '=', 'phone')->first()->value }}" id="callnowbutton">phone</a>
+    <a href="tel:{{ WebsiteSetting::where('variable', '=', 'phone')->first()->value }}" id="callnowbutton">phone</a>
 @endif
 
 
 
 
-<a href="https://api.whatsapp.com/send?phone=989374599840&text=سلام.%20میخواستم%20سفارش%20ثبت%20کنم" class="whatsappbutton" target="_blank">
+<a href="https://api.whatsapp.com/send?phone=989374599840&text=سلام.%20میخواستم%20سفارش%20ثبت%20کنم"
+    class="whatsappbutton" target="_blank">
     <i class="fa fa-whatsapp my-float"></i>
 </a>
+
+
+@if (url('/') == 'https://edengoldgallery.ir')
+    <script type="text/javascript">
+        window.RAYCHAT_TOKEN = "33e72c0e-5d41-49b0-8e3e-289fcb24b2c5";
+        (function() {
+            d = document;
+            s = d.createElement("script");
+            s.src = "https://widget-react.raychat.io/install/widget.js";
+            s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+        })();
+    </script>
+@endif
 </body>
 
 </html>

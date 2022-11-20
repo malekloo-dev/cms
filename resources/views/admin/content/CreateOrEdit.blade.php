@@ -345,7 +345,8 @@
                 <div class="form-group row ">
                     <div class="col-sm-12" style="display: flex">
                         @if (is_array($content->images ?? ''))
-                            @foreach ($content->images['images'] as $key => $image)
+
+                            @foreach ($content->images['images'] ?? [] as $key => $image)
                                 <div class="col-sm-2">
                                     <label class="control-label">
                                         {{ $key }}

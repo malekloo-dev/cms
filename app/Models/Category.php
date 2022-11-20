@@ -101,7 +101,12 @@ class Category extends Model
 
 
         // ->groupBy('contents_category.content_id')
-        $object->orderBy($sortField, $sortValue)->orderBy('publish_date', 'desc');
+        if($sortField == 'publish_date'){
+            $object->orderBy('attr->in-stock','desc')->orderBy($sortField, $sortValue);
+        }else{
+            $object->orderBy('attr->in-stock','desc')->orderBy($sortField, $sortValue)->orderBy('publish_date','desc');
+        }
+
         return $object;
     }
 

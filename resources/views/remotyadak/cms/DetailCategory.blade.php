@@ -147,8 +147,7 @@
                                             </div>
                                             <footer>
                                                 <h2>{{ $content->name }}</h2>
-                                                <div class="company-phones"> {{ $content->mobile }} -
-                                                    {{ $content->phone }}</div>
+                                                <div class="company-phones">{{ $content->phone }}</div>
                                                 <div><svg class="p-0 m-0" width="12" height="12" viewBox="0 0 24 24"
                                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path
@@ -206,7 +205,7 @@
                                             <a href="{{ $content->slug }}">
                                                 <h2>{{ $content->title }}</h2>
                                             </a>
-                                            <div class="brand">برند: {{ $content->attr['brand'] }}</div>
+                                            @isset($content->attr['brand']) <div class="brand">برند: {{ $content->attr['brand'] ?? '' }}</div>@endisset
                                             <div class="price">قیمت: @convertCurrency($content->attr['price'])
                                                 تومان </div>
                                             <div class="view-count">{{ $content->viewCount }} بار دیده شده</div>

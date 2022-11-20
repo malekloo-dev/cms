@@ -57,7 +57,6 @@ class CmsController extends Controller
                 ->where('attr_type', '=', 'product')
                 ->where('parent_id', '=', $detail->id)
                 ->where('publish_date', '<=', DB::raw('now()'))
-
                 ->paginate(15);
             $relatedProduct = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
         } else {

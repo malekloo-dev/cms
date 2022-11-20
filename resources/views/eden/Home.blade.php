@@ -158,7 +158,16 @@
                                             title="{{ $content->title }}" width="" height="300">
                                         <figcaption>
                                             <h3 class="px-1 py-0 m-0 text-center " style="white-space: nowrap;text-overflow: ellipsis; overflow: hidden;"> {{ $content->title }}</h3>
-                                            <div class="text-green">@convertCurrency(calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0)['totalPrice']) تومان</div>
+
+
+
+                                            <div class="text-green">
+                                                @isset($content->attr['weight'])
+                                                    @convertCurrency(calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0)['totalPrice']) تومان
+                                                @else
+                                                    تماس گرفته شود
+                                                @endisset
+                                            </div>
                                         </figcaption>
                                     </figure>
                                 @else
@@ -246,7 +255,14 @@
                                             title="{{ $content->title }}" width="" height="300">
                                         <figcaption>
                                             <h3 class="px-0 m-0 text-center"> {{ $content->title }}</h3>
-                                            <div class="text-green">@convertCurrency(calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0)['totalPrice']) تومان</div>
+
+                                            <div class="text-green">
+                                                @isset($content->attr['weight'])
+                                                    @convertCurrency(calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0)['totalPrice']) تومان
+                                                @else
+                                                    تماس گرفته شود
+                                                @endisset
+                                            </div>
 
                                         </figcaption>
                                     </figure>

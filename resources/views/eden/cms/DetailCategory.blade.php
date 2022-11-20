@@ -173,7 +173,7 @@
                 <div>
                     <div class="">
 
-                        <div class="flex one two-500 five-900 center ">
+                        <div class="flex two five-900 center ">
 
                             {{-- $data['newPost'] --}}
                             @foreach ($relatedProduct as $content)
@@ -188,14 +188,13 @@
                                                     alt="{{ $content->title }}" title="{{ $content->title }}" loading="lazy" width="300" height="300">
                                                 <figcaption>
                                                     <h3 class="px-0 m-0 text-center"> {{ $content->title }}</h3>
-                                                    @isset($content->attr['weight'])
-                                                        @php
-                                                            $p = calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0);
-                                                        @endphp
-                                                        <div class=" text-green font-09 "> @convertCurrency($p['totalPrice']) تومان</div>
-                                                    @else
-                                                        <div class="font-09"> تماس بگیرید</div>
-                                                    @endisset
+                                                    <div class=" text-green font-09 ">
+                                                        @isset($content->attr['weight'])
+                                                            @convertCurrency(calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0)['totalPrice']) تومان
+                                                        @else
+                                                        تماس گرفته شود  
+                                                        @endisset
+                                                    </div>
                                                 </figcaption>
                                             </figure>
                                         @else
