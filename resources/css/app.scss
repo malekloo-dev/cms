@@ -1,5 +1,5 @@
 $site-witdth: 1200px !default;
-$h1-font-size: inherit !default;
+$h1-font-size: 1.5em !default;
 $h1-color: inherit !default;
 $h2-font-size: inherit !default;
 $h2-color: inherit !default;
@@ -10,7 +10,7 @@ $button-bg-color: $theme-color1 !default;
 $bg-theme-color2: $theme-color2 !default;
 $body-font-size: 1rem !default;
 
-h1{font-size: $h1-font-size ; color: $h1-color; }
+h1{font-size: $h1-font-size ; color: $h1-color; margin: 0.67em 0;}
 h2{font-size: $h2-font-size ; color: $h2-color; }
 h3{font-size: $h3-font-size ; color: $h3-color; }
 .flex-column{flex-direction: column;}
@@ -1597,10 +1597,7 @@ strong {
 dfn {
     font-style: italic;
 }
-h1 {
-    font-size: 1.5em;
-    margin: 0.67em 0;
-}
+
 p {
     color: #4a4a4a;
 }

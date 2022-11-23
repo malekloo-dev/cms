@@ -18,6 +18,9 @@ $search-border: 1px solid #888;
 $search-bg: #888;
 $search-text: rgb(100, 100, 100);
 
+$h1-font-size: 2em;
+$h2-font-size:1.5em;
+
 @import "app.scss";
 @import "grid.scss";
 @import "nav.scss";
@@ -29,7 +32,7 @@ body{font-size: 15px;}
 h2{
     display: inline-block;
     border-bottom: 5px solid $theme-color2;
-    font-size: 1em;
+    // font-size: 1.5em;
 }
 hr{border-top: 1px solid #fff; }
 .banner {
