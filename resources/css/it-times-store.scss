@@ -1,7 +1,7 @@
 $template: it-times-store;
 $body: #fff;
-$theme-color1:#f46900 ;
-$theme-color2: #00F438;
+$theme-color1: #f46900;
+$theme-color2: #00f438;
 $theme-color3: #fff;
 $theme-color1-text: #f46900;
 
@@ -9,9 +9,9 @@ $a: #f46900;
 $a-hover: #1e2135;
 
 $menu-color: #f46900;
-$menu-bg-left:#fff;
-$menu-bg-right:#fff;
-$menu-shadow:0 1px 0px rgba(0, 0, 0, 0.1);
+$menu-bg-left: #fff;
+$menu-bg-right: #fff;
+$menu-shadow: 0 1px 0px rgba(0, 0, 0, 0.1);
 $p: #1e1e1e;
 
 $search-border: 1px solid #888;
@@ -19,7 +19,9 @@ $search-bg: #888;
 $search-text: rgb(100, 100, 100);
 
 $h1-font-size: 2em;
-$h2-font-size:1.5em;
+$h2-color:#d35400;
+$h2-font-size: 1.5em;
+$h3-color:#d35400;
 
 @import "app.scss";
 @import "grid.scss";
@@ -27,30 +29,39 @@ $h2-font-size:1.5em;
 
 @import "nav-mega-menu.scss";
 
-
-body{font-size: 15px;}
-h2{
+body {
+    font-size: 15px;
+}
+h2 {
     display: inline-block;
     border-bottom: 5px solid $theme-color2;
-    // font-size: 1.5em;
 }
-hr{border-top: 1px solid #fff; }
+hr {
+    border-top: 1px solid #fff;
+}
 .banner {
     * {
         width: 100%;
     }
 }
 
-
 article {
     background: #fff;
     color: #222;
     padding: 1em;
     text-align: center;
-    border-radius: 5px;
-    height: 100%;
+    // border-radius: 5px;
+    border: 1px solid #eee;
+    // height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    footer {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
     figure img {
         border-radius: 5px;
         width: auto;
@@ -62,10 +73,9 @@ article {
     }
 }
 
-
 .category-section {
     // position: relative;
-    a{
+    a {
         color: #333;
     }
     img {
@@ -92,46 +102,39 @@ article {
     }
     .next2 {
         left: 0;
-        border-radius: 5px ;
+        border-radius: 5px;
     }
     .prev2 {
         right: 0;
-        border-radius: 5px ;
+        border-radius: 5px;
     }
 }
 
-.brands{
-
+.brands {
     .next2,
-    .prev2{
+    .prev2 {
         top: 20%;
     }
 }
 
-
-
-.home-feature{
-    .item{
+.home-feature {
+    .item {
         display: flex;
         // flex-wrap: wrap;
         flex-direction: row;
         justify-content: center;
-        > :first-child{
-            flex:0 1 auto;
+        > :first-child {
+            flex: 0 1 auto;
             margin: 1em;
-            img{
+            img {
                 width: auto;
             }
         }
-        h3{
+        h3 {
             color: $theme-color1;
         }
     }
 }
-
-
-
-
 
 .application article {
     min-height: auto;
@@ -146,17 +149,17 @@ article {
     }
 }
 
-.products{
-    figure{
+.products {
+    figure {
         margin: 0;
     }
 }
 
-
 @media only screen and (max-width: 1200px) {
 }
 @media only screen and (max-width: 500px) {
+    .detail-side{display: none;}
+    img{height: auto;}
 }
 @media only screen and (max-width: 300px) {
 }
-

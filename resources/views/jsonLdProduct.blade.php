@@ -4,10 +4,8 @@
         "@type": "Product",
         "name": "{{ $detail->title }}",
 
-        @if (isset($detail->images['images']['small']))
+        @if (isset($detail->images['images']['large']))
             "image": [
-                "{{ url('/').$detail->images['images']['small'] }}",
-                "{{ url('/').$detail->images['images']['medium'] }}",
                 "{{ url('/').$detail->images['images']['large'] }}"
             ],
         @endif

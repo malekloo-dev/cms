@@ -155,17 +155,19 @@
 
             </div>
         </section>
+        <hr>
     @endif
-    <hr>
+
+
+
     @if (count($relatedProduct))
-        <section class="products mt-5" id="index-best-view">
+        <section class="products" id="index-best-view">
             <div class="flex one ">
                 <div>
                     <div class="">
-                        <div class="flex one two-500 five-900 center ">
+                        <div class="flex two two-500 five-900 center ">
                             @foreach ($relatedProduct as $content)
-                                <div>
-                                    <article>
+                                    <article class="">
                                         @if (isset($content->images['images']['small']))
                                             <a href="{{ $content->slug }}">
 
@@ -186,7 +188,6 @@
 
                                         </footer>
                                     </article>
-                                </div>
                             @endforeach
 
                         </div>
@@ -277,7 +278,7 @@
     <section class=" bg-gray mb-0 pt-1">
         <div>
             <h2>مقالات</h2>
-            <div class="flex five center">
+            <div class="flex two five-500 center">
                 @foreach (\App\Models\Content::where('parent_id','=',80)->get() as $content)
                 <div>
                     <a href="{{ $content->slug }}">

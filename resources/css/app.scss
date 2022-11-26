@@ -122,6 +122,7 @@ h3{font-size: $h3-font-size ; color: $h3-color; }
 .twelve > * {
     width: 8.33333%;
 }
+.hidden{display: none;}
 @media all and (min-width: 500px) {
     .one-500 > * {
         width: 100%;
@@ -174,6 +175,14 @@ h3{font-size: $h3-font-size ; color: $h3-color; }
     }
     .order5-500 {
         order: 5;
+    }
+
+    .hidden-500{
+        display: none;
+    }
+
+    .visible-500{
+        display: block;
     }
 }
 @media all and (min-width: 600px) {
@@ -1540,6 +1549,7 @@ html {
     direction: rtl;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
 }
 body,
 html,
@@ -1560,6 +1570,8 @@ body {
     line-height: 2;
     color: #111;
     background: $body;
+
+
 }
 article,
 aside,

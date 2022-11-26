@@ -12,10 +12,8 @@
                         "position": {{ $i }},
                         "name" : "{{ $content->title }}",
                         "url" : "{{ url('/').'/'.$content->slug }}"
-                        @if(isset($content->images['images']['small']))
+                        @if(isset($content->images['images']['large']))
                         ,"image": [
-                            "{{ url('/').$content->images['images']['small'] }}",
-                            "{{ url('/').$content->images['images']['medium'] }}",
                             "{{ url('/').$content->images['images']['large'] }}"
                         ]
                         @endif

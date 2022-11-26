@@ -244,7 +244,7 @@
 
 
     <section class=" bg-gray mb-0 pt-1">
-        {{--post&label=articles&var=articles&count=3--}}
+        {{--post&label=articles&var=articles&count=5--}}
         <div>
             <h2>مقالات</h2>
             <div class="flex five center">

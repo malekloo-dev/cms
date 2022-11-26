@@ -93,16 +93,7 @@
 
 
 @if (url('/') == 'https://edengoldgallery.ir')
-    <script type="text/javascript">
-        window.RAYCHAT_TOKEN = "33e72c0e-5d41-49b0-8e3e-289fcb24b2c5";
-        (function() {
-            d = document;
-            s = d.createElement("script");
-            s.src = "https://widget-react.raychat.io/install/widget.js";
-            s.async = 1;
-            d.getElementsByTagName("head")[0].appendChild(s);
-        })();
-    </script>
+
 @endif
 </body>
 

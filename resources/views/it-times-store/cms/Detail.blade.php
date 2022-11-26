@@ -176,33 +176,41 @@
                 @endforeach
 
             </div>
-            <div class="fifth-500 bg-gray2 order1-500">
+            <div class="fifth-500 shadow1 bg-gray order1-500 detail-side  visible-500 " >
                 <div class="">
 
-                    <div> دسته بندی ها</div>
-                    {{-- category&label=sideCategory&var=sideCategory&count=6 --}}
-                    @isset($sideCategory['data'])
-                        <ul>
-                            @foreach ($sideCategory['data'] as $item)
-                                <li>
-                                    <a href="{{ url($item->slug) }}">{{ $item->title }}</a>
+                    @if(count($relatedProduct))
+                        <div> محصولات مرتبط</div>
+                        <ul class="p-0 m-0">
+                            @foreach ($relatedProduct as $content)
+                                <li class="flex ">
+                                    <a class="flex" href="{{ url($content->slug) }}">
+                                        @if (isset($content->images['images']['small']))
+                                            <div class="third  pb-0"><img style="width: 100%" alt="{{ $content->title }}"
+                                                    src="{{ $content->images['images']['small'] }}"></div>
+                                        @endif
+                                        <div class="two-third  pb-0 font-09">
+
+                                            {{ $content->title }}
+                                        </div>
+                                    </a>
                                 </li>
                             @endforeach
                         </ul>
                     @endisset
 
                     <div> نوشته های تازه</div>
-                    {{-- post&label=sideLastPost&var=sideLastPost&count=6&child=true --}}
+                    {{--post&label=sideLastPost&var=sideLastPost&count=3&child=true --}}
                     @isset($sideLastPost['data'])
-                        <ul class="p-0">
+                        <ul class="p-0  m-0">
                             @foreach ($sideLastPost['data'] as $content)
                                 <li class="flex ">
-                                    <a class="flex " href="{{ url($content->slug) }}">
+                                    <a class="flex" href="{{ url($content->slug) }}">
                                         @if (isset($content->images['images']['small']))
-                                            <div class="third"><img style="width: 100%" alt="{{ $content->title }}"
+                                            <div class="third  pb-0"><img style="width: 100%" alt="{{ $content->title }}"
                                                     src="{{ $content->images['images']['small'] }}"></div>
                                         @endif
-                                        <div class="two-third">
+                                        <div class="two-third  pb-0 font-09">
 
                                             {{ $content->title }}
                                         </div>
@@ -236,12 +244,12 @@
     </section>
 
     @if (count($relatedProduct))
-        <section class="products bg-gray m-0 pt-1 pb-1" id="index-best-view">
+        <section class="products bg-gray m-0 pt-1 pb-1 hidden-500" id="index-best-view">
             <div class="flex one ">
                 <div>
                     <div class="shadow ">
                         <h2>محصولات مرتبط {{ $detail->title }}</h2>
-                        <div class="flex one two-500 four-900 center ">
+                        <div class="flex two two-500 four-900 center ">
 
                             @foreach ($relatedProduct as $content)
                                 <div>
@@ -268,7 +276,7 @@
     @endif
 
     @if (count($relatedPost))
-        <section class="products" id="index-best-view">
+        <section class="products " id="index-best-view">
             <div class="flex one ">
                 <div>
                     <div class="shadow">

@@ -21,7 +21,7 @@ class SearchController extends Controller
     public function index(Request $request)
     {
 
-        list($products, $posts, $companies) = $this->searchService($request);
+        list($products, $posts, $companies) = $this->searchService($request, env('SEARCH_LIMIT',10));
 
         $query = $request->q;
 
