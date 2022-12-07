@@ -7,8 +7,10 @@
 
 @section('og:title', $detail->title)
 @section('og:description', clearHtml($detail->meta_description))
-@section('canonical', url($detail->slug))
 
+@if($relatedProduct->hasPages() || json_decode($relatedProduct->toJson())->current_page == 1)
+    @section('canonical', url($detail->slug))
+@endif
 
 @if (isset($detail->images['images']['medium']))
 @section('twitter:image', url($detail->images['images']['medium']))
@@ -27,6 +29,7 @@
 
     @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
         <link rel="prev" href="{{ json_decode($relatedProduct->toJson())->prev_page_url }}">
+
     @endif
     @if (json_decode($relatedProduct->toJson())->next_page_url != null)
         <link rel="next" href="{{ json_decode($relatedProduct->toJson())->next_page_url }}">
@@ -192,7 +195,7 @@
                                                         @isset($content->attr['weight'])
                                                             @convertCurrency(calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0)['totalPrice']) تومان
                                                         @else
-                                                        تماس گرفته شود  
+                                                        تماس گرفته شود
                                                         @endisset
                                                     </div>
                                                 </figcaption>
