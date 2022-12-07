@@ -3,27 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
-use App\Models\CompanyContents;
 use App\Models\Content;
-use App\Models\ContentAttributeValue;
 use App\Models\ContentType;
-use App\Models\export;
 use App\Models\Gallery;
 use App\Services\attribute\Attribute;
-use App\Sitemap;
+use App\SiteMap;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-use function PHPUnit\Framework\assertIsArray;
-
-//use PDF;
 
 class ContentController extends Controller
 {
@@ -622,13 +614,13 @@ class ContentController extends Controller
             ->where('type', '=', '2')
             ->where('attr_type', '=', 'product')->get();
 
-        // $sitemap = siteMap::createIndex()
+        // $sitemap = SiteMap::createIndex()
         //     ->add()->setLoc('post.xml')
         //     ->add()->setLoc('category.xml')
         //     ->add()->setLoc('product.xml')
         //     ->writeToFile('sitemap.xml');
 
-        $sitemap = siteMap::create()
+        $sitemap = SiteMap::create()
             ->add()->setPriority('1')
             ->setLoc('/')
             ->setLastMod('2020')
@@ -657,7 +649,7 @@ class ContentController extends Controller
         dd($sitemap);
 
         /*$postList = Content::all();
-        $sitemap=export::CreateSitemap();
+        $sitemap=Export::CreateSitemap();
         $sitemap->setBaseUrl='remotyadak.ir/';
         $sitemap->setFieldLoc='slug';
         $sitemap->setFieldLastmod='updated_at';

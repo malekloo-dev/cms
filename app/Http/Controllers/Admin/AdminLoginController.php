@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -13,17 +13,16 @@ class AdminLoginController extends Controller
 
     public function __construct()
     {
-        
+
         $this->middleware('guest')->except('logout');
     }
 
     public function showLoginForm()
     {
 
-        if(Auth::check()){
+        if (Auth::check()) {
             return redirect()->route('admin');
         }
         return view('admin.auth.login');
     }
-
 }

@@ -1,28 +1,15 @@
 <?php
-
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-
-class export
-{
-    /**
-     * @return siteMap
-     */
-    public static function create()
-    {
-        return siteMap::create();
-    }
-}
-
+use App\SiteMapIndex;
+use App\SiteMapEntity;
 
 /**
  * @method  setLastMod(string $date)
  * @method  setLoc(string $url)
  * @method setPriority(float $priority)
  */
-class siteMap
+class SiteMap
 {
 
     private $fileName;
@@ -42,12 +29,12 @@ class siteMap
 
     public static function create()
     {
-        return new siteMap();
+        return new SiteMap();
     }
 
     public static function createIndex()
     {
-        return new siteMapIndex();
+        return new SiteMapIndex();
     }
 
     //todo add anonymouse function for priroty
@@ -72,7 +59,6 @@ class siteMap
             if ($this->changefreqFieldName != '') {
                 $changefreq = $this->changefreqFieldName;
                 $property['changefreq'] = $object->$changefreq;
-
             } else if ($this->defultChangefreq != '') {
                 $property['changefreq'] = $this->defultChangefreq;
             }
@@ -80,13 +66,10 @@ class siteMap
             if ($this->priorityFieldName != '') {
                 $priority = $this->priorityFieldName;
                 $property['priority'] = $object->$priority;
-
             } else if ($this->defultPriority != '') {
                 $property['priority'] = $this->defultPriority;
             }
             $this->add($property);
-
-
         }
 
         return $this;
@@ -94,7 +77,7 @@ class siteMap
 
     public function add($property = array())
     {
-        $tempObj = new siteMapEntity();
+        $tempObj = new SiteMapEntity();
 
         if (count($property)) {
             foreach ($property as $property => $params) {
@@ -116,7 +99,6 @@ class siteMap
         if (method_exists($this->collection[count($this->collection) - 1], $method)) {
             $this->collection[count($this->collection) - 1]->$method($params[0]);
             return $this;
-
         }
     }
 
@@ -171,7 +153,6 @@ class siteMap
             $content = $content . '<loc>' . url($obj->getLoc()) . '</loc>' . PHP_EOL;
             if ($obj->getChangefreq() != '') {
                 $content = $content . '<lastmod>' . date('Y-m-d', strtotime($obj->getLastMod())) . '</lastmod>' . PHP_EOL;
-
             }
             //$content = $content . '<lastmod>' . gmdate(DateTime::W3C, strtotime($obj->getLastMod())) . '</lastmod>' . PHP_EOL;
             if ($obj->getChangefreq() != '') {
@@ -179,12 +160,9 @@ class siteMap
             }
             if ($obj->getPriority() != '') {
                 $content = $content . '<priority>' . $obj->getPriority() . '</priority>' . PHP_EOL;
-
-
             }
 
             $content = $content . '</url>' . PHP_EOL;
-
         }
 
         $content = $content . ' </urlset>' . PHP_EOL;
@@ -195,99 +173,4 @@ class siteMap
             return $result;
         }
     }
-
-
-}
-
-class siteMapIndex extends siteMap
-{
-    public function writeToFile($path)
-    {
-
-        $content = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
-
-        $content = $content . ' <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL;
-
-        foreach ($this->collection as $key => $obj) {
-
-
-            $content = $content . '<sitemap>' . PHP_EOL;
-            $content = $content . '<loc>' . $obj->getLoc() . '</loc>' . PHP_EOL;
-            if ($obj->getChangefreq() != '') {
-                $content = $content . '<changefreq>' . $obj->getChangefreq() . '</changefreq>' . PHP_EOL;
-
-            }
-            $content = $content . '</sitemap>' . PHP_EOL;
-
-        }
-
-
-        $content = $content . ' </sitemapindex>' . PHP_EOL;
-
-
-        if (file_put_contents($path, $content)) {
-            $result['result'] = 1;
-            return $result;
-        }
-    }
-
-
-}
-
-class siteMapEntity
-{
-
-    private $lastMod;
-    private $loc;
-    private $priority;
-    private $changefreq;
-
-    public function setLastMod($date)
-    {
-        $this->lastMod = $date;
-        return $this;
-    }
-
-    public function setLoc($url)
-    {
-        $this->loc = $url;
-        return $this;
-    }
-
-    public function setPriority($priority)
-    {
-        $this->priority = $priority;
-        return $this;
-    }
-
-    public function setChangefreq($param)
-    {
-        $this->changefreq = $param;
-        return $this;
-    }
-
-    public function getLastMod()
-    {
-
-        return $this->lastMod;
-
-    }
-
-    public function getLoc()
-    {
-        return $this->loc;
-
-    }
-
-    public function getPriority()
-    {
-        return $this->priority;
-    }
-
-    public function getChangefreq()
-    {
-        return $this->changefreq;
-
-    }
-
 }
