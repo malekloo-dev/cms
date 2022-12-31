@@ -121,7 +121,7 @@
 
                                         <figure class="image">
                                             @if(isset($detail->attr['in-stock']) && $detail->attr['in-stock'] == 0 )
-                                                <div class="not-in-stock">نا موجود</div>
+                                                <div class="not-in-stock">قابل سفارش</div>
                                             @endif
                                             <img id="main-image" loading="lazy" src="{{ $detail->images['images']['large'] }}" alt="{{ $detail->title }}"
                                                 width="{{ env(Str::upper($detail->attr_type) . '_LARGE_W') }}"
@@ -256,7 +256,7 @@
                                         @if (isset($content->images['images']['small']))
                                             <figure class="image">
                                                 @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
-                                                    <div class="not-in-stock">نا موجود</div>
+                                                    <div class="not-in-stock">قابل سفارش</div>
                                                 @endif
                                                 <img loading="lazy" src="{{ $content->images['images']['large'] }}"
                                                     alt="{{ $content->title }}" title="{{ $content->title }}" width="300" height="300">

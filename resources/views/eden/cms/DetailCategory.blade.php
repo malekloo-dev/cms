@@ -1,4 +1,4 @@
-@extends(@env('TEMPLATE_NAME').'.App')
+@extends(@env('TEMPLATE_NAME') . '.App')
 
 
 
@@ -8,19 +8,18 @@
 @section('og:title', $detail->title)
 @section('og:description', clearHtml($detail->meta_description))
 
-@if($relatedProduct->hasPages() || json_decode($relatedProduct->toJson())->current_page == 1)
+@if ($relatedProduct->hasPages() || json_decode($relatedProduct->toJson())->current_page == 1)
     @section('canonical', url($detail->slug))
 @endif
 
 @if (isset($detail->images['images']['medium']))
-@section('twitter:image', url($detail->images['images']['medium']))
+    @section('twitter:image', url($detail->images['images']['medium']))
 
-@section('og:image', url($detail->images['images']['medium']))
-@section('og:image:type', 'image/jpeg')
-@section('og:image:width', $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W'))
-@section('og:image:height', $detail->attr_type == 'article' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H'))
-@section('og:image:alt', $detail->title)
-
+    @section('og:image', url($detail->images['images']['medium']))
+    @section('og:image:type', 'image/jpeg')
+    @section('og:image:width', $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W'))
+    @section('og:image:height', $detail->attr_type == 'article' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H'))
+    @section('og:image:alt', $detail->title)
 @endif
 
 
@@ -29,7 +28,6 @@
 
     @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
         <link rel="prev" href="{{ json_decode($relatedProduct->toJson())->prev_page_url }}">
-
     @endif
     @if (json_decode($relatedProduct->toJson())->next_page_url != null)
         <link rel="next" href="{{ json_decode($relatedProduct->toJson())->next_page_url }}">
@@ -38,9 +36,6 @@
 
 
 @push('scripts')
-
-
-
     <script src="{{ asset('/siema.min.js') }}"></script>
     <script>
         var w;
@@ -86,14 +81,14 @@
         });
         document.querySelector('.prev2').addEventListener('click', () => mySiema.prev());
         document.querySelector('.next2').addEventListener('click', () => mySiema.next());
-
     </script>
 @endpush
 
 @section('footer')
     @auth
-        @if ((Auth::user()->id) == 1)
-            <div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/category/'.$detail->id.'/edit/') }}')">ویرایش</div>
+        @if (Auth::user()->id == 1)
+            <div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/category/' . $detail->id . '/edit/') }}')">
+                ویرایش</div>
         @endif
     @endauth
 @endsection
@@ -101,8 +96,8 @@
 @section('Content')
 
     @php
-    $tableOfImages = tableOfImages($detail->description);
-    $append = '';
+        $tableOfImages = tableOfImages($detail->description);
+        $append = '';
     @endphp
 
     @if (count($relatedProduct))
@@ -111,7 +106,7 @@
 
     @include('jsonLdFaq')
 
-    @if (count($breadcrumb)>0)
+    @if (count($breadcrumb) > 0)
         @include('jsonLdBreadcrumb')
     @endif
 
@@ -126,9 +121,11 @@
                             <div class="hover text-center">
                                 @if (isset($content->images['images']['small']))
                                     <figure class="image">
-                                        <img  loading="lazy" src="{{ $content->images['images']['small']  }}"
-                                            alt="{{ $content->title }}" width="{{ env('CATEGORY_SMALL_W') }}" height="{{ env('CATEGORY_SMALL_H') }}" srcset="
-                                            {{ $content->images['images']['small']  }} {{ env('CATEGORY_SMALL_W') }}w,
+                                        <img loading="lazy" src="{{ $content->images['images']['small'] }}"
+                                            alt="{{ $content->title }}" width="{{ env('CATEGORY_SMALL_W') }}"
+                                            height="{{ env('CATEGORY_SMALL_H') }}"
+                                            srcset="
+                                            {{ $content->images['images']['small'] }} {{ env('CATEGORY_SMALL_W') }}w,
                                             {{ $content->images['images']['medium'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_MEDIUM_W') }}w,
                                             {{ $content->images['images']['large'] ?? $content->images['images']['small'] }} {{ env('CATEGORY_LARGE_W') }}w">
                                         <figcaption>
@@ -155,19 +152,21 @@
 
 
     @if (count($breadcrumb))
-    <section class="breadcrumb my-0 py-0">
-        <div class="flex one  ">
-            <div class="p-0">
-                <a href="/">خانه </a>
-                @foreach ($breadcrumb as $key => $item)
-                    <span>></span>
-                    <a title="{{ $item['title'] }}" href="{{ $item['slug'] }}">{{ $item['title'] }}</a>
-                @endforeach
+        <section class="breadcrumb my-0 py-0">
+            <div class="flex one  ">
+                <div class="p-0">
+                    <a href="/">خانه </a>
+                    @foreach ($breadcrumb as $key => $item)
+                        <span>></span>
+                        <a title="{{ $item['title'] }}" href="{{ $item['slug'] }}">{{ $item['title'] }}</a>
+                    @endforeach
 
+                </div>
             </div>
-        </div>
-    </section>
-@endif
+        </section>
+    @endif
+
+    <h1>{{ $item['title'] }}</h1>
 
     @if (count($relatedProduct))
 
@@ -178,24 +177,24 @@
 
                         <div class="flex two five-900 center ">
 
-                            {{-- $data['newPost'] --}}
                             @foreach ($relatedProduct as $content)
                                 <a href="{{ $content->slug }}">
                                     <div class="shadow hover p-0 ">
                                         @if (isset($content->images['images']['small']))
                                             <figure class="image ">
-                                                @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
-                                                    <div class="not-in-stock">نا موجود</div>
+                                                @if (isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0)
+                                                    <div class="not-in-stock">قابل سفارش</div>
                                                 @endif
                                                 <img src="{{ $content->images['images']['large'] }}"
-                                                    alt="{{ $content->title }}" title="{{ $content->title }}" loading="lazy" width="300" height="300">
+                                                    alt="{{ $content->title }}" title="{{ $content->title }}"
+                                                    loading="lazy" width="300" height="300">
                                                 <figcaption>
                                                     <h3 class="px-0 m-0 text-center"> {{ $content->title }}</h3>
                                                     <div class=" text-green font-09 ">
                                                         @isset($content->attr['weight'])
-                                                            @convertCurrency(calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0)['totalPrice']) تومان
+                                                            @convertCurrency(calcuteGoldPrice($content->attr['weight'] ?? 0, $content->attr['additionalprice'] ?? 0)['totalPrice']) تومان
                                                         @else
-                                                        تماس گرفته شود
+                                                            تماس گرفته شود
                                                         @endisset
                                                     </div>
                                                 </figcaption>
@@ -226,14 +225,14 @@
 
                         <div class="flex one two-500 five-900 center ">
 
-                            {{-- $data['newPost'] --}}
                             @foreach ($relatedPost as $content)
                                 <a href="{{ $content->slug }}">
                                     <div class="shadow hover p-0 ">
                                         @if (isset($content->images['images']['small']))
                                             <figure class="image ">
                                                 <img src="{{ $content->images['images']['large'] }}"
-                                                    alt="{{ $content->title }}" title="{{ $content->title }}" width="300" height="300">
+                                                    alt="{{ $content->title }}" title="{{ $content->title }}"
+                                                    width="300" height="300">
                                                 <figcaption>
                                                     <h3 class="px-0 m-0 text-center"> {{ $content->title }}</h3>
                                                 </figcaption>
@@ -258,43 +257,42 @@
 
 
     @if (!Request::get('page'))
-    <section class="category-content" id="">
-        <div class="flex one ">
-            <div class="font-08">
-                <span class="rate mt-1">
-                    @if (count($detail->comments))
-                        @php
-                        $rateAvrage = $rateSum = 0;
-                        @endphp
-                        @foreach ($detail->comments as $comment)
+        <section class="category-content" id="">
+            <div class="flex one ">
+                <div class="font-08">
+                    <span class="rate mt-1">
+                        @if (count($detail->comments))
                             @php
-                            $rateSum = $rateSum + $comment['rate'] ;
+                                $rateAvrage = $rateSum = 0;
                             @endphp
+                            @foreach ($detail->comments as $comment)
+                                @php
+                                    $rateSum = $rateSum + $comment['rate'];
+                                @endphp
+                            @endforeach
+                            @for ($i = $rateSum / count($detail->comments); $i >= 1; $i--)
+                                <label></label>
+                            @endfor
+                            <span class="font-07">({{ count($detail->comments) }} نفر) </span>
+                        @endif
+                    </span> |
+                    {{ $detail->viewCount }} بار دیده شده |
+                </div>
+
+                <div>
+                    <ul>
+                        @foreach ($table_of_content as $key => $item)
+                            <li class="toc1">
+                                <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
+                            </li>
                         @endforeach
-                        @for ($i = $rateSum / count($detail->comments); $i >= 1; $i--)
-                        <label></label>
 
-                        @endfor
-                        <span class="font-07">({{ count($detail->comments) }} نفر)   </span>
-                    @endif
-                </span> |
-                {{ $detail->viewCount }} بار دیده شده |
+                    </ul>
+
+                    @include(@env('TEMPLATE_NAME') . '.DescriptionModule')
+                </div>
             </div>
-
-            <div>
-                <ul>
-                    @foreach ($table_of_content as $key => $item)
-                        <li class="toc1">
-                            <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
-                        </li>
-                    @endforeach
-
-                </ul>
-
-                @include(@env('TEMPLATE_NAME').'.DescriptionModule')
-            </div>
-        </div>
-    </section>
+        </section>
     @endif
 
 

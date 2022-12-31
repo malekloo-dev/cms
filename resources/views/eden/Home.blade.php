@@ -152,7 +152,7 @@
                                 @if (isset($content->images['images']['small']))
                                     <figure class="image">
                                         @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
-                                            <div class="not-in-stock">نا موجود</div>
+                                            <div class="not-in-stock">قابل سفارش</div>
                                         @endif
                                         <img src="{{ $content->images['images']['large'] }}" alt="{{ $content->title }}"
                                             title="{{ $content->title }}" width="" height="300">
@@ -173,7 +173,7 @@
                                 @else
                                     <figure class="image">
                                         @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
-                                            <div class="not-in-stock">نا موجود</div>
+                                            <div class="not-in-stock">قابل سفارش</div>
                                         @endif
                                         <img class="m-auto p-4" width="300" height="300"
                                             src="https://img.icons8.com/ios/100/cccccc/no-image.png" alt="company-no-image" />
@@ -233,7 +233,7 @@
 
 
             <div class="flex two six-500 p-0 ">
-                <a class="  p-0 bg-gray-dark cat1-home" href=""
+                <a class="  p-0 bg-gray-dark cat1-home" href="/انگشتر-طلا-زنانه"
                     style=" background-image:url({{ url('eden/img/دسته-بندی-انگشتر-طلا.jpg') }}) ">
                     <div class="h-full">
                         <h2 class="p-0">انگشتر</h2>
@@ -249,7 +249,7 @@
                                 @if (isset($content->images['images']['small']))
                                     <figure class="image">
                                         @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
-                                            <div class="not-in-stock">نا موجود</div>
+                                            <div class="not-in-stock">قابل سفارش</div>
                                         @endif
                                         <img src="{{ $content->images['images']['large'] }}" alt="{{ $content->title }}"
                                             title="{{ $content->title }}" width="" height="300">
@@ -269,7 +269,7 @@
                                 @else
                                     <figure class="image">
                                         @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
-                                            <div class="not-in-stock">نا موجود</div>
+                                            <div class="not-in-stock">قابل سفارش</div>
                                         @endif
                                         <img class="m-auto p-4" width="300" height="300"
                                             src="https://img.icons8.com/ios/100/cccccc/no-image.png" alt="company-no-image" />
