@@ -863,7 +863,6 @@ function getGoldPrice($offline = 'offline')
         $goldPriceOld = WebsiteSetting::where('variable', '=', 'goldPrice')->first();
         if ($goldPriceOld) {
             $goldPriceOld = $goldPriceOld->value;
-
             $goldPriceOld = json_decode($goldPriceOld);
             return [
                 'price' => (int) $goldPriceOld->price,

@@ -168,14 +168,19 @@
 
     <h1>{{ $item['title'] }}</h1>
 
-    @if (count($relatedProduct))
+
 
         <section class=" " id="index-best-view">
-            <div class="flex one ">
-                <div>
+            <div class="flex one  four-800  ">
+                <div class="one-fourth-800 p-0">
+                    @include(@env('TEMPLATE_NAME').'.cms.filter')
+
+                </div>
+                <div class="three-fourth-800 p-0">
                     <div class="">
 
                         <div class="flex two five-900 center ">
+                        @if (count($relatedProduct))
 
                             @foreach ($relatedProduct as $content)
                                 <a href="{{ $content->slug }}">
@@ -206,6 +211,7 @@
                                     </div>
                                 </a>
                             @endforeach
+                            @endif
 
                         </div>
                         {{ $relatedProduct->links('vendor.pagination.default') }}
@@ -214,7 +220,6 @@
                 </div>
             </div>
         </section>
-    @endif
 
     @if (count($relatedPost))
 

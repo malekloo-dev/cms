@@ -27,7 +27,7 @@ class CmsController extends Controller
     {
     }
 
-    public function showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule,$request)
+    public function showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule, $request)
     {
 
         if (env('All_CONTENT_SUB_CATEGORY') == 1) {
@@ -51,7 +51,7 @@ class CmsController extends Controller
         //            ->where('publish_date', '<=', DB::raw('now()'))
         //            ->paginate(20);
         //        // ->get();
-        $filterList=array();
+        $filterList = array();
         if (env('All_CONTENT_SUB_CATEGORY') == 1) {
             $relatedProduct = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'product')
@@ -60,15 +60,24 @@ class CmsController extends Controller
                 ->paginate(15);
             $relatedProduct = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
         } else {
-            $contentTypeIdList= $detail->getContentTypeid($request)->pluck('content_type_id');
-            $filterList=Attribute::generatefilterList($request,$contentTypeIdList);
+            $contentTypeIdList = $detail->getContentTypeid($request)->pluck('content_type_id');
+            $filterList = Attribute::generatefilterList($request, $contentTypeIdList);
             //dd($filterList);
             // $detail->id;
-           // DB::connection()->enableQueryLog();
+            // DB::connection()->enableQueryLog();
 
-            $relatedProduct = $detail->products('power','desc',$request)->paginate(15);
-           // $queries = DB::getQueryLog();
-           // dd($queries);
+            if(isset($request['max_price'])){
+                $g = getGoldPrice()['priceToman'];
+                $wMin = $request['min_price'] / $g;
+                $wMax = $request['max_price'] / $g;
+                $relatedProduct = $detail->products('power', 'desc', $request)->whereBetween('attr->weight',[$wMin, $wMax])->paginate(15);
+
+            }else{
+                $relatedProduct = $detail->products('power', 'desc', $request)->paginate(15);
+            }
+
+            // $queries = DB::getQueryLog();
+            // dd($queries);
             // dd($detail->products()->orderBy('power','asc'));
         }
 
@@ -79,7 +88,7 @@ class CmsController extends Controller
             ->where('publish_date', '<=', DB::raw('now()'))
             ->get();
 
-        $relatedCompany = $detail->companiesCategory()->paginate(20,['*'],'companyPage');
+        $relatedCompany = $detail->companiesCategory()->paginate(20, ['*'], 'companyPage');
 
 
         $template = env('TEMPLATE_NAME') . '.cms.DetailCategory';
@@ -108,9 +117,9 @@ class CmsController extends Controller
         ]);
     }
 
-    public function request(Request $request,$slug)
+    public function request(Request $request, $slug)
     {
-        $request=$request->all();
+        $request = $request->all();
         // redirect url
         $spesifiedUrl = RedirectUrl::where('url', 'like', '/' . $slug);
         if ($spesifiedUrl->exists()) {
@@ -177,7 +186,7 @@ class CmsController extends Controller
 
         if ($detail->type == 1) {
 
-            return $this->showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule,$request);
+            return $this->showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule, $request);
             /*
             $relatedPost = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'article')
@@ -239,14 +248,20 @@ class CmsController extends Controller
                 ->inRandomOrder()
                 ->limit(4)->get();
 
-            $relatedProduct = Content::where('type', '=', '2')
-                ->where('parent_id', '=', $detail->parent_id)
-                ->where('id', '<>', $detail->id)
-                ->where('attr_type', '=', 'product')
-                ->where('publish_date', '<=', DB::raw('now()'))
-                ->inRandomOrder()
-                ->limit(4)->get();
 
+
+            $relatedProduct = Content::where('type', '=', '2')
+                ->whereHas('categories', function ($query) use ($detail) {
+                    $query->where('cat_id', '=', $detail->parent_id);
+                })
+                ->where('id', '<>', $detail->id)
+                ->where('attr_type', '=', 'product');
+
+            // todo: check in-stock exists
+            $relatedProduct = $relatedProduct->orderBy('attr->in-stock', 'desc');
+
+            // dd($relatedProduct->toSql());
+            $relatedProduct = $relatedProduct->limit(4)->get();
             $template = env('TEMPLATE_NAME') . '.cms.Detail';
             $widget = $this->getWidget('Detail');
             if (isset($detail->attr['template_name'])) {
@@ -467,7 +482,7 @@ class CmsController extends Controller
             $table_of_content = '';
             //dd($val);
 
-            $anchor = '<a id="'.str_replace(' ', '-', cleareText($val)).'" href="#' . str_replace(' ', '-', cleareText($val)) . '">'.cleareText($val).'</a>';
+            $anchor = '<a id="' . str_replace(' ', '-', cleareText($val)) . '" href="#' . str_replace(' ', '-', cleareText($val)) . '">' . cleareText($val) . '</a>';
 
             $anchor = str_replace($winners[1][$key], $anchor, $winners[0][$key]);
             // echo ($anchor);die();
