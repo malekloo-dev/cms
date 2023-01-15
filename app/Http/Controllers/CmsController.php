@@ -64,19 +64,22 @@ class CmsController extends Controller
             $filterList = Attribute::generatefilterList($request, $contentTypeIdList);
             //dd($filterList);
             // $detail->id;
-            // DB::connection()->enableQueryLog();
+            DB::connection()->enableQueryLog();
 
-            if(isset($request['max_price'])){
+            if (isset($request['max_price'])) {
                 $g = getGoldPrice()['priceToman'];
-                $wMin = $request['min_price'] / $g;
-                $wMax = $request['max_price'] / $g;
-                $relatedProduct = $detail->products('power', 'desc', $request)->whereBetween('attr->weight',[$wMin, $wMax])->paginate(15);
+                $wMin = (int) $request['min_price'] ;
+                $wMax = (int) $request['max_price'] ;
 
-            }else{
+                $relatedProduct = $detail->products('power', 'desc', $request)
+                    ->select(DB::raw("JSON_EXTRACT(attr,'$.weight') * $g  + $g * JSON_EXTRACT(attr,'$.weight') * 0.28 + JSON_EXTRACT(attr,'$.additionalprice') as p"))
+                    ->havingRaw(DB::raw("p between $wMin and $wMax"));
+                $relatedProduct = $relatedProduct->paginate(15);
+            } else {
                 $relatedProduct = $detail->products('power', 'desc', $request)->paginate(15);
             }
 
-            // $queries = DB::getQueryLog();
+            $queries = DB::getQueryLog();
             // dd($queries);
             // dd($detail->products()->orderBy('power','asc'));
         }
