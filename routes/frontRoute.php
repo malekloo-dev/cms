@@ -3,10 +3,12 @@
 use App\Http\Controllers\CmsController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SpiderController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/search', [InventoryController::class, 'index'])->name('inventory.show');
@@ -43,7 +45,8 @@ Route::group(['middleware' => 'HtmlMinifier'], function () {
 
 
     Route::post('/comment', [CommentController::class, 'store'])->name('comment.client.store');
-    Route::post('/contact', [CommentController::class, 'store'])->name('contact.client.store');
+    Route::post('/contact', [ContactController::class, 'store'])->name('contact.client.store');
+    Route::post('/order', [OrderController::class, 'store'])->name('order.client.store');
 
 
 });

@@ -1,5 +1,5 @@
 @extends(@env('TEMPLATE_NAME').'.App')
-@section('meta-title', __('messages.login').' | درب کالا')
+@section('meta-title', __('messages.login'))
 
 @section('meta-description','فرم ورود  ')
 
@@ -204,7 +204,7 @@
 <section class="extra-link">
     <a href="{{ route('register') }}">@lang('messages.register')</a>
 
-    <a href="{{ route('password.request') }}">@lang('messages.forgot')</a>
+    <a href="{{ route('customer.forgot.request') }}">@lang('messages.forgot')</a>
 </section>
 <style>
     .red {

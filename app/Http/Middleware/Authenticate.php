@@ -20,6 +20,9 @@ class Authenticate extends Middleware
                 case 'admin':
                     return route('admin.login.form');
                     break;
+                case 'customer':
+                    return route('login');
+                    break;
                 default:
                     return route('login');
                     break;

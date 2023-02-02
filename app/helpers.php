@@ -778,8 +778,8 @@ function sendSms($numbers = ['09331181877'], $message = '', $i = 0)
     $fromNumber = ['10009611', '5000249', 'SimCard', '50005708631983', '10002188', '5000249', '210002100000021', '30005920000015'];
 
     try {
-        $parameters['userName'] = 'mt.09331181877';
-        $parameters['password'] = 'kxx#389';
+        $parameters['userName'] = env('SMS_USERNAME','mt.09331181877');
+        $parameters['password'] = env('SMS_PASSWORD','kxx#389');
         $parameters['fromNumber'] = $fromNumber[$i]; // 50005708631983 , 210002100000021 , 10002188 , 30005920000015 , 5000249 , SimCard , News
         $parameters['toNumbers'] = $numbers;
         $parameters['messageContent'] = $message;

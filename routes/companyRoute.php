@@ -26,3 +26,6 @@ Route::prefix('/company')->middleware(['auth', 'role:super admin|company'])->gro
 
     Route::get('transaction', [CompanyController::class, 'transaction'])->name('company.transaction');
 });
+Route::get('company/login', [CompanyController::class, 'showLoginForm'])->name('company.login.form');
+Route::get('company/register', [CompanyController::class, 'showRegisterForm'])->name('company.register.form');
+Route::get('company/forgot', [CompanyController::class, 'showPasswordForgotForm'])->name('company.forgot.request');

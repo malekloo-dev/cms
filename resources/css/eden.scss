@@ -38,6 +38,8 @@ $button-bg-color: yellow;
 
 @import "nav-mega-menu.scss";
 
+@import "font-icon.scss";
+
 .bg-gray-black {
     background-color: #111;
     color: #fff;
@@ -51,6 +53,36 @@ $button-bg-color: yellow;
 .text-green{
     color: #048312;
 }
+
+
+
+
+////////////////////
+//     customer menu     //
+////////////////////
+.customer-menu{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0 auto 1em;
+    background-color: #f4f4f4;
+    padding: 5px 1em;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap:1em;
+    span{
+        cursor: pointer;
+    }
+    .login{
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: white;
+        padding: 0 1em;
+    }
+}
+
 
 ////////////////////
 //     banner     //

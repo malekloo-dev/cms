@@ -1,4 +1,20 @@
 <div class="top-menu">
+    <div class="customer-menu">
+
+        @auth
+            @role('customer')
+            <span onclick="window.location.href='{{ route('customer.dashboard') }}'"><i class="fa-solid fa-basket-shopping"></i> سبد خرید  </span> |
+
+                <span onclick="window.location.href='{{ route('customer.dashboard') }}'">حساب کاربری</span>
+            @else
+                <span onclick="window.location.href='{{ route('company.dashboard') }}'">حساب کمپانی</span>
+            @endrole
+        @else
+        <span onclick="window.location.href='{{ route('customer.dashboard') }}'"><i class="fa-solid fa-basket-shopping"></i> سبد خرید  </span> |
+
+            <span class="login" onclick="window.location.href='{{ route('login') }}'"><i class="far fa-user"></i></span>
+        @endauth
+    </div>
     <section class="p-0 m-0">
 
         <div class="text-center">
@@ -44,8 +60,7 @@
                                 </li>
                             @endif
                         @endforeach
-                        <li><a
-                            href="{{ route('search') }}">جستجوگر</a>
+                        <li><a href="{{ route('search') }}">جستجوگر</a>
                         </li>
 
                     </ul>
@@ -56,4 +71,6 @@
 
         </div>
     </section>
+
+
 </div>

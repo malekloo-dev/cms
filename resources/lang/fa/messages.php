@@ -174,4 +174,5 @@ return [
     'weight' => 'وزن',
     'additionalprice' => 'مبلغ اضافی',
     'in-stock' => 'موجود',
+    'company' => 'کمپانی',
 ];

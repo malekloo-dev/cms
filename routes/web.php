@@ -104,6 +104,9 @@ Route::get('/clear-cache', function() {
 // 1
 include_once('companyRoute.php');
 
+// 1-1
+include_once('customerRoute.php');
+
 // 2
 include_once('adminRoute.php');
 

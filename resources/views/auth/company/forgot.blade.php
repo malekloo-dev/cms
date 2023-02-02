@@ -157,12 +157,12 @@
     </section>
     <section class="extra-link">
         <div class="m-0 p-0">
-            <a href="{{ route('login') }}">@lang('messages.login')</a>
+            <a href="{{ route('company.login.form') }}">@lang('messages.login')</a>
             /
-            <a href="{{ route('register') }}">@lang('messages.register')</a>
+            <a href="{{ route('company.register.form') }}">@lang('messages.register')</a>
 
         </div>
-        <a href="{{ route('password.request') }}">@lang('messages.forgot')</a>
+        <a href="{{ route('company.forgot.form') }}">@lang('messages.forgot')</a>
     </section>
 
 @endsection

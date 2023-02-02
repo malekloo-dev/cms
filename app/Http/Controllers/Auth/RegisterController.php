@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Company;
+use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -48,11 +48,11 @@ class RegisterController extends Controller
     }
     public function showRegistrationForm()
     {
-        $result = app('App\Http\Controllers\CategoryController')->tree_set();
-        $category = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
+        // $result = app('App\Http\Controllers\CategoryController')->tree_set();
+        // $category = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
 
 
-        return view('auth.register',compact('category'));
+        return view('auth.customer.register');
 
     }
     /**
@@ -92,25 +92,25 @@ class RegisterController extends Controller
     protected function registered($request, $user)
     {
 
-        $company = Company::create([
+        $customer = Customer::create([
             'user_id'=> $user->id,
             'mobile' => $user->mobile,
-            'parent_id' => $request->parent_id
+            // 'parent_id' => $request->parent_id
         ]);
 
 
 
-        $user->assignRole('company');
+        $user->assignRole('customer');
 
-        $company->categories()->attach($request->parent_id);
+        // $customer->categories()->attach($request->parent_id);
 
     }
     protected function redirectTo()
     {
 
          // Check user role
-         if (Auth::user()->hasRole('company'))
-             return '/company';
+         if (Auth::user()->hasRole('customer'))
+             return '/customer';
          else
              return '/';
     }

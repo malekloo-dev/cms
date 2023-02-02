@@ -1,4 +1,4 @@
-@extends(@env('TEMPLATE_NAME').'.App')
+@extends(@env('TEMPLATE_NAME') . '.App')
 
 @section('twitter:title', $detail->title)
 @section('twitter:description', clearHtml($detail->brief_description))
@@ -8,15 +8,13 @@
 @section('canonical', url($detail->slug))
 
 @if (isset($detail->images['images']['medium']))
+    @section('twitter:image', url($detail->images['images']['medium']))
 
-@section('twitter:image', url($detail->images['images']['medium']))
-
-@section('og:image', url($detail->images['images']['medium']))
-@section('og:image:type', 'image/jpeg')
-@section('og:image:width', $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W'))
-@section('og:image:height', $detail->attr_type == 'article' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H'))
-@section('og:image:alt', $detail->title)
-
+    @section('og:image', url($detail->images['images']['medium']))
+    @section('og:image:type', 'image/jpeg')
+    @section('og:image:width', $detail->attr_type == 'product' ? env('PRODUCT_MEDIUM_W') : env('ARTICLE_MEDIUM_W'))
+    @section('og:image:height', $detail->attr_type == 'article' ? env('PRODUCT_MEDIUM_H') : env('ARTICLE_MEDIUM_H'))
+    @section('og:image:alt', $detail->title)
 @endif
 
 
@@ -63,17 +61,18 @@
 
 @section('footer')
     @auth
-        @if ((Auth::user()->id) == 1)
-            <div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/contents/'.$detail->id.'/edit/') }}')">ویرایش</div>
+        @if (Auth::user()->id == 1)
+            <div class="btn btn-info edit-button" onclick="window.open('{{ url('/admin/contents/' . $detail->id . '/edit/') }}')">
+                ویرایش</div>
         @endif
     @endauth
 @endsection
 
 @section('Content')
     @php
-    $tableOfImages=tableOfImages($detail->description);
-    $append='';
-    $price = calcuteGoldPrice($detail->attr['weight']?? 0,$detail->attr['additionalprice']?? 0);
+        $tableOfImages = tableOfImages($detail->description);
+        $append = '';
+        $price = calcuteGoldPrice($detail->attr['weight'] ?? 0, $detail->attr['additionalprice'] ?? 0);
     @endphp
 
     @if ($detail->attr_type == 'product')
@@ -85,7 +84,7 @@
         @include('jsonLdArticle')
     @endif
 
-    @if (count($breadcrumb)>0)
+    @if (count($breadcrumb) > 0)
         @include('jsonLdBreadcrumb')
     @endif
 
@@ -110,9 +109,9 @@
                     <div>
                         <h1 id="product-name" class="">{{ $detail->title }}</h1>
                         <div>
-                            <div class="flex three-500">
-                                <div id="product-image" class="one thirth-500">
-                                    @if(isset($detail->images['images']['large']))
+                            <div class="flex one three-800">
+                                <div id="product-image" class="one thirth-800">
+                                    @if (isset($detail->images['images']['large']))
                                         {{-- <picture>
                                             <img src="{{ $detail->images['images']['large'] ?? '' }}"
                                                 loading="lazy" width="{{ env('PRODUCT_LARGE_W') }}" height="{{ env('PRODUCT_LARGE_H') }}"
@@ -120,10 +119,11 @@
                                         </picture> --}}
 
                                         <figure class="image">
-                                            @if(isset($detail->attr['in-stock']) && $detail->attr['in-stock'] == 0 )
+                                            @if (isset($detail->attr['in-stock']) && $detail->attr['in-stock'] == 0)
                                                 <div class="not-in-stock">قابل سفارش</div>
                                             @endif
-                                            <img id="main-image" loading="lazy" src="{{ $detail->images['images']['large'] }}" alt="{{ $detail->title }}"
+                                            <img id="main-image" loading="lazy"
+                                                src="{{ $detail->images['images']['large'] }}" alt="{{ $detail->title }}"
                                                 width="{{ env(Str::upper($detail->attr_type) . '_LARGE_W') }}"
                                                 height="{{ env(Str::upper($detail->attr_type) . '_LARGE_H') }}">
                                         </figure>
@@ -142,28 +142,38 @@
                                             </div>
                                         @endif
                                     @else
-                                    <picture>
-                                            <img class="m-auto p-4" width="" height="" src="https://img.icons8.com/ios/100/cccccc/no-image.png" alt="company-no-image"/>
-                                    </picture>
+                                        <picture>
+                                            <img class="m-auto p-4" width="" height=""
+                                                src="https://img.icons8.com/ios/100/cccccc/no-image.png"
+                                                alt="company-no-image" />
+                                        </picture>
                                     @endif
                                 </div>
-                                <div class="two-third-500">
-                                    @if(count($detail->companies))
-                                        <div class="company-logo">
-                                            <a href="{{ url('/profile/'.$detail->companies->first()->id) }}">
+                                <div class="two-third-800">
 
-                                                @if (isset($detail->companies->first()->logo) && $detail->companies->first()->logo['medium'] != '' && file_exists(public_path($detail->companies->first()->logo['medium'])))
-                                                {{-- @if (isset($detail->companies->first()->logo) && $detail->companies->first()->logo['medium'] == '' && !file_exists(public_path($detail->companies->first()->logo['medium']))) --}}
-                                                    <img loading="lazy" src="{{ url($detail->companies->first()->logo['medium']) }}" width="50" height="50" class="border-radius-50" alt="company profile">
+
+
+                                    @if (count($detail->companies))
+                                        <div class="company-logo">
+                                            <a href="{{ url('/profile/' . $detail->companies->first()->id) }}">
+
+                                                @if (isset($detail->companies->first()->logo) &&
+                                                        $detail->companies->first()->logo['medium'] != '' &&
+                                                        file_exists(public_path($detail->companies->first()->logo['medium'])))
+                                                    {{-- @if (isset($detail->companies->first()->logo) && $detail->companies->first()->logo['medium'] == '' && !file_exists(public_path($detail->companies->first()->logo['medium']))) --}}
+                                                    <img loading="lazy"
+                                                        src="{{ url($detail->companies->first()->logo['medium']) }}"
+                                                        width="50" height="50" class="border-radius-50"
+                                                        alt="company profile">
                                                 @endif
-                                                {{ $detail->companies->first()->name ?? '' }}</a>
+                                                {{ $detail->companies->first()->name ?? '' }}
+                                            </a>
                                         </div>
                                     @endif
 
                                     @isset($detail->attr['weight'])
-
                                         <div class="flex one">
-                                            <span>وزن: {{ $detail->attr['weight']?? 0 }} گرم</span>
+                                            <span>وزن: {{ $detail->attr['weight'] ?? 0 }} گرم</span>
                                             <span class="price text-green ">قیمت @convertCurrency($price['totalPrice']) تومان</span>
                                             <span class="font-08">(قیمت روز طلا:@convertCurrency($price['goldprice']) تومان)</span>
                                         </div>
@@ -172,17 +182,17 @@
                                     <span id="product-rate" class="rate  mt-1">
                                         @if (count($detail->comments))
                                             @php
-                                            $rateAvrage = $rateSum = 0;
+                                                $rateAvrage = $rateSum = 0;
                                             @endphp
                                             @foreach ($detail->comments as $comment)
                                                 @php
-                                                $rateSum = $rateSum + $comment['rate'] ;
+                                                    $rateSum = $rateSum + $comment['rate'];
                                                 @endphp
                                             @endforeach
                                             @for ($i = $rateSum / count($detail->comments); $i >= 1; $i--)
                                                 <label></label>
                                             @endfor
-                                            <span class="font-07">({{ count($detail->comments) }} نفر)   </span>
+                                            <span class="font-07">({{ count($detail->comments) }} نفر) </span>
                                         @endif
                                     </span>
                                     <div class="font-08">
@@ -192,26 +202,54 @@
 
 
 
-                                </div>
-                                        <div id="product-categories" class=" mt-1">
-                                            دسته بندی :
+                                    </div>
+                                    <div id="product-categories" class=" mt-1">
+                                        دسته بندی :
 
 
-                                            @php $countBread= count($breadcrumb)-1; $i=0; @endphp
+                                        @php
+                                            $countBread = count($breadcrumb) - 1;
+                                            $i = 0;
+                                        @endphp
                                         @foreach ($breadcrumb as $key => $item)
-                                                <span>  &nbsp |  &nbsp</span>
-                                                <a href="{{ $item['slug'] }}"> {{ $item['title'] }} </a>
-                                                @php
-                                                    $i++;
-                                                    if($i>=$countBread){ break; }
-                                                @endphp
-                                            @endforeach
-                                        </div>
-                                        <div>
-                                            {!! $detail->brief_description !!}
+                                            <span> &nbsp | &nbsp</span>
+                                            <a href="{{ $item['slug'] }}"> {{ $item['title'] }} </a>
+                                            @php
+                                                $i++;
+                                                if ($i >= $countBread) {
+                                                    break;
+                                                }
+                                            @endphp
+                                        @endforeach
+                                    </div>
+
+                                    <form action="{{ route('customer.order.store') }}" method="post" >
+                                        @csrf
+                                        @if (\Session::has('success'))
+                                            <div class="alert alert-success ">
+                                                {!! \Session::get('success') !!}
+                                            </div>
+                                        @endif
+                                        @if (\Session::has('error'))
+                                            <div class="alert alert-danger ">
+                                                {!! \Session::get('error') !!}
+                                            </div>
+                                        @endif
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                {!! implode('', $errors->all('<div>:message</div>')) !!}
+                                            </div>
+                                        @endif
+                                        <input type="hidden" name="id" value="{{ $detail->id }}">
+                                        <button class="btn btn-success btn-block mt-1">
+                                            ثبت سفارش
+                                        </button>
+                                    </form>
+                                    <div>
+                                        {!! $detail->brief_description !!}
 
 
-                                        </div>
+                                    </div>
 
 
                                 </div>
@@ -227,7 +265,7 @@
                             </ul>
 
 
-                            @include(@env('TEMPLATE_NAME').'.DescriptionModule')
+                            @include(@env('TEMPLATE_NAME') . '.DescriptionModule')
 
                         </div>
                     </div>
@@ -248,29 +286,28 @@
                     <h2>محصولات مرتبط {{ $detail->title }}</h2>
                     <div class="flex two  five-900  center">
 
-                        {{--$data['newPost']--}}
+                        {{-- $data['newPost'] --}}
                         @foreach ($relatedProduct as $content)
+                            <a href="{{ url($content->slug) }}">
+                                <div class="shadow hover p-0 border-radius-5">
+                                    @if (isset($content->images['images']['small']))
+                                        <figure class="image">
+                                            @if (isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0)
+                                                <div class="not-in-stock">قابل سفارش</div>
+                                            @endif
+                                            <img loading="lazy" src="{{ $content->images['images']['large'] }}"
+                                                alt="{{ $content->title }}" title="{{ $content->title }}" width="300"
+                                                height="300">
+                                            <figcaption>
+                                                <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                                            </figcaption>
+                                        </figure>
+                                    @else
+                                        <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                                    @endif
 
-                                <a  href="{{ url($content->slug) }}">
-                                    <div class="shadow hover p-0 border-radius-5">
-                                        @if (isset($content->images['images']['small']))
-                                            <figure class="image">
-                                                @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
-                                                    <div class="not-in-stock">قابل سفارش</div>
-                                                @endif
-                                                <img loading="lazy" src="{{ $content->images['images']['large'] }}"
-                                                    alt="{{ $content->title }}" title="{{ $content->title }}" width="300" height="300">
-                                                <figcaption>
-                                                    <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
-                                                </figcaption>
-                                            </figure>
-                                        @else
-                                            <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
-                                        @endif
-
-                                    </div>
-                                </a>
-
+                                </div>
+                            </a>
                         @endforeach
 
                     </div>
@@ -311,20 +348,20 @@
                             <div>
                                 <div class="rating">
                                     <span>امتیاز: </span>
-                                    <input name="rate" type="radio" id="st5" {{ old('rate') == '5' ? 'checked' : '' }}
-                                        value="5" />
+                                    <input name="rate" type="radio" id="st5"
+                                        {{ old('rate') == '5' ? 'checked' : '' }} value="5" />
                                     <label for="st5" title="عالی"></label>
-                                    <input name="rate" type="radio" id="st4" {{ old('rate') == '4' ? 'checked' : '' }}
-                                        value="4" />
+                                    <input name="rate" type="radio" id="st4"
+                                        {{ old('rate') == '4' ? 'checked' : '' }} value="4" />
                                     <label for="st4" title="خوب"></label>
-                                    <input name="rate" type="radio" id="st3" {{ old('rate') == '3' ? 'checked' : '' }}
-                                        value="3" />
+                                    <input name="rate" type="radio" id="st3"
+                                        {{ old('rate') == '3' ? 'checked' : '' }} value="3" />
                                     <label for="st3" title="معمولی"></label>
-                                    <input name="rate" type="radio" id="st2" {{ old('rate') == '2' ? 'checked' : '' }}
-                                        value="2" />
+                                    <input name="rate" type="radio" id="st2"
+                                        {{ old('rate') == '2' ? 'checked' : '' }} value="2" />
                                     <label for="st2" title="ضعیف"></label>
-                                    <input name="rate" type="radio" id="st1" {{ old('rate') == '1' ? 'checked' : '' }}
-                                        value="1" />
+                                    <input name="rate" type="radio" id="st1"
+                                        {{ old('rate') == '1' ? 'checked' : '' }} value="1" />
                                     <label for="st1" title="بد"></label>
                                     <span id="rating-hover-label"></span>
                                 </div>
@@ -353,7 +390,7 @@
                                 <div class="article">
                                     <div>
                                         @for ($i = $comment->rate; $i >= 1; $i--)
-                                        <label></label>
+                                            <label></label>
                                         @endfor
                                     </div>
                                     <div class="text">{!! $comment['comment'] !!}</div>

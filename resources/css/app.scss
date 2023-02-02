@@ -298,6 +298,9 @@ h3{font-size: $h3-font-size ; color: $h3-color; }
     .twelve-800 > * {
         width: 8.33333%;
     }
+    .hidden-800{
+        display: none;
+    }
 }
 @media all and (min-width: 900px) {
     .one-900 > * {
@@ -1822,7 +1825,7 @@ button {
     background-color: #5c6bc0;
     color: #fff;
 }
-.btn-sucess {
+.btn-success {
     background-color: #26a69a;
 }
 .btn-warning {
