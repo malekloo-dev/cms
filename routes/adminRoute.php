@@ -71,6 +71,11 @@ Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(functio
     Route::patch('company/edit/{company}', [CompanyController::class, 'companyEdit'])->name('admin.company.edit');
     Route::delete('company/{company}', [CompanyController::class, 'companyDestroy'])->name('admin.company.destroy');
 
+    /* Order */
+    Route::get('orders', [CompanyController::class, 'orderList'])->name('admin.order.index');
+    Route::get('order/{order}', [CompanyController::class, 'orderDetail'])->name('admin.order.detail');
+    Route::patch('order/{order}', [CompanyController::class, 'orderEdit'])->name('admin.order.edit');
+    Route::delete('order/{order}', [CompanyController::class, 'orderDestroy'])->name('admin.order.destroy');
 
     /* content type */
     Route::get('contentType',[AttributeController::class,'contentTypeList'])->name('admin.content.type.index');

@@ -775,7 +775,7 @@ function sendSms($numbers = ['09331181877'], $message = '', $i = 0)
 {
     ini_set('soap.wsdl_cache_enabled', '0');
     $sms_client = new SoapClient('http://payamak-service.ir/SendService.svc?wsdl', ['encoding' => 'UTF-8']);
-    $fromNumber = ['10009611', '5000249', 'SimCard', '50005708631983', '10002188', '5000249', '210002100000021', '30005920000015'];
+    $fromNumber = ['30005920000015'];//,'10002188','500022200', '50002708636341','10009611', '5000249', 'SimCard', '50005708631983', '10002188', '5000249', '210002100000021', '30005920000015'];
 
     try {
         $parameters['userName'] = env('SMS_USERNAME','mt.09331181877');
@@ -789,6 +789,7 @@ function sendSms($numbers = ['09331181877'], $message = '', $i = 0)
         // $parameters['recId'] = &$recId;
         // $parameters['status'] = &$status;
 
+
         $res = $sms_client->SendSMS($parameters)->SendSMSResult;
 
         if ($res == 0) {
@@ -796,9 +797,11 @@ function sendSms($numbers = ['09331181877'], $message = '', $i = 0)
         }
 
         $res = sendSms($numbers, $message, ++$i);
+
         return $res;
     } catch (Exception $e) {
-        return 'Caught exception: ' . $e->getMessage() . "\n";
+
+        return 'SMS exception: ' . $e->getMessage() . "\n";
     }
 }
 

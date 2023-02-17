@@ -83,6 +83,11 @@ class Content extends Model
         return $this->hasMany(ContentAttributeValue::class);
     }
 
+    public function GoldPrice()
+    {
+        return calcuteGoldPrice($this->attr['weight'] ?? 0, $this->attr['additionalprice'] ?? 0);
+    }
+
 
     // this is a recommended way to declare event handlers
     public static function boot()

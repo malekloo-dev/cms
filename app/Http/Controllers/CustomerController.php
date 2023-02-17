@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Services\attribute\Attribute;
 use App\Services\wpService;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -55,27 +56,120 @@ class CustomerController extends Controller
     }
 
 
-    public function ordersList()
+    public function cartList()
     {
-        # code...
+
+        $userID = Auth()->user()->id;
+        $cart = \Cart::session($userID)->getContent()->toArray();
+
+        return view('auth.customer.cartList', compact('cart'));
     }
-    public function orderStore(Request $request)
+    public function cartStore(Request $request)
     {
         if (!isset($request->id) || !is_numeric($request->id)) {
             redirect()->back();
         }
 
-        $id = $request->id;
+        $Product = (new Content)->where('id', '=',  $request->id)->where('type', '=', 2)->first();
 
-        $product = (new Content)->where('id', '=', $id)->where('type', '=', 2)->first();
+        $userID = Auth()->user()->id; // the user ID to bind the cart contents
 
-        $user = Auth::user();
+        \Cart::session($userID)->add(array(
+            'id' => $Product->id,
+            'name' => $Product->title,
+            'price' => $Product->GoldPrice()['totalPrice'],
+            'quantity' => $request?->count ?? 1,
+            'attributes' => array(
+                'userId' => $userID,
+                'product_id' => $Product->id,
+                'slug' => $Product->slug,
+                'image' => $Product->images['images']['small'],
+            ),
+            'associatedModel' => $Product
+        ));
 
 
-        // dd($r);
+        return redirect()->route('customer.cart.list')->with('message', 'به سبد اضافه شد');
+    }
+    public function cartDestroy(Content $product)
+    {
+        $userID = Auth()->user()->id;
+        $res = \Cart::session($userID)->remove($product->id);
+        return redirect()->route('customer.cart.list')->with('message', 'آپدیت شد');
+    }
+    public function cartUpdate(Request $request, Content $product)
+    {
+        $userID = Auth()->user()->id;
+
+        $cart = \Cart::session($userID)->getContent()->toArray()[$product->id] ?? False;
+        if (!$cart)
+            return redirect()->route('customer.cart.list')->with('message', 'پیدا نشد');
+
+
+        \Cart::session($userID)->update($product->id, ['quantity' => (int) $request->count]);
+        if ($cart['quantity'] == 1 && (int) $request->count < 0)
+            \Cart::session($userID)->remove($product->id);
+
+        return redirect()->route('customer.cart.list')->with('message', 'آپدیت شد');
     }
 
 
+
+
+
+    public function orderStore()
+    {
+        $user = Auth()->user();
+        $cart = \Cart::session($user->id)->getContent()->toArray();
+        $totalPrice = \Cart::session($user->id)->getTotal();
+
+        try {
+            $order = $user->orders()->create([
+                'total_price' => $totalPrice,
+                'status' => 0
+            ]);
+            $order->orderDetail()->delete();
+
+            foreach ($cart as $v) {
+
+                $order->orderDetail()->firstOrCreate([
+                    'title' => $v['name'],
+                    'price' => $v['price'],
+                    'count' => $v['quantity'],
+                    'attributes' => $v['attributes']
+                ]);
+                \Cart::session($user->id)->remove($v['id']);
+            }
+
+
+        } catch (Exception $e) {
+            dd($e);
+        }
+
+        $sms = sendSms('09331181877', 'شماره'.$user->mobile.' سفارش ثبت کرد'."\nشماره: ".$order->id);
+
+        return redirect()->route('customer.order.list');
+    }
+    public function orderList()
+    {
+        $user = Auth()->user();
+        $orders = $user->orders()->orderBy('id','desc')->get();
+
+        return view('auth.customer.orderList', compact('orders'));
+    }
+    public function orderDetail(Order $order)
+    {
+        $user = Auth()->user();
+        $orderDetail = $user->orders($order->id)->orderDetail;
+        return view('auth.customer.orderDetailList', compact('order','orderDetail'));
+    }
+    public function orderDestroy(Order $order)
+    {
+        $user = Auth()->user();
+        $user->orders($order->id)->delete();
+
+        return redirect()->route('customer.order.list')->with('message',__('messages.deleted'));
+    }
 
 
     public function dashboard()
@@ -389,21 +483,21 @@ class CustomerController extends Controller
     public function invoiceStore(Request $request, Content $content)
     {
         // dd($request->all());
-        $user = Auth::user();
+        $user = Auth()->user();
 
+        $totalPrice = \Cart::session($user->id)->getTotal();
 
         $count = $request->count;
-        $price = 30000 * $count;
 
-        // dd(Lang::get('messages.power up for',['count'=>$count,'content'=>$content->title]));
+
 
         $user->transactions()->where('transactionable_id', '=', $content->id)->where('transactionable_type', '=', Content::class)->delete();
 
         $transaction = $user->transactions()->firstOrCreate([
             'title' => $content->title,
             'count' => $count,
-            'price' => $price,
-            'description' =>  Lang::get('messages.power up for', ['count' => $count, 'content' => $content->title]),
+            'price' => $totalPrice,
+            'description' =>  '',
             'transactionable_type' => Content::class,
             'transactionable_id' => $content->id,
             'message' => Lang::get('messages.invoice created'),

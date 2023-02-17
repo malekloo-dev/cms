@@ -3,9 +3,9 @@
 
         @auth
             @role('customer')
-            <span onclick="window.location.href='{{ route('customer.dashboard') }}'"><i class="fa-solid fa-basket-shopping"></i> سبد خرید  </span> |
+            <span onclick="window.location.href='{{ route('customer.order.list') }}'"><i class="fa-solid fa-basket-shopping"></i> سفارشات  </span>
 
-                <span onclick="window.location.href='{{ route('customer.dashboard') }}'">حساب کاربری</span>
+                {{-- <span onclick="window.location.href='{{ route('customer.order.list') }}'">حساب کاربری</span> --}}
             @else
                 <span onclick="window.location.href='{{ route('company.dashboard') }}'">حساب کمپانی</span>
             @endrole

@@ -10,37 +10,44 @@
     </div>
     <ul>
         <li class="company-logo">
-            @if (
-                !isset(Auth::user()->customer->logo['large']) ||
-                    Auth::user()->customer->logo['large'] == '' ||
-                    !file_exists(public_path(Auth::user()->customer->logo['large'])))
+            {{-- @if (!isset(Auth::user()->customer->logo['large']) || Auth::user()->customer->logo['large'] == '' || !file_exists(public_path(Auth::user()->customer->logo['large'])))
                 <i class="far fa-user logo"></i>
             @else
                 <img width="100" src="{{ url(Auth::user()->customer->logo['large']) }}?{{ uniqid() }}">
-            @endif
+            @endif --}}
 
 
         </li>
         <li>
-            {{ Auth::user()->name }}
+            {{ Auth::user()->mobile }}
         </li>
-        <li class="price">
+        {{-- <li class="price">
             <i class="fa fa-wallet"></i>
             @convertCurrency(0) {{ __('messages.toman') }}
-        </li>
+        </li> --}}
 
 
-        <li class="{{ Request::is('customer') ? 'active' : '' }}"><a
-                href="{{ route('customer.dashboard') }}">{{ __('messages.Dashboard') }}</a></li>
+        {{-- <li class="{{ Request::is('customer') ? 'active' : '' }}"><a
+                href="{{ route('customer.dashboard') }}">{{ __('messages.Dashboard') }}</a></li> --}}
 
-        <li class="{{ Request::is('customer/profile') ? 'active' : '' }}"><a href="{{ route('customer.profile') }}">
-                {{ __('messages.profile') }}</a></li>
+        {{-- <li class="{{ Request::is('customer/profile') ? 'active' : '' }}"><a href="{{ route('customer.profile') }}">
+                {{ __('messages.profile') }}</a></li> --}}
 
-        <li class="{{ Request::is('customer/transaction') ? 'active' : '' }}"><a class="no-border"
-                href="{{ route('customer.transaction') }}"> {{ __('messages.transaction') }}</a></li>
+        <li class="{{ Request::is('customer/cart') ? 'active' : '' }}"><a class="no-border"
+                href="{{ route('customer.cart.list') }}"> {{ __('messages.cart') }}</a></li>
 
+        <li class="{{ Request::is('customer/orders') ? 'active' : '' }}"><a href="{{ route('customer.order.list') }}">
+                {{ __('messages.orders') }}</a></li>
+
+        {{-- <li class="{{ Request::is('customer/transaction') ? 'active' : '' }}"><a class="no-border"
+                href="{{ route('customer.transaction') }}"> {{ __('messages.transaction') }}</a></li> --}}
+
+
+
+
+{{--
         <li class="{{ Request::is('customer/invoice') ? 'active' : '' }}"><a class="no-border"
-                href="{{ route('customer.invoice.list') }}"> {{ __('messages.invoices') }}</a></li>
+                href="{{ route('customer.invoice.list') }}"> {{ __('messages.invoices') }}</a></li> --}}
 
 
         <li>

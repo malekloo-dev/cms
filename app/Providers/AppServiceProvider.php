@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Comment;
+use App\Models\Order;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -48,7 +49,9 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('admin/*', function () {
             $commentCount = Comment::where('status','',0)->count();
-            View::share('commentCount', $commentCount);
+            $orderCount = Order::where('status','',0)->count();
+            View::share('commentCount',$commentCount );
+            View::share('orderCount',$orderCount );
         });
 
 

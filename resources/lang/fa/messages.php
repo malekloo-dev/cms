@@ -20,6 +20,7 @@ return [
     'edit' => 'ویرایش',
     'delete' => 'حذف',
     'confirm' => 'تایید',
+    'unconfirm' => 'رد',
     'Operators' => 'اپراتور',
     'Are you sure?' => 'آیا مطمئن هستید؟',
     'Active' => 'فعال',
@@ -175,4 +176,15 @@ return [
     'additionalprice' => 'مبلغ اضافی',
     'in-stock' => 'موجود',
     'company' => 'کمپانی',
+    'pay' => 'پرداخت',
+    'quantity' => 'عدد',
+    'ordered' => 'ثبت سفارش',
+    'order insert' => 'سفارش ثبت شده است',
+    'orders' => ' سفارشات',
+    'order' => ' سفارش',
+    'order detail' => 'جزییات سفارش',
+    'cart' => 'سبد خرید',
+    'not found' => 'موردی یافت نشد',
+    'back to' => 'بازگشت به صفحه  :page ',
+
 ];

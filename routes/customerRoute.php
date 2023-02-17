@@ -4,12 +4,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/customer')->middleware(['auth', 'role:super admin|customer'])->group(function () {
     Route::get('/', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
-    Route::get('/orders/list', [CustomerController::class, 'ordersList'])->name('customer.order.list');
-    Route::post('/order', [CustomerController::class, 'orderStore'])->name('customer.order.store');
 
-    Route::get('profile', [CustomerController::class, 'profile'])->name('customer.profile');
-    Route::post('profileChangeLogo', [CustomerController::class, 'profileChangeLogo'])->name('customer.profile.changeLogo');
-    Route::post('profileUpdate', [CustomerController::class, 'profileUpdate'])->name('customer.profile.update');
+    Route::get('/cart', [CustomerController::class, 'cartList'])->name('customer.cart.list');
+    Route::post('/cart', [CustomerController::class, 'cartStore'])->name('customer.cart.store');
+    Route::delete('cart/{product}', [CustomerController::class, 'cartDestroy'])->name('customer.cart.destroy');
+    Route::post('cart/{product}', [CustomerController::class, 'cartUpdate'])->name('customer.cart.update');
+
+    Route::get('/orders', [CustomerController::class, 'orderList'])->name('customer.order.list');
+    Route::post('/order', [CustomerController::class, 'orderStore'])->name('customer.order.store');
+    Route::get('/order/{order}/detail', [CustomerController::class, 'orderDetail'])->name('customer.order.detail');
+    Route::delete('/order/{order}', [CustomerController::class, 'orderDestroy'])->name('customer.order.destroy');
+
+
+    // Route::get('profile', [CustomerController::class, 'profile'])->name('customer.profile');
+    // Route::post('profileChangeLogo', [CustomerController::class, 'profileChangeLogo'])->name('customer.profile.changeLogo');
+    // Route::post('profileUpdate', [CustomerController::class, 'profileUpdate'])->name('customer.profile.update');
 
     // Route::get('products', [CustomerController::class, 'products'])->name('customer.products');
     // Route::get('products/create', [CustomerController::class, 'productsCreate'])->name('customer.products.create');

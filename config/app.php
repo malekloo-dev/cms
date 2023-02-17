@@ -180,6 +180,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
 
+        Darryldecode\Cart\CartServiceProvider::class
 
     ],
 
@@ -236,6 +237,7 @@ return [
         'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
 
         'WebsiteSetting'=> App\Models\WebsiteSetting::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class
 
     ],
 

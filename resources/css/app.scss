@@ -2606,6 +2606,7 @@ $sizes: 5;
 .text-right {
     text-align: right;
 }
+.display-block{display: block;}
 .white-space-nowrap {
     white-space: nowrap;
 }
@@ -2758,6 +2759,9 @@ section.wide {
 }
 .border-radius-15 {
     border-radius: 15px;
+}
+.border-radius-50px {
+    border-radius: 50px;
 }
 .border-radius-50 {
     border-radius: 50%;

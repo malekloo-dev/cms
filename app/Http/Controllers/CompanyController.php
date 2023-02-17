@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Order;
 use App\Models\Content;
 use App\Models\CompanyContents;
 use App\Models\ContentType;
@@ -703,6 +704,40 @@ class CompanyController extends Controller
 
         return redirect()->route('admin.company.index')->with('success', Lang::get('messages.deleted'));
     }
+
+
+
+
+
+
+
+    public function orderList()
+    {
+        $list = Order::orderBy('id','desc')->get();
+        return view('admin.order.index', compact('list'));
+    }
+    public function orderDetail(Order $order)
+    {
+        $list = $order->orderDetail;
+        return view('admin.order.detail', compact('list','order'));
+    }
+    public function orderEdit(Request $request, Order $order)
+    {
+        $order->update(['status'=>$request->status]);
+        return redirect()->route('admin.order.index')->with('success', Lang::get('messages.updated'));
+    }
+    public function orderDestroy(Order $order)
+    {
+        $order->delete();
+        return redirect()->route('admin.order.index')->with('success', Lang::get('messages.deleted'));
+    }
+
+
+
+
+
+
+
     public function wpGetproduct()
     {
         $wp=new wpService();

@@ -79,9 +79,12 @@ class User extends Authenticatable
         return $this->hasMany(Transaction::class);
     }
 
-    public function orders()
+    public function orders($id=false)
     {
-        return $this->hasMany(Order::class);
+        if($id)
+            return $this->hasMany(Order::class)->find($id);
+        else
+            return $this->hasMany(Order::class);
     }
 
 

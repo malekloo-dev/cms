@@ -72,7 +72,7 @@
     @php
         $tableOfImages = tableOfImages($detail->description);
         $append = '';
-        $price = calcuteGoldPrice($detail->attr['weight'] ?? 0, $detail->attr['additionalprice'] ?? 0);
+        // $price = calcuteGoldPrice($detail->attr['weight'] ?? 0, $detail->attr['additionalprice'] ?? 0);
     @endphp
 
     @if ($detail->attr_type == 'product')
@@ -174,11 +174,32 @@
                                     @isset($detail->attr['weight'])
                                         <div class="flex one">
                                             <span>وزن: {{ $detail->attr['weight'] ?? 0 }} گرم</span>
-                                            <span class="price text-green ">قیمت @convertCurrency($price['totalPrice']) تومان</span>
-                                            <span class="font-08">(قیمت روز طلا:@convertCurrency($price['goldprice']) تومان)</span>
+                                            <span class="price text-green ">قیمت @convertCurrency($detail->GoldPrice()['totalPrice']) تومان</span>
+                                            <span class="font-08">(قیمت روز طلا:@convertCurrency($detail->GoldPrice()['goldprice']) تومان)</span>
                                         </div>
                                     @endisset
-
+                                    <form action="{{ route('customer.cart.store') }}" method="post" >
+                                        @csrf
+                                        @if (\Session::has('success'))
+                                            <div class="alert alert-success ">
+                                                {!! \Session::get('success') !!}
+                                            </div>
+                                        @endif
+                                        @if (\Session::has('error'))
+                                            <div class="alert alert-danger ">
+                                                {!! \Session::get('error') !!}
+                                            </div>
+                                        @endif
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                {!! implode('', $errors->all('<div>:message</div>')) !!}
+                                            </div>
+                                        @endif
+                                        <input type="hidden" name="id" value="{{ $detail->id }}">
+                                        <button class="btn btn-success px-3 display-block m-auto border-radius-50px color-white">
+                                            ثبت سفارش
+                                        </button>
+                                    </form>
                                     <span id="product-rate" class="rate  mt-1">
                                         @if (count($detail->comments))
                                             @php
@@ -223,28 +244,7 @@
                                         @endforeach
                                     </div>
 
-                                    <form action="{{ route('customer.order.store') }}" method="post" >
-                                        @csrf
-                                        @if (\Session::has('success'))
-                                            <div class="alert alert-success ">
-                                                {!! \Session::get('success') !!}
-                                            </div>
-                                        @endif
-                                        @if (\Session::has('error'))
-                                            <div class="alert alert-danger ">
-                                                {!! \Session::get('error') !!}
-                                            </div>
-                                        @endif
-                                        @if ($errors->any())
-                                            <div class="alert alert-danger">
-                                                {!! implode('', $errors->all('<div>:message</div>')) !!}
-                                            </div>
-                                        @endif
-                                        <input type="hidden" name="id" value="{{ $detail->id }}">
-                                        <button class="btn btn-success btn-block mt-1">
-                                            ثبت سفارش
-                                        </button>
-                                    </form>
+
                                     <div>
                                         {!! $detail->brief_description !!}
 

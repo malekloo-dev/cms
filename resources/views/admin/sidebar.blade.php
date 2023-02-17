@@ -40,8 +40,17 @@
             </a>
         </li>
         <li class="divider"></li>
+        <li class="no-margin">
+            <a href="{{ route('admin.order.index') }}" class="no-margin @if (!$ltr) text-right @endif">
+                <i class="sidebar-icon @if (!$ltr) pull-right @endif fa fa-ticket"></i>
+                <span class="sidebar-text @if (!$ltr) text-right @endif">@lang('messages.orders')</span>
+                @isset($orderCount)
+                    <span class="budget ">{{ $orderCount ?? 0 }}</span>
+                @endisset
+            </a>
 
-
+        </li>
+        <li class="divider"></li>
 
 
         <li class="no-margin">
