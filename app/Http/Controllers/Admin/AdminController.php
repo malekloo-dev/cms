@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Company;
 use App\Models\Content;
+use Spatie\Permission\Models\Role;
+use App\Models\User;
 use Intervention\Image\Facades\Image;
 
 
@@ -57,6 +59,9 @@ class AdminController extends Controller
         $data['commentsCount'] = Comment::count();
 
         $data['companiesCount'] = Company::count();
+
+        $data['customersCount'] = Role::where('name','=','customer')->first()->users->count();
+        
 
         // dd($data);
 

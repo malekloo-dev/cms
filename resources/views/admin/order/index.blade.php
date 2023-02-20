@@ -49,7 +49,16 @@
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td class="">{{ $item->user->mobile ?? '' }}</td>
-                                <td style="font-weight:bold">@convertCurrency($item->total_price) @lang('messages.toman')</td>
+                                <td style="font-weight:bold">
+
+                                    @convertCurrency($item->total_price) @lang('messages.toman')
+
+                                    @foreach ($item->orderDetail as $item2)
+                                    @if (isset($item2['attributes']['image']) && file_exists(public_path() . $item2['attributes']['image']))
+                                        <img height="40" style="border:1px solid #ccc" src="{{ $item2->attributes['image'] }}" alt="">
+                                    @endif
+                                @endforeach
+                                </td>
 
                                 <td>
                                     @if ($item->status == 2)
@@ -71,22 +80,22 @@
 
                                 <td>
 
-                                        <div style="display: flex; gap:1em; align-items: center; justify-content: space-around">
+                                    <div style="display: flex; gap:1em; align-items: center; justify-content: space-around">
 
-                                            <a class="btn btn-info btn-sm" href="{{ route('admin.order.detail', $item) }}">
-                                                @lang('messages.detail') ({{ $item->orderDetail()->count() }})
-                                            </a>
-                                            <form class="" action="{{ route('admin.order.destroy', $item) }}"
-                                                method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button onclick="return confirm('@lang('messages.Are you sure?')')"
-                                                    class="font-full-plus-half-em text-danger btn-xs  no-border no-bg no-padding"
-                                                    type="submit" title="@lang('messages.delete')">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </div>
+                                        <a class="btn btn-info btn-sm" href="{{ route('admin.order.detail', $item) }}">
+                                            @lang('messages.detail') ({{ $item->orderDetail()->count() }})
+                                        </a>
+                                        <form class="" action="{{ route('admin.order.destroy', $item) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button onclick="return confirm('@lang('messages.Are you sure?')')"
+                                                class="font-full-plus-half-em text-danger btn-xs  no-border no-bg no-padding"
+                                                type="submit" title="@lang('messages.delete')">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
 
 
                                 </td>

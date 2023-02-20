@@ -34,9 +34,9 @@
         <div class="panel panel-default pos-abs chat-panel bottom-0">
             <div class="panel-body full-height">
                 @if ($order->status == 2)
-                <div class="alert alert-success">
-                    @lang('messages.confirm')
-                </div>
+                    <div class="alert alert-success">
+                        @lang('messages.confirm')
+                    </div>
                 @elseif ($order->status == -1)
                     <div class="alert alert-warning">
                         @lang('messages.unconfirm')
@@ -77,17 +77,14 @@
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td>
-                                    @if (isset($content['attributes']['image']) && file_exists(public_path() . $content['attributes']['image']))
+
+                                    @if (isset($item['attributes']['image']) && file_exists(public_path() . $item['attributes']['image']))
                                         <img src="{{ $item->attributes['image'] }}" alt="">
                                     @else
                                         -
                                     @endif
                                 </td>
-                                <td class="">
-                                    {{ $item->title ?? '' }}
-                                </td>
-
-
+                                <td class="">{{ $item->title ?? '' }}</td>
                                 <td>
                                     @if ($item->status == 2)
                                         <i class="fa fa-check"></i>
@@ -96,19 +93,13 @@
                                     @else
                                         ثبت شده
                                     @endif
-
                                 </td>
-
-                                <td class="">{{ convertGToJ($item->updated_at, $time = true) }}
-
-                                </td>
+                                <td class="">{{ convertGToJ($item->updated_at, $time = true) }}</td>
                                 <td class="">{{ convertGToJ($item->created_at, true) }} </td>
-
                                 <td>
                                     <div class="">
                                         <div class="">
-                                            <form class="pull-right" action="{{ route('admin.order.destroy', $item) }}"
-                                                method="post">
+                                            <form class="pull-right" action="{{ route('admin.order.destroy', $item) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button onclick="return confirm('@lang('messages.Are you sure?')')"
@@ -117,11 +108,8 @@
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </form>
-
                                         </div>
-
                                     </div>
-
                                 </td>
                             </tr>
                         @endforeach

@@ -178,7 +178,7 @@
                                             <span class="font-08">(قیمت روز طلا:@convertCurrency($detail->GoldPrice()['goldprice']) تومان)</span>
                                         </div>
                                     @endisset
-                                    <form action="{{ route('customer.cart.store') }}" method="post" >
+                                    <form action="{{ route('customer.cart.store') }}" method="post" class="order-form" >
                                         @csrf
                                         @if (\Session::has('success'))
                                             <div class="alert alert-success ">

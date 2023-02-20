@@ -11,7 +11,7 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=it-times-store
 DB_USERNAME=root
-DB_PASSWORD=12345678
+DB_PASSWORD=root
 
 TEMPLATE_NAME=it-times-store
 ASSET_URL=it-times-store

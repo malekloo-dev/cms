@@ -890,7 +890,7 @@ function getGoldPrice($offline = 'offline')
 
             $price = $selector->query("//*[@data-col='info.last_trade.PDrCotVal']")->item(0);
             // $changePercent = $selector->query("//*[@data-col='info.last_trade.last_change_percentage']")->item(0);
-
+            // dd($price->nodeValue);
             if (!is_null($price)) {
                 WebsiteSetting::updateOrCreate(
                     ['variable' => 'goldPrice'],

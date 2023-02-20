@@ -186,5 +186,6 @@ return [
     'cart' => 'سبد خرید',
     'not found' => 'موردی یافت نشد',
     'back to' => 'بازگشت به صفحه  :page ',
-
+    'customer' => 'مشتری',
+    'customers' => 'مشتریها'
 ];
