@@ -41,7 +41,7 @@
                                 <li class="parent">
                                     <a href="{{ url($menuItem['link']) }}">{{ $menuItem['label'] }} </a>
                                     <div><i class="arrow down"></i></div>
-                                    <ul>
+                                    <ul class="mega">
                                         @foreach ($subMenu as $subMenuItem)
 
                                             @php

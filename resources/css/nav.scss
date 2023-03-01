@@ -115,6 +115,7 @@ nav.top {
 nav.top li ul ul {
     right: 100%;
     top: 0;
+    z-index: 1;
 }
 nav.top ul li:hover > ul {
     display: block;
