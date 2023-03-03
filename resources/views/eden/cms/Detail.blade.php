@@ -122,10 +122,13 @@
                                             @if (isset($detail->attr['in-stock']) && $detail->attr['in-stock'] == 0)
                                                 <div class="not-in-stock">قابل سفارش</div>
                                             @endif
-                                            <img id="main-image" loading="lazy"
+                                            <div class="overflow-hidden">
+                                                <img class="zoom1-3x" id="main-image" loading="lazy"
                                                 src="{{ $detail->images['images']['large'] }}" alt="{{ $detail->title }}"
                                                 width="{{ env(Str::upper($detail->attr_type) . '_LARGE_W') }}"
                                                 height="{{ env(Str::upper($detail->attr_type) . '_LARGE_H') }}">
+                                            </div>
+
                                         </figure>
 
 
