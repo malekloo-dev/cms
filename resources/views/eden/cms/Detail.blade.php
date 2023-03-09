@@ -152,7 +152,7 @@
                                         </picture>
                                     @endif
                                 </div>
-                                <div class="two-third-800">
+                                <div class="two-third-800 p-0" >
 
 
 
@@ -175,13 +175,30 @@
                                     @endif
 
                                     @isset($detail->attr['weight'])
-                                        <div class="flex one">
-                                            <span>وزن: {{ $detail->attr['weight'] ?? 0 }} گرم</span>
-                                            <span class="price text-green ">قیمت @convertCurrency($detail->GoldPrice()['totalPrice']) تومان</span>
-                                            <span class="font-08">(قیمت روز طلا:@convertCurrency($detail->GoldPrice()['goldprice']) تومان)</span>
+                                        <div class="flex three">
+
+                                            <div class="two-third p-0">
+                                                <div class="flex one">
+
+                                                    <span class="price text-green pb-0   ">قیمت @convertCurrency($detail->GoldPrice()['totalPrice']) تومان</span>
+                                                    <span class="font-08 pb-0">(قیمت روز طلا:@convertCurrency($detail->GoldPrice()['goldprice']) تومان)</span>
+                                                </div>
+                                            </div>
+                                            <span class="p-0 third">وزن: {{ $detail->attr['weight'] ?? 0 }} گرم</span>
                                         </div>
                                     @endisset
-                                    <form action="{{ route('customer.cart.store') }}" method="post" class="order-form" >
+
+
+
+
+
+
+                                    <div>
+                                        {!! $detail->brief_description !!}
+                                    </div>
+
+
+                                    <form action="{{ route('customer.cart.store') }}" method="post" class="order-form flex one two-500 three-900 four-1200" >
                                         @csrf
                                         @if (\Session::has('success'))
                                             <div class="alert alert-success ">
@@ -199,10 +216,13 @@
                                             </div>
                                         @endif
                                         <input type="hidden" name="id" value="{{ $detail->id }}">
-                                        <button class="btn btn-success px-3 display-block m-auto border-radius-50px color-white">
+                                        <button class="btn btn-buy px-3   border-radius-5">
+                                            <i class="fa fa-plus"></i>
                                             ثبت سفارش
                                         </button>
                                     </form>
+
+
                                     <span id="product-rate" class="rate  mt-1">
                                         @if (count($detail->comments))
                                             @php
@@ -219,41 +239,16 @@
                                             <span class="font-07">({{ count($detail->comments) }} نفر) </span>
                                         @endif
                                     </span>
-                                    <div class="font-08">
-
-                                        {{ $detail->viewCount }} بار دیده شده |
-                                        تاریخ انتشار: <span class="ltr">{{ convertGToJ($detail->publish_date) }} </span>
-
-
-
-                                    </div>
-                                    <div id="product-categories" class=" mt-1">
+                                    <div id="product-categories" class=" mt-1 font-09">
                                         دسته بندی :
-
-
-                                        @php
-                                            $countBread = count($breadcrumb) - 1;
-                                            $i = 0;
-                                        @endphp
-                                        @foreach ($breadcrumb as $key => $item)
-                                            <span> &nbsp | &nbsp</span>
+                                        @foreach ($detail->categories as $key => $item)
                                             <a href="{{ $item['slug'] }}"> {{ $item['title'] }} </a>
-                                            @php
-                                                $i++;
-                                                if ($i >= $countBread) {
-                                                    break;
-                                                }
-                                            @endphp
+                                            @if (!$loop->last)
+                                                <span> | </span>
+                                            @endif
+
                                         @endforeach
                                     </div>
-
-
-                                    <div>
-                                        {!! $detail->brief_description !!}
-
-
-                                    </div>
-
 
                                 </div>
                             </div>

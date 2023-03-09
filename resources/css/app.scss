@@ -1853,6 +1853,11 @@ button {
     background-color: #ec407a;
     color: #000;
 }
+.btn-buy{
+    background-color: #2b4bf7;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.12);
+}
 .btn-inherit {
     background-color: $theme-color1;
     color: $menu-color;

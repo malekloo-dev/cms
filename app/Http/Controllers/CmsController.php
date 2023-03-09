@@ -122,6 +122,7 @@ class CmsController extends Controller
 
     public function request(Request $request, $slug)
     {
+
         $request = $request->all();
         // redirect url
         $spesifiedUrl = RedirectUrl::where('url', 'like', '/' . $slug);

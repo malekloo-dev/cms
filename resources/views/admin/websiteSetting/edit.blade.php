@@ -3,12 +3,12 @@
 @section('ckeditor')
     <script>
         /*  $(document).ready(function() {
-                var $input = $("#parent_id");
-                $input.select2();
-                $("ul.select2-choices").sortable({
-                    containment: 'parent'
-                });
-            }); */
+                    var $input = $("#parent_id");
+                    $input.select2();
+                    $("ul.select2-choices").sortable({
+                        containment: 'parent'
+                    });
+                }); */
     </script>
 @endsection
 
@@ -70,6 +70,14 @@
                                     value="{{ $data['phone'] ?? '' }}" />
                                 <span class="text-danger">{{ $errors->first('phone') }}</span>
                             </div>
+                            @if (isset($data['goldPrice']))
+                                <div class="col-md-12">
+                                    <label for="goldPrice" class=" col-form-label ">Gold price:</label>
+                                    <input type="text" class="form-control ltr " name="goldPrice"
+                                        placeholder="09331181877" value="{{ $data['goldPrice'] ?? '' }}" />
+                                    <span class="text-danger">{{ $errors->first('goldPrice') }}</span>
+                                </div>
+                            @endif
                         </div>
 
                     </div>

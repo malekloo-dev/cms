@@ -54,17 +54,22 @@
                                     @convertCurrency($item->total_price) @lang('messages.toman')
 
                                     @foreach ($item->orderDetail as $item2)
-                                    @if (isset($item2['attributes']['image']) && file_exists(public_path() . $item2['attributes']['image']))
-                                        <img height="40" style="border:1px solid #ccc" src="{{ $item2->attributes['image'] }}" alt="">
-                                    @endif
-                                @endforeach
+                                        @if (isset($item2['attributes']['image']) && file_exists(public_path() . $item2['attributes']['image']))
+                                            <img height="40" style="border:1px solid #ccc"
+                                                src="{{ $item2->attributes['image'] }}" alt="">
+                                        @endif
+                                    @endforeach
                                 </td>
 
                                 <td>
-                                    @if ($item->status == 2)
+                                    @if ($item->status == 4)
+                                        آماده ارسال
+                                    @elseif ($item->status == 3)
+                                        در حال آماده سازی
+                                    @elseif ($item->status == 2)
                                         <i class="fa fa-check bg-green" style="padding:4px 1em"></i>
                                     @elseif ($item->status == 1)
-                                        در حال بررسی
+                                        ارسال به بانک
                                     @elseif ($item->status == -1)
                                         <span class="bg-red" style="padding: 0 1em">رد شد</span>
                                     @else

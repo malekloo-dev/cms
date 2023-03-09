@@ -20,7 +20,7 @@ return new class extends Migration
 
             // $table->morphs('orderable'); // Adds unsigned INTEGER order_id and STRING order_type
 
-            $table->integer('status')->default(0); // 0 not pay, 1 send to bank ,2 pay successfully, -1 have a problem
+            $table->integer('status')->default(0); // 0 not pay, 1 send to bank ,2 pay successfully,3 prepairing,4 ready to send, -1 have a problem
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')

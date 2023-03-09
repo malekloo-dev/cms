@@ -775,11 +775,11 @@ function sendSms($numbers = ['09331181877'], $message = '', $i = 0)
 {
     ini_set('soap.wsdl_cache_enabled', '0');
     $sms_client = new SoapClient('http://payamak-service.ir/SendService.svc?wsdl', ['encoding' => 'UTF-8']);
-    $fromNumber = ['30005920000015'];//,'10002188','500022200', '50002708636341','10009611', '5000249', 'SimCard', '50005708631983', '10002188', '5000249', '210002100000021', '30005920000015'];
+    $fromNumber = ['30005920000015']; //,'10002188','500022200', '50002708636341','10009611', '5000249', 'SimCard', '50005708631983', '10002188', '5000249', '210002100000021', '30005920000015'];
 
     try {
-        $parameters['userName'] = env('SMS_USERNAME','mt.09331181877');
-        $parameters['password'] = env('SMS_PASSWORD','kxx#389');
+        $parameters['userName'] = env('SMS_USERNAME', 'mt.09331181877');
+        $parameters['password'] = env('SMS_PASSWORD', 'kxx#389');
         $parameters['fromNumber'] = $fromNumber[$i]; // 50005708631983 , 210002100000021 , 10002188 , 30005920000015 , 5000249 , SimCard , News
         $parameters['toNumbers'] = $numbers;
         $parameters['messageContent'] = $message;
@@ -862,7 +862,9 @@ if (!function_exists('uniqueSlug')) {
 
 function getGoldPrice($offline = 'offline')
 {
+
     if ($offline == 'offline') {
+
         $goldPriceOld = WebsiteSetting::where('variable', '=', 'goldPrice')->first();
         if ($goldPriceOld) {
             $goldPriceOld = $goldPriceOld->value;
@@ -878,34 +880,80 @@ function getGoldPrice($offline = 'offline')
             ];
         }
     } else {
+
         try {
-            $pageAddress = 'https://www.tgju.org/profile/geram18';
-            $page = file_get_contents($pageAddress);
+            // $pageAddress = 'https://www.tgju.org/profile/geram18';
+            // $pageAddress = 'https://donya-e-eqtesad.com/tags/%D9%82%DB%8C%D9%85%D8%AA_%D8%B7%D9%84%D8%A7';
+            // $pageAddress = 'https://www.arshehonline.com/%D8%A8%D8%AE%D8%B4-%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF-121/44481-%D9%82%DB%8C%D9%85%D8%AA-%D8%B1%D9%88%D8%B2-%D8%B7%D9%84%D8%A7-%D8%B3%DA%A9%D9%87-%D8%A7%D8%B1%D8%B2-%D8%AF%D9%84%D8%A7%D8%B1';
+            $pageAddress = "https://donya-e-eqtesad.com/tags/%D9%82%DB%8C%D9%85%D8%AA_%D8%B7%D9%84%D8%A7";
+
+            $time_start = microtime(true);
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_URL, $pageAddress);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 100);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 400);
+            $page = curl_exec($ch);
+
+
+            if ($page === false) {
+                $time_end = microtime(true);
+                echo ' time: '.($time_end - $time_start)/60;
+                echo curl_error($ch) . ' (' . curl_errno($ch) . ')' . PHP_EOL;
+                dd('-');
+            }
+
+
+            // dd($page);
 
             @$doc = new DOMDocument();
             $doc->preserveWhiteSpace = false;
             @$doc->loadHTML($page);
+            $time_end = microtime(true);
+            echo ' time: '.(($time_end - $time_start)/60) . 's<br>';
             // dd($doc);
             $selector = new DOMXPath($doc);
 
-            $price = $selector->query("//*[@data-col='info.last_trade.PDrCotVal']")->item(0);
+            // $price = $selector->query("//*[@data-col='info.last_trade.PDrCotVal']")->item(0);
             // $changePercent = $selector->query("//*[@data-col='info.last_trade.last_change_percentage']")->item(0);
+            //dd($selector->query("//*[@data-col='info.last_trade.PDrCotVal']"));
             // dd($price->nodeValue);
+            // $nodes = $doc->getElementsByTagName("//*[@data-col='info.last_trade.PDrCotVal']");
+
+
+            $price = $selector->query("//*[contains(@class, 'textcenter')]")->item(2);
+            // $price = $selector->query("//*[@class=\"info-price\"]")->item(0);
+
+            // dd($doc->getElementById("g_ayar18")->item(1));
+
+            // dd($price->nodeValue);
+
+            // dd($price);
+
             if (!is_null($price)) {
+
+                // dd($price);
+                echo 'قیمت: '. $stringPrice = trim(str_replace('تومان', '', $price->nodeValue));
+                echo ' - '.$integerPrice = (int) str_replace(',', '', $stringPrice);
+                echo '<br>';
                 WebsiteSetting::updateOrCreate(
                     ['variable' => 'goldPrice'],
                     [
                         'variable' => 'goldPrice',
                         'value' => json_encode([
-                            'price' => $price->nodeValue,
-                            'priceToman' => ((int) str_replace(',', '', $price->nodeValue)) / 10,
+                            'price' => $stringPrice,
+                            'priceToman' => $integerPrice,
                         ]),
                     ],
                 );
-
+                echo 'update database';
                 return [
-                    'price' => $price->nodeValue,
-                    'priceToman' => ((int) str_replace(',', '', $price->nodeValue)) / 10,
+                    'price' => $stringPrice,
+                    'priceToman' => $integerPrice,
                 ];
             }
 
@@ -931,7 +979,7 @@ function calcuteGoldPrice($weight = 0, $additionalPrice = 0, $goldPrice = 0, $ro
     $goldPrice = isset($str['priceToman']) ? $str['priceToman'] : 0;
 
     return [
-        'totalPrice' => (int) ceil(($goldPrice * $weight + $goldPrice * $weight * 0.28 + $additionalPrice) / 1000) * 1000,
+        'totalPrice' => (int) ceil(($goldPrice * $weight + $goldPrice * $weight * 0.26 + $additionalPrice) / 1000) * 1000,
         'goldprice' => $goldPrice,
     ];
 }
