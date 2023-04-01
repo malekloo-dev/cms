@@ -40,6 +40,7 @@
                             <td>@lang('messages.name')</td>
                             <td>@lang('messages.email')</td>
                             <td>@lang('messages.company')</td>
+                            <td>@lang('messages.register date')</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +52,7 @@
                                 <td>{{ $user->name }} </td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->company?->name }}</td>
+                                <td class="ltr text-right">{{ $user->date }}</td>
                                 <td class="width-80">
                                     <div class="row">
                                         <div class="col-xs-6">

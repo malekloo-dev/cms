@@ -36,7 +36,7 @@ class UserController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }*/
-        $users = User::all();
+        $users = User::orderBy('id','desc')->get();
 
 
         return view('admin.users.index', compact('users'));

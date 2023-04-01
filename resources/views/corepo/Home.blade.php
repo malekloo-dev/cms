@@ -969,7 +969,7 @@
         <div class=" one-fourth-800">
             <div class="shadow full-height border-radius-10">
                 <h3><a href="{{ url('سلامت-و-سبک-زندگی') }}">سلامت و سبک زندگی</a></h3>
-                {{--post&label=salamat&var=salamat&count=2 --}}
+                {{--post&label=salamat&var=salamat&count=3 --}}
                 @isset($salamat['data'])
                     @foreach ($salamat['data'] as $content)
                         <div
@@ -1019,7 +1019,7 @@
                                 </svg>
                                 <span class="p-0">{{ convertGToJ($content->publish_date, false, '%d %B') }}</span>
                             </div>
-                            <div class="full">{!! readMore($content['brief_description'], 220) !!}</div>
+                            <div class="full">{!! readMore($content['brief_description'], 140) !!}</div>
                         </div>
                     @endforeach
                 @endisset

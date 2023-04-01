@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request as httpRequest;
+use App\Models\Customer;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -20,7 +24,9 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers{
+        login as traitLogin;
+    }
 
     /**
      * Where to redirect users after login.
@@ -45,6 +51,7 @@ class LoginController extends Controller
         return 'mobile';
     }
 
+
     public function showLoginForm(Request $request)
     {
 
@@ -59,6 +66,43 @@ class LoginController extends Controller
                 return view('auth.customer.login');
                 break;
         }
+    }
+
+    public function login(httpRequest $request)
+    {
+
+        $d = $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+        ]);
+        $user = User::where('mobile','=',$d['mobile'])->first();
+        if($user instanceof User){
+            return $this->traitLogin($request);
+        }
+
+
+        if (!$this->attemptLogin($request)) {
+
+
+
+                $user = User::create([
+                    'mobile' => $d['mobile'],
+                    'pass' => $d['password'],
+                    'password' => Hash::make($d['password']),
+                ]);
+
+                Customer::create([
+                    'user_id'=> $user->id,
+                    'mobile' => $user->mobile,
+                    // 'parent_id' => $request->parent_id
+                ]);
+
+                $user->assignRole('customer');
+
+
+        }
+
+        return $this->traitLogin($request);
     }
 
     protected function redirectTo()

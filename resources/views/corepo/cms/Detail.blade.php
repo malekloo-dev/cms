@@ -67,8 +67,8 @@
 
 @section('Content')
     @php
-    $tableOfImages = tableOfImages($detail->description);
-    $append = '';
+        $tableOfImages = tableOfImages($detail->description);
+        $append = '';
     @endphp
 
     @if ($detail->attr_type == 'product')
@@ -101,8 +101,7 @@
             <div class="third sixth-1000 pb-0">
                 @if (isset($detail->images['images']['small']))
                     <figure class="image">
-                        <img src="{{ $detail->images['images']['small'] }}" alt="{{ $detail->title }}"
-                            width="100"
+                        <img src="{{ $detail->images['images']['small'] }}" alt="{{ $detail->title }}" width="100"
                             height="100"
                             srcset="
                                     {{ $detail->images['images']['small'] }} 1x,
@@ -129,13 +128,14 @@
                         @for ($i = $rateSum / count($detail->comments); $i >= 1; $i--)
                             <label></label>
                         @endfor
-                        <span class="font-08">({{ count($detail->comments) }} نفر) | {{ $detail->viewCount }} بازدید</span>
+                        <span class="font-08">({{ count($detail->comments) }} نفر) | {{ $detail->viewCount }}
+                            بازدید</span>
                     @endif
                     <br>
 
 
                     <span class="font-08"> تاریخ انتشار:</span> |
-                        <span class="ltr font-08">{{ convertGToJ($detail->publish_date) }} </span>
+                    <span class="ltr font-08">{{ convertGToJ($detail->publish_date) }} </span>
                 </div>
 
 
@@ -164,7 +164,7 @@
             <div class="fourth-500">
                 <div>
                     <div class="mb-1">محل تبلیغ شما</div>
-                    {{-- images&label=adv&var=adv&count=3 --}}
+                    {{--images&label=adv&var=adv&count=3 --}}
                     @if (isset($adv) && isset($adv['images']))
                         <div class="text-center">
                             @foreach ($adv['images'] as $k => $content)
@@ -176,7 +176,7 @@
                         </div>
                     @endisset
                     <div>وبسایت ها</div>
-                    {{-- category&label=sideCategory&var=sideCategory&count=6 --}}
+                    {{--category&label=sideCategory&var=sideCategory&count=6 --}}
                     @isset($sideCategory['data'])
                         <ul>
                             @foreach ($sideCategory['data'] as $item)
@@ -201,8 +201,6 @@
                 <div class="shadow ">
                     <h2>محصولات مرتبط {{ $detail->title }}</h2>
                     <div class="flex one two-500 four-900 center ">
-
-                        {{-- $data['newPost'] --}}
                         @foreach ($relatedProduct as $content)
                             <div>
                                 <article>
@@ -230,20 +228,20 @@
             <div>
                 <div class="shadow">
                     <h2>مقاله های مرتبط {{ $detail->title }}</h2>
-                    <div class="flex one two-500 four-900 center ">
-
-                        {{-- $data['newPost'] --}}
+                    <div class="flex two six-900 center">
                         @foreach ($relatedPost as $content)
                             <div>
-                                <article>
-                                    @if (isset($content->images['images']['small']))
-                                        <div><img loading="lazy" src="{{ $content->images['images']['small'] }}"></div>
-                                    @endif
-                                    <footer>
-                                        <h2><a href="{{ $content->slug }}"> {{ $content->title }}</a></h2>
-                                        {!! $content->brief_description !!}
-                                    </footer>
-                                </article>
+                                <a href="{{ $content->slug }}">
+                                    <article>
+                                        @if (isset($content->images['images']['small']))
+                                            <div><img width="150" height="150" loading="lazy" src="{{ $content->images['images']['small'] }}">
+                                            </div>
+                                        @endif
+                                        <footer>
+                                            <h3 class=" font-09"> {{ $content->title }}</h3>
+                                        </footer>
+                                    </article>
+                                </a>
                             </div>
                         @endforeach
 

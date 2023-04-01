@@ -37,6 +37,7 @@
                     <thead>
                         <tr>
                             <th>@lang('messages.user')</th>
+                            <th>@lang('messages.mobile')</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -44,6 +45,7 @@
                         @foreach ($role->users as $item)
                             <tr>
                                 <td>{{ $item->name }}</td>
+                                <td>{{ $item->mobile }}</td>
 
                                 <td style="width: 100px !important">
                                     <div class="row">
