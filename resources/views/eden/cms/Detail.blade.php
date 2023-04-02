@@ -18,9 +18,29 @@
 @endif
 
 
-
+@push('head')
+    <script type="text/javascript">
+        function zoom(e) {
+            var zoomer = e.currentTarget;
+            e.offsetX ? offsetX = e.offsetX : offsetX = e.touches[0].pageX
+            e.offsetY ? offsetY = e.offsetY : offsetX = e.touches[0].pageX
+            x = offsetX / zoomer.offsetWidth * 100
+            y = offsetY / zoomer.offsetHeight * 100
+            zoomer.style.backgroundPosition = x + '% ' + y + '%';
+        }
+    </script>
+@endpush
 @push('scripts')
     <script type="text/javascript">
+        function zoom(e) {
+            var zoomer = e.currentTarget;
+            e.offsetX ? offsetX = e.offsetX : offsetX = e.touches[0].pageX
+            e.offsetY ? offsetY = e.offsetY : offsetX = e.touches[0].pageX
+            x = offsetX / zoomer.offsetWidth * 100
+            y = offsetY / zoomer.offsetHeight * 100
+            zoomer.style.backgroundPosition = x + '% ' + y + '%';
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
 
             const ratings = document.querySelectorAll('[name="rate"]');
@@ -45,6 +65,10 @@
                 el.addEventListener('mouseenter', mouseenter);
                 el.addEventListener('mouseleave', mouseleave);
             });
+
+
+
+
         });
 
 
@@ -57,6 +81,53 @@
             expandImg.parentElement.style.display = "block";
         }
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(window).ready(function(e) {
+
+            var zoomer = e.currentTarget;
+
+
+            $('.zoom').css({
+                position: 'absolute',
+                top: '1em',
+                left: '1em',
+                'background-color': 'white',
+            })
+            $('.zoom').click(function() {
+
+                xlarge = $('#main-image').data('xlarge')
+                console.log(xlarge);
+                $('#main-image').attr('src',xlarge)
+                $('#main-image').toggleClass('zoom2x')
+
+                $(this).toggleClass('fa-magnifying-glass-plus')
+                $(this).toggleClass('fa-magnifying-glass-minus')
+            })
+
+
+        });
+    </script>
+    <style>
+        figure.zoom2 {
+            background-position: 50% 50%;
+            position: relative;
+            width: 400px;
+            overflow: hidden;
+            cursor: zoom-in;
+        }
+
+        figure.zoom2 img:hover {
+            opacity: 0;
+        }
+
+        figure.zoom2 img {
+            transition: opacity .5s;
+            display: block;
+            width: 100%;
+        }
+    </style>
 @endpush
 
 @section('footer')
@@ -69,6 +140,8 @@
 @endsection
 
 @section('Content')
+
+    <script></script>
     @php
         $tableOfImages = tableOfImages($detail->description);
         $append = '';
@@ -110,27 +183,35 @@
                         <h1 id="product-name" class="">{{ $detail->title }}</h1>
                         <div>
                             <div class="flex one three-800">
-                                <div id="product-image" class="one thirth-800">
+                                <div id="product-image" class="one thirth-800 relative">
                                     @if (isset($detail->images['images']['large']))
                                         {{-- <picture>
                                             <img src="{{ $detail->images['images']['large'] ?? '' }}"
                                                 loading="lazy" width="{{ env('PRODUCT_LARGE_W') }}" height="{{ env('PRODUCT_LARGE_H') }}"
                                                 alt="{{ $detail->title }}">
                                         </picture> --}}
+                                        <div class="p-0">
 
-                                        <figure class="image">
-                                            @if (isset($detail->attr['in-stock']) && $detail->attr['in-stock'] == 0)
-                                                <div class="not-in-stock">قابل سفارش</div>
-                                            @endif
-                                            <div class="overflow-hidden">
-                                                <img class="zoom1-3x" id="main-image" loading="lazy"
-                                                src="{{ $detail->images['images']['large'] }}" alt="{{ $detail->title }}"
-                                                width="{{ env(Str::upper($detail->attr_type) . '_LARGE_W') }}"
-                                                height="{{ env(Str::upper($detail->attr_type) . '_LARGE_H') }}">
-                                            </div>
 
-                                        </figure>
+                                            <figure class="image zoom2" onmousemove="zoom(event)"
+                                                style="background-image: url({{ $detail->images['images']['xlarge'] ?? $detail->images['images']['large'] }})">
+                                                @if (isset($detail->attr['in-stock']) && $detail->attr['in-stock'] == 0)
+                                                    <div class="not-in-stock">قابل سفارش</div>
+                                                @endif
+                                                <div class="overflow-hidden">
+                                                    <img id="main-image" loading="lazy"
+                                                        data-xlarge="{{ $detail->images['images']['xlarge'] ?? $detail->images['images']['large'] }}"
+                                                        src="{{ $detail->images['images']['large'] }}"
+                                                        alt="{{ $detail->title }}"
+                                                        width="{{ env(Str::upper($detail->attr_type) . '_LARGE_W') }}"
+                                                        height="{{ env(Str::upper($detail->attr_type) . '_LARGE_H') }}">
 
+                                                    <i
+                                                        class="fa-solid fa-magnifying-glass-plus font-15 zoom p-1 border-radius-5"></i>
+                                                </div>
+
+                                            </figure>
+                                        </div>
 
                                         @if ($detail->gallery->count())
                                             <div class="gallery">
@@ -152,7 +233,7 @@
                                         </picture>
                                     @endif
                                 </div>
-                                <div class="two-third-800 p-0" >
+                                <div class="two-third-800 p-0">
 
 
 
@@ -198,7 +279,8 @@
                                     </div>
 
 
-                                    <form action="{{ route('customer.cart.store') }}" method="post" class="order-form flex one two-500 three-900 four-1200" >
+                                    <form action="{{ route('customer.cart.store') }}" method="post"
+                                        class="order-form flex one two-500 three-900 four-1200">
                                         @csrf
                                         @if (\Session::has('success'))
                                             <div class="alert alert-success ">
@@ -246,7 +328,6 @@
                                             @if (!$loop->last)
                                                 <span> | </span>
                                             @endif
-
                                         @endforeach
                                     </div>
 

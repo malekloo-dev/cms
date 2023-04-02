@@ -105,11 +105,23 @@ class ContentController extends Controller
     private function resize($path, $type, $imagePath, $fileNameAndType, $fileName, $fileType)
     {
 
-        $sizes = array(
-            "small" => env(Str::upper($type) . '_SMALL_W'),
-            'medium' => env(Str::upper($type) . '_MEDIUM_W'),
-            'large' => env(Str::upper($type) . '_LARGE_W')
-        );
+
+
+        if(env(Str::upper($type) . '_XLARGE_W')){
+            $sizes = array(
+                "small" => env(Str::upper($type) . '_SMALL_W'),
+                'medium' => env(Str::upper($type) . '_MEDIUM_W'),
+                'large' => env(Str::upper($type) . '_LARGE_W'),
+                'xlarge' => env(Str::upper($type) . '_XLARGE_W')
+            );
+        }else{
+            $sizes = array(
+                "small" => env(Str::upper($type) . '_SMALL_W'),
+                'medium' => env(Str::upper($type) . '_MEDIUM_W'),
+                'large' => env(Str::upper($type) . '_LARGE_W')
+            );
+        }
+
         // dd($sizes);
         $images['crop'] = $imagePath . $fileNameAndType;
         foreach ($sizes as $name => $size) {
