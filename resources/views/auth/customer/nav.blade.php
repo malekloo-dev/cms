@@ -27,11 +27,13 @@
         </li> --}}
 
 
-        {{-- <li class="{{ Request::is('customer') ? 'active' : '' }}"><a
-                href="{{ route('customer.dashboard') }}">{{ __('messages.Dashboard') }}</a></li> --}}
+        <li class="{{ Request::is('customer') ? 'active' : '' }}"><a
+                href="{{ route('customer.dashboard') }}">{{ __('messages.Dashboard') }}</a></li>
 
-        {{-- <li class="{{ Request::is('customer/profile') ? 'active' : '' }}"><a href="{{ route('customer.profile') }}">
-                {{ __('messages.profile') }}</a></li> --}}
+        @hasrole('company')
+        <li class="{{ Request::is('customer/profile') ? 'active' : '' }}"><a href="{{ route('customer.profile') }}">
+                {{ __('messages.profile') }}</a></li>
+        @endrole
 
         <li class="{{ Request::is('customer/cart') ? 'active' : '' }}"><a class="no-border"
                 href="{{ route('customer.cart.list') }}"> {{ __('messages.cart') }}</a></li>
@@ -39,8 +41,8 @@
         <li class="{{ Request::is('customer/orders') ? 'active' : '' }}"><a href="{{ route('customer.order.list') }}">
                 {{ __('messages.orders') }}</a></li>
 
-        {{-- <li class="{{ Request::is('customer/transaction') ? 'active' : '' }}"><a class="no-border"
-                href="{{ route('customer.transaction') }}"> {{ __('messages.transaction') }}</a></li> --}}
+        <li class="{{ Request::is('customer/transaction') ? 'active' : '' }}"><a class="no-border"
+                href="{{ route('customer.transaction') }}"> {{ __('messages.transaction') }}</a></li>
 
 
 

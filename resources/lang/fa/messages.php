@@ -179,12 +179,14 @@ return [
     'pay' => 'پرداخت',
     'quantity' => 'عدد',
     'ordered' => 'ثبت سفارش',
+    'ordered and buy' => 'ثبت سفارش و پرداخت',
+    'upload bill' => 'آپلود فیش',
     'order insert' => 'سفارش ثبت شده است',
     'pending' => 'منتظر پرداخت',
     'preparing' => 'در حال آماده سازی',
     'send to bank' => 'ارسال به بانک',
     'paid successfully' => 'پرداخت موفق',
-    'ready to send' => 'در حال آماده سازی',
+    'ready to send' => '  آماده ارسال',
     'orders' => ' سفارشات',
     'order' => ' سفارش',
     'order detail' => 'جزییات سفارش',
@@ -192,5 +194,6 @@ return [
     'not found' => 'موردی یافت نشد',
     'back to' => 'بازگشت به صفحه  :page ',
     'customer' => 'مشتری',
-    'customers' => 'مشتریها'
+    'customers' => 'مشتریها',
+    'prepairing' => 'در حال آماده سازی'
 ];

@@ -140,20 +140,18 @@ class CustomerController extends Controller
                 ]);
                 \Cart::session($user->id)->remove($v['id']);
             }
-
-
         } catch (Exception $e) {
             dd($e);
         }
 
-        $sms = sendSms('09331181877', 'شماره'.$user->mobile.' سفارش ثبت کرد'."\nشماره: ".$order->id);
+        // $sms = @sendSms('09331181877', 'شماره'.$user->mobile.' سفارش ثبت کرد'."\nشماره: ".$order->id);
 
         return redirect()->route('customer.order.list');
     }
     public function orderList()
     {
         $user = Auth()->user();
-        $orders = $user->orders()->orderBy('id','desc')->get();
+        $orders = $user->orders()->orderBy('id', 'desc')->get();
 
         return view('auth.customer.orderList', compact('orders'));
     }
@@ -161,14 +159,14 @@ class CustomerController extends Controller
     {
         $user = Auth()->user();
         $orderDetail = $user->orders($order->id)->orderDetail;
-        return view('auth.customer.orderDetailList', compact('order','orderDetail'));
+        return view('auth.customer.orderDetailList', compact('order', 'orderDetail'));
     }
     public function orderDestroy(Order $order)
     {
         $user = Auth()->user();
         $user->orders($order->id)->delete();
 
-        return redirect()->route('customer.order.list')->with('message',__('messages.deleted'));
+        return redirect()->route('customer.order.list')->with('message', __('messages.deleted'));
     }
 
 
@@ -509,6 +507,51 @@ class CustomerController extends Controller
         return redirect()->route('customer.invoice', $transaction->id)->with('success', Lang::get('messages.invoice created'));
     }
 
+    public function uploadBill(Request $request, Order $order)
+    {
+        $user = Auth()->user();
+
+        // check order and user
+        if (!$user->orders()->where('id', '=', $order->id)->select('id')->exists()) {
+            return redirect()->back()->with('error', 'Ooops!');
+        }
+
+
+        // get bill
+        $bill = $request->file('bill');
+
+
+        // check file
+        if (!$bill) return redirect()->back()->with('error', 'لطفا فایل را آپلود نمایید');
+
+
+        // upload file on server
+        $imagePath = '/upload/images/customer/bill/';
+        $fileName = $user->id . '(' . $user->mobile . ')-' . $order->id . '-' . Carbon::now() . '.' . $bill->extension();
+        $bill->move(public_path($imagePath), $fileName);
+
+
+        // transaction
+        $user->transactions()->firstOrCreate([
+            'title' => 'آپلود فیش',
+            'price' => $order->total_price,
+            'count' => 1,
+            'discount_code' => '',
+            'status' => 3,
+            'message' => "آپلود فیش {$order->price} " . convertGToJ(Carbon::now()),
+            'description' => "{$imagePath}{$fileName}",
+            'transactionable_type' => Order::class,
+            'transactionable_id' => $order->id,
+        ]);
+
+
+        // update order status
+        $order->status = 2;
+        $order->save();
+
+
+        return redirect()->route('customer.transaction')->with('success', 'فیش آپلود شد. منتظر تماس از بخش ارسال بمانید.');
+    }
 
     public function sendToBand(Request $request, Transaction $transaction)
     {
@@ -682,7 +725,7 @@ class CustomerController extends Controller
         // dd($user->transactions);
         // dd($user->customer->contents()->where('attr_type','=','product')->paginate(10));
 
-        $transactions = $user->transactions()->paginate(10);
+        $transactions = $user->transactions()->orderBy('id','desc')->paginate(10);
 
         return view('auth.customer.transactions', compact('user', 'transactions'));
     }

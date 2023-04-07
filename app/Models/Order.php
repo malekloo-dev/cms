@@ -14,7 +14,7 @@ class Order extends Model
         'total_price',
         'orderable_type',
         'orderable_id',
-        'status',
+        'status', // 0 not pay, 1 send to bank , 2 upload bill , 3 pay successfully,4 prepairing,5 ready to send , -1 have a problem
     ];
 
     public function user(){
@@ -26,4 +26,10 @@ class Order extends Model
     {
         return $this->hasMany(OrderDetail::class, 'order_id');
     }
+    public function transactions()
+    {
+        return $this->morphMany(Transaction::class, 'transactionable');
+    }
+
+
 }

@@ -16,9 +16,9 @@ Route::prefix('/customer')->middleware(['auth', 'role:super admin|customer'])->g
     Route::delete('/order/{order}', [CustomerController::class, 'orderDestroy'])->name('customer.order.destroy');
 
 
-    // Route::get('profile', [CustomerController::class, 'profile'])->name('customer.profile');
-    // Route::post('profileChangeLogo', [CustomerController::class, 'profileChangeLogo'])->name('customer.profile.changeLogo');
-    // Route::post('profileUpdate', [CustomerController::class, 'profileUpdate'])->name('customer.profile.update');
+    Route::get('profile', [CustomerController::class, 'profile'])->name('customer.profile');
+    Route::post('profileChangeLogo', [CustomerController::class, 'profileChangeLogo'])->name('customer.profile.changeLogo');
+    Route::post('profileUpdate', [CustomerController::class, 'profileUpdate'])->name('customer.profile.update');
 
     // Route::get('products', [CustomerController::class, 'products'])->name('customer.products');
     // Route::get('products/create', [CustomerController::class, 'productsCreate'])->name('customer.products.create');
@@ -33,6 +33,7 @@ Route::prefix('/customer')->middleware(['auth', 'role:super admin|customer'])->g
     Route::get('invoice/{transaction}', [CustomerController::class, 'invoice'])->name('customer.invoice');
     Route::patch('invoice/{content}', [CustomerController::class, 'invoiceStore'])->name('customer.invoice.store');
 
+    Route::post('uploadBill/{order}', [CustomerController::class, 'uploadBill'])->name('customer.uploadBill');
     Route::patch('sendToBand/{transaction}', [CustomerController::class, 'sendToBand'])->name('customer.sendToBand');
 
     Route::get('transaction', [CustomerController::class, 'transaction'])->name('customer.transaction');

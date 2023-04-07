@@ -9,15 +9,15 @@
         <div class="profile">
             <h1 class="full">@lang('messages.profile')</h1>
 
-            <div class="flex six-500 center" style="gap:0 4em">
+            <div class="flex six-500 center" style="gap:0 4em; display:none" >
                 <div class=" one">
-                    <div class="text-center company-logo">
+                    <div class="text-center customer-logo">
 
-                        @if (!isset(Auth::user()->company->logo['large']) || Auth::user()->company->logo['large'] == '' || !file_exists(public_path(Auth::user()->company->logo['large'] )))
+                        @if (!isset(Auth::user()->customer->logo['large']) || Auth::user()->customer->logo['large'] == '' || !file_exists(public_path(Auth::user()->customer->logo['large'] )))
                             <i class="far fa-user logo" style="font-size:4em"></i>
                             <img src="" width="0" height="0" class="border-radius-50 p-0" alt="">
                         @else
-                            <img width="100" height="100" class="border-radius-50 p-0"  src="{{ url(Auth::user()->company->logo['large']) }}?{{ uniqid() }}">
+                            <img width="100" height="100" class="border-radius-50 p-0"  src="{{ url(Auth::user()->customer->logo['large']) }}?{{ uniqid() }}">
                         @endif
                     </div>
                     <div style="cursor: pointer" class="btn btn-warning" onclick="document.getElementById('images').click();">
@@ -51,62 +51,53 @@
 
 
 
-
-                <div class="">
-                    @lang('messages.store name'):
-                    <span class="text-editor" data-field='name'
-                        data-label="@lang('messages.store name')">{{ $user->company->name ?? '' }}</span>
-                </div>
                 <div class=" ">
                     @lang('messages.name'):
-                    <span class="text-editor" data-field="manager"
-                        data-label="@lang('messages.name')">{{ $user->company->manager ?? '' }}</span>
+                    <span class="text-editor" data-field="name"
+                        data-label="@lang('messages.name')">{{ $user->customer->name ?? '' }}</span>
                 </div>
-                <div class="">@lang('messages.sale manager'):
-                    <span class="text-editor" data-field="sale_manager"
-                        data-label="@lang('messages.sale manager')">{{ $user->company->sale_manager ?? '' }}</span>
-                </div>
+
                 <div class="">@lang('messages.mobile'):
                     <span class="text-editor" data-field="mobile"
-                        data-label="@lang('messages.mobile')">{{ $user->company->mobile ?? '' }}</span>
+                        data-label="@lang('messages.mobile')">{{ $user->customer->mobile ?? '' }}</span>
                 </div>
 
                 <div class="">@lang('messages.phone'):
-                    <span class="text-editor" data-field="phone" data-label="شماره تلفن را با , از هم جدا کنید" style="display: inline-block">{{ $user->company?->phone ?? '' }}</span>
+                    <span class="text-editor" data-field="phone" data-label="شماره تلفن را با , از هم جدا کنید" style="display: inline-block">{{ $user->customer?->phone ?? '' }}</span>
                 </div>
 
                 <div class="">@lang('messages.site'):
                     <span class="text-editor" data-field="site"
-                        data-label="@lang('messages.site')">{{ $user->company->site ?? '' }}</span>
+                        data-label="@lang('messages.site')">{{ $user->customer->site ?? '' }}</span>
                 </div>
 
                 <div class="">@lang('messages.email'): <span class="text-editor" data-field="email"
-                        data-label="@lang('messages.email')">{{ $user->company->email ?? '' }}</span>
+                        data-label="@lang('messages.email')">{{ $user->customer->email ?? '' }}</span>
                 </div>
 
                 <div class="">@lang('messages.address'): <span class="text-editor" data-field="address"
-                        data-label="@lang('messages.address')">{{ $user->company->address ?? '' }}</span></div>
+                        data-label="@lang('messages.address')">{{ $user->customer->address ?? '' }}</span></div>
 
                 <div class="">@lang('messages.city'): <span class="text-editor" data-field="city"
-                        data-label="@lang('messages.city')">{{ $user->company->city ?? '' }}</span>
+                        data-label="@lang('messages.city')">{{ $user->customer->city ?? '' }}</span>
                 </div>
 
                 <div class="">@lang('messages.province'): <span class="text-editor" data-field="province"
-                        data-label="@lang('messages.province')">{{ $user->company->province ?? '' }}</span></div>
+                        data-label="@lang('messages.province')">{{ $user->customer->province ?? '' }}</span></div>
 
                 <div class="">@lang('messages.whatsapp'): <span class="ltr text-editor" data-field="whatsapp"
-                        data-label="@lang('messages.whatsapp')">{{ $user->company->whatsapp ?? '' }}</span>
+                        data-label="@lang('messages.whatsapp')">{{ $user->customer->whatsapp ?? '' }}</span>
                 </div>
 
                 <div class="">@lang('messages.telegram'): <span class="text-editor" data-field="telegram"
-                        data-label="@lang('messages.telegram')">{{ $user->company->telegram ?? '' }}</span></div>
+                        data-label="@lang('messages.telegram')">{{ $user->customer->telegram ?? '' }}</span></div>
 
                 <div class="">@lang('messages.instagram'): <span class="text-editor" data-field="instagram"
-                        data-label="@lang('messages.instagram')">{{ $user->company->instagram ?? '' }}</span></div>
+                        data-label="@lang('messages.instagram')">{{ $user->customer->instagram ?? '' }}</span></div>
 
                 <div class="">@lang('messages.register date'): <span>{{ convertGToJ($user->date) }}</span></div>
 
-                <div class="">@lang('messages.status'): <span>{{ ($user->customer?->status == 0)?'غیر فعال':'فعال' }}</span></div>
+                <div class="hidden">@lang('messages.status'): <span>{{ ($user->customer?->status == 0)?'غیر فعال':'فعال' }}</span></div>
 
             </div>
 
@@ -119,7 +110,7 @@
 
 @section('cropper')
 
-    @include('auth.company.cropper')
+    @include('auth.customer.cropper')
 
 @endsection
 
@@ -169,7 +160,7 @@
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "{{ route('company.profile.update') }}",
+                    url: "{{ route('customer.profile.update') }}",
                     data: {
                         '_token': $('meta[name="_token"]').attr('content'),
                         'data': $('#edit-profile form').serializeArray()
@@ -202,7 +193,7 @@
 
     <script>
         var map = L.map('mapid')
-            .setView([{{ Auth::user()->company->location ?? '35.7,51.4' }}], 12);
+            .setView([{{ Auth::user()->customer->location ?? '35.7,51.4' }}], 12);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://tarhoweb.com">Tarhoweb</a> contributors',
@@ -213,7 +204,7 @@
 
 
         //marker
-        var marker = L.marker([{{ Auth::user()->company->location ?? '35.7,51.4' }}])
+        var marker = L.marker([{{ Auth::user()->customer->location ?? '35.7,51.4' }}])
             .addTo(map)
             .bindPopup(`@lang('messages.my location')`)
             .openPopup();
@@ -253,7 +244,7 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "{{ route('company.profile.update') }}",
+                url: "{{ route('customer.profile.update') }}",
                 data: {
                     '_token': $('meta[name="_token"]').attr('content'),
                     'data': [{

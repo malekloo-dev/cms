@@ -49,7 +49,8 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('admin/*', function () {
             $commentCount = Comment::where('status','',0)->count();
-            $orderCount = Order::where('status','',0)->count();
+            $orderCount = Order::whereIn('status',[0, 2])->count();
+            
             View::share('commentCount',$commentCount );
             View::share('orderCount',$orderCount );
         });

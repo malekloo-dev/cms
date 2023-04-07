@@ -9,6 +9,7 @@ use App\Http\Controllers\ContentController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ModuleBuilderController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\WebsiteSettingController;
 use Illuminate\Support\Facades\Route;
 
@@ -76,6 +77,9 @@ Route::prefix('/admin')->middleware(['auth', 'role:super admin'])->group(functio
     Route::get('order/{order}', [CompanyController::class, 'orderDetail'])->name('admin.order.detail');
     Route::patch('order/{order}', [CompanyController::class, 'orderEdit'])->name('admin.order.edit');
     Route::delete('order/{order}', [CompanyController::class, 'orderDestroy'])->name('admin.order.destroy');
+
+    Route::patch('transaction/edit/{transaction}', [TransactionsController::class, 'update'])->name('admin.transaction.edit');
+
 
     /* content type */
     Route::get('contentType',[AttributeController::class,'contentTypeList'])->name('admin.content.type.index');

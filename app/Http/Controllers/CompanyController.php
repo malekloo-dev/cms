@@ -47,7 +47,7 @@ class CompanyController extends Controller
         $category = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
 
 
-        return view('auth.company.register',compact('category'));
+        return view('auth.company.register', compact('category'));
     }
     public function showPasswordForgotForm()
     {
@@ -89,9 +89,9 @@ class CompanyController extends Controller
         $user = Auth::user();
         $name = $request->all()['data'][0]['name'];
         $value = $request->all()['data'][0]['value'];
-        if($user->company == null){
+        if ($user->company == null) {
             // $user->company = new Company();
-            return response(array('status' => false, 'data' => ['name' => $name, 'value' => $value],'msg'=>'Company not found'), 200);
+            return response(array('status' => false, 'data' => ['name' => $name, 'value' => $value], 'msg' => 'Company not found'), 200);
         }
         // dd($user->company);
         $user->company->$name = $value;
@@ -108,7 +108,7 @@ class CompanyController extends Controller
         $attributes = ContentType::all();
         // dd($user->company);
 
-        return view('auth.company.products', compact('user','attributes'));
+        return view('auth.company.products', compact('user', 'attributes'));
     }
 
     public function productsCreate(Request $request)
@@ -122,11 +122,11 @@ class CompanyController extends Controller
 
 
         $attr_type = 'product';
-        $attribute=array();
-        if(isset($request->attr)){
+        $attribute = array();
+        if (isset($request->attr)) {
             $attribute = Attribute::getFormFieldsByContentTypeId($request->attr);
         }
-        return view('auth.company.productsCreateOrUpdate', compact('user', 'category', 'attr_type','attribute'));
+        return view('auth.company.productsCreateOrUpdate', compact('user', 'category', 'attr_type', 'attribute'));
     }
 
     public function productsStore(Request $request)
@@ -139,7 +139,7 @@ class CompanyController extends Controller
             'title' => 'required',
             //'body' => 'required',
             //'images' => 'required|mimes:jpeg,png,bmp',
-        ),array('parent_id.required'=>'دسته بندی را انتخاب نمایید'));
+        ), array('parent_id.required' => 'دسته بندی را انتخاب نمایید'));
 
         $imagesUrl = '';
 
@@ -178,7 +178,7 @@ class CompanyController extends Controller
         // $data['status'] = '1';
 
         $content = Content::create($data);
-        if(isset($data['content_type_id'])) {
+        if (isset($data['content_type_id'])) {
             $attrObject = Attribute::upsert($data, $content->id, $data['content_type_id']);
         }
 
@@ -210,10 +210,10 @@ class CompanyController extends Controller
 
         $result = app('App\Http\Controllers\CategoryController')->tree_set();
         $category = app('App\Http\Controllers\CategoryController')->convertTemplateSelect1($result);
-        $attribute=Attribute::getFormValue($post->id);
+        $attribute = Attribute::getFormValue($post->id);
 
 
-        return view('auth.company.productsCreateOrUpdate', compact('user', 'category', 'post','attribute'));
+        return view('auth.company.productsCreateOrUpdate', compact('user', 'category', 'post', 'attribute'));
     }
 
     public function productsEdit(Request $request, Content $content)
@@ -226,7 +226,7 @@ class CompanyController extends Controller
             //'description' => 'required',
             //'body' => 'required',
             //'images' => 'required|mimes:jpeg,png,bmp',
-        ),array('parent_id.required'=>'دسته بندی را انتخاب نمایید'));
+        ), array('parent_id.required' => 'دسته بندی را انتخاب نمایید'));
 
         $imagesUrl = '';
         // dd($request->images);
@@ -262,8 +262,8 @@ class CompanyController extends Controller
         $data['status'] = '1';
 
         $content->update($data);
-        $content_type_id=0;
-        $attrObject = Attribute::upsert($data, $content->id,$content_type_id);
+        $content_type_id = 0;
+        $attrObject = Attribute::upsert($data, $content->id, $content_type_id);
         $content->categories()->detach();
         $content->categories()->attach($data['parent_id_hide']);
 
@@ -377,7 +377,7 @@ class CompanyController extends Controller
 
         // dd(Lang::get('messages.power up for',['count'=>$count,'content'=>$content->title]));
 
-        $user->transactions()->where('transactionable_id','=',$content->id)->where('transactionable_type','=',Content::class)->delete();
+        $user->transactions()->where('transactionable_id', '=', $content->id)->where('transactionable_type', '=', Content::class)->delete();
 
         $transaction = $user->transactions()->firstOrCreate([
             'title' => $content->title,
@@ -526,17 +526,16 @@ class CompanyController extends Controller
     public function clearInstagramUrl(String $var = null)
     {
         // $var = 'https://instagram.com/ads/f#adsf@instagram';
-        if(str_contains($var,'instagram.com')){
+        if (str_contains($var, 'instagram.com')) {
             // ['https://instagram.com','https://www.instagram.com','instagram.com','instagram']
-            $arr = explode('/',$var);
+            $arr = explode('/', $var);
             $var = end($arr);
         }
 
         $var = trim($var);
-        $var = str_replace('@','',$var);
+        $var = str_replace('@', '', $var);
 
         return $var;
-
     }
 
     public function productsDestroy(Content $content)
@@ -585,7 +584,7 @@ class CompanyController extends Controller
 
     public function companyList()
     {
-        $companies = Company::orderBy('id','desc')->get();
+        $companies = Company::orderBy('id', 'desc')->get();
 
         return view('admin.company.index', compact('companies'));
     }
@@ -713,18 +712,28 @@ class CompanyController extends Controller
 
     public function orderList()
     {
-        $list = Order::orderBy('id','desc')->get();
+        $list = Order::orderBy('id', 'desc')->get();
         return view('admin.order.index', compact('list'));
     }
     public function orderDetail(Order $order)
     {
         $list = $order->orderDetail;
-        return view('admin.order.detail', compact('list','order'));
+        $transactions = $order->transactions;
+        return view('admin.order.detail', compact('list', 'order', 'transactions'));
     }
     public function orderEdit(Request $request, Order $order)
     {
-        $order->update(['status'=>$request->status]);
-        return redirect()->route('admin.order.index')->with('success', Lang::get('messages.updated'));
+        $order->update(['status' => $request->status]);
+        $orderDetail = $order->orderDetail;
+        foreach ($orderDetail as $detail) {
+            $product = (new Content)->find((int) $detail->attributes['product_id']);
+            if ($product instanceof Content) {
+                $attr = $product->attr;
+                $attr['in-stock'] = '0';
+                $product->update(['attr' => $attr]);
+            }
+        }
+        return redirect()->back()->with('success', Lang::get('messages.updated'));
     }
     public function orderDestroy(Order $order)
     {
@@ -740,7 +749,7 @@ class CompanyController extends Controller
 
     public function wpGetproduct()
     {
-        $wp=new wpService();
+        $wp = new wpService();
         $wp->getproduct();
         // $company->delete();
         // $companu->dettach();
@@ -749,5 +758,4 @@ class CompanyController extends Controller
         dd(1);
         return redirect()->route('admin.company.index')->with('success', Lang::get('messages.deleted'));
     }
-
 }

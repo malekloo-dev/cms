@@ -15,7 +15,7 @@ class Transaction extends Model
         'count',
         'discount_code',
         'description',
-        'status',
+        'status', // 0 disable, 1 send to bank ,2 pay successfully ,3 Upload bill , -1 have a problem
         'message',
         'transactionable_type',
         'transactionable_id',
@@ -32,4 +32,7 @@ class Transaction extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+
+
 }

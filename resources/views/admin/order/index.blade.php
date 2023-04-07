@@ -2,7 +2,7 @@
 @section('content')
     <div class="content-control">
         <ul class="breadcrumb">
-            <li class="active">@lang('messages.companies')</li>
+            <li class="active">@lang('messages.order')</li>
         </ul>
         <div>
             <a href="{{ route('admin.company.create') }}" class=" btn btn-success btn-icon  mat-button ">
@@ -62,12 +62,15 @@
                                 </td>
 
                                 <td>
-                                    @if ($item->status == 4)
-                                        آماده ارسال
+                                    @if ($item->status == 5)
+                                        @lang('messages.ready to send')
+                                    @elseif ($item->status == 4)
+                                        @lang('messages.prepairing')
+
                                     @elseif ($item->status == 3)
-                                        در حال آماده سازی
+                                        @lang('messages.paid successfully')<i class="fa fa-check bg-green" style="padding:4px 1em"></i>
                                     @elseif ($item->status == 2)
-                                        <i class="fa fa-check bg-green" style="padding:4px 1em"></i>
+                                        آپلود فیش <i class="fa fa-check bg-orange" style="padding:4px 1em"></i>
                                     @elseif ($item->status == 1)
                                         ارسال به بانک
                                     @elseif ($item->status == -1)

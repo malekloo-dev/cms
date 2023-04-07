@@ -3,6 +3,7 @@
 # /public/upload/images/*
 # !/public/upload/images/company/
 /public/upload/images/company/*
+/public/upload/images/customer/bill/*
 /public/upload/images/2020/*
 /public/upload/images/2021/*
 /public/upload/images/2022/*

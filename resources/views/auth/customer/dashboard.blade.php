@@ -10,29 +10,30 @@
             <h1>@lang('messages.Dashboard')</h1>
             <div class="flex one four-500">
 
+                @hasrole('company')
+                    @isset($user->customer)
+                        @if ($user?->customer?->status == 0)
+                            <div class="one thirdth-500 ">
 
-                @isset($user->customer)
-                    @if ($user?->customer?->status == 0)
-                        <div class="one thirdth-500 ">
+                                <a href="{{ route('customer.profile') }}"
+                                    class="widget shadow border-radius-10 p-1   bg-theme-color flex h-full">
+                                    <h2>وضعیت کمپانی </h2>
+                                    <div class="full">
+                                        (
+                                        @if ($user->customer->status == 0)
+                                            <span class=" "> غیر فعال یا در حال بررسی می باشد</span>
+                                        @endif
+                                        @if ($user->customer->status == 1)
+                                            <span class=" ">فعال </span>
+                                        @endif
+                                        )
+                                    </div>
 
-                            <a href="{{ route('customer.profile') }}"
-                                class="widget shadow border-radius-10 p-1   bg-theme-color flex h-full">
-                                <h2>وضعیت کمپانی </h2>
-                                <div class="full">
-                                    (
-                                    @if ($user->customer->status == 0)
-                                        <span class=" "> غیر فعال یا در حال بررسی می باشد</span>
-                                    @endif
-                                    @if ($user->customer->status == 1)
-                                        <span class=" ">فعال </span>
-                                    @endif
-                                    )
-                                </div>
-
-                            </a>
-                        </div>
-                    @endif
-                @endisset
+                                </a>
+                            </div>
+                        @endif
+                    @endisset
+                @endrole
 
 
                 @isset($user->customer)
@@ -41,16 +42,17 @@
 
                             <a href="{{ route('customer.profile') }}"
                                 class="widget shadow border-radius-10 p-1   bg-gray-dark flex h-full">
-                                <h2>گام اول: موارد زیر را تکمیل نمایید <i class="fa fa-external-link-alt"></i></h2>
-                                <div class="full">
+                                <h2 class="white">گام اول: موارد زیر را تکمیل نمایید <i class="fa fa-external-link-alt"></i></h2>
+                                <div class="full text-black">
                                     (
                                     @if ($user->customer->name == '')
-                                        <span class=" "> نام شرکت یا مغازه </span>
-                                        {{ $user->customer->logo == '' ? ',' : '' }}
+                                        <span class=" "> نام</span>
+                                        {{ $user->customer->address == '' ? ',' : '' }}
                                     @endif
-                                    @if ($user->customer->logo == '')
-                                        <span class=" ">تصویر </span>
+                                    @if ($user->customer->address == '')
+                                        <span class=" "> آدرس</span>
                                     @endif
+
                                     )
                                 </div>
 
