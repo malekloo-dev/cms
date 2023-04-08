@@ -775,8 +775,11 @@ function sendSms($numbers = ['09331181877'], $message = '', $i = 0)
 {
     ini_set('soap.wsdl_cache_enabled', '0');
     $sms_client = new SoapClient('http://payamak-service.ir/SendService.svc?wsdl', ['encoding' => 'UTF-8']);
-    $fromNumber = ['10009374599840', '1000365' ,'1000101','10002188','500022200', '50002708636341','10009611', '5000249', 'SimCard',
-    '50005708631983', '10002188', '5000249', '210002100000021', '30005920000015'];
+    $fromNumber = (array)json_decode(env('SMS_SENDER')) ?? [
+        '1000365',
+        '1000101', '10002188', '500022200', '50002708636341', '10009611', '5000249', 'SimCard',
+        '50005708631983', '10002188', '5000249', '210002100000021', '30005920000015'
+    ];
 
     try {
         $parameters['userName'] = env('SMS_USERNAME', 'mt.09331181877');
@@ -785,21 +788,22 @@ function sendSms($numbers = ['09331181877'], $message = '', $i = 0)
         $parameters['toNumbers'] = $numbers;
         $parameters['messageContent'] = $message;
         $parameters['isFlash'] = false;
-        // $recId = array();
-        // $status = array();
-        // $parameters['recId'] = &$recId;
-        // $parameters['status'] = &$status;
+        $recId = array(0);
+        $status = 0x0;
+        $parameters['recId'] = &$recId;
+        $parameters['status'] = &$status;
 
-
-        $api_res = $sms_client->SendSMS($parameters);
-
-
-        $res = $api_res->SendSMSResult;
+        $res = $sms_client->SendSMS($parameters)->SendSMSResult;
+        // echo "<pre>";
+        // print_r($parameters);
+        // dd($res);
         if ($res == 0) {
+            return $res;
+        }else{
             return $res;
         }
 
-        $res = sendSms($numbers, $message, ++$i);
+        // $res = sendSms($numbers, $message, ++$i);
 
         return $res;
     } catch (Exception $e) {
@@ -905,7 +909,7 @@ function getGoldPrice($offline = 'offline')
 
             if ($page === false) {
                 $time_end = microtime(true);
-                echo ' time: '.($time_end - $time_start)/60;
+                echo ' time: ' . ($time_end - $time_start) / 60;
                 echo curl_error($ch) . ' (' . curl_errno($ch) . ')' . PHP_EOL;
                 dd('-');
             }
@@ -917,7 +921,7 @@ function getGoldPrice($offline = 'offline')
             $doc->preserveWhiteSpace = false;
             @$doc->loadHTML($page);
             $time_end = microtime(true);
-            echo ' time: '.(($time_end - $time_start)/60) . 's<br>';
+            echo ' time: ' . (($time_end - $time_start) / 60) . 's<br>';
             // dd($doc);
             $selector = new DOMXPath($doc);
 
@@ -940,8 +944,8 @@ function getGoldPrice($offline = 'offline')
             if (!is_null($price)) {
 
                 // dd($price);
-                echo 'قیمت: '. $stringPrice = trim(str_replace('تومان', '', $price->nodeValue));
-                echo ' - '.$integerPrice = (int) str_replace(',', '', $stringPrice);
+                echo 'قیمت: ' . $stringPrice = trim(str_replace('تومان', '', $price->nodeValue));
+                echo ' - ' . $integerPrice = (int) str_replace(',', '', $stringPrice);
                 echo '<br>';
                 WebsiteSetting::updateOrCreate(
                     ['variable' => 'goldPrice'],

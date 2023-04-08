@@ -119,6 +119,8 @@ class CustomerController extends Controller
 
     public function orderStore()
     {
+        // dd(env('SMS_SENDER'));
+
         $user = Auth()->user();
         $cart = \Cart::session($user->id)->getContent()->toArray();
         $totalPrice = \Cart::session($user->id)->getTotal();
@@ -129,7 +131,7 @@ class CustomerController extends Controller
                 'status' => 0
             ]);
             $order->orderDetail()->delete();
-
+            $pN = '';
             foreach ($cart as $v) {
 
                 $order->orderDetail()->firstOrCreate([
@@ -139,12 +141,19 @@ class CustomerController extends Controller
                     'attributes' => $v['attributes']
                 ]);
                 \Cart::session($user->id)->remove($v['id']);
+
+                $pN .= $v['name'];
             }
         } catch (Exception $e) {
             dd($e);
         }
 
-        // $sms = @sendSms('09331181877', 'شماره'.$user->mobile.' سفارش ثبت کرد'."\nشماره: ".$order->id);
+        $message = "{$user->mobile}\nنام : {$pN}\nمبلغ : {$order->total_price}";
+
+        if(url('/') == 'https://edengoldgallery.ir'){
+            $sms = @sendSms(array('09331181877'), $message);
+        }
+
 
         return redirect()->route('customer.order.list');
     }

@@ -113,7 +113,7 @@
         figure.zoom2 {
             background-position: 50% 50%;
             position: relative;
-            width: 400px;
+            /* width: 400px; */
             overflow: hidden;
             cursor: zoom-in;
         }
@@ -207,7 +207,7 @@
                                                         height="{{ env(Str::upper($detail->attr_type) . '_LARGE_H') }}">
 
                                                     <i
-                                                        class="fa-solid fa-magnifying-glass-plus font-15 zoom p-1 border-radius-5"></i>
+                                                        class="fa-solid hidden-500 fa-magnifying-glass-plus font-15 zoom p-1 border-radius-5"></i>
                                                 </div>
 
                                             </figure>

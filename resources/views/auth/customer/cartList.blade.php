@@ -60,7 +60,7 @@
                     @if (count($cart))
                         <form method="post" action="{{ route('customer.order.store') }}">
                             @csrf
-                            <button class="btn btn-success btn-sm">@lang('messages.ordered and buy')  </button>
+                            <button class="btn px-5 btn-buy">ادامه خرید ←  </button>
                         </form>
                     @else
                         @lang('messages.not found')

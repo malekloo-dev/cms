@@ -179,7 +179,7 @@ h3{font-size: $h3-font-size ; color: $h3-color; }
     }
 
     .hidden-500{
-        display: none;
+        display: none !important;
     }
 
     .visible-500{

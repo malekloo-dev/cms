@@ -21,34 +21,24 @@
                     </div>
                 @endif
 
-                @if (Auth::user()->customer->name == '' || Auth::user()->customer->address == '')
-                    <a href="{{ route('customer.profile') }}"
-                        class="widget shadow border-radius-10 p-1 mb-1  bg-gray-dark flex h-full">
-                        <h2 class="white">گام اول:
-                            (
-                            @if (Auth::user()->customer->name == '')
-                                <span class=" "> نام</span>
-                                {{ Auth::user()->customer->address == '' ? ',' : '' }}
-                            @endif
-                            @if (Auth::user()->customer->address == '')
-                                <span class=" "> آدرس</span>
-                            @endif
-                            )
-                            را تکمیل نمایید <i class="fa fa-external-link-alt"></i>
-                        </h2>
 
-                    </a>
-                @endif
                 @foreach ($orders as $content)
                     <div class="item ">
                         <div class="info">
                             <div class="">
-                                <a class="btn btn-sm btn-primary inline-block font-07 pt-0 pb-0 pr-0    "
+                                <a class="btn  btn-primary inline-block  pt-0 pb-0     "
                                     href="{{ route('customer.order.detail', $content->id) }}">
-                                    <span class="px-1">{{ $content->orderDetail->count() }}</span>@lang('messages.product')</a>
+                                    <span>مشاهده جزییات سفارش</span>
+                                </a>
                             </div>
                             <div class="font-08">{{ convertGtoJ($content->created_at) }}</div>
-                            <div class="bold">@convertCurrency($content['total_price']) @lang('messages.toman')</div>
+                            <div class="">
+                                <span class="pl-3 ">{{ $content->orderDetail->count() }} آیتم</span>
+                                <span class="bold">
+                                    @convertCurrency($content['total_price']) @lang('messages.toman')
+                                </span>
+
+                            </div>
 
                             <div>
                                 @if ($content->status == 1)
@@ -56,10 +46,10 @@
                                 @elseif ($content->status == 2)
                                     <div class="yellow">
                                         @lang('messages.status'): فیش آپلود شده و در حال بررسی میباشد
-                                        @foreach ($content->transactions as $item)
+                                        {{-- @foreach ($content->transactions as $item)
                                             <a class="btn btn-sm btn-info py-0" href="{{ $item->description }}">مشاهده
                                                 فایل</a>
-                                        @endforeach
+                                        @endforeach --}}
                                     </div>
                                 @elseif ($content->status == 3)
                                     <div class="green">@lang('messages.status'): @lang('messages.paid successfully')</div>
@@ -73,27 +63,50 @@
                                         {{ $content->message }}
                                     </div>
                                 @else
-                                    <div class="red text-center bg-gray2 border-radius-5">@lang('messages.status'):
+                                    <div class="red text-center bg-gray2 border-radius-5 my-1 p-1">
+                                        {{-- @if (Auth::user()?->customer?->name == '' || Auth::user()?->customer?->address == '')
+                                            <a href="{{ route('customer.profile') }}"
+                                                class="widget shadow border-radius-10 p-1 mb-1  bg-gray-dark flex h-full">
+                                                <h2 class="white">گام اول:
+                                                    (
+                                                    @if (Auth::user()?->customer?->name == '')
+                                                        <span class=" "> نام</span>
+                                                        {{ Auth::user()?->customer?->address == '' ? ',' : '' }}
+                                                    @endif
+                                                    @if (Auth::user()?->customer?->address == '')
+                                                        <span class=" "> آدرس</span>
+                                                    @endif
+                                                    )
+                                                    را تکمیل نمایید <i class="fa fa-external-link-alt"></i>
+                                                </h2>
+
+                                            </a>
+                                        @endif --}}
+                                        @lang('messages.status'):
                                         @lang('messages.pending')
-                                        <form method="post" enctype="multipart/form-data"
+                                        {{-- <form method="post" enctype="multipart/form-data" class=""
                                             action="{{ route('customer.uploadBill', ['order' => $content->id]) }}">
                                             @csrf
                                             @method('post')
                                             <input type="file" name="bill">
-                                            <button class="btn btn-sm btn-info py-0">ثبت فیش</button>
-                                        </form>
+                                            <button class="btn  btn-info ">ثبت فیش</button>
+                                        </form> --}}
+                                        <span>
+                                            @if ($content->status == 0)
+                                                <form method="post"
+                                                    action="{{ route('customer.order.destroy', $content['id']) }}">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="btn btn-danger py-0 mt-1" onclick="return confirm('آیا از حذف سفارش مطمئن هستید؟')"><span class="hidden-500">حذف
+                                                            سفارش</span>
+                                                        <i class="fa fa-remove"></i> </button>
+                                                </form>
+                                            @endif
+                                        </span>
                                     </div>
                                 @endif
                             </div>
                             <div>
-                                @if ($content->status == 0)
-                                    <form method="post" action="{{ route('customer.order.destroy', $content['id']) }}">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="btn btn-danger btn-sm py-0"><span class="hidden-500">حذف آیتم</span>
-                                            <i class="fa fa-remove"></i> </button>
-                                    </form>
-                                @endif
 
 
                             </div>
