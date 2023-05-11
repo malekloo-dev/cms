@@ -19,7 +19,16 @@
 
 
 @push('head')
-
+    <script type="text/javascript">
+        function zoom(e) {
+            var zoomer = e.currentTarget;
+            e.offsetX ? offsetX = e.offsetX : offsetX = e.touches[0].pageX
+            e.offsetY ? offsetY = e.offsetY : offsetX = e.touches[0].pageX
+            x = offsetX / zoomer.offsetWidth * 100
+            y = offsetY / zoomer.offsetHeight * 100
+            zoomer.style.backgroundPosition = x + '% ' + y + '%';
+        }
+    </script>
 @endpush
 @push('scripts')
     <script type="text/javascript">
@@ -32,14 +41,45 @@
             zoomer.style.backgroundPosition = x + '% ' + y + '%';
         }
 
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const ratings = document.querySelectorAll('[name="rate"]');
+            const labels = document.querySelectorAll('.rating > label');
+
+            const change = (e) => {
+                console.log(e.target.value);
+
+            }
+            const mouseenter = (e) => {
+                document.getElementById('rating-hover-label').innerHTML = e.target.title;
+            }
+            const mouseleave = (e) => {
+
+                document.getElementById('rating-hover-label').innerHTML = '';
+            }
+
+            ratings.forEach((el) => {
+                el.addEventListener('change', change);
+            });
+            labels.forEach((el) => {
+                el.addEventListener('mouseenter', mouseenter);
+                el.addEventListener('mouseleave', mouseleave);
+            });
+
+
+
+
+        });
+
+
         function myFunction(imgs) {
             var Img = document.getElementById("main-image");
             var figure = document.getElementById("figure-main-image");
 
             Img.src = imgs.dataset.large;
-            Img.parentElement.style.display = "block";
-            figure.style = 'background-image: url(' + imgs.dataset.xlarge + ')';
-            $('#main-image').data('xlarge', imgs.dataset.xlarge);
+            Img .parentElement.style.display = "block";
+            figure.style = 'background-image: url('+imgs.dataset.xlarge+')';
+            $('#main-image').data('xlarge',imgs.dataset.xlarge);
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -60,7 +100,7 @@
 
                 xlarge = $('#main-image').data('xlarge')
                 console.log(xlarge);
-                $('#main-image').attr('src', xlarge)
+                $('#main-image').attr('src',xlarge)
                 $('#main-image').toggleClass('zoom2x')
 
                 $(this).toggleClass('fa-magnifying-glass-plus')
@@ -141,11 +181,10 @@
                 <div class="top-page">
 
                     <div>
-
+                        <h1 id="product-name" class="">{{ $detail->title }}</h1>
                         <div>
                             <div class="flex one three-800">
-
-                                <div id="product-image" class="one mt-1 thirth-800 relative">
+                                <div id="product-image" class="one thirth-800 relative">
                                     @if (isset($detail->images['images']['large']))
 
                                         <div class="p-0">
@@ -158,6 +197,7 @@
                                                     <img id="main-image" loading="lazy"
                                                         data-xlarge="{{ $detail->images['images']['xlarge'] ?? $detail->images['images']['large'] }}"
                                                         src="{{ $detail->images['images']['large'] }}"
+
                                                         alt="{{ $detail->title }}"
                                                         width="{{ env(Str::upper($detail->attr_type) . '_LARGE_W') }}"
                                                         height="{{ env(Str::upper($detail->attr_type) . '_LARGE_H') }}">
@@ -172,13 +212,13 @@
                                         @if ($detail->gallery->count())
                                             <div class="gallery">
                                                 <img onclick="myFunction(this);" class="m-1"
-                                                    data-large="{{ $detail->images['images']['large'] }}"
-                                                    data-xlarge="{{ $detail->images['images']['xlarge'] ?? $detail->images['images']['large'] }}"
+                                                    data-large="{{  $detail->images['images']['large']}}"
+                                                    data-xlarge="{{ $detail->images['images']['xlarge'] ?? $detail->images['images']['large']}}"
                                                     src="{{ $detail->images['images']['small'] }}" height="100">
                                                 @foreach ($detail->gallery as $item)
                                                     <img onclick="myFunction(this);" class="m-1"
-                                                        data-large="{{ $item->images['images']['large'] }}"
-                                                        data-xlarge="{{ $item->images['images']['xlarge'] ?? $item->images['images']['large'] }}"
+                                                        data-large="{{ $item->images['images']['large']}}"
+                                                        data-xlarge="{{ $item->images['images']['xlarge'] ?? $item->images['images']['large']}}"
                                                         src="{{ $item->images['images']['small'] }}" height="100">
                                                 @endforeach
                                             </div>
@@ -191,9 +231,76 @@
                                         </picture>
                                     @endif
                                 </div>
+                                <div class="two-third-800 p-0">
 
-                                <div class="one third-800 p-0">
-                                    <h1 id="product-name" class="">{{ $detail->title }}</h1>
+
+
+                                    @if (count($detail->companies))
+                                        <div class="company-logo">
+                                            <a href="{{ url('/profile/' . $detail->companies->first()->id) }}">
+
+                                                @if (isset($detail->companies->first()->logo) &&
+                                                        $detail->companies->first()->logo['medium'] != '' &&
+                                                        file_exists(public_path($detail->companies->first()->logo['medium'])))
+                                                    {{-- @if (isset($detail->companies->first()->logo) && $detail->companies->first()->logo['medium'] == '' && !file_exists(public_path($detail->companies->first()->logo['medium']))) --}}
+                                                    <img loading="lazy"
+                                                        src="{{ url($detail->companies->first()->logo['medium']) }}"
+                                                        width="50" height="50" class="border-radius-50"
+                                                        alt="company profile">
+                                                @endif
+                                                {{ $detail->companies->first()->name ?? '' }}
+                                            </a>
+                                        </div>
+                                    @endif
+
+                                    @isset($detail->attr['weight'])
+                                        <div class="flex three">
+
+                                            <div class="two-third p-0">
+                                                <div class="flex one">
+
+                                                    <span class="price text-green pb-0   ">قیمت @convertCurrency($detail->GoldPrice()['totalPrice']) تومان</span>
+                                                    <span class="font-08 pb-0">(قیمت روز طلا:@convertCurrency($detail->GoldPrice()['goldprice']) تومان)</span>
+                                                </div>
+                                            </div>
+                                            <span class="p-0 third">وزن: {{ $detail->attr['weight'] ?? 0 }} گرم</span>
+                                        </div>
+                                    @endisset
+
+
+
+
+
+
+                                    <div>
+                                        {!! $detail->brief_description !!}
+                                    </div>
+
+
+                                    <form action="{{ route('customer.cart.store') }}" method="post"
+                                        class="order-form flex one two-500 three-900 four-1200">
+                                        @csrf
+                                        @if (\Session::has('success'))
+                                            <div class="alert alert-success ">
+                                                {!! \Session::get('success') !!}
+                                            </div>
+                                        @endif
+                                        @if (\Session::has('error'))
+                                            <div class="alert alert-danger ">
+                                                {!! \Session::get('error') !!}
+                                            </div>
+                                        @endif
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                {!! implode('', $errors->all('<div>:message</div>')) !!}
+                                            </div>
+                                        @endif
+                                        <input type="hidden" name="id" value="{{ $detail->id }}">
+                                        <button class="btn btn-buy px-3   border-radius-5">
+                                            <i class="fa fa-plus"></i>
+                                            ثبت سفارش
+                                        </button>
+                                    </form>
 
 
                                     <span id="product-rate" class="rate  mt-1">
@@ -212,50 +319,14 @@
                                             <span class="font-07">({{ count($detail->comments) }} نفر) </span>
                                         @endif
                                     </span>
-                                    <div id="product-categories" class=" my-1 font-09">
+                                    <div id="product-categories" class=" mt-1 font-09">
                                         دسته بندی :
                                         @foreach ($detail->categories as $key => $item)
-                                            {{-- <a href="{{ $item['slug'] }}"> {{ $item['title'] }} </a> --}}
-                                            @if ($loop->last)
-                                                <a href="{{ $item['slug'] }}"> {{ $item['title'] }} </a>
-                                                {{-- <span> | </span> --}}
+                                            <a href="{{ $item['slug'] }}"> {{ $item['title'] }} </a>
+                                            @if (!$loop->last)
+                                                <span> | </span>
                                             @endif
                                         @endforeach
-                                    </div>
-                                    <div><i class="fa-solid fa-square-check text-green font-13 pl-1"></i> ضمانت طلای ۱۸ عیار</div>
-                                    <div><i class="fa-solid fa-certificate font-13 pl-1 text-gold"></i> تضمین به روز بودن قیمت طلا</div>
-                                    <div><i class="fa-solid fa-gift text-blue  font-13 pl-1"></i> فاکتور + پکیج هدیه</div>
-                                    <div>{!! $detail->brief_description !!}</div>
-
-
-                                </div>
-                                <div class="px-2 py-1">
-                                    <div class="bg-gray p-2 border-radius-5">
-
-
-                                        @isset($detail->attr['weight'])
-                                            <div class="flex one">
-
-                                                <div class="flex ">
-                                                    <span>وزن: </span>
-                                                    <span class="text-left">{{ $detail->attr['weight'] ?? 0 }} گرم</span>
-                                                </div>
-                                                <div class="flex">
-                                                    <span>قیمت روز طلا:</span>
-                                                    <span class="text-left">@convertCurrency($detail->GoldPrice()['goldprice']) تومان</span>
-                                                </div>
-                                                <div class="flex">
-                                                    <span>اجرت ساخت:</span> <span class="text-left">۱۸٪</span>
-                                                </div>
-                                                <div class="flex"><span>سود ایدن:</span><span class="text-left">۷٪</span></div>
-                                                <div class="flex"><span>مالیات:</span><span class="text-left">@convertCurrency($detail->GoldPrice()['tax']) تومان</span> </div>
-                                                <div class="flex"><span>خرج کار:</span><span class="text-left">@convertCurrency($detail->attr['additionalprice']) تومان</span></div>
-                                                <div class="font-15 bold text-green">قیمت @convertCurrency($detail->GoldPrice()['totalPrice']) تومان</div>
-
-                                            </div>
-                                        @endisset
-
-                                        @include('eden.AddToCart')
                                     </div>
 
                                 </div>
@@ -328,9 +399,83 @@
     <section class="comments bg-gray mt-0 mb-0">
         <div class="flex one">
             <div>
+                <div>نظرات شما درباره {{ $detail->title }}</div>
+                <div>
+                    <div class="comment-form">
+                        @if (\Session::has('success'))
+                            <div class="alert alert-success">
+                                {!! \Session::get('success') !!}
+                            </div>
+                        @endif
 
-                @include('eden.Comment')
+                        @if (\Session::has('error'))
+                            <div class="alert alert-danger">
+                                {!! \Session::get('error') !!}
+                            </div>
+                        @endif
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                {!! implode('', $errors->all('<div>:message</div>')) !!}
+                            </div>
+                        @endif
+                        <form action="{{ route('comment.client.store') }}#comment" id="comment" method="post">
+                            <input type="hidden" name="content_id" value="{{ $detail->id }}">
 
+                            @csrf
+                            <div>
+                                <div class="rating">
+                                    <span>امتیاز: </span>
+                                    <input name="rate" type="radio" id="st5"
+                                        {{ old('rate') == '5' ? 'checked' : '' }} value="5" />
+                                    <label for="st5" title="عالی"></label>
+                                    <input name="rate" type="radio" id="st4"
+                                        {{ old('rate') == '4' ? 'checked' : '' }} value="4" />
+                                    <label for="st4" title="خوب"></label>
+                                    <input name="rate" type="radio" id="st3"
+                                        {{ old('rate') == '3' ? 'checked' : '' }} value="3" />
+                                    <label for="st3" title="معمولی"></label>
+                                    <input name="rate" type="radio" id="st2"
+                                        {{ old('rate') == '2' ? 'checked' : '' }} value="2" />
+                                    <label for="st2" title="ضعیف"></label>
+                                    <input name="rate" type="radio" id="st1"
+                                        {{ old('rate') == '1' ? 'checked' : '' }} value="1" />
+                                    <label for="st1" title="بد"></label>
+                                    <span id="rating-hover-label"></span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="comment_name">نام:</label>
+                                <input id="comment_name" type="text" name="name" value="{{ old('name') }}">
+                            </div>
+                            <div>
+                                <label for="comment-text">پیام:</label>
+                                <textarea id="comment-text" name="comment">{{ old('comment') }}</textarea>
+                            </div>
+                            <button class="button button-blue g-recaptcha" data-sitekey="reCAPTCHA_site_key"
+                                data-callback='onSubmit' data-action='submit'>ارسال نظر</button>
+                        </form>
+                    </div>
+
+                    @foreach ($detail->comments as $comment)
+                        @if ($comment['name'] != '' && $comment['comment'] != '')
+                            <div class="comment">
+                                <div class="aside">
+                                    <div class="name">{{ $comment['name'] }}</div>
+                                    <div class="date">{{ convertGToJ($comment['created_at']) }}</div>
+                                </div>
+                                <div class="article">
+                                    <div>
+                                        @for ($i = $comment->rate; $i >= 1; $i--)
+                                            <label></label>
+                                        @endfor
+                                    </div>
+                                    <div class="text">{!! $comment['comment'] !!}</div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
             </div>
         </div>
     </section>

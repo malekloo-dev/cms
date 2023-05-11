@@ -985,8 +985,14 @@ function calcuteGoldPrice($weight = 0, $additionalPrice = 0, $goldPrice = 0, $ro
 
     $goldPrice = isset($str['priceToman']) ? $str['priceToman'] : 0;
 
+    $gold = $goldPrice * $weight;
+    $ojrat = $gold * 0.18;
+    $Sood = ($gold + $ojrat) * 0.07;
+    $tax = ($Sood + $ojrat) * 0.09;
+
     return [
-        'totalPrice' => (int) ceil(($goldPrice * $weight + $goldPrice * $weight * 0.26 + $additionalPrice) / 1000) * 1000,
+        'totalPrice' => (int) ceil(($gold + $Sood + $ojrat + $tax + $additionalPrice) / 1000) * 1000,
         'goldprice' => $goldPrice,
+        'tax' => $tax,
     ];
 }

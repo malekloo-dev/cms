@@ -32,7 +32,8 @@ $button-bg-color: yellow;
 
 $font-family: vazir2;
 
-@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
+// @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/6.4.0/css/font-awesome.min.css");
 
 @import "app.scss";
 @import "grid.scss";
@@ -53,9 +54,14 @@ $font-family: vazir2;
     color: #333 !important;
 }
 .text-green {
-    color: #048312;
+    color: #009b12;
 }
-
+.text-blue{
+    color: rgb(80, 162, 255);
+}
+.text-gold{
+    color: gold;
+}
 ////////////////////
 //     customer menu     //
 ////////////////////

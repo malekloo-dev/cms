@@ -54,7 +54,7 @@ class CommentController extends Controller
 
         Comment::create($data);
 
-        return redirect()->back()->with('success', __('messages.comment-send-success'));
+        return redirect()->back()->with('comment_success', __('messages.comment-send-success'));
     }
 
     /**
