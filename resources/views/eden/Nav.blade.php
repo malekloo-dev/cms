@@ -1,25 +1,41 @@
 <div class="top-menu">
-    <div class="customer-menu">
+    <div class="customer-menu text-sm">
 
         @auth
             @role('customer')
-            <span onclick="window.location.href='{{ route('customer.order.list') }}'"><i class="fa-solid fa-basket-shopping"></i> سفارشات  </span>
 
-                {{-- <span onclick="window.location.href='{{ route('customer.order.list') }}'">حساب کاربری</span> --}}
+                <span class="relative" onclick="window.location.href='{{ route('customer.cart.list') }}'">
+                    <i class="fa-solid fa-basket-shopping"></i> سبد خرید
+                    <span
+                        class="absolute -right-7 top-0 rounded-full bg-red-400 w-5 h-5 top text-xs right p-1 m-0 text-white leading-tight text-center">
+                        {{ \Cart::session(getSession('cart'))->getContent()->count() ?? 0 }}
+                    </span>
+                </span>
+
+                {{-- <span onclick="window.location.href='{{ route('customer.order.list') }}'"> سفارشات </span> --}}
+                <span class="login" onclick="window.location.href='{{ route('customer.order.list') }}'"><i class="far fa-user"></i></span>
+                {{-- <span onclick="window.location.href='{{ route('customer.dashboard') }}'">حساب کاربری</span> --}}
+
             @else
                 <span onclick="window.location.href='{{ route('company.dashboard') }}'">حساب کمپانی</span>
             @endrole
         @else
-        <span onclick="window.location.href='{{ route('customer.dashboard') }}'"><i class="fa-solid fa-basket-shopping"></i> سبد خرید  </span> |
+            <span class="relative " onclick="window.location.href='{{ route('customer.cart.list') }}'">
+                <i class="fa-solid fa-basket-shopping"></i> سبد خرید
+                <span
+                    class="absolute -right-7 top-0 rounded-full bg-red-400 w-5 h-5 top text-xs right p-1 m-0 text-white leading-tight text-center">
+                    {{ \Cart::session(getSession('cart'))->getContent()->count() ?? 0 }}
+                </span>
+            </span> |‌
 
-            <span class="login" onclick="window.location.href='{{ route('login') }}'"><i class="far fa-user"></i></span>
+            <span class="" onclick="window.location.href='{{ route('login') }}'">ورود</span>
         @endauth
     </div>
     <section class="p-0 m-0">
 
         <div class="text-center">
             <a href="/" class="brand">
-                <img height="100" width="74" alt=" ایدن لوگو"
+                <img height="100" width="74" alt=" ایدن لوگو" class="inline-block"
                     srcset="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }} 1x, {{ url(env('TEMPLATE_NAME') . '/img/logo2x.png') }} 2x"
                     src="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }}" />
             </a>

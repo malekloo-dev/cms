@@ -168,7 +168,7 @@ section.panel {
 
     .list {
         .item {
-            display: flex;
+            // display: flex;
             flex-flow: row wrap;
             &:last-child {
                 border-bottom: none;
@@ -177,25 +177,25 @@ section.panel {
                 flex-grow: 1;
                 flex: 1 1 auto;
                 display: flex;
-                justify-content: space-evenly;
+                // justify-content: space-evenly;
                 align-items: center;
                 &.info {
                     display: flex;
                     flex-flow: row wrap;
                     > div {
-                        flex-grow: 1;
-                        &:last-child {
-                            flex-grow: 1;
-                            justify-content: center;
-                            // max-width: 214px;
-                            align-items: center;
-                            white-space: nowrap;
-                            margin: auto;
-                            display: flex;
-                            > * {
-                                margin-right: 2px;
-                            }
-                        }
+                        // flex-grow: 1;
+                        // &:last-child {
+                        //     flex-grow: 1;
+                        //     justify-content: center;
+                        //     // max-width: 214px;
+                        //     align-items: center;
+                        //     white-space: nowrap;
+                        //     margin: auto;
+                        //     display: flex;
+                        //     > * {
+                        //         margin-right: 2px;
+                        //     }
+                        // }
                     }
                 }
                 .inline{

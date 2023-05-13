@@ -1,6 +1,6 @@
 
 let mix = require('laravel-mix');
-
+let tailwindcss = require('tailwindcss');
 var LiveReloadPlugin = require('webpack-livereload-plugin');
 
 const path = require("path");
@@ -18,7 +18,8 @@ mix.webpackConfig({
 });
 
 mix.options({
-    processCssUrls: false
+    processCssUrls: false,
+    postCss: [tailwindcss('./tailwind.config.js')],
 });
 
 var template = dotenv.parsed.TEMPLATE_NAME;

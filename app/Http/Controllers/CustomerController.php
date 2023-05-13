@@ -23,13 +23,11 @@ use Illuminate\Support\Facades\Lang;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 
-
-
-
 class CustomerController extends Controller
 {
 
     public $breadcrumb;
+
 
 
     public function showLoginForm()
@@ -56,11 +54,17 @@ class CustomerController extends Controller
     }
 
 
-    public function cartList()
-    {
 
-        $userID = Auth()->user()->id;
-        $cart = \Cart::session($userID)->getContent()->toArray();
+    public function cartList(Request $request)
+    {
+        // dd($request->getRequestUri());
+        // dd($request);
+        // dd($request->header('Referer'));
+
+
+        $cookieUser = getSession('cart'); // the user ID to bind the cart contents
+
+        $cart = ($cookieUser) ? \Cart::session($cookieUser)->getContent()->toArray() : array();
 
         return view('auth.customer.cartList', compact('cart'));
     }
@@ -72,15 +76,19 @@ class CustomerController extends Controller
 
         $Product = (new Content)->where('id', '=',  $request->id)->where('type', '=', 2)->first();
 
-        $userID = Auth()->user()->id; // the user ID to bind the cart contents
+        // $cookieUser = $request->cookie('cart'); // the user ID to bind the cart contents
+        $cookieUser = getSession('cart');
 
-        \Cart::session($userID)->add(array(
+        $totalPrice = (isset($Product->attr['in-stock']) && $Product->attr['in-stock'] == 1)
+            ? $Product->GoldPrice()['totalPrice']
+            : 500000;
+        \Cart::session($cookieUser)->add(array(
             'id' => $Product->id,
             'name' => $Product->title,
-            'price' => $Product->GoldPrice()['totalPrice'],
+            'price' => $totalPrice,
             'quantity' => $request?->count ?? 1,
             'attributes' => array(
-                'userId' => $userID,
+                'userId' => $cookieUser,
                 'product_id' => $Product->id,
                 'slug' => $Product->slug,
                 'image' => $Product->images['images']['small'],
@@ -88,27 +96,29 @@ class CustomerController extends Controller
             'associatedModel' => $Product
         ));
 
+        // dd(\Cart::getContent()->toArray());
 
         return redirect()->route('customer.cart.list')->with('message', 'به سبد اضافه شد');
     }
-    public function cartDestroy(Content $product)
+    public function cartDestroy(Request $request, Content $product)
     {
-        $userID = Auth()->user()->id;
-        $res = \Cart::session($userID)->remove($product->id);
+        $cookieUser = getSession('cart'); // the user ID to bind the cart contents
+
+        $res = \Cart::session($cookieUser)->remove($product->id);
         return redirect()->route('customer.cart.list')->with('message', 'آپدیت شد');
     }
     public function cartUpdate(Request $request, Content $product)
     {
-        $userID = Auth()->user()->id;
+        $cookieUser = getSession('cart'); // the user ID to bind the cart contents
 
-        $cart = \Cart::session($userID)->getContent()->toArray()[$product->id] ?? False;
+        $cart = \Cart::session($cookieUser)->getContent()->toArray()[$product->id] ?? False;
         if (!$cart)
             return redirect()->route('customer.cart.list')->with('message', 'پیدا نشد');
 
 
-        \Cart::session($userID)->update($product->id, ['quantity' => (int) $request->count]);
+        \Cart::session($cookieUser)->update($product->id, ['quantity' => (int) $request->count]);
         if ($cart['quantity'] == 1 && (int) $request->count < 0)
-            \Cart::session($userID)->remove($product->id);
+            \Cart::session($cookieUser)->remove($product->id);
 
         return redirect()->route('customer.cart.list')->with('message', 'آپدیت شد');
     }
@@ -117,13 +127,14 @@ class CustomerController extends Controller
 
 
 
-    public function orderStore()
+    public function orderStore(Request $request)
     {
         // dd(env('SMS_SENDER'));
 
         $user = Auth()->user();
-        $cart = \Cart::session($user->id)->getContent()->toArray();
-        $totalPrice = \Cart::session($user->id)->getTotal();
+        $cookieUser = getSession('cart'); // the user ID to bind the cart contents
+        $cart = \Cart::session($cookieUser)->getContent()->toArray();
+        $totalPrice = \Cart::session($cookieUser)->getTotal();
 
         try {
             $order = $user->orders()->create([
@@ -140,7 +151,7 @@ class CustomerController extends Controller
                     'count' => $v['quantity'],
                     'attributes' => $v['attributes']
                 ]);
-                \Cart::session($user->id)->remove($v['id']);
+                \Cart::session($cookieUser)->remove($v['id']);
 
                 $pN .= $v['name'];
             }
@@ -150,12 +161,12 @@ class CustomerController extends Controller
 
         $message = "{$user->mobile}\nنام : {$pN}\nمبلغ : {$order->total_price}";
 
-        if(url('/') == 'https://edengoldgallery.ir'){
+        if (url('/') == 'https://edengoldgallery.ir') {
             $sms = @sendSms(array('09331181877'), $message);
         }
 
 
-        return redirect()->route('customer.order.list');
+        return redirect()->route('customer.order.detail',['order'=>$order]);
     }
     public function orderList()
     {
@@ -734,7 +745,7 @@ class CustomerController extends Controller
         // dd($user->transactions);
         // dd($user->customer->contents()->where('attr_type','=','product')->paginate(10));
 
-        $transactions = $user->transactions()->orderBy('id','desc')->paginate(10);
+        $transactions = $user->transactions()->orderBy('id', 'desc')->paginate(10);
 
         return view('auth.customer.transactions', compact('user', 'transactions'));
     }

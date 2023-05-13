@@ -170,21 +170,21 @@
 
 
 
-        <section class=" " id="index-best-view">
-            <div class="flex one  four-800  ">
-                <div class="one-fourth-800 p-0">
-                    @include(@env('TEMPLATE_NAME').'.cms.filter')
+    <section class=" " id="index-best-view">
+        <div class="flex one  four-800  ">
+            <div class="one-fourth-800 p-0">
+                @include(@env('TEMPLATE_NAME') . '.cms.filter')
 
-                </div>
-                <div class="three-fourth-800 p-0">
-                    <div class="">
+            </div>
+            <div class="three-fourth-800 p-0">
+                <div class="">
 
-                        <div class="flex two five-900 center ">
+                    <div class="flex two five-900 center ">
                         @if (count($relatedProduct))
 
                             @foreach ($relatedProduct as $content)
                                 <a href="{{ $content->slug }}">
-                                    <div class="shadow hover p-0 ">
+                                    <div class="shadow hover p-0 mb-2 ">
                                         @if (isset($content->images['images']['small']))
                                             <figure class="image ">
                                                 @if (isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0)
@@ -211,15 +211,15 @@
                                     </div>
                                 </a>
                             @endforeach
-                            @endif
-
-                        </div>
-                        {{ $relatedProduct->links('vendor.pagination.default') }}
+                        @endif
 
                     </div>
+                    {{ $relatedProduct->links('vendor.pagination.default') }}
+
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
     @if (count($relatedPost))
 

@@ -7,7 +7,7 @@
         @include('auth.customer.nav')
 
         <div>
-            <h1>@lang('messages.Dashboard')</h1>
+            {{-- <h1>@lang('messages.Dashboard')</h1> --}}
             <div class="flex one four-500">
 
                 @hasrole('company')
@@ -37,7 +37,7 @@
 
 
                 @isset($user->customer)
-                    @if ($user?->customer?->name == '' || $user?->customer?->logo == '')
+                    @if ($user?->customer?->name == '' || $user?->customer?->address == '')
                         <div class="one thirdth-500 ">
 
                             <a href="{{ route('customer.profile') }}"
@@ -86,7 +86,22 @@
                     </div>
                 @endisset
             </div>
+
+            @hasrole('customer')
+                <div class="border  rounded-md p-1">
+                    <h2>سفارشات من</h2>
+                    <div>
+                        جاری
+                    </div>
+
+                </div>
+            @endrole
         </div>
+
+
+
+
+
     </section>
 
 @endsection

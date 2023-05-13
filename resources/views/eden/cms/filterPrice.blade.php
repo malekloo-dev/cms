@@ -18,7 +18,7 @@
             <form method="GET" action="">
                 <input type="hidden" name="min_price" value="">
                 <input type="hidden" name="max_price" value="">
-                <button class="m-0 px-1 py-0 bg-blue2 font-09 border-radius-15">فیلتر قیمت</button>
+                <button class="m-0 px-1 py-0 bg-blue2 font-09 border-radius-15 hover:bg-blue-800 hover:shadow">فیلتر قیمت</button>
             </form>
         </div>
     </div>

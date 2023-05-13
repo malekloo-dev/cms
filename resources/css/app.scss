@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 $site-witdth: 1200px !default;
 $h1-font-size: 1.5em !default;
 $h1-color: inherit !default;
@@ -30,10 +34,10 @@ h3{font-size: $h3-font-size ; color: $h3-color; }
 }
 .flex > * {
     box-sizing: border-box;
-    flex: 1 1 auto;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    padding-bottom: 1em;
+    // flex: 1 1 auto;
+    // padding-left: 0.5em;
+    // padding-right: 0.5em;
+    // padding-bottom: 1em;
 }
 .flex[class*="eight"] > *,
 .flex[class*="eleven"] > *,
@@ -1959,19 +1963,19 @@ button[disabled] {
 [type] + .toggle:before {
     display: none;
 }
-.select select,
-input:not([type="checkbox"]):not([type="radio"]),
-textarea {
-    line-height: 1.5;
-    margin: 0;
-    height: 2.1em;
-    padding: 0.3em 0.6em;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    border-radius: 0.2em;
-    transition: all 0.3s;
-    width: 100%;
-}
+// .select select,
+// input:not([type="checkbox"]):not([type="radio"]),
+// textarea {
+//     line-height: 1.5;
+//     margin: 0;
+//     height: 3em;
+//     padding: 0.3em 0.6em;
+//     border: 1px solid #ccc;
+//     background-color: #fff;
+//     border-radius: 0.2em;
+//     transition: all 0.3s;
+//     width: 100%;
+// }
 
 .select select:focus,
 input:focus,
@@ -2485,72 +2489,72 @@ section.row aside {
     width: 200px;
 }
 
-$sizes: 5;
+// $sizes: 5;
 
-@mixin margin-classes {
-    @for $i from 0 through $sizes {
-        $margin: $i * 1em !important;
-        /* margin #{$margin} */
-        .m-#{$i} {
-            margin: $margin;
-        }
-        .ml-#{$i} {
-            margin-left: $margin;
-        }
-        .mr-#{$i} {
-            margin-right: $margin;
-        }
-        .mt-#{$i} {
-            margin-top: $margin;
-        }
-        .mb-#{$i} {
-            margin-bottom: $margin;
-        }
-        .mx-#{$i} {
-            margin-left: $margin;
-            margin-right: $margin;
-        }
-        .my-#{$i} {
-            margin-top: $margin;
-            margin-bottom: $margin;
-        }
-    }
-}
-@include margin-classes;
-.m-auto {
-    margin: auto;
-}
+// @mixin margin-classes {
+//     @for $i from 0 through $sizes {
+//         $margin: $i * 1em !important;
+//         /* margin #{$margin} */
+//         .m-#{$i} {
+//             margin: $margin;
+//         }
+//         .ml-#{$i} {
+//             margin-left: $margin;
+//         }
+//         .mr-#{$i} {
+//             margin-right: $margin;
+//         }
+//         .mt-#{$i} {
+//             margin-top: $margin;
+//         }
+//         .mb-#{$i} {
+//             margin-bottom: $margin;
+//         }
+//         .mx-#{$i} {
+//             margin-left: $margin;
+//             margin-right: $margin;
+//         }
+//         .my-#{$i} {
+//             margin-top: $margin;
+//             margin-bottom: $margin;
+//         }
+//     }
+// }
+// @include margin-classes;
+// .m-auto {
+//     margin: auto;
+// }
 
-@mixin padding-classes {
-    @for $i from 0 through $sizes {
-        $padding: $i * 1em !important;
-        /* padding #{$padding} */
-        .p-#{$i} {
-            padding: $padding;
-        }
-        .pl-#{$i} {
-            padding-left: $padding;
-        }
-        .pr-#{$i} {
-            padding-right: $padding;
-        }
-        .pt-#{$i} {
-            padding-top: $padding;
-        }
-        .pb-#{$i} {
-            padding-bottom: $padding;
-        }
-        .px-#{$i} {
-            padding-left: $padding;
-            padding-right: $padding;
-        }
-        .py-#{$i} {
-            padding-top: $padding;
-            padding-bottom: $padding;
-        }
-    }
-}
-@include padding-classes;
+// @mixin padding-classes {
+//     @for $i from 0 through $sizes {
+//         $padding: $i * 1em !important;
+//         /* padding #{$padding} */
+//         .p-#{$i} {
+//             padding: $padding;
+//         }
+//         .pl-#{$i} {
+//             padding-left: $padding;
+//         }
+//         .pr-#{$i} {
+//             padding-right: $padding;
+//         }
+//         .pt-#{$i} {
+//             padding-top: $padding;
+//         }
+//         .pb-#{$i} {
+//             padding-bottom: $padding;
+//         }
+//         .px-#{$i} {
+//             padding-left: $padding;
+//             padding-right: $padding;
+//         }
+//         .py-#{$i} {
+//             padding-top: $padding;
+//             padding-bottom: $padding;
+//         }
+//     }
+// }
+// @include padding-classes;
 
 .h-auto {
     height: auto;
@@ -3284,7 +3288,7 @@ section.login {
     padding: 1em;
     border-radius: 5px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    max-width: 500px;
+    max-width: 400px;
     margin: 5em auto 1em;
 }
 
@@ -3663,16 +3667,16 @@ section.extra-link {
 //     font-weight: 400;
 //     font-style: normal;
 // }
-// @font-face {
-//     font-family: IRANSans;
-//     font-style: normal;
-//     font-weight: 400;
-//     src: url(fonts/iran/IRANSansWeb.eot);
-//     src: url(fonts/iran/IRANSansWeb.eot?#iefix) format("embedded-opentype"),
-//         url(fonts/iran/IRANSansWeb.woff2) format("woff2"), url(fonts/iran/IRANSansWeb.woff) format("woff"),
-//         url(fonts/iran/IRANSansWeb.ttf) format("truetype");
-//     font-display: swap;
-// }
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 400;
+    src: url(fonts/iran/IRANSansWeb.eot);
+    src: url(fonts/iran/IRANSansWeb.eot?#iefix) format("embedded-opentype"),
+        url(fonts/iran/IRANSansWeb.woff2) format("woff2"), url(fonts/iran/IRANSansWeb.woff) format("woff"),
+        url(fonts/iran/IRANSansWeb.ttf) format("truetype");
+    font-display: swap;
+}
 @font-face {
     font-family: Vazir2;
     font-style: normal;

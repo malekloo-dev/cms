@@ -195,5 +195,6 @@ return [
     'back to' => 'بازگشت به صفحه  :page ',
     'customer' => 'مشتری',
     'customers' => 'مشتریها',
-    'prepairing' => 'در حال آماده سازی'
+    'prepairing' => 'در حال آماده سازی',
+    'zipcode' => 'کد پستی'
 ];

@@ -145,25 +145,25 @@
                         <div>
                             <div class="flex one three-800">
 
-                                <div id="product-image" class="one mt-1 thirth-800 relative">
+                                <div id="product-image" class="one mt-2   thirth-800 relative">
                                     @if (isset($detail->images['images']['large']))
 
-                                        <div class="p-0">
-                                            <figure class="image zoom2" id="figure-main-image" onmousemove="zoom(event)"
+                                        <div class="">
+                                            <figure class="image zoom2 rounded" id="figure-main-image" onmousemove="zoom(event)"
                                                 style="background-image: url({{ $detail->images['images']['xlarge'] ?? $detail->images['images']['large'] }})">
                                                 @if (isset($detail->attr['in-stock']) && $detail->attr['in-stock'] == 0)
                                                     <div class="not-in-stock">قابل سفارش</div>
                                                 @endif
                                                 <div class="overflow-hidden">
                                                     <img id="main-image" loading="lazy"
+                                                        class=""
                                                         data-xlarge="{{ $detail->images['images']['xlarge'] ?? $detail->images['images']['large'] }}"
                                                         src="{{ $detail->images['images']['large'] }}"
                                                         alt="{{ $detail->title }}"
                                                         width="{{ env(Str::upper($detail->attr_type) . '_LARGE_W') }}"
                                                         height="{{ env(Str::upper($detail->attr_type) . '_LARGE_H') }}">
 
-                                                    <i
-                                                        class="fa-solid hidden-500 fa-magnifying-glass-plus font-15 zoom p-1 border-radius-5"></i>
+                                                    <i class="fa-solid hidden-500 fa-magnifying-glass-plus font-15 zoom p-3 border-radius-5"></i>
                                                 </div>
 
                                             </figure>
@@ -192,8 +192,8 @@
                                     @endif
                                 </div>
 
-                                <div class="one third-800 p-0">
-                                    <h1 id="product-name" class="">{{ $detail->title }}</h1>
+                                <div class="one third-800 sm:p-1 lg:pr-5">
+                                    <h1 id="product-name font-bold" class="">{{ $detail->title }}</h1>
 
 
                                     <span id="product-rate" class="rate  mt-1">
@@ -225,31 +225,36 @@
                                     <div><i class="fa-solid fa-square-check text-green font-13 pl-1"></i> ضمانت طلای ۱۸ عیار</div>
                                     <div><i class="fa-solid fa-certificate font-13 pl-1 text-gold"></i> تضمین به روز بودن قیمت طلا</div>
                                     <div><i class="fa-solid fa-gift text-blue  font-13 pl-1"></i> فاکتور + پکیج هدیه</div>
+
+                                    @if (isset($detail->attr['in-stock']) && $detail->attr['in-stock'] == 0)
+                                        <div class="bg-slate-100 p-1 rounded-md border mt-1">ناموجود: ساخت و ارسال ۷ روز کاری</div>
+                                    @endif
+
                                     <div>{!! $detail->brief_description !!}</div>
 
 
                                 </div>
-                                <div class="px-2 py-1">
-                                    <div class="bg-gray p-2 border-radius-5">
+                                <div class=" lg:p-1 lg:px-5 sm:mt-1 sm:p-1">
+                                    <div class="bg-gray border p-2 border-radius-5">
 
 
                                         @isset($detail->attr['weight'])
                                             <div class="flex one">
 
-                                                <div class="flex ">
-                                                    <span>وزن: </span>
+                                                <div class="flex py-3 justify-between">
+                                                    <span class="text-slate-500 text-sm">وزن: </span>
                                                     <span class="text-left">{{ $detail->attr['weight'] ?? 0 }} گرم</span>
                                                 </div>
-                                                <div class="flex">
-                                                    <span>قیمت روز طلا:</span>
+                                                <div class="flex border-t py-3 justify-between">
+                                                    <span class="text-slate-500 text-sm">قیمت روز طلا:</span>
                                                     <span class="text-left">@convertCurrency($detail->GoldPrice()['goldprice']) تومان</span>
                                                 </div>
-                                                <div class="flex">
-                                                    <span>اجرت ساخت:</span> <span class="text-left">۱۸٪</span>
+                                                <div class="flex border-t py-3 justify-between">
+                                                    <span class="text-slate-500 text-sm">اجرت ساخت:</span> <span class="text-left">۱۸٪</span>
                                                 </div>
-                                                <div class="flex"><span>سود ایدن:</span><span class="text-left">۷٪</span></div>
-                                                <div class="flex"><span>مالیات:</span><span class="text-left">@convertCurrency($detail->GoldPrice()['tax']) تومان</span> </div>
-                                                <div class="flex"><span>خرج کار:</span><span class="text-left">@convertCurrency($detail->attr['additionalprice']) تومان</span></div>
+                                                <div class="flex border-t py-3 justify-between"><span class="text-slate-500 text-sm">سود ایدن:</span><span class="text-left">۷٪</span></div>
+                                                <div class="flex border-t py-3 justify-between"><span class="text-slate-500 text-sm">مالیات:</span><span class="text-left">@convertCurrency($detail->GoldPrice()['tax']) تومان</span> </div>
+                                                <div class="flex border-t py-3 justify-between"><span class="text-slate-500 text-sm">خرج کار:</span><span class="text-left">@convertCurrency($detail->attr['additionalprice']) تومان</span></div>
                                                 <div class="font-15 bold text-green">قیمت @convertCurrency($detail->GoldPrice()['totalPrice']) تومان</div>
 
                                             </div>
@@ -261,7 +266,7 @@
                                 </div>
                             </div>
 
-                            <ul>
+                            <ul class="sm:p-1">
                                 @foreach ($table_of_content as $key => $item)
                                     <li class="toc1">
                                         <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
@@ -270,8 +275,9 @@
 
                             </ul>
 
-
-                            @include(@env('TEMPLATE_NAME') . '.DescriptionModule')
+                            <div class="p-1">
+                                @include(@env('TEMPLATE_NAME') . '.DescriptionModule')
+                            </div>
 
                         </div>
                     </div>
@@ -290,7 +296,7 @@
                 <div>
 
                     <h2>محصولات مرتبط {{ $detail->title }}</h2>
-                    <div class="flex two  five-900  center">
+                    <div class="flex two gap-4 five-900  center">
 
                         {{-- $data['newPost'] --}}
                         @foreach ($relatedProduct as $content)

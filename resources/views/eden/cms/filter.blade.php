@@ -51,11 +51,11 @@
 
     <div class="toc1 shadow ">
         <a class="filter-header border-radius-15" href="#قیمت">قیمت</a>
-        <div class="filter-items-list">
+        <div class="filter-items-list pt-5 pb-4">
             @include(@env('TEMPLATE_NAME') . '.cms.filterPrice')
         </div>
     </div>
-    @if (count($filterList['filter']))
+    {{-- @if (count($filterList['filter']))
         @foreach ($filterList['filter'] as $key => $filterItem)
             <div class="toc1 shadow mt-1 ">
                 <a class="filter-header border-radius-15" href="#{{ $filterItem->label }}">{{ $filterItem->label }}</a>
@@ -68,11 +68,11 @@
                             @else
                                 <a href="{{ $filterOption->url }}">{{ $filterOption->name }}</a>
                             @endif
-                            {{-- <input type="checkbox" name="vehicle3" value="Boat" {{ $filterOption['check'] }}> --}}
+                            {{-- <input type="checkbox" name="vehicle3" value="Boat" {{ $filterOption['check'] }}> --} }
                         </div>
                     @endforeach
                 </div>
             </div>
         @endforeach
-    @endif
+    @endif --}}
 </div>

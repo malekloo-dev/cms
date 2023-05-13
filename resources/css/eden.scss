@@ -1,4 +1,4 @@
-$template: darbkala;
+$template: eden;
 $body: #f8f8f8;
 $theme-color1: #928c81;
 $theme-color2: rgb(255, 208, 0);
@@ -30,10 +30,7 @@ $h3-color: #000; // default: $a
 $button-color: black;
 $button-bg-color: yellow;
 
-$font-family: vazir2;
-
-// @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
-@import url("https://maxcdn.bootstrapcdn.com/font-awesome/6.4.0/css/font-awesome.min.css");
+$font-family: IRANSans; // Vazir2
 
 @import "app.scss";
 @import "grid.scss";
@@ -247,9 +244,7 @@ img{transition: transform .2s;}
         font-size: 1.2em;
         text-align: center;
     }
-    .flex {
-        justify-content: center;
-    }
+    
     h2 {
         font-size: 1.2em;
     }

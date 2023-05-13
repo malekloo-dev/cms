@@ -19,7 +19,7 @@
 
         </li>
         <li>
-            {{ Auth::user()->mobile }}
+            {{ Auth::user()->mobile ?? ''}}
         </li>
         {{-- <li class="price">
             <i class="fa fa-wallet"></i>
@@ -27,12 +27,12 @@
         </li> --}}
 
 
-        <li class="{{ Request::is('customer') ? 'active' : '' }}"><a
-                href="{{ route('customer.dashboard') }}">{{ __('messages.Dashboard') }}</a></li>
+        {{-- <li class="{{ Request::is('customer') ? 'active' : '' }}"><a
+                href="{{ route('customer.dashboard') }}">{{ __('messages.Dashboard') }}</a></li> --}}
 
         @hasrole('company')
-        <li class="{{ Request::is('customer/profile') ? 'active' : '' }}"><a href="{{ route('customer.profile') }}">
-                {{ __('messages.profile') }}</a></li>
+            <li class="{{ Request::is('customer/profile') ? 'active' : '' }}"><a href="{{ route('customer.profile') }}">
+                    {{ __('messages.profile') }}</a></li>
         @endrole
 
         <li class="{{ Request::is('customer/cart') ? 'active' : '' }}"><a class="no-border"

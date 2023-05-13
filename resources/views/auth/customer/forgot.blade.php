@@ -139,7 +139,7 @@
 
             <div class="form-group">
                 <label for="mobile" class="control-label">@lang('messages.mobile')</label>
-                <input id="mobile" type="mobile" class="form-control @error('mobile') is-invalid @enderror" name="mobile"
+                <input id="mobile" type="mobile" class="h-10 rounded ltr w-full px-2 focus:border-gray-400 @error('mobile') is-invalid @enderror" name="mobile"
                     value="{{ old('mobile') }}" required autocomplete="mobile" autofocus>
 
             </div>
@@ -148,7 +148,7 @@
                 <div class=" center ">
                     <div id="loading" style="display:block"></div>
 
-                    <button type="submit" style="display: none" id="btn-loading" class="btn btn-inherit btn-block">
+                    <button type="submit" style="display: none" id="btn-loading" class="btn bg-blue-700 text-white  btn-block">
                         @lang('messages.Send Password')
                     </button>
                 </div>
@@ -156,7 +156,7 @@
         </form>
     </section>
     <section class="extra-link">
-        <div class="m-0 p-0">
+        <div class=" m-0" style="margin: 0px !important">
             <a href="{{ route('login') }}">@lang('messages.login')</a>
             /
             <a href="{{ route('register') }}">@lang('messages.register')</a>

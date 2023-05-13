@@ -799,7 +799,7 @@ function sendSms($numbers = ['09331181877'], $message = '', $i = 0)
         // dd($res);
         if ($res == 0) {
             return $res;
-        }else{
+        } else {
             return $res;
         }
 
@@ -995,4 +995,21 @@ function calcuteGoldPrice($weight = 0, $additionalPrice = 0, $goldPrice = 0, $ro
         'goldprice' => $goldPrice,
         'tax' => $tax,
     ];
+}
+
+
+function setSession($name, $value)
+{
+    return session()->put($name, $value);
+}
+
+function getSession($name)
+{
+
+    if (session()->get($name) == null) {
+        $cookieUser = uniqid();
+        setSession($name, $cookieUser);
+    }
+
+    return session()->get($name);
 }

@@ -128,7 +128,7 @@
 @endpush
 @section('Content')
 
-<section class="login">
+<section class="login max-w-sm">
 
 
     @if (session('success'))
@@ -138,7 +138,7 @@
     @endif
     <h1>@lang('messages.login')</h1>
 
-    <form method="POST" action="">
+    <form method="POST" action="/login">
         @csrf
 
         <div class="form-group">
@@ -147,7 +147,7 @@
 
             <label for="mobile" class="control-label">@lang('messages.mobile')</label>
 
-            <input id="mobile" type="tel" class="form-control ltr @error('mobile') is-invalid @enderror" name="mobile"
+            <input id="mobile" type="tel" class="h-10 rounded ltr w-full px-2 focus:border-gray-400 @error('mobile') is-invalid @enderror" name="mobile"
                 value="{{ old('mobile') }}" required autocomplete="mobile"
                 oninput="this.setCustomValidity('')"
                 oninvalid="this.setCustomValidity('شماره را وارد نمایید')"
@@ -163,7 +163,7 @@
         <div class="form-group" style="position: relative">
             <label for="password" class="control-label">@lang('messages.password')</label>
 
-            <input id="password" type="password" class="form-control ltr @error('password') is-invalid @enderror"
+            <input id="password" type="password" class="rounded h-10 px-2 w-full focus:border-gray-400 ltr @error('password') is-invalid @enderror"
                 name="password" value="" required
                 oninput="this.setCustomValidity('')"
                 oninvalid="this.setCustomValidity('رمز را وارد نمایید')"
@@ -171,7 +171,7 @@
 
             <input type="checkbox" style="visibility: hidden;" class="" id="show-password" onclick="showPassword()">
 
-            <label for="show-password" style="position: absolute;top:1.5em;font-size:1.3em"> <i
+            <label for="show-password" style="position: absolute;top:1.7em;font-size:1.3em"> <i
                     class="fa fa-eye"></i></label>
 
             @error('password')
@@ -193,7 +193,7 @@
 
             <div id="loading" style="display:block"></div>
 
-            <button type="submit" style="display: none" id="btn-loading" class="btn btn-inherit  btn-block">
+            <button type="submit" style="display: none" id="btn-loading" class="btn bg-blue-700 text-white  btn-block">
                 <i class="fa fa-lock"></i> @lang('messages.login')
             </button>
 
