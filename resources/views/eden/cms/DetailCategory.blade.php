@@ -166,20 +166,18 @@
         </section>
     @endif
 
-    <h1>{{ $item['title'] }}</h1>
-
-
+    <h1 class="">{{ $item['title'] }}</h1>
 
     <section class=" " id="index-best-view">
         <div class="flex one  four-800  ">
-            <div class="one-fourth-800 p-0">
+            <div class="one-fourth-800 ">
                 @include(@env('TEMPLATE_NAME') . '.cms.filter')
 
             </div>
             <div class="three-fourth-800 p-0">
                 <div class="">
 
-                    <div class="flex two five-900 center ">
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-2 ">
                         @if (count($relatedProduct))
 
                             @foreach ($relatedProduct as $content)

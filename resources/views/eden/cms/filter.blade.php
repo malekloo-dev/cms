@@ -26,7 +26,7 @@
 
 
 @if (count($filterList['filter']))
-    <a href="javascript:void(0);" rel="nofollow" class="filter-menu">
+    <a href="javascript:void(0);" rel="nofollow" class="filter-menu mb-3">
         <span>
             <span></span>
             <span></span>
@@ -36,10 +36,12 @@
     </a>
 @endif
 @if (count($filterList['removeFilter']))
-    <div class="  shadow filter-remote-link">
-        @foreach ($filterList['removeFilter'] as $key => $filterItem)
-            <a class="" href="{{ $filterItem->url }}">{{ $filterItem->name }} </a>
-        @endforeach
+    <div class="">
+        <div class="  shadow filter-remote-link ">
+            @foreach ($filterList['removeFilter'] as $key => $filterItem)
+                <a class="" href="{{ $filterItem->url }}">{{ $filterItem->name }} </a>
+            @endforeach
+        </div>
     </div>
 @endif
 
@@ -47,10 +49,10 @@
 
 
 
-<div class="flex one  filter-items">
+<div class="flex one  filter-items py-0 px-3">
 
-    <div class="toc1 shadow ">
-        <a class="filter-header border-radius-15" href="#قیمت">قیمت</a>
+    <div class="toc1 shadow border-radius-15">
+        <a class="filter-header p-3" href="#قیمت">قیمت</a>
         <div class="filter-items-list pt-5 pb-4">
             @include(@env('TEMPLATE_NAME') . '.cms.filterPrice')
         </div>

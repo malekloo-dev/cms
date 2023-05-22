@@ -157,6 +157,10 @@
 
                         <h3 class="">آپلود فیش</h3>
                         <p class="border bg-yellow-50 rounded-md p-1 text-xs">بعد از پرداخت کارت به کارت تصویر فیش خود را آپلود نماید تا تیم فروش مراحل خرید شما را پیگیری نمایند.</p>
+                        <p class="border bg-green-50 rounded-md p-1 mt-1 text-xs">شماره کارت به نام حمیده اخضری
+                            <br>
+                            <span class="font-bold ltr">6104-3379-7236-7427</span>
+                        </p>
                         @if ($content->order->status == 0)
 
                             <form method="post" enctype="multipart/form-data" class="flex mt-6   px-1 py-1 align-"

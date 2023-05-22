@@ -296,7 +296,7 @@
                 <div>
 
                     <h2>محصولات مرتبط {{ $detail->title }}</h2>
-                    <div class="flex two gap-4 five-900  center">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-1  ">
 
                         {{-- $data['newPost'] --}}
                         @foreach ($relatedProduct as $content)
