@@ -151,9 +151,9 @@
                                         <div class="">
                                             <figure class="image zoom2 rounded" id="figure-main-image" onmousemove="zoom(event)"
                                                 style="background-image: url({{ $detail->images['images']['xlarge'] ?? $detail->images['images']['large'] }})">
-                                                @if (isset($detail->attr['in-stock']) && $detail->attr['in-stock'] == 0)
+                                                {{-- @if (isset($detail->attr['in-stock']) && $detail->attr['in-stock'] == 0)
                                                     <div class="not-in-stock">قابل سفارش</div>
-                                                @endif
+                                                @endif --}}
                                                 <div class="overflow-hidden">
                                                     <img id="main-image" loading="lazy"
                                                         class=""
@@ -227,7 +227,7 @@
                                     <div><i class="fa-solid fa-gift text-blue  font-13 pl-1"></i> فاکتور + پکیج هدیه</div>
 
                                     @if (isset($detail->attr['in-stock']) && $detail->attr['in-stock'] == 0)
-                                        <div class="bg-slate-100 p-1 rounded-md border mt-1">ناموجود: ساخت و ارسال ۷ روز کاری</div>
+                                        <div class="bg-slate-100 p-1 rounded-md border-red-600 border mt-1">ناموجود: ساخت و ارسال ۷ روز کاری</div>
                                     @endif
 
                                     <div>{!! $detail->brief_description !!}</div>

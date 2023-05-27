@@ -51,7 +51,7 @@
 
 <div class="flex one  filter-items py-0 px-3">
 
-    <div class="toc1 shadow border-radius-15">
+    <div class="toc1 shadow ">
         <a class="filter-header p-3" href="#قیمت">قیمت</a>
         <div class="filter-items-list pt-5 pb-4">
             @include(@env('TEMPLATE_NAME') . '.cms.filterPrice')

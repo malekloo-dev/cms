@@ -177,7 +177,7 @@
             <div class="three-fourth-800 p-0">
                 <div class="">
 
-                    <div class="grid grid-cols-2 md:grid-cols-5 gap-2 ">
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-2 ">
                         @if (count($relatedProduct))
 
                             @foreach ($relatedProduct as $content)
@@ -190,7 +190,7 @@
                                                 @endif
                                                 <img src="{{ $content->images['images']['large'] }}"
                                                     alt="{{ $content->title }}" title="{{ $content->title }}"
-                                                    loading="lazy" width="300" height="300">
+                                                    loading="lazy" width="400" height="400">
                                                 <figcaption>
                                                     <h3 class="px-0 m-0 text-center"> {{ $content->title }}</h3>
                                                     <div class=" text-green font-09 ">
@@ -235,7 +235,7 @@
                                             <figure class="image ">
                                                 <img src="{{ $content->images['images']['large'] }}"
                                                     alt="{{ $content->title }}" title="{{ $content->title }}"
-                                                    width="300" height="300">
+                                                    width="400" height="400">
                                                 <figcaption>
                                                     <h3 class="px-0 m-0 text-center"> {{ $content->title }}</h3>
                                                 </figcaption>
