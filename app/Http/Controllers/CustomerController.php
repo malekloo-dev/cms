@@ -229,6 +229,9 @@ class CustomerController extends Controller
         $user->customer->$name = $value;
         $user->customer->save();
 
+        $user->name = $value;
+        $user->save();
+
         return response(array('status' => true, 'data' => ['name' => $name, 'value' => $value]), 200);
     }
 

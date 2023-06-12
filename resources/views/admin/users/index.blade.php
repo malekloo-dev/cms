@@ -49,7 +49,11 @@
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->mobile }} </td>
                                 <td>{{ $user->pass }} </td>
-                                <td>{{ $user->name }} </td>
+                                <td>{{ ($user->name == '') ? $user->customer?->name : $user->name }}
+                                    <br>
+                                    {{ $user->customer?->address }}
+                                    {{ $user->customer?->zipcode }}
+                                </td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->company?->name }}</td>
                                 <td class="ltr text-right">{{ $user->date }}</td>

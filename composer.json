@@ -13,6 +13,7 @@
         "ext-sockets": "*",
         "biscolab/laravel-recaptcha": "^5.0",
         "darryldecode/cart": "^4.2",
+        "doctrine/dbal": "^3.6",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.5",
         "guzzlehttp/psr7": "^1.7",

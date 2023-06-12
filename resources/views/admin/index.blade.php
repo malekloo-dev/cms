@@ -12,7 +12,7 @@
             <div class="">
                 <div class="title">@lang('messages.customer')</div>
                 <div class="info">
-                    {{ $data['customersCount'] }}
+                    <a class="count" href="/admin/role/3/users">{{ $data['customersCount'] }}</a>
                 </div>
             </div>
             <div class="">

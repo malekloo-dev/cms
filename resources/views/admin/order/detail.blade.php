@@ -4,12 +4,15 @@
         <ul class="breadcrumb">
             <li class="active">
                 @lang('messages.order detail')
-                {{ convertGtoJ($order->created_at) }} - {{ $order->user->mobile }}
+                {{ convertGtoJ($order->created_at) }}
+
+
 
 
             </li>
         </ul>
         <div style="display:flex; gap:1em;">
+
 
             @if ($order->status != 3)
                 <form method="post" action="{{ route('admin.order.edit', $order) }}">
@@ -39,8 +42,10 @@
     <div class="content-body">
         <div class="panel panel-default pos-abs chat-panel bottom-0">
             <div class="panel-body full-height">
-
-
+                {{ $order->user->mobile }} <br>
+                {{ $order->user->customer?->address }} - کد پستی: {{ $order->user->customer?->zipcode }}
+                <br>
+                <br>
                 @if ($order->status == 5)
                     <div class="alert alert-success">
                         @lang('messages.ready to send')
@@ -89,25 +94,24 @@
 
                                 </a>
                                 @if ($item->status != 2)
-
-                                <form method="post" action="{{ route('admin.transaction.edit', $item) }}">
-                                    @csrf
-                                    @method('patch')
-                                    <input type="hidden" value="2" name="status">
-                                    <button href="" class=" btn  btn-success btn-icon  mat-button ">
-                                        <i class="fa fa-remove"></i>تایید پرداخت
-                                    </button>
-                                </form>
+                                    <form method="post" action="{{ route('admin.transaction.edit', $item) }}">
+                                        @csrf
+                                        @method('patch')
+                                        <input type="hidden" value="2" name="status">
+                                        <button href="" class=" btn  btn-success btn-icon  mat-button ">
+                                            <i class="fa fa-remove"></i>تایید پرداخت
+                                        </button>
+                                    </form>
                                 @endif
                                 @if ($item->status != -1)
-                                <form method="post" action="{{ route('admin.transaction.edit', $item) }}">
-                                    @csrf
-                                    @method('patch')
-                                    <input type="hidden" value="-1" name="status">
-                                    <button href="" class=" btn  btn-danger btn-icon  mat-button ">
-                                        <i class="fa fa-remove"></i>عدم واریزی
-                                    </button>
-                                </form>
+                                    <form method="post" action="{{ route('admin.transaction.edit', $item) }}">
+                                        @csrf
+                                        @method('patch')
+                                        <input type="hidden" value="-1" name="status">
+                                        <button href="" class=" btn  btn-danger btn-icon  mat-button ">
+                                            <i class="fa fa-remove"></i>عدم واریزی
+                                        </button>
+                                    </form>
                                 @endif
                             </div>
                         @endif
@@ -147,9 +151,11 @@
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td>
-
                                     @if (isset($item['attributes']['image']) && file_exists(public_path() . $item['attributes']['image']))
-                                        <img src="{{ $item->attributes['image'] }}" alt="">
+                                        <a target="__blank"
+                                            href="{{ url(\App\Models\Content::find($item->attributes['product_id'])->slug) }}">
+                                            <img src="{{ $item->attributes['image'] }}" alt="">
+                                        </a>
                                     @else
                                         -
                                     @endif

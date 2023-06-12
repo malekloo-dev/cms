@@ -79,7 +79,7 @@
                                         @endif
 
                                     </div>
-                                    <div class="inline bg-gray hidden ">
+                                    <div class="bg-gray hidden ">
                                         <form method="post" action="{{ route('customer.cart.update', $content['id']) }}">
                                             @csrf
                                             <input type="hidden" name="count" value="1">
@@ -120,12 +120,17 @@
                             <span class="    inline-block m-1 rounded " data-field="mobile"
                                 data-label="@lang('messages.mobile')">{{ Auth::user()->customer->mobile ?? '' }}</span>
                         </div>
-                        <div class="">
+                        <div class="relative">
                             @lang('messages.name'):
-                            <span class="text-editor text-blue-500  px-3 inline-block m-1 rounded cursor-pointer"
+                            @if (!isset(Auth::user()->customer->name) || Auth::user()->customer->name == '')
+                                <span class="absolute right-0 top-6 text-red-700  p-1 -mr-3 px-3 text-xs">نام را وارد
+                                    نمایید</span>
+                            @endif
+                            <span class="text-editor text-blue-500  px-3 inline-block m-1 mb-4 rounded cursor-pointer"
                                 data-field="name"
                                 data-label="@lang('messages.name')">{{ Auth::user()->customer->name ?? '' }}</span>
                         </div>
+
                         <div class="relative">
                             @lang('messages.address'):
                             @if (!isset(Auth::user()->customer->address) || Auth::user()->customer->address == '')
@@ -163,7 +168,7 @@
                         </p>
                         @if ($content->order->status == 0)
 
-                            <form method="post" enctype="multipart/form-data" class="flex mt-6   px-1 py-1 align-"
+                            <form method="post" id="upload-bill" enctype="multipart/form-data" class="flex mt-6   px-1 py-1 align-"
                                 action="{{ route('customer.uploadBill', ['order' => $content->order->id]) }}">
                                 @csrf
                                 @method('post')
@@ -180,6 +185,10 @@
 
                                 <button class="rounded-full border bg-blue-500 text-white p-1 px-3 font-normal">ثبت فیش</button>
                             </form>
+                            <p class=" border bg-red-700 text-white rounded-md p-2 mt-1 text-xs">
+                                لطفا قبل از ثبت فیش اطلاعات خود را کامل  بفرمایید.
+                                <button class="rounded-full border bg-blue-500 text-white p-1 px-3 font-normal">ثبت فیش</button>
+                            </p>
                         @else
                             @foreach ($content->order->transactions as $item)
                                 <a  target="__blunk" class="rounded-full border bg-blue-500 text-white p-1 px-3 mt-1 inline-block font-normal" href="{{ $item->description }}">مشاهده فیش</a>
@@ -225,7 +234,12 @@
         });
 
         $(function() {
-
+            if($('span.text-red-700').length){
+                $('form#upload-bill').hide();
+                $('form#upload-bill').next().show();
+            }else{
+                $('form#upload-bill').next().hide();
+            }
             $('#edit-profile form').submit(function(e) {
 
                 e.preventDefault();
@@ -240,10 +254,18 @@
                     },
                     success: function(data) {
                         $('#edit-profile').modal('hide');
-                        $('span[data-field=' + data.data.name + ']').text(data.data.value);
-                        $('span[data-field=' + data.data.name + ']').append(
-                            '<i class="fa-edit far fa-edit  text-lg cursor-pointer"></i>'
-                        )
+                        var span = $('span[data-field=' + data.data.name + ']')
+                        span.text(data.data.value);
+                        span.append('<i class="fa-edit far fa-edit  text-lg cursor-pointer"></i>');
+                        span.prev().remove();
+
+                        if($('span.text-red-700').length > 0){
+                            $('form#upload-bill').hide();
+                            $('form#upload-bill').next().show();
+                        }else{
+                            $('form#upload-bill').show();
+                            $('form#upload-bill').next().hide();
+                        }
                     }
                 });
             });
@@ -265,7 +287,7 @@
                                 <div class="col-xs-12 py-1 ">
                                     <div class="col-md-12 col-xs-12 flex ">
                                         <label for="" class="px-1"></label>
-                                        <input type="text" name="" class="flex-grow rounded px-1 focus:border-gray-950">
+                                        <input type="text" name="" class="flex-grow rounded px-1 focus:border-gray-950" >
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-xs-12">

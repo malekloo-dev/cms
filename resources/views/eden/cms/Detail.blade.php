@@ -227,7 +227,7 @@
                                     <div><i class="fa-solid fa-gift text-blue  font-13 pl-1"></i> فاکتور + پکیج هدیه</div>
 
                                     @if (isset($detail->attr['in-stock']) && $detail->attr['in-stock'] == 0)
-                                        <div class="bg-slate-100 p-1 rounded-md border-red-600 border mt-1">ناموجود: ساخت و ارسال ۷ روز کاری</div>
+                                        <div class="bg-red-600 text-white p-1 rounded-md border-red-600 border mt-1">ناموجود: ساخت و ارسال ۷ روز کاری</div>
                                     @endif
 
                                     <div>{!! $detail->brief_description !!}</div>

@@ -42,10 +42,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($role->users as $item)
+                        @foreach ($role->users()->orderBy('id','desc')->get() as $item)
                             <tr>
-                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->name ??  $item?->customer?->name ?? ''}} </td>
                                 <td>{{ $item->mobile }}</td>
+
+                                <td>{{ $item->customer?->address }}  - {{ $item->customer?->zipcode }}</td>
 
                                 <td style="width: 100px !important">
                                     <div class="row">
