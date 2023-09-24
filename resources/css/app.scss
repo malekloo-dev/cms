@@ -3373,16 +3373,17 @@ section.extra-link {
 
 .not-in-stock{
     display: flex;
-    background: #0000006e;
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,212,255,0) 44%);
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    font-size: 20px;
+    font-size: 15px;
     color: white;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 }
 
 @media (max-width: 799px) {

@@ -200,7 +200,7 @@
         </section>
     @endif
 
-    <section class="index-items bg-gray2 my-0 ">
+    <section class="index-items bg-gray my-0 ">
         <div class="flex one">
             <div>
                 <h1>{{ $detail->title ?? '' }}</h1>
@@ -272,35 +272,6 @@
     </section>
 
 
-
-
-
-    <section class=" bg-gray mb-0 pt-1">
-        <div>
-            <h2>مقالات</h2>
-            <div class="flex two five-500 center">
-                @foreach (\App\Models\Content::where('parent_id','=',80)->limit(5)->get() as $content)
-                <div>
-                    <a href="{{ $content->slug }}">
-                        <article class="shadow2">
-                            @if (isset($content->images['images']['medium']))
-                            <figure class="image">
-                                <img src="{{ $content->images['images']['medium'] }}"
-                                width="198" height="100" alt="{{ $content->title }}">
-                            </figure>
-                            @endif
-
-                            <div class="title">{{ $content->title }}</div>
-
-
-                            </article>
-                        </a>
-                    </div>
-                    @endforeach
-
-                </div>
-            </div>
-    </section>
 
 
 @endsection

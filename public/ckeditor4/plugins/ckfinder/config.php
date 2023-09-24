@@ -199,7 +199,7 @@ $config['ResourceType'][] = Array(
 		'url' => $baseUrl . 'images',
 		'directory' => $baseDir . 'images',
 		'maxSize' => "16M",
-		'allowedExtensions' => 'bmp,gif,jpeg,jpg,png,avi,iso,mp3',
+		'allowedExtensions' => 'bmp,gif,jpeg,jpg,png,webp,avi,iso,mp3',
 		'deniedExtensions' => '');
 
 $config['ResourceType'][] = Array(
