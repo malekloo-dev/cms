@@ -78,9 +78,9 @@
         <div class="container">
             <div class="flex one">
                 <div class="text-center">
-                    <div>ویژن شرکت corepo
+                    <div>ویژن شرکت کریپو
                         ایجاد پلتفرم تبلیغاتی و آگهی می باشد.
-                        ساخته شده توسط <a target="_blanck" href="https://tarhoweb.com">طرح و وب</a></div>
+                        ساخته شده توسط <a target="_blanck" href="https://dingweb.ir"> دینگ وب </a></div>
                 </div>
             </div>
         </div>

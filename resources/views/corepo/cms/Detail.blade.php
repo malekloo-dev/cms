@@ -128,9 +128,13 @@
                         @for ($i = $rateSum / count($detail->comments); $i >= 1; $i--)
                             <label></label>
                         @endfor
-                        <span class="font-08">({{ count($detail->comments) }} نفر) | {{ $detail->viewCount }}
-                            بازدید</span>
                     @endif
+                    @if (isset($detail->comments) && count($detail->comments))
+                    <span class="font-08">({{ count($detail->comments) }} نفر) |
+                        @endif
+                        {{ $detail->viewCount }}
+                        بازدید</span>
+
                     <br>
 
 
@@ -142,13 +146,18 @@
             </div>
             <div class="full pb-0">
                 {!! $detail->brief_description !!}
+
+
+
             </div>
         </div>
     </section>
 
     <section class="content-detail" id="">
         <div class="flex one two-700">
+
             <div class="three-fourth-500 ">
+                <div style="min-height:264px; margin-bottom: 1em" id="pos-article-display-card-88438"></div>
                 <div>
                     <ul>
                         @foreach ($table_of_content as $key => $item)
@@ -164,7 +173,10 @@
             <div class="fourth-500">
                 <div>
                     <div class="mb-1">محل تبلیغ شما</div>
-                    {{--images&label=adv&var=adv&count=3 --}}
+
+                    <div style="min-height:175px" id="pos-article-display-88439"></div>
+
+                    {{-- images&label=adv&var=adv&count=3 --}}
                     @if (isset($adv) && isset($adv['images']))
                         <div class="text-center">
                             @foreach ($adv['images'] as $k => $content)
@@ -176,7 +188,7 @@
                         </div>
                     @endisset
                     <div>وبسایت ها</div>
-                    {{--category&label=sideCategory&var=sideCategory&count=6 --}}
+                    {{-- category&label=sideCategory&var=sideCategory&count=6 --}}
                     @isset($sideCategory['data'])
                         <ul>
                             @foreach ($sideCategory['data'] as $item)
@@ -234,7 +246,8 @@
                                 <a href="{{ $content->slug }}">
                                     <article>
                                         @if (isset($content->images['images']['small']))
-                                            <div><img width="150" height="150" loading="lazy" src="{{ $content->images['images']['small'] }}">
+                                            <div><img width="150" height="150" loading="lazy"
+                                                    src="{{ $content->images['images']['small'] }}">
                                             </div>
                                         @endif
                                         <footer>

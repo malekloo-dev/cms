@@ -85,7 +85,7 @@
 @section('Content')
 
 
-
+    @php /*
     <section class="index-item-top banner pb-0">
         <div class="flex two">
             <div class="full two-third-500 slideshow-container ltr ">
@@ -175,24 +175,13 @@
     </div>
 </section>
 
-
+*/ @endphp
 
 <section class="bg-pink  mt-0 mb-0">
     <div class="flex one ">
         <div class="text-center">
             <h1>جدیدترین وب سایت ها، مقالات، اپلیکیشن ها</h1>
-            <div class="flex one ">
-                <div class="text-center ">
-                    <div class="flex one two-500 ">
-                        <a class="pb-0" href="https://edengoldgallery.ir/?ref=corepo" target="__blunk"><img
-                                height="" class="full border-radius-10 " src="{{ asset('/img/eden-70.jpg') }}"
-                                alt=""></a>
-                        <a class="pb-0" href="https://it-times-store.com/?ref=corepo" target="__blunk"><img
-                                height="" class="full border-radius-10 " src="{{ asset('/img/it-70.jpg') }}"
-                                alt=""></a>
-                    </div>
-                </div>
-            </div>
+
 
             <div class="flex one three-500 five-900   ">
                 {{--post&label=topView&var=topViewPost&count=5 --}}
@@ -263,6 +252,19 @@
                         </div>
                     @endforeach
                 @endisset
+            </div>
+
+            <div class="flex one ">
+                <div class="text-center ">
+                    <div class="flex one two-500 ">
+                        <a class="pb-0" href="https://edengoldgallery.ir/?ref=corepo" target="__blunk"><img
+                                height="" class="full border-radius-10 " src="{{ asset('/img/eden-70.jpg') }}"
+                                alt=""></a>
+                        <a class="pb-0" href="https://it-times-store.com/?ref=corepo" target="__blunk"><img
+                                height="" class="full border-radius-10 " src="{{ asset('/img/it-70.jpg') }}"
+                                alt=""></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -824,8 +826,11 @@
                     @isset($medical['data'])
                         @foreach ($medical['data'] as $content)
                             <div class="flex one-500 align-items-center p-0">
-                                <img class=" p-0" width="100" height="100"
+                                <a class=" text-center pb-0"
+                                    href="{{ url($content['slug']) }}">
+                                    <img class=" p-0" width="100" height="100"
                                     src="{{ $content['images']['images']['small'] }}" alt="">
+                                </a>
                                 <a class=" text-center pb-0"
                                     href="{{ url($content['slug']) }}">{{ $content['title'] }}</a>
                                     <div class=" flex p-0 align-items-center font-09">

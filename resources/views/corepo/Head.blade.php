@@ -3,6 +3,20 @@
 
 <head>
 
+    <script>
+        ! function(e, t, n) {
+            e.yektanetAnalyticsObject = n, e[n] = e[n] || function() {
+                e[n].q.push(arguments)
+            }, e[n].q = e[n].q || [];
+            var a = t.getElementsByTagName("head")[0],
+                r = new Date,
+                c = "https://cdn.yektanet.com/superscript/eFm0MlrA/native-corepo.ir-34080/yn_pub.js?v=" + r.getFullYear().toString() + "0" + r.getMonth() + "0" + r.getDate() + "0" + r.getHours(),
+                s = t.createElement("link");
+            s.rel = "preload", s.as = "script", s.href = c, a.appendChild(s);
+            var l = t.createElement("script");
+            l.async = !0, l.src = c, a.appendChild(l)
+        }(window, document, "yektanet");
+    </script>
 
     <title>{{ $seo['meta_title'] ?? '' }}@yield('meta-title')</title>
     <meta charset="utf-8">
@@ -66,7 +80,6 @@
     @if (url('/') == 'https://corepo.ir')
 
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PVTXH97" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PVTXH97" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     @endif

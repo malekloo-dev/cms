@@ -251,7 +251,7 @@
     </section>
 
 
-
+    @if(Request::is('تعرفه')  || Request::is('درباره-ما'))
     <section class="category-content" id="">
         <div class="flex one ">
             <div class="font-08">
@@ -374,6 +374,6 @@
             </div>
         </div>
     </section>
-
+    @endif
 
 @endsection
