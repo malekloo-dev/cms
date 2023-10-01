@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Http\Requests\CommentRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
@@ -40,11 +41,16 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         if ($request->name != '' || $request->comment != '') {
-            $request->validate([
+            $request->validateWithBag('comment_error',[
                 'rate' => 'required',
                 'name' => 'required',
                 'comment' => 'required'
+            ], [
+                'rate.required' => 'امتیاز را انتخاب نمایید',
+                'name.required' => 'نام را وارد نمایید',
+                'comment.required' => 'پیام را وارد نمایید',
             ]);
+
             $data = $request->all();
         }else{
             $data = $request->all();

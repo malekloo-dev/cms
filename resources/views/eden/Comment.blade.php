@@ -30,14 +30,16 @@
     });
 </script>
 
-<div>نظرات شما درباره {{ $detail->title }}</div>
 <div>
-    <div class="comment-form">
+    <div class="comment-form lg:w-1/2 m-auto">
+        <div>نظرات شما درباره {{ $detail->title }}</div>
+
         @if (\Session::has('comment_success'))
             <div class="alert alert-success">
                 {!! \Session::get('comment_success') !!}
             </div>
         @endif
+
 
         @if (\Session::has('comment_error'))
             <div class="alert alert-danger">
@@ -49,6 +51,9 @@
 
             @csrf
             <div>
+                <div class="text-red-600">
+                    {{ $errors->comment_error->first('rate') }}
+                </div>
                 <div class="rating">
                     <span>امتیاز: </span>
                     <input name="rate" type="radio" id="st5" {{ old('rate') == '5' ? 'checked' : '' }}
@@ -72,11 +77,17 @@
 
             <div>
                 <label for="comment_name">نام:</label>
-                <input id="comment_name" type="text" name="name" value="{{ old('name') }}">
+                <div class="text-red-600">
+                    {{ $errors->comment_error->first('name') }}
+                </div>
+                <input class="w-full p-1" id="comment_name" type="text" name="name" value="{{ old('name') }}">
             </div>
             <div>
                 <label for="comment-text">پیام:</label>
-                <textarea id="comment-text" name="comment">{{ old('comment') }}</textarea>
+                <div class="text-red-600">
+                    {{ $errors->comment_error->first('comment') }}
+                </div>
+                <textarea class="w-full p-1" id="comment-text" name="comment">{{ old('comment') }}</textarea>
             </div>
             <button class="button button-blue g-recaptcha" data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit'
                 data-action='submit'>ارسال نظر</button>

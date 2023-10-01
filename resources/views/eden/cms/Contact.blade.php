@@ -42,36 +42,10 @@
 
 
     <section class="" id="">
-        <div class="flex one ">
-            <div>
-                <h1 class="p-0 m-0">{{ $detail->title }}</h1>
+        <div class="flex justify-center">
+            <div class="w-1/2 ">
+                <h1 class="p-0 m-0">تماس با گالری طلای ایدن</h1>
 
-                @if (isset($detail->images['images']))
-                    <picture>
-                        <source media="(min-width:{{ env('CATEGORY_LARGE_W') }}px)"
-                            srcset="{{ $detail->images['images']['large'] ?? '' }}">
-
-                        <source media="(min-width:{{ env('CATEGORY_MEDIUM_W') }}px)"
-                            srcset="{{ $detail->images['images']['medium'] ?? '' }}">
-
-                        <source media="(min-width:{{ env('CATEGORY_SMALL_W') }}px)"
-                            srcset="{{ $detail->images['images']['small'] ?? '' }}">
-
-                        <img src="{{ $detail->images['images']['medium'] ?? '' }}" alt="{{ $detail->title }}"
-                            width="{{ env('CATEGORY_MEDIUM_W') }}" height="{{ env('CATEGORY_MEDIUM_W') }}">
-                    </picture>
-                @endif
-
-                <ul>
-                    @foreach ($table_of_content as $key => $item)
-                        <li class="toc1">
-                            <a href="#{{ $item['anchor'] }}">{{ $item['label'] }}</a>
-                        </li>
-                    @endforeach
-
-                </ul>
-
-                @include(@env('TEMPLATE_NAME').'.DescriptionModule')
 
                 <div class="contact-form">
                     <form action="{{ route('contact.store') }}#contact" method="post" class="" id="" novalidate="">
@@ -95,15 +69,15 @@
                         <fieldset>
                             <div class="row mt-1">
                                 <div class="control">
-                                    <input type="text" value="{{ old('name') }}" placeholder="نام" name="name"
+                                    <input type="text" class="w-full p-1" value="{{ old('name') }}" placeholder="نام" name="name"
                                         title="Name">
                                 </div>
                                 <div class="control">
-                                    <input type="text" value="{{ old('lastname') }}" placeholder="نام خانوادگی "
+                                    <input type="text"  class="w-full p-1" value="{{ old('lastname') }}" placeholder="نام خانوادگی "
                                         name="lastname" title="نام خانوادگی">
                                 </div>
                                 <div class="control">
-                                    <textarea name="comment" placeholder="پیام" class="" title="" data-autosize-on="true"
+                                    <textarea name="comment"  placeholder="پیام" class="w-full p-1" title="" data-autosize-on="true"
                                         style="overflow: hidden; overflow-wrap: break-word; height: 98px;">{{ old('comment') }}</textarea>
                                 </div>
                                 <div class="control">

@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use PDF;
 use Illuminate\Support\Str;
+use App\Models\RedirectUrl;
+use Illuminate\Support\Facades\DB;
+use App\SiteMap;
+
 
 class CategoryController extends Controller
 {
@@ -111,6 +115,7 @@ class CategoryController extends Controller
         return view('admin.category.CreateOrEdit', compact(['category', 'attr_type']));
 
         // return view('admin.category.Create', $data);
+
     }
 
     public function convertTemplateSelect1($listCat, $_input = array(), $start = '|-', $befor = '', $after = '', $level = 0)
@@ -120,7 +125,7 @@ class CategoryController extends Controller
             $_input = $listCat[0];
         }
         foreach ($_input as $key => $val) {
-            if(in_array($val->slug,['تماس-با-ما','درباره-ما','وبلاگ','تعرفه-تبلیغات']) ) continue;
+            if (in_array($val->slug, ['تماس-با-ما', 'درباره-ما', 'وبلاگ', 'تعرفه-تبلیغات'])) continue;
             $newStart = str_repeat($befor, $level) . $start;
             $val->level = $level;
             $val->symbol = $newStart;
@@ -199,19 +204,30 @@ class CategoryController extends Controller
         $imagesUrl = '';
 
         $data = $request->all();
+
         $date['attr_type'] = 'category';
         $date = $data['publish_date'];
+
         $data['publish_date'] = convertJToG($date);
+
         $data['parent_id'] = $request->parent_id;
+
         $data['type'] = '1';
+
         $data['images'] = $imagesUrl;
+
 
         $data['slug'] = uniqueSlug(Content::class, ($data['slug'] != '') ? $data['slug'] : $data['title']);
 
 
 
+
+
+
+
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
         $cat = Category::create($data);
+
 
         if ($request->file('images')) {
             $imagesUrl = $this->uploadImages($request, 'category');
@@ -236,12 +252,18 @@ class CategoryController extends Controller
         /*print_r($_POST);die();*/
 
         $data = $request->all();
+
         $date = $data['publish_date'];
+
         $data['publish_date'] = convertJToG($date);
+
         $data['type'] = 1;
+
         //$data['images']= $imagesUrl;
 
+
         $data['slug'] = uniqueSlug(Content::class, ($request->slug != '') ? $request->slug : $request->title);
+
 
 
 
@@ -294,11 +316,10 @@ class CategoryController extends Controller
                 unset($category[$id]);
             }
         }
+        $content->prefix = (strpos($content->slug, 'category/') !== false)?'category/':'';
+        
+        $content->slug = str_replace('category/', '', $content->slug);
 
-        //dd($category);
-
-        //print_r($content_info);
-        //die();
         return view('admin.category.CreateOrEdit', compact(['content', 'category', 'attr_type']));
     }
 
@@ -346,9 +367,13 @@ class CategoryController extends Controller
         $crud = Category::find($id);
 
         $data = $request->all();
+
         $data['attr_type'] = 'category';
+
         $date = $data['publish_date'];
+
         $data['publish_date'] = convertJToG($date);
+
         $file = $request->file('images');
         //$inputs = $request->all();
 
@@ -362,10 +387,17 @@ class CategoryController extends Controller
         }
         $data['images'] = $images;
 
+
         $data['slug'] = uniqueSlug(Category::class, $crud, ($data['slug'] != '') ? $data['slug'] : $data['title']);
+        $data['slug'] = (isset($data['prefix']) && $data['prefix'] != '')? 'category/'.$data['slug']: $data['slug'];
+        // dd($data);
+        // Redirect when change category
+        (new RedirectUrl)->createIfChange($crud->slug, $data['slug']);
+
 
         $crud->update($data);
 
+        $this->sitemap();
 
         return redirect('admin/category')->with('success', 'Update! Content created successfully.');
     }
@@ -569,5 +601,51 @@ class CategoryController extends Controller
         $html .= '</ul>' . PHP_EOL;
 
         return $html;
+    }
+
+    public function sitemap()
+    {
+        $category = Content::where('publish_date', '<=', DB::raw('now()'))
+            ->where('type', '=', '1')->get();
+
+        $post = Content::where('publish_date', '<=', DB::raw('now()'))
+            ->where('type', '=', '2')
+            ->where('attr_type', '=', 'article')->get();
+        $product = Content::where('publish_date', '<=', DB::raw('now()'))
+            ->where('type', '=', '2')
+            ->where('attr_type', '=', 'product')->get();
+
+        // $sitemap = SiteMap::createIndex()
+        //     ->add()->setLoc('post.xml')
+        //     ->add()->setLoc('category.xml')
+        //     ->add()->setLoc('product.xml')
+        //     ->writeToFile('sitemap.xml');
+
+        $sitemap = SiteMap::create()
+            ->add()->setPriority('1')
+            ->setLoc('/')
+            ->setLastMod('2020')
+            ->setChangefreq('weekly')
+            ->setLocFieldName('slug')
+            ->setLastModFieldName('updated_at')
+            ->setDefultPriority('1')
+            ->setDefultChangefreq('weekly')
+            ->addByCollection($category)
+            ->setDefultPriority('0.9')
+            ->setDefultChangefreq('weekly')
+            ->addByCollection($post)
+            ->setDefultPriority('0.6')
+            ->setDefultChangefreq('weekly')
+            ->addByCollection($product)
+            ->writeToFile('sitemap.xml');
+
+        /*  ->add(array(
+              'loc'=>'decor/4',
+              'lastmod'=>'11-1-90',
+              'changefreq'=>'weekly',
+              'priority'=>'0.2',))*/
+        // ->add()->setPriority('0.1')->setLoc('decor/1')->setLastMod('11-1-90')
+        // ->add()->setLoc('decor/2')->setLastMod('11-12-99');
+        return true;
     }
 }

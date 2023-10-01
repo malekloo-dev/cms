@@ -35,7 +35,13 @@
                         @foreach ($contents as $content)
                             <tr>
                                 <td>{{ $content->id }}</td>
-                                <td><a href="{{ url($content->slug) }}" target="__blank">{!! $content->symbol . $content->title !!} <i class="fa fa-external-link"></i></a>
+                                <td>
+                                    <div>
+                                        {!! $content->symbol . $content->title !!}
+                                    </div>
+                                    <a href="{{ url($content->slug) }}" target="__blank">
+                                        {!! url($content->slug) !!}<i class="fa fa-external-link"></i>
+                                    </a>
                                     <div>
                                         <svg class="p-0" width="13" height="13" viewBox="0 0 24 24" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">

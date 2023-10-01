@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Lang;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
+use App\Models\RedirectUrl;
 
 
 class ContentController extends Controller
@@ -107,14 +108,14 @@ class ContentController extends Controller
 
 
 
-        if(env(Str::upper($type) . '_XLARGE_W')){
+        if (env(Str::upper($type) . '_XLARGE_W')) {
             $sizes = array(
                 "small" => env(Str::upper($type) . '_SMALL_W'),
                 'medium' => env(Str::upper($type) . '_MEDIUM_W'),
                 'large' => env(Str::upper($type) . '_LARGE_W'),
                 'xlarge' => env(Str::upper($type) . '_XLARGE_W')
             );
-        }else{
+        } else {
             $sizes = array(
                 "small" => env(Str::upper($type) . '_SMALL_W'),
                 'medium' => env(Str::upper($type) . '_MEDIUM_W'),
@@ -431,6 +432,11 @@ class ContentController extends Controller
             $data['parent_id'] = $data['parent_id_hide'][0];
         }
 
+        $data['slug'] = uniqueSlug(Content::class, $crud, ($request->slug != '') ? $request->slug : $request->title);
+
+        // Redirect when change category
+        (new RedirectUrl)->createIfChange($crud->slug, $data['slug']);
+
         $crud->update($data);
 
 
@@ -469,11 +475,8 @@ class ContentController extends Controller
             // dd($imagesGallery);
         }
 
-        // dd($request->slug);
 
-        $data['slug'] = uniqueSlug(Content::class, $crud, ($request->slug != '') ? $request->slug : $request->title);
-        // dd($data);
-        //dd($data);
+
 
 
         if (isset($data['content_type_id'])) {
@@ -619,6 +622,7 @@ class ContentController extends Controller
     {
         $category = Content::where('publish_date', '<=', DB::raw('now()'))
             ->where('type', '=', '1')->get();
+
         $post = Content::where('publish_date', '<=', DB::raw('now()'))
             ->where('type', '=', '2')
             ->where('attr_type', '=', 'article')->get();

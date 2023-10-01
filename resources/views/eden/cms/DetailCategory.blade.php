@@ -24,7 +24,8 @@
 
 
 @section('head')
-    <link rel="stylesheet" href="{{ asset('/detail.category.css') }}">
+
+    {{-- <link rel="stylesheet" href="{{ asset('/detail.category.css') }}"> --}}
 
     @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
         <link rel="prev" href="{{ json_decode($relatedProduct->toJson())->prev_page_url }}">
@@ -36,7 +37,7 @@
 
 
 @push('scripts')
-    <script src="{{ asset('/siema.min.js') }}"></script>
+    <script src="{{ '/eden/siema.min.js' }}"></script>
     <script>
         var w;
         var perPageNumber;
@@ -117,7 +118,7 @@
             <div class="p-2 relative">
                 <div class="siema p-0">
                     @foreach ($subCategory as $content)
-                        <a href="{{ $content->slug }}">
+                        <a href="{{ url($content->slug) }}">
                             <div class="hover text-center">
                                 @if (isset($content->images['images']['small']))
                                     <figure class="image">
@@ -158,7 +159,7 @@
                     <a href="/">خانه </a>
                     @foreach ($breadcrumb as $key => $item)
                         <span>></span>
-                        <a title="{{ $item['title'] }}" href="{{ $item['slug'] }}">{{ $item['title'] }}</a>
+                        <a title="{{ $item['title'] }}" href="{{ url($item['slug']) }}">{{ $item['title'] }}</a>
                     @endforeach
 
                 </div>
@@ -166,9 +167,12 @@
         </section>
     @endif
 
-    <h1 class="">{{ $item['title'] }}</h1>
-
-    <section class=" " id="index-best-view">
+    <section class="p-0 m-0">
+        <div>
+            <h1 class="p-0 m-0">{{ $item['title'] }}</h1>
+        </div>
+    </section>
+    <section class="mt-0" id="index-best-view">
         <div class="flex one  four-800  ">
             <div class="one-fourth-800 ">
                 @include(@env('TEMPLATE_NAME') . '.cms.filter')
@@ -181,7 +185,7 @@
                         @if (count($relatedProduct))
 
                             @foreach ($relatedProduct as $content)
-                                <a href="{{ $content->slug }}">
+                                <a href="{{ url($content->slug) }}">
                                     <div class="shadow hover p-0 mb-2 ">
                                         @if (isset($content->images['images']['small']))
                                             <figure class="image ">
@@ -229,7 +233,7 @@
                         <div class="flex one two-500 five-900 center ">
 
                             @foreach ($relatedPost as $content)
-                                <a href="{{ $content->slug }}">
+                                <a href="{{ url($content->slug) }}">
                                     <div class="shadow hover p-0 ">
                                         @if (isset($content->images['images']['small']))
                                             <figure class="image ">

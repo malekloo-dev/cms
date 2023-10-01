@@ -1,4 +1,4 @@
-@if ($detail->attr_type == 'product')
+@if ($detail->attr_type == 'product' )
     <form action="{{ route('customer.cart.store') }}" method="post" class="order-form flex one ">
         @csrf
         @if (\Session::has('success'))
@@ -6,7 +6,7 @@
                 {!! \Session::get('success') !!}
             </div>
         @endif
-        @if (\Session::has('error'))
+        @if (\Session::has('error') )
             <div class="alert alert-danger ">
                 {!! \Session::get('error') !!}
             </div>
@@ -16,6 +16,7 @@
                 {!! implode('', $errors->all('<div>:message</div>')) !!}
             </div>
         @endif
+
         <input type="hidden" name="id" value="{{ $detail->id }}">
         <button class="btn btn-buy px-3   border-radius-5">
             <i class="fa fa-plus"></i>

@@ -31,6 +31,7 @@ Route::group(['middleware' => 'HtmlMinifier'], function () {
     Route::post('search/suggest', [SearchController::class,'suggest'])->name('search.suggest');
 
     Route::get('/', [HomeController::class, 'index']);
+
     Route::get('/reload', [ContentController::class, 'reload']);
 
     Route::get('/profile/{id?}', [CompanyController::class, 'profileShow'])->name('profile.index');
@@ -41,8 +42,8 @@ Route::group(['middleware' => 'HtmlMinifier'], function () {
     //     Route::prefix($prefix->value)->get('/{slug?}/{b?}', [CmsController::class, 'request']);
     // });
 
+    Route::get('/{category?}/{slug?}/{b?}', [CmsController::class, 'request']);
     Route::get('/{slug?}/{b?}', [CmsController::class, 'request']);
-
 
     Route::post('/comment', [CommentController::class, 'store'])->name('comment.client.store');
     Route::post('/contact', [ContactController::class, 'store'])->name('contact.client.store');

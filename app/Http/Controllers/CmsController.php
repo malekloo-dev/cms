@@ -68,8 +68,8 @@ class CmsController extends Controller
 
             if (isset($request['max_price'])) {
                 $g = getGoldPrice()['priceToman'];
-                $wMin = (int) $request['min_price'] ;
-                $wMax = (int) $request['max_price'] ;
+                $wMin = (int) $request['min_price'];
+                $wMax = (int) $request['max_price'];
 
                 $relatedProduct = $detail->products('power', 'desc', $request)
                     ->select(DB::raw("JSON_EXTRACT(attr,'$.weight') * $g  + $g * JSON_EXTRACT(attr,'$.weight') * 0.28 + JSON_EXTRACT(attr,'$.additionalprice') as p"))
@@ -120,10 +120,12 @@ class CmsController extends Controller
         ]);
     }
 
-    public function request(Request $request, $slug)
+    public function request(Request $request, $arg1=False,  $arg2=False)
     {
 
         $request = $request->all();
+        $slug = (isset($arg2) && $arg2!='')? $arg1.'/'.$arg2 : $arg1;
+        // dd($slug    );
         // redirect url
         $spesifiedUrl = RedirectUrl::where('url', 'like', '/' . $slug);
         if ($spesifiedUrl->exists()) {
@@ -132,7 +134,8 @@ class CmsController extends Controller
         }
 
         // detail
-        $detail = Category::where('slug', '=', $slug)
+
+        $detail = Category::where('slug', '=',  $slug)
             ->where('publish_date', '<=', DB::raw('now()'))
             ->first();
 

@@ -4,6 +4,7 @@
     return '%%1^^@@REWcmv21))--';
 } */
 
+use App\Models\Category;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
 use App\Models\Content;
@@ -815,6 +816,8 @@ function sendSms($numbers = ['09331181877'], $message = '', $i = 0)
 if (!function_exists('uniqueSlug')) {
     function uniqueSlug($model = Content::class, $slugOrModel = '', string $slug = '', string|int $i = '')
     {
+
+        // $slug = ($model == Category::class) ? 'category/' . $slug : $slug;
         // echo '<pre>';
 
         // $slug = 'کابل-رشته-ای شیلددار-22AWG';

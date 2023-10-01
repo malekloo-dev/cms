@@ -1,7 +1,5 @@
 @extends('admin.layouts.app')
 @section('ckeditor')
-
-
     <script>
         $(document).ready(function() {
 
@@ -32,36 +30,31 @@
                     language: 'fa'
                 @endif
             })
-            // .then(editor => {
-            //     const wordCountPlugin = editor.plugins.get('WordCount');
-            //     const wordCountWrapper = document.getElementById('word-count1');
-            //     wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+        // .then(editor => {
+        //     const wordCountPlugin = editor.plugins.get('WordCount');
+        //     const wordCountWrapper = document.getElementById('word-count1');
+        //     wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
 
-            //     window.editor = editor;
-            // })
+        //     window.editor = editor;
+        // })
 
-            // .catch(err => {
-            //     console.error(err.stack);
-            // });
+        // .catch(err => {
+        //     console.error(err.stack);
+        // });
     </script>
-
-
-
-
-
 @endsection
 
 @section('content')
 
     @php
-    $template = '';
-    if (Request()->get('template')) {
-        $template = Request()->get('template');
-    }
-    if (isset($content->attr['template_name'])) {
-        $template = $content->attr['template_name'];
-    }
-    $attr_type = 'category';
+        $template = '';
+        if (Request()->get('template')) {
+            $template = Request()->get('template');
+        }
+        if (isset($content->attr['template_name'])) {
+            $template = $content->attr['template_name'];
+        }
+        $attr_type = 'category';
     @endphp
 
 
@@ -73,7 +66,6 @@
                     @lang('messages.add')
                 @else
                     @lang('messages.edit') {{ old('title', $content->title) }}
-
                 @endif
             </li>
         </ul>
@@ -85,10 +77,12 @@
                 @if ($errors->any())
                     {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
                 @endif
-                <form method="post" @if (Request()->is('*create*')) action=" {{ route('category.store') }}" enctype="multipart/form-data">
+                <form method="post"
+                    @if (Request()->is('*create*')) action=" {{ route('category.store') }}" enctype="multipart/form-data">
                 @else
                         action="   {{ route('category.update', $content->id) }}" enctype="multipart/form-data">
-                        @method('PATCH') @endif @csrf <div class="form-group row">
+                        @method('PATCH') @endif
+                    @csrf <div class="form-group row">
                     <div class="col-5 col-md-5">
                         <label for="name" class=" col-form-label">@lang('messages.title'):</label>
                         <input type="text" class="form-control" name="title"
@@ -98,13 +92,23 @@
 
                     <div class="col-5 col-md-5">
                         <label for="slug" class="col-form-label text-md-left">@lang('messages.url') :</label>
-                        <input type="text" class="form-control" name="slug"
-                            value="{{ old('slug', $content->slug ?? '') }}" />
-                        <span class="text-danger">{{ $errors->first('slug') }}</span>
+                        <div class="row ltr" style="display: flex">
+                            
+                            <input type="text" class="form-control ltr" style="width: 79px; border-radius:0" name="prefix" placeholder="category/"  value="{{ $content->prefix }}">
+                            <input type="text" class="form-control ltr" style="border-radius:0; border-left:0;" name="slug"
+                                value="{{ old('slug', $content->slug ?? '') }}" />
+
+                        </div>
+
+
+                            <span class="text-danger">{{ $errors->first('slug') }}</span>
                     </div>
+
+
                     <div class="col-2 col-md-2">
                         <label for="name" class=" col-form-label text-md-left">@lang('messages.publish date'):</label>
-                        <input type="{{ $ltr ? 'date' : 'datetime' }}" class="form-control @if (!$ltr) datepicker @endif" name="publish_date"
+                        <input type="{{ $ltr ? 'date' : 'datetime' }}"
+                            class="form-control @if (!$ltr) datepicker @endif" name="publish_date"
                             value="{{ old('publish_date', $content->publish_date ?? '') }}" />
                         <span class="text-danger">{{ $errors->first('publish_date') }}</span>
 
@@ -114,8 +118,7 @@
 
 
 
-            @if (isset($template) && $template != '')
-
+            {{-- @if (isset($template) && $template != '') --}}
                 <div class="form-group row">
                     <label for="brand" class="col-md-12 col-form-label text-md-left">@lang('messages.static template')
                         @lang('messages.name')(exp:Contact):</label>
@@ -124,7 +127,7 @@
                             value="{{ old('attr[template_name]', $content->attr['template_name'] ?? '') }}" />
                     </div>
                 </div>
-            @endif
+            {{-- @endif --}}
 
             <div class="form-group row">
                 <div class="col-md-12">
@@ -189,7 +192,7 @@
                                         {{ $key }}
                                         <a href="{{ $image }}" target="_blank">
                                             <img src="{{ $image }}"
-                                                width="{{ (env('CATEGORY_' . Str::upper($key) . '_W')??env('CATEGORY_LARGE_W')) / 4 }}">
+                                                width="{{ (env('CATEGORY_' . Str::upper($key) . '_W') ?? env('CATEGORY_LARGE_W')) / 4 }}">
                                         </a>
                                     </label>
                                 </div>
@@ -221,8 +224,7 @@
             <div class="form-group row">
                 <div class="col-md-12">
                     <label for="meta_description" class=" col-form-label text-md-left">meta Description:</label>
-                    <textarea class="form-control" id="meta_description"
-                        name="meta_description">{{ old('meta_description', $content->meta_description ?? '') }}</textarea>
+                    <textarea class="form-control" id="meta_description" name="meta_description">{{ old('meta_description', $content->meta_description ?? '') }}</textarea>
                 </div>
             </div>
             <div class="form-group row">
@@ -252,7 +254,8 @@
 
 
     <style>
-        #cropperPreview,#cropperPreviewPng {
+        #cropperPreview,
+        #cropperPreviewPng {
             width: {{ env('CATEGORY_SMALL_W') }}px !important
         }
     </style>
