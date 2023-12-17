@@ -93,8 +93,8 @@
                     <div class="col-5 col-md-5">
                         <label for="slug" class="col-form-label text-md-left">@lang('messages.url') :</label>
                         <div class="row ltr" style="display: flex">
-                            
-                            <input type="text" class="form-control ltr" style="width: 79px; border-radius:0" name="prefix" placeholder="category/"  value="{{ $content->prefix }}">
+
+                            <input type="text" class="form-control ltr" style="width: 79px; border-radius:0" name="prefix" placeholder="category/"  value="{{ $content->prefix ?? '' }}">
                             <input type="text" class="form-control ltr" style="border-radius:0; border-left:0;" name="slug"
                                 value="{{ old('slug', $content->slug ?? '') }}" />
 

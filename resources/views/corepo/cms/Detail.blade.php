@@ -157,7 +157,6 @@
         <div class="flex one two-700">
 
             <div class="three-fourth-500 ">
-                <div style="min-height:264px; margin-bottom: 1em" id="pos-article-display-card-88438"></div>
                 <div>
                     <ul>
                         @foreach ($table_of_content as $key => $item)
@@ -174,7 +173,6 @@
                 <div>
                     <div class="mb-1">محل تبلیغ شما</div>
 
-                    <div style="min-height:175px" id="pos-article-display-88439"></div>
 
                     {{-- images&label=adv&var=adv&count=3 --}}
                     @if (isset($adv) && isset($adv['images']))

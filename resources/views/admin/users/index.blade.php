@@ -49,8 +49,9 @@
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->mobile }} </td>
                                 <td>{{ $user->pass }} </td>
-                                <td>{{ ($user->name == '') ? $user->customer?->name : $user->name }}
+                                <td>{{ $user->name  }}
                                     <br>
+                                    {{ $user->customer?->name }}<br>
                                     {{ $user->customer?->address }}
                                     {{ $user->customer?->zipcode }}
                                 </td>

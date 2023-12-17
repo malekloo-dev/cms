@@ -3,7 +3,8 @@
 
 <head>
     @if (url('/') == 'https://edengoldgallery.ir')
-        <meta name="enamad" content="431585"/>
+        <!-- <meta name="enamad" content="431585"/> -->
+        <meta name="enamad" content="undefined"/>
 
         <!-- Google Tag Manager -->
         <script>

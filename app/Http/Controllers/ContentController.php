@@ -31,6 +31,7 @@ class ContentController extends Controller
             $file = $request->imageJson;
             $fileOrg = $request->file('images');
             $filenameOrg = $fileOrg->getClientOriginalName();
+
             $slug = uniqueSlug(Content::class, ($request->slug != '') ? $request->slug : $request->title);
             $fileName = str_replace(' ', '-', $slug) ?? $filenameOrg;
             $fileName = str_replace('/', '-', $fileName);

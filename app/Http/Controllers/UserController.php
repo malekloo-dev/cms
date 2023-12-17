@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -36,7 +38,7 @@ class UserController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }*/
-        $users = User::orderBy('id','desc')->get();
+        $users = User::orderBy('id', 'desc')->get();
 
 
         return view('admin.users.index', compact('users'));
@@ -68,15 +70,20 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'mobile' => 'required',
             'password' => 'required|min:3|confirmed'
         ]);
 
-        $obj = User::where('email', '=', $request->email)->get();
+        $obj = User::where('mobile', '=', $request->mobile)->get();
 
-        if (count($obj)) return redirect()->back()->with('error', Lang::get('messages.email exist'));
+        if (count($obj)) return redirect()->back()->with('error', Lang::get('messages.mobile exist'));
+        $requestArray = $request->all();
+        $requestArray['password'] = Hash::make($requestArray['password']);
+        $user = User::create($requestArray);
 
-        User::create($request->all());
+        $customer = Customer::create(['user_id' => $user->id, 'name' => $request->name, 'mobile' => $request->mobile, 'status' => 1]);
+        $user->assignRole('customer');
+        
 
         return redirect()->back()->with('success', Lang::get('messages.added'));
     }
@@ -125,7 +132,7 @@ class UserController extends Controller
 
         $user->name = $request->get('name');
         $user->email = $request->get('email');
-        if(strlen($user->password) > 0){
+        if (strlen($user->password) > 0) {
             $user->password = bcrypt($request->get('password'));
         }
 

@@ -24,7 +24,6 @@ Route::get('spider/instagram/{id}/{count}', [SpiderController::class, 'instagram
 
 
 
-
 Route::group(['middleware' => 'HtmlMinifier'], function () {
 
     Route::get('search', [SearchController::class,'index'])->name('search');

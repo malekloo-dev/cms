@@ -375,7 +375,12 @@ if (!function_exists('forceRedirect')) {
         if (env('FORCE_REDIRECT', false)) {
             $segments = app('request')->segments();
 
-            if (count($segments) > 1 && !app('request')->is('admin/*') && !app('request')->is('company/*')) {
+            if (
+                count($segments) > 1
+                && !app('request')->is('admin/*')
+                && !app('request')->is('company/*')
+                && !app('request')->is('category/*')
+            ) {
                 header('HTTP/1.1 301 Moved Permanently');
                 // header("Location: " . url(end($urlexplod)));
                 $lastSegment = app('request')->segment(count(request()->segments()));
@@ -980,7 +985,7 @@ function getGoldPrice($offline = 'offline')
     }
 }
 
-function calcuteGoldPrice($weight = 0, $additionalPrice = 0, $goldPrice = 0, $round = false)
+function calcuteGoldPrice($weight = 0, $additionalPrice = 0, $ojrat = 18, $goldPrice = 0, $round = false)
 {
     $str = is_numeric($goldPrice) && $goldPrice > 0 ? $goldPrice : getGoldPrice();
     $weight = (float) $weight;
@@ -989,7 +994,7 @@ function calcuteGoldPrice($weight = 0, $additionalPrice = 0, $goldPrice = 0, $ro
     $goldPrice = isset($str['priceToman']) ? $str['priceToman'] : 0;
 
     $gold = $goldPrice * $weight;
-    $ojrat = $gold * 0.18;
+    $ojrat = $gold * $ojrat / 100;
     $Sood = ($gold + $ojrat) * 0.07;
     $tax = ($Sood + $ojrat) * 0.09;
 

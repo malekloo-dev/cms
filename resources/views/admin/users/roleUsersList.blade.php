@@ -36,14 +36,17 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>@lang('messages.name')</th>
                             <th>@lang('messages.user')</th>
                             <th>@lang('messages.mobile')</th>
+                            <th>@lang('messages.address')</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($role->users()->orderBy('id','desc')->get() as $item)
                             <tr>
+                                <td>{{$item?->customer?->name}}</td>
                                 <td>{{ $item->name ??  $item?->customer?->name ?? ''}} </td>
                                 <td>{{ $item->mobile }}</td>
 

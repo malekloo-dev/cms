@@ -147,7 +147,6 @@ return [
     'invoice number' => 'شماره فاکتور',
     'power up for' => 'افزایش  :count توان برای :content',
     'create account' => 'ایجاد حساب کاربری',
-    'crop' => 'برش',
     'billing name' => 'صورت حساب آقا/خانم',
     'product code' => 'کد محصول',
     'row' => 'ردیف',
@@ -159,7 +158,6 @@ return [
     'tax' => 'مالیات',
     'pay price' => 'مبلغ قابل پرداخت',
     'pay' => 'پرداخت',
-    'more' => 'بیشتر',
     'detail' => 'جزییات',
     'gallery' => 'گالری',
     'if slug empty' => 'در صوردت خالی بودن این فیلد از عنوان استفاده میشود',
@@ -175,8 +173,6 @@ return [
     'weight' => 'وزن',
     'additionalprice' => 'مبلغ اضافی',
     'in-stock' => 'موجود',
-    'company' => 'کمپانی',
-    'pay' => 'پرداخت',
     'quantity' => 'عدد',
     'ordered' => 'ثبت سفارش',
     'ordered and buy' => 'ثبت سفارش و پرداخت',
@@ -196,5 +192,6 @@ return [
     'customer' => 'مشتری',
     'customers' => 'مشتریها',
     'prepairing' => 'در حال آماده سازی',
-    'zipcode' => 'کد پستی'
+    'zipcode' => 'کد پستی',
+    'ojrat' => 'اجرت ساخت'
 ];

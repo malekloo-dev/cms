@@ -433,11 +433,17 @@
 
                         </div>
 
-                        <div class="col-4 col-md-4">
+                        <div class="col-2 col-md-2">
                             <label for="weight"
                                 class=" col-form-label  text-left">@lang('messages.weight'):</label>
                             <input  class="form-control ltr" name="attr[weight]"
                                 value="{{ old('attr[weight]', $content->attr['weight'] ?? '') }}" />
+                        </div>
+                        <div class="col-2 col-md-2">
+                            <label for="weight"
+                                class=" col-form-label  text-left">@lang('messages.ojrat'):</label>
+                            <input  class="form-control ltr" name="attr[ojrat]"
+                                value="{{ old('attr[ojrat]', $content->attr['ojrat'] ?? '') }}" />
                         </div>
 
                         <div class="col-4 col-md-4">

@@ -4,7 +4,7 @@
     <script src="{{ asset('/siema.min.js') }}"></script>
     <script>
         var w;
-        var perPageNumber,perPageNumberProducts;
+        var perPageNumber, perPageNumberProducts;
 
         function perPage() {
             w = window.innerWidth;
@@ -136,6 +136,25 @@
         });
         document.querySelector('.prev-products3').addEventListener('click', () => products3.prev());
         document.querySelector('.next-products3').addEventListener('click', () => products3.next());
+
+        var products4 = new Siema({
+            selector: '.siema-products4',
+            duration: 200,
+            easing: 'ease-out',
+            perPage: perPageNumberProducts,
+            startIndex: 0,
+            draggable: true,
+            multipleDrag: true,
+            threshold: 20,
+            loop: false,
+            rtl: true,
+            onInit: () => {},
+            onChange: () => {
+
+            },
+        });
+        document.querySelector('.prev-products4').addEventListener('click', () => products4.prev());
+        document.querySelector('.next-products4').addEventListener('click', () => products4.next());
     </script>
 @endsection
 
@@ -145,11 +164,8 @@
     <section class="banner my-0 py-0">
         <div class="flex one">
             <img class="h-auto p-0"
-            srcset="{{ url('eden/img/banner1-mobile.jpg') }} 800w, {{ url('eden/img/banner1.jpg') }} 1200w"
-
-            src="{{ url('eden/img/banner1.jpg') }}"
-            alt="طلای ایدن" title="طلای ایدن"
-                width="1200" height="344">
+                srcset="{{ url('eden/img/banner1-mobile.jpg') }} 800w, {{ url('eden/img/banner1.jpg') }} 1200w"
+                src="{{ url('eden/img/banner1.jpg') }}" alt="طلای ایدن" title="طلای ایدن" width="1200" height="344">
 
         </div>
     </section>
@@ -161,7 +177,7 @@
     <section class="index-item-top  mt-0 mb-0  bg-white category-section " onresize="onResize()">
         <div class="   relative px-2 ">
             <div class="siema p-0">
-                {{--category&label=cat&var=category&count=10 --}}
+                {{-- category&label=cat&var=category&count=10 --}}
                 @isset($category['data'])
                     @foreach ($category['data'] as $content)
                         <a href="{{ $content->slug }}">
@@ -195,33 +211,35 @@
 
 
     <section class="category-section mt-1 mb-0 ">
-        <div class="relative px-2 bg-white shadow3">
+        <div class="relative px-7 lg:px-10 bg-white shadow3">
 
             <div class="text-center">
                 <h2>محصولات جدید</h2>
             </div>
 
             <div class="siema-products  ">
-                {{--product&label=products&var=products&count=12 --}}
+                {{-- product&label=products&var=products&count=12 --}}
                 @isset($products['data'])
                     @foreach ($products['data'] as $content)
                         <a href="{{ $content->slug }}" >
-                            <div class=" hover p-0   h-full">
+                            <div class=" hover p-0   h-full px-0.5">
                                 @if (isset($content->images['images']['small']))
                                     <figure class="image">
-                                        @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
+                                        @if (isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0)
                                             <div class="not-in-stock">قابل سفارش</div>
                                         @endif
                                         <img src="{{ $content->images['images']['large'] }}" alt="{{ $content->title }}"
                                             title="{{ $content->title }}" width="" height="300">
                                         <figcaption>
-                                            <h3 class="px-1 py-0 m-0 text-center " style="white-space: nowrap;text-overflow: ellipsis; overflow: hidden;"> {{ $content->title }}</h3>
+                                            <h3 class="px-1 py-0 m-0 text-center "
+                                                style="white-space: nowrap;text-overflow: ellipsis; overflow: hidden;">
+                                                {{ $content->title }}</h3>
 
 
 
                                             <div class="text-green">
                                                 @isset($content->attr['weight'])
-                                                    @convertCurrency(calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0)['totalPrice']) تومان
+                                                    @convertCurrency(calcuteGoldPrice($content->attr['weight'] ?? 0, $content->attr['additionalprice'] ?? 0, $content->attr['ojrat'] ?? 18)['totalPrice']) تومان
                                                 @else
                                                     تماس گرفته شود
                                                 @endisset
@@ -230,14 +248,13 @@
                                     </figure>
                                 @else
                                     <figure class="image">
-                                        @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
+                                        @if (isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0)
                                             <div class="not-in-stock">قابل سفارش</div>
                                         @endif
                                         <img class="m-auto p-4" width="300" height="300"
                                             src="https://img.icons8.com/ios/100/cccccc/no-image.png" alt="company-no-image" />
                                     </figure>
                                     <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
-
                                 @endif
 
                             </div>
@@ -257,7 +274,7 @@
     </section>
 
 
-    <section class="bg-white mt-1">
+    <section class="bg-white mt-1 lg:py-10 lg:my-5">
         <div>
             <div class="flex one three-500 p-0">
                 <div class="third-500 p-0">
@@ -286,33 +303,35 @@
 
 
     <section class="category-section mt-1 mb-0 ">
-        <div class="relative px-2 bg-white  shadow3">
+        <div class="relative px-7 lg:px-10 bg-white  shadow3">
 
             <div class="text-center">
                 <h2> طلای بانوان</h2>
             </div>
 
             <div class="siema-products-women  ">
-                {{--product&label=products_women&var=products_women&count=6 --}}
+                {{-- product&label=products_women&var=products_women&count=6 --}}
                 @isset($products_women['data'])
                     @foreach ($products_women['data'] as $content)
-                        <a href="{{ $content->slug }}" >
-                            <div class=" hover p-0   h-full">
+                        <a href="{{ $content->slug }}">
+                            <div class=" hover p-0   h-full px-0.5">
                                 @if (isset($content->images['images']['small']))
                                     <figure class="image">
-                                        @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
+                                        @if (isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0)
                                             <div class="not-in-stock">قابل سفارش</div>
                                         @endif
                                         <img src="{{ $content->images['images']['large'] }}" alt="{{ $content->title }}"
                                             title="{{ $content->title }}" width="" height="300">
                                         <figcaption>
-                                            <h3 class="px-1 py-0 m-0 text-center " style="white-space: nowrap;text-overflow: ellipsis; overflow: hidden;"> {{ $content->title }}</h3>
+                                            <h3 class="px-1 py-0 m-0 text-center "
+                                                style="white-space: nowrap;text-overflow: ellipsis; overflow: hidden;">
+                                                {{ $content->title }}</h3>
 
 
 
                                             <div class="text-green">
                                                 @isset($content->attr['weight'])
-                                                    @convertCurrency(calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0)['totalPrice']) تومان
+                                                    @convertCurrency(calcuteGoldPrice($content->attr['weight'] ?? 0, $content->attr['additionalprice'] ?? 0, $content->attr['ojrat'] ?? 18)['totalPrice'] ) تومان
                                                 @else
                                                     تماس گرفته شود
                                                 @endisset
@@ -321,14 +340,13 @@
                                     </figure>
                                 @else
                                     <figure class="image">
-                                        @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
+                                        @if (isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0)
                                             <div class="not-in-stock">قابل سفارش</div>
                                         @endif
                                         <img class="m-auto p-4" width="300" height="300"
                                             src="https://img.icons8.com/ios/100/cccccc/no-image.png" alt="company-no-image" />
                                     </figure>
                                     <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
-
                                 @endif
 
                             </div>
@@ -348,7 +366,7 @@
     </section>
 
 
-    <section class="category-section mt-1 mb-0 ">
+    <section class="category-section mt-1 mb-0 lg:my-10 ">
         <div class="relative  shadow p-0">
 
 
@@ -361,7 +379,7 @@
                     </div>
                 </a>
 
-                {{--product&label=procat1&var=procat1&count=4 --}}
+                {{-- product&label=procat1&var=procat1&count=4 --}}
                 @isset($procat1['data'])
                     @foreach ($procat1['data'] as $content)
                         <a class="p-0" href="{{ $content->slug }}">
@@ -369,7 +387,7 @@
 
                                 @if (isset($content->images['images']['small']))
                                     <figure class="image">
-                                        @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
+                                        @if (isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0)
                                             <div class="not-in-stock">قابل سفارش</div>
                                         @endif
                                         <img src="{{ $content->images['images']['large'] }}" alt="{{ $content->title }}"
@@ -379,7 +397,7 @@
 
                                             <div class="text-green">
                                                 @isset($content->attr['weight'])
-                                                    @convertCurrency(calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0)['totalPrice']) تومان
+                                                    @convertCurrency(calcuteGoldPrice($content->attr['weight'] ?? 0, $content->attr['additionalprice'] ?? 0, $content->attr['ojrat'] ?? 18)['totalPrice']) تومان
                                                 @else
                                                     تماس گرفته شود
                                                 @endisset
@@ -389,7 +407,7 @@
                                     </figure>
                                 @else
                                     <figure class="image">
-                                        @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
+                                        @if (isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0)
                                             <div class="not-in-stock">قابل سفارش</div>
                                         @endif
                                         <img class="m-auto p-4" width="300" height="300"
@@ -411,33 +429,35 @@
     </section>
 
     <section class="category-section mt-1 mb-0 ">
-        <div class="relative px-2 bg-white  shadow3">
+        <div class="relative px-7 lg:px-10 bg-white  shadow3">
 
             <div class="text-center">
                 <h2>طلای آقایان </h2>
             </div>
 
             <div class="siema-products2  ">
-                {{--product&label=products2&var=products2&count=6 --}}
+                {{-- product&label=products2&var=products2&count=6 --}}
                 @isset($products2['data'])
                     @foreach ($products2['data'] as $content)
-                        <a href="{{ $content->slug }}" >
-                            <div class=" hover p-0   h-full">
+                        <a href="{{ $content->slug }}">
+                            <div class=" hover p-0   h-full px-0.5">
                                 @if (isset($content->images['images']['small']))
                                     <figure class="image">
-                                        @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
+                                        @if (isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0)
                                             <div class="not-in-stock">قابل سفارش</div>
                                         @endif
                                         <img src="{{ $content->images['images']['large'] }}" alt="{{ $content->title }}"
                                             title="{{ $content->title }}" width="" height="300">
                                         <figcaption>
-                                            <h3 class="px-1 py-0 m-0 text-center " style="white-space: nowrap;text-overflow: ellipsis; overflow: hidden;"> {{ $content->title }}</h3>
+                                            <h3 class="px-1 py-0 m-0 text-center "
+                                                style="white-space: nowrap;text-overflow: ellipsis; overflow: hidden;">
+                                                {{ $content->title }}</h3>
 
 
 
                                             <div class="text-green">
                                                 @isset($content->attr['weight'])
-                                                    @convertCurrency(calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0)['totalPrice']) تومان
+                                                    @convertCurrency(calcuteGoldPrice($content->attr['weight'] ?? 0, $content->attr['additionalprice'] ?? 0, $content->attr['ojrat'] ?? 18)['totalPrice']) تومان
                                                 @else
                                                     تماس گرفته شود
                                                 @endisset
@@ -446,14 +466,13 @@
                                     </figure>
                                 @else
                                     <figure class="image">
-                                        @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
+                                        @if (isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0)
                                             <div class="not-in-stock">قابل سفارش</div>
                                         @endif
                                         <img class="m-auto p-4" width="300" height="300"
                                             src="https://img.icons8.com/ios/100/cccccc/no-image.png" alt="company-no-image" />
                                     </figure>
                                     <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
-
                                 @endif
 
                             </div>
@@ -473,33 +492,35 @@
     </section>
 
     <section class="category-section mt-1 mb-0 ">
-        <div class="relative px-2 bg-white  shadow3">
+        <div class="relative px-7 lg:px-10 bg-white  shadow3">
 
             <div class="text-center">
                 <h2> طلای بچگانه</h2>
             </div>
 
             <div class="siema-products3  ">
-                {{--product&label=products3&var=products3&count=6 --}}
+                {{-- product&label=products3&var=products3&count=6 --}}
                 @isset($products3['data'])
                     @foreach ($products3['data'] as $content)
-                        <a href="{{ $content->slug }}" >
-                            <div class=" hover p-0   h-full">
+                        <a href="{{ $content->slug }}">
+                            <div class=" hover p-0   h-full px-0.5" >
                                 @if (isset($content->images['images']['small']))
                                     <figure class="image">
-                                        @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
+                                        @if (isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0)
                                             <div class="not-in-stock">قابل سفارش</div>
                                         @endif
                                         <img src="{{ $content->images['images']['large'] }}" alt="{{ $content->title }}"
                                             title="{{ $content->title }}" width="" height="300">
                                         <figcaption>
-                                            <h3 class="px-1 py-0 m-0 text-center " style="white-space: nowrap;text-overflow: ellipsis; overflow: hidden;"> {{ $content->title }}</h3>
+                                            <h3 class="px-1 py-0 m-0 text-center "
+                                                style="white-space: nowrap;text-overflow: ellipsis; overflow: hidden;">
+                                                {{ $content->title }}</h3>
 
 
 
                                             <div class="text-green">
                                                 @isset($content->attr['weight'])
-                                                    @convertCurrency(calcuteGoldPrice($content->attr['weight']?? 0,$content->attr['additionalprice']?? 0)['totalPrice']) تومان
+                                                    @convertCurrency(calcuteGoldPrice($content->attr['weight'] ?? 0, $content->attr['additionalprice'] ?? 0, $content->attr['ojrat'] ?? 18)['totalPrice']) تومان
                                                 @else
                                                     تماس گرفته شود
                                                 @endisset
@@ -508,14 +529,13 @@
                                     </figure>
                                 @else
                                     <figure class="image">
-                                        @if(isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0 )
+                                        @if (isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0)
                                             <div class="not-in-stock">قابل سفارش</div>
                                         @endif
                                         <img class="m-auto p-4" width="300" height="300"
                                             src="https://img.icons8.com/ios/100/cccccc/no-image.png" alt="company-no-image" />
                                     </figure>
                                     <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
-
                                 @endif
 
                             </div>
@@ -539,15 +559,68 @@
 
 
 
+    <section class="category-section mt-1 mb-3">
+        <div class="relative px-2 bg-white  shadow3">
 
-    <section class="mt-4">
+            <div class="text-center">
+                <h2>مقالات</h2>
+            </div>
+
+            <div class="siema-products4  ">
+                {{-- post&label=articles&var=articles&count=4 --}}
+                @isset($articles['data'])
+                    @foreach ($articles['data'] as $content)
+                        <a href="{{ $content->slug }}">
+                            <div class=" hover p-0   h-full">
+                                @if (isset($content->images['images']['small']))
+                                    <figure class="image">
+                                        <img src="{{ $content->images['images']['large'] }}" alt="{{ $content->title }}"
+                                            title="{{ $content->title }}" width="" height="300">
+                                        <figcaption>
+                                            <h3 class="px-1 py-0 m-0 text-center "
+                                                style="white-space: nowrap;text-overflow: ellipsis; overflow: hidden;">
+                                                {{ $content->title }}</h3>
+                                        </figcaption>
+                                    </figure>
+                                @else
+                                    <figure class="image">
+
+                                        <img class="m-auto p-4" width="300" height="300"
+                                            src="https://img.icons8.com/ios/100/cccccc/no-image.png" alt="company-no-image" />
+                                    </figure>
+                                    <h3 class="p-0 m-0 text-center"> {{ $content->title }}</h3>
+                                @endif
+
+                            </div>
+                        </a>
+                    @endforeach
+                @endisset
+            </div>
+            {{-- <a class="prev2 prev-products4">&#10094;</a>
+            <a class="next2 next-products4">&#10095;</a> --}}
+
+
+            {{-- <div class="text-center my-1">
+                <a class="btn bg-theme-color text-center border-radius-5" href="/محصولات">دیدن تمامی محصولات</a>
+            </div> --}}
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+    {{-- <section class="mt-4">
         <div class="flex one two-500 three-900  ">
             <div style="flex:0 0 auto" class="text-center">
 
                 <video style="max-width: 100%" width="400" height="400" preload="none" onclick="this.paused ? this.play() : this.pause()"
                     controlslist="nodownload nofullscreen " poster="{{ url('eden/video/cover.jpg') }}" controls="">
                     <source src="{{ url('eden/video/edengoldgallery.mp4') }}" type="video/mp4">
-                    {{-- <source src="movie.ogg" type="video/ogg"> --}}
+                    {{ -- <source src="movie.ogg" type="video/ogg"> --} }
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -559,7 +632,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
 
     {{-- <section>

@@ -122,10 +122,10 @@ class CmsController extends Controller
 
     public function request(Request $request, $arg1=False,  $arg2=False)
     {
-
+        // dd(1);
         $request = $request->all();
         $slug = (isset($arg2) && $arg2!='')? $arg1.'/'.$arg2 : $arg1;
-        // dd($slug    );
+
         // redirect url
         $spesifiedUrl = RedirectUrl::where('url', 'like', '/' . $slug);
         if ($spesifiedUrl->exists()) {
@@ -194,56 +194,7 @@ class CmsController extends Controller
         if ($detail->type == 1) {
 
             return $this->showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule, $request);
-            /*
-            $relatedPost = Content::where('type', '=', '2')
-                ->where('attr_type', '=', 'article')
-                ->where('parent_id', '=', $detail->id)
-                ->where('publish_date', '<=', DB::raw('now()'))
-                ->get();
 
-            $relatedPost = $this->getCatChildOfcontent($detail['id'], $relatedPost, 'article');
-
-            $relatedProduct = Content::where('type', '=', '2')
-                ->where('attr_type', '=', 'product')
-                ->where('parent_id', '=', $detail->id)
-                ->where('publish_date', '<=', DB::raw('now()'))
-                ->paginate(20);
-            // ->get();
-
-            $relatedProduct = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
-
-
-            // dd($relatedProduct->links());
-            $subCategory = Content::where('type', '=', '1')
-                ->where('parent_id', '=', $detail->id)
-                ->where('publish_date', '<=', DB::raw('now()'))
-                ->get();
-
-            $template = env('TEMPLATE_NAME') . '.cms.DetailCategory';
-            //Widget
-            $widget = $this->getWidget('DetailCategory');
-
-
-            if (isset($detail->attr['template_name'])) {
-                $widget = $this->getWidget($detail->attr['template_name']);
-                $template = env('TEMPLATE_NAME') . '.cms.' . $detail->attr['template_name'];
-            }
-            //dd($detail);
-            // dd($relatedProduct->links());
-
-
-            return view($template, $widget, [
-                'detail' => $detail,
-                'relatedProduct' => $relatedProduct,
-                'relatedPost' => $relatedPost,
-                'breadcrumb' => $breadcrumb,
-                'table_of_content' => $table_of_content,
-                'subCategory' => $subCategory,
-                'images' => $images,
-                'seo' => $seo,
-                'editorModule' => $editorModule
-            ]);
-            */
         } else {
             $detail = Content::find($detail->id);
             // dd($detail);
