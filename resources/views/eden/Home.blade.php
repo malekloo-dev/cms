@@ -1,6 +1,9 @@
 @extends(@env('TEMPLATE_NAME') . '.App')
 
+@section('canonical', url(''))
+
 @section('footer')
+
     <script src="{{ asset('/siema.min.js') }}"></script>
     <script>
         var w;
@@ -42,7 +45,7 @@
             draggable: true,
             multipleDrag: true,
             threshold: 20,
-            loop: false,
+            loop: true,
             rtl: true,
             onInit: () => {},
             onChange: () => {
@@ -69,7 +72,7 @@
             draggable: true,
             multipleDrag: true,
             threshold: 20,
-            loop: false,
+            loop: true,
             rtl: true,
             onInit: () => {},
             onChange: () => {
@@ -89,7 +92,7 @@
             draggable: true,
             multipleDrag: true,
             threshold: 20,
-            loop: false,
+            loop: true,
             rtl: true,
             onInit: () => {},
             onChange: () => {
@@ -108,7 +111,7 @@
             draggable: true,
             multipleDrag: true,
             threshold: 20,
-            loop: false,
+            loop: true,
             rtl: true,
             onInit: () => {},
             onChange: () => {
@@ -127,7 +130,7 @@
             draggable: true,
             multipleDrag: true,
             threshold: 20,
-            loop: false,
+            loop: true,
             rtl: true,
             onInit: () => {},
             onChange: () => {
@@ -146,7 +149,7 @@
             draggable: true,
             multipleDrag: true,
             threshold: 20,
-            loop: false,
+            loop: true,
             rtl: true,
             onInit: () => {},
             onChange: () => {
@@ -162,10 +165,10 @@
 
 
     <section class="banner my-0 py-0">
-        <div class="flex one">
+        <div class="flex one max-w-max" >
             <img class="h-auto p-0"
-                srcset="{{ url('eden/img/banner1-mobile.jpg') }} 800w, {{ url('eden/img/banner1.jpg') }} 1200w"
-                src="{{ url('eden/img/banner1.jpg') }}" alt="طلای ایدن" title="طلای ایدن" width="1200" height="344">
+                srcset="{{ url('eden/img/banner-mom-mob.jpg') }} 800w, {{ url('eden/img/banner-mom.jpg') }} 1200w, {{ url('eden/img/banner-mom.jpg') }} 1800w"
+                src="{{ url('eden/img/banner-mom-mob.jpg') }}" alt="طلای ایدن" title="طلای ایدن" width="1200" height="344">
 
         </div>
     </section>
@@ -177,7 +180,7 @@
     <section class="index-item-top  mt-0 mb-0  bg-white category-section " onresize="onResize()">
         <div class="   relative px-2 ">
             <div class="siema p-0">
-                {{-- category&label=cat&var=category&count=10 --}}
+                {{--category&label=cat&var=category&count=10 --}}
                 @isset($category['data'])
                     @foreach ($category['data'] as $content)
                         <a href="{{ $content->slug }}">
@@ -218,7 +221,7 @@
             </div>
 
             <div class="siema-products  ">
-                {{-- product&label=products&var=products&count=12 --}}
+                {{--product&label=new&var=products&count=12 --}}
                 @isset($products['data'])
                     @foreach ($products['data'] as $content)
                         <a href="{{ $content->slug }}" >
@@ -266,7 +269,7 @@
             <a class="next2 next-products">&#10095;</a>
 
 
-            {{-- <div class="text-center my-1">
+            {{--<div class="text-center my-1">
                 <a class="btn bg-theme-color text-center border-radius-5" href="/محصولات">دیدن تمامی محصولات</a>
             </div> --}}
         </div>
@@ -310,7 +313,7 @@
             </div>
 
             <div class="siema-products-women  ">
-                {{-- product&label=products_women&var=products_women&count=6 --}}
+                {{--product&label=products_women&var=products_women&count=6 --}}
                 @isset($products_women['data'])
                     @foreach ($products_women['data'] as $content)
                         <a href="{{ $content->slug }}">
@@ -358,7 +361,7 @@
             <a class="next2 next-products-women">&#10095;</a>
 
 
-            {{-- <div class="text-center my-1">
+            {{--<div class="text-center my-1">
                 <a class="btn bg-theme-color text-center border-radius-5" href="/محصولات">دیدن تمامی محصولات</a>
             </div> --}}
         </div>
@@ -379,7 +382,7 @@
                     </div>
                 </a>
 
-                {{-- product&label=procat1&var=procat1&count=4 --}}
+                {{--product&label=procat1&var=procat1&count=4 --}}
                 @isset($procat1['data'])
                     @foreach ($procat1['data'] as $content)
                         <a class="p-0" href="{{ $content->slug }}">
@@ -436,7 +439,7 @@
             </div>
 
             <div class="siema-products2  ">
-                {{-- product&label=products2&var=products2&count=6 --}}
+                {{--product&label=products2&var=products2&count=6 --}}
                 @isset($products2['data'])
                     @foreach ($products2['data'] as $content)
                         <a href="{{ $content->slug }}">
@@ -484,7 +487,7 @@
             <a class="next2 next-products2">&#10095;</a>
 
 
-            {{-- <div class="text-center my-1">
+            {{--<div class="text-center my-1">
                 <a class="btn bg-theme-color text-center border-radius-5" href="/محصولات">دیدن تمامی محصولات</a>
             </div> --}}
         </div>
@@ -499,7 +502,7 @@
             </div>
 
             <div class="siema-products3  ">
-                {{-- product&label=products3&var=products3&count=6 --}}
+                {{--product&label=products3&var=products3&count=6 --}}
                 @isset($products3['data'])
                     @foreach ($products3['data'] as $content)
                         <a href="{{ $content->slug }}">
@@ -547,7 +550,7 @@
             <a class="next2 next-products3">&#10095;</a>
 
 
-            {{-- <div class="text-center my-1">
+            {{--<div class="text-center my-1">
                 <a class="btn bg-theme-color text-center border-radius-5" href="/محصولات">دیدن تمامی محصولات</a>
             </div> --}}
         </div>
@@ -567,7 +570,7 @@
             </div>
 
             <div class="siema-products4  ">
-                {{-- post&label=articles&var=articles&count=4 --}}
+                {{--post&label=articles&var=articles&count=4 --}}
                 @isset($articles['data'])
                     @foreach ($articles['data'] as $content)
                         <a href="{{ $content->slug }}">
@@ -596,11 +599,11 @@
                     @endforeach
                 @endisset
             </div>
-            {{-- <a class="prev2 prev-products4">&#10094;</a>
+            {{--<a class="prev2 prev-products4">&#10094;</a>
             <a class="next2 next-products4">&#10095;</a> --}}
 
 
-            {{-- <div class="text-center my-1">
+            {{--<div class="text-center my-1">
                 <a class="btn bg-theme-color text-center border-radius-5" href="/محصولات">دیدن تمامی محصولات</a>
             </div> --}}
         </div>
@@ -613,7 +616,7 @@
 
 
 
-    {{-- <section class="mt-4">
+    {{--<section class="mt-4">
         <div class="flex one two-500 three-900  ">
             <div style="flex:0 0 auto" class="text-center">
 
@@ -635,7 +638,7 @@
     </section> --}}
 
 
-    {{-- <section>
+    {{--<section>
         <div class="">
             <div class="flex one">
                 @php
