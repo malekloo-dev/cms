@@ -48,7 +48,7 @@
                         @foreach ($list as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td class="">{{ $item->user->mobile ?? '' }}</td>
+                                <td class="">{{ $item->user->mobile ?? '' }} {{ $item->user->customer->name ?? '' }} {{ $item->user->customer->family ?? '' }}</td>
                                 <td style="font-weight:bold">
 
                                     @convertCurrency($item->total_price) @lang('messages.toman')

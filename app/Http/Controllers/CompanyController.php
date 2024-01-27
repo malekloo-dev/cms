@@ -727,7 +727,7 @@ class CompanyController extends Controller
         $orderDetail = $order->orderDetail;
         foreach ($orderDetail as $detail) {
             $product = (new Content)->find((int) $detail->attributes['product_id']);
-            if ($product instanceof Content) {
+            if ($product instanceof Content && $request->status == 1) {
                 $attr = $product->attr;
                 $attr['in-stock'] = '0';
                 $product->update(['attr' => $attr]);

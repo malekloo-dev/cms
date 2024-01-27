@@ -46,7 +46,7 @@
         </div>
         <div class="flex grow one text-center">
             <div> فروش طلا بدون واسطه به قیمت بازار.
-                ساخته شده توسط <a target="_blank" rel="noopener" href="https://tarhoweb.com">طرح و وب</a></div>
+                ساخته شده توسط <a target="_blank" rel="noopener" href="https://dingweb.ir">دینگ وب</a></div>
         </div>
     </div>
 </footer>

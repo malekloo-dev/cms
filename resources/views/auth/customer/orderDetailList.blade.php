@@ -237,6 +237,7 @@
             if($('span.text-red-700').length){
                 $('form#upload-bill').hide();
                 $('form#upload-bill').next().show();
+                
             }else{
                 $('form#upload-bill').next().hide();
             }

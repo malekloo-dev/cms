@@ -43,6 +43,7 @@
         <div class="panel panel-default pos-abs chat-panel bottom-0">
             <div class="panel-body full-height">
                 {{ $order->user->mobile }} <br>
+                {{ $order->user->customer->name ?? ''}} {{ $order->user->customer->family ?? '' }} <br>
                 {{ $order->user->customer?->address }} - کد پستی: {{ $order->user->customer?->zipcode }}
                 <br>
                 <br>

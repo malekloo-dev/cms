@@ -37,8 +37,11 @@
 
 
 @push('scripts')
+
     <script src="{{ '/eden/siema.min.js' }}"></script>
     <script>
+        if($('.siema').length)
+        {
         var w;
         var perPageNumber;
 
@@ -82,6 +85,7 @@
         });
         document.querySelector('.prev2').addEventListener('click', () => mySiema.prev());
         document.querySelector('.next2').addEventListener('click', () => mySiema.next());
+    }
     </script>
 @endpush
 

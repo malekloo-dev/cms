@@ -101,8 +101,8 @@
             <div class="third sixth-1000 pb-0">
                 @if (isset($detail->images['images']['small']))
                     <figure class="image">
-                        <img src="{{ $detail->images['images']['small'] }}" alt="{{ $detail->title }}" width="100"
-                            height="100"
+                        <img src="{{ $detail->images['images']['small'] }}" alt="{{ $detail->title }}" width="200"
+                            height="200"
                             srcset="
                                     {{ $detail->images['images']['small'] }} 1x,
                                     {{ $detail->images['images']['large'] ?? $detail->images['images']['small'] }} 2x">
