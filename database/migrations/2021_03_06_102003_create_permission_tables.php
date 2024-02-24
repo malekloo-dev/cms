@@ -92,27 +92,32 @@ class CreatePermissionTables extends Migration
             $table->primary(['permission_id', 'role_id'], 'role_has_permissions_permission_id_role_id_primary');
         });
 
-        // DB::table('roles')->insert(
-        //     array(
-        //         'id' => 1,
-        //         'name' => 'super admin',
-        //         'guard_name'=>'web'
-        //     ),
-        //     array(
-        //         'id' => 2,
-        //         'name' => 'company',
-        //         'guard_name'=>'web'
-        //     )
-        // );
+        DB::table('roles')->insert(array(
+            array(
+                'id' => 1,
+                'name' => 'super admin',
+                'guard_name'=>'web'
+            ),
+            array(
+                'id' => 2,
+                'name' => 'company',
+                'guard_name'=>'web'
+            ),
+            array(
+                'id' => 3,
+                'name' => 'customer',
+                'guard_name'=>'web'
+            )
+        ));
 
 
-        // DB::table('model_has_roles')->insert(
-        //     array(
-        //         'role_id' => '1',
-        //         'model_type' => 'App\Models\User',
-        //         'model_id' => '1',
-        //     )
-        // );
+        DB::table('model_has_roles')->insert(
+            array(
+                'role_id' => '1',
+                'model_type' => 'App\Models\User',
+                'model_id' => '1',
+            )
+        );
 
         // app('cache')
         //     ->store(config('permission.cache.store') != 'default' ? config('permission.cache.store') : null)

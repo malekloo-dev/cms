@@ -39,7 +39,7 @@ class CmsController extends Controller
 
             $relatedPost = $this->getCatChildOfcontent($detail['id'], $relatedPost, 'article');
         } else {
-            $relatedPost = $detail->posts()->paginate(20);
+            $relatedPost = $detail->posts()->paginate(env('PAGE_SIZE_ARTICLE', 20));
         }
 
 
@@ -57,7 +57,7 @@ class CmsController extends Controller
                 ->where('attr_type', '=', 'product')
                 ->where('parent_id', '=', $detail->id)
                 ->where('publish_date', '<=', DB::raw('now()'))
-                ->paginate(15);
+                ->paginate(env('PAGE_SIZE_PRODUCT', 15));
             $relatedProduct = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
         } else {
             $contentTypeIdList = $detail->getContentTypeid($request)->pluck('content_type_id');
@@ -120,21 +120,21 @@ class CmsController extends Controller
         ]);
     }
 
-    public function request(Request $request, $arg1=False,  $arg2=False)
+    public function request(Request $request, $arg1 = False,  $arg2 = False)
     {
-        // dd(1);
+
         $request = $request->all();
-        $slug = (isset($arg2) && $arg2!='')? $arg1.'/'.$arg2 : $arg1;
+        $slug = (isset($arg2) && $arg2 != '') ? $arg1 . '/' . $arg2 : $arg1;
 
         // redirect url
         $spesifiedUrl = RedirectUrl::where('url', 'like', '/' . $slug);
         if ($spesifiedUrl->exists()) {
+            // return Redirect::to(url(urlencode($spesifiedUrl->first()->redirect_to)), 301);
             header("Location: " . url($spesifiedUrl->first()->redirect_to), true, 301);
             exit();
         }
 
         // detail
-
         $detail = Category::where('slug', '=',  $slug)
             ->where('publish_date', '<=', DB::raw('now()'))
             ->first();
@@ -147,6 +147,9 @@ class CmsController extends Controller
                 ->view(env('TEMPLATE_NAME') . '.NotFound', $data, 404);
         }
 
+        // increment viewCount
+        $detail->increment('viewCount');
+
         //breadcrumb
         $this->breadcrumb[] = $detail->getAttributes();
         $breadcrumb = $this->get_parent($detail->parent_id);
@@ -156,7 +159,7 @@ class CmsController extends Controller
             $breadcrumb = array();
         }
 
-
+        //seo
         $seo['meta_keywords'] = $detail->meta_keywords;
         $seo['meta_description'] = $detail->meta_description;
         $seo['url'] = url('/') . '/' . $slug;
@@ -164,17 +167,14 @@ class CmsController extends Controller
         $seo['og:title'] = $detail->title;
         $seo['og:type'] = 'article';
 
-
+        // table of content
         $table_of_content = array();
         $table_of_images = array();
         $images = array();
         if (strlen($detail->description)) {
             $resultTableContent = $this->tableOfContent($detail->description);
             $detail->description = $resultTableContent['content'];
-
-            //dd( $detail->description);
             $table_of_content = $resultTableContent['list'];
-
             $table_of_images = $this->tableOfImage($detail->description);
 
             //preg_match_all('/<img[^>]+>/i',$detail->description, $result);
@@ -184,7 +184,6 @@ class CmsController extends Controller
         }
 
 
-        $detail->increment('viewCount');
         $relatedPost = array();
         $subCategory = array();
         $relatedProduct = array();
@@ -194,7 +193,6 @@ class CmsController extends Controller
         if ($detail->type == 1) {
 
             return $this->showCategory($seo, $detail, $breadcrumb, $table_of_content, $images, $editorModule, $request);
-
         } else {
             $detail = Content::find($detail->id);
             // dd($detail);
@@ -204,7 +202,7 @@ class CmsController extends Controller
                 ->where('attr_type', '=', 'article')
                 ->where('publish_date', '<=', DB::raw('now()'))
                 ->inRandomOrder()
-                ->limit(4)->get();
+                ->limit(env('RELATED_POST_COUNT', 4))->get();
 
 
 
@@ -219,7 +217,7 @@ class CmsController extends Controller
             $relatedProduct = $relatedProduct->orderBy('attr->in-stock', 'desc');
 
             // dd($relatedProduct->toSql());
-            $relatedProduct = $relatedProduct->limit(4)->get();
+            $relatedProduct = $relatedProduct->limit(env('RELATED_PRODUCT_COUNT', 4))->get();
             $template = env('TEMPLATE_NAME') . '.cms.Detail';
             $widget = $this->getWidget('Detail');
             if (isset($detail->attr['template_name'])) {

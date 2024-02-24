@@ -146,18 +146,15 @@
             </div>
             <div class="full pb-0">
                 {!! $detail->brief_description !!}
-
-
-
             </div>
         </div>
     </section>
 
     <section class="content-detail" id="">
-        <div class="flex one two-700">
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-1">
 
-            <div class="three-fourth-500 ">
-                <div>
+            <div class="md:col-span-4 shadow">
+                <div class="">
                     <ul>
                         @foreach ($table_of_content as $key => $item)
                             <li class="toc1">
@@ -169,12 +166,12 @@
                     @include(@env('TEMPLATE_NAME') . '.DescriptionModule')
                 </div>
             </div>
-            <div class="fourth-500">
-                <div>
+            <div class=" shadow">
+                <div class="">
                     <div class="mb-1">محل تبلیغ شما</div>
 
 
-                    {{-- images&label=adv&var=adv&count=3 --}}
+                    {{--images&label=adv&var=adv&count=3 --}}
                     @if (isset($adv) && isset($adv['images']))
                         <div class="text-center">
                             @foreach ($adv['images'] as $k => $content)
@@ -186,9 +183,9 @@
                         </div>
                     @endisset
                     <div>وبسایت ها</div>
-                    {{-- category&label=sideCategory&var=sideCategory&count=6 --}}
+                    {{--category&label=sideCategory&var=sideCategory&count=6 --}}
                     @isset($sideCategory['data'])
-                        <ul>
+                        <ul class="max-sm:flex max-sm:flex-wrap max-sm:gap-x-4">
                             @foreach ($sideCategory['data'] as $item)
                                 <li>
                                     <a href="{{ url($item->slug) }}">{{ $item->title }}</a>
@@ -270,7 +267,7 @@
         <div>
             <h4>نظرات شما درباره {{ $detail->title }}</h4>
             <div>
-                <div class="comment-form">
+                <div class="comment-form lg:w-1/2 m-auto">
                     @if (\Session::has('success'))
                         <div class="alert alert-success">
                             {!! \Session::get('success') !!}
@@ -287,7 +284,7 @@
                             {!! implode('', $errors->all('<div>:message</div>')) !!}
                         </div>
                     @endif
-                    <form action="{{ route('comment.client.store') }}#comment" id="comment" method="post">
+                    <form action="{{ route('comment.client.store') }}#comment" class=" " id="comment" method="post">
                         <input type="hidden" name="content_id" value="{{ $detail->id }}">
 
                         @csrf
@@ -314,13 +311,13 @@
                         </div>
                         <div>
                             <label>نام:</label>
-                            <input type="text" name="name" value="{{ old('name') }}">
+                            <input class="w-full p-1" type="text" name="name" value="{{ old('name') }}">
                         </div>
                         <div>
                             <label>پیام:</label>
-                            <textarea name="comment">{{ old('comment') }}</textarea>
+                            <textarea class="w-full p-1" name="comment">{{ old('comment') }}</textarea>
                         </div>
-                        <button class="button button-blue g-recaptcha" data-sitekey="reCAPTCHA_site_key"
+                        <button class="button bg-blue g-recaptcha" data-sitekey="reCAPTCHA_site_key"
                             data-callback='onSubmit' data-action='submit'>ارسال نظر</button>
                     </form>
                 </div>

@@ -105,10 +105,12 @@
     @php
         $tableOfImages = tableOfImages($detail->description);
         $append = '';
-        // $price = calcuteGoldPrice($detail->attr['weight'] ?? 0, $detail->attr['additionalprice'] ?? 0);
     @endphp
 
     @if ($detail->attr_type == 'product')
+    @php
+    $price = $detail->GoldPrice();
+    @endphp
         @include('jsonLdProduct')
     @endif
     @include('jsonLdFaq')
@@ -250,18 +252,18 @@
                                                     <span class="text-left">{{ $detail->attr['weight'] ?? 0 }} گرم</span>
                                                 </div>
                                                 <div class="flex border-t p-3 justify-between">
-                                                    <span class="text-slate-500 text-sm">قیمت روز طلا:</span>
+                                                    <span class="text-slate-500 text-sm">قیمت روز طلا (هر گرم):</span>
                                                     <span class="text-left">@convertCurrency($detail->GoldPrice()['goldprice']) تومان</span>
                                                 </div>
                                                 <div class="flex border-t p-3 justify-between">
-                                                    <span class="text-slate-500 text-sm">اجرت ساخت:</span> <span
-                                                        class="text-left">{{ $detail->attr['ojrat'] ?? 18 }}٪</span>
+                                                    <span class="text-slate-500 text-sm">اجرت ساخت ({{ $detail->attr['ojrat'] ?? 18 }}٪):</span> <span
+                                                        class="text-left">@convertCurrency($detail->GoldPrice()['ojrat']) تومان</span>
                                                 </div>
                                                 <div class="flex border-t p-3 justify-between"><span
-                                                        class="text-slate-500 text-sm">سود ایدن:</span><span
-                                                        class="text-left">7٪</span></div>
+                                                        class="text-slate-500 text-sm">سود ایدن (7٪):</span><span
+                                                        class="text-left">  @convertCurrency($detail->GoldPrice()['sood']) تومان</span></div>
                                                 <div class="flex border-t p-3 justify-between"><span
-                                                        class="text-slate-500 text-sm">مالیات:</span><span
+                                                        class="text-slate-500 text-sm">مالیات (9% بر روی سود و اجرت):</span><span
                                                         class="text-left">@convertCurrency($detail->GoldPrice()['tax']) تومان</span> </div>
                                                 <div class="flex border-t p-3 justify-between"><span
                                                         class="text-slate-500 text-sm">خرج کار:</span><span

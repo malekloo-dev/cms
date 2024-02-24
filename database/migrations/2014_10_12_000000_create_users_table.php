@@ -27,13 +27,13 @@ class CreateUsersTable extends Migration
             $table->timestamp('date')->useCurrent();
         });
 
-        // DB::table('users')->insert(
-        //     array(
-        //         'name' => 'admin',
-        //         'email' => 'm@m.m',
-        //         'password' => '$2y$10$CXDC/iH/ugEG4zCZdfgZLuNUB3rZ.opJoLH.dbEL7mPurnKMtHlTS'
-        //     )
-        // );
+        DB::table('users')->insert(
+            array(
+                'name' => 'admin',
+                'email' => 'm@m.m',
+                'password' => '$2y$10$CXDC/iH/ugEG4zCZdfgZLuNUB3rZ.opJoLH.dbEL7mPurnKMtHlTS'
+            )
+        );
     }
 
     /**

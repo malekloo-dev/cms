@@ -3,40 +3,36 @@
 
     <section class="footer-links">
         <div class="container">
-            <div class="flex one two-500">
-                <div class="two-fourth-500">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 ">
+                <div class="">
                     <div>وبسایت ها</div>
-                    <ul class="flex one two-700">
-                        <?php $subMenu = App\Models\Menu::where('menu', '=', '1')
-                            ->where('parent', '=', 7)
-                            ->orderBy('sort')
-                            ->get(); ?>
+                    <ul class="flex flex-wrap gap-x-5">
+                        <?php $subMenu = App\Models\Menu::where('menu', '=', '1')->where('parent', '=', 7)->orderBy('sort')->get(); ?>
                         @foreach ($subMenu as $subMenuItem)
                             <li><a
-                                    href="{{ $subMenuItem['type'] == 'internal' || $subMenuItem['type'] == 'external'? $subMenuItem['link']: '/#' . $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a>
+                                    href="{{ $subMenuItem['type'] == 'internal' || $subMenuItem['type'] == 'external' ? $subMenuItem['link'] : '/#' . $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a>
                             </li>
                         @endforeach
                     </ul>
                 </div>
-                <div class="fourth-500">
+                <div class="">
                     <div>مقاله ها</div>
-                    <ul class="flex one ">
-                        <?php $subMenu = App\Models\Menu::where('menu', '=', '1')
-                            ->where('parent', '=', 34)
-                            ->orderBy('sort')
-                            ->get(); ?>
+                    <ul class="flex flex-wrap gap-x-4">
+                        <?php $subMenu = App\Models\Menu::where('menu', '=', '1')->where('parent', '=', 34)->orderBy('sort')->get(); ?>
                         @foreach ($subMenu as $subMenuItem)
                             <li><a
-                                    href="{{ $subMenuItem['type'] == 'internal' || $subMenuItem['type'] == 'external'? $subMenuItem['link']: '/#' . $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a>
+                                    href="{{ $subMenuItem['type'] == 'internal' || $subMenuItem['type'] == 'external' ? $subMenuItem['link'] : '/#' . $subMenuItem['link'] }}">{{ $subMenuItem['label'] }}</a>
                             </li>
                         @endforeach
                     </ul>
                 </div>
-                <div class="fourth-500">
-                    <ul>
+                <div class="max-md:hidden"></div>
+                <div class="">
+                    <ul class="flex flex-wrap gap-x-4">
                         <li><a href="/رپورتاژ">رپورتاژ آگهی</a></li>
                         <li><a href="/تعرفه">تعرفه تبلیغات</a></li>
                         <li><a href="/اپلیکیشن">اپلیکیشن</a></li>
+                        <li><a href="/تماس-با-ما">تماس با کریپو</a></li>
                     </ul>
 
                     <div>ما را دنبال کنید</div>
@@ -44,9 +40,10 @@
                         <a href="https://www.instagram.com/corepo2020/" target="_blank" rel="noopener">
 
 
-                            <svg width="32px" height="32px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
-                                style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                            <svg width="32px" height="32px" version="1.1" id="Capa_1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                                y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                                xml:space="preserve">
                                 <g>
                                     <g>
                                         <path d="M363.273,0H148.728C66.719,0,0,66.719,0,148.728v214.544C0,445.281,66.719,512,148.728,512h214.544
@@ -92,14 +89,16 @@
 
 
 <script>
-    if(screen && screen.width <= 768){
-        document.write('<script type="text/javascript" src="{{ url("/corepo/pullToRefresh.umd.min.js") }}"><\/script>');
+    if (screen && screen.width <= 768) {
+        document.write('<script type="text/javascript" src="{{ url('/corepo/pullToRefresh.umd.min.js') }}"><\/script>');
 
         setTimeout(() => {
             PullToRefresh.init({
-                    mainElement: 'body',
-                    onRefresh: function() { location.reload(); }
-                });
+                mainElement: 'body',
+                onRefresh: function() {
+                    location.reload();
+                }
+            });
         }, 500);
 
 
@@ -113,7 +112,7 @@
     var TEMPLATE_NAME = `{{ env('TEMPLATE_NAME') }}`;
 </script>
 <script src="{{ url('/main.js') }}"></script>
-@if (WebsiteSetting::where('variable', '=', 'phone')->first()?->value != '' && ($showcallnowbutton ?? 1) )
+@if (WebsiteSetting::where('variable', '=', 'phone')->first()?->value != '' && ($showcallnowbutton ?? 1))
     <a href="tel:{{ WebsiteSetting::where('variable', '=', 'phone')->first()->value }}" id="callnowbutton"></a>
 @endif
 
@@ -138,7 +137,7 @@
         })(window, document, 'script', 'dataLayer', 'GTM-PVTXH97');
     </script>
     <!-- End Google Tag Manager -->
-    @endif
+@endif
 
 </body>
 

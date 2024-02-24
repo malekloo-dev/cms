@@ -35,12 +35,15 @@
         max-height: 300px;
     }
 
-    .preview {
+    .preview, .previewPng {
         overflow: hidden;
         width: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_LARGE_W') }}px;
         height: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_LARGE_H') }}px;
         margin: 10px;
         border: 1px solid red;
+    }
+    .previewPng {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAAA3NCSVQICAjb4U/gAAAABlBMVEXMzMz////TjRV2AAAACXBIWXMAAArrAAAK6wGCiw1aAAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAABFJREFUCJlj+M/AgBVhF/0PAH6/D/HkDxOGAAAAAElFTkSuQmCC');
     }
 
     .modal-lg {
@@ -106,8 +109,15 @@
                             </button>
                         </div>
                     </div>
-                    <div class="col-md-4 col-xs-12 hidden-xs" style="">
-                        <div class="preview"></div>
+                    <div class="col-md-4 col-xs-12 hidden-xs" style="display: flex;">
+                        <div>
+                            jpeg
+                            <div class="preview"></div>
+                        </div>
+                        <div>
+                            png
+                            <div class="preview previewPng"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -167,6 +177,7 @@
             viewMode: 0,
             preview: '.preview'
         });
+
     }).on('hidden.bs.modal', function() {
         cropper.destroy();
         cropper = null;
@@ -180,9 +191,10 @@
             fillColor: '#ffffff',
             width: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_XLARGE_W') }},
             height: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_XLARGE_H') }},
-            // imageSmoothingEnabled: true,
-            // imageSmoothingQuality: 'high',
+            imageSmoothingEnabled: true,
+            imageSmoothingQuality: 'high',
         });
+        canvasJpeg = canvas.toDataURL('image/jpeg');
         canvasPng = cropper.getCroppedCanvas({
             // fillColor: '#ffffff',
             width: {{ env(Str::upper($content->attr_type ?? $attr_type) . '_LARGE_W') }},
@@ -190,6 +202,7 @@
             imageSmoothingEnabled: true,
             imageSmoothingQuality: 'high',
         });
+        // console.log(canvas);
         // console.log(canvas.toDataURL('image/jpeg'));
 
         canvas.toBlob(function(blob) {
@@ -210,9 +223,10 @@
 
 
             reader.onloadend = function() {
-                // console.log(reader);
+                console.log(reader);
                 var base64data = reader.result;
-                $('input[name=imageJson]#jpeg').val(base64data)
+                $('input[name=imageJson]#jpeg').val(canvasJpeg)
+
                 canvasPng.toBlob(function(blob) {
                     url = URL.createObjectURL(blob);
                     var reader = new FileReader();

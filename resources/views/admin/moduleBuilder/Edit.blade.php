@@ -296,7 +296,7 @@
                                                                             category
                                                                             to show widget
                                                                             {{ $attr['config']['label'] }}</label>
-
+                                                                            {{-- {{ dd($attr) }} --}}
                                                                         <select
                                                                             name="attr[{{ $attr['config']['var'] }}][parent_id]"
                                                                             id="parent_id" class="parent_id"

@@ -999,9 +999,11 @@ function calcuteGoldPrice($weight = 0, $additionalPrice = 0, $ojrat = 18, $goldP
     $tax = ($Sood + $ojrat) * 0.09;
 
     return [
-        'totalPrice' => (int) ceil(($gold + $Sood + $ojrat + $tax + $additionalPrice) / 1000) * 1000,
+        'totalPrice' => (int) floor(($gold + $Sood + $ojrat + $tax + $additionalPrice) / 1000) * 1000,
         'goldprice' => $goldPrice,
         'tax' => $tax,
+        'ojrat' => $ojrat,
+        'sood' => $Sood,
     ];
 }
 

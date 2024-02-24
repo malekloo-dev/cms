@@ -42,6 +42,7 @@ class ContentController extends Controller
             $image_type = $image_type_aux[1];
             $image_base64 = base64_decode($image_parts[1]);
 
+
             $fileType = ($image_type == 'jpeg') ? 'jpg' : $image_type;
             $fileNameAndType = $fileName . '.' . $fileType;
 
@@ -95,7 +96,7 @@ class ContentController extends Controller
                     $font->angle(45);
                 });
 
-                $imgFile->save(public_path($image), 80, 'jpg');
+                $imgFile->save(public_path($image), 90, 'jpg');
 
                 // echo "<img src='".url($image)."'>";
             }

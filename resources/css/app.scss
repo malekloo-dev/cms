@@ -2750,7 +2750,8 @@ section {
 }
 section > div {
     max-width: $site-witdth;
-    margin: auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 section.wide div {
     max-width: none;

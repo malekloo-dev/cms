@@ -72,7 +72,7 @@
 
                 @include(@env('TEMPLATE_NAME').'.DescriptionModule')
 
-                <div class="contact-form">
+                <div class="contact-form  border-dashed border-2 border-gray-300 rounded-lg p-4 lg:w-1/2 m-auto">
                     <form action="{{ route('contact.store') }}#contact" method="post" class="" id="" novalidate="">
                         @csrf
                         @if (\Session::has('success'))
@@ -94,15 +94,15 @@
                         <fieldset>
                             <div class="row mt-1">
                                 <div class="control">
-                                    <input type="text" value="{{ old('name') }}" placeholder="نام" name="name"
+                                    <input type="text" class="w-full p-1" value="{{ old('name') }}" placeholder="نام" name="name"
                                         title="Name">
                                 </div>
                                 <div class="control">
-                                    <input type="text" value="{{ old('lastname') }}" placeholder="نام خانوادگی "
+                                    <input type="text" class="w-full p-1" value="{{ old('lastname') }}" placeholder="نام خانوادگی "
                                         name="lastname" title="نام خانوادگی">
                                 </div>
                                 <div class="control">
-                                    <textarea name="comment" placeholder="پیام" class="" title="" data-autosize-on="true"
+                                    <textarea name="comment" placeholder="پیام" class="w-full p-1" title="" data-autosize-on="true"
                                         style="overflow: hidden; overflow-wrap: break-word; height: 98px;">{{ old('comment') }}</textarea>
                                 </div>
                                 <div class="control">

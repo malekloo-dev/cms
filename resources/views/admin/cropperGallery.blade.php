@@ -161,7 +161,7 @@
             imageSmoothingEnabled: true,
             imageSmoothingQuality: 'high',
         });
-
+        canvasJpeg = canvas.toDataURL('image/jpeg');
 
         canvas.toBlob(function(blob) {
 
@@ -171,7 +171,8 @@
 
             reader.onloadend = function() {
 
-                var base64data = reader.result;
+                // var base64data = reader.result;
+                var base64data = canvasJpeg;
 
                 $('.gallery').append('<div><img src="' + base64data +
                     '" height="100"><input id="jpeg" type="hidden" name="imageJsonGallery[]" value="' +

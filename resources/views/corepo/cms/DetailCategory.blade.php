@@ -171,7 +171,6 @@
 
                         <div class="flex one two-500 four-900 center ">
 
-                            {{-- $data['newPost'] --}}
                             @foreach ($relatedProduct as $content)
                                 <div>
                                     <article>
@@ -201,12 +200,12 @@
         </section>
     @endif
 
-    <section class="index-items bg-pink mt-0 mb-0">
+    <section class="index-items bg-pink mt-0">
         <div class="flex one">
             <div>
                 <h1>{{ $detail->title ?? '' }}</h1>
                 @isset($relatedPost)
-                    <div class="flex one three-500 five-900   ">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1 mb-2">
                         @foreach ($relatedPost as $content)
                             <div>
                                 <a href="{{ $content->slug }}">
@@ -214,7 +213,8 @@
                                         @if (isset($content->images['images']['small']))
                                             <figure class="image">
                                                 <img  loading="lazy" src="{{ $content->images['images']['small']  }}"
-                                                    width="198" height="100" alt="{{ $content->title }}">
+                                                    width="{{ env('ARTICLE_SMALL_W', 200) }}" height="{{ env('ARTICLE_SMALL_H', 200) }}"
+                                                    alt="{{ $content->title }}">
                                             </figure>
                                         @endif
 
@@ -251,7 +251,7 @@
     </section>
 
 
-    @if(Request::is('تعرفه')  || Request::is('درباره-ما'))
+    @if(Request::is('تعرفه') || Request::is('رپورتاژ')  || Request::is('درباره-ما'))
     <section class="category-content" id="">
         <div class="flex one ">
             <div class="font-08">
@@ -289,13 +289,13 @@
             </div>
         </div>
     </section>
-
+    @if(!Request::is('درباره-ما') && !Request::is('تعرفه') && !Request::is('رپورتاژ'))
     <section class="comments bg-gray mt-0 mb-0">
         <div class="flex one">
             <div>
                 <div>نظرات شما درباره {{ $detail->title }}</div>
                 <div>
-                    <div class="comment-form">
+                    <div class="comment-form lg:w-1/2 m-auto">
                         @if (\Session::has('success'))
                             <div class="alert alert-success">
                                 {!! \Session::get('success') !!}
@@ -340,11 +340,11 @@
 
                             <div>
                                 <label for="comment_name">نام:</label>
-                                <input id="comment_name" type="text" name="name" value="{{ old('name') }}">
+                                <input id="comment_name" class="w-full p-1" type="text" name="name" value="{{ old('name') }}">
                             </div>
                             <div>
                                 <label for="comment-text">پیام:</label>
-                                <textarea id="comment-text" name="comment">{{ old('comment') }}</textarea>
+                                <textarea id="comment-text" class="w-full p-1" name="comment">{{ old('comment') }}</textarea>
                             </div>
                             <button class="button button-blue g-recaptcha" data-sitekey="reCAPTCHA_site_key"
                                 data-callback='onSubmit' data-action='submit'>ارسال نظر</button>
@@ -374,6 +374,7 @@
             </div>
         </div>
     </section>
+    @endif
     @endif
 
 @endsection
