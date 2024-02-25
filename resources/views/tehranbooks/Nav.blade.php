@@ -30,10 +30,10 @@
     </div>
 
 
-    <header class='border-b py-1 px-1 lg:px-5  bg-white font-sans min-h-[70px] '>
+    <header class='border-b py-1 px-1 lg:px-5  bg-white min-h-[70px] '>
         <div class='flex flex-wrap items-center lg:gap-y-2 gap-y-4 gap-x-4'>
             <a href="/" class="">
-                <img height="60" width="180" alt=" ایدن لوگو" class="inline-block"
+                <img height="60" width="180" alt="  لوگو" class="inline-block"
                     srcset="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }} 1x, {{ url(env('TEMPLATE_NAME') . '/img/logo2x.png') }} 2x"
                     src="{{ url(env('TEMPLATE_NAME') . '/img/logo1x.png') }}" />
             </a>

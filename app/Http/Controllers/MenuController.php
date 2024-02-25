@@ -44,10 +44,10 @@ class MenuController extends Controller
 
         $tree = new Menu();
         foreach ($searchmap as $condition) {
-            $items=$tree->where($condition[0], $condition[1], $condition[2]);
+            $items = $tree->where($condition[0], $condition[1], $condition[2]);
         }
 
-        $items=$tree->orderBy('parent', 'desc')->orderBy('sort','asc')->get();
+        $items = $tree->orderBy('parent', 'desc')->orderBy('sort', 'asc')->get();
         $list = array();
         foreach ($items as $item) {
             $list[$item->parent][] = $item;
@@ -115,25 +115,25 @@ class MenuController extends Controller
 
         $data['post'] = Content::where('type', '=', '2')
             ->where('attr_type', '=', 'article')
-            ->where('publish_date','<=', DB::raw('now()'))
+            ->where('publish_date', '<=', DB::raw('now()'))
             ->get();
 
         $data['product'] = Content::where('type', '=', '2')
             ->where('attr_type', '=', 'product')
-            ->where('publish_date','<=', DB::raw('now()'))
+            ->where('publish_date', '<=', DB::raw('now()'))
             ->get();
 
         $data['category'] = Content::where('type', '=', '1')
-            ->where('publish_date','<=', DB::raw('now()'))
+            ->where('publish_date', '<=', DB::raw('now()'))
             ->get();
 
-       // O:\xampp\htdocs\cms\resources\views\remotyadak
-       // $template= asset(env('TEMPLATE_NAME')) ;
-       // $template = 'resources'.'/views/'.env('TEMPLATE_NAME') . '/Home.blade.php';
+        // O:\xampp\htdocs\cms\resources\views\remotyadak
+        // $template= asset(env('TEMPLATE_NAME')) ;
+        // $template = 'resources'.'/views/'.env('TEMPLATE_NAME') . '/Home.blade.php';
         // $template = 'O:\xampp\htdocs\cms\resources\views\remotyadak\Home.blade.php';
-        $template = resource_path('views/'. env('TEMPLATE_NAME') .'/Home.blade.php');
+        $template = resource_path('views/' . env('TEMPLATE_NAME') . '/Home.blade.php');
 
-        $data['single_page']=$this->getSinglePagePoint(file_get_contents($template));
+        $data['single_page'] = $this->getSinglePagePoint(file_get_contents($template));
 
         /*$data['type'][0]['lable']='internal';
         $data['type'][0]['lable']='externl';
@@ -162,12 +162,11 @@ class MenuController extends Controller
 
         $data = $request->all();
 
-        if($data["type" ] =="internal"){
-            $data['link'] =Content::find($data["module_id" ])->slug;
-        }else
-        {
-            $data['module']=null;
-            $data['module_id']=null;
+        if ($data["type"] == "internal") {
+            $data['link'] = Content::find($data["module_id"])->slug;
+        } else {
+            $data['module'] = null;
+            $data['module_id'] = null;
         }
         //dd($data);
         //Content::create(array_merge($request->all(), ['images' => $imagesUrl]));
@@ -177,10 +176,9 @@ class MenuController extends Controller
     }
     public function getSinglePagePoint($content)
     {
-       // {{--#anchor news--}}
+        // {{--#anchor news--}}
         preg_match_all("/({{--#anchor(.*)--}})/U", $content, $pat_array);
-        return array_map('trim',$pat_array[2]);
-
+        return array_map('trim', $pat_array[2]);
     }
 
 
@@ -216,40 +214,40 @@ class MenuController extends Controller
 
         $data['post'] = Content::where('type', '=', '2')
             ->where('attr_type', '=', 'article')
-            ->where('publish_date','<=', DB::raw('now()'))
+            ->where('publish_date', '<=', DB::raw('now()'))
             ->get();
 
         $data['product'] = Content::where('type', '=', '2')
             ->where('attr_type', '=', 'product')
-            ->where('publish_date','<=', DB::raw('now()'))
+            ->where('publish_date', '<=', DB::raw('now()'))
             ->get();
 
         $data['category'] = Content::where('type', '=', '1')
-            ->where('publish_date','<=', DB::raw('now()'))
+            ->where('publish_date', '<=', DB::raw('now()'))
             ->get();
 
         // $template = 'O:\xampp\htdocs\cms\resources\views\remotyadak\Home.blade.php';
-        $template = resource_path('views/'. env('TEMPLATE_NAME') .'/Home.blade.php');
-        $data['single_page']=$this->getSinglePagePoint(file_get_contents($template));
+        $template = resource_path('views/' . env('TEMPLATE_NAME') . '/Home.blade.php');
+        $data['single_page'] = $this->getSinglePagePoint(file_get_contents($template));
 
 
-        $searchmap=array();
+        $searchmap = array();
         $tree = $this->tree_set($searchmap);
         $data['menu'] = $this->convertTemplateSelect1($tree);
-        $filter[$id]='';
-        foreach ($data['menu'] as $id=>$obj) {
+        $filter[$id] = '';
+        foreach ($data['menu'] as $id => $obj) {
             if (isset($filter[$id])) {
                 unset($data['menu'][$id]);
             }
             if (isset($filter[$obj->parent])) {
-                $filter[$id]='';
+                $filter[$id] = '';
                 unset($data['menu'][$id]);
             }
         }
 
         //print_r($content_info);
         //die();
-        return view('admin.menu.Edit',$data);
+        return view('admin.menu.Edit', $data);
     }
 
 
@@ -260,25 +258,23 @@ class MenuController extends Controller
      * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $crud = Menu::find($id);
 
         $data = $request->all();
 
-        if($data["type" ] =="internal"){
+        if ($data["type"] == "internal") {
 
-            $data['link'] =Content::find($data["module_id" ])->slug;
-        }else
-        {
-            $data['module']=null;
-            $data['module_id']=null;
+            $data['link'] = Content::find($data["module_id"])->slug;
+        } else {
+            $data['module'] = null;
+            $data['module_id'] = null;
         }
 
         $crud->update($data);
 
         return redirect('admin/menu')->with('success', 'Update! Menu Update successfully.');
-
     }
 
 
@@ -294,6 +290,6 @@ class MenuController extends Controller
     {
         $menu->delete();
 
-        return redirect()->back()->with('success',Lang::get('messages.deleted'));
+        return redirect()->back()->with('success', Lang::get('messages.deleted'));
     }
 }
