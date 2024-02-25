@@ -1,0 +1,261 @@
+.login h1 {
+  text-align: center;
+}
+
+::-moz-placeholder {
+  color: #aaa !important;
+}
+
+::placeholder {
+  color: #aaa !important;
+}
+
+section.panel {
+  font-size: 0.9em;
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+}
+section.panel > div {
+  background-color: #fff;
+  max-width: none;
+  padding: 1em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+section.panel > div:last-child {
+  flex: 1;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+section.panel h1 {
+  text-align: inherit;
+}
+section.panel .total-price {
+  color: green;
+  font-weight: bold;
+}
+section.panel .bold {
+  font-weight: bold;
+}
+section.panel .red {
+  color: red;
+}
+section.panel .green {
+  color: green;
+}
+section.panel .map-area {
+  display: block;
+}
+section.panel .map-area #mapid {
+  height: 280px;
+  border-radius: 3px;
+}
+section.panel .map-area.map-editor {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  z-index: 999;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  bottom: 0;
+  padding: 2em;
+  text-align: center;
+}
+section.panel .map-area.map-editor .guid {
+  color: #000;
+  background: rgba(236, 233, 23, 0.9);
+  border-radius: 0 0 3px 3px;
+}
+section.panel .map-area.map-editor #mapid {
+  height: 70vh;
+  border-radius: 3px 3px 0 0;
+}
+section.panel .map-area.map-editor a.cancel {
+  color: #fff;
+}
+section.panel .profile .flex > div span {
+  font-weight: bold;
+}
+section.panel .profile .flex > div span.text-editor:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+section.panel .company-nav {
+  width: 200px;
+  background-color: #eee !important;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0 !important;
+}
+section.panel .company-nav .burger {
+  display: none;
+}
+section.panel .company-nav i.logo {
+  background-color: #fff;
+  padding: 0.5em;
+  border-radius: 50%;
+  font-size: 50px;
+}
+section.panel .company-nav .company-logo img {
+  background-color: #fff;
+  border-radius: 50%;
+}
+section.panel .company-nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  flex-direction: column;
+  width: 100%;
+}
+section.panel .company-nav ul li {
+  position: relative;
+  padding: 0.5em;
+  margin: 0;
+}
+section.panel .company-nav ul li:first-child {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+section.panel .company-nav ul li:first-child > div {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  position: absolute;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+section.panel .company-nav ul li:first-child > div input {
+  display: none;
+}
+section.panel .company-nav ul li:first-child:hover div {
+  display: flex;
+}
+section.panel .company-nav ul li a {
+  padding: 0 0.5em;
+  display: block;
+}
+section.panel .company-nav ul li.active {
+  background-color: white;
+}
+section.panel .company-nav button {
+  width: 100%;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4) inset;
+  padding: 0 1em;
+  border-radius: 4px !important;
+  text-decoration: none;
+}
+section.panel .list .item {
+  flex-flow: row wrap;
+}
+section.panel .list .item:last-child {
+  border-bottom: none;
+}
+section.panel .list .item > div {
+  flex-grow: 1;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+}
+section.panel .list .item > div.info {
+  display: flex;
+  flex-flow: row wrap;
+}
+section.panel .list .item > div .inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 150px;
+  gap: 5px;
+}
+section.panel .widget {
+  color: white;
+}
+section.panel .widget a {
+  color: white;
+}
+section.panel .widget a:hover {
+  color: white;
+}
+section.panel .widget a:hover h2 {
+  color: white;
+}
+section.panel .widget h2 {
+  font-size: 1em;
+}
+section.panel .powerup {
+  max-width: 400px;
+  margin: auto !important;
+}
+section.panel .invoice {
+  max-width: 500px;
+  margin: auto !important;
+}
+section.panel .invoice h1 {
+  text-align: center;
+}
+section.panel .invoice .billing-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+section.panel .invoice table td {
+  text-align: right;
+  border-width: 1px;
+  border-color: #999;
+}
+section.panel .invoice .text-left {
+  text-align: left !important;
+}
+
+@media (max-width: 960px) {
+  table {
+    width: 100%;
+  }
+  section.panel {
+    flex-direction: column;
+    margin: 0 !important;
+    display: block;
+  }
+  section.panel .burger {
+    display: flex !important;
+    flex-direction: column;
+    width: 30px;
+    height: 20px;
+    justify-content: space-between;
+  }
+  section.panel .burger span {
+    background-color: #111;
+    height: 4px;
+    width: 100%;
+    border-radius: 3px;
+  }
+  section.panel .burger .hide {
+    display: none;
+  }
+  section.panel .burger .rotate1 {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  section.panel .burger .rotate2 {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+  section.panel .company-nav {
+    padding: 1em;
+    width: 100%;
+    display: block;
+  }
+  section.panel .company-nav ul {
+    display: none;
+    width: 100%;
+  }
+  section.panel .powerup {
+    text-align: center;
+  }
+}

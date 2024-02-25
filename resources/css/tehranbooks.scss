@@ -1,0 +1,297 @@
+$template: tehranbooks;
+$body: #f8f8f8;
+$theme-color1: #928c81;
+$theme-color2: rgb(255, 208, 0);
+$theme-color3: #c99d4d;
+$theme-color1-text: #fff;
+
+$a: #622916;
+$a-hover: #1e2135;
+
+$menu-color: #333;
+$menu-bg-left: #fff;
+$menu-bg-right: #fff;
+$menu-shadow: none;
+$p: #1e1e1e;
+
+$search-border: 1px solid #888;
+$search-bg: #888;
+$search-text: rgb(100, 100, 100);
+
+$pink: #e81e6c;
+
+$site-witdth: 1450px; // default:1200px;
+
+$h2-font-size: 1.3em; // default:;
+$h2-color: #000; // default: $a
+
+$h3-font-size: 13px; // default:1.7em;
+$h3-color: #000; // default: $a
+$button-color: black;
+$button-bg-color: yellow;
+
+$font-family: IRANSans; // Vazir2
+
+@import "public.scss";
+// @import "grid.scss";
+// @import "nav.scss";
+
+// @import "nav-mega-menu.scss";
+
+@import "font-icon.scss";
+
+////////////////////
+//     customer menu     //
+////////////////////
+.customer-menu {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    background-color: #f4f4f4;
+    padding: 5px 1em;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 1em;
+    span {
+        cursor: pointer;
+    }
+    .login {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: white;
+        padding: 0 1em;
+    }
+}
+
+////////////////////
+//     banner     //
+////////////////////
+.banner {
+    .flex {
+        align-items: flex-end;
+        justify-content: center;
+
+        h1 {
+            position: absolute;
+            width: auto;
+        }
+    }
+}
+
+////////////////////
+//     HOME       //
+////////////////////
+
+
+////////////////////
+// category siema //
+////////////////////
+.category-section {
+    h2,
+    h3 {
+        font-size: 0.9em;
+    }
+    .next2,
+    .prev2 {
+        position: absolute;
+        width: auto;
+        padding: 0 0.5em;
+        color: #717171;
+        font-size: 20px;
+        font-weight: 700;
+        cursor: pointer;
+        top: 50%;
+        margin-top: -20px;
+        user-select: none;
+    }
+    .next2 {
+        left: 0;
+        border-radius: 50px;
+    }
+    .prev2 {
+        right: 0;
+        border-radius: 50px;
+    }
+}
+
+////////////////////////
+//  category detail   //
+////////////////////////
+.overflow-hidden {
+    overflow: hidden;
+}
+img {
+    transition: transform 0.2s;
+}
+.zoom1-3x {
+    transform: scale(1.3);
+}
+.zoom1-4x {
+    transform: scale(1.4);
+}
+.zoom1-5x {
+    transform: scale(1.5);
+}
+.zoom2x {
+    transform: scale(2);
+}
+
+.ltr {
+    direction: ltr;
+}
+.price {
+    color: #048312;
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+
+// @media not all and (min-width: 768px) {
+//     .brand {
+//         position: absolute;
+//         left: 0;
+//         height: 46px;
+//         z-index: 1;
+//         img {
+//             height: 100%;
+//             width: auto;
+//             object-fit: contain;
+//         }
+//     }
+
+//     nav {
+//         border-top: 1px solid #f1f1f1;
+//         height: 3em;
+//         width: auto;
+//         position: relative;
+//     }
+//     .intro {
+//         margin: 1em auto 1em !important;
+//         padding: 1em 0 0;
+//     }
+//     .hero {
+//         background-attachment: scroll;
+//     }
+//     .pseudo.button:hover {
+//         border: none;
+//     }
+// }
+
+////////////////////////////
+///
+/// ////////////////////////
+
+////////////////////////////////
+/// NAV
+/// ///////////////////////////////
+
+header {
+    .flex {
+        width: auto;
+    }
+    .arrow {
+        // border: solid $menu-color;
+        border-width: 0 2px 2px 0;
+        // display: inline-block;
+        padding: 3px;
+        top: 10px;
+        margin-right: 5px;
+        position: absolute;
+    }
+
+    .down {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+    .parent:hover ul {
+        display: block;
+    }
+    .hover {
+        display: block !important;
+        position: absolute;
+        top: 30px;
+        padding: 0 30px;
+        background: white;
+        box-shadow: 2px 3px 2px #00000014;
+        white-space: nowrap;
+    }
+}
+
+//////////////
+//////////////
+//  footer  //
+//////////////
+//////////////
+#footer {
+    background: #ececec;
+    color: #475667;
+    padding: 0;
+    margin: 0;
+    .footer-links {
+        margin: 0;
+    }
+}
+#footer > div {
+    max-width: $site-witdth;
+    margin: auto !important;
+}
+#footer .social-network input::placeholder {
+    color: #6c839f;
+}
+#footer .social-network input {
+    direction: ltr;
+    font-size: 0.8em;
+    padding-right: 20px;
+    background: #ffc8c8;
+    border: 0;
+    color: #6c839f;
+    height: 40px;
+    -webkit-border-radius: 0 50px503px 0;
+    -moz-border-radius: 0 50px 50px 0;
+    border-radius: 0 50px 50px 0;
+}
+#footer .social-network button {
+    font-size: 0.9em;
+    background: #fa490e;
+    color: #fff;
+    margin: 0;
+    padding: 0 0;
+    -webkit-border-radius: 50px 0 0 50px;
+    -moz-border-radius: 50px 0 0 50px;
+    border-radius: 50px 0 0 50px;
+}
+#footer .social-network > div:first-child {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+}
+#footer .social-network > div:first-child a {
+    height: 30px;
+    margin-right: 3px;
+}
+#footer .social-network a {
+    display: inline-block;
+}
+.social-network {
+    display: flex;
+    max-width: 200px !important;
+    justify-content: space-around;
+}
+.social-network svg {
+    width: 32px;
+    height: 32px;
+    fill: #444;
+    transition: all 0.2s;
+}
+.social-network svg:hover {
+    fill: $a;
+}
+.footer-copyright {
+    background: #dad8d8;
+    color: #475667;
+    padding: 1em;
+}
+

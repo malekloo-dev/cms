@@ -25,6 +25,11 @@ class PermissionSeeder extends Seeder
                     'id' => 2,
                     'name' => 'company',
                     'guard_name' => 'web'
+                ),
+                array(
+                    'id' => 3,
+                    'name' => 'customer',
+                    'guard_name' => 'web'
                 )
             )
         );
