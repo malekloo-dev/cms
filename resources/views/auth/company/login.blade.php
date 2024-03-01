@@ -147,7 +147,7 @@
 
             <label for="mobile" class="control-label">@lang('messages.mobile')</label>
 
-            <input id="mobile" type="tel" class="form-control ltr @error('mobile') is-invalid @enderror" name="mobile"
+            <input id="mobile" type="tel" class="h-10 rounded ltr w-full px-2 focus:border-gray-400  @error('mobile') is-invalid @enderror" name="mobile"
                 value="{{ old('mobile') }}" required autocomplete="mobile"
                 oninput="this.setCustomValidity('')"
                 oninvalid="this.setCustomValidity('شماره را وارد نمایید')"
@@ -163,7 +163,7 @@
         <div class="form-group" style="position: relative">
             <label for="password" class="control-label">@lang('messages.password')</label>
 
-            <input id="password" type="password" class="form-control ltr @error('password') is-invalid @enderror"
+            <input id="password" type="password" class="rounded h-10 px-2 w-full focus:border-gray-400 ltr @error('password') is-invalid @enderror"
                 name="password" value="" required
                 oninput="this.setCustomValidity('')"
                 oninvalid="this.setCustomValidity('رمز را وارد نمایید')"
@@ -193,7 +193,7 @@
 
             <div id="loading" style="display:block"></div>
 
-            <button type="submit" style="display: none" id="btn-loading" class="btn btn-inherit  btn-block">
+            <button type="submit" style="display: none" id="btn-loading" class="text-white bg-blue-700 btn-inherit block">
                 <i class="fa fa-lock"></i> @lang('messages.login')
             </button>
 

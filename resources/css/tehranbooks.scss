@@ -1,5 +1,5 @@
 $template: tehranbooks;
-$body: #f8f8f8;
+$body: #fff;
 $theme-color1: #928c81;
 $theme-color2: rgb(255, 208, 0);
 $theme-color3: #c99d4d;
@@ -20,7 +20,7 @@ $search-text: rgb(100, 100, 100);
 
 $pink: #e81e6c;
 
-$site-witdth: 1450px; // default:1200px;
+$site-witdth: 1200px; // default:1200px;
 
 $h2-font-size: 1.3em; // default:;
 $h2-color: #000; // default: $a
@@ -32,13 +32,20 @@ $button-bg-color: yellow;
 
 $font-family: IRANSans; // Vazir2
 
+// @import "app.scss";
 @import "public.scss";
 // @import "grid.scss";
 // @import "nav.scss";
-
 // @import "nav-mega-menu.scss";
-
 @import "font-icon.scss";
+
+
+.btn-buy{
+    background-color: #2b4bf7;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.12);
+}
+
 
 ////////////////////
 //     customer menu     //
@@ -180,18 +187,20 @@ img {
 //     }
 // }
 
-////////////////////////////
-///
-/// ////////////////////////
 
 ////////////////////////////////
 /// NAV
 /// ///////////////////////////////
 
 header {
-//     .flex {
-//         width: auto;
-//     }
+    max-width: $site-witdth;
+    margin: 0 auto;
+    .hidden {
+        display: none !important;
+    }
+    .flex {
+        width: auto;
+    }
     .arrow {
         // border: solid $menu-color;
         border-width: 0 2px 2px 0;
@@ -206,18 +215,19 @@ header {
         transform: rotate(45deg);
         -webkit-transform: rotate(45deg);
     }
-//     // .parent:hover ul {
-//     //     display: block;
-//     // }
-//     .hover {
-//         display: block !important;
-//         position: absolute;
-//         top: 30px;
-//         padding: 0 30px;
-//         background: white;
-//         box-shadow: 2px 3px 2px #00000014;
-//         white-space: nowrap;
-//     }
+    .parent:hover ul {
+        display: block;
+    }
+    .hover {
+        display: block !important;
+        position: absolute;
+        top: 30px;
+        padding: 0 30px;
+        background: white;
+        box-shadow: 2px 3px 2px #00000014;
+        white-space: nowrap;
+        z-index: 1;
+    }
 }
 
 //////////////

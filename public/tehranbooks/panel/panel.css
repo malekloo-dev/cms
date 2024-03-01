@@ -174,21 +174,6 @@ section.panel .list .item > div .inline {
   max-width: 150px;
   gap: 5px;
 }
-section.panel .widget {
-  color: white;
-}
-section.panel .widget a {
-  color: white;
-}
-section.panel .widget a:hover {
-  color: white;
-}
-section.panel .widget a:hover h2 {
-  color: white;
-}
-section.panel .widget h2 {
-  font-size: 1em;
-}
 section.panel .powerup {
   max-width: 400px;
   margin: auto !important;

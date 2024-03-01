@@ -49,9 +49,9 @@
 
 
 
-<div class="flex one  filter-items py-0 px-3 w-f">
+<div class="flex   filter-items py-0 px-3 w-f">
 
-    <div class="toc1 shadow ">
+    <div class="toc1 w-full shadow ">
         <a class="filter-header p-3" href="#قیمت">قیمت</a>
         <div class="filter-items-list pt-5 pb-4">
             @include(@env('TEMPLATE_NAME') . '.cms.filterPrice')

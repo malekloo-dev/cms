@@ -10,7 +10,7 @@
 
         <div class="list    ">
             <h1 class="p-0 ">@lang('messages.cart') </h1>
-            <div class="flex  one  ">
+            <div class="    ">
                 @foreach ($cart as $content)
                     <div class="item border-b py-4  relative">
                         <div class=" ">
@@ -63,7 +63,7 @@
                                 @endif
 
                             </div>
-                            <div class="inline bg-gray hidden ">
+                            <div class=" bg-gray-100 hidden ">
                                 <form method="post" action="{{ route('customer.cart.update', $content['id']) }}">
                                     @csrf
                                     <input type="hidden" name="count" value="1">
@@ -99,9 +99,9 @@
                 <div class="align-center">
                     @if (count($cart))
 
-                        <form method="post" id="customer-order-store" action="{{ route('customer.order.store') }}">
+                        <form method="post" id="customer-order-store" class="text-center" action="{{ route('customer.order.store') }}">
                             @csrf
-                            <button class="btn px-5 btn-buy">ادامه خرید ← </button>
+                            <button class="bg-lime-700 px-5 btn-buy">ادامه خرید ← </button>
                         </form>
 
                         @if (\Request::header('Referer') == url('login'))

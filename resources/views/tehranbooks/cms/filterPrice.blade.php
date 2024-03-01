@@ -1,24 +1,24 @@
-<div class="p-1" dir="ltr">
-    <div class="row">
-        <div class="col-sm-12">
+<div class="py-1 px-4" dir="ltr">
+
+        <div class="">
             <div id="slider-range"></div>
         </div>
-    </div>
-    <div class="row slider-labels font-08">
-        <div class="col-xs-6 text-right caption p-0">
-            <strong>تا:</strong> <span id="slider-range-value2"></span> تومان
-        </div>
-        <div class="col-xs-6 caption pl-0">
+
+    <div class="flex justify-between slider-labels  font-08">
+
+        <div class=" caption pl-0">
             <strong>از:</strong> <span id="slider-range-value1"></span> تومان
         </div>
-
+        <div class=" text-right caption p-0">
+            <strong>تا:</strong> <span id="slider-range-value2"></span> تومان
+        </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12">
+    <div class="">
+        <div class="w-full">
             <form method="GET" action="">
                 <input type="hidden" name="min_price" value="">
                 <input type="hidden" name="max_price" value="">
-                <button class="m-0 px-4 py-0 bg-blue2 font-09 border-radius-15 hover:bg-blue-800 hover:shadow">فیلتر قیمت</button>
+                <button class="m-0  py-0  font-09 text-white rounded-full bg-blue-950 hover:bg-blue-800 hover:shadow">فیلتر قیمت</button>
             </form>
         </div>
     </div>

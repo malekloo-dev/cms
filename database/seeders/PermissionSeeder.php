@@ -42,5 +42,6 @@ class PermissionSeeder extends Seeder
                 'model_id' => '1',
             )
         );
+        
     }
 }

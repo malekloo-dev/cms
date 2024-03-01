@@ -7,10 +7,9 @@
         @include('auth.customer.nav')
 
         <div>
-            {{-- <h1>@lang('messages.Dashboard')</h1> --}}
             <div class="flex one four-500">
 
-                @hasrole('company')
+                @hasrole('company','super admin')
                     @isset($user->customer)
                         @if ($user?->customer?->status == 0)
                             <div class="one thirdth-500 ">
@@ -38,12 +37,12 @@
 
                 @isset($user->customer)
                     @if ($user?->customer?->name == '' || $user?->customer?->address == '')
-                        <div class="one thirdth-500 ">
+                        <div class="one thirdth-500 mb-1">
 
                             <a href="{{ route('customer.profile') }}"
-                                class="widget shadow border-radius-10 p-1   bg-gray-dark flex h-full">
-                                <h2 class="white">گام اول: موارد زیر را تکمیل نمایید <i class="fa fa-external-link-alt"></i></h2>
-                                <div class="full text-black">
+                                class=" border rounded-lg py-2 px-5   bg-gray-700 text-white flex flex-col ">
+                                <div class="text-white w-full"> موارد زیر را تکمیل نمایید <i class="fa fa-external-link-alt"></i></div>
+                                <div class="w-full text-white">
                                     (
                                     @if ($user->customer->name == '')
                                         <span class=" "> نام</span>

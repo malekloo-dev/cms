@@ -177,12 +177,12 @@
         </div>
     </section>
     <section class="mt-0" id="index-best-view">
-        <div class="flex one  four-800  ">
-            <div class="one-fourth-800 ">
+        <div class=" grid grid-cols-4 gap-x-5 ">
+            <div class=" ">
                 @include(@env('TEMPLATE_NAME') . '.cms.filter')
 
             </div>
-            <div class="three-fourth-800 p-0">
+            <div class="col-span-3 p-0">
                 <div class="">
 
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-2 ">

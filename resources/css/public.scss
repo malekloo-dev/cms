@@ -20,10 +20,10 @@ h2{font-size: $h2-font-size ; color: $h2-color; }
 h3{font-size: $h3-font-size ; color: $h3-color; }
 
 
+
 //////////
 // main //
 //////////
-
 html {
     direction: rtl;
     -ms-text-size-adjust: 100%;
@@ -277,6 +277,22 @@ button {
     box-shadow: 0 0 rgba(0, 0, 0, 0) inset;
 }
 
+.edit-button {
+    position: fixed;
+    right: 0;
+    top: 10px;
+    z-index: 99999;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background: #0074d9;
+    color: white;
+  }
+
+section > div {
+    max-width: $site-witdth;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
 
 
 nav .button {
@@ -1125,52 +1141,52 @@ section.extra-link {
 //            filter
 ///////////////////////////////////////
 ///////////////////////////////////////
-// .filter-menu {
-//     display: none;
-//     background-color: #dddddd;
-//     border-radius: 3px;
-//     padding: 0 1em;
-//     span {
-//         display: none;
-//     }
-// }
-// .filter-remote-link {
-//     display: flex;
-//     overflow-x: scroll;
-//     a {
-//         border-radius: 1px;
-//         flex: 1 0 auto;
-//         overflow: hidden;
-//         margin: 3px;
-//         padding: 0 1em 0 30px;
-//         display: block;
-//         border: 1px solid red;
-//         color: $a;
-//         position: relative;
-//         &:after {
-//             position: absolute;
-//             left: 0;
-//             content: "X";
-//             background: red;
-//             padding: 0 0.6em;
-//             color: white;
-//             font-weight: bold;
-//         }
-//     }
-// }
-// .filter-items {
-//     .filter-header {
-//         background-color: #e5e5e5;
-//         display: block;
-//         // padding: 0 1em;
-//         color: #333;
-//         font-weight: bold;
-//     }
-//     .filter-items-list {
-//         max-height: 150px;
-//         overflow-y: auto;
-//     }
-// }
+.filter-menu {
+    display: none;
+    background-color: #dddddd;
+    border-radius: 3px;
+    padding: 0 1em;
+    span {
+        display: none;
+    }
+}
+.filter-remote-link {
+    display: flex;
+    overflow-x: scroll;
+    a {
+        border-radius: 1px;
+        flex: 1 0 auto;
+        overflow: hidden;
+        margin: 3px;
+        padding: 0 1em 0 30px;
+        display: block;
+        border: 1px solid red;
+        color: $a;
+        position: relative;
+        &:after {
+            position: absolute;
+            left: 0;
+            content: "X";
+            background: red;
+            padding: 0 0.6em;
+            color: white;
+            font-weight: bold;
+        }
+    }
+}
+.filter-items {
+    .filter-header {
+        background-color: #e5e5e5;
+        display: block;
+        // padding: 0 1em;
+        color: #333;
+        font-weight: bold;
+    }
+    .filter-items-list {
+        max-height: 150px;
+        overflow-y: auto;
+    }
+}
 
 .not-in-stock{
     display: flex;

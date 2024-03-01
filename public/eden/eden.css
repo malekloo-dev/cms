@@ -4365,7 +4365,7 @@ section.wide {
 figure.image {
   clear: both;
   text-align: center;
-  margin: 0 auto;
+  margin: auto;
   position: relative;
 }
 figure.image img {

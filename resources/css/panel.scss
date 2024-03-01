@@ -4,6 +4,7 @@
 // @import "~@fortawesome/fontawesome-free/scss/solid";
 // @import "~@fortawesome/fontawesome-free/scss/regular";
 // @import "~@fortawesome/fontawesome-free/scss/fontawesome";
+// @import "app.scss";
 
 .login h1 {
     text-align: center;
@@ -208,21 +209,7 @@ section.panel {
             }
         }
     }
-    .widget {
-        color: white;
-        a {
-            color: white;
-            &:hover {
-                color: white;
-                h2 {
-                    color: white;
-                }
-            }
-        }
-        h2 {
-            font-size: 1em;
-        }
-    }
+    
 
     .powerup {
         max-width: 400px;

@@ -1,5 +1,5 @@
 @if ($detail->attr_type == 'product' )
-    <form action="{{ route('customer.cart.store') }}" method="post" class="order-form flex one ">
+    <form action="{{ route('customer.cart.store') }}" method="post" class="order-form  ">
         @csrf
         @if (\Session::has('success'))
             <div class="alert alert-success ">
@@ -18,7 +18,7 @@
         @endif
 
         <input type="hidden" name="id" value="{{ $detail->id }}">
-        <button class="btn btn-buy px-3   border-radius-5">
+        <button class="bg-lime-700 text-white  px-3 rounded-md w-full">
             <i class="fa fa-plus"></i>
             ثبت سفارش
         </button>

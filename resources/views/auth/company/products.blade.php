@@ -162,12 +162,12 @@
 
             @isset($user->company->contents)
 
-                <div class="flex one two-500 three-700">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-x-2 ">
 
                     @foreach ($user->company->contents()->orderBy('id','desc')->paginate(9) as $content)
 
                         <div class="item  ">
-                            <div class="info  one text-center shadow ">
+                            <div class="info   text-center shadow ">
                                 @if (isset($content->images['images']))
                                     <div class="">
                                         <a target="_blank" class="bold" href="{{ url($content->slug) }}">
@@ -196,7 +196,7 @@
                                 </div>
 
 
-                                <div class="">
+                                <div class="w-full">
                                     <a href="{{ route('company.products.powerUp', $content->id) }}"
                                         class="btn btn-info btn-sm"><i class="fa fa-bolt"></i> @lang('messages.upgrade power')</a>
 

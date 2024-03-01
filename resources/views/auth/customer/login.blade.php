@@ -1,7 +1,7 @@
-@extends(@env('TEMPLATE_NAME').'.App')
+@extends(@env('TEMPLATE_NAME') . '.App')
 @section('meta-title', __('messages.login'))
 
-@section('meta-description','فرم ورود  ')
+@section('meta-description', 'فرم ورود ')
 
 
 @push('head')
@@ -28,10 +28,10 @@
         }
     </script>
     {!! htmlScriptTagJsApi([
-    'action' => 'login',
-    'callback_then' => 'callbackThen',
-    'callback_catch' => 'callbackCatch',
-]) !!}
+        'action' => 'login',
+        'callback_then' => 'callbackThen',
+        'callback_catch' => 'callbackCatch',
+    ]) !!}
 
 
     <style>
@@ -56,17 +56,14 @@
                 transform: rotate(360deg);
             }
         }
-
     </style>
 
 
     <link rel="stylesheet" href="{{ mix('panel/panel.css', env('TEMPLATE_NAME')) }}">
-
 @endpush
 
 
 @push('scripts')
-
     <script>
         //only number
         function setInputFilter(textbox, inputFilter) {
@@ -128,89 +125,88 @@
 @endpush
 @section('Content')
 
-<section class="login max-w-sm">
+    <section class="login max-w-sm">
 
 
-    @if (session('success'))
-        <div class="alert alert-success" role="alert">
-            {{ session('success') }}
-        </div>
-    @endif
-    <h1>@lang('messages.login')</h1>
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+        <h1>@lang('messages.login')</h1>
 
-    <form method="POST" action="/login">
-        @csrf
+        <form method="POST" action="/login">
+            @csrf
 
-        <div class="form-group">
-
-
-
-            <label for="mobile" class="control-label">@lang('messages.mobile')</label>
-
-            <input id="mobile" type="tel" class="h-10 rounded ltr w-full px-2 focus:border-gray-400 @error('mobile') is-invalid @enderror" name="mobile"
-                value="{{ old('mobile') }}" required autocomplete="mobile"
-                oninput="this.setCustomValidity('')"
-                oninvalid="this.setCustomValidity('شماره را وارد نمایید')"
-                placeholder="{{ __('messages.example') }}:09331181877" autofocus>
-
-            @error('mobile')
-                <span class="red" role="alert">
-                    <strong>{{ $message }} </strong>
-                </span>
-            @enderror
-        </div>
-
-        <div class="form-group" style="position: relative">
-            <label for="password" class="control-label">@lang('messages.password')</label>
-
-            <input id="password" type="password" class="rounded h-10 px-2 w-full focus:border-gray-400 ltr @error('password') is-invalid @enderror"
-                name="password" value="" required
-                oninput="this.setCustomValidity('')"
-                oninvalid="this.setCustomValidity('رمز را وارد نمایید')"
-                 autocomplete="current-password">
-
-            <input type="checkbox" style="visibility: hidden;" class="" id="show-password" onclick="showPassword()">
-
-            <label for="show-password" style="position: absolute;top:1.7em;font-size:1.3em"> <i
-                    class="fa fa-eye"></i></label>
-
-            @error('password')
-                <span class="red" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            <div class="form-group">
 
 
 
-        </div>
-        <div class="form-group mb-2">
-            <input type="checkbox" name="remember" id="remember">
-            <label for="remember">@lang('messages.remember')</label>
+                <label for="mobile" class="control-label">@lang('messages.mobile')</label>
 
-        </div>
+                <input id="mobile" type="tel"
+                    class="h-10 rounded ltr w-full px-2 focus:border-gray-400 @error('mobile') is-invalid @enderror"
+                    name="mobile" value="{{ old('mobile') }}" required autocomplete="mobile"
+                    oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('شماره را وارد نمایید')"
+                    placeholder="{{ __('messages.example') }}:09331181877" autofocus>
 
-        <div class="form-group ">
+                @error('mobile')
+                    <span class="red" role="alert">
+                        <strong>{{ $message }} </strong>
+                    </span>
+                @enderror
+            </div>
 
-            <div id="loading" style="display:block"></div>
+            <div class="form-group" style="position: relative">
+                <label for="password" class="control-label">@lang('messages.password')</label>
 
-            <button type="submit" style="display: none" id="btn-loading" class="btn bg-blue-700 text-white  btn-block">
-                <i class="fa fa-lock"></i> @lang('messages.login')
-            </button>
+                <input id="password" type="password"
+                    class="rounded h-10 px-2 w-full focus:border-gray-400 ltr @error('password') is-invalid @enderror"
+                    name="password" value="" required oninput="this.setCustomValidity('')"
+                    oninvalid="this.setCustomValidity('رمز را وارد نمایید')" autocomplete="current-password">
+
+                <input type="checkbox" style="visibility: hidden;" class="" id="show-password"
+                    onclick="showPassword()">
+
+                <label for="show-password" style="position: absolute;top:1.7em;font-size:1.3em"> <i
+                        class="fa fa-eye"></i></label>
+
+                @error('password')
+                    <span class="red" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
 
 
-        </div>
-    </form>
-</section>
-<section class="extra-link">
-    <a href="{{ route('register') }}">@lang('messages.register')</a>
 
-    <a href="{{ route('customer.forgot.request') }}">@lang('messages.forgot')</a>
-</section>
-<style>
-    .red {
-        color: red
-    }
+            </div>
+            <div class="form-group mb-2">
+                <input type="checkbox" name="remember" id="remember">
+                <label for="remember">@lang('messages.remember')</label>
 
-</style>
+            </div>
+
+            <div class="form-group ">
+
+                <div id="loading" style="display:block"></div>
+
+                <button type="submit" style="display: none" id="btn-loading" class="btn bg-blue-700 text-white  btn-block">
+                    <i class="fa fa-lock"></i> @lang('messages.login')
+                </button>
+
+
+            </div>
+        </form>
+    </section>
+    <section class="extra-link">
+        <a href="{{ route('register') }}">@lang('messages.register')</a>
+
+        <a href="{{ route('customer.forgot.request') }}">@lang('messages.forgot')</a>
+    </section>
+    <style>
+        .red {
+            color: red
+        }
+    </style>
 
 @endsection

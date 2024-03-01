@@ -134,13 +134,11 @@
         <form method="POST" action="">
             @csrf
 
-
-
             <div class="form-group row">
                 <label for="mobile" class="col-md-12 col-form-label ">@lang('messages.mobile')</label>
 
                 <div class="col-md-12">
-                    <input id="mobile" type="tel" class="form-control ltr @error('mobile') is-invalid @enderror"
+                    <input id="mobile" type="tel" class="rounded h-10 px-2 w-full focus:border-gray-400 ltr @error('mobile') is-invalid @enderror"
                         name="mobile" value="{{ old('mobile') }}" required
                         placeholder="{{ __('messages.example') }}:09331181877" autocomplete="mobile">
 
@@ -156,7 +154,7 @@
                 <label for="password" class="col-md-12 col-form-label ">@lang('messages.password')</label>
 
                 <div class="col-md-12">
-                    <input id="password" type="text" autocomplete="off"  class="form-control @error('password') is-invalid @enderror"
+                    <input id="password" type="text" autocomplete="off"  class="rounded h-10 px-2 w-full focus:border-gray-400  @error('password') is-invalid @enderror"
                         name="password" required autocomplete="password">
 
                     @error('password')
@@ -172,7 +170,7 @@
                 <label for="parent_id" class="col-md-12 col-form-label ">@lang('messages.job')</label>
 
                 <div class="col-md-12">
-                    <select id="parent_id" name="parent_id"  required>
+                    <select id="parent_id" class="rounded h-10 px-2 w-full focus:border-gray-400" name="parent_id"  required>
                         @foreach ($category as $Key => $fields)
                             <option value="{{ $fields['id'] }}" {{ (old('parent_id') == $fields['id'])?'selected':''; }}>{!! $fields['symbol'] . $fields['title'] !!}</option>
                         @endforeach
@@ -193,7 +191,7 @@
             <div class="form-group row mb-0 mt-1">
                 <div class="col-md-12 pull-right">
                     <div id="loading" ></div>
-                    <button type="submit" id="btn-loading" style="display: none" class="btn btn-inherit btn-block  ">
+                    <button type="submit" id="btn-loading" style="display: none" class="text-white bg-blue-700 btn-inherit block  ">
                         @lang('messages.register')
                     </button>
 
