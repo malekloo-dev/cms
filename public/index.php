@@ -37,10 +37,10 @@ require __DIR__.'/../vendor/autoload.php';
 */
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
+
+
 // $app = require_once __DIR__.'/../cms/bootstrap/app.php';
-/*$app->bind('path.public', function () {
-    return '/home/tarhoweb/public_html';
-});*/
+
 /*
 |--------------------------------------------------------------------------
 | Run The Application

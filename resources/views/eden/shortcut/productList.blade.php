@@ -1,10 +1,10 @@
 @isset($product_list)
 
-    <div class="grid grid-cols-2 bg-blue-400 md:grid-cols-{{ $limit }} gap-2 my-5">
+    <div class="grid grid-cols-2 bg-[#9e6c00] p-2 md:grid-cols-{{ $limit }} gap-2 my-5">
         @if (count($product_list))
             @foreach ($product_list as $content)
                 <a href="{{ url($content->slug) }}">
-                    <div class="shadow hover p-0 mb-2 ">
+                    <div class="shadow hover p-0  ">
                         @if (isset($content->images['images']['small']))
                             <figure class="image ">
                                 @if (isset($content->attr['in-stock']) && $content->attr['in-stock'] == 0)
