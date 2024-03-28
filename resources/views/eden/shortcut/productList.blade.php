@@ -1,6 +1,6 @@
 @isset($product_list)
 
-    <div class="grid grid-cols-2 bg-green-400 md:grid-cols-{{ $limit }} gap-2 my-5">
+    <div class="grid grid-cols-2 bg-blue-400 md:grid-cols-{{ $limit }} gap-2 my-5">
         @if (count($product_list))
             @foreach ($product_list as $content)
                 <a href="{{ url($content->slug) }}">
