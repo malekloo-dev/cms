@@ -153,11 +153,10 @@
             rtl: true,
             onInit: () => {},
             onChange: () => {
-
             },
         });
-        document.querySelector('.prev-products4').addEventListener('click', () => products4.prev());
-        document.querySelector('.next-products4').addEventListener('click', () => products4.next());
+        // document.querySelector('.prev-products4').addEventListener('click', () => products4.prev());
+        // document.querySelector('.next-products4').addEventListener('click', () => products4.next());
     </script>
 @endsection
 
@@ -167,8 +166,8 @@
     <section class="banner my-0 py-0">
         <div class="flex one max-w-max" >
             <img class="h-auto p-0"
-                srcset="{{ url('eden/img/banner-mom-mob.jpg') }} 800w, {{ url('eden/img/banner-mom.jpg') }} 1200w, {{ url('eden/img/banner-mom.jpg') }} 1800w"
-                src="{{ url('eden/img/banner-mom-mob.jpg') }}" alt="طلای ایدن" title="طلای ایدن" width="1200" height="344">
+                srcset="{{ url('eden/img/banner-mob.jpg') }} 800w, {{ url('eden/img/banner.jpg') }} 1200w, {{ url('eden/img/banner.jpg') }} 1800w"
+                src="{{ url('eden/img/banner-mob.jpg') }}" alt="طلای ایدن" title="طلای ایدن" width="1200" height="344">
 
         </div>
     </section>

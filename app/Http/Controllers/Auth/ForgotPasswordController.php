@@ -33,7 +33,7 @@ class ForgotPasswordController extends Controller
 
     public function showLinkRequestForm()
     {
-        return view('auth.passwords.mobile');
+        return view('auth.passwords.email');
     }
 
 }

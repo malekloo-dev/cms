@@ -52,6 +52,7 @@ class CmsController extends Controller
         //            ->paginate(20);
         //        // ->get();
         $filterList = array();
+
         if (env('All_CONTENT_SUB_CATEGORY') == 1) {
             $relatedProduct = Content::where('type', '=', '2')
                 ->where('attr_type', '=', 'product')
@@ -60,6 +61,7 @@ class CmsController extends Controller
                 ->paginate(env('PAGE_SIZE_PRODUCT', 15));
             $relatedProduct = $this->getCatChildOfcontent($detail['id'], $relatedProduct, 'product');
         } else {
+
             $contentTypeIdList = $detail->getContentTypeid($request)->pluck('content_type_id');
             $filterList = Attribute::generatefilterList($request, $contentTypeIdList);
             //dd($filterList);

@@ -1744,6 +1744,7 @@ a {
     box-shadow: none;
     transition: all 0.3s;
 }
+a:hover{color: $a-hover;}
 code {
     padding: 0.3em 0.6em;
     font-size: 0.8em;

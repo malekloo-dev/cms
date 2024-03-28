@@ -161,8 +161,8 @@ class CustomerController extends Controller
 
         $message = "{$user->mobile}\nنام : {$pN}\nمبلغ : {$order->total_price}";
 
-        if (url('/') == 'https://edengoldgallery.ir') {
-            $sms = @sendSms(array('09331181877'), $message);
+        if (env('SMS_PURCHASE', false)) {
+            @sendSms(array('09331181877'), $message);
         }
 
 
@@ -572,6 +572,11 @@ class CustomerController extends Controller
         $order->status = 2;
         $order->save();
 
+        
+        if(env('SMS_PURCHASE', false))
+        {
+            @sendSms(array('09374599840','09331181877'), "فیش {$order->id} مبلغ {$order->total_price} ثبت شد.");
+        }
 
         return redirect()->route('customer.transaction')->with('success', 'فیش آپلود شد. منتظر تماس از بخش ارسال بمانید.');
     }

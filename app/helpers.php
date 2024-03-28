@@ -779,6 +779,7 @@ function idToMenuLabel($id)
 
 function sendSms($numbers = ['09331181877'], $message = '', $i = 0)
 {
+    // media.sms24.ir
     ini_set('soap.wsdl_cache_enabled', '0');
     $sms_client = new SoapClient('http://payamak-service.ir/SendService.svc?wsdl', ['encoding' => 'UTF-8']);
     $fromNumber = (array)json_decode(env('SMS_SENDER')) ?? [

@@ -62,7 +62,8 @@ class Category extends Model
         $object = $this->belongsToMany(Content::class, 'contents_category', 'cat_id', 'content_id')
             ->where('contents.type', '=', '2')
             ->where('contents.attr_type', '=', 'product')
-            ->where('contents.publish_date', '<=', DB::raw('now()'));
+            ->where('contents.publish_date', '<=', DB::raw('now()'))
+            ->where('status','=',1);
         //dd($filter);
         if (isset($filter['attribute'])) {
             /* $object->where(function ($query) use ($filter) {
@@ -141,8 +142,11 @@ class Category extends Model
 
     public function childs()
     {
-
         return $this->hasMany(Category::class, 'parent_id', 'id');
+    }
+    public function childCategory()
+    {
+        return $this->hasMany(Category::class, 'parent_id', 'id')->where('attr_type','=','category');
     }
 
     /**

@@ -31,8 +31,7 @@
             mySiema.init();
         };
 
-        if (allSiema.lenght > 0) {
-
+        // if (allSiema.length > 0) {
             perPage();
             var mySiema = new Siema({
                 selector: '.siema',
@@ -50,10 +49,10 @@
 
                 },
             });
-            document.querySelector('.prev-cat').addEventListener('click', () => mySiema.prev());
-            document.querySelector('.next-cat').addEventListener('click', () => mySiema.next());
+            document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
+            document.querySelector('.next').addEventListener('click', () => mySiema.next());
 
-        }
+        // }
     </script>
 @endsection
 
@@ -92,7 +91,7 @@
     <section class="category-section mt-1 mb-0 ">
         <div class="relative px-7 lg:px-10 bg-white shadow3">
             <h2 class="text-center">محصولات جدید</h2>
-            <div class="siema-products">
+            <div class="siema">
                 {{--product&label=new&var=products&count=12 --}}
                 @isset($products['data'])
                     @foreach ($products['data'] as $content)
@@ -137,8 +136,8 @@
                     @endforeach
                 @endisset
             </div>
-            <a class="prev2 prev-products">&#10094;</a>
-            <a class="next2 next-products">&#10095;</a>
+            <a class="prev2 prev">&#10094;</a>
+            <a class="next2 next">&#10095;</a>
 
         </div>
     </section>

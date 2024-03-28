@@ -73,16 +73,16 @@
             <h2>مقالات</h2>
             <div>
                 @if (count($posts))
-                    <div class="flex one two-500   ">
+                    <div class="grid sm:grid-cols-2 gap-5   ">
 
                         @foreach ($posts as $content)
 
                             <a href="{{ $content->slug }}">
-                                <div class="shadow hover p-0 border-radius-5  search-item">
+                                <div class="shadow h-full hover p-0 rounded-md flex">
 
                                     @if (isset($content->images['images']['small']) && file_exists(public_path($content->images['images']['small'])))
-                                        <figure class="image m-0" style="width: 70px">
-                                            <img src="{{ $content->images['images']['large'] }}"
+                                        <figure class=" m-0 flex-none" style="width: 70px">
+                                            <img class="rounded" src="{{ $content->images['images']['large'] }}"
                                                 alt="{{ $content->title }}" title="{{ $content->title }}" width="70"
                                                 height="70">
 
@@ -91,10 +91,8 @@
 
                                     <div class="py-0 px-1 m-0 ">
                                         <div>{{ $content->title }}</div>
-                                        <div>
-
-
-                                            <span class="rate ">
+                                        <div class="flex gap-x-2 items-center">
+                                            <span class="rate text-xs flex items-center">
                                                 @if (count($content->comments))
                                                     @php
                                                         $rateAvrage = $rateSum = 0;
@@ -107,13 +105,12 @@
                                                     @for ($i = $rateSum / count($content->comments); $i >= 1; $i--)
                                                         <label></label>
                                                     @endfor
-                                                    <span class="font-09 ml-2">({{ count($content->comments) }}
-                                                        نفر)</span>
+                                                    <span class=" ml-2">({{ count($content->comments) }}نفر)</span>
                                                 @endif
                                             </span>
 
-                                            <span class="">
-                                                <svg class="p-0  m-0" width="18" height="18" viewBox="0 0 24 18"
+                                            <span class="flex items-center">
+                                                <svg class="p-0  m-0" width="15" height="15" viewBox="0 0 30 30"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"

@@ -9,7 +9,7 @@
         <div>
             <div class="flex one four-500">
 
-                @hasrole('company','super admin')
+                @hasrole(['company','super admin'])
                     @isset($user->customer)
                         @if ($user?->customer?->status == 0)
                             <div class="one thirdth-500 ">

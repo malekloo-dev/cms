@@ -9,7 +9,7 @@
 @section('og:description', clearHtml($detail->meta_description))
 
 @if ($relatedProduct->hasPages() || json_decode($relatedProduct->toJson())->current_page == 1)
-    @section('canonical', url($detail->slug))
+    @section('canonical', url()->full())
 @endif
 
 @if (isset($detail->images['images']['medium']))
@@ -27,12 +27,12 @@
 
     {{-- <link rel="stylesheet" href="{{ asset('/detail.category.css') }}"> --}}
 
-    @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
+    {{-- @if (json_decode($relatedProduct->toJson())->prev_page_url != null)
         <link rel="prev" href="{{ json_decode($relatedProduct->toJson())->prev_page_url }}">
     @endif
     @if (json_decode($relatedProduct->toJson())->next_page_url != null)
         <link rel="next" href="{{ json_decode($relatedProduct->toJson())->next_page_url }}">
-    @endif
+    @endif --}}
 @endsection
 
 

@@ -56,7 +56,7 @@
     <link rel="icon" href="{{ url(env('TEMPLATE_NAME') . '/img/fav.png') }}" type="image/png">
     <link rel="stylesheet" media="bogus">
     @hasSection('canonical')
-    <link href="@yield('canonical',url('/'))" rel="canonical" />
+        <link href="@yield('canonical',url('/'))" rel="canonical" />
     @endif
 
 

@@ -40,6 +40,10 @@ mix.setPublicPath('public/' + template + '/')
         'node_modules/@fortawesome/fontawesome-free/webfonts/',
         'public/' + template + '/panel/webfonts/'
     )
+    .copy(
+        'resources/js/jquery-3.6.0.min.js',
+        'public/' + template + '/'
+    )
     // .minify('public/'+template + '/'+template + '.css')
     .version();
 
