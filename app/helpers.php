@@ -1024,3 +1024,32 @@ function getSession($name)
 
     return session()->get($name);
 }
+
+function replace_shortcodes($content) {
+    $facade = new Thunder\Shortcode\ShortcodeFacade();
+
+    $facade->addHandler('product-list', function(Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
+        $category = $s->getParameter('category');
+        $limit = $s->getParameter('limit', 4);
+        $product_list = Category::find($category)->products()->limit($limit)->get();
+        return view(env('TEMPLATE_NAME') . '.shortcut.productList', compact('product_list','limit'));
+    });
+
+
+    $facade->addHandler('content-list', function(Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
+        $category = $s->getParameter('category');
+        $limit = $s->getParameter('limit', 4);
+        $content_list = Category::find($category)->posts()->limit($limit)->get();
+        return view(env('TEMPLATE_NAME') . '.shortcut.contentList', compact('content_list','limit'));
+    });
+
+    $facade->addHandler('category-child', function(Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
+        $parent = $s->getParameter('parent');
+        $limit = $s->getParameter('limit', 4);
+        $category_child = Category::find($parent)->childCategory()->limit($limit)->get();
+        return view(env('TEMPLATE_NAME') . '.shortcut.categoryChild', compact('category_child'));;
+    });
+
+    return  $facade->process($content);
+
+}

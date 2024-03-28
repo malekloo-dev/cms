@@ -1,1 +1,1 @@
-{!! $module['content'] !!}
+{!! replace_shortcodes($module['content']) !!}

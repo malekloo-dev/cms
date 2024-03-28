@@ -31,6 +31,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
+
         Schema::defaultStringLength(191);
 
         $lang = app()->setLocale(env('SITE_LANG'));
@@ -50,7 +52,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('admin/*', function () {
             $commentCount = Comment::where('status','',0)->count();
             $orderCount = Order::whereIn('status',[0, 2])->count();
-            
+
             View::share('commentCount',$commentCount );
             View::share('orderCount',$orderCount );
         });
